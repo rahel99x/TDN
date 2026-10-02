@@ -1,19 +1,178 @@
-"""Bounded A100 parity, memory and event-timing calibration, never CPU claims."""
+"""Bounded, measured calibration with separate CARC and desktop scopes."""
 from __future__ import annotations
 import copy
 import math
 import os
 import time
+from dataclasses import fields, is_dataclass
 from pathlib import Path
 import torch
 from tdn.config import config_hash
 from tdn.runtime.metadata import software_metadata, write_json
 from tdn.runtime.precision import reference_precision
+from tdn.runtime.preflight import execution_mode, desktop_cuda_device
 
 def relative_error(a, b):
     return float(torch.linalg.vector_norm((a-b).double()) / torch.linalg.vector_norm(a.double()).clamp_min(1e-12))
 
+
+def _finite_result(value) -> bool:
+    if isinstance(value, torch.Tensor):
+        return bool(torch.isfinite(value).all())
+    if is_dataclass(value):
+        return all(_finite_result(getattr(value, f.name)) for f in fields(value))
+    if isinstance(value, dict):
+        return all(_finite_result(v) for v in value.values())
+    if isinstance(value, (tuple, list)):
+        return all(_finite_result(v) for v in value)
+    return value is None or not isinstance(value, (int, float)) or math.isfinite(value)
+
+
+def _calibrate_desktop(config: dict, run_dir: Path, device: str) -> dict:
+    """Measure eager FP32 physics/network/backward, without optimized passes."""
+    if device not in ("cpu", "cuda"):
+        raise ValueError("Desktop calibration device must be cpu or cuda")
+    if config["precision"]["network_autocast"] != "none" or config["precision"]["compile_mode"] != "eager":
+        raise ValueError("Desktop calibration currently validates eager FP32 only")
+    from tdn.models import build_model
+    from tdn.features.local import extract_features, feature_count
+    from tdn.numerics import Equation, Geometry, choose_substeps, reference_step, split_step
+    from tdn.models.solver import corrected_step
+    from tdn.train.model import NormalizedModel
+    from tdn.analysis.profiling import measure
+
+    cuda = device == "cuda"
+    index = desktop_cuda_device() if cuda else None
+    selected = torch.device("cuda", index) if cuda else torch.device("cpu")
+    policy = config["runtime"]
+    if cuda:
+        free, total = torch.cuda.mem_get_info(selected)
+        soft = int(min(policy["soft_vram_gib"] * 2**30,
+                       policy["soft_vram_fraction"] * total,
+                       policy["soft_vram_fraction"] * free))
+        prop = torch.cuda.get_device_properties(selected)
+        hardware = {"device_index": index, "name": prop.name,
+                    "compute_capability": [prop.major, prop.minor],
+                    "total_bytes": int(total), "initial_free_bytes": int(free)}
+    else:
+        soft = total = free = None
+        hardware = {"device_index": None, "name": "CPU", "cuda_measurements": "UNRUN"}
+    reference_precision()
+    torch.manual_seed(config["seed"])
+    F = feature_count(len(config["problem"]["grid"]))
+    n = min(config["model"]["chunk_size"], config["training"]["microbatch_cells"],
+            math.prod(config["problem"]["grid"]), 32768)
+    model = build_model(F, config["model"], t_ref=config["problem"]["t_ref"],
+                        U_ref=config["problem"]["U_ref"]).to(selected)
+    with torch.no_grad():
+        for name, parameter in model.named_parameters():
+            if "amplitude" in name:
+                parameter.add_(torch.randn_like(parameter) * .01)
+    x = torch.randn(n, F, device=selected, requires_grad=True)
+    h = torch.tensor(config["horizons"]["values"][0], device=selected)
+    output = model(x, h)
+    gradient, = torch.autograd.grad(output.square().sum(), x)
+    finite = {"encoder_forward": _finite_result(output), "encoder_gradient": _finite_result(gradient)}
+    optimizer = torch.optim.AdamW(model.parameters(), lr=config["training"]["learning_rate"])
+
+    def optimizer_step():
+        optimizer.zero_grad(set_to_none=True)
+        result = model(x, h)
+        result.square().mean().backward()
+        optimizer.step()
+        return result.detach()
+
+    _, step_profile = measure(optimizer_step, device=selected, warmup=1, repeats=3, memory_policy=policy)
+    equation = Equation(config["problem"]["kappa"], config["problem"]["reaction_rate"])
+    geometry = Geometry(tuple(config["problem"]["grid"]), tuple(config["problem"]["lengths"]))
+    state = .4 + .1 * torch.rand((1, 1, *geometry.grid), device=selected, dtype=torch.float32)
+    runtime_model = NormalizedModel(model, [0.] * F, [1.] * F).to(selected)
+    teacher_count = max(config["teacher"]["base_substeps"],
+                        choose_substeps(float(h.cpu()), equation, geometry))
+
+    def short_rollout():
+        result = state
+        for _ in range(2):
+            result = corrected_step(result, h, equation, geometry, runtime_model,
+                                    chunk_size=config["model"]["chunk_size"])
+        return result
+
+    phases = {"encoder_optimizer_step": step_profile}
+    with torch.inference_mode():
+        features = extract_features(state, equation, geometry, t_ref=model.t_ref,
+                                    U_ref=model.U_ref).reshape(-1, F)
+        encoded = model.encode(features) if hasattr(model, "encode") else None
+        operations = {
+            "teacher_fp64": lambda: reference_step(state.double(), h.double(), equation, geometry, teacher_count),
+            "split_fp32": lambda: split_step(state, h, equation, geometry),
+            "features_fp32": lambda: extract_features(state, equation, geometry, t_ref=model.t_ref, U_ref=model.U_ref),
+            "encode_fp32" if encoded is not None else "generic_forward_fp32":
+                lambda: model.encode(features) if encoded is not None else model(features, h),
+            "decode_fp32" if encoded is not None else "generic_forward_repeat_fp32":
+                lambda: model.decode(encoded, h) if encoded is not None else model(features, h),
+            "short_full_domain_rollout": short_rollout,
+        }
+        for name, operation in operations.items():
+            result, phases[name] = measure(operation, device=selected, warmup=1, repeats=3, memory_policy=policy)
+            finite[name] = _finite_result(result)
+
+    def full_domain_backward():
+        optimizer.zero_grad(set_to_none=True)
+        result = state.detach().clone().requires_grad_()
+        for _ in range(config["training"]["rollout_windows"]):
+            result = corrected_step(result, h, equation, geometry, runtime_model,
+                                    chunk_size=config["model"]["chunk_size"],
+                                    checkpoint_chunks=config["precision"]["checkpoint_chunks"])
+        result.square().mean().backward()
+        finite["full_domain_parameter_gradients"] = all(
+            p.grad is None or _finite_result(p.grad) for p in model.parameters())
+        optimizer.step()
+        return result.detach()
+
+    result, phases["full_domain_training_backward"] = measure(
+        full_domain_backward, device=selected, warmup=1, repeats=3, memory_policy=policy)
+    finite["full_domain_training_backward"] = _finite_result(result)
+    if cuda:
+        for phase in phases.values():
+            phase["soft_budget_bytes"] = soft
+            phase["soft_budget_passed"] = phase["peak_reserved_bytes"] <= soft
+        memory_pass = all(p["peak_reserved_bytes"] <= soft and
+                          p["device_used_bytes_observed_peak"] < policy["hard_memory_fraction"] * total and
+                          p["first_use_and_warmup_memory"]["peak_reserved_bytes"] <= soft
+                          for p in phases.values())
+        memory = {"scope": "selected local CUDA device; includes other applications in sampled device use",
+                  "initial_free_bytes": int(free), "total_bytes": int(total), "soft_budget_bytes": soft,
+                  "hard_device_used_fraction": policy["hard_memory_fraction"], "passed": memory_pass,
+                  "peak_reserved_bytes": max(p["peak_reserved_bytes"] for p in phases.values())}
+    else:
+        memory_pass = True
+        memory = {"scope": "CPU process memory observations; CUDA budget checks UNRUN",
+                  "cuda_status": "UNRUN", "cuda_budget_passed": None,
+                  "host_process_peak_rss_bytes": max((p["host_process_peak_rss_bytes"] or 0) for p in phases.values()) or None}
+    reason = "Desktop baseline validates eager FP32 only; optimized parity requires a separate supported audit"
+    precision = {"mode": "eager_fp32", "eager_finite_checks": finite,
+                 "eager_passed": all(finite.values()), "optimized_status": "UNRUN",
+                 "bf16_status": "UNRUN", "bf16_passed": False,
+                 "compile_status": "UNRUN", "compile_passed": False,
+                 "combined_status": "UNRUN", "combined_passed": False,
+                 "unrun_reason": reason}
+    report = {"scope": "newly measured desktop eager FP32 calibration; no CARC or optimized-precision claim",
+              "execution_mode": "desktop", "device": str(selected), "hardware": hardware,
+              "config_hash": config_hash(config), "passed": all(finite.values()) and memory_pass,
+              "optimized_eligible": False, "precision": precision, "memory": memory,
+              "compile_seconds": None, "compile_first_use_memory": None,
+              "phase_profiles": phases, "encoded_points": n,
+              "optimizer_step_seconds": step_profile["cuda_event_seconds_raw"] if cuda else step_profile["wall_seconds_raw"],
+              "software": software_metadata()}
+    write_json(run_dir / "calibration.json", report)
+    if not report["passed"]:
+        raise RuntimeError("Desktop eager finite/memory calibration failed; see calibration.json")
+    return report
+
+
 def calibrate(config: dict, run_dir: Path, device: str = "cuda") -> dict:
+    if execution_mode() == "desktop":
+        return _calibrate_desktop(config, run_dir, device)
     if device != "cuda" or not os.environ.get("SLURM_JOB_ID") or not os.environ.get("SLURM_STEP_ID"):
         raise ValueError("Calibration requires an allocated Slurm GPU task; CPU validation does not substitute")
     if not torch.cuda.is_available() or torch.cuda.device_count() != 1:

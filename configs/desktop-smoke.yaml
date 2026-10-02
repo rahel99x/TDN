@@ -1,0 +1,101 @@
+# Native Windows desktop development check; RTX 4090 24 GB starting policy.
+# System/shared RAM does not extend the GPU VRAM budget.
+schema_version: 1
+experiment: tdn_desktop_smoke_4090
+seed: 0
+purpose: development
+problem:
+  family: logistic_rd
+  grid:
+  - 8
+  - 8
+  lengths:
+  - 1.0
+  - 1.0
+  kappa: 0.01
+  reaction_rate: 2.0
+  kappa_range:
+  - 0.01
+  - 0.01
+  reaction_rate_range:
+  - 2.0
+  - 2.0
+  t_ref: 1.0
+  U_ref: 1.0
+  periodic: true
+horizons:
+  values:
+  - 0.04
+  - 0.08
+  - 0.16
+  - 0.32
+  rollout_time: 0.64
+  evaluation_steps:
+  - 0.04
+  - 0.08
+  - 0.16
+  - 0.32
+  mixed_factors:
+  - 0.5
+  - 1.0
+  - 1.5
+data:
+  train_count: 4
+  validation_count: 2
+  diagnostic_count: 2
+  confirmatory_count: 0
+  anchors_per_parent: 1
+  workers: 0
+  rollout_windows:
+  - 1
+  - 2
+  - 4
+teacher:
+  base_substeps: 16
+  error_fraction: 0.05
+  tolerance_fraction: 0.1
+  noise_floor: 1.0e-10
+model:
+  family: temporal_mlp
+  width: 32
+  modes: 4
+  fixed_rates:
+  - 0.1
+  - 1.0
+  - 10.0
+  - 100.0
+  chunk_size: 2048
+  anchored: false
+training:
+  max_steps: 12
+  learning_rate: 0.001
+  weight_decay: 1.0e-05
+  grad_clip: 1.0
+  batch_parents: 1
+  microbatch_cells: 2048
+  rollout_windows: 1
+  rollout_weight: 0.1
+  checkpoint_every_steps: 5
+  checkpoint_every_seconds: 600
+  validation_every_steps: 5
+precision:
+  state: float32
+  teacher: float64
+  network_autocast: none
+  compile_mode: eager
+  tf32: false
+  checkpoint_chunks: false
+validation:
+  tolerance: 0.002
+  tolerance_provenance: proposed development screening value; not a confirmatory tolerance
+  tolerance_manifest: null
+  require_headroom: false
+  reference_fraction: 0.1
+  bootstrap_samples: 200
+runtime:
+  intraop_threads: 1
+  interop_threads: 1
+  soft_vram_gib: 18
+  soft_vram_fraction: 0.75
+  hard_memory_fraction: 0.9
+  confirmatory_authorized: false

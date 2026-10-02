@@ -1,5 +1,6 @@
 """Precision controls outside compiled kernels; reference physics stays FP32/64."""
 from contextlib import nullcontext
+import os
 import torch
 
 def reference_precision():
@@ -14,6 +15,8 @@ def reference_precision():
 
 def encoder_autocast(device: str, enabled: bool):
     if enabled:
+        if os.environ.get("TDN_EXECUTION_MODE") == "desktop":
+            raise ValueError("Desktop runs use eager FP32; BF16 parity remains unvalidated")
         if not str(device).startswith("cuda"): raise ValueError("BF16 optimized candidate requires allocated GPU parity")
         return torch.autocast("cuda", dtype=torch.bfloat16)
     return nullcontext()

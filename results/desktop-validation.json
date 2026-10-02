@@ -1,0 +1,82 @@
+{
+  "category": "newly measured result",
+  "scope": "Linux CPU desktop-runner validation; PowerShell7 syntax/bootstrap on Linux; native Windows and physical CUDA unrun",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "b749034dfc50253d2e49505bcb8c6ab1baaf0330",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "60fc7a1d1e60367ad3f080cb770a16a2e9f0886bd06b34c21679b19be15156f4",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "pipeline": {
+    "command": ".venv/bin/python scripts/desktop.py run --device cpu --config configs/desktop-smoke.yaml --max-steps 12 --run-id desktop-final-validation",
+    "actually_ran": true,
+    "exit_code": 0,
+    "status": "COMPLETED",
+    "stages": {
+      "cpu-tests": "COMPLETED",
+      "audit": "COMPLETED",
+      "generate": "COMPLETED",
+      "calibrate": "COMPLETED",
+      "train": "COMPLETED",
+      "evaluate": "COMPLETED",
+      "benchmark": "COMPLETED"
+    },
+    "cpu_tests_passed": 162,
+    "gpu_tests_deselected": 8,
+    "training_steps": 12,
+    "validation_feasible": true
+  },
+  "powershell": {
+    "version": "7.5.4",
+    "platform": "Linux",
+    "scripts_parsed": 4,
+    "parse_errors": 0,
+    "doctor_executed": true,
+    "project_path_with_spaces_checked": true,
+    "native_child_exit7_error_propagation_checked": true,
+    "run_child_exit75_propagation_checked": true,
+    "native_windows_execution": "UNRUN"
+  },
+  "zip_source_check": {
+    "scope": "Extracted source APIs using existing Linux CPU dependencies",
+    "modules_imported_from_archive": 38,
+    "git_checkout_required": false,
+    "dataset_generation": true,
+    "training_steps": 2,
+    "validation_feasible": true,
+    "evaluation_written": true
+  },
+  "gpu": {
+    "physical_gpu_execution": "UNRUN",
+    "native_windows_execution": "UNRUN",
+    "required_desktop_tests": 4,
+    "missing_cuda_required_suite_exit_code": 4,
+    "target": "RTX 4090 24 GB VRAM / 128 GB host RAM",
+    "optimized_compile_or_bf16_checks": "UNRUN"
+  },
+  "scientific_gates": {
+    "G1": {
+      "passed": true
+    },
+    "G2": {
+      "passed": false
+    },
+    "G3": {
+      "passed": true
+    },
+    "G4": {
+      "passed": false
+    }
+  },
+  "claim": "Working small CPU development implementation and prepared Windows workflow; no RTX4090 performance or learned efficiency claim."
+}

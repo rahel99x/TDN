@@ -22,7 +22,10 @@ def test_confirmation_is_not_a_pilot_claim():
 
 def test_symlink_escape(tmp_path):
     root=tmp_path/"root";root.mkdir();outside=tmp_path/"outside";outside.mkdir()
-    (root/"cache").symlink_to(outside,target_is_directory=True)
+    try:
+        (root/"cache").symlink_to(outside,target_is_directory=True)
+    except OSError:
+        pytest.skip("Windows account lacks symlink permission")
     with pytest.raises(ValueError,match="escapes"):contained_path(root/"cache"/"state",root)
 
 def test_training_respects_stricter_initial_free_memory_fraction(monkeypatch):

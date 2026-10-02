@@ -2,7 +2,10 @@ import os
 import pytest
 import torch
 
-pytestmark=[pytest.mark.gpu,pytest.mark.skipif(not torch.cuda.is_available(),reason="No CUDA device; GPU coverage remains unvalidated")]
+pytestmark=[pytest.mark.gpu,
+            pytest.mark.skipif(os.environ.get("TDN_EXECUTION_MODE") == "desktop",
+                               reason="CARC allocated/compiled GPU suite; desktop readiness is tests/test_desktop_gpu.py"),
+            pytest.mark.skipif(not torch.cuda.is_available(),reason="No CUDA device; GPU coverage remains unvalidated")]
 
 def require_task():
     assert os.environ.get("SLURM_JOB_ID") and os.environ.get("SLURM_STEP_ID"), "GPU checks require an allocated task"

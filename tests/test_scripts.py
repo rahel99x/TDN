@@ -12,6 +12,8 @@ from types import SimpleNamespace
 
 import pytest
 
+pytestmark = pytest.mark.skipif(os.name == "nt", reason="CARC Bash/Slurm mocks require a POSIX host")
+
 ROOT = Path(__file__).resolve().parents[1]
 
 

@@ -178,7 +178,8 @@ def generate_dataset(config: dict, destination: Path) -> Path:
             path = paths[name]
             array._mmap.close()
             pending = path.with_suffix(".npy.pending")
-            with pending.open("rb") as stream:
+            # Windows' CRT commit requires a writable file handle.
+            with pending.open("r+b") as stream:
                 os.fsync(stream.fileno())
             pending.replace(path)
             entries[name] = {"path": path.name, "sha256": file_hash(path),

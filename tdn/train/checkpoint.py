@@ -4,12 +4,13 @@ from __future__ import annotations
 import json
 import os
 import random
+import shutil
 from pathlib import Path
 
 import numpy as np
 import torch
 
-from tdn.data.provenance import atomic_json, file_hash
+from tdn.data.provenance import atomic_json, file_hash, fsync_directory
 
 
 def capture_rng() -> dict:
@@ -40,14 +41,18 @@ def _atomic_torch_save(path: Path, payload: dict, previous: Path | None = None) 
         backup_pending = previous.with_name(previous.name + ".pending")
         if backup_pending.exists():
             backup_pending.unlink()
-        os.link(path, backup_pending)
+        try:
+            os.link(path, backup_pending)
+        except OSError:
+            # Some Windows filesystems do not support hard links. Preserve the
+            # previous published checkpoint using a flushed local copy.
+            with path.open("rb") as source, backup_pending.open("wb") as target:
+                shutil.copyfileobj(source, target)
+                target.flush()
+                os.fsync(target.fileno())
         backup_pending.replace(previous)
     pending.replace(path)
-    directory = os.open(path.parent, os.O_RDONLY)
-    try:
-        os.fsync(directory)
-    finally:
-        os.close(directory)
+    fsync_directory(path.parent)
 
 
 def save_checkpoint(run_dir: Path, payload: dict, *, best: bool = False) -> Path:

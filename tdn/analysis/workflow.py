@@ -188,7 +188,8 @@ def audit(config: dict, run_dir: Path, device="cpu") -> dict:
                     with torch.inference_mode():
                         return _rollout(state.clone(), schedule, equation, geometry, method,
                                         rtol=0., atol=config["validation"]["tolerance"] * .5)
-                (final_state, counters), cost = measure(operation, device=device, warmup=1, repeats=3)
+                (final_state, counters), cost = measure(operation, device=device, warmup=1, repeats=3,
+                                                       memory_policy=config["runtime"])
                 row.update(error=_rms(final_state - reference_T, geometry), counters=counters, performance=cost)
             except (RuntimeError, ValueError, FloatingPointError) as error:
                 row.update(failed=True, failure_reason=f"{type(error).__name__}: {error}")
@@ -376,7 +377,8 @@ def _candidate_records(store, split, config, method, h, *, device, model=None,
                                         rtol=0., atol=tolerance * .5)
                 (computed, counters), performance = measure(operation, device=device,
                                                             warmup=1 if benchmark_mode else 0,
-                                                            repeats=3 if benchmark_mode else 1)
+                                                            repeats=3 if benchmark_mode else 1,
+                                                            memory_policy=config["runtime"])
                 error = _rms(computed.double() - teacher, geometry)
                 record.update(error=error, failed=error > tolerance,
                               failure_reason="fixed numerical tolerance exceeded" if error > tolerance else None,
@@ -501,7 +503,7 @@ def _run_evaluation(config, dataset_dir, checkpoint, run_dir, device, *, benchma
                    "unsupported_optional": ["KAN", "anchored nonlinear discrete e3", "Gray-Scott", "advection", "distributed HALO"],
                    "competitive_coupled_method": "stability-resolved coupled RK4; stiff regimes may require IMEX before confirmation"},
                "training_amortization": {"available": False, "reason": "All dataset/training/setup costs must be measured and a positive matched-tolerance runtime gain established"},
-               "claim": "Measured development frontiers only; no confirmatory efficiency or GPU claim without its allocated evidence"}
+               "claim": "Measured development frontiers only; no confirmatory efficiency claim. GPU results require recorded CUDA execution on the reported hardware."}
     run_dir = Path(run_dir)
     run_dir.mkdir(parents=True, exist_ok=True)
     _write(run_dir / ("benchmark.json" if benchmark_mode else "evaluation.json"), payload)

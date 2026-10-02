@@ -61,7 +61,7 @@ class _MemoryBudget:
     def report(self):
         if not self.enabled:
             return {"scope": "CPU run; no allocated GPU memory measurement"}
-        return {"scope": "allocated CUDA task; device-used values sampled at safe boundaries",
+        return {"scope": ("desktop CUDA device" if os.environ.get("TDN_EXECUTION_MODE") == "desktop" else "allocated CUDA task") + "; device-used values sampled at safe boundaries",
                 "initial_free_bytes": self.initial_free, "total_bytes": self.total,
                 "soft_budget_bytes": self.soft, "hard_device_used_fraction": self.hard_fraction,
                 "observations": self.samples}

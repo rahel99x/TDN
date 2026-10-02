@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -22,6 +23,21 @@ def file_hash(path: Path) -> str:
     return result.hexdigest()
 
 
+def fsync_directory(path: Path) -> None:
+    """Flush POSIX directory metadata; Windows has no stdlib directory fsync.
+
+    On Windows the publication still uses a flushed file and same-directory
+    atomic replacement, without claiming POSIX directory crash durability.
+    """
+    if os.name == "nt":
+        return
+    directory = os.open(path, os.O_RDONLY)
+    try:
+        os.fsync(directory)
+    finally:
+        os.close(directory)
+
+
 def atomic_json(path: Path, value: Any) -> None:
     """Publish in the same directory; never stage checkpoint files in /tmp."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -32,19 +48,17 @@ def atomic_json(path: Path, value: Any) -> None:
         stream.flush()
         os.fsync(stream.fileno())
     staging.replace(path)
-    directory = os.open(path.parent, os.O_RDONLY)
-    try:
-        os.fsync(directory)
-    finally:
-        os.close(directory)
+    fsync_directory(path.parent)
 
 
 def source_provenance() -> dict:
     root = Path(__file__).resolve().parents[2]
-    commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root,
-                            capture_output=True, text=True, check=False)
+    commit = None
+    if shutil.which("git") and (root / ".git").exists():
+        commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root,
+                                capture_output=True, text=True, check=False)
     source_paths = [*(root / "tdn").rglob("*.py"), *(root / "reference").rglob("*.py")]
     source_paths.extend(p for p in (root / "requirements.txt", root / "pyproject.toml") if p.exists())
-    files = {str(p.relative_to(root)): file_hash(p) for p in sorted(source_paths)}
-    return {"commit": commit.stdout.strip() or "unversioned",
+    files = {p.relative_to(root).as_posix(): file_hash(p) for p in sorted(source_paths)}
+    return {"commit": commit.stdout.strip() if commit and commit.returncode == 0 else "unversioned",
             "python_source_hash": canonical_hash(files), "files": files}

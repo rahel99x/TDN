@@ -41,3 +41,19 @@ The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implem
 - Final stricter initial-free memory policy reviewed and covered by a new CPU mock regression; 10 configuration/runtime tests passed. The complete evidence comprises 93 unique CPU tests and four unrun GPU tests.
 
 - Pre-publication packaging review corrected an unanchored generated-data ignore rule that excluded `tdn/data`. Clean staged export imported all37 TDN modules and completed dataset generation, two optimizer steps and evaluation without ignored working files. The archive was rebuilt with the required data package.
+
+- Executed `compare`; config `8a43808d5c73dd8bdd97c679698ce5e33d7edac0a8216b9c77717fd839601667`; commit `b749034dfc50253d2e49505bcb8c6ab1baaf0330`; report `results/test-work/b8770554130c4c8598a0e7c1854df54e/cli-comparison/stage.json`; status COMPLETED, 7.516 seconds.
+
+- Executed `audit`; config `abe69d532efb89e2be02f6fb1b5b538e4f61231be214daf5120761b69a6b7343`; commit `b749034dfc50253d2e49505bcb8c6ab1baaf0330`; report `runs/desktop-final-validation/audit/stage.json`; status COMPLETED, 8.458 seconds.
+
+- Executed `generate`; config `abe69d532efb89e2be02f6fb1b5b538e4f61231be214daf5120761b69a6b7343`; commit `b749034dfc50253d2e49505bcb8c6ab1baaf0330`; report `runs/desktop-final-validation/generate/stage.json`; status COMPLETED, 6.353 seconds.
+
+- Executed `calibrate`; config `abe69d532efb89e2be02f6fb1b5b538e4f61231be214daf5120761b69a6b7343`; commit `b749034dfc50253d2e49505bcb8c6ab1baaf0330`; report `runs/desktop-final-validation/calibrate/stage.json`; status COMPLETED, 2.357 seconds.
+
+- Executed `train`; config `abe69d532efb89e2be02f6fb1b5b538e4f61231be214daf5120761b69a6b7343`; commit `b749034dfc50253d2e49505bcb8c6ab1baaf0330`; report `runs/desktop-final-validation/train/stage.json`; status COMPLETED, 2.313 seconds.
+
+- Executed `evaluate`; config `abe69d532efb89e2be02f6fb1b5b538e4f61231be214daf5120761b69a6b7343`; commit `b749034dfc50253d2e49505bcb8c6ab1baaf0330`; report `runs/desktop-final-validation/evaluate/stage.json`; status COMPLETED, 5.641 seconds.
+
+- Executed `benchmark`; config `abe69d532efb89e2be02f6fb1b5b538e4f61231be214daf5120761b69a6b7343`; commit `b749034dfc50253d2e49505bcb8c6ab1baaf0330`; report `runs/desktop-final-validation/benchmark/stage.json`; status COMPLETED, 8.078 seconds.
+
+- Native Windows desktop adaptation prepared for RTX 4090 24 GB VRAM / 128 GB host RAM. The desktop runner completed all seven CPU stages and 12 optimizer steps; 162 CPU tests passed and eight GPU tests were deselected. Verified PowerShell 7.5.4 parsing/bootstrap on Linux and source-only ZIP import/data/training/evaluation without Git. Native Windows and physical RTX 4090 execution remain unrun; see results/desktop-validation.json.
