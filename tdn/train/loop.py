@@ -234,7 +234,12 @@ def train(config: dict, dataset_dir: Path, run_dir: Path, device: str = "cpu",
     run_dir = contained_path(run_dir)
     if resume is not None:
         resume = contained_path(resume)
-    data = DatasetStore(dataset_dir)
+    with DatasetStore(dataset_dir) as data:
+        return _train_with_data(config, data, run_dir, device, resume, max_steps)
+
+
+def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: str,
+                     resume: Path | None, max_steps: int | None) -> dict:
     if data.manifest["problem"] != config["problem"]:
         raise ValueError("Dataset physical problem differs from training configuration")
     if data.manifest["horizons"] != config["horizons"]["values"]:

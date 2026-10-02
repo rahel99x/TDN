@@ -60,6 +60,7 @@ class DatasetStore:
         if len(all_ids) != len(set(all_ids)) or len(all_seeds) != len(set(all_seeds)):
             raise ValueError("Dataset contains overlapping parent splits")
         self._arrays = {}
+        self._closed = False
         if verify:
             for group in self.manifest["groups"].values():
                 for entry in group["arrays"].values():
@@ -69,15 +70,53 @@ class DatasetStore:
     def count(self, split: str) -> int:
         return len(self.manifest.get("groups", {}).get(split, {}).get("samples", []))
 
+    def close(self) -> None:
+        """Release cached readers without waiting for frame garbage collection.
+
+        Samples own their copied arrays and remain valid after this store closes.
+        Arrays returned directly by ``arrays`` belong to the store and must only
+        be used while it is open.
+        """
+        readers = [array for group in self._arrays.values() for array in group.values()]
+        self._arrays.clear()
+        self._closed = True
+        first_error = None
+        for array in readers:
+            mapping = getattr(array, "_mmap", None)
+            if mapping is not None and not mapping.closed:
+                try:
+                    mapping.close()
+                except Exception as error:
+                    if first_error is None:
+                        first_error = error
+        if first_error is not None:
+            raise first_error
+
+    def __enter__(self) -> "DatasetStore":
+        if self._closed:
+            raise RuntimeError("DatasetStore is closed")
+        return self
+
+    def __exit__(self, *_args) -> None:
+        self.close()
+
     def arrays(self, split: str) -> dict[str, np.ndarray]:
+        if self._closed:
+            raise RuntimeError("DatasetStore is closed")
         if split == "confirmatory":
             raise ValueError("Confirmatory parents are sealed; pilot may not read them")
         if split not in self.manifest["groups"]:
             raise ValueError(f"Dataset split unavailable: {split}")
         if split not in self._arrays:
-            self._arrays[split] = {
-                name: np.load(self.path / entry["path"], mmap_mode="r", allow_pickle=False)
-                for name, entry in self.manifest["groups"][split]["arrays"].items()}
+            # Keep partial reads owned by the store if a later shard fails.
+            # Closing the surrounding context must release those readers too.
+            readers = self._arrays[split] = {}
+            try:
+                for name, entry in self.manifest["groups"][split]["arrays"].items():
+                    readers[name] = np.load(self.path / entry["path"], mmap_mode="r", allow_pickle=False)
+            except BaseException:
+                self.close()
+                raise
         return self._arrays[split]
 
     def sample(self, split: str, index: int) -> dict:

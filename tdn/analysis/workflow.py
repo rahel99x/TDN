@@ -436,7 +436,14 @@ def _load_learned(checkpoint, config, store, device):
 
 def _run_evaluation(config, dataset_dir, checkpoint, run_dir, device, *, benchmark_mode):
     from tdn.data import DatasetStore
-    store = DatasetStore(Path(dataset_dir), verify=True)
+    # Release readers even when a retained exception traceback keeps this frame
+    # alive; open mappings otherwise prevent dataset cleanup on NFS/Windows.
+    with DatasetStore(Path(dataset_dir), verify=True) as store:
+        return _evaluate_store(config, store, checkpoint, run_dir, device,
+                               benchmark_mode=benchmark_mode)
+
+
+def _evaluate_store(config, store, checkpoint, run_dir, device, *, benchmark_mode):
     for field in ("family", "grid", "lengths", "t_ref", "U_ref", "periodic"):
         if store.manifest["problem"].get(field) != config["problem"].get(field):
             raise ValueError(f"Evaluation configuration {field} differs from immutable dataset problem")

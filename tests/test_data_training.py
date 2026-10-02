@@ -54,28 +54,28 @@ def test_parent_split_deterministic_disjoint_sealed(configuration):
 def test_fp64_defect_and_immutable_checksums(configuration, project_directory):
     path = project_directory / "data"
     generate_dataset(configuration, path)
-    data = DatasetStore(path)
-    arrays = data.arrays("train")
-    np.testing.assert_array_equal(arrays["defects_fp64"], arrays["teacher"] - arrays["split"])
-    np.testing.assert_array_equal(arrays["defects"], arrays["defects_fp64"].astype(np.float32))
-    assert isinstance(arrays["states"], np.memmap)
-    assert data.manifest["confirmatory"]["status"] == "SEALED"
-    with pytest.raises(ValueError, match="sealed"):
-        data.arrays("confirmatory")
-    records = data.manifest["groups"]["train"]["samples"]
-    assert records[0]["input_quantization_state_norm"] > 0
-    for record in records:
-        for reference in record["references"]:
-            assert reference["accepted"]
-            assert reference["uncertainty"] <= .05 * max(reference["defect_norm"], 1e-10)
-            assert len(reference["refinement_substeps"]) == 3
-            assert reference["input_quantization_defect_error"] >= 0
-    assert generate_dataset(configuration, path) == path / "manifest.json"
-    changed = copy.deepcopy(configuration)
-    changed["problem"]["kappa"] *= 2
-    with pytest.raises(ValueError, match="immutable"):
-        generate_dataset(changed, path)
-    label_path = path / data.manifest["groups"]["train"]["arrays"]["defects"]["path"]
+    with DatasetStore(path) as data:
+        arrays = data.arrays("train")
+        np.testing.assert_array_equal(arrays["defects_fp64"], arrays["teacher"] - arrays["split"])
+        np.testing.assert_array_equal(arrays["defects"], arrays["defects_fp64"].astype(np.float32))
+        assert isinstance(arrays["states"], np.memmap)
+        assert data.manifest["confirmatory"]["status"] == "SEALED"
+        with pytest.raises(ValueError, match="sealed"):
+            data.arrays("confirmatory")
+        records = data.manifest["groups"]["train"]["samples"]
+        assert records[0]["input_quantization_state_norm"] > 0
+        for record in records:
+            for reference in record["references"]:
+                assert reference["accepted"]
+                assert reference["uncertainty"] <= .05 * max(reference["defect_norm"], 1e-10)
+                assert len(reference["refinement_substeps"]) == 3
+                assert reference["input_quantization_defect_error"] >= 0
+        assert generate_dataset(configuration, path) == path / "manifest.json"
+        changed = copy.deepcopy(configuration)
+        changed["problem"]["kappa"] *= 2
+        with pytest.raises(ValueError, match="immutable"):
+            generate_dataset(changed, path)
+        label_path = path / data.manifest["groups"]["train"]["arrays"]["defects"]["path"]
     with label_path.open("r+b") as stream:
         stream.seek(-1, 2)
         value = stream.read(1)
@@ -93,8 +93,10 @@ def test_normalization_only_training_parents(configuration, project_directory):
     changed["data"]["validation_count"] = 3
     changed["data"]["diagnostic_count"] = 2
     generate_dataset(changed, second)
-    one = _normalization(configuration, DatasetStore(first), _geometry(configuration))
-    two = _normalization(changed, DatasetStore(second), _geometry(changed))
+    with DatasetStore(first) as data:
+        one = _normalization(configuration, data, _geometry(configuration))
+    with DatasetStore(second) as data:
+        two = _normalization(changed, data, _geometry(changed))
     assert one["mean"] == two["mean"]
     assert one["std"] == two["std"]
     assert one["defect_scale"] == two["defect_scale"]
