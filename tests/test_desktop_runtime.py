@@ -17,18 +17,23 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.fixture
-def desktop(monkeypatch):
+def desktop(monkeypatch, tmp_path):
     for name in ("SLURM_JOB_ID", "SLURM_STEP_ID", "SLURM_JOB_ACCOUNT", "CONDA_PREFIX"):
         monkeypatch.delenv(name, raising=False)
+    monkeypatch.delenv("TDN_PROJECT_ROOT", raising=False)
+    # Model a separate desktop checkout even when pytest runs at the CARC root.
+    # Keep the real root resolver and its CARC/Slurm rejection checks active.
+    monkeypatch.setattr(storage, "__file__", str(tmp_path / "tdn/runtime/storage.py"))
     monkeypatch.setenv("TDN_EXECUTION_MODE", "desktop")
-    monkeypatch.setattr(sys, "prefix", str(ROOT / ".venv"))
-    monkeypatch.setattr(sys, "base_prefix", str(ROOT / "standalone-python"))
+    monkeypatch.setattr(sys, "prefix", str(tmp_path / ".venv"))
+    monkeypatch.setattr(sys, "base_prefix", str(tmp_path / "standalone-python"))
     # configure_storage mutates these variables; retain test isolation.
     for name in ("TMPDIR", "TMP", "TEMP", "PIP_CACHE_DIR", "XDG_CACHE_HOME", "TORCH_HOME",
                  "TORCHINDUCTOR_CACHE_DIR", "TRITON_CACHE_DIR", "TORCH_EXTENSIONS_DIR",
                  "CUDA_CACHE_PATH", "MPLCONFIGDIR", "PYTHONPYCACHEPREFIX", "MPLBACKEND",
                  "PYTHONNOUSERSITE", "CUBLAS_WORKSPACE_CONFIG"):
         monkeypatch.setenv(name, os.environ.get(name, ""))
+    return tmp_path
 
 
 def test_desktop_cpu_does_not_require_or_probe_cuda(desktop, monkeypatch):
@@ -39,11 +44,11 @@ def test_desktop_cpu_does_not_require_or_probe_cuda(desktop, monkeypatch):
 
 
 def test_desktop_requires_its_own_standalone_venv(desktop, monkeypatch):
-    monkeypatch.setattr(sys, "prefix", str(ROOT / "another-venv"))
+    monkeypatch.setattr(sys, "prefix", str(desktop / "another-venv"))
     with pytest.raises(ValueError, match="project root/.venv"):
         preflight.verify_runtime("cpu", "train")
-    monkeypatch.setattr(sys, "prefix", str(ROOT / ".venv"))
-    monkeypatch.setenv("CONDA_PREFIX", str(ROOT / "conda"))
+    monkeypatch.setattr(sys, "prefix", str(desktop / ".venv"))
+    monkeypatch.setenv("CONDA_PREFIX", str(desktop / "conda"))
     with pytest.raises(ValueError, match="standalone"):
         preflight.verify_runtime("cpu", "train")
 
