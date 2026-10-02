@@ -1,0 +1,235 @@
+{
+  "category": "newly measured result",
+  "scope": "FP64/FP32 CPU temporal helper and exact control audit; no GPU assertion",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "6ee03cd3298f6de94da546ffa3f5ee2f8da23a55",
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "ab81d977c6ca5dc7c8044c68f47b58772a77339d0b0cdfea0b7c3bcfef32d5d4",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "psi_max_relative_error": {
+    "torch.float32": 7.410736190010583e-07,
+    "torch.float64": 2.066338914451926e-15
+  },
+  "oracle": "mpmath 90 decimal digits at actual input dtype values",
+  "temporal_cpu_unit_tests_passed": true,
+  "tier_a": {
+    "scope": "tiny exact semidiscrete linear controls, not PDE or GPU evidence",
+    "passed": true,
+    "A": [
+      [
+        -0.3,
+        0.8
+      ],
+      [
+        -0.1,
+        -0.2
+      ]
+    ],
+    "B": [
+      [
+        -1.0,
+        0.1
+      ],
+      [
+        0.4,
+        -0.8
+      ]
+    ],
+    "commutator_norm": 0.4938623289946299,
+    "leading_matrix": [
+      [
+        -0.001875000000000182,
+        -0.030624999999999902
+      ],
+      [
+        0.020500000000000046,
+        0.001875000000000071
+      ]
+    ],
+    "fits": {
+      "split_local": {
+        "raw_horizons": [
+          0.125,
+          0.0625,
+          0.03125,
+          0.015625
+        ],
+        "raw_errors": [
+          2.9662502074845517e-05,
+          3.974481516744788e-06,
+          5.143892105002844e-07,
+          6.542710847940194e-08
+        ],
+        "raw_reference_uncertainty": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fit_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+        "noise_floor": 1e-14,
+        "max_h": null,
+        "slope": 2.9423442586018513,
+        "intercept": -4.293315158471688,
+        "minimum_points": 3,
+        "valid": true,
+        "r_squared": 0.9999667092211181,
+        "fitted_h_range": [
+          0.015625,
+          0.125
+        ]
+      },
+      "anchored_local": {
+        "raw_horizons": [
+          0.125,
+          0.0625,
+          0.03125,
+          0.015625
+        ],
+        "raw_errors": [
+          4.5105531323386365e-06,
+          2.9203565029217815e-07,
+          1.8580516756469985e-08,
+          1.1717329115493614e-09
+        ],
+        "raw_reference_uncertainty": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fit_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+        "noise_floor": 1e-14,
+        "max_h": null,
+        "slope": 3.970561664443964,
+        "intercept": -4.04552746489953,
+        "minimum_points": 3,
+        "valid": true,
+        "r_squared": 0.9999953259466551,
+        "fitted_h_range": [
+          0.015625,
+          0.125
+        ]
+      },
+      "split_global": {
+        "raw_horizons": [
+          0.125,
+          0.0625,
+          0.03125,
+          0.015625
+        ],
+        "raw_errors": [
+          9.38068140718479e-05,
+          2.3461991596936866e-05,
+          5.866141573649312e-06,
+          1.466575633037582e-06
+        ],
+        "raw_reference_uncertainty": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fit_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+        "noise_floor": 1e-14,
+        "max_h": null,
+        "slope": 1.9997349719003141,
+        "intercept": -5.1158259691313175,
+        "minimum_points": 3,
+        "valid": true,
+        "r_squared": 0.9999999952841921,
+        "fitted_h_range": [
+          0.015625,
+          0.125
+        ]
+      },
+      "anchored_global": {
+        "raw_horizons": [
+          0.125,
+          0.0625,
+          0.03125,
+          0.015625
+        ],
+        "raw_errors": [
+          1.4374923893458662e-05,
+          1.737205462864861e-06,
+          2.13514455289362e-07,
+          2.6464894680720746e-08
+        ],
+        "raw_reference_uncertainty": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fit_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+        "noise_floor": 1e-14,
+        "max_h": null,
+        "slope": 3.0280138813141932,
+        "intercept": -4.860199736824359,
+        "minimum_points": 3,
+        "valid": true,
+        "r_squared": 0.9999925606550015,
+        "fitted_h_range": [
+          0.015625,
+          0.125
+        ]
+      }
+    },
+    "limits": {
+      "commuting": {
+        "error": 1.6243534171511178e-16,
+        "passed": true
+      },
+      "zero_reaction": {
+        "error": 1.1189974934759746e-16,
+        "passed": true
+      },
+      "zero_diffusion": {
+        "error": 0.0,
+        "passed": true
+      },
+      "zero_advection": {
+        "scope": "two-operator model contains no advection"
+      }
+    }
+  },
+  "logistic_orders": {
+    "split_local": 3.0098470493061207,
+    "split_global": 2.001202126451222,
+    "richardson_global": null
+  }
+}

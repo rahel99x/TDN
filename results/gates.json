@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "category": "newly measured result",
+  "config_hash": "75f81362a940a1a66a2a77494097ee376dbefa7b7f11ea5411cd9a90289b8c7d",
+  "scope": "development CPU screening; empirical G3 is not a universal certificate",
+  "gates": {
+    "G0": {
+      "status": "PARTIAL",
+      "workspace_verified": true,
+      "carc_access_account_quota_allocation": "NOT_RUN"
+    },
+    "G1": {
+      "passed": true,
+      "scope": "linear order and discrete derivative controls; temporal-core unit suite is separately required"
+    },
+    "G2": {
+      "passed": false,
+      "numerical_correctness_passed": true,
+      "material_headroom_observed": false,
+      "screening_rule": "largest proposed macrostep misses development tolerance for both split and costed classical Richardson correction, and defects exceed floor",
+      "reason": "Measured classical errors/costs screen for headroom; one tiny probe cannot establish learned efficiency"
+    },
+    "G3": {
+      "passed": true,
+      "exact_same_observation_test_passed": true,
+      "empirical_screen_only": true,
+      "independent_initial_realizations": 3,
+      "proposed_hidden_input_error_budget": 0.0002,
+      "budget_rule": "development numerical tolerance * validation.reference_fraction",
+      "reason": "Sampled exact-hidden-pair lower bounds below a proposed budget and derivative audits pass; this screens against immediate impossibility, not a universal sufficiency certificate"
+    },
+    "G4": {
+      "passed": false,
+      "oracle_temporal_advantage_observed": false,
+      "reason": "Teacher-informed per-anchor fits assess representation only; deployable feature-to-coefficient learning remains untested"
+    },
+    "G5": {
+      "status": "CPU_DIAGNOSTIC_ONLY",
+      "cpu_training_and_resume_passed": true,
+      "allocated_gpu": "NOT_RUN"
+    },
+    "G6": {
+      "status": "NOT_RUN",
+      "reason": "Actual A100 allocation unavailable"
+    },
+    "G7": {
+      "status": "BLOCKED",
+      "reason": "Confirmatory physical tolerance/observable/design and measured prior gates required"
+    },
+    "G8": {
+      "status": "DISABLED",
+      "reason": "Optional scientific branches need separate ablations"
+    }
+  },
+  "decision": "STOP default efficiency expansion: G2 and G4 failed; retain bounded diagnostics",
+  "evidence": [
+    "results/validation.json",
+    "results/math_validation.json",
+    "results/audit.json",
+    "results/benchmark.json",
+    "results/learned_controls.json"
+  ]
+}

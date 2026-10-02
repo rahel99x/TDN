@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=78"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tdn"
+version = "0.1.0"
+description = "Audited, order-anchored temporal splitting-defect research pipeline"
+requires-python = ">=3.10,<3.14"
+dependencies = ["torch>=2.6,<3", "numpy>=2,<3", "scipy>=1.15,<2", "PyYAML>=6,<7", "mpmath>=1.3,<2", "matplotlib>=3.10,<4"]
+
+[project.scripts]
+tdn = "tdn.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tdn*", "reference*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = ["gpu: requires a real allocated NVIDIA GPU", "compile: optional compiler parity"]
+

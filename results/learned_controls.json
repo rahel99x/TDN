@@ -1,0 +1,1425 @@
+{
+  "accuracy_memory_scope": "CPU lifetime peak RSS is available in individual evaluations; no CUDA memory measurement",
+  "accuracy_time_frontier": [
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0015072039999495246,
+      "diagnostic_worst_weighted_error": 0.0003607446962537165,
+      "family": "taylor",
+      "parameter_count": 1505,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.6279295780000211,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0016177910000578777,
+      "diagnostic_worst_weighted_error": 0.0006806558823332446,
+      "family": "polynomial",
+      "parameter_count": 1604,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.05689280999990842,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0016522170000143888,
+      "diagnostic_worst_weighted_error": 0.0006168141849519031,
+      "family": "rational",
+      "parameter_count": 1637,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.059673311000096874,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0017792685000586062,
+      "diagnostic_worst_weighted_error": 0.0007567240371190089,
+      "family": "fixed_rate",
+      "parameter_count": 1604,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.07297872699996333,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0015157514999373234,
+      "diagnostic_worst_weighted_error": 0.0006135509828621274,
+      "family": "generic_mlp",
+      "parameter_count": 1537,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.057749744000147984,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0018626390000235915,
+      "diagnostic_worst_weighted_error": 0.0007573270041512373,
+      "family": "temporal_mlp",
+      "parameter_count": 1736,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.07270005300006233,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    }
+  ],
+  "claim": "Tiny CPU control training and measured development frontiers; no confirmed efficiency or GPU result",
+  "dataset_hash": "d2414b5e917c6f4bd2e08c3c889a82c35f94779f7eb7c1f0a270c150acc8c615",
+  "device": "cpu",
+  "evidence_category": "newly measured result",
+  "failed_families": [],
+  "families": [
+    "taylor",
+    "polynomial",
+    "rational",
+    "fixed_rate",
+    "generic_mlp",
+    "temporal_mlp"
+  ],
+  "feature_policy": "identical legal radius-one features and training-parent-only normalization",
+  "matched_design_hash": "8e3cde7bb7371931fa5e0a044e6eee043cf684715c0f7b2899b2a9f4bbacecf8",
+  "normalization_hash": "126463958a7b861d6d8c5bccdd3d362fea032b2882a3ea312c9c8c96ba394b83",
+  "optimizer_steps_per_family": 12,
+  "precision_policy": {
+    "checkpoint_chunks": false,
+    "compile_mode": "eager",
+    "network_autocast": "none",
+    "state": "float32",
+    "teacher": "float64",
+    "tf32": false
+  },
+  "results": [
+    {
+      "checkpoint_selection": "validation_feasible_best",
+      "config_hash": "f8faf572fb37f0f55c69de83d4beb7388de71a230fd00709e9ec5498db50a5b7",
+      "evaluation": {
+        "classical_comparisons": {
+          "adaptive_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 6.825416653555305e-05,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              3.455499988073529e-05,
+              0.0001019533331903708
+            ],
+            "parents": 2
+          },
+          "coupled_rk4": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": -0.0005720911667594917,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              -0.0006865836667202527,
+              -0.00045759866679873063
+            ],
+            "parents": 2
+          },
+          "richardson_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.0001984503333005706,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.0001408286665688745,
+              0.0002560720000322667
+            ],
+            "parents": 2
+          },
+          "split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.0009832503333200293,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.0009206663332861354,
+              0.0010458343333539233
+            ],
+            "parents": 2
+          }
+        },
+        "path": "/workspace/TDN/runs/final-controls/controls/taylor/evaluation/evaluation.json",
+        "selected_policy": {
+          "macrostep": 0.32,
+          "selection_reason": "fastest validation policy satisfying tolerance and all declared sequences",
+          "validation_feasible": true,
+          "validation_summary": {
+            "all_parent_mean": 0.0003079255563984805,
+            "all_parent_mean_unavailable_reason": null,
+            "bootstrap_unit": "independent physical parent",
+            "confidence_level": 0.95,
+            "failed_parents": 0,
+            "failure_probability_upper_bound": 0.7763932022500211,
+            "independent_parents": 2,
+            "median_wall_seconds": 0.001474990500014428,
+            "method": "learned",
+            "parent_ids": [
+              "4acdb6d66284bc9aa62aa382",
+              "6ed2c1c46f732b7427cf85ab"
+            ],
+            "required_sequences": [
+              "constant",
+              "mixed",
+              "unseen_horizon"
+            ],
+            "successful_parent_max": 0.00032449465107957875,
+            "successful_parent_mean": 0.0003079255563984805,
+            "successful_parent_mean_bootstrap_interval": [
+              0.00029135646171738226,
+              0.00032449465107957875
+            ],
+            "successful_parent_quantiles": {
+              "0.5": 0.0003079255563984805,
+              "0.9": 0.0003211808321433591,
+              "0.95": 0.00032283774161146893
+            },
+            "worst_measured_error": 0.00032449465107957875
+          }
+        },
+        "summary": {
+          "all_parent_mean": 0.00031601936306481905,
+          "all_parent_mean_unavailable_reason": null,
+          "bootstrap_unit": "independent physical parent",
+          "confidence_level": 0.95,
+          "failed_parents": 0,
+          "failure_probability_upper_bound": 0.7763932022500211,
+          "independent_parents": 2,
+          "median_wall_seconds": 0.0015072039999495246,
+          "method": "learned",
+          "parent_ids": [
+            "93e4b34463588955eb37f34a",
+            "e29ea89fa832ef4150df1fa9"
+          ],
+          "required_sequences": [
+            "constant",
+            "mixed",
+            "unseen_horizon"
+          ],
+          "successful_parent_max": 0.0003607446962537165,
+          "successful_parent_mean": 0.00031601936306481905,
+          "successful_parent_mean_bootstrap_interval": [
+            0.00027129402987592156,
+            0.0003607446962537165
+          ],
+          "successful_parent_quantiles": {
+            "0.5": 0.00031601936306481905,
+            "0.9": 0.000351799629615937,
+            "0.95": 0.00035627216293482674
+          },
+          "worst_measured_error": 0.0003607446962537165
+        }
+      },
+      "evaluation_wall_seconds": 2.8423865809998006,
+      "failure": null,
+      "family": "taylor",
+      "normalization_hash": "126463958a7b861d6d8c5bccdd3d362fea032b2882a3ea312c9c8c96ba394b83",
+      "parameter_count": 1505,
+      "run_dir": "/workspace/TDN/runs/final-controls/controls/taylor",
+      "selected_checkpoint": "/workspace/TDN/runs/final-controls/controls/taylor/training/checkpoints/best.pt",
+      "status": "COMPLETE_FEASIBLE",
+      "trained_head_nonzero_count": 33,
+      "training": {
+        "best_checkpoint": "/workspace/TDN/runs/final-controls/controls/taylor/training/checkpoints/best.pt",
+        "committed_cursor": 12,
+        "config_hash": "f8faf572fb37f0f55c69de83d4beb7388de71a230fd00709e9ec5498db50a5b7",
+        "dataset_hash": "d2414b5e917c6f4bd2e08c3c889a82c35f94779f7eb7c1f0a270c150acc8c615",
+        "global_step": 12,
+        "history": [
+          {
+            "loss": 1.4363845586776733,
+            "step": 1
+          },
+          {
+            "loss": 0.5132001638412476,
+            "step": 2
+          },
+          {
+            "loss": 0.20366494357585907,
+            "step": 3
+          },
+          {
+            "loss": 0.867431640625,
+            "step": 4
+          },
+          {
+            "loss": 0.688265860080719,
+            "step": 5
+          },
+          {
+            "loss": 0.13361412286758423,
+            "step": 6
+          },
+          {
+            "loss": 0.4059497117996216,
+            "step": 7
+          },
+          {
+            "loss": 0.07956534624099731,
+            "step": 8
+          },
+          {
+            "loss": 0.2757487893104553,
+            "step": 9
+          },
+          {
+            "loss": 0.15281730890274048,
+            "step": 10
+          },
+          {
+            "loss": 0.14678382873535156,
+            "step": 11
+          },
+          {
+            "loss": 0.18053677678108215,
+            "step": 12
+          }
+        ],
+        "last_checkpoint": "/workspace/TDN/runs/final-controls/controls/taylor/training/checkpoints/last.pt",
+        "memory": {
+          "scope": "CPU run; no allocated GPU memory measurement"
+        },
+        "prefetch": 0,
+        "resume_guarantee": "bitwise CPU deterministic reference path on the same software/device/thread environment",
+        "schema_version": 1,
+        "source_hash": "eb54f1b5a69873da32e3d488e104d087cb55077b96db2bca9c059f90d72ab59c",
+        "split_hash": "c79f2ae7037574ac4606e5a8bfb9604d75131c851f298d8a2fe637feb8ae706f",
+        "status": "COMPLETE",
+        "validation": {
+          "failures": [],
+          "feasible": true,
+          "final_time": 0.64,
+          "max_error": 0.0006269455767118261,
+          "mean_error": 0.0006187891698820204,
+          "metric": "full_rollout_error_at_fixed_physical_time",
+          "tolerance": 0.002
+        },
+        "workers": 0
+      },
+      "training_wall_seconds": 0.6279295780000211
+    },
+    {
+      "checkpoint_selection": "validation_feasible_best",
+      "config_hash": "76aee97bb75da525d6877308e8411f9e04d0d5de3737ebf487c084da24aa360b",
+      "evaluation": {
+        "classical_comparisons": {
+          "adaptive_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.00014381166670318635,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              8.805966672298382e-05,
+              0.00019956366668338887
+            ],
+            "parents": 2
+          },
+          "coupled_rk4": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": -0.0009319113333579784,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              -0.0010885283333360953,
+              -0.0007752943333798614
+            ],
+            "parents": 2
+          },
+          "richardson_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.00021936866664873378,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.00021277733336925553,
+              0.00022595999992821203
+            ],
+            "parents": 2
+          },
+          "split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.0010021906666300613,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.0009322506666649133,
+              0.0010721306665952093
+            ],
+            "parents": 2
+          }
+        },
+        "path": "/workspace/TDN/runs/final-controls/controls/polynomial/evaluation/evaluation.json",
+        "selected_policy": {
+          "macrostep": 0.32,
+          "selection_reason": "fastest validation policy satisfying tolerance and all declared sequences",
+          "validation_feasible": true,
+          "validation_summary": {
+            "all_parent_mean": 0.00032632452857152733,
+            "all_parent_mean_unavailable_reason": null,
+            "bootstrap_unit": "independent physical parent",
+            "confidence_level": 0.95,
+            "failed_parents": 0,
+            "failure_probability_upper_bound": 0.7763932022500211,
+            "independent_parents": 2,
+            "median_wall_seconds": 0.001542848000099184,
+            "method": "learned",
+            "parent_ids": [
+              "4acdb6d66284bc9aa62aa382",
+              "6ed2c1c46f732b7427cf85ab"
+            ],
+            "required_sequences": [
+              "constant",
+              "mixed",
+              "unseen_horizon"
+            ],
+            "successful_parent_max": 0.00033132928016392976,
+            "successful_parent_mean": 0.00032632452857152733,
+            "successful_parent_mean_bootstrap_interval": [
+              0.0003213197769791249,
+              0.00033132928016392976
+            ],
+            "successful_parent_quantiles": {
+              "0.5": 0.00032632452857152733,
+              "0.9": 0.00033032832984544925,
+              "0.95": 0.0003308288050046895
+            },
+            "worst_measured_error": 0.00033132928016392976
+          }
+        },
+        "summary": {
+          "all_parent_mean": 0.0005379574051979903,
+          "all_parent_mean_unavailable_reason": null,
+          "bootstrap_unit": "independent physical parent",
+          "confidence_level": 0.95,
+          "failed_parents": 0,
+          "failure_probability_upper_bound": 0.7763932022500211,
+          "independent_parents": 2,
+          "median_wall_seconds": 0.0016177910000578777,
+          "method": "learned",
+          "parent_ids": [
+            "93e4b34463588955eb37f34a",
+            "e29ea89fa832ef4150df1fa9"
+          ],
+          "required_sequences": [
+            "constant",
+            "mixed",
+            "unseen_horizon"
+          ],
+          "successful_parent_max": 0.0006806558823332446,
+          "successful_parent_mean": 0.0005379574051979903,
+          "successful_parent_mean_bootstrap_interval": [
+            0.00039525892806273593,
+            0.0006806558823332446
+          ],
+          "successful_parent_quantiles": {
+            "0.5": 0.0005379574051979903,
+            "0.9": 0.0006521161869061938,
+            "0.95": 0.0006663860346197191
+          },
+          "worst_measured_error": 0.0006806558823332446
+        }
+      },
+      "evaluation_wall_seconds": 1.4571204409999154,
+      "failure": null,
+      "family": "polynomial",
+      "normalization_hash": "126463958a7b861d6d8c5bccdd3d362fea032b2882a3ea312c9c8c96ba394b83",
+      "parameter_count": 1604,
+      "run_dir": "/workspace/TDN/runs/final-controls/controls/polynomial",
+      "selected_checkpoint": "/workspace/TDN/runs/final-controls/controls/polynomial/training/checkpoints/best.pt",
+      "status": "COMPLETE_FEASIBLE",
+      "trained_head_nonzero_count": 132,
+      "training": {
+        "best_checkpoint": "/workspace/TDN/runs/final-controls/controls/polynomial/training/checkpoints/best.pt",
+        "committed_cursor": 12,
+        "config_hash": "76aee97bb75da525d6877308e8411f9e04d0d5de3737ebf487c084da24aa360b",
+        "dataset_hash": "d2414b5e917c6f4bd2e08c3c889a82c35f94779f7eb7c1f0a270c150acc8c615",
+        "global_step": 12,
+        "history": [
+          {
+            "loss": 1.4363845586776733,
+            "step": 1
+          },
+          {
+            "loss": 0.4566817283630371,
+            "step": 2
+          },
+          {
+            "loss": 0.13937032222747803,
+            "step": 3
+          },
+          {
+            "loss": 0.6522572636604309,
+            "step": 4
+          },
+          {
+            "loss": 0.45235636830329895,
+            "step": 5
+          },
+          {
+            "loss": 0.09657952189445496,
+            "step": 6
+          },
+          {
+            "loss": 0.2814825773239136,
+            "step": 7
+          },
+          {
+            "loss": 0.16650958359241486,
+            "step": 8
+          },
+          {
+            "loss": 0.23023326694965363,
+            "step": 9
+          },
+          {
+            "loss": 0.2380949854850769,
+            "step": 10
+          },
+          {
+            "loss": 0.185654416680336,
+            "step": 11
+          },
+          {
+            "loss": 0.15113602578639984,
+            "step": 12
+          }
+        ],
+        "last_checkpoint": "/workspace/TDN/runs/final-controls/controls/polynomial/training/checkpoints/last.pt",
+        "memory": {
+          "scope": "CPU run; no allocated GPU memory measurement"
+        },
+        "prefetch": 0,
+        "resume_guarantee": "bitwise CPU deterministic reference path on the same software/device/thread environment",
+        "schema_version": 1,
+        "source_hash": "eb54f1b5a69873da32e3d488e104d087cb55077b96db2bca9c059f90d72ab59c",
+        "split_hash": "c79f2ae7037574ac4606e5a8bfb9604d75131c851f298d8a2fe637feb8ae706f",
+        "status": "COMPLETE",
+        "validation": {
+          "failures": [],
+          "feasible": true,
+          "final_time": 0.64,
+          "max_error": 0.000670064118995362,
+          "mean_error": 0.0006644488111186793,
+          "metric": "full_rollout_error_at_fixed_physical_time",
+          "tolerance": 0.002
+        },
+        "workers": 0
+      },
+      "training_wall_seconds": 0.05689280999990842
+    },
+    {
+      "checkpoint_selection": "validation_feasible_best",
+      "config_hash": "28fe398d960fdd1f442aaad5bce99746f20bbf885eb84f31c2aa6ce2ca6f4b91",
+      "evaluation": {
+        "classical_comparisons": {
+          "adaptive_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 7.153233336036158e-05,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              -5.6253331877087476e-06,
+              0.0001486899999084319
+            ],
+            "parents": 2
+          },
+          "coupled_rk4": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": -0.00047173083332078625,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              -0.00048255066675058833,
+              -0.00046091099989098417
+            ],
+            "parents": 2
+          },
+          "richardson_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.0003028106667291771,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.0002644543333190086,
+              0.00034116700013934564
+            ],
+            "parents": 2
+          },
+          "split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.001083417666677633,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.001055990000016512,
+              0.0011108453333387538
+            ],
+            "parents": 2
+          }
+        },
+        "path": "/workspace/TDN/runs/final-controls/controls/rational/evaluation/evaluation.json",
+        "selected_policy": {
+          "macrostep": 0.32,
+          "selection_reason": "fastest validation policy satisfying tolerance and all declared sequences",
+          "validation_feasible": true,
+          "validation_summary": {
+            "all_parent_mean": 0.0002915290304166936,
+            "all_parent_mean_unavailable_reason": null,
+            "bootstrap_unit": "independent physical parent",
+            "confidence_level": 0.95,
+            "failed_parents": 0,
+            "failure_probability_upper_bound": 0.7763932022500211,
+            "independent_parents": 2,
+            "median_wall_seconds": 0.0017027134999807458,
+            "method": "learned",
+            "parent_ids": [
+              "4acdb6d66284bc9aa62aa382",
+              "6ed2c1c46f732b7427cf85ab"
+            ],
+            "required_sequences": [
+              "constant",
+              "mixed",
+              "unseen_horizon"
+            ],
+            "successful_parent_max": 0.0002923257740067832,
+            "successful_parent_mean": 0.0002915290304166936,
+            "successful_parent_mean_bootstrap_interval": [
+              0.000290732286826604,
+              0.0002923257740067832
+            ],
+            "successful_parent_quantiles": {
+              "0.5": 0.0002915290304166936,
+              "0.9": 0.0002921664252887653,
+              "0.95": 0.00029224609964777426
+            },
+            "worst_measured_error": 0.0002923257740067832
+          }
+        },
+        "summary": {
+          "all_parent_mean": 0.00048204190450258834,
+          "all_parent_mean_unavailable_reason": null,
+          "bootstrap_unit": "independent physical parent",
+          "confidence_level": 0.95,
+          "failed_parents": 0,
+          "failure_probability_upper_bound": 0.7763932022500211,
+          "independent_parents": 2,
+          "median_wall_seconds": 0.0016522170000143888,
+          "method": "learned",
+          "parent_ids": [
+            "93e4b34463588955eb37f34a",
+            "e29ea89fa832ef4150df1fa9"
+          ],
+          "required_sequences": [
+            "constant",
+            "mixed",
+            "unseen_horizon"
+          ],
+          "successful_parent_max": 0.0006168141849519031,
+          "successful_parent_mean": 0.00048204190450258834,
+          "successful_parent_mean_bootstrap_interval": [
+            0.00034726962405327356,
+            0.0006168141849519031
+          ],
+          "successful_parent_quantiles": {
+            "0.5": 0.00048204190450258834,
+            "0.9": 0.0005898597288620401,
+            "0.95": 0.0006033369569069716
+          },
+          "worst_measured_error": 0.0006168141849519031
+        }
+      },
+      "evaluation_wall_seconds": 1.424777572000039,
+      "failure": null,
+      "family": "rational",
+      "normalization_hash": "126463958a7b861d6d8c5bccdd3d362fea032b2882a3ea312c9c8c96ba394b83",
+      "parameter_count": 1637,
+      "run_dir": "/workspace/TDN/runs/final-controls/controls/rational",
+      "selected_checkpoint": "/workspace/TDN/runs/final-controls/controls/rational/training/checkpoints/best.pt",
+      "status": "COMPLETE_FEASIBLE",
+      "trained_head_nonzero_count": 99,
+      "training": {
+        "best_checkpoint": "/workspace/TDN/runs/final-controls/controls/rational/training/checkpoints/best.pt",
+        "committed_cursor": 12,
+        "config_hash": "28fe398d960fdd1f442aaad5bce99746f20bbf885eb84f31c2aa6ce2ca6f4b91",
+        "dataset_hash": "d2414b5e917c6f4bd2e08c3c889a82c35f94779f7eb7c1f0a270c150acc8c615",
+        "global_step": 12,
+        "history": [
+          {
+            "loss": 1.4363845586776733,
+            "step": 1
+          },
+          {
+            "loss": 0.4675426781177521,
+            "step": 2
+          },
+          {
+            "loss": 0.15073242783546448,
+            "step": 3
+          },
+          {
+            "loss": 0.6912849545478821,
+            "step": 4
+          },
+          {
+            "loss": 0.492499440908432,
+            "step": 5
+          },
+          {
+            "loss": 0.09432049840688705,
+            "step": 6
+          },
+          {
+            "loss": 0.2845990061759949,
+            "step": 7
+          },
+          {
+            "loss": 0.18434149026870728,
+            "step": 8
+          },
+          {
+            "loss": 0.22946053743362427,
+            "step": 9
+          },
+          {
+            "loss": 0.29205840826034546,
+            "step": 10
+          },
+          {
+            "loss": 0.23070603609085083,
+            "step": 11
+          },
+          {
+            "loss": 0.14817257225513458,
+            "step": 12
+          }
+        ],
+        "last_checkpoint": "/workspace/TDN/runs/final-controls/controls/rational/training/checkpoints/last.pt",
+        "memory": {
+          "scope": "CPU run; no allocated GPU memory measurement"
+        },
+        "prefetch": 0,
+        "resume_guarantee": "bitwise CPU deterministic reference path on the same software/device/thread environment",
+        "schema_version": 1,
+        "source_hash": "eb54f1b5a69873da32e3d488e104d087cb55077b96db2bca9c059f90d72ab59c",
+        "split_hash": "c79f2ae7037574ac4606e5a8bfb9604d75131c851f298d8a2fe637feb8ae706f",
+        "status": "COMPLETE",
+        "validation": {
+          "failures": [],
+          "feasible": true,
+          "final_time": 0.64,
+          "max_error": 0.0007261168430985165,
+          "mean_error": 0.0007190895256620532,
+          "metric": "full_rollout_error_at_fixed_physical_time",
+          "tolerance": 0.002
+        },
+        "workers": 0
+      },
+      "training_wall_seconds": 0.059673311000096874
+    },
+    {
+      "checkpoint_selection": "validation_feasible_best",
+      "config_hash": "aa591f9b47dcf09da750e6cf6b33f5ac5c9358e9a3992dccce338a51dedc2578",
+      "evaluation": {
+        "classical_comparisons": {
+          "adaptive_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.000308439166625855,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.00010848300000058475,
+              0.0005083953332511253
+            ],
+            "parents": 2
+          },
+          "coupled_rk4": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": -0.0003894614999732462,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              -0.0005822836666690514,
+              -0.000196639333277441
+            ],
+            "parents": 2
+          },
+          "richardson_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.0004216028333227465,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.00030335633330954193,
+              0.0005398493333359511
+            ],
+            "parents": 2
+          },
+          "split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.0008986528333328655,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.0007375573332713732,
+              0.0010597483333943578
+            ],
+            "parents": 2
+          }
+        },
+        "path": "/workspace/TDN/runs/final-controls/controls/fixed_rate/evaluation/evaluation.json",
+        "selected_policy": {
+          "macrostep": 0.32,
+          "selection_reason": "fastest validation policy satisfying tolerance and all declared sequences",
+          "validation_feasible": true,
+          "validation_summary": {
+            "all_parent_mean": 0.0003747149465042676,
+            "all_parent_mean_unavailable_reason": null,
+            "bootstrap_unit": "independent physical parent",
+            "confidence_level": 0.95,
+            "failed_parents": 0,
+            "failure_probability_upper_bound": 0.7763932022500211,
+            "independent_parents": 2,
+            "median_wall_seconds": 0.0018408364999231708,
+            "method": "learned",
+            "parent_ids": [
+              "4acdb6d66284bc9aa62aa382",
+              "6ed2c1c46f732b7427cf85ab"
+            ],
+            "required_sequences": [
+              "constant",
+              "mixed",
+              "unseen_horizon"
+            ],
+            "successful_parent_max": 0.0003765039941703607,
+            "successful_parent_mean": 0.0003747149465042676,
+            "successful_parent_mean_bootstrap_interval": [
+              0.00037292589883817454,
+              0.0003765039941703607
+            ],
+            "successful_parent_quantiles": {
+              "0.5": 0.0003747149465042676,
+              "0.9": 0.0003761461846371421,
+              "0.95": 0.0003763250894037514
+            },
+            "worst_measured_error": 0.0003765039941703607
+          }
+        },
+        "summary": {
+          "all_parent_mean": 0.0006125492609775054,
+          "all_parent_mean_unavailable_reason": null,
+          "bootstrap_unit": "independent physical parent",
+          "confidence_level": 0.95,
+          "failed_parents": 0,
+          "failure_probability_upper_bound": 0.7763932022500211,
+          "independent_parents": 2,
+          "median_wall_seconds": 0.0017792685000586062,
+          "method": "learned",
+          "parent_ids": [
+            "93e4b34463588955eb37f34a",
+            "e29ea89fa832ef4150df1fa9"
+          ],
+          "required_sequences": [
+            "constant",
+            "mixed",
+            "unseen_horizon"
+          ],
+          "successful_parent_max": 0.0007567240371190089,
+          "successful_parent_mean": 0.0006125492609775054,
+          "successful_parent_mean_bootstrap_interval": [
+            0.00046837448483600194,
+            0.0007567240371190089
+          ],
+          "successful_parent_quantiles": {
+            "0.5": 0.0006125492609775054,
+            "0.9": 0.0007278890818907082,
+            "0.95": 0.0007423065595048585
+          },
+          "worst_measured_error": 0.0007567240371190089
+        }
+      },
+      "evaluation_wall_seconds": 1.7135796319998917,
+      "failure": null,
+      "family": "fixed_rate",
+      "normalization_hash": "126463958a7b861d6d8c5bccdd3d362fea032b2882a3ea312c9c8c96ba394b83",
+      "parameter_count": 1604,
+      "run_dir": "/workspace/TDN/runs/final-controls/controls/fixed_rate",
+      "selected_checkpoint": "/workspace/TDN/runs/final-controls/controls/fixed_rate/training/checkpoints/best.pt",
+      "status": "COMPLETE_FEASIBLE",
+      "trained_head_nonzero_count": 132,
+      "training": {
+        "best_checkpoint": "/workspace/TDN/runs/final-controls/controls/fixed_rate/training/checkpoints/best.pt",
+        "committed_cursor": 12,
+        "config_hash": "aa591f9b47dcf09da750e6cf6b33f5ac5c9358e9a3992dccce338a51dedc2578",
+        "dataset_hash": "d2414b5e917c6f4bd2e08c3c889a82c35f94779f7eb7c1f0a270c150acc8c615",
+        "global_step": 12,
+        "history": [
+          {
+            "loss": 1.4363845586776733,
+            "step": 1
+          },
+          {
+            "loss": 0.5335039496421814,
+            "step": 2
+          },
+          {
+            "loss": 0.22957752645015717,
+            "step": 3
+          },
+          {
+            "loss": 0.9510838389396667,
+            "step": 4
+          },
+          {
+            "loss": 0.787489652633667,
+            "step": 5
+          },
+          {
+            "loss": 0.1741814911365509,
+            "step": 6
+          },
+          {
+            "loss": 0.500005841255188,
+            "step": 7
+          },
+          {
+            "loss": 0.04838964715600014,
+            "step": 8
+          },
+          {
+            "loss": 0.3477165400981903,
+            "step": 9
+          },
+          {
+            "loss": 0.07346657663583755,
+            "step": 10
+          },
+          {
+            "loss": 0.093145452439785,
+            "step": 11
+          },
+          {
+            "loss": 0.2398027628660202,
+            "step": 12
+          }
+        ],
+        "last_checkpoint": "/workspace/TDN/runs/final-controls/controls/fixed_rate/training/checkpoints/last.pt",
+        "memory": {
+          "scope": "CPU run; no allocated GPU memory measurement"
+        },
+        "prefetch": 0,
+        "resume_guarantee": "bitwise CPU deterministic reference path on the same software/device/thread environment",
+        "schema_version": 1,
+        "source_hash": "eb54f1b5a69873da32e3d488e104d087cb55077b96db2bca9c059f90d72ab59c",
+        "split_hash": "c79f2ae7037574ac4606e5a8bfb9604d75131c851f298d8a2fe637feb8ae706f",
+        "status": "COMPLETE",
+        "validation": {
+          "failures": [],
+          "feasible": true,
+          "final_time": 0.64,
+          "max_error": 0.0004214018638290712,
+          "mean_error": 0.00041914773737590185,
+          "metric": "full_rollout_error_at_fixed_physical_time",
+          "tolerance": 0.002
+        },
+        "workers": 0
+      },
+      "training_wall_seconds": 0.07297872699996333
+    },
+    {
+      "checkpoint_selection": "validation_feasible_best",
+      "config_hash": "e633feab58b612bf4a0ef6ee719faac82c4a35aa9af6b2135509ce9672f4ab25",
+      "evaluation": {
+        "classical_comparisons": {
+          "adaptive_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": -7.57073333943481e-05,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              -9.571100008542999e-05,
+              -5.570366670326621e-05
+            ],
+            "parents": 2
+          },
+          "coupled_rk4": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": -0.0007177423334117824,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              -0.000745596000039465,
+              -0.0006898886667840998
+            ],
+            "parents": 2
+          },
+          "richardson_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 8.218866658656532e-05,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              -7.698666725749039e-06,
+              0.00017207599989887967
+            ],
+            "parents": 2
+          },
+          "split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.0008620094999590341,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.0008612103332173623,
+              0.0008628086667007059
+            ],
+            "parents": 2
+          }
+        },
+        "path": "/workspace/TDN/runs/final-controls/controls/generic_mlp/evaluation/evaluation.json",
+        "selected_policy": {
+          "macrostep": 0.32,
+          "selection_reason": "fastest validation policy satisfying tolerance and all declared sequences",
+          "validation_feasible": true,
+          "validation_summary": {
+            "all_parent_mean": 0.0002796754431524165,
+            "all_parent_mean_unavailable_reason": null,
+            "bootstrap_unit": "independent physical parent",
+            "confidence_level": 0.95,
+            "failed_parents": 0,
+            "failure_probability_upper_bound": 0.7763932022500211,
+            "independent_parents": 2,
+            "median_wall_seconds": 0.0015061975000207894,
+            "method": "learned",
+            "parent_ids": [
+              "4acdb6d66284bc9aa62aa382",
+              "6ed2c1c46f732b7427cf85ab"
+            ],
+            "required_sequences": [
+              "constant",
+              "mixed",
+              "unseen_horizon"
+            ],
+            "successful_parent_max": 0.00030354021169054404,
+            "successful_parent_mean": 0.0002796754431524165,
+            "successful_parent_mean_bootstrap_interval": [
+              0.000255810674614289,
+              0.00030354021169054404
+            ],
+            "successful_parent_quantiles": {
+              "0.5": 0.0002796754431524165,
+              "0.9": 0.0002987672579829185,
+              "0.95": 0.0003011537348367313
+            },
+            "worst_measured_error": 0.00030354021169054404
+          }
+        },
+        "summary": {
+          "all_parent_mean": 0.00048780749187354026,
+          "all_parent_mean_unavailable_reason": null,
+          "bootstrap_unit": "independent physical parent",
+          "confidence_level": 0.95,
+          "failed_parents": 0,
+          "failure_probability_upper_bound": 0.7763932022500211,
+          "independent_parents": 2,
+          "median_wall_seconds": 0.0015157514999373234,
+          "method": "learned",
+          "parent_ids": [
+            "93e4b34463588955eb37f34a",
+            "e29ea89fa832ef4150df1fa9"
+          ],
+          "required_sequences": [
+            "constant",
+            "mixed",
+            "unseen_horizon"
+          ],
+          "successful_parent_max": 0.0006135509828621274,
+          "successful_parent_mean": 0.00048780749187354026,
+          "successful_parent_mean_bootstrap_interval": [
+            0.0003620640008849531,
+            0.0006135509828621274
+          ],
+          "successful_parent_quantiles": {
+            "0.5": 0.00048780749187354026,
+            "0.9": 0.00058840228466441,
+            "0.95": 0.0006009766337632687
+          },
+          "worst_measured_error": 0.0006135509828621274
+        }
+      },
+      "evaluation_wall_seconds": 1.3579873799999405,
+      "failure": null,
+      "family": "generic_mlp",
+      "normalization_hash": "126463958a7b861d6d8c5bccdd3d362fea032b2882a3ea312c9c8c96ba394b83",
+      "parameter_count": 1537,
+      "run_dir": "/workspace/TDN/runs/final-controls/controls/generic_mlp",
+      "selected_checkpoint": "/workspace/TDN/runs/final-controls/controls/generic_mlp/training/checkpoints/best.pt",
+      "status": "COMPLETE_FEASIBLE",
+      "trained_head_nonzero_count": 33,
+      "training": {
+        "best_checkpoint": "/workspace/TDN/runs/final-controls/controls/generic_mlp/training/checkpoints/best.pt",
+        "committed_cursor": 12,
+        "config_hash": "e633feab58b612bf4a0ef6ee719faac82c4a35aa9af6b2135509ce9672f4ab25",
+        "dataset_hash": "d2414b5e917c6f4bd2e08c3c889a82c35f94779f7eb7c1f0a270c150acc8c615",
+        "global_step": 12,
+        "history": [
+          {
+            "loss": 1.4363845586776733,
+            "step": 1
+          },
+          {
+            "loss": 0.4791012704372406,
+            "step": 2
+          },
+          {
+            "loss": 0.1578063666820526,
+            "step": 3
+          },
+          {
+            "loss": 0.7195982336997986,
+            "step": 4
+          },
+          {
+            "loss": 0.5223873853683472,
+            "step": 5
+          },
+          {
+            "loss": 0.10983866453170776,
+            "step": 6
+          },
+          {
+            "loss": 0.27429574728012085,
+            "step": 7
+          },
+          {
+            "loss": 0.15808366239070892,
+            "step": 8
+          },
+          {
+            "loss": 0.20516075193881989,
+            "step": 9
+          },
+          {
+            "loss": 0.30751195549964905,
+            "step": 10
+          },
+          {
+            "loss": 0.297172874212265,
+            "step": 11
+          },
+          {
+            "loss": 0.15334375202655792,
+            "step": 12
+          }
+        ],
+        "last_checkpoint": "/workspace/TDN/runs/final-controls/controls/generic_mlp/training/checkpoints/last.pt",
+        "memory": {
+          "scope": "CPU run; no allocated GPU memory measurement"
+        },
+        "prefetch": 0,
+        "resume_guarantee": "bitwise CPU deterministic reference path on the same software/device/thread environment",
+        "schema_version": 1,
+        "source_hash": "eb54f1b5a69873da32e3d488e104d087cb55077b96db2bca9c059f90d72ab59c",
+        "split_hash": "c79f2ae7037574ac4606e5a8bfb9604d75131c851f298d8a2fe637feb8ae706f",
+        "status": "COMPLETE",
+        "validation": {
+          "failures": [],
+          "feasible": true,
+          "final_time": 0.64,
+          "max_error": 0.0008504190046836342,
+          "mean_error": 0.0008451860259474802,
+          "metric": "full_rollout_error_at_fixed_physical_time",
+          "tolerance": 0.002
+        },
+        "workers": 0
+      },
+      "training_wall_seconds": 0.057749744000147984
+    },
+    {
+      "checkpoint_selection": "validation_feasible_best",
+      "config_hash": "75f81362a940a1a66a2a77494097ee376dbefa7b7f11ea5411cd9a90289b8c7d",
+      "evaluation": {
+        "classical_comparisons": {
+          "adaptive_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.0002161768333053261,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.00013837500008169945,
+              0.00029397866652895277
+            ],
+            "parents": 2
+          },
+          "coupled_rk4": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": -0.0004283834999796453,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              -0.0005132200000540856,
+              -0.000343546999905205
+            ],
+            "parents": 2
+          },
+          "richardson_split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.0004313443332648603,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.0004008299997622089,
+              0.00046185866676751175
+            ],
+            "parents": 2
+          },
+          "split": {
+            "available": true,
+            "bootstrap_unit": "independent paired parent",
+            "candidate_minus_baseline_mean": 0.00123143200001626,
+            "confidence_level": 0.95,
+            "paired_parent_bootstrap_interval": [
+              0.0011775323331827772,
+              0.0012853316668497428
+            ],
+            "parents": 2
+          }
+        },
+        "path": "/workspace/TDN/runs/final-controls/controls/temporal_mlp/evaluation/evaluation.json",
+        "selected_policy": {
+          "macrostep": 0.32,
+          "selection_reason": "fastest validation policy satisfying tolerance and all declared sequences",
+          "validation_feasible": true,
+          "validation_summary": {
+            "all_parent_mean": 0.00037518742737795667,
+            "all_parent_mean_unavailable_reason": null,
+            "bootstrap_unit": "independent physical parent",
+            "confidence_level": 0.95,
+            "failed_parents": 0,
+            "failure_probability_upper_bound": 0.7763932022500211,
+            "independent_parents": 2,
+            "median_wall_seconds": 0.0018465655000454717,
+            "method": "learned",
+            "parent_ids": [
+              "4acdb6d66284bc9aa62aa382",
+              "6ed2c1c46f732b7427cf85ab"
+            ],
+            "required_sequences": [
+              "constant",
+              "mixed",
+              "unseen_horizon"
+            ],
+            "successful_parent_max": 0.0003770391869260518,
+            "successful_parent_mean": 0.00037518742737795667,
+            "successful_parent_mean_bootstrap_interval": [
+              0.00037333566782986154,
+              0.0003770391869260518
+            ],
+            "successful_parent_quantiles": {
+              "0.5": 0.00037518742737795667,
+              "0.9": 0.00037666883501643277,
+              "0.95": 0.0003768540109712423
+            },
+            "worst_measured_error": 0.0003770391869260518
+          }
+        },
+        "summary": {
+          "all_parent_mean": 0.0006131445882210678,
+          "all_parent_mean_unavailable_reason": null,
+          "bootstrap_unit": "independent physical parent",
+          "confidence_level": 0.95,
+          "failed_parents": 0,
+          "failure_probability_upper_bound": 0.7763932022500211,
+          "independent_parents": 2,
+          "median_wall_seconds": 0.0018626390000235915,
+          "method": "learned",
+          "parent_ids": [
+            "93e4b34463588955eb37f34a",
+            "e29ea89fa832ef4150df1fa9"
+          ],
+          "required_sequences": [
+            "constant",
+            "mixed",
+            "unseen_horizon"
+          ],
+          "successful_parent_max": 0.0007573270041512373,
+          "successful_parent_mean": 0.0006131445882210678,
+          "successful_parent_mean_bootstrap_interval": [
+            0.00046896217229089825,
+            0.0007573270041512373
+          ],
+          "successful_parent_quantiles": {
+            "0.5": 0.0006131445882210678,
+            "0.9": 0.0007284905209652034,
+            "0.95": 0.0007429087625582204
+          },
+          "worst_measured_error": 0.0007573270041512373
+        }
+      },
+      "evaluation_wall_seconds": 1.4091544629998225,
+      "failure": null,
+      "family": "temporal_mlp",
+      "normalization_hash": "126463958a7b861d6d8c5bccdd3d362fea032b2882a3ea312c9c8c96ba394b83",
+      "parameter_count": 1736,
+      "run_dir": "/workspace/TDN/runs/final-controls/controls/temporal_mlp",
+      "selected_checkpoint": "/workspace/TDN/runs/final-controls/controls/temporal_mlp/training/checkpoints/best.pt",
+      "status": "COMPLETE_FEASIBLE",
+      "trained_head_nonzero_count": 132,
+      "training": {
+        "best_checkpoint": "/workspace/TDN/runs/final-controls/controls/temporal_mlp/training/checkpoints/best.pt",
+        "committed_cursor": 12,
+        "config_hash": "75f81362a940a1a66a2a77494097ee376dbefa7b7f11ea5411cd9a90289b8c7d",
+        "dataset_hash": "d2414b5e917c6f4bd2e08c3c889a82c35f94779f7eb7c1f0a270c150acc8c615",
+        "global_step": 12,
+        "history": [
+          {
+            "loss": 1.4363845586776733,
+            "step": 1
+          },
+          {
+            "loss": 0.5335039496421814,
+            "step": 2
+          },
+          {
+            "loss": 0.2295684814453125,
+            "step": 3
+          },
+          {
+            "loss": 0.9510178565979004,
+            "step": 4
+          },
+          {
+            "loss": 0.7873649001121521,
+            "step": 5
+          },
+          {
+            "loss": 0.17410437762737274,
+            "step": 6
+          },
+          {
+            "loss": 0.4997809827327728,
+            "step": 7
+          },
+          {
+            "loss": 0.04845133423805237,
+            "step": 8
+          },
+          {
+            "loss": 0.34746482968330383,
+            "step": 9
+          },
+          {
+            "loss": 0.07365747541189194,
+            "step": 10
+          },
+          {
+            "loss": 0.0932416170835495,
+            "step": 11
+          },
+          {
+            "loss": 0.2395566701889038,
+            "step": 12
+          }
+        ],
+        "last_checkpoint": "/workspace/TDN/runs/final-controls/controls/temporal_mlp/training/checkpoints/last.pt",
+        "memory": {
+          "scope": "CPU run; no allocated GPU memory measurement"
+        },
+        "prefetch": 0,
+        "resume_guarantee": "bitwise CPU deterministic reference path on the same software/device/thread environment",
+        "schema_version": 1,
+        "source_hash": "eb54f1b5a69873da32e3d488e104d087cb55077b96db2bca9c059f90d72ab59c",
+        "split_hash": "c79f2ae7037574ac4606e5a8bfb9604d75131c851f298d8a2fe637feb8ae706f",
+        "status": "COMPLETE",
+        "validation": {
+          "failures": [],
+          "feasible": true,
+          "final_time": 0.64,
+          "max_error": 0.000421942620298685,
+          "mean_error": 0.00041966312994329806,
+          "metric": "full_rollout_error_at_fixed_physical_time",
+          "tolerance": 0.002
+        },
+        "workers": 0
+      },
+      "training_wall_seconds": 0.07270005300006233
+    }
+  ],
+  "schema_version": 1,
+  "scope": "bounded CPU development diagnostics; sealed confirmatory parents remain unopened",
+  "selection_policy": "feasible validation best; otherwise last checkpoint only for failure diagnosis",
+  "source_provenance": {
+    "commit": "6ee03cd3298f6de94da546ffa3f5ee2f8da23a55",
+    "files": {
+      "pyproject.toml": "f6e7874a74b30c211362c895c5447f7753559bb8b7678839aa39e856a44e1b90",
+      "reference/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reference/temporal_core.py": "7a29b4413b590c67dc19b14527fce2faced4cc5b6fda31ac1e55a51e5c815b63",
+      "requirements.txt": "eb7c97935e250c0549fac4d0ef4d4be39c9143167f4f15d6f28fac5d130cb6cc",
+      "tdn/__init__.py": "223732eebd72d22003be3d9c44c76fc4af3fb241a1843932c7f1ccbdf15f3696",
+      "tdn/analysis/__init__.py": "e0ff3950af8ef6518e1748427afc48c2173c372c66acd5180993f4aff25f73fa",
+      "tdn/analysis/convergence.py": "f3afc0755d84d08ec60179b7c82104fefa711c6b04de07759c64f65a6aacf237",
+      "tdn/analysis/influence.py": "1cdfe10e1e1e08f79786a62b183dccd584cf2560b81ec280336b3d62f0f37da4",
+      "tdn/analysis/learned_controls.py": "a8c43fd3a7a68bae2faf5d6cc2244d6fcda785ce90f8fb9d84b2a9975d16e7cd",
+      "tdn/analysis/profiling.py": "9a095dbb9e224c6343dce8dffddc23160eba7f9e99140f69bd9ae1804bda9cfb",
+      "tdn/analysis/statistics.py": "16e40789c1e2f6caa98bd81b4d478718d5f426d69bcf0120b3ecaf8bec658ab3",
+      "tdn/analysis/workflow.py": "8186724e27313f345608b82d5262d048061f3f22ac3b971a541d3472cb57f653",
+      "tdn/cli.py": "bb548b32e60f7952b4865e2503cff4b1a0755e83691a357d540c1675b5ba9d8b",
+      "tdn/config.py": "be6bec174be4ed04374655a37d8df7d270d60795da909de8a8489311b4f55586",
+      "tdn/data/__init__.py": "034ea47fd810b8f5b57388a21808d4b3b41f4cf4fa716ca38ff54b428ad9ee57",
+      "tdn/data/dataset.py": "d419897a807cf763ce76d30b791af9053401383d58c9bb04054dfb3a5ada1852",
+      "tdn/data/generation.py": "a8569e3273dfb9289417ef8b2c2b744bfbedec4de854ca7b8856d5acbd0e1d63",
+      "tdn/data/provenance.py": "b2fba7c9d0ee0faf2d5020caebb7682fe294eaee7c4217f47c1319c76ebfab96",
+      "tdn/features/__init__.py": "ca8b75d441d5f19905966b4f82a24f50a31d51825e5bbcc055d787e7f62753fc",
+      "tdn/features/local.py": "b461af914be65ce05bfe97edc291b92d78749dfedda55c42761385a5f7f85971",
+      "tdn/models/__init__.py": "b784db53c463935a3e265e4ab3d10238b80421ee779226022a91ce67b1d45b0f",
+      "tdn/models/solver.py": "bbd858cf4dd5902bb6bc42ef4478cb41fdd892022635018c62fa3ecb6cc10518",
+      "tdn/models/temporal.py": "b56bea946cfe600f4ca7669b32748ecc2c474bcb438e1b190a64211611f493fa",
+      "tdn/numerics/__init__.py": "20ea4f1839c4056379eaf1041b70fa59781a2646a1083a9e983624c25fd40bf2",
+      "tdn/numerics/invariants.py": "dc1c567a80ff1bda2c6e49d30888511cd79f7cf91091e7f0676ac341c79179bd",
+      "tdn/numerics/linear.py": "9ddb984044041d8d0328fdc29ee6d4207c30cd1d3288e4cd3f4f9e7991d6624c",
+      "tdn/numerics/operators.py": "a590a0debed272d6cfb0fe9a2ddd721e8e6c1e77caf36145d38805048ff2296d",
+      "tdn/numerics/reference.py": "c04765cfec9e1c49cb304cbce19fd27be630df51240bb8b4001a5c1daff6138e",
+      "tdn/numerics/splitting.py": "747ab253542efbd8e172d10578cb2b9936dc81e9b806072e5fce28ff73429fae",
+      "tdn/numerics/subflows.py": "49f261759e67a406cb2e2b6fc079f722740f329a9eaf99ca2ecc63f6d9199e54",
+      "tdn/numerics/types.py": "686ac3a165734367dbd1a6273e1a88225a012f49bfdc840bf09bd1667a9d81c7",
+      "tdn/runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tdn/runtime/calibration.py": "471178fbe508718a0415cd64720794915bafa4099a727268099a63fff0203043",
+      "tdn/runtime/metadata.py": "5c9b365347f885c2242530cb6c040a57219d92d213ea968c2e10f72a84168b0c",
+      "tdn/runtime/precision.py": "55ab36c9a91bafc2cd3ce16c9488ca8e213d5aefed11c56c8b37104c68072061",
+      "tdn/runtime/preflight.py": "08ab2c9605d93a1cd8e2ad3bab5573d2090b36ce6defa6d1f9aab843ad477ac0",
+      "tdn/runtime/signal_handling.py": "c05dec0275d896230145ea2675f0ec6a69a044490b17774af02d57c97790dac6",
+      "tdn/runtime/storage.py": "7dd2a4291c9d04b49391fe2e208e71658b26332db9bd8d88dfbf296ecf23fcdf",
+      "tdn/train/__init__.py": "4ba354a03a4716be289d42fdec6dc5aa56284d456b09638637a478c799f38a9d",
+      "tdn/train/checkpoint.py": "d7de43fded57e2e121306e0b428313075b8e1ebd8548246ee49b83d2e53b3316",
+      "tdn/train/loop.py": "53ffe218e700f9da3648e9d4e6d45bf8db69176a83941ff03b23a1d18d9a20f9",
+      "tdn/train/model.py": "4b81c586a05f7de84cbe2bc111d959dde8b3d5f60b3d32356c2aa1e575ef5cb4"
+    },
+    "python_source_hash": "eb54f1b5a69873da32e3d488e104d087cb55077b96db2bca9c059f90d72ab59c"
+  },
+  "split_hash": "c79f2ae7037574ac4606e5a8bfb9604d75131c851f298d8a2fe637feb8ae706f",
+  "stage": "compare_learned_controls",
+  "status": "COMPLETE",
+  "tolerance_infeasible_families": [],
+  "tuning_policy": "only model.family changes; no per-family retuning or diagnostic-parent checkpoint selection",
+  "unsupported_optional": [
+    "KAN",
+    "exact nonlinear PDE anchor",
+    "GPU control campaign"
+  ]
+}

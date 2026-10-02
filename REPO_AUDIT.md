@@ -1,0 +1,13 @@
+# Repository audit and implementation boundary
+
+The selected `rahel99x/TDN` checkout initially contained only `README.md` at commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`. It had no source, tests, dependency manifests, CI, submodules, agent instructions or pre-existing user edits. This is an independent package, not an adapter to unavailable HALO operators.
+
+The implemented numerical problem is scalar periodic logistic reaction–diffusion on a fixed central-difference semidiscretization, in one through three dimensions. State layout is `[batch,1,*grid]`. Its split is reaction-half / exact discrete FFT diffusion-full / reaction-half. Its teacher is a fully coupled FP64 fixed-count RK4 solver audited at three refinements with conservative stability counts and measured uncertainty. Tier-A matrix controls provide independently exact noncommuting and commuting cases and an exact leading-order anchor.
+
+The main encoder sees only present-state local radius-one features and fixed equation/grid metadata; h enters the decoder. FFT evolution remains global, including in full-domain short rollout training. No finite halo, distributed speedup or global-pooling access is claimed. The optional exact anchor is enabled only when an audited coefficient is explicitly supplied; a PDE anchor is rejected by config until independently verified.
+
+Six local-input learned families are implemented: temporal MLP, fixed-rate dictionary MLP, polynomial, rational, h-conditioned MLP, and an h³ Taylor/hypersolver-inspired correction. Classical split, adaptive step-doubling, coupled RK4 and Richardson split controls are timed at the same state precision and physical end time. KAN, oscillatory units, Gray–Scott, advection, custom CUDA kernels, distributed HALO and a sealed confirmatory campaign require later scientific gates and are disabled.
+
+This cloud machine is not CARC: the target home mount and Slurm/A100 allocation are unavailable. The code is prepared in `/workspace/TDN` for deployment as `/home1/aadaniel/projects/TDN`. Substantial CARC runtime stages enforce that exact target, user, billing association, project venv and actual allocated task. Local CPU validation uses an explicit checkout override and cannot submit jobs.
+
+Required external measurements remain: live association/QOS/partition/quota checks, wheel/driver compatibility, GPU parity, memory/precision/compiler calibration, GPU signal/resume, and meaningful fixed-tolerance solver benefit. Confirmatory physical tolerances, observable definitions and untouched parent regimes require a separate reviewed scientific design. They are not guessed here.

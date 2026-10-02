@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "evidence_categories": ["source-reported observation", "mathematical deduction", "proposed configuration", "newly measured result"],
+  "stage_report": {"required": ["stage", "status", "config_hash", "command", "actually_ran", "software", "scope", "device"]},
+  "dataset_manifest": {"required": ["generation_hash", "source_provenance", "parents", "split_hash", "horizons", "teacher_method", "split_method", "teacher_precision", "label_subtraction_precision", "groups"]},
+  "checkpoint": {"required": ["model_state", "optimizer_state", "scheduler_state", "rng_state", "normalization", "global_step", "sampler", "config_hash", "dataset_hash", "split_hash", "source_hash", "config", "status"]},
+  "frontier": {"comparison_unit": "independent physical parent", "required": ["physical_horizon", "validation_candidates", "selected_policies", "diagnostic_outcomes", "summaries"], "constraints": ["matched tolerance", "matched state precision", "fixed end time", "all failures retained", "initialization separated from steady state"]},
+  "gpu_memory": {"required": ["total_bytes", "initial_free_bytes", "soft_budget_bytes", "peak_allocated_bytes", "peak_reserved_bytes"], "device_used": "synchronized samples are observations, not an asserted per-kernel device peak"},
+  "not_established_by_cpu": ["CARC permissions", "Slurm authorization", "CUDA wheel-driver compatibility", "GPU precision", "A100 performance", "GPU memory capacity", "GPU signal/resume", "new-task restoration"]
+}

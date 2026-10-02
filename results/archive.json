@@ -1,0 +1,16 @@
+{
+  "path": "TDN-repository.tar.gz",
+  "bytes": 492836,
+  "sha256": "04db8732ae68fb187fa609b3191791bf75c59f86602bee47a215332ec83e0cec",
+  "files": 92,
+  "excludes": [
+    "venv",
+    "caches",
+    "datasets",
+    "checkpoints",
+    "private user.env.sh",
+    "Git metadata"
+  ],
+  "deployment_root": "/home1/aadaniel/projects/TDN",
+  "note": "Corrected source archive includes tdn/data; create a new venv and runtime artifacts at destination"
+}

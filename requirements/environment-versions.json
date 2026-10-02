@@ -1,0 +1,19 @@
+{
+  "category": "newly_measured_result",
+  "python": "3.12.14",
+  "python_executable": "/workspace/TDN/.venv/bin/python",
+  "venv": "/workspace/TDN/.venv",
+  "torch_wheel_index": "https://download.pytorch.org/whl/cpu",
+  "packages": {
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "PyYAML": "6.0.3",
+    "pytest": "8.4.2",
+    "mpmath": "1.3.0",
+    "matplotlib": "3.10.7",
+    "setuptools": "80.9.0",
+    "wheel": "0.45.1"
+  },
+  "note": "Installed software only; CUDA operation requires an allocated GPU preflight."
+}

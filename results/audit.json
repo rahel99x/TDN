@@ -1,0 +1,1779 @@
+{
+  "stage": "audit",
+  "evidence_category": "newly measured result",
+  "device": "cpu",
+  "config_hash": "75f81362a940a1a66a2a77494097ee376dbefa7b7f11ea5411cd9a90289b8c7d",
+  "scope": "FP64 tiny-grid CPU/GPU selected device; no CARC access or GPU claim follows from CPU",
+  "problem": {
+    "grid": [
+      8,
+      8
+    ],
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "kappa": 0.01,
+    "reaction_rate": 2.0,
+    "split": "reaction_half_diffusion_full_reaction_half",
+    "diffusion": "exact discrete periodic FFT",
+    "teacher": "coupled RK4, three refinements"
+  },
+  "tier_a": {
+    "scope": "tiny exact semidiscrete linear controls, not PDE or GPU evidence",
+    "passed": true,
+    "A": [
+      [
+        -0.3,
+        0.8
+      ],
+      [
+        -0.1,
+        -0.2
+      ]
+    ],
+    "B": [
+      [
+        -1.0,
+        0.1
+      ],
+      [
+        0.4,
+        -0.8
+      ]
+    ],
+    "commutator_norm": 0.4938623289946299,
+    "leading_matrix": [
+      [
+        -0.001875000000000182,
+        -0.030624999999999902
+      ],
+      [
+        0.020500000000000046,
+        0.001875000000000071
+      ]
+    ],
+    "fits": {
+      "split_local": {
+        "raw_horizons": [
+          0.125,
+          0.0625,
+          0.03125,
+          0.015625
+        ],
+        "raw_errors": [
+          2.9662502074845517e-05,
+          3.974481516744788e-06,
+          5.143892105002844e-07,
+          6.542710847940194e-08
+        ],
+        "raw_reference_uncertainty": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fit_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+        "noise_floor": 1e-14,
+        "max_h": null,
+        "slope": 2.9423442586018513,
+        "intercept": -4.293315158471688,
+        "minimum_points": 3,
+        "valid": true,
+        "r_squared": 0.9999667092211181,
+        "fitted_h_range": [
+          0.015625,
+          0.125
+        ]
+      },
+      "anchored_local": {
+        "raw_horizons": [
+          0.125,
+          0.0625,
+          0.03125,
+          0.015625
+        ],
+        "raw_errors": [
+          4.5105531323386365e-06,
+          2.9203565029217815e-07,
+          1.8580516756469985e-08,
+          1.1717329115493614e-09
+        ],
+        "raw_reference_uncertainty": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fit_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+        "noise_floor": 1e-14,
+        "max_h": null,
+        "slope": 3.970561664443964,
+        "intercept": -4.04552746489953,
+        "minimum_points": 3,
+        "valid": true,
+        "r_squared": 0.9999953259466551,
+        "fitted_h_range": [
+          0.015625,
+          0.125
+        ]
+      },
+      "split_global": {
+        "raw_horizons": [
+          0.125,
+          0.0625,
+          0.03125,
+          0.015625
+        ],
+        "raw_errors": [
+          9.38068140718479e-05,
+          2.3461991596936866e-05,
+          5.866141573649312e-06,
+          1.466575633037582e-06
+        ],
+        "raw_reference_uncertainty": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fit_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+        "noise_floor": 1e-14,
+        "max_h": null,
+        "slope": 1.9997349719003141,
+        "intercept": -5.1158259691313175,
+        "minimum_points": 3,
+        "valid": true,
+        "r_squared": 0.9999999952841921,
+        "fitted_h_range": [
+          0.015625,
+          0.125
+        ]
+      },
+      "anchored_global": {
+        "raw_horizons": [
+          0.125,
+          0.0625,
+          0.03125,
+          0.015625
+        ],
+        "raw_errors": [
+          1.4374923893458662e-05,
+          1.737205462864861e-06,
+          2.13514455289362e-07,
+          2.6464894680720746e-08
+        ],
+        "raw_reference_uncertainty": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fit_mask": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+        "noise_floor": 1e-14,
+        "max_h": null,
+        "slope": 3.0280138813141932,
+        "intercept": -4.860199736824359,
+        "minimum_points": 3,
+        "valid": true,
+        "r_squared": 0.9999925606550015,
+        "fitted_h_range": [
+          0.015625,
+          0.125
+        ]
+      }
+    },
+    "limits": {
+      "commuting": {
+        "error": 1.6243534171511178e-16,
+        "passed": true
+      },
+      "zero_reaction": {
+        "error": 1.1189974934759746e-16,
+        "passed": true
+      },
+      "zero_diffusion": {
+        "error": 0.0,
+        "passed": true
+      },
+      "zero_advection": {
+        "scope": "two-operator model contains no advection"
+      }
+    }
+  },
+  "teacher_refinements": [
+    {
+      "h": 0.08,
+      "substeps": [
+        16,
+        32,
+        64
+      ],
+      "refinement_differences": [
+        2.3406306240112563e-13,
+        1.469654288881958e-14
+      ],
+      "defect_norm": 1.8350160926337437e-07,
+      "uncertainty_bound_convention": "conservative finest two-level difference, not extrapolated error estimate",
+      "observed_refinement_ratio": 0.002340630624011256,
+      "permitted_uncertainty": 9.17508046316872e-09,
+      "accepted": true,
+      "roundoff_dominated": false
+    },
+    {
+      "h": 0.04,
+      "substeps": [
+        16,
+        32,
+        64
+      ],
+      "refinement_differences": [
+        7.525715889772797e-15,
+        4.753522175452982e-16
+      ],
+      "defect_norm": 2.2745428641729016e-08,
+      "uncertainty_bound_convention": "conservative finest two-level difference, not extrapolated error estimate",
+      "observed_refinement_ratio": 7.525715889772797e-05,
+      "permitted_uncertainty": 1.137271432086451e-09,
+      "accepted": true,
+      "roundoff_dominated": false
+    },
+    {
+      "h": 0.02,
+      "substeps": [
+        16,
+        32,
+        64
+      ],
+      "refinement_differences": [
+        2.5897974884783075e-16,
+        2.1217589978612472e-16
+      ],
+      "defect_norm": 2.82833852327129e-09,
+      "uncertainty_bound_convention": "conservative finest two-level difference, not extrapolated error estimate",
+      "observed_refinement_ratio": 2.589797488478307e-06,
+      "permitted_uncertainty": 1.414169261635645e-10,
+      "accepted": true,
+      "roundoff_dominated": false
+    },
+    {
+      "h": 0.01,
+      "substeps": [
+        16,
+        32,
+        64
+      ],
+      "refinement_differences": [
+        1.497901326927488e-16,
+        2.1699997036927889e-16
+      ],
+      "defect_norm": 3.525326062336831e-10,
+      "uncertainty_bound_convention": "conservative finest two-level difference, not extrapolated error estimate",
+      "observed_refinement_ratio": 1.497901326927488e-06,
+      "permitted_uncertainty": 1.7626630311684157e-11,
+      "accepted": true,
+      "roundoff_dominated": true
+    }
+  ],
+  "global_teacher_uncertainty": 5.535749934263265e-10,
+  "logistic_convergence": {
+    "split_local": {
+      "raw_horizons": [
+        0.08,
+        0.04,
+        0.02,
+        0.01
+      ],
+      "raw_errors": [
+        1.8350160926337437e-07,
+        2.2745428641729016e-08,
+        2.82833852327129e-09,
+        3.525326062336831e-10
+      ],
+      "raw_reference_uncertainty": [
+        1.469654288881958e-14,
+        4.753522175452982e-16,
+        2.1217589978612472e-16,
+        2.1699997036927889e-16
+      ],
+      "fit_mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+      "noise_floor": 1e-10,
+      "max_h": null,
+      "slope": 3.0098470493061207,
+      "intercept": -7.90951624382999,
+      "minimum_points": 3,
+      "valid": true,
+      "r_squared": 0.9999998058381072,
+      "fitted_h_range": [
+        0.02,
+        0.08
+      ]
+    },
+    "split_global": {
+      "raw_horizons": [
+        0.08,
+        0.04,
+        0.02,
+        0.01
+      ],
+      "raw_errors": [
+        1.1070035289649512e-06,
+        2.7660645590399813e-07,
+        6.911724430638771e-08,
+        1.7251813174899057e-08
+      ],
+      "raw_reference_uncertainty": [
+        5.535749934263265e-10,
+        5.535749934263265e-10,
+        5.535749934263265e-10,
+        5.535749934263265e-10
+      ],
+      "fit_mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+      "noise_floor": 1e-10,
+      "max_h": null,
+      "slope": 2.001202126451222,
+      "intercept": -8.659148539414437,
+      "minimum_points": 3,
+      "valid": true,
+      "r_squared": 0.9999999636894092,
+      "fitted_h_range": [
+        0.01,
+        0.08
+      ]
+    },
+    "richardson_global": {
+      "raw_horizons": [
+        0.08,
+        0.04,
+        0.02,
+        0.01
+      ],
+      "raw_errors": [
+        1.9267122368198248e-10,
+        4.650011766761028e-11,
+        3.744934245578361e-11,
+        3.688802595189834e-11
+      ],
+      "raw_reference_uncertainty": [
+        5.535749934263265e-10,
+        5.535749934263265e-10,
+        5.535749934263265e-10,
+        5.535749934263265e-10
+      ],
+      "fit_mask": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "selection_rule": "positive errors > 10 * max(noise_floor, reference uncertainty); predeclared max_h",
+      "noise_floor": 1e-10,
+      "max_h": null,
+      "slope": null,
+      "intercept": null,
+      "minimum_points": 3,
+      "valid": false,
+      "reason": "Fewer than three points above the audited reference/roundoff floor"
+    }
+  },
+  "derivatives": {
+    "scope": "FP64 tiny-grid matrix-free fixed-substep sensitivity; no uniform nonlinear guarantee",
+    "fixed_substeps": 64,
+    "passed": true,
+    "maps": {
+      "coupled_full_map": {
+        "dot_w_Jv": 0.04338256102199151,
+        "dot_v_Jtranspose_w": 0.04338256102199143,
+        "adjoint_relative_error": 1.919359412752906e-15,
+        "adjoint_absolute_error": 8.326672684688674e-17,
+        "jvp_l2_norm": 0.5326901333767413,
+        "relative_audit_roundoff_dominated": false,
+        "finite_difference_sweep": [
+          {
+            "epsilon": 0.01,
+            "jvp_relative_error": 1.4888404278077178e-06,
+            "jvp_absolute_error": 7.930906060655778e-07
+          },
+          {
+            "epsilon": 0.001,
+            "jvp_relative_error": 1.488856778377346e-08,
+            "jvp_absolute_error": 7.930993158526939e-09
+          },
+          {
+            "epsilon": 0.0001,
+            "jvp_relative_error": 1.4967293522004403e-10,
+            "jvp_absolute_error": 7.972929582525362e-11
+          },
+          {
+            "epsilon": 1e-05,
+            "jvp_relative_error": 1.8706378662346852e-10,
+            "jvp_absolute_error": 9.964703344641372e-11
+          },
+          {
+            "epsilon": 1e-06,
+            "jvp_relative_error": 1.7945086689257957e-09,
+            "jvp_absolute_error": 9.559170621958006e-10
+          },
+          {
+            "epsilon": 1e-07,
+            "jvp_relative_error": 1.5917759408136182e-08,
+            "jvp_absolute_error": 8.479233382178942e-09
+          }
+        ],
+        "pass_rule": "dot relative <1e-8 or absolute <1e-12; FD relative <1e-5 or absolute <1e-10",
+        "passed": true
+      },
+      "splitting_defect": {
+        "dot_w_Jv": -2.9796556323118456e-05,
+        "dot_v_Jtranspose_w": -2.979655632317807e-05,
+        "adjoint_relative_error": 2.0007070005396943e-12,
+        "adjoint_absolute_error": 5.961417882775766e-17,
+        "jvp_l2_norm": 0.00035554581860346,
+        "relative_audit_roundoff_dominated": false,
+        "finite_difference_sweep": [
+          {
+            "epsilon": 0.01,
+            "jvp_relative_error": 0.0003428858024125742,
+            "jvp_absolute_error": 1.2191161330628292e-07
+          },
+          {
+            "epsilon": 0.001,
+            "jvp_relative_error": 3.4284052839984925e-06,
+            "jvp_absolute_error": 1.2189551632036718e-09
+          },
+          {
+            "epsilon": 0.0001,
+            "jvp_relative_error": 4.649711124154693e-08,
+            "jvp_absolute_error": 1.6531853479071946e-11
+          },
+          {
+            "epsilon": 1e-05,
+            "jvp_relative_error": 3.3588607036404694e-07,
+            "jvp_absolute_error": 1.1942288784508443e-10
+          },
+          {
+            "epsilon": 1e-06,
+            "jvp_relative_error": 3.1745496198775735e-06,
+            "jvp_absolute_error": 1.1286978432966747e-09
+          },
+          {
+            "epsilon": 1e-07,
+            "jvp_relative_error": 2.8524414558307113e-05,
+            "jvp_absolute_error": 1.0141736324317754e-08
+          }
+        ],
+        "pass_rule": "dot relative <1e-8 or absolute <1e-12; FD relative <1e-5 or absolute <1e-10",
+        "passed": true
+      }
+    }
+  },
+  "information": {
+    "scope": "single-device global periodic FFT prototype; local neural observation only",
+    "target_index": [
+      4,
+      4
+    ],
+    "hidden_index": [
+      7,
+      4
+    ],
+    "feature_radius": 1,
+    "feature_equality_exact": true,
+    "feature_difference_max": 0.0,
+    "hidden_pair_amplitude": 0.1,
+    "horizon": 0.32,
+    "fixed_teacher_substeps": 64,
+    "full_map_receiver_difference": 0.0001362729355028902,
+    "defect_receiver_difference": 3.003616482755156e-06,
+    "deterministic_local_defect_worst_case_error_lower_bound": 1.501808241377578e-06,
+    "hidden_linear_full_receiver_l2_sensitivity": 0.04209011410283876,
+    "hidden_linear_defect_receiver_l2_sensitivity": 9.919309639826589e-05,
+    "hidden_defect_to_full_sensitivity_ratio": 0.00235668395091321,
+    "bound_status": "exact same-feature nonlinear pair bound; matrix-free linear sensitivity is separate",
+    "locality_certified": false,
+    "blocker": "No application-specific permitted local prediction error is declared; no universal radius sufficiency claim"
+  },
+  "classical_cost_profile": [
+    {
+      "method": "split",
+      "h": 0.04,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 2.7660645590399813e-07,
+      "counters": {
+        "accepted_macrosteps": 16,
+        "rejected_macrosteps": 0,
+        "split_calls": 16,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.0032388849999733793,
+        "warmup_seconds": 0.002921176999961972,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0027829079999719397,
+          0.002803418999974383,
+          0.002583287999868844
+        ],
+        "wall_seconds_median": 0.0027829079999719397,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "adaptive_split",
+      "h": 0.04,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 6.911724430638771e-08,
+      "counters": {
+        "accepted_macrosteps": 16,
+        "rejected_macrosteps": 0,
+        "split_calls": 48,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.008236345999875994,
+        "warmup_seconds": 0.007524814999896989,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.007564516000002186,
+          0.0077191880000100355,
+          0.007509392999963893
+        ],
+        "wall_seconds_median": 0.007564516000002186,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "coupled_rk4",
+      "h": 0.04,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 9.434543076969045e-09,
+      "counters": {
+        "accepted_macrosteps": 16,
+        "rejected_macrosteps": 0,
+        "split_calls": 0,
+        "rk4_substeps": 16,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.0030304110000543005,
+        "warmup_seconds": 0.0031964610000159155,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0031933660000049713,
+          0.00327758299999914,
+          0.003226275000088208
+        ],
+        "wall_seconds_median": 0.003226275000088208,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "richardson_split",
+      "h": 0.04,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 4.650011766761028e-11,
+      "counters": {
+        "accepted_macrosteps": 16,
+        "rejected_macrosteps": 0,
+        "split_calls": 48,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.007797936000088157,
+        "warmup_seconds": 0.007984807999946497,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.007292666000012105,
+          0.007628781999983403,
+          0.007015439000042534
+        ],
+        "wall_seconds_median": 0.007292666000012105,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "split",
+      "h": 0.08,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 1.1070035289649512e-06,
+      "counters": {
+        "accepted_macrosteps": 8,
+        "rejected_macrosteps": 0,
+        "split_calls": 8,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.001394799000081548,
+        "warmup_seconds": 0.0014004570000452077,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0012427100000422797,
+          0.0012733459998344188,
+          0.0012992160000067088
+        ],
+        "wall_seconds_median": 0.0012733459998344188,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "adaptive_split",
+      "h": 0.08,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 2.7660645590399813e-07,
+      "counters": {
+        "accepted_macrosteps": 8,
+        "rejected_macrosteps": 0,
+        "split_calls": 24,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.00424364700006663,
+        "warmup_seconds": 0.0038421520000611054,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.003770053999915035,
+          0.004666944999826228,
+          0.0037557630000719655
+        ],
+        "wall_seconds_median": 0.003770053999915035,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "coupled_rk4",
+      "h": 0.08,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 9.43454310027786e-09,
+      "counters": {
+        "accepted_macrosteps": 8,
+        "rejected_macrosteps": 0,
+        "split_calls": 0,
+        "rk4_substeps": 16,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.0028751269999247597,
+        "warmup_seconds": 0.0027937249999467895,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0029719229999045638,
+          0.002799373000016203,
+          0.0027798940000138828
+        ],
+        "wall_seconds_median": 0.002799373000016203,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "richardson_split",
+      "h": 0.08,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 1.9267122368198248e-10,
+      "counters": {
+        "accepted_macrosteps": 8,
+        "rejected_macrosteps": 0,
+        "split_calls": 24,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.00393030500003988,
+        "warmup_seconds": 0.003721021000046676,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.003429761999996117,
+          0.0034388960000342195,
+          0.004072188999998616
+        ],
+        "wall_seconds_median": 0.0034388960000342195,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "split",
+      "h": 0.16,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 4.4356754860624415e-06,
+      "counters": {
+        "accepted_macrosteps": 4,
+        "rejected_macrosteps": 0,
+        "split_calls": 4,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.0006846000001132779,
+        "warmup_seconds": 0.0006685969999580266,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.000857531000065137,
+          0.0006417360000341432,
+          0.0006273440001223207
+        ],
+        "wall_seconds_median": 0.0006417360000341432,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "adaptive_split",
+      "h": 0.16,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 1.1070035289429247e-06,
+      "counters": {
+        "accepted_macrosteps": 4,
+        "rejected_macrosteps": 0,
+        "split_calls": 12,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.002176917000042522,
+        "warmup_seconds": 0.002027321000014126,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0021928799999386683,
+          0.0020317579999300506,
+          0.002223667000180285
+        ],
+        "wall_seconds_median": 0.0021928799999386683,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "coupled_rk4",
+      "h": 0.16,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 2.994550987420656e-08,
+      "counters": {
+        "accepted_macrosteps": 4,
+        "rejected_macrosteps": 0,
+        "split_calls": 0,
+        "rk4_substeps": 12,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.002185540000027686,
+        "warmup_seconds": 0.0020844870000473747,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0020370160000311444,
+          0.0026516909999827476,
+          0.0020789390000572894
+        ],
+        "wall_seconds_median": 0.0020789390000572894,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "richardson_split",
+      "h": 0.16,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 2.549959885732832e-09,
+      "counters": {
+        "accepted_macrosteps": 4,
+        "rejected_macrosteps": 0,
+        "split_calls": 12,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.0019936599999255122,
+        "warmup_seconds": 0.001782702999889807,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0018441049999182724,
+          0.0018882419999499689,
+          0.0017876609999802895
+        ],
+        "wall_seconds_median": 0.0018441049999182724,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "split",
+      "h": 0.32,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 1.786637364181475e-05,
+      "counters": {
+        "accepted_macrosteps": 2,
+        "rejected_macrosteps": 0,
+        "split_calls": 2,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.0003687949999857665,
+        "warmup_seconds": 0.00032815400004437834,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.00036433900004340103,
+          0.00031593499988957774,
+          0.00031110800000533345
+        ],
+        "wall_seconds_median": 0.00031593499988957774,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "adaptive_split",
+      "h": 0.32,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 4.4356754860624415e-06,
+      "counters": {
+        "accepted_macrosteps": 2,
+        "rejected_macrosteps": 0,
+        "split_calls": 6,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.0010590440001578827,
+        "warmup_seconds": 0.0009689080000043759,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0009466850001444982,
+          0.0011277480000444484,
+          0.001025502999937089
+        ],
+        "wall_seconds_median": 0.001025502999937089,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "coupled_rk4",
+      "h": 0.32,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 6.220955542609773e-08,
+      "counters": {
+        "accepted_macrosteps": 2,
+        "rejected_macrosteps": 0,
+        "split_calls": 0,
+        "rk4_substeps": 10,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.0017510650000076566,
+        "warmup_seconds": 0.001694610999948054,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0017699239999728889,
+          0.0017164539999612316,
+          0.0019985080000424205
+        ],
+        "wall_seconds_median": 0.0017699239999728889,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388538368,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    },
+    {
+      "method": "richardson_split",
+      "h": 0.32,
+      "total_time": 0.64,
+      "dtype": "float64",
+      "failed": false,
+      "error": 4.118806772930364e-08,
+      "counters": {
+        "accepted_macrosteps": 2,
+        "rejected_macrosteps": 0,
+        "split_calls": 6,
+        "rk4_substeps": 0,
+        "model_calls": 0,
+        "fallback_steps": 0,
+        "simulated_time": 0.64
+      },
+      "performance": {
+        "device": "cpu",
+        "initialization_first_use_seconds": 0.001033726000059687,
+        "warmup_seconds": 0.00092208799992477,
+        "warmup_repeats": 1,
+        "steady_state_repeats": 3,
+        "wall_seconds_raw": [
+          0.0010915929999555374,
+          0.0008995040000172594,
+          0.0008705000000190921
+        ],
+        "wall_seconds_median": 0.0008995040000172594,
+        "cuda_event_seconds_raw": null,
+        "cuda_event_seconds_median": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "device_used_bytes_observed_peak": null,
+        "device_used_sampling": null,
+        "host_process_peak_rss_bytes": 388669440,
+        "host_memory_scope": "process lifetime peak RSS (Linux), not stage-specific allocation",
+        "includes": "full operation including feature construction, layout conversion, solver and inference",
+        "data_io_included": false
+      }
+    }
+  ],
+  "information_regimes": [
+    {
+      "regime": "central",
+      "equation": {
+        "kappa": 0.01,
+        "reaction_rate": 2.0
+      },
+      "information": {
+        "scope": "single-device global periodic FFT prototype; local neural observation only",
+        "target_index": [
+          4,
+          4
+        ],
+        "hidden_index": [
+          7,
+          4
+        ],
+        "feature_radius": 1,
+        "feature_equality_exact": true,
+        "feature_difference_max": 0.0,
+        "hidden_pair_amplitude": 0.1,
+        "horizon": 0.32,
+        "fixed_teacher_substeps": 64,
+        "full_map_receiver_difference": 0.0001362729355028902,
+        "defect_receiver_difference": 3.003616482755156e-06,
+        "deterministic_local_defect_worst_case_error_lower_bound": 1.501808241377578e-06,
+        "hidden_linear_full_receiver_l2_sensitivity": 0.04209011410283876,
+        "hidden_linear_defect_receiver_l2_sensitivity": 9.919309639826589e-05,
+        "hidden_defect_to_full_sensitivity_ratio": 0.00235668395091321,
+        "bound_status": "exact same-feature nonlinear pair bound; matrix-free linear sensitivity is separate",
+        "locality_certified": false,
+        "blocker": "No application-specific permitted local prediction error is declared; no universal radius sufficiency claim"
+      },
+      "derivatives": {
+        "scope": "FP64 tiny-grid matrix-free fixed-substep sensitivity; no uniform nonlinear guarantee",
+        "fixed_substeps": 64,
+        "passed": true,
+        "maps": {
+          "coupled_full_map": {
+            "dot_w_Jv": 0.04338256102199151,
+            "dot_v_Jtranspose_w": 0.04338256102199143,
+            "adjoint_relative_error": 1.919359412752906e-15,
+            "adjoint_absolute_error": 8.326672684688674e-17,
+            "jvp_l2_norm": 0.5326901333767413,
+            "relative_audit_roundoff_dominated": false,
+            "finite_difference_sweep": [
+              {
+                "epsilon": 0.01,
+                "jvp_relative_error": 1.4888404278077178e-06,
+                "jvp_absolute_error": 7.930906060655778e-07
+              },
+              {
+                "epsilon": 0.001,
+                "jvp_relative_error": 1.488856778377346e-08,
+                "jvp_absolute_error": 7.930993158526939e-09
+              },
+              {
+                "epsilon": 0.0001,
+                "jvp_relative_error": 1.4967293522004403e-10,
+                "jvp_absolute_error": 7.972929582525362e-11
+              },
+              {
+                "epsilon": 1e-05,
+                "jvp_relative_error": 1.8706378662346852e-10,
+                "jvp_absolute_error": 9.964703344641372e-11
+              },
+              {
+                "epsilon": 1e-06,
+                "jvp_relative_error": 1.7945086689257957e-09,
+                "jvp_absolute_error": 9.559170621958006e-10
+              },
+              {
+                "epsilon": 1e-07,
+                "jvp_relative_error": 1.5917759408136182e-08,
+                "jvp_absolute_error": 8.479233382178942e-09
+              }
+            ],
+            "pass_rule": "dot relative <1e-8 or absolute <1e-12; FD relative <1e-5 or absolute <1e-10",
+            "passed": true
+          },
+          "splitting_defect": {
+            "dot_w_Jv": -2.9796556323118456e-05,
+            "dot_v_Jtranspose_w": -2.979655632317807e-05,
+            "adjoint_relative_error": 2.0007070005396943e-12,
+            "adjoint_absolute_error": 5.961417882775766e-17,
+            "jvp_l2_norm": 0.00035554581860346,
+            "relative_audit_roundoff_dominated": false,
+            "finite_difference_sweep": [
+              {
+                "epsilon": 0.01,
+                "jvp_relative_error": 0.0003428858024125742,
+                "jvp_absolute_error": 1.2191161330628292e-07
+              },
+              {
+                "epsilon": 0.001,
+                "jvp_relative_error": 3.4284052839984925e-06,
+                "jvp_absolute_error": 1.2189551632036718e-09
+              },
+              {
+                "epsilon": 0.0001,
+                "jvp_relative_error": 4.649711124154693e-08,
+                "jvp_absolute_error": 1.6531853479071946e-11
+              },
+              {
+                "epsilon": 1e-05,
+                "jvp_relative_error": 3.3588607036404694e-07,
+                "jvp_absolute_error": 1.1942288784508443e-10
+              },
+              {
+                "epsilon": 1e-06,
+                "jvp_relative_error": 3.1745496198775735e-06,
+                "jvp_absolute_error": 1.1286978432966747e-09
+              },
+              {
+                "epsilon": 1e-07,
+                "jvp_relative_error": 2.8524414558307113e-05,
+                "jvp_absolute_error": 1.0141736324317754e-08
+              }
+            ],
+            "pass_rule": "dot relative <1e-8 or absolute <1e-12; FD relative <1e-5 or absolute <1e-10",
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "regime": "lower_endpoint",
+      "initial_realization_seed": 101,
+      "equation": {
+        "kappa": 0.01,
+        "reaction_rate": 2.0
+      },
+      "information": {
+        "scope": "single-device global periodic FFT prototype; local neural observation only",
+        "target_index": [
+          4,
+          4
+        ],
+        "hidden_index": [
+          7,
+          4
+        ],
+        "feature_radius": 1,
+        "feature_equality_exact": true,
+        "feature_difference_max": 0.0,
+        "hidden_pair_amplitude": 0.1,
+        "horizon": 0.32,
+        "fixed_teacher_substeps": 64,
+        "full_map_receiver_difference": 0.00011407616892855632,
+        "defect_receiver_difference": 1.8641449921474873e-06,
+        "deterministic_local_defect_worst_case_error_lower_bound": 9.320724960737437e-07,
+        "hidden_linear_full_receiver_l2_sensitivity": 0.03888855619030417,
+        "hidden_linear_defect_receiver_l2_sensitivity": 0.0007810767173131937,
+        "hidden_defect_to_full_sensitivity_ratio": 0.02008500170309574,
+        "bound_status": "exact same-feature nonlinear pair bound; matrix-free linear sensitivity is separate",
+        "locality_certified": false,
+        "blocker": "No application-specific permitted local prediction error is declared; no universal radius sufficiency claim"
+      },
+      "derivatives": {
+        "scope": "FP64 tiny-grid matrix-free fixed-substep sensitivity; no uniform nonlinear guarantee",
+        "fixed_substeps": 64,
+        "passed": true,
+        "maps": {
+          "coupled_full_map": {
+            "dot_w_Jv": 0.024542674968763764,
+            "dot_v_Jtranspose_w": 0.024542674968763608,
+            "adjoint_relative_error": 6.361373119947927e-15,
+            "adjoint_absolute_error": 1.5612511283791264e-16,
+            "jvp_l2_norm": 0.4862887158603525,
+            "relative_audit_roundoff_dominated": false,
+            "finite_difference_sweep": [
+              {
+                "epsilon": 0.01,
+                "jvp_relative_error": 1.4562074650427902e-06,
+                "jvp_absolute_error": 7.081372582019176e-07
+              },
+              {
+                "epsilon": 0.001,
+                "jvp_relative_error": 1.4562111602795471e-08,
+                "jvp_absolute_error": 7.081390551538549e-09
+              },
+              {
+                "epsilon": 0.0001,
+                "jvp_relative_error": 1.491862050806922e-10,
+                "jvp_absolute_error": 7.2547568092769e-11
+              },
+              {
+                "epsilon": 1e-05,
+                "jvp_relative_error": 1.935314081621037e-10,
+                "jvp_absolute_error": 9.411213995379516e-11
+              },
+              {
+                "epsilon": 1e-06,
+                "jvp_relative_error": 1.788420411759769e-09,
+                "jvp_absolute_error": 8.696886654531009e-10
+              },
+              {
+                "epsilon": 1e-07,
+                "jvp_relative_error": 1.8876653043239893e-08,
+                "jvp_absolute_error": 9.179503368138542e-09
+              }
+            ],
+            "pass_rule": "dot relative <1e-8 or absolute <1e-12; FD relative <1e-5 or absolute <1e-10",
+            "passed": true
+          },
+          "splitting_defect": {
+            "dot_w_Jv": -0.0004033255387957367,
+            "dot_v_Jtranspose_w": -0.00040332553879591647,
+            "adjoint_relative_error": 4.4569634924372076e-13,
+            "adjoint_absolute_error": 1.7976072019809664e-16,
+            "jvp_l2_norm": 0.002165673179579189,
+            "relative_audit_roundoff_dominated": false,
+            "finite_difference_sweep": [
+              {
+                "epsilon": 0.01,
+                "jvp_relative_error": 7.013208291716384e-05,
+                "jvp_absolute_error": 1.5188317100172556e-07
+              },
+              {
+                "epsilon": 0.001,
+                "jvp_relative_error": 7.012426873543113e-07,
+                "jvp_absolute_error": 1.5186624803792667e-09
+              },
+              {
+                "epsilon": 0.0001,
+                "jvp_relative_error": 8.888529115195774e-09,
+                "jvp_absolute_error": 1.924964911068823e-11
+              },
+              {
+                "epsilon": 1e-05,
+                "jvp_relative_error": 4.4339812086189525e-08,
+                "jvp_absolute_error": 9.602554182264183e-11
+              },
+              {
+                "epsilon": 1e-06,
+                "jvp_relative_error": 4.730631312251361e-07,
+                "jvp_absolute_error": 1.0245001355420277e-09
+              },
+              {
+                "epsilon": 1e-07,
+                "jvp_relative_error": 5.004293577870828e-06,
+                "jvp_absolute_error": 1.0837664384335232e-08
+              }
+            ],
+            "pass_rule": "dot relative <1e-8 or absolute <1e-12; FD relative <1e-5 or absolute <1e-10",
+            "passed": true
+          }
+        }
+      }
+    },
+    {
+      "regime": "upper_endpoint",
+      "initial_realization_seed": 102,
+      "equation": {
+        "kappa": 0.01,
+        "reaction_rate": 2.0
+      },
+      "information": {
+        "scope": "single-device global periodic FFT prototype; local neural observation only",
+        "target_index": [
+          4,
+          4
+        ],
+        "hidden_index": [
+          7,
+          4
+        ],
+        "feature_radius": 1,
+        "feature_equality_exact": true,
+        "feature_difference_max": 0.0,
+        "hidden_pair_amplitude": 0.1,
+        "horizon": 0.32,
+        "fixed_teacher_substeps": 64,
+        "full_map_receiver_difference": 0.0001138883253961609,
+        "defect_receiver_difference": 1.2922864786046873e-06,
+        "deterministic_local_defect_worst_case_error_lower_bound": 6.461432393023436e-07,
+        "hidden_linear_full_receiver_l2_sensitivity": 0.03963499267567189,
+        "hidden_linear_defect_receiver_l2_sensitivity": 0.0014650179563388463,
+        "hidden_defect_to_full_sensitivity_ratio": 0.03696274068540651,
+        "bound_status": "exact same-feature nonlinear pair bound; matrix-free linear sensitivity is separate",
+        "locality_certified": false,
+        "blocker": "No application-specific permitted local prediction error is declared; no universal radius sufficiency claim"
+      },
+      "derivatives": {
+        "scope": "FP64 tiny-grid matrix-free fixed-substep sensitivity; no uniform nonlinear guarantee",
+        "fixed_substeps": 64,
+        "passed": true,
+        "maps": {
+          "coupled_full_map": {
+            "dot_w_Jv": 0.02955083365243974,
+            "dot_v_Jtranspose_w": 0.029550833652439726,
+            "adjoint_relative_error": 4.696242404203272e-16,
+            "adjoint_absolute_error": 1.3877787807814457e-17,
+            "jvp_l2_norm": 0.5023394917575364,
+            "relative_audit_roundoff_dominated": false,
+            "finite_difference_sweep": [
+              {
+                "epsilon": 0.01,
+                "jvp_relative_error": 9.566584500233465e-07,
+                "jvp_absolute_error": 4.805673195702804e-07
+              },
+              {
+                "epsilon": 0.001,
+                "jvp_relative_error": 9.567101867186461e-09,
+                "jvp_absolute_error": 4.805933089555025e-09
+              },
+              {
+                "epsilon": 0.0001,
+                "jvp_relative_error": 9.868667762902708e-11,
+                "jvp_absolute_error": 4.9574215483405306e-11
+              },
+              {
+                "epsilon": 1e-05,
+                "jvp_relative_error": 1.8974374020277872e-10,
+                "jvp_absolute_error": 9.53157740176379e-11
+              },
+              {
+                "epsilon": 1e-06,
+                "jvp_relative_error": 2.283962127088232e-09,
+                "jvp_absolute_error": 1.1473243741149642e-09
+              },
+              {
+                "epsilon": 1e-07,
+                "jvp_relative_error": 1.9426139599043087e-08,
+                "jvp_absolute_error": 9.758517092994258e-09
+              }
+            ],
+            "pass_rule": "dot relative <1e-8 or absolute <1e-12; FD relative <1e-5 or absolute <1e-10",
+            "passed": true
+          },
+          "splitting_defect": {
+            "dot_w_Jv": -7.114262558687574e-05,
+            "dot_v_Jtranspose_w": -7.114262558682822e-05,
+            "adjoint_relative_error": 6.678859518778112e-13,
+            "adjoint_absolute_error": 4.751516020917723e-17,
+            "jvp_l2_norm": 0.004362885513573095,
+            "relative_audit_roundoff_dominated": false,
+            "finite_difference_sweep": [
+              {
+                "epsilon": 0.01,
+                "jvp_relative_error": 1.7944782656989564e-05,
+                "jvp_absolute_error": 7.829103229839748e-08
+              },
+              {
+                "epsilon": 0.001,
+                "jvp_relative_error": 1.793823472470882e-07,
+                "jvp_absolute_error": 7.826246441950596e-10
+              },
+              {
+                "epsilon": 0.0001,
+                "jvp_relative_error": 3.2697185207379487e-09,
+                "jvp_absolute_error": 1.4265407567589246e-11
+              },
+              {
+                "epsilon": 1e-05,
+                "jvp_relative_error": 2.703059865884158e-08,
+                "jvp_absolute_error": 1.1793140731186825e-10
+              },
+              {
+                "epsilon": 1e-06,
+                "jvp_relative_error": 2.754238305184289e-07,
+                "jvp_absolute_error": 1.2016426402616647e-09
+              },
+              {
+                "epsilon": 1e-07,
+                "jvp_relative_error": 2.6717336064234723e-06,
+                "jvp_absolute_error": 1.1656467847591369e-08
+              }
+            ],
+            "pass_rule": "dot relative <1e-8 or absolute <1e-12; FD relative <1e-5 or absolute <1e-10",
+            "passed": true
+          }
+        }
+      }
+    }
+  ],
+  "temporal_oracle": {
+    "scope": "per-anchor teacher-informed representation oracle; not deployable, not trained encoder",
+    "fit_horizons": [
+      0.04,
+      0.08,
+      0.16,
+      0.32
+    ],
+    "heldout_horizons": [
+      0.06,
+      0.12,
+      0.24,
+      0.4
+    ],
+    "output_shape": [
+      1,
+      1,
+      8,
+      8
+    ],
+    "h_independent_coefficients_per_anchor": true,
+    "models": {
+      "fixed_rate": {
+        "design_condition_number": 2442.3848471708216,
+        "rank": 4,
+        "columns": 4,
+        "fit_rms": 6.4039344039850584e-21,
+        "heldout_absolute_rms": [
+          2.5468212098137356e-11,
+          2.8375323463143274e-10,
+          8.4068625598276e-09,
+          2.0192638862556748e-07
+        ],
+        "heldout_relative_rms_with_noise_floor": [
+          0.0003302557389868619,
+          0.0004556540524696473,
+          0.0016921668305705977,
+          0.009261687255983253
+        ],
+        "coefficient_min": -0.0072302942359736685,
+        "coefficient_max": 0.009356486534851311,
+        "cancellation_ratio_max": 14.074709911288188,
+        "cancellation_ratio_median": 7.828344659738637,
+        "rates_reference_time_units": [
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ],
+        "rate_tuning": false
+      },
+      "polynomial": {
+        "design_condition_number": 3735.326633980832,
+        "rank": 4,
+        "columns": 4,
+        "fit_rms": 2.4525573978220913e-21,
+        "heldout_absolute_rms": [
+          9.068131130328389e-13,
+          1.82759375879317e-11,
+          1.2086035850557506e-09,
+          6.134841080224214e-08
+        ],
+        "heldout_relative_rms_with_noise_floor": [
+          1.1758981494799934e-05,
+          2.9347700777543672e-05,
+          0.00024327255065556723,
+          0.002813846166265801
+        ],
+        "coefficient_min": -0.0005955614551240317,
+        "coefficient_max": 0.0005765289662343486,
+        "cancellation_ratio_max": 2.2004317677254273,
+        "cancellation_ratio_median": 1.123985209166853,
+        "anchored_powers": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "rational": {
+        "design_condition_number": 427.0180612279294,
+        "rank": 4,
+        "columns": 4,
+        "fit_rms": 5.054703103347222e-21,
+        "heldout_absolute_rms": [
+          1.2156012003897694e-10,
+          9.242656775234374e-10,
+          1.9182537448997152e-08,
+          3.697478341965652e-07
+        ],
+        "heldout_relative_rms_with_noise_floor": [
+          0.0015763150989990414,
+          0.0014841959495869167,
+          0.003861137655857784,
+          0.016959094981170455
+        ],
+        "coefficient_min": -0.000501198890328268,
+        "coefficient_max": 0.0011210144514688012,
+        "cancellation_ratio_max": 8.597329992088564,
+        "cancellation_ratio_median": 1.7911809117101853,
+        "form": "h^3 sum a_j/(1+b_j*h/t_ref), b_j>=0 fixed",
+        "denominator_rates": [
+          0.1,
+          1.0,
+          10.0,
+          100.0
+        ]
+      },
+      "learned_rate_oracle": {
+        "design_condition_number": 2442.3848471708216,
+        "rank": 4,
+        "columns": 4,
+        "fit_rms": 1.7626886989527106e-20,
+        "heldout_absolute_rms": [
+          2.5468212097997062e-11,
+          2.8375323463258975e-10,
+          8.40686255982104e-09,
+          2.0192638862559483e-07
+        ],
+        "heldout_relative_rms_with_noise_floor": [
+          0.00033025573898504265,
+          0.0004556540524715052,
+          0.0016921668305692774,
+          0.009261687255984507
+        ],
+        "coefficient_min": -0.007230294235973905,
+        "coefficient_max": 0.009356486534851566,
+        "cancellation_ratio_max": 14.074709911288597,
+        "cancellation_ratio_median": 7.828344659738695,
+        "rates_reference_time_units": [
+          0.10000000000000002,
+          1.0,
+          10.000000000000002,
+          100.00000000000004
+        ],
+        "rate_function_evaluations": 1,
+        "optimizer_success": true,
+        "rate_tuning_budget": 40,
+        "limitation": "four horizons and four coefficients can interpolate; held-out errors decide representation"
+      }
+    }
+  },
+  "temporal_teacher_audits": [
+    {
+      "h": 0.04,
+      "accepted": true,
+      "uncertainty": 1.4210854715202004e-14,
+      "defect_norm": 2.2745428641729016e-08,
+      "substeps": 64
+    },
+    {
+      "h": 0.08,
+      "accepted": true,
+      "uncertainty": 1.469654288881958e-14,
+      "defect_norm": 1.8350160926337437e-07,
+      "substeps": 64
+    },
+    {
+      "h": 0.16,
+      "accepted": true,
+      "uncertainty": 4.5311030748417125e-13,
+      "defect_norm": 1.4796703571472776e-06,
+      "substeps": 64
+    },
+    {
+      "h": 0.32,
+      "accepted": true,
+      "uncertainty": 1.4575034480083926e-11,
+      "defect_norm": 1.1550733541879697e-05,
+      "substeps": 64
+    },
+    {
+      "h": 0.06,
+      "accepted": true,
+      "uncertainty": 1.4210854715202004e-14,
+      "defect_norm": 7.711663747696606e-08,
+      "substeps": 64
+    },
+    {
+      "h": 0.12,
+      "accepted": true,
+      "uncertainty": 1.0900691150503089e-13,
+      "defect_norm": 6.227383101137557e-07,
+      "substeps": 64
+    },
+    {
+      "h": 0.24,
+      "accepted": true,
+      "uncertainty": 3.410613037202515e-12,
+      "defect_norm": 4.968105040206238e-06,
+      "substeps": 64
+    },
+    {
+      "h": 0.4,
+      "accepted": true,
+      "uncertainty": 4.59367289786869e-11,
+      "defect_norm": 2.1802332884336882e-05,
+      "substeps": 64
+    }
+  ],
+  "gates": {
+    "G1": {
+      "passed": true,
+      "scope": "linear order and discrete derivative controls; temporal-core unit suite is separately required"
+    },
+    "G2": {
+      "passed": false,
+      "numerical_correctness_passed": true,
+      "material_headroom_observed": false,
+      "screening_rule": "largest proposed macrostep misses development tolerance for both split and costed classical Richardson correction, and defects exceed floor",
+      "reason": "Measured classical errors/costs screen for headroom; one tiny probe cannot establish learned efficiency"
+    },
+    "G3": {
+      "passed": true,
+      "exact_same_observation_test_passed": true,
+      "empirical_screen_only": true,
+      "independent_initial_realizations": 3,
+      "proposed_hidden_input_error_budget": 0.0002,
+      "budget_rule": "development numerical tolerance * validation.reference_fraction",
+      "reason": "Sampled exact-hidden-pair lower bounds below a proposed budget and derivative audits pass; this screens against immediate impossibility, not a universal sufficiency certificate"
+    },
+    "G4": {
+      "passed": false,
+      "oracle_temporal_advantage_observed": false,
+      "reason": "Teacher-informed per-anchor fits assess representation only; deployable feature-to-coefficient learning remains untested"
+    }
+  },
+  "decision": "continue bounded development diagnostics",
+  "scientific_claim": "No learned accuracy or efficiency result has been established"
+}
