@@ -4,6 +4,15 @@ Deploy this checkout at `/home1/aadaniel/projects/TDN`, use the Linux identity `
 
 The CARC commands below are prepared instructions. Cloud CPU tests and mocked scheduler tests do not establish live CARC access, GPU correctness, allocation success or A100 performance. A full campaign is never submitted automatically.
 
+Use a Bash login shell. `scripts/common.sh` is a sourceable library: it preserves
+the caller's shell options and returns an error for interactive policy failures.
+Each executable submission or batch script enables its own strict mode and exits
+on failed checks. You do not need to source `common.sh` to run the discovery or
+submission commands below; the wrappers prepare the project-local environment.
+If an older checkout closed your login session when sourcing it, reconnect and
+update `main` before retrying. Keep strict mode inside executable scripts rather
+than enabling it in the login shell.
+
 ## 1. Read-only discovery on login
 
 From the existing project checkout, run:

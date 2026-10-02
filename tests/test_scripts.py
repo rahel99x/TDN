@@ -64,7 +64,8 @@ def mock_cluster(tmp_path):
     env.update({"PATH": str(bin_dir) + os.pathsep + env["PATH"], "USER": "aadaniel",
                 "LOGNAME": "aadaniel", "MOCK_ROOT": str(root)})
     for name in ("TDN_LOCAL_TEST_ROOT", "CARC_ACCOUNT", "TDN_CPU_PARTITION", "TDN_GATE_REPORT",
-                 "TDN_CALIBRATION_REPORT", "TDN_PYTHON_MODULE", "TDN_LOADED_PYTHON_MODULE", "TDN_RESUME"):
+                 "TDN_CALIBRATION_REPORT", "TDN_PYTHON_MODULE", "TDN_LOADED_PYTHON_MODULE", "TDN_RESUME",
+                 "CONDA_PREFIX", "CONDA_SHLVL"):
         env.pop(name, None)
     return root, env
 
@@ -72,6 +73,141 @@ def mock_cluster(tmp_path):
 def run(root, env, script, *args):
     return subprocess.run(["bash", str(root / "scripts" / script), *args],
                           cwd=root, env=env, text=True, capture_output=True, check=False)
+
+
+def run_shell(root, env, commands, *, interactive=False):
+    """Run a clean Bash, including real prompt hooks for interactive regressions."""
+    shell_env = env.copy()
+    for name in ("BASH_ENV", "ENV", "SHELLOPTS", "BASHOPTS"):
+        shell_env.pop(name, None)
+    shell_env.update({"PS1": "", "PS2": "", "PROMPT_COMMAND": "false"})
+    args = ["bash", "--noprofile", "--norc"]
+    if interactive:
+        args += ["-i"]
+        return subprocess.run(args, input=commands + "\nexit 0\n", cwd=root,
+                              env=shell_env, text=True, capture_output=True, check=False)
+    return subprocess.run(args + ["-c", commands], cwd=root, env=shell_env,
+                          text=True, capture_output=True, check=False)
+
+
+@pytest.mark.parametrize("strict", [False, True])
+def test_common_preserves_callers_shell_options(mock_cluster, strict):
+    root, env = mock_cluster
+    mode = "set -euo pipefail" if strict else "set +e +u; set +o pipefail"
+    result = run_shell(root, env, mode + '\n'
+                       'flags_before=$-\noptions_before="$(set +o)"\n'
+                       'source "$MOCK_ROOT/scripts/common.sh"\n'
+                       '[[ $- == "$flags_before" ]] || exit 11\n'
+                       '[[ "$(set +o)" == "$options_before" ]] || exit 12\n'
+                       'printf "SOURCE_OPTIONS_PRESERVED\\n"\n')
+    assert result.returncode == 0, result.stderr
+    assert "SOURCE_OPTIONS_PRESERVED" in result.stdout
+
+
+def test_common_source_survives_failing_interactive_prompt_hook(mock_cluster):
+    root, env = mock_cluster
+    result = run_shell(root, env,
+                       'flags_before=$-\noptions_before="$(set +o)"\n'
+                       'source "$MOCK_ROOT/scripts/common.sh"\n'
+                       '[[ $- == "$flags_before" ]] || exit 11\n'
+                       '[[ "$(set +o)" == "$options_before" ]] || exit 12\n'
+                       'printf "LOGIN_SHELL_SURVIVED\\n"\n', interactive=True)
+    assert result.returncode == 0, result.stderr
+    assert "LOGIN_SHELL_SURVIVED" in result.stdout
+    assert not (root / ".cache").exists()
+
+
+@pytest.mark.parametrize("command", [
+    "tdn_inside relative-path",
+    'tdn_inside "$MOCK_ROOT/../outside"',
+    "tdn_inside",
+    'CARC_ACCOUNT=wrong_account; tdn_runtime_policy',
+    'unset SLURM_JOB_ID SLURM_STEP_ID; tdn_allocation',
+    'rm -- "$MOCK_ROOT/.venv/pyvenv.cfg"; tdn_python',
+])
+def test_helper_validation_returns_error_without_ending_interactive_shell(mock_cluster, command):
+    root, env = mock_cluster
+    result = run_shell(root, env, 'source "$MOCK_ROOT/scripts/common.sh"\n' + command + '\n'
+                       'printf "HELPER_STATUS=%s\\n" "$?"\n'
+                       'printf "LOGIN_SHELL_SURVIVED\\n"\n', interactive=True)
+    assert result.returncode == 0, result.stderr
+    assert "HELPER_STATUS=2" in result.stdout
+    assert "LOGIN_SHELL_SURVIVED" in result.stdout
+    assert "TDN:" in result.stderr
+    assert not (root / "sbatch_calls.jsonl").exists()
+
+
+@pytest.mark.parametrize("failure", ["active-conda", "cache-symlink"])
+def test_interactive_environment_failure_creates_no_runtime_directories(mock_cluster, tmp_path, failure):
+    root, env = mock_cluster
+    outside = tmp_path / "outside-cache"
+    outside.mkdir()
+    if failure == "active-conda":
+        env.update({"CONDA_PREFIX": str(root / "conda"), "CONDA_SHLVL": "1"})
+    else:
+        (root / ".cache").symlink_to(outside, target_is_directory=True)
+    result = run_shell(root, env, 'source "$MOCK_ROOT/scripts/common.sh"\n'
+                       'tdn_prepare_env\n'
+                       'printf "HELPER_STATUS=%s\\n" "$?"\n'
+                       'printf "LOGIN_SHELL_SURVIVED\\n"\n', interactive=True)
+    assert result.returncode == 0, result.stderr
+    assert "HELPER_STATUS=2" in result.stdout
+    assert "LOGIN_SHELL_SURVIVED" in result.stdout
+    assert not list(outside.iterdir())
+    assert not (root / "logs").exists()
+    assert not (root / "runs").exists()
+    if failure == "active-conda":
+        assert not (root / ".cache").exists()
+
+
+def test_failed_module_load_returns_error_and_does_not_mark_or_validate_module(mock_cluster):
+    root, env = mock_cluster
+    result = run_shell(root, env, 'source "$MOCK_ROOT/scripts/common.sh"\n'
+                       'module() { return 37; }\n'
+                       'python3() { touch "$MOCK_ROOT/python-called"; }\n'
+                       'export TDN_PYTHON_MODULE=python/mock\n'
+                       'tdn_load_python_module\n'
+                       'printf "HELPER_STATUS=%s\\n" "$?"\n'
+                       'printf "MODULE_FLAG=%s\\n" "${TDN_LOADED_PYTHON_MODULE-unset}"\n'
+                       'printf "LOGIN_SHELL_SURVIVED\\n"\n', interactive=True)
+    assert result.returncode == 0, result.stderr
+    assert "HELPER_STATUS=2" in result.stdout
+    assert "MODULE_FLAG=unset" in result.stdout
+    assert "LOGIN_SHELL_SURVIVED" in result.stdout
+    assert not (root / "python-called").exists()
+
+
+@pytest.mark.parametrize("command", [
+    'tdn_inside "$MOCK_ROOT/../outside"',
+    'CARC_ACCOUNT=wrong_account; tdn_runtime_policy',
+    'CONDA_PREFIX="$MOCK_ROOT/conda"; CONDA_SHLVL=1; tdn_prepare_env',
+    'module() { return 37; }; TDN_PYTHON_MODULE=python/mock; tdn_load_python_module',
+])
+def test_noninteractive_helpers_fail_closed_even_without_errexit(mock_cluster, command):
+    root, env = mock_cluster
+    result = run_shell(root, env, 'set +e +u; set +o pipefail\n'
+                       'source "$MOCK_ROOT/scripts/common.sh"\n' + command + '\n'
+                       'printf "UNSAFE_CONTINUATION\\n"\n')
+    assert result.returncode != 0
+    assert "UNSAFE_CONTINUATION" not in result.stdout
+    assert not (root / "sbatch_calls.jsonl").exists()
+
+
+@pytest.mark.parametrize("failure", ["active-conda", "failed-module"])
+def test_submission_stays_fail_closed_for_environment_errors(mock_cluster, failure):
+    root, env = mock_cluster
+    if failure == "active-conda":
+        env.update({"CONDA_PREFIX": str(root / "conda"), "CONDA_SHLVL": "1"})
+    else:
+        env["TDN_PYTHON_MODULE"] = "python/mock"
+        module = root / "mocks/module"
+        module.write_text("#!/usr/bin/env bash\nexit 37\n")
+        module.chmod(0o755)
+    result = run(root, env, "submit.sh", "setup", str(root / "configs/smoke.yaml"), "--submit")
+    assert result.returncode != 0
+    assert not (root / "sbatch_calls.jsonl").exists()
+    if failure == "active-conda":
+        assert not (root / ".cache").exists()
 
 
 def test_all_shell_scripts_parse():
