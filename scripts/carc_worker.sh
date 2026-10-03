@@ -17,8 +17,11 @@ flock --nonblock "$phase_lock_fd" ||
 TDN_WORKFLOW_ACTION="${TDN_WORKFLOW_ACTION:-start}"
 case "$TDN_WORKFLOW_ACTION" in
     setup) [[ "$TDN_WORKFLOW_PHASE" == cpu ]] || tdn_die 'Setup-only workflow requires a CPU phase' ;;
+    light)
+        [[ "$TDN_WORKFLOW_PHASE" == cpu ]] || tdn_die 'Light screening has no GPU phase'
+        [[ "$TDN_SETUP_MODE" == never ]] || tdn_die 'Light screening requires setup=never and an existing verified venv' ;;
     start) ;;
-    *) tdn_die 'Grouped workflow action must be setup or start' ;;
+    *) tdn_die 'Grouped workflow action must be setup, light or start' ;;
 esac
 case "$TDN_WORKFLOW_PHASE" in
     cpu) export TDN_DEVICE=cpu ;;
@@ -181,6 +184,19 @@ if [[ "$TDN_WORKFLOW_ACTION" == setup ]]; then
     exit 0
 fi
 python="$(tdn_python)"
+if [[ "$TDN_WORKFLOW_ACTION" == light ]]; then
+    "$python" - "$TDN_CONFIG" <<'PY'
+import sys
+from tdn.config import load_config
+from tdn.analysis.light_screen import validate_light_config
+
+validate_light_config(load_config(sys.argv[1]))
+PY
+    for stage in light-tests light-screen; do run_stage "$stage"; done
+    if [[ "$stop_requested" == true ]]; then exit 75; fi
+    printf 'TDN: completed bounded CPU-only light screening workflow.\n'
+    exit 0
+fi
 "$python" - "$TDN_CONFIG" "$TDN_PILOT_BUDGET" <<'PY'
 import sys
 from tdn.config import load_config

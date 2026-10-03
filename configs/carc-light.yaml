@@ -1,0 +1,101 @@
+# CPU-only light screening; fixed cases/horizons are declared in tdn/analysis/light_screen.py.
+# This collects scientific failures and never authorizes training or pilot expansion.
+data:
+  anchors_per_parent: 1
+  confirmatory_count: 0
+  diagnostic_count: 2
+  rollout_windows:
+  - 1
+  - 2
+  - 4
+  train_count: 4
+  validation_count: 2
+  workers: 0
+experiment: tdn_carc_light_screen
+horizons:
+  evaluation_steps:
+  - 0.04
+  - 0.08
+  - 0.16
+  - 0.32
+  mixed_factors:
+  - 0.5
+  - 1.0
+  - 1.5
+  rollout_time: 0.64
+  values:
+  - 0.04
+  - 0.08
+  - 0.16
+  - 0.32
+model:
+  anchored: false
+  chunk_size: 64
+  family: temporal_mlp
+  fixed_rates:
+  - 0.1
+  - 1.0
+  - 10.0
+  - 100.0
+  modes: 4
+  width: 32
+precision:
+  checkpoint_chunks: false
+  compile_mode: eager
+  network_autocast: none
+  state: float32
+  teacher: float64
+  tf32: false
+problem:
+  U_ref: 1.0
+  family: logistic_rd
+  grid:
+  - 8
+  - 8
+  kappa: 0.01
+  kappa_range:
+  - 0.01
+  - 0.01
+  lengths:
+  - 1.0
+  - 1.0
+  periodic: true
+  reaction_rate: 2.0
+  reaction_rate_range:
+  - 2.0
+  - 2.0
+  t_ref: 1.0
+purpose: development
+runtime:
+  confirmatory_authorized: false
+  hard_memory_fraction: 0.9
+  interop_threads: 1
+  intraop_threads: 1
+  soft_vram_fraction: 0.8
+  soft_vram_gib: 30
+schema_version: 1
+seed: 0
+teacher:
+  base_substeps: 16
+  error_fraction: 0.05
+  noise_floor: 1.0e-10
+  tolerance_fraction: 0.1
+training:
+  batch_parents: 1
+  checkpoint_every_seconds: 600
+  checkpoint_every_steps: 5
+  grad_clip: 1.0
+  learning_rate: 0.003
+  max_steps: 12
+  microbatch_cells: 64
+  rollout_weight: 0.1
+  rollout_windows: 1
+  validation_every_steps: 5
+  weight_decay: 1.0e-05
+validation:
+  bootstrap_samples: 200
+  reference_fraction: 0.1
+  require_headroom: true
+  tolerance: 0.002
+  tolerance_manifest: null
+  tolerance_provenance: proposed development screening value; not a confirmatory tolerance

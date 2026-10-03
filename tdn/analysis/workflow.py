@@ -11,7 +11,8 @@ import numpy as np
 import torch
 
 from tdn.numerics import Equation, Geometry, choose_substeps, reference_step, refined_reference, split_step, weighted_norm
-from .convergence import configure_plot_cache, fit_order, plot_orders, temporal_oracle_fits, tier_a_audit
+from .convergence import (configure_plot_cache, fit_order, plot_orders, temporal_oracle_fits,
+                          temporal_screen_horizons, tier_a_audit)
 from .influence import derivative_audit, same_observation_audit
 from .profiling import measure
 from .statistics import parent_summary, paired_parent_comparison
@@ -219,23 +220,25 @@ def audit(config: dict, run_dir: Path, device="cpu") -> dict:
         information_regimes.append({"regime": name, "initial_realization_seed": config["seed"] + 101 + index,
                                     "equation": {"kappa": physical.kappa, "reaction_rate": physical.reaction_rate},
                                     "information": parent_information, "derivatives": parent_derivatives})
-    fit_h = [float(h) for h in config["horizons"]["values"]]
-    heldout_h = [(a + b) / 2 for a, b in zip(fit_h[:-1], fit_h[1:])] + [1.25 * max(fit_h)]
+    original_fit_h = [float(h) for h in config["horizons"]["values"]]
+    fit_h, heldout_h = temporal_screen_horizons(original_fit_h, modes=len(config["model"]["fixed_rates"]))
     fit_defects, heldout_defects = [], []
     fit_teacher_audits = []
-    for h in fit_h + heldout_h:
+    for index, h in enumerate(fit_h + heldout_h):
         count = max(base_substeps, choose_substeps(h, equation, geometry))
         result = refined_reference(state, h, equation, geometry, substeps=count,
                                    error_fraction=error_fraction, tolerance=config["validation"]["tolerance"] * teacher_config["tolerance_fraction"],
                                    noise_floor=noise_floor)
-        fit_teacher_audits.append({"h": h, "accepted": result.accepted,
+        fit_teacher_audits.append({"h": h, "role": "fit" if index < len(fit_h) else "heldout", "accepted": result.accepted,
                                    "uncertainty": result.uncertainty, "defect_norm": result.defect_norm,
                                    "substeps": result.substeps})
         defect = result.state - split_step(state, h, equation, geometry, differentiable=False)
-        (fit_defects if h in fit_h else heldout_defects).append(defect.detach().cpu().numpy())
+        (fit_defects if index < len(fit_h) else heldout_defects).append(defect.detach().cpu().numpy())
     oracle = temporal_oracle_fits(fit_h, np.stack(fit_defects), heldout_h, np.stack(heldout_defects),
                                   fixed_rates=config["model"].get("fixed_rates", [.1, 1., 10., 100.]),
                                   t_ref=config["problem"]["t_ref"], noise_floor=noise_floor)
+    oracle["horizon_protocol"] = {"original_fit_horizons": original_fit_h,
+                                  "rule": "fit at original horizons plus odd thirds (then finer odd subdivisions if needed); hold out sorted original adjacent midpoints and 1.25*max"}
     reference_pass = all(x["accepted"] for x in refinements + fit_teacher_audits)
     order_pass = logistic_fits["split_local"]["valid"] and logistic_fits["split_global"]["valid"]
     order_pass = bool(order_pass and 2.7 < logistic_fits["split_local"]["slope"] < 3.3 and
@@ -253,7 +256,13 @@ def audit(config: dict, run_dir: Path, device="cpu") -> dict:
     temporal_errors = {name: max(value["heldout_relative_rms_with_noise_floor"])
                        for name, value in oracle["models"].items()}
     best_classical = min(temporal_errors["polynomial"], temporal_errors["rational"])
-    best_temporal = min(temporal_errors["fixed_rate"], temporal_errors["learned_rate_oracle"])
+    fixed_oracle = oracle["models"]["fixed_rate"]
+    learned_oracle = oracle["models"]["learned_rate_oracle"]
+    fixed_eligible = bool(fixed_oracle["amplitude_fit_overdetermined"] and fixed_oracle["amplitude_design_full_rank"])
+    learned_eligible = bool(learned_oracle["informative_rate_fit"])
+    eligible_temporal_errors = {name: temporal_errors[name] for name, eligible in
+                                (("fixed_rate", fixed_eligible), ("learned_rate_oracle", learned_eligible)) if eligible}
+    best_temporal = min(eligible_temporal_errors.values(), default=float("inf"))
     temporal_advantage = bool(best_temporal < .8 * best_classical)
     information_budget = float(tolerance) * float(config["validation"]["reference_fraction"])
     information_screen = all(item["information"]["feature_equality_exact"] and item["derivatives"]["passed"] and
@@ -271,6 +280,9 @@ def audit(config: dict, run_dir: Path, device="cpu") -> dict:
                "budget_rule": "development numerical tolerance * validation.reference_fraction",
                "reason": "Sampled exact-hidden-pair lower bounds below a proposed budget and derivative audits pass; this screens against immediate impossibility, not a universal sufficiency certificate"},
         "G4": {"passed": bool(reference_pass and temporal_advantage), "oracle_temporal_advantage_observed": temporal_advantage,
+               "fixed_rate_comparison_eligible": fixed_eligible,
+               "learned_rate_comparison_eligible": learned_eligible,
+               "comparison_rule": "worst held-out relative error >20% below both polynomial and rational controls; fixed rates require an overdetermined full-rank amplitude fit, fitted rates additionally require successful informative locally identifiable optimization",
                "reason": "Teacher-informed per-anchor fits assess representation only; deployable feature-to-coefficient learning remains untested"},
     }
     payload = {"stage": "audit", "evidence_category": "newly measured result", "device": str(device),

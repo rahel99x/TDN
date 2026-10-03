@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Small standard-library controller for the two-allocation CARC workflow.
+"""Standard-library controller for allocated CARC workflows and CPU screening.
 
 Login commands inspect files and scheduler metadata only. Numerical work,
 dependency installation and environment validation belong to allocated workers.
@@ -25,8 +25,10 @@ USER = "aadaniel"
 ACCOUNT = "anakano_81"
 CPU_STAGES = ("setup", "cpu-tests", "audit", "generate")
 GPU_STAGES = ("gpu-tests", "calibrate", "train", "evaluate", "benchmark")
+LIGHT_STAGES = ("setup", "light-tests", "light-screen")
 TERMINAL = {"COMPLETED", "FAILED", "CANCELLED", "TIMEOUT", "NODE_FAIL", "OUT_OF_MEMORY", "PREEMPTED", "BOOT_FAIL", "DEADLINE"}
 PROFILES = {
+    "light": {"cpu": (2, 8, "00:15:00")},
     "smoke": {"cpu": (4, 16, "01:00:00"), "gpu": (4, 16, "00:45:00")},
     "pilot": {"cpu": (8, 32, "02:00:00"), "gpu": (8, 64, "04:00:00")},
 }
@@ -154,6 +156,7 @@ def load_workflow(path, *, verify=True):
         raise ValueError("Workflow root or manifest layout differs from this checkout")
     if inside(data["config_path"]) != base / "config.yaml":
         raise ValueError("Workflow config must use the immutable run-local copy")
+    validate_light_workflow(data)
     if verify:
         if digest(data["config_path"]) != data["config_sha256"]:
             raise ValueError("Workflow configuration changed; start a fresh workflow")
@@ -168,9 +171,31 @@ def jobs_for(workflow):
 
 
 def phase_stages(workflow, phase):
+    if workflow["action"] == "light":
+        return LIGHT_STAGES if phase == "cpu" else ()
     if phase == "cpu" and workflow["action"] == "setup":
         return ("setup",)
     return CPU_STAGES if phase == "cpu" else GPU_STAGES
+
+
+def workflow_phases(workflow):
+    return ("cpu",) if workflow["action"] in ("setup", "light") else ("cpu", "gpu")
+
+
+def validate_light_workflow(workflow):
+    """Keep the short CPU screen separate from training and GPU workflows."""
+    if workflow["action"] != "light" and workflow["profile"] != "light":
+        return
+    if workflow["action"] != "light" or workflow["profile"] != "light":
+        raise ValueError("Light profile requires the CPU-only light action")
+    resources = workflow["resources"]
+    expected = {"cpus": 2, "mem_gib": 8, "walltime": "00:15:00"}
+    if set(resources) != {"cpu"} or any(resources["cpu"].get(key) != value for key, value in expected.items()):
+        raise ValueError("Light workflow requires only 2 CPUs, 8 GiB and 15 minutes")
+    if workflow["setup"] != "never" or workflow["pilot_budget"] != 12:
+        raise ValueError("Light workflow requires setup=never and its fixed scope")
+    if inside(workflow["original_config"]) != inside(ROOT / "configs" / "carc-light.yaml"):
+        raise ValueError("Light workflow uses only configs/carc-light.yaml")
 
 
 def stage_record(workflow, phase, stage):
@@ -243,10 +268,10 @@ def completed(workflow, phase, stage, *, recover=True):
         data = read_json(record)
         if data.get("status") == "COMPLETED" and all(data.get(k) == v for k, v in expected.items()):
             recorded = True
-            if stage in ("setup", "cpu-tests", "gpu-tests"):
+            if stage in ("setup", "cpu-tests", "gpu-tests", "light-tests"):
                 return data.get("exit_code") == 0
             # CLI marker and measured report are retained proof of completion.
-    if stage in ("setup", "cpu-tests", "gpu-tests"):
+    if stage in ("setup", "cpu-tests", "gpu-tests", "light-tests"):
         return False
     run = inside(Path(workflow["run_dir"]) / stage)
     marker, status = run / "COMPLETED", run / "stage.json"
@@ -292,6 +317,9 @@ def mark(workflow, phase, stage, status, exit_code, *, recovered=False):
 
 def worker_verify(workflow, phase):
     actual_policy(worker=True)
+    validate_light_workflow(workflow)
+    if phase not in workflow_phases(workflow):
+        raise ValueError("This CPU-only workflow has no GPU phase")
     # The first CPU task can begin before sbatch's returned ID is published.
     # Its live scheduler comment, identity and running state bind it to this
     # manifest without depending on that publication race.
@@ -320,6 +348,8 @@ def live_check(workflow, phase):
 
 
 def scheduler_args(workflow, phase, dependency=None):
+    if phase not in workflow_phases(workflow):
+        raise ValueError("This CPU-only workflow has no GPU phase")
     r = workflow["resources"][phase]
     base = inside(workflow["run_dir"])
     args = ["sbatch", "--parsable", f"--account={ACCOUNT}", f"--partition={r['partition']}",
@@ -363,12 +393,19 @@ def submit_phase(workflow, phase, dependency=None, resume="none"):
 
 
 def prepare(args, *, previous=None):
-    profile = args.profile or (previous["profile"] if previous else "smoke")
-    budget = args.pilot_budget if args.pilot_budget is not None else previous["pilot_budget"] if previous else 12 if profile == "smoke" or args.command == "setup" else None
+    prior_light = previous is not None and previous["action"] == "light"
+    light = args.command == "light" or prior_light or args.profile == "light"
+    if light and args.command == "setup":
+        raise ValueError("Use the regular setup command separately; light requires an existing venv")
+    if light and args.profile not in (None, "light"):
+        raise ValueError("Light screening cannot change its fixed CPU-only profile")
+    profile = "light" if light else args.profile or (previous["profile"] if previous else "smoke")
+    budget = args.pilot_budget if args.pilot_budget is not None else previous["pilot_budget"] if previous else 12 if profile in ("smoke", "light") or args.command == "setup" else None
     if budget is None or not 1 <= budget <= 1000:
         raise ValueError("Pilot profile requires an explicit --pilot-budget of 1-1000 optimizer steps")
-    action = "setup" if args.command == "setup" else "start"
-    config = inside(args.config or (previous["original_config"] if previous else ROOT / "configs" / ("carc-smoke.yaml" if profile == "smoke" else "pilot.yaml")))
+    action = "light" if light else "setup" if args.command == "setup" else "start"
+    default_config = {"light": "carc-light.yaml", "smoke": "carc-smoke.yaml", "pilot": "pilot.yaml"}[profile]
+    config = inside(args.config or (previous["original_config"] if previous else ROOT / "configs" / default_config))
     if not config.is_file():
         raise ValueError(f"Configuration is missing: {config}")
     torch_version = os.environ.get("TORCH_VERSION", "2.10.0+cu126")
@@ -377,7 +414,7 @@ def prepare(args, *, previous=None):
     index = re.fullmatch(r"https://download\.pytorch\.org/whl/(cu[0-9]+)", wheel_index)
     if not release or not index or release.group(1) != index.group(1):
         raise ValueError("Choose an exact CUDA Torch local version matching the official CUDA wheel index")
-    identifier = args.run_id or "carc-" + ("setup-" if action == "setup" else "") + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    identifier = args.run_id or "carc-" + (action + "-" if action in ("setup", "light") else "") + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     base = workflow_path(identifier).parent
     if base.exists():
         raise ValueError("Workflow directory exists; preserve it and choose a fresh --run-id")
@@ -385,19 +422,22 @@ def prepare(args, *, previous=None):
     for phase, (cpus, mem, wall) in PROFILES[profile].items():
         resources[phase] = {"partition": os.environ.get("TDN_CPU_PARTITION", "main") if phase == "cpu" else "gpu",
                             "cpus": cpus, "mem_gib": mem, "walltime": wall}
-    return {"schema_version": 1, "run_id": identifier, "root": str(ROOT.resolve()), "run_dir": str(base),
+    workflow = {"schema_version": 1, "run_id": identifier, "root": str(ROOT.resolve()), "run_dir": str(base),
             "created_at": now(), "action": action, "profile": profile, "pilot_budget": budget,
-            "setup": args.setup or (previous["setup"] if previous else "auto"), "original_config": str(config),
+            "setup": args.setup or (previous["setup"] if previous else "never" if light else "auto"), "original_config": str(config),
             "config_path": str(base / "config.yaml"), "config_sha256": digest(config),
             "source_sha256": source_hash(), "source_tree_sha256": source_hash(metadata=True),
             "torch_version": torch_version, "torch_wheel_index": wheel_index,
             "resources": resources}
+    validate_light_workflow(workflow)
+    return workflow
 
 
 def preview(workflow, *, resume=False):
-    print(f"Workflow: {workflow['run_id']}  profile={workflow['profile']}  budget={workflow['pilot_budget']}")
+    scope = "CPU-only bounded screen; no training or GPU" if workflow["action"] == "light" else f"budget={workflow['pilot_budget']}"
+    print(f"Workflow: {workflow['run_id']}  profile={workflow['profile']}  {scope}")
     print(f"Config: {workflow['original_config']}\nRun: {workflow['run_dir']}")
-    phases = ("gpu",) if resume else ("cpu",) if workflow["action"] == "setup" else ("cpu", "gpu")
+    phases = ("gpu",) if resume else workflow_phases(workflow)
     for phase in phases:
         print(f"{phase}: {' -> '.join(phase_stages(workflow, phase))}")
         print(shlex.join(scheduler_args(workflow, phase)))
@@ -412,9 +452,8 @@ def start(args, *, previous=None):
         preview(workflow)
         return
     actual_policy()
-    # Check both allocations before the first sbatch; no GPU queue request can
-    # surprise the user after CPU work has already begun.
-    phases = ("cpu",) if workflow["action"] == "setup" else ("cpu", "gpu")
+    # Check every proposed allocation before submitting the first job.
+    phases = workflow_phases(workflow)
     reports = {phase: live_check(workflow, phase) for phase in phases}
     base = inside(workflow["run_dir"])
     base.mkdir(parents=True, exist_ok=False)
@@ -435,7 +474,7 @@ def start(args, *, previous=None):
     atomic_json(ROOT / "runs" / ".carc-latest.json", {"run_id": workflow["run_id"]})
     print(f"TDN_RUN_ID={workflow['run_id']}")
     cpu = submit_phase(workflow, "cpu")
-    if workflow["action"] != "setup":
+    if "gpu" in phases:
         submit_phase(workflow, "gpu", f"afterok:{cpu}")
     print(f"Monitor: bash scripts/carc.sh status {workflow['run_id']}")
 
@@ -490,10 +529,10 @@ def cancel(workflow, *, submit=False):
 def status(workflow):
     print(f"Workflow {workflow['run_id']} ({workflow['profile']})\nRun: {workflow['run_dir']}")
     for phase, entries in jobs_for(workflow).items():
-        if not entries and not (phase == "gpu" and workflow["action"] == "setup"):
-            print(f"{phase}: no job submitted")
-        if phase == "gpu" and workflow["action"] == "setup":
+        if phase not in workflow_phases(workflow):
             continue
+        if not entries:
+            print(f"{phase}: no job submitted")
         current_scheduler = "UNKNOWN"
         for entry in entries:
             job = entry["job_id"]
@@ -514,7 +553,7 @@ def status(workflow):
 
 def logs(workflow, count):
     first_failure = None
-    for phase in ("cpu", "gpu"):
+    for phase in workflow_phases(workflow):
         for stage in phase_stages(workflow, phase):
             path = stage_record(workflow, phase, stage)
             if path.exists() and read_json(path).get("status") in ("FAILED", "PAUSED_NEEDS_RESUME"):
@@ -536,6 +575,8 @@ def logs(workflow, count):
 
 
 def resume(args, workflow):
+    if workflow["action"] == "light":
+        raise ValueError("Light screening has no training checkpoint; use restart for a fresh CPU-only run")
     if any(getattr(args, name) is not None for name in ("run_id", "profile", "config", "pilot_budget", "setup")):
         raise ValueError("Resume preserves the original run, profile, config, budget and setup mode")
     if workflow["action"] == "setup":
@@ -571,7 +612,7 @@ def resume(args, workflow):
 def parser():
     result = argparse.ArgumentParser(description=__doc__)
     commands = result.add_subparsers(dest="command", required=True)
-    for name in ("start", "setup", "restart", "resume"):
+    for name in ("start", "light", "setup", "restart", "resume"):
         item = commands.add_parser(name)
         if name in ("restart", "resume"):
             item.add_argument("identifier", nargs="?", default="latest")
@@ -622,7 +663,7 @@ def main(argv=None):
                 venv_ready(workflow, args.phase)
             else:
                 return 0 if completed(workflow, args.phase, args.stage) else 1
-        elif args.command in ("start", "setup"):
+        elif args.command in ("start", "light", "setup"):
             start(args)
         else:
             # Status/logs/cancel remain useful even after code or config changes.

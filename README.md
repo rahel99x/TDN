@@ -10,6 +10,23 @@ The native Windows edition supports a standalone Python `.venv`, PowerShell laun
 
 ## Run on CARC
 
+For a short CPU-only scientific check, use the new
+[light-test workflow](docs/CARC_LIGHT_TESTS.md):
+
+```bash
+cd /home1/aadaniel/projects/TDN
+git pull --ff-only origin main
+bash scripts/carc_light_tests.sh             # preview
+bash scripts/carc_light_tests.sh --submit    # one CPU job; no GPU
+bash scripts/carc_status.sh
+bash scripts/carc.sh logs latest --lines 200
+```
+
+This reuses your verified `.venv`, requests 2 CPUs and 8 GiB for 15 minutes,
+and charges `anakano_81`. It runs focused regression tests followed by six
+predeclared numerical/temporal screening cases. Reports retain failed scientific
+checks; completion does not authorize a pilot. No training or GPU job is queued.
+
 The [automated CARC workflow](docs/CARC_AUTOMATION.md) submits two sequential
 allocations: CPU setup/tests/audit/data, then A100 tests/calibration/training/
 evaluation/benchmark. Defaults already match the observed account, Python module

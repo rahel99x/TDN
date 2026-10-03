@@ -4,6 +4,11 @@ Run from `/home1/aadaniel/projects/TDN` as `aadaniel` in a Bash login shell.
 Every allocation charges `anakano_81`; every generated file stays inside this
 checkout. No Conda, `/tmp` or `/scratch1` is used for project storage.
 
+For the short CPU-only headroom and temporal-fit screen, use
+[`carc_light_tests.sh`](CARC_LIGHT_TESTS.md). It submits one 15-minute CPU job
+and requires the existing verified venv. The two-job smoke below remains a
+separate workflow.
+
 ## Start from the top
 
 ```bash
@@ -79,7 +84,8 @@ bash scripts/carc_restart.sh --submit
 ```
 
 Restart verifies scheduler ownership before canceling the old workflow's pending
-jobs and submits a fresh two-job workflow. It preserves old files and does not
+jobs and submits a fresh workflow with the same profile. Light runs remain
+CPU-only; smoke and pilot retain their two phases. It preserves old files and does not
 cancel running jobs. A running workflow must finish before you restart it.
 To cancel pending jobs without restarting:
 

@@ -19,10 +19,21 @@ if [[ "$TDN_STAGE" == setup ]]; then
     exec bash "$TDN_REPO_ROOT/scripts/setup_venv.sh"
 fi
 python="$(tdn_python)"
+if [[ "$TDN_STAGE" == light-tests || "$TDN_STAGE" == light-screen ]]; then
+    [[ "$TDN_DEVICE" == cpu ]] || tdn_die 'Light screening and tests require a CPU task'
+fi
 if [[ "$TDN_DEVICE" == cuda ]]; then
     "$python" "$TDN_REPO_ROOT/scripts/gpu_preflight.py" --output "$TDN_RUN_DIR/gpu_preflight.json"
 fi
 case "$TDN_STAGE" in
+    light-tests)
+        pytest_work="$(tdn_inside "$TDN_RUN_DIR/pytest-work")"
+        exec "$python" -m pytest -q tests/test_light_screen.py tests/test_temporal_oracle_screen.py \
+            tests/test_light_screen_cli.py tests/test_analysis.py \
+            --basetemp "$pytest_work" ;;
+    light-screen)
+        exec "$python" -u "$TDN_REPO_ROOT/scripts/light_screen.py" \
+            --config "$TDN_CONFIG" --run-dir "$TDN_RUN_DIR" ;;
     cpu-tests)
         pytest_work="$(tdn_inside "$TDN_RUN_DIR/pytest-work")"
         exec "$python" -m pytest -q -m 'not gpu' --basetemp "$pytest_work" ;;

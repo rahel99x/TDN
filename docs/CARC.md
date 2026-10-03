@@ -1,5 +1,10 @@
 # CARC runbook
 
+For light CPU-only scientific screening in an existing verified venv, use
+`bash scripts/carc_light_tests.sh --submit`, then
+`bash scripts/carc_status.sh`. The [light-test runbook](CARC_LIGHT_TESTS.md)
+describes its fixed six-case budget and retained reports.
+
 For the default 12-step smoke, use the [automated two-job workflow](CARC_AUTOMATION.md):
 `bash scripts/carc_start.sh --submit`, then `bash scripts/carc_status.sh`.
 It supplies the observed CARC defaults and performs venv setup inside the CPU
