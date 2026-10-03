@@ -1,5 +1,10 @@
 # CARC runbook
 
+For the default 12-step smoke, use the [automated two-job workflow](CARC_AUTOMATION.md):
+`bash scripts/carc_start.sh --submit`, then `bash scripts/carc_status.sh`.
+It supplies the observed CARC defaults and performs venv setup inside the CPU
+allocation. The detailed commands below remain available for individual stages.
+
 Deploy this checkout at `/home1/aadaniel/projects/TDN`, use the Linux identity `aadaniel`, and charge every allocation to `anakano_81`. All venv files, package caches, compiler caches, temporary files, datasets, logs, results and checkpoints stay inside that project. The document's environment and temporary-storage templates are replaced by this explicit user requirement: Python `venv` only and no use of `/tmp/` or `/scratch1/`.
 
 The CARC commands below are prepared instructions. Cloud CPU tests and mocked scheduler tests do not establish live CARC access, GPU correctness, allocation success or A100 performance. A full campaign is never submitted automatically.

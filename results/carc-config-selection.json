@@ -1,0 +1,1346 @@
+{
+  "algorithm_reproduction": {
+    "category": "proposed_configuration",
+    "command": "srun --account=anakano_81 --partition=main --nodes=1 --ntasks=1 --cpus-per-task=2 --mem=8G --time=00:10:00 .venv/bin/python scripts/select_carc_config.py --run-dir FRESH_PROJECT_CONTAINED_DIRECTORY",
+    "comparison_executed_with_reusable_helper": false,
+    "historical_measurement_unchanged": true,
+    "policy_tests": {
+      "category": "newly_measured_result",
+      "command": ".venv/bin/python -m pytest tests/test_carc_config_selection.py -q",
+      "passed": 18,
+      "scheduler_submission_executed": false,
+      "training_executed": false
+    },
+    "scope": "Same four-candidate/three-repeat CPU selection protocol; additional runtime, immutable-design, fresh-directory and source/config/selector fingerprint guards.",
+    "script_file": "scripts/select_carc_config.py"
+  },
+  "carc_gpu_validation": {
+    "required": "Allocated A100 GPU tests, calibration, and actual pipeline. No mock or skipped desktop test substitutes.",
+    "status": "UNRUN_FOR_SELECTED_CONFIG"
+  },
+  "category": "newly_measured_result",
+  "claim": "Best validation error among the four prespecified tiny candidates; no global optimum, A100 speedup, learned-efficiency or confirmatory claim.",
+  "environment": {
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+    "cuda_available": false,
+    "device": "cpu",
+    "execution_mode": "cloud-local-cpu",
+    "numpy": "2.2.6",
+    "python": "3.12.14",
+    "thread_counts": {
+      "interop": 1,
+      "intraop": 1
+    },
+    "torch": "2.10.0+cpu"
+  },
+  "limitations": [
+    "Only two validation parents, fixed parameter values, one seed and twelve steps per candidate; selection may overfit this exposed development split.",
+    "Learning rate/architecture choices and all timings require actual A100 validation; GPU software is Python3.11.9/torch2.10.0+cu126, while measurement used Python3.12.14/torch2.10.0+cpu.",
+    "No inference of GPU VRAM, compile-time, host RAM, queue wait or training throughput from the CPU timing comparison.",
+    "No BF16/TF32/compile speed policy was selected; candidate keeps eager FP32 and FP64 teachers.",
+    "G2 and G4 remain failed. The selected manifest is only a bounded 12-step smoke with require_headroom:false; pilot.yaml remains strict and unchanged."
+  ],
+  "measurement": {
+    "actually_ran": true,
+    "command": ".venv/bin/python runs/carc-config-selection-20261003/measure.py",
+    "dataset_generation_seconds": 6.2036262530018575,
+    "dataset_manifest_hash": "bf13b897fe5b45ab5d27af834f5506237aa93c95c28625fc0a141da09caac8b7",
+    "generation_hash": "b9042dc902b58d8f8d2362df763ffed6ec74cdf80067dbdea72f7012f1a33e38",
+    "local_run_dir": "runs/carc-config-selection-20261003",
+    "measurement_script_sha256": "d9555a3286a486334ea5f0ad782015239b3e07ba533cd671ba4ca3835d0e9e31",
+    "results": {
+      "width16-lr0.001": {
+        "config": {
+          "data": {
+            "anchors_per_parent": 1,
+            "confirmatory_count": 0,
+            "diagnostic_count": 2,
+            "rollout_windows": [
+              1,
+              2,
+              4
+            ],
+            "train_count": 4,
+            "validation_count": 2,
+            "workers": 0
+          },
+          "experiment": "tdn_carc_smoke",
+          "horizons": {
+            "evaluation_steps": [
+              0.04,
+              0.08,
+              0.16,
+              0.32
+            ],
+            "mixed_factors": [
+              0.5,
+              1.0,
+              1.5
+            ],
+            "rollout_time": 0.64,
+            "values": [
+              0.04,
+              0.08,
+              0.16,
+              0.32
+            ]
+          },
+          "model": {
+            "anchored": false,
+            "chunk_size": 64,
+            "family": "temporal_mlp",
+            "fixed_rates": [
+              0.1,
+              1.0,
+              10.0,
+              100.0
+            ],
+            "modes": 4,
+            "width": 16
+          },
+          "precision": {
+            "checkpoint_chunks": false,
+            "compile_mode": "eager",
+            "network_autocast": "none",
+            "state": "float32",
+            "teacher": "float64",
+            "tf32": false
+          },
+          "problem": {
+            "U_ref": 1.0,
+            "family": "logistic_rd",
+            "grid": [
+              8,
+              8
+            ],
+            "kappa": 0.01,
+            "kappa_range": [
+              0.01,
+              0.01
+            ],
+            "lengths": [
+              1.0,
+              1.0
+            ],
+            "periodic": true,
+            "reaction_rate": 2.0,
+            "reaction_rate_range": [
+              2.0,
+              2.0
+            ],
+            "t_ref": 1.0
+          },
+          "purpose": "development",
+          "runtime": {
+            "confirmatory_authorized": false,
+            "hard_memory_fraction": 0.9,
+            "interop_threads": 1,
+            "intraop_threads": 1,
+            "soft_vram_fraction": 0.8,
+            "soft_vram_gib": 30
+          },
+          "schema_version": 1,
+          "seed": 0,
+          "teacher": {
+            "base_substeps": 16,
+            "error_fraction": 0.05,
+            "noise_floor": 1e-10,
+            "tolerance_fraction": 0.1
+          },
+          "training": {
+            "batch_parents": 1,
+            "checkpoint_every_seconds": 600,
+            "checkpoint_every_steps": 5,
+            "grad_clip": 1.0,
+            "learning_rate": 0.001,
+            "max_steps": 12,
+            "microbatch_cells": 64,
+            "rollout_weight": 0.1,
+            "rollout_windows": 1,
+            "validation_every_steps": 5,
+            "weight_decay": 1e-05
+          },
+          "validation": {
+            "bootstrap_samples": 200,
+            "reference_fraction": 0.1,
+            "require_headroom": false,
+            "tolerance": 0.002,
+            "tolerance_manifest": null,
+            "tolerance_provenance": "proposed development screening value; not a confirmatory tolerance"
+          }
+        },
+        "config_hash": "cb327277413e7333d0951fb7dcf27fd7c16c5142138d480747b5edeab717f1c9",
+        "config_path": "runs/carc-config-selection-20261003/width16-lr0.001.yaml",
+        "median_wall_seconds": 0.12493572600942571,
+        "trials": [
+          {
+            "actual_order": [
+              "width32-lr0.001",
+              "width16-lr0.001",
+              "width32-lr0.003",
+              "width16-lr0.003"
+            ],
+            "best_checkpoint_sha256": "9e4b25f1bb867708d78de36f5bbb07d1727f13d2eab0d74b88ceee761dacbf0e",
+            "best_checkpoint_step": 10,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.00031708150203028695,
+              "mean_error": 0.0003024983792129112,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.27476954460144043,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.000405604124193979,
+              "mean_error": 0.000399868909301216,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 1,
+            "result_path": "runs/carc-config-selection-20261003/width16-lr0.001/repetition-1/training_result.json",
+            "result_sha256": "72f12c0de28d2d49a6efe31d0b73745b12cc6fbaa029ba358fd816a5bfd81ace",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.13453156501054764
+          },
+          {
+            "actual_order": [
+              "width16-lr0.001",
+              "width32-lr0.003",
+              "width16-lr0.003",
+              "width32-lr0.001"
+            ],
+            "best_checkpoint_sha256": "9e4b25f1bb867708d78de36f5bbb07d1727f13d2eab0d74b88ceee761dacbf0e",
+            "best_checkpoint_step": 10,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.00031708150203028695,
+              "mean_error": 0.0003024983792129112,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.27476954460144043,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.000405604124193979,
+              "mean_error": 0.000399868909301216,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 2,
+            "result_path": "runs/carc-config-selection-20261003/width16-lr0.001/repetition-2/training_result.json",
+            "result_sha256": "1515c56ccb27e5bce0dd7a99d95de633f200fdba1571a5bb3ebdc3d04f01ca03",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.12493572600942571
+          },
+          {
+            "actual_order": [
+              "width32-lr0.003",
+              "width16-lr0.003",
+              "width32-lr0.001",
+              "width16-lr0.001"
+            ],
+            "best_checkpoint_sha256": "9e4b25f1bb867708d78de36f5bbb07d1727f13d2eab0d74b88ceee761dacbf0e",
+            "best_checkpoint_step": 10,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.00031708150203028695,
+              "mean_error": 0.0003024983792129112,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.27476954460144043,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.000405604124193979,
+              "mean_error": 0.000399868909301216,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 3,
+            "result_path": "runs/carc-config-selection-20261003/width16-lr0.001/repetition-3/training_result.json",
+            "result_sha256": "b25df9bf548d33a5d3739e502f3b37fc4aa2d5566c5a0cb5a03a578fbf320610",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.12411993199202698
+          }
+        ],
+        "validation_reproducible": true
+      },
+      "width16-lr0.003": {
+        "config": {
+          "data": {
+            "anchors_per_parent": 1,
+            "confirmatory_count": 0,
+            "diagnostic_count": 2,
+            "rollout_windows": [
+              1,
+              2,
+              4
+            ],
+            "train_count": 4,
+            "validation_count": 2,
+            "workers": 0
+          },
+          "experiment": "tdn_carc_smoke",
+          "horizons": {
+            "evaluation_steps": [
+              0.04,
+              0.08,
+              0.16,
+              0.32
+            ],
+            "mixed_factors": [
+              0.5,
+              1.0,
+              1.5
+            ],
+            "rollout_time": 0.64,
+            "values": [
+              0.04,
+              0.08,
+              0.16,
+              0.32
+            ]
+          },
+          "model": {
+            "anchored": false,
+            "chunk_size": 64,
+            "family": "temporal_mlp",
+            "fixed_rates": [
+              0.1,
+              1.0,
+              10.0,
+              100.0
+            ],
+            "modes": 4,
+            "width": 16
+          },
+          "precision": {
+            "checkpoint_chunks": false,
+            "compile_mode": "eager",
+            "network_autocast": "none",
+            "state": "float32",
+            "teacher": "float64",
+            "tf32": false
+          },
+          "problem": {
+            "U_ref": 1.0,
+            "family": "logistic_rd",
+            "grid": [
+              8,
+              8
+            ],
+            "kappa": 0.01,
+            "kappa_range": [
+              0.01,
+              0.01
+            ],
+            "lengths": [
+              1.0,
+              1.0
+            ],
+            "periodic": true,
+            "reaction_rate": 2.0,
+            "reaction_rate_range": [
+              2.0,
+              2.0
+            ],
+            "t_ref": 1.0
+          },
+          "purpose": "development",
+          "runtime": {
+            "confirmatory_authorized": false,
+            "hard_memory_fraction": 0.9,
+            "interop_threads": 1,
+            "intraop_threads": 1,
+            "soft_vram_fraction": 0.8,
+            "soft_vram_gib": 30
+          },
+          "schema_version": 1,
+          "seed": 0,
+          "teacher": {
+            "base_substeps": 16,
+            "error_fraction": 0.05,
+            "noise_floor": 1e-10,
+            "tolerance_fraction": 0.1
+          },
+          "training": {
+            "batch_parents": 1,
+            "checkpoint_every_seconds": 600,
+            "checkpoint_every_steps": 5,
+            "grad_clip": 1.0,
+            "learning_rate": 0.003,
+            "max_steps": 12,
+            "microbatch_cells": 64,
+            "rollout_weight": 0.1,
+            "rollout_windows": 1,
+            "validation_every_steps": 5,
+            "weight_decay": 1e-05
+          },
+          "validation": {
+            "bootstrap_samples": 200,
+            "reference_fraction": 0.1,
+            "require_headroom": false,
+            "tolerance": 0.002,
+            "tolerance_manifest": null,
+            "tolerance_provenance": "proposed development screening value; not a confirmatory tolerance"
+          }
+        },
+        "config_hash": "a668389f0011c253a7a4fa9b596f7d35629de176bfec031af1c1102734b2d7af",
+        "config_path": "runs/carc-config-selection-20261003/width16-lr0.003.yaml",
+        "median_wall_seconds": 0.14737494201108348,
+        "trials": [
+          {
+            "actual_order": [
+              "width32-lr0.001",
+              "width16-lr0.001",
+              "width32-lr0.003",
+              "width16-lr0.003"
+            ],
+            "best_checkpoint_sha256": "f956fc94114feb247d1520c897084b9363e1fd2f081de692a3cf4cfce59817b5",
+            "best_checkpoint_step": 12,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0006618292498118102,
+              "mean_error": 0.0006612147775927968,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.12505820393562317,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0006618292498118102,
+              "mean_error": 0.0006612147775927968,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 1,
+            "result_path": "runs/carc-config-selection-20261003/width16-lr0.003/repetition-1/training_result.json",
+            "result_sha256": "3a5541ac3363640d7929289d9877bf4840ebd6b6cdcf57bdf9156943f00cca95",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.11910148999595549
+          },
+          {
+            "actual_order": [
+              "width16-lr0.001",
+              "width32-lr0.003",
+              "width16-lr0.003",
+              "width32-lr0.001"
+            ],
+            "best_checkpoint_sha256": "f956fc94114feb247d1520c897084b9363e1fd2f081de692a3cf4cfce59817b5",
+            "best_checkpoint_step": 12,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0006618292498118102,
+              "mean_error": 0.0006612147775927968,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.12505820393562317,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0006618292498118102,
+              "mean_error": 0.0006612147775927968,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 2,
+            "result_path": "runs/carc-config-selection-20261003/width16-lr0.003/repetition-2/training_result.json",
+            "result_sha256": "02a329d703e5c5ced566b50e65fe7d02b9bfd276a6a92a20e05e82171d100a35",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.14737494201108348
+          },
+          {
+            "actual_order": [
+              "width32-lr0.003",
+              "width16-lr0.003",
+              "width32-lr0.001",
+              "width16-lr0.001"
+            ],
+            "best_checkpoint_sha256": "f956fc94114feb247d1520c897084b9363e1fd2f081de692a3cf4cfce59817b5",
+            "best_checkpoint_step": 12,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0006618292498118102,
+              "mean_error": 0.0006612147775927968,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.12505820393562317,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0006618292498118102,
+              "mean_error": 0.0006612147775927968,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 3,
+            "result_path": "runs/carc-config-selection-20261003/width16-lr0.003/repetition-3/training_result.json",
+            "result_sha256": "320f411bb90a381ee3fccab5f77d8d7ddbec0f5093009eb0d0c2931f0e71389f",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.18218616499507334
+          }
+        ],
+        "validation_reproducible": true
+      },
+      "width32-lr0.001": {
+        "config": {
+          "data": {
+            "anchors_per_parent": 1,
+            "confirmatory_count": 0,
+            "diagnostic_count": 2,
+            "rollout_windows": [
+              1,
+              2,
+              4
+            ],
+            "train_count": 4,
+            "validation_count": 2,
+            "workers": 0
+          },
+          "experiment": "tdn_carc_smoke",
+          "horizons": {
+            "evaluation_steps": [
+              0.04,
+              0.08,
+              0.16,
+              0.32
+            ],
+            "mixed_factors": [
+              0.5,
+              1.0,
+              1.5
+            ],
+            "rollout_time": 0.64,
+            "values": [
+              0.04,
+              0.08,
+              0.16,
+              0.32
+            ]
+          },
+          "model": {
+            "anchored": false,
+            "chunk_size": 64,
+            "family": "temporal_mlp",
+            "fixed_rates": [
+              0.1,
+              1.0,
+              10.0,
+              100.0
+            ],
+            "modes": 4,
+            "width": 32
+          },
+          "precision": {
+            "checkpoint_chunks": false,
+            "compile_mode": "eager",
+            "network_autocast": "none",
+            "state": "float32",
+            "teacher": "float64",
+            "tf32": false
+          },
+          "problem": {
+            "U_ref": 1.0,
+            "family": "logistic_rd",
+            "grid": [
+              8,
+              8
+            ],
+            "kappa": 0.01,
+            "kappa_range": [
+              0.01,
+              0.01
+            ],
+            "lengths": [
+              1.0,
+              1.0
+            ],
+            "periodic": true,
+            "reaction_rate": 2.0,
+            "reaction_rate_range": [
+              2.0,
+              2.0
+            ],
+            "t_ref": 1.0
+          },
+          "purpose": "development",
+          "runtime": {
+            "confirmatory_authorized": false,
+            "hard_memory_fraction": 0.9,
+            "interop_threads": 1,
+            "intraop_threads": 1,
+            "soft_vram_fraction": 0.8,
+            "soft_vram_gib": 30
+          },
+          "schema_version": 1,
+          "seed": 0,
+          "teacher": {
+            "base_substeps": 16,
+            "error_fraction": 0.05,
+            "noise_floor": 1e-10,
+            "tolerance_fraction": 0.1
+          },
+          "training": {
+            "batch_parents": 1,
+            "checkpoint_every_seconds": 600,
+            "checkpoint_every_steps": 5,
+            "grad_clip": 1.0,
+            "learning_rate": 0.001,
+            "max_steps": 12,
+            "microbatch_cells": 64,
+            "rollout_weight": 0.1,
+            "rollout_windows": 1,
+            "validation_every_steps": 5,
+            "weight_decay": 1e-05
+          },
+          "validation": {
+            "bootstrap_samples": 200,
+            "reference_fraction": 0.1,
+            "require_headroom": false,
+            "tolerance": 0.002,
+            "tolerance_manifest": null,
+            "tolerance_provenance": "proposed development screening value; not a confirmatory tolerance"
+          }
+        },
+        "config_hash": "0e08e4ad2c0df2badc1ac26a700a5aaab983e3eb9e64b3b3cabb4d7ae082064c",
+        "config_path": "runs/carc-config-selection-20261003/width32-lr0.001.yaml",
+        "median_wall_seconds": 0.16265253399615176,
+        "trials": [
+          {
+            "actual_order": [
+              "width32-lr0.001",
+              "width16-lr0.001",
+              "width32-lr0.003",
+              "width16-lr0.003"
+            ],
+            "best_checkpoint_sha256": "af16451f0d26863643fe2d9b0f7b779381fb22d71d6279178da1fd74462daf68",
+            "best_checkpoint_step": 10,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0003770375181359405,
+              "mean_error": 0.00037518936109330776,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.2395566701889038,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0004219418210715165,
+              "mean_error": 0.00041966830986058033,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 1,
+            "result_path": "runs/carc-config-selection-20261003/width32-lr0.001/repetition-1/training_result.json",
+            "result_sha256": "7594b2962da6388275c15c661a2e37eaaf756d94071e56c50380631891c2fb26",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 1.447784342992236
+          },
+          {
+            "actual_order": [
+              "width16-lr0.001",
+              "width32-lr0.003",
+              "width16-lr0.003",
+              "width32-lr0.001"
+            ],
+            "best_checkpoint_sha256": "af16451f0d26863643fe2d9b0f7b779381fb22d71d6279178da1fd74462daf68",
+            "best_checkpoint_step": 10,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0003770375181359405,
+              "mean_error": 0.00037518936109330776,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.2395566701889038,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0004219418210715165,
+              "mean_error": 0.00041966830986058033,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 2,
+            "result_path": "runs/carc-config-selection-20261003/width32-lr0.001/repetition-2/training_result.json",
+            "result_sha256": "b8702c4512bf2c9993aa41c404211df417784a87e956f7b0e9343528b47e7a96",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.16265253399615176
+          },
+          {
+            "actual_order": [
+              "width32-lr0.003",
+              "width16-lr0.003",
+              "width32-lr0.001",
+              "width16-lr0.001"
+            ],
+            "best_checkpoint_sha256": "af16451f0d26863643fe2d9b0f7b779381fb22d71d6279178da1fd74462daf68",
+            "best_checkpoint_step": 10,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0003770375181359405,
+              "mean_error": 0.00037518936109330776,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.2395566701889038,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0004219418210715165,
+              "mean_error": 0.00041966830986058033,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 3,
+            "result_path": "runs/carc-config-selection-20261003/width32-lr0.001/repetition-3/training_result.json",
+            "result_sha256": "aee3948a2d7974b161c9857da8c8acbd846f0ae489be3b558737fb865163f4de",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.1547190720011713
+          }
+        ],
+        "validation_reproducible": true
+      },
+      "width32-lr0.003": {
+        "config": {
+          "data": {
+            "anchors_per_parent": 1,
+            "confirmatory_count": 0,
+            "diagnostic_count": 2,
+            "rollout_windows": [
+              1,
+              2,
+              4
+            ],
+            "train_count": 4,
+            "validation_count": 2,
+            "workers": 0
+          },
+          "experiment": "tdn_carc_smoke",
+          "horizons": {
+            "evaluation_steps": [
+              0.04,
+              0.08,
+              0.16,
+              0.32
+            ],
+            "mixed_factors": [
+              0.5,
+              1.0,
+              1.5
+            ],
+            "rollout_time": 0.64,
+            "values": [
+              0.04,
+              0.08,
+              0.16,
+              0.32
+            ]
+          },
+          "model": {
+            "anchored": false,
+            "chunk_size": 64,
+            "family": "temporal_mlp",
+            "fixed_rates": [
+              0.1,
+              1.0,
+              10.0,
+              100.0
+            ],
+            "modes": 4,
+            "width": 32
+          },
+          "precision": {
+            "checkpoint_chunks": false,
+            "compile_mode": "eager",
+            "network_autocast": "none",
+            "state": "float32",
+            "teacher": "float64",
+            "tf32": false
+          },
+          "problem": {
+            "U_ref": 1.0,
+            "family": "logistic_rd",
+            "grid": [
+              8,
+              8
+            ],
+            "kappa": 0.01,
+            "kappa_range": [
+              0.01,
+              0.01
+            ],
+            "lengths": [
+              1.0,
+              1.0
+            ],
+            "periodic": true,
+            "reaction_rate": 2.0,
+            "reaction_rate_range": [
+              2.0,
+              2.0
+            ],
+            "t_ref": 1.0
+          },
+          "purpose": "development",
+          "runtime": {
+            "confirmatory_authorized": false,
+            "hard_memory_fraction": 0.9,
+            "interop_threads": 1,
+            "intraop_threads": 1,
+            "soft_vram_fraction": 0.8,
+            "soft_vram_gib": 30
+          },
+          "schema_version": 1,
+          "seed": 0,
+          "teacher": {
+            "base_substeps": 16,
+            "error_fraction": 0.05,
+            "noise_floor": 1e-10,
+            "tolerance_fraction": 0.1
+          },
+          "training": {
+            "batch_parents": 1,
+            "checkpoint_every_seconds": 600,
+            "checkpoint_every_steps": 5,
+            "grad_clip": 1.0,
+            "learning_rate": 0.003,
+            "max_steps": 12,
+            "microbatch_cells": 64,
+            "rollout_weight": 0.1,
+            "rollout_windows": 1,
+            "validation_every_steps": 5,
+            "weight_decay": 1e-05
+          },
+          "validation": {
+            "bootstrap_samples": 200,
+            "reference_fraction": 0.1,
+            "require_headroom": false,
+            "tolerance": 0.002,
+            "tolerance_manifest": null,
+            "tolerance_provenance": "proposed development screening value; not a confirmatory tolerance"
+          }
+        },
+        "config_hash": "fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c",
+        "config_path": "runs/carc-config-selection-20261003/width32-lr0.003.yaml",
+        "median_wall_seconds": 0.1395878440089291,
+        "trials": [
+          {
+            "actual_order": [
+              "width32-lr0.001",
+              "width16-lr0.001",
+              "width32-lr0.003",
+              "width16-lr0.003"
+            ],
+            "best_checkpoint_sha256": "d30048d4b4610b238c653668feee014b375baa77c68d5c2e874f622dbb9c34c4",
+            "best_checkpoint_step": 12,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0003085849079148447,
+              "mean_error": 0.00027598530995601026,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.26809725165367126,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0003085849079148447,
+              "mean_error": 0.00027598530995601026,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 1,
+            "result_path": "runs/carc-config-selection-20261003/width32-lr0.003/repetition-1/training_result.json",
+            "result_sha256": "8d1a134e75663ba5b752c3dba1ea00ccb41594ac0e4fa3bb55c7e9df0575a9b5",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.15072710100503173
+          },
+          {
+            "actual_order": [
+              "width16-lr0.001",
+              "width32-lr0.003",
+              "width16-lr0.003",
+              "width32-lr0.001"
+            ],
+            "best_checkpoint_sha256": "d30048d4b4610b238c653668feee014b375baa77c68d5c2e874f622dbb9c34c4",
+            "best_checkpoint_step": 12,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0003085849079148447,
+              "mean_error": 0.00027598530995601026,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.26809725165367126,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0003085849079148447,
+              "mean_error": 0.00027598530995601026,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 2,
+            "result_path": "runs/carc-config-selection-20261003/width32-lr0.003/repetition-2/training_result.json",
+            "result_sha256": "0ebc3d4588cb996dff9dc239710e6b1d01dba47d188a0b7b5950667c2b6c4bce",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.12495673399826046
+          },
+          {
+            "actual_order": [
+              "width32-lr0.003",
+              "width16-lr0.003",
+              "width32-lr0.001",
+              "width16-lr0.001"
+            ],
+            "best_checkpoint_sha256": "d30048d4b4610b238c653668feee014b375baa77c68d5c2e874f622dbb9c34c4",
+            "best_checkpoint_step": 12,
+            "best_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0003085849079148447,
+              "mean_error": 0.00027598530995601026,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "last_training_loss": 0.26809725165367126,
+            "last_validation": {
+              "failures": [],
+              "feasible": true,
+              "final_time": 0.64,
+              "max_error": 0.0003085849079148447,
+              "mean_error": 0.00027598530995601026,
+              "metric": "full_rollout_error_at_fixed_physical_time",
+              "tolerance": 0.002
+            },
+            "repetition": 3,
+            "result_path": "runs/carc-config-selection-20261003/width32-lr0.003/repetition-3/training_result.json",
+            "result_sha256": "becaade83fa434d218855074697d8ebe2e6aa8b11edc5cb6c031871f2f67f197",
+            "status": "COMPLETE",
+            "steps": 12,
+            "wall_seconds": 0.1395878440089291
+          }
+        ],
+        "validation_reproducible": true
+      }
+    },
+    "split_hash": "c79f2ae7037574ac4606e5a8bfb9604d75131c851f298d8a2fe637feb8ae706f",
+    "timing_scope": "Wall time of direct train API, including validation/checkpoint serialization; excludes interpreter/torch import/dataset generation. First optimizer construction paid cold import cost in first baseline trial. These timings are CPU observations only and not a fair cold-process A100 ranking."
+  },
+  "method": {
+    "category": "proposed_configuration",
+    "dataset_reuse": "One immutable paired FP64-teacher dataset; generation configuration and teacher code identical across candidates. Model width/learning rate/cell chunks do not enter the generation hash.",
+    "grid": [
+      8,
+      8
+    ],
+    "microbatch_policy": "64 cells covers one complete 8x8 parent; effective batch remains one parent. Old 2048 limit and new 64 limit execute one chunk on this grid.",
+    "parent_splits": {
+      "confirmatory": 0,
+      "diagnostic": 2,
+      "train": 4,
+      "validation": 2
+    },
+    "predeclared_candidates": [
+      {
+        "id": "width32-lr0.001",
+        "learning_rate": 0.001,
+        "width": 32
+      },
+      {
+        "id": "width16-lr0.001",
+        "learning_rate": 0.001,
+        "width": 16
+      },
+      {
+        "id": "width32-lr0.003",
+        "learning_rate": 0.003,
+        "width": 32
+      },
+      {
+        "id": "width16-lr0.003",
+        "learning_rate": 0.003,
+        "width": 16
+      }
+    ],
+    "preserved_policy": {
+      "compile_mode": "eager",
+      "confirmatory_authorized": false,
+      "network_autocast": "none",
+      "state": "float32",
+      "teacher": "float64",
+      "tf32": false,
+      "tolerance": 0.002
+    },
+    "repetition_policy": "Identical seed/data initialization; timing repetitions rotate candidate order. Identical validation values are deterministic replay, not independent statistical replicates.",
+    "repetitions": 3,
+    "seed": 0,
+    "selection_rule": "validation feasibility; lowest best mean full-rollout validation error; median CPU training wall seconds breaks exact ties",
+    "selection_uses_diagnostics": false,
+    "steps_per_candidate": 12,
+    "total_training_optimizer_steps": 144,
+    "validation_metric": "Complete 0.64-time-unit rollout at largest trained horizon 0.32; validation checkpoint feasibility first, then mean error."
+  },
+  "post_selection_cpu_validation": {
+    "audit": {
+      "actually_ran": true,
+      "command": [
+        "/workspace/TDN/.venv/bin/python",
+        "-m",
+        "tdn.cli",
+        "audit",
+        "--config",
+        "configs/carc-smoke.yaml",
+        "--run-dir",
+        "runs/carc-config-selection-20261003/pipeline/audit",
+        "--device",
+        "cpu"
+      ],
+      "config_hash": "fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c",
+      "device": "cpu",
+      "elapsed_seconds": 10.612870063006994,
+      "report_path": "runs/carc-config-selection-20261003/pipeline/audit/stage.json",
+      "report_sha256": "b373be768f145da21ff803523b0c583e9e584f5f2636a29901921e3898c228ce",
+      "scientific_gates": {
+        "G1": {
+          "passed": true,
+          "scope": "linear order and discrete derivative controls; temporal-core unit suite is separately required"
+        },
+        "G2": {
+          "material_headroom_observed": false,
+          "numerical_correctness_passed": true,
+          "passed": false,
+          "reason": "Measured classical errors/costs screen for headroom; one tiny probe cannot establish learned efficiency",
+          "screening_rule": "largest proposed macrostep misses development tolerance for both split and costed classical Richardson correction, and defects exceed floor"
+        },
+        "G3": {
+          "budget_rule": "development numerical tolerance * validation.reference_fraction",
+          "empirical_screen_only": true,
+          "exact_same_observation_test_passed": true,
+          "independent_initial_realizations": 3,
+          "passed": true,
+          "proposed_hidden_input_error_budget": 0.0002,
+          "reason": "Sampled exact-hidden-pair lower bounds below a proposed budget and derivative audits pass; this screens against immediate impossibility, not a universal sufficiency certificate"
+        },
+        "G4": {
+          "oracle_temporal_advantage_observed": false,
+          "passed": false,
+          "reason": "Teacher-informed per-anchor fits assess representation only; deployable feature-to-coefficient learning remains untested"
+        }
+      },
+      "source_tree_sha256": "815c7d944cf5302ce154fcc0b40dfbfb3f6e84b6fa0f6c78e702df291339b54e",
+      "status": "COMPLETED"
+    },
+    "benchmark": {
+      "actually_ran": true,
+      "all_methods_tolerance_feasible": true,
+      "command": [
+        "/workspace/TDN/.venv/bin/python",
+        "-m",
+        "tdn.cli",
+        "benchmark",
+        "--config",
+        "configs/carc-smoke.yaml",
+        "--run-dir",
+        "/workspace/TDN/runs/carc-config-selection-20261003/pipeline/benchmark",
+        "--dataset",
+        "/workspace/TDN/runs/carc-config-selection-20261003/dataset",
+        "--device",
+        "cpu",
+        "--resume",
+        "/workspace/TDN/runs/carc-config-selection-20261003/pipeline/train/checkpoints/best.pt"
+      ],
+      "config_hash": "fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c",
+      "device": "cpu",
+      "diagnostic_learned_summary": {
+        "all_parent_mean": 0.00037914328591749446,
+        "all_parent_mean_unavailable_reason": null,
+        "bootstrap_unit": "independent physical parent",
+        "confidence_level": 0.95,
+        "failed_parents": 0,
+        "failure_probability_upper_bound": 0.7763932022500211,
+        "independent_parents": 2,
+        "median_wall_seconds": 0.0029160115082049742,
+        "method": "learned",
+        "parent_ids": [
+          "93e4b34463588955eb37f34a",
+          "e29ea89fa832ef4150df1fa9"
+        ],
+        "required_sequences": [
+          "constant",
+          "mixed",
+          "unseen_horizon"
+        ],
+        "successful_parent_max": 0.000549053944973395,
+        "successful_parent_mean": 0.00037914328591749446,
+        "successful_parent_mean_bootstrap_interval": [
+          0.00020923262686159392,
+          0.000549053944973395
+        ],
+        "successful_parent_quantiles": {
+          "0.5": 0.00037914328591749446,
+          "0.9": 0.0005150718131622148,
+          "0.95": 0.0005320628790678049
+        },
+        "worst_measured_error": 0.000549053944973395
+      },
+      "elapsed_seconds": 9.123095538001508,
+      "report_path": "runs/carc-config-selection-20261003/pipeline/benchmark/stage.json",
+      "report_sha256": "0accabb671b71624c49426e2031d9141e114eb495f94a453b142f2df482e6dc6",
+      "selection_locked_before_diagnostics": true,
+      "source_tree_sha256": "815c7d944cf5302ce154fcc0b40dfbfb3f6e84b6fa0f6c78e702df291339b54e",
+      "status": "COMPLETED"
+    },
+    "evaluate": {
+      "actually_ran": true,
+      "all_methods_tolerance_feasible": true,
+      "command": [
+        "/workspace/TDN/.venv/bin/python",
+        "-m",
+        "tdn.cli",
+        "evaluate",
+        "--config",
+        "configs/carc-smoke.yaml",
+        "--run-dir",
+        "/workspace/TDN/runs/carc-config-selection-20261003/pipeline/evaluate",
+        "--dataset",
+        "/workspace/TDN/runs/carc-config-selection-20261003/dataset",
+        "--device",
+        "cpu",
+        "--resume",
+        "/workspace/TDN/runs/carc-config-selection-20261003/pipeline/train/checkpoints/best.pt"
+      ],
+      "config_hash": "fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c",
+      "device": "cpu",
+      "diagnostic_learned_summary": {
+        "all_parent_mean": 0.00037914328591749446,
+        "all_parent_mean_unavailable_reason": null,
+        "bootstrap_unit": "independent physical parent",
+        "confidence_level": 0.95,
+        "failed_parents": 0,
+        "failure_probability_upper_bound": 0.7763932022500211,
+        "independent_parents": 2,
+        "median_wall_seconds": 0.002896691505156923,
+        "method": "learned",
+        "parent_ids": [
+          "93e4b34463588955eb37f34a",
+          "e29ea89fa832ef4150df1fa9"
+        ],
+        "required_sequences": [
+          "constant",
+          "mixed",
+          "unseen_horizon"
+        ],
+        "successful_parent_max": 0.000549053944973395,
+        "successful_parent_mean": 0.00037914328591749446,
+        "successful_parent_mean_bootstrap_interval": [
+          0.00020923262686159392,
+          0.000549053944973395
+        ],
+        "successful_parent_quantiles": {
+          "0.5": 0.00037914328591749446,
+          "0.9": 0.0005150718131622148,
+          "0.95": 0.0005320628790678049
+        },
+        "worst_measured_error": 0.000549053944973395
+      },
+      "elapsed_seconds": 6.3228339169872925,
+      "report_path": "runs/carc-config-selection-20261003/pipeline/evaluate/stage.json",
+      "report_sha256": "f7668ed5fb122905a4cc9787c2d85606e1aa0f4bd2a4b1297ee1e9b4ceff039f",
+      "selection_locked_before_diagnostics": true,
+      "source_tree_sha256": "815c7d944cf5302ce154fcc0b40dfbfb3f6e84b6fa0f6c78e702df291339b54e",
+      "status": "COMPLETED"
+    },
+    "generate": {
+      "actually_ran": true,
+      "command": [
+        "/workspace/TDN/.venv/bin/python",
+        "-m",
+        "tdn.cli",
+        "generate",
+        "--config",
+        "configs/carc-smoke.yaml",
+        "--run-dir",
+        "/workspace/TDN/runs/carc-config-selection-20261003/pipeline/generate",
+        "--dataset",
+        "/workspace/TDN/runs/carc-config-selection-20261003/dataset",
+        "--device",
+        "cpu"
+      ],
+      "config_hash": "fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c",
+      "dataset_reused": true,
+      "device": "cpu",
+      "elapsed_seconds": 1.3405098759976681,
+      "report_path": "runs/carc-config-selection-20261003/pipeline/generate/stage.json",
+      "report_sha256": "059ff6bc01b9978d8376a04184545ff2d6b43a5c37beea34e82d610971e76cc6",
+      "source_tree_sha256": "815c7d944cf5302ce154fcc0b40dfbfb3f6e84b6fa0f6c78e702df291339b54e",
+      "status": "COMPLETED"
+    },
+    "train": {
+      "actually_ran": true,
+      "best_checkpoint_exists": true,
+      "command": [
+        "/workspace/TDN/.venv/bin/python",
+        "-m",
+        "tdn.cli",
+        "train",
+        "--config",
+        "configs/carc-smoke.yaml",
+        "--run-dir",
+        "/workspace/TDN/runs/carc-config-selection-20261003/pipeline/train",
+        "--dataset",
+        "/workspace/TDN/runs/carc-config-selection-20261003/dataset",
+        "--device",
+        "cpu"
+      ],
+      "config_hash": "fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c",
+      "device": "cpu",
+      "elapsed_seconds": 2.3415199130104156,
+      "report_path": "runs/carc-config-selection-20261003/pipeline/train/stage.json",
+      "report_sha256": "910f6a88e8a7345a7d7da75727bf3b6c1f1817d0570ad5ce454daa1ca622a4a4",
+      "source_tree_sha256": "815c7d944cf5302ce154fcc0b40dfbfb3f6e84b6fa0f6c78e702df291339b54e",
+      "status": "COMPLETED",
+      "training_steps": 12,
+      "validation": {
+        "failures": [],
+        "feasible": true,
+        "final_time": 0.64,
+        "max_error": 0.0003085849079148447,
+        "mean_error": 0.00027598530995601026,
+        "metric": "full_rollout_error_at_fixed_physical_time",
+        "tolerance": 0.002
+      }
+    }
+  },
+  "schema_version": 1,
+  "scope": "Bounded cloud CPU smoke configuration selection; A100 hardware optimization is unmeasured.",
+  "selection": {
+    "best_checkpoint_step": 12,
+    "candidate": "width32-lr0.003",
+    "category": "proposed_configuration",
+    "config_file": "configs/carc-smoke.yaml",
+    "config_hash": "fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c",
+    "max_validation_error": 0.0003085849079148447,
+    "mean_validation_error": 0.00027598530995601026,
+    "median_cpu_training_wall_seconds": 0.1395878440089291,
+    "reason": "All four candidates satisfied the unchanged validation tolerance. Width32/lr0.003 had the smallest best-checkpoint mean validation error in each deterministic repetition; no runtime tiebreak was needed."
+  },
+  "source_provenance": {
+    "commit": "c704e57a1b344f362a717342660d41f8b63109ed",
+    "files": {
+      "pyproject.toml": "f6e7874a74b30c211362c895c5447f7753559bb8b7678839aa39e856a44e1b90",
+      "reference/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reference/temporal_core.py": "7a29b4413b590c67dc19b14527fce2faced4cc5b6fda31ac1e55a51e5c815b63",
+      "requirements.txt": "eb7c97935e250c0549fac4d0ef4d4be39c9143167f4f15d6f28fac5d130cb6cc",
+      "tdn/__init__.py": "223732eebd72d22003be3d9c44c76fc4af3fb241a1843932c7f1ccbdf15f3696",
+      "tdn/analysis/__init__.py": "e0ff3950af8ef6518e1748427afc48c2173c372c66acd5180993f4aff25f73fa",
+      "tdn/analysis/convergence.py": "f3afc0755d84d08ec60179b7c82104fefa711c6b04de07759c64f65a6aacf237",
+      "tdn/analysis/influence.py": "1cdfe10e1e1e08f79786a62b183dccd584cf2560b81ec280336b3d62f0f37da4",
+      "tdn/analysis/learned_controls.py": "a8c43fd3a7a68bae2faf5d6cc2244d6fcda785ce90f8fb9d84b2a9975d16e7cd",
+      "tdn/analysis/profiling.py": "5cacc85881416fdabac6ab5ba75b37f2645e3ea79715d4661a1850b5e7299f5d",
+      "tdn/analysis/statistics.py": "16e40789c1e2f6caa98bd81b4d478718d5f426d69bcf0120b3ecaf8bec658ab3",
+      "tdn/analysis/workflow.py": "c349766662a4a95321a6d7551f3cce97ee00d17ec9ea28e544f6024a492f0230",
+      "tdn/cli.py": "bb548b32e60f7952b4865e2503cff4b1a0755e83691a357d540c1675b5ba9d8b",
+      "tdn/config.py": "be6bec174be4ed04374655a37d8df7d270d60795da909de8a8489311b4f55586",
+      "tdn/data/__init__.py": "034ea47fd810b8f5b57388a21808d4b3b41f4cf4fa716ca38ff54b428ad9ee57",
+      "tdn/data/dataset.py": "55c77d61df3db7205a6dbe7942ccbeddadd746fe4f0214ddc743cdb8670c966d",
+      "tdn/data/generation.py": "1779b033e465e2779723e24e0d83a231970ea8e0168330239a507bee1ff688bb",
+      "tdn/data/provenance.py": "7225062c5323d45f9a714a94524512c0d90864264258af1216d3a92828f992f0",
+      "tdn/features/__init__.py": "ca8b75d441d5f19905966b4f82a24f50a31d51825e5bbcc055d787e7f62753fc",
+      "tdn/features/local.py": "b461af914be65ce05bfe97edc291b92d78749dfedda55c42761385a5f7f85971",
+      "tdn/models/__init__.py": "b784db53c463935a3e265e4ab3d10238b80421ee779226022a91ce67b1d45b0f",
+      "tdn/models/solver.py": "bbd858cf4dd5902bb6bc42ef4478cb41fdd892022635018c62fa3ecb6cc10518",
+      "tdn/models/temporal.py": "b56bea946cfe600f4ca7669b32748ecc2c474bcb438e1b190a64211611f493fa",
+      "tdn/numerics/__init__.py": "20ea4f1839c4056379eaf1041b70fa59781a2646a1083a9e983624c25fd40bf2",
+      "tdn/numerics/invariants.py": "dc1c567a80ff1bda2c6e49d30888511cd79f7cf91091e7f0676ac341c79179bd",
+      "tdn/numerics/linear.py": "9ddb984044041d8d0328fdc29ee6d4207c30cd1d3288e4cd3f4f9e7991d6624c",
+      "tdn/numerics/operators.py": "a590a0debed272d6cfb0fe9a2ddd721e8e6c1e77caf36145d38805048ff2296d",
+      "tdn/numerics/reference.py": "c04765cfec9e1c49cb304cbce19fd27be630df51240bb8b4001a5c1daff6138e",
+      "tdn/numerics/splitting.py": "747ab253542efbd8e172d10578cb2b9936dc81e9b806072e5fce28ff73429fae",
+      "tdn/numerics/subflows.py": "49f261759e67a406cb2e2b6fc079f722740f329a9eaf99ca2ecc63f6d9199e54",
+      "tdn/numerics/types.py": "686ac3a165734367dbd1a6273e1a88225a012f49bfdc840bf09bd1667a9d81c7",
+      "tdn/runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tdn/runtime/calibration.py": "dd2e19107d25fef7c08ba1ae71c47f04ec8f70c7d1283d23f8bff2168f58f553",
+      "tdn/runtime/metadata.py": "4ffa18f19853e17035e6dddc9d503d038bae47a359f6affea94824006b49bb1a",
+      "tdn/runtime/precision.py": "17c69301b1f96fb5339cf5c0b3cf1301c81aa733d3947758a7f45ce3d1c6bd82",
+      "tdn/runtime/preflight.py": "ae9468215ab445d29a344cc223ca9ef78679edd09df83113e4ec4f3c87318599",
+      "tdn/runtime/signal_handling.py": "46e7bee079d3b726442e927db40625b188fd8399a541059c16fda3a181485dc7",
+      "tdn/runtime/storage.py": "5c349058ddb79794e9ffa3d224a5496d9ceea34f10953a5b010e7bb4e53ae94b",
+      "tdn/train/__init__.py": "4ba354a03a4716be289d42fdec6dc5aa56284d456b09638637a478c799f38a9d",
+      "tdn/train/checkpoint.py": "8020a345f6b8e45764bc0cb68e538798c9a90a8a945677367bb1992a0bae7c2f",
+      "tdn/train/loop.py": "64ed8348c34903c5c5c0004c9662a2c78795b2431567ec7192bf0d7a287de8e9",
+      "tdn/train/model.py": "4b81c586a05f7de84cbe2bc111d959dde8b3d5f60b3d32356c2aa1e575ef5cb4"
+    },
+    "python_source_hash": "772e8a0273b83e27b8ee5f739c30d560061c647b235fd2b6c508516969aea7bc"
+  },
+  "source_reported_observations": {
+    "category": "source_reported_observation",
+    "cuda_runtime": "12.6",
+    "driver_version": "580.159.04",
+    "gpu_suite": {
+      "failed": 1,
+      "failure": "Signal race left RUNNING checkpoint after exit 75; fixed at c704e57, actual GPU rerun pending.",
+      "passed": 3,
+      "skipped_desktop_tests": 4,
+      "wall_seconds": 22.15
+    },
+    "hardware": "NVIDIA A100-PCIE-40GB",
+    "python": "3.11.9",
+    "source": "User-provided CARC GPU test stdout in chat, job 12592398.",
+    "torch": "2.10.0+cu126"
+  }
+}

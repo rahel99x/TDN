@@ -10,43 +10,47 @@ The native Windows edition supports a standalone Python `.venv`, PowerShell laun
 
 ## Run on CARC
 
-The [CARC runbook](docs/CARC.md) gives the complete sequential procedure and per-stage allocation table. Begin on the login node with read-only discovery:
+The [automated CARC workflow](docs/CARC_AUTOMATION.md) submits two sequential
+allocations: CPU setup/tests/audit/data, then A100 tests/calibration/training/
+evaluation/benchmark. Defaults already match the observed account, Python module
+and driver-compatible PyTorch build. You do not need to source a helper or set
+environment variables before starting.
 
 ```bash
 cd /home1/aadaniel/projects/TDN
-bash scripts/probe_carc.sh
-cp scripts/user.env.example.sh scripts/user.env.sh
-chmod 600 scripts/user.env.sh
-# Select the live standalone Python module if needed, then:
-source scripts/user.env.sh
+bash scripts/carc_start.sh             # preview; no jobs or files created
+bash scripts/carc_start.sh --submit    # one CPU job and one dependent A100 job
+bash scripts/carc_status.sh            # latest workflow, stages and scheduler
+bash scripts/carc.sh logs latest       # relevant logs and report paths
 ```
 
-Review a five-minute allocated driver audit, submit it explicitly, then choose the compatible official CUDA wheel and exact PyTorch release in `user.env.sh`. Install the venv through a CPU allocation:
+The CPU job creates the project `.venv` when needed and verifies a compatible
+existing venv before reusing it. Every substantial stage runs inside an actual
+`srun` task. Failed tests, failed gates and checkpoint pauses stop later stages;
+there are no automatic retries.
+
+After updating code or fixing a failed workflow, preserve its files and restart
+with one command. It cancels only verified pending jobs owned by that workflow:
 
 ```bash
-bash scripts/submit.sh driver-audit configs/smoke.yaml   # dry run
-# Repeat with --submit only after reviewing the request.
-# After its report, set TORCH_VERSION and TORCH_WHEEL_INDEX and source user.env.sh.
-bash scripts/submit.sh setup configs/smoke.yaml          # dry run
-# Repeat with --submit, then wait for successful setup.
+bash scripts/carc_restart.sh --submit
 ```
 
-Review the dependency-aware readiness sequence:
+The default [selected smoke config](configs/carc-smoke.yaml) has 12 optimizer
+steps, an 8×8 grid, eager FP32 and FP64 teachers. Four bounded CPU candidates were
+compared using validation parents; [the selection report](docs/CARC_CONFIG.md)
+records the settings and measured limitations. Actual A100 performance tuning
+remains unmeasured.
+
+The strict pilot is a separate explicit opt-in:
 
 ```bash
-bash scripts/pipeline.sh configs/smoke.yaml --pipeline-id smoke-review
+bash scripts/carc.sh start --profile pilot --pilot-budget 1000
 ```
 
-CPU tests → numerical audit → dataset generation → allocated A100 parity/signal tests → A100 memory/precision/compiler calibration. Add `--submit` explicitly with a fresh identifier to execute it. Every real submission verifies live account and partition limits; every allocation charges `anakano_81`. GPU work requests one full A100 40 GB and preserves Slurm's GPU visibility.
-
-The headroom-required development pilot is separate:
-
-```bash
-bash scripts/pipeline.sh configs/pilot.yaml \
-  --pipeline-id pilot-review --pilot-budget 1000
-```
-
-This remains a dry run. Failed scientific gates and exit75 pauses stop `afterok` successors. No full campaign, array, multi-node run, 128³ training or confirmatory experiment is launched automatically. The runbook explains explicit submission, local config, manual dependencies and checkpoint resume.
+This is a dry run. Failed G2/G4 gates continue to block the larger pilot.
+The [detailed CARC runbook](docs/CARC.md) retains discovery, individual-stage
+submission and manual dependency commands for advanced use.
 
 ## Local CPU implementation check
 

@@ -57,3 +57,15 @@ The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implem
 - Executed `benchmark`; config `abe69d532efb89e2be02f6fb1b5b538e4f61231be214daf5120761b69a6b7343`; commit `b749034dfc50253d2e49505bcb8c6ab1baaf0330`; report `runs/desktop-final-validation/benchmark/stage.json`; status COMPLETED, 8.078 seconds.
 
 - Native Windows desktop adaptation prepared for RTX 4090 24 GB VRAM / 128 GB host RAM. The desktop runner completed all seven CPU stages and 12 optimizer steps; 162 CPU tests passed and eight GPU tests were deselected. Verified PowerShell 7.5.4 parsing/bootstrap on Linux and source-only ZIP import/data/training/evaluation without Git. Native Windows and physical RTX 4090 execution remain unrun; see results/desktop-validation.json.
+
+- Executed `audit`; config `fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c`; commit `c704e57a1b344f362a717342660d41f8b63109ed`; report `runs/carc-config-selection-20261003/pipeline/audit/stage.json`; status COMPLETED, 10.613 seconds.
+
+- Executed `generate`; config `fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c`; commit `c704e57a1b344f362a717342660d41f8b63109ed`; report `runs/carc-config-selection-20261003/pipeline/generate/stage.json`; status COMPLETED, 1.341 seconds.
+
+- Executed `train`; config `fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c`; commit `c704e57a1b344f362a717342660d41f8b63109ed`; report `runs/carc-config-selection-20261003/pipeline/train/stage.json`; status COMPLETED, 2.342 seconds.
+
+- Executed `evaluate`; config `fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c`; commit `c704e57a1b344f362a717342660d41f8b63109ed`; report `runs/carc-config-selection-20261003/pipeline/evaluate/stage.json`; status COMPLETED, 6.323 seconds.
+
+- Executed `benchmark`; config `fc85c4db8950f8cb6471b793590653bb140983c3324a3ba9c393ee623a70ea6c`; commit `c704e57a1b344f362a717342660d41f8b63109ed`; report `runs/carc-config-selection-20261003/pipeline/benchmark/stage.json`; status COMPLETED, 9.123 seconds.
+
+- Automated the CARC development smoke with two dependent allocations, allocated venv setup, immutable source/config/software checks, phase and submission locks, scheduler status/logs, preserved restart and certified checkpoint resume. Selected width 32 / learning rate 0.003 among four prespecified 12-step CPU candidates using validation only; see results/carc-config-selection.json. Final verification: `.venv/bin/python -m pytest -q -m "not gpu" --basetemp .runtime/pytest-carc-final` passed 264 tests with 8 GPU tests deselected; Bash syntax and dry-run checks passed. Live CARC submission and A100 validation of the new workflow/config remain unrun.
