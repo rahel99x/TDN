@@ -284,6 +284,7 @@ def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: st
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lambda _step: 1.0)
     global_step, cursor, best_metric = 0, 0, math.inf
     history = []
+    latest_validation = None
     if resume is not None:
         payload = load_checkpoint(resume, map_location=device)
         checks = {"config_hash": configuration_hash, "dataset_hash": data.manifest_hash,
@@ -300,6 +301,7 @@ def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: st
         global_step, cursor = payload["global_step"], payload["sampler"]["committed_cursor"]
         best_metric = payload["best_metric"]
         history = payload["history"]
+        latest_validation = payload.get("validation")
         restore_rng(payload["rng_state"])
     if config["precision"]["compile_mode"] != "eager":
         model.compile_kernels(config["precision"]["compile_mode"])
@@ -314,10 +316,11 @@ def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: st
     atomic_json(run_dir / "training_config.json", config)
     atomic_json(run_dir / "normalization.json", normalization)
     last_saved = time.monotonic()
-    latest_validation = None
     status = "RUNNING"
+    last_committed_status = None
 
     def commit(*, best: bool = False):
+        nonlocal last_committed_status
         payload = {"schema_version": 1, "config": config, "config_hash": configuration_hash,
                    "source_hash": provenance["python_source_hash"], "source_provenance": provenance,
                    "software_environment": software_environment,
@@ -332,7 +335,9 @@ def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: st
                    "anchor_version": None, "knots": None, "history": history,
                    "best_metric": best_metric, "validation": latest_validation, "status": status}
         payload["memory"] = memory.report()
-        return save_checkpoint(run_dir, payload, best=best)
+        checkpoint = save_checkpoint(run_dir, payload, best=best)
+        last_committed_status = payload["status"]
+        return checkpoint
 
     with StopRequest() as stop:
         while global_step < target_steps:
@@ -382,13 +387,18 @@ def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: st
                 commit(best=best)
                 last_saved = time.monotonic()
             if stop.requested:
+                # A signal can arrive while the preceding checkpoint is being
+                # serialized. Publish the pause at this same committed step
+                # before exit 75, retaining any validation-selected best.
+                if status != "PAUSED_NEEDS_RESUME":
+                    status = "PAUSED_NEEDS_RESUME"
+                    commit()
                 atomic_json(run_dir / "training_result.json", {"status": status, "global_step": global_step,
                             "exit_code": 75, "signal": stop.signal_number})
                 raise SystemExit(75)
     if status == "RUNNING":
         status = "COMPLETE" if global_step == config["training"]["max_steps"] else "PAUSED_BUDGET"
-    if target_steps == global_step and not (run_dir / "checkpoints" / "last.pt").exists():
-        status = "COMPLETE" if global_step == config["training"]["max_steps"] else "PAUSED_BUDGET"
+    if target_steps == global_step and last_committed_status != status:
         commit()
     result = {"schema_version": 1, "status": status, "global_step": global_step,
               "committed_cursor": cursor, "validation": latest_validation,
