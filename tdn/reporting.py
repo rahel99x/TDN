@@ -623,7 +623,8 @@ def emit(metrics, *, phase, step=None, completed=None, total=None, unit=None):
                          completed=completed, total=total, unit=unit)
 
 
-def finish_report(report_dir, *, state, runtime_seconds=None, exit_code=None, results=None, metadata=None):
+def finish_report(report_dir, *, state, runtime_seconds=None, exit_code=None, results=None, metadata=None,
+                  observed_parameters=None):
     """Seal a report once; execution completion does not imply scientific merit."""
     run_dir = _project_directory(report_dir)
     if state not in TERMINAL:
@@ -632,10 +633,16 @@ def finish_report(report_dir, *, state, runtime_seconds=None, exit_code=None, re
         manifest = _manifest(run_dir)
         if manifest.get("state") != "RUNNING":
             raise ValueError("report is already terminal")
+        parameters = dict(manifest["parameters"])
+        for key, value in _parameters(observed_parameters or {}).items():
+            if key in parameters and parameters[key] != value:
+                raise ValueError("observed parameters cannot overwrite requested parameters")
+            parameters[key] = value
+        parameters = _parameters(parameters)
         summary = {"schema": "tower.summary/v1", "project_id": "TDN", "id": manifest["run_id"],
                    "name": manifest["name"], "experiment_id": manifest["experiment_id"],
                    "attempt": manifest["attempt"], "state": state, "start": manifest["start"],
-                   "end": max(time.time(), manifest["start"]), "parameters": manifest["parameters"],
+                   "end": max(time.time(), manifest["start"]), "parameters": parameters,
                    "script_sha256": manifest["provenance"]["script_sha256"],
                    "metadata": {**manifest.get("metadata", {}), **(metadata or {})},
                    **_resources(manifest.get("resources", {}))}

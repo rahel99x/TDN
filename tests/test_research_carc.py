@@ -237,6 +237,7 @@ def test_worker_failure_preserves_stage_and_never_starts_experiment(controller, 
     base = persist(controller, workflow)
     monkeypatch.setenv("SLURM_JOB_ID", "123")
     monkeypatch.setenv("SLURM_STEP_ID", "0")
+    monkeypatch.setattr(controller, "verify_allocation", lambda *a: None)
     monkeypatch.setattr(controller, "verify_worker", lambda *a: {"verified": True})
     monkeypatch.setattr(controller, "software_report", lambda *a: {"verified": True})
     launches = []

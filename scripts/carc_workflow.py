@@ -377,7 +377,7 @@ def begin_workflow_report(workflow, phase, *, research=False, software=None):
 
 
 def finish_workflow_report(workflow, phase, report_dir, *, state, runtime_seconds, exit_code,
-                           research=False, error=None):
+                           research=False, error=None, software=None):
     api = reporting_api()
     from tdn.tower_analytics import publish_outputs
     base = inside(workflow["run_dir"])
@@ -389,10 +389,16 @@ def finish_workflow_report(workflow, phase, report_dir, *, state, runtime_second
         raise ValueError("Tower report belongs to a different scheduler job")
     # The bounded adapter excludes Tower sidecars and pytest/cache directories.
     results = publish_outputs(report_dir, [base])
+    verified_software = ({"verified_software_sha256": hashlib.sha256(json.dumps(
+        software, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()}
+        if software is not None else {})
     api.finish_report(report_dir, state=state, runtime_seconds=runtime_seconds,
                       exit_code=exit_code, results=results,
+                      observed_parameters=({"software_sha256": verified_software["verified_software_sha256"]}
+                                           if verified_software else None),
                       metadata={"workflow_id": workflow["run_id"], "phase": phase,
                                 "execution_scope": "allocated worker elapsed time; excludes pending time",
+                                **verified_software,
                                 **({"error": str(error)} if error is not None else {})})
 
 

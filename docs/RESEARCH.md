@@ -72,7 +72,24 @@ No pending-job cap is used, and this workflow does not alter other projects'
 submissions. Research workers share a read lock on the checkout's venv so they
 can run concurrently. A simultaneous installer or older workflow holding the
 same lock exclusively causes the research worker to stop safely; it does not
-hold queued jobs. Avoid modifying code, configs or the venv during a run.
+hold queued jobs. The stdlib coordinator opens that lock read/write so shared
+locking works with NFS-backed project storage. It holds the lock through every
+numerical child, which uses the project `.venv`. Avoid modifying code, configs
+or the venv during a run.
+
+The coordinator starts a job-bound Tower report before acquiring the venv lock
+or checking its packages. Startup failures retain the stopping stage, actual
+error and exit code; `status` prints the error and `TDN_TOWER_DIR`. It verifies
+the running allocation's ownership before creating a report. A lock system
+error is reported separately from actual contention with an exclusive writer.
+After verification, terminal report metadata and parameters record the observed
+software fingerprint so different software environments are not combined as
+identical work. `run.json` retains the requested parameters captured at startup;
+`summary.json` also includes verified runtime facts. Requested parameters are
+never overwritten.
+Earlier jobs that stopped before reporting still have their original Slurm
+logs; pulling this fix does not create retroactive reports for them. Preserve
+those runs and submit a fresh workflow after updating.
 
 For a very small end-to-end installation check, use a fresh smoke workflow:
 

@@ -190,6 +190,28 @@ def test_summary_invalid_completion_does_not_seal_report(project):
     report.finish_report(path, state="FAILED", exit_code=1)
 
 
+def test_early_reports_keep_verified_software_in_planning_identity(project):
+    first, second = begin(project), begin(project)
+    for path, fingerprint in ((first, "a" * 64), (second, "b" * 64)):
+        report.finish_report(path, state="COMPLETED", exit_code=0,
+                             observed_parameters={"software_sha256": fingerprint})
+    originals = {(path / "summary.json"): (path / "summary.json").read_bytes() for path in (first, second)}
+    bundle = report.export_planning([first, second], reference_run=first)
+    assert [row["parameters"]["software_sha256"] for row in bundle["history"]] == ["a" * 64, "b" * 64]
+    assert bundle["query"]["parameters"]["software_sha256"] == "a" * 64
+    assert all(path.read_bytes() == original for path, original in originals.items())
+
+
+def test_observed_software_cannot_replace_requested_fingerprint(project):
+    path = report.begin_report(project / "runs/science", name="TDN/research/cpu", script="scripts/work.py",
+                               parameters={"software_sha256": "a" * 64})
+    with pytest.raises(ValueError, match="cannot overwrite"):
+        report.finish_report(path, state="COMPLETED", exit_code=0,
+                             observed_parameters={"software_sha256": "b" * 64})
+    assert not (path / "summary.json").exists()
+    assert report.read_json(path / "run.json")["state"] == "RUNNING"
+
+
 def test_scheduler_reconciliation_keeps_application_runtime_and_outcome(project):
     path = begin(project, job_id="123")
     report.finish_report(path, state="INTERRUPTED", exit_code=75, runtime_seconds=2,

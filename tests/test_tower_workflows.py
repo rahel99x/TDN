@@ -118,6 +118,8 @@ def test_recovered_stage_does_not_emit_or_create_reporting(workflow, monkeypatch
 
 def configure_research_worker(workflow, monkeypatch, *, exit_code=0, reporting_error=False):
     rw = module("research_workflow")
+    monkeypatch.setattr(rw, "verify_allocation", lambda *args: None)
+    monkeypatch.setattr(rw, "acquire_venv_lock", lambda: (Path(workflow["run_dir"]) / "fixture.lock").open("a+b"))
     monkeypatch.setattr(rw, "verify_worker", lambda *args: {"verified": True})
     monkeypatch.setattr(rw, "software_report", lambda *args: {"verified": True})
     monkeypatch.setattr(rw, "load", lambda *args: workflow)
@@ -146,6 +148,9 @@ def test_research_child_env_and_completed_scientific_failure(workflow, monkeypat
     report = Path(launches[1][1]["TDN_TOWER_DIR"])
     assert json.loads((report / "summary.json").read_text())["state"] == "COMPLETED"
     assert json.loads((report / "summary.json").read_text())["results"]["numerical_failures"] == 1
+    assert len(json.loads((report / "summary.json").read_text())["metadata"]["verified_software_sha256"]) == 64
+    terminal = json.loads((report / "summary.json").read_text())
+    assert terminal["parameters"]["software_sha256"] == terminal["metadata"]["verified_software_sha256"]
     assert os.environ["TDN_TOWER_DIR"] == "original-caller-value"
     assert not (Path(workflow["run_dir"]) / "experiment" / "tower").exists()
 
@@ -165,9 +170,16 @@ def test_research_failure_retains_child_code_and_stops_successors(workflow, monk
 
 def test_research_cli_preserves_failed_worker_code(monkeypatch):
     rw = module("research_workflow")
-    monkeypatch.setattr(rw, "load", lambda *args: {})
+    verification = []
+
+    def load(path, *, verify=True):
+        verification.append(verify)
+        return {}
+
+    monkeypatch.setattr(rw, "load", load)
     monkeypatch.setattr(rw, "worker", lambda *args: (_ for _ in ()).throw(rw.WorkerFailure("child failed", 7)))
     assert rw.main(["worker", "--workflow", "unused", "--phase", "cpu"]) == 7
+    assert verification == [False]  # Worker reports before checking fingerprints.
 
 
 def test_research_reporting_failure_is_not_silent_success(workflow, monkeypatch):
@@ -175,3 +187,63 @@ def test_research_reporting_failure_is_not_silent_success(workflow, monkeypatch)
     with pytest.raises(rw.WorkerFailure) as captured:
         rw.worker(workflow, "cpu")
     assert captured.value.exit_code != 0
+
+
+@pytest.mark.parametrize("stage", ["startup", "venv-lock", "verify"])
+def test_research_startup_failure_is_reported_before_science(workflow, monkeypatch, capsys, stage):
+    workflow["phase"] = "cpu"
+    rw, launches = configure_research_worker(workflow, monkeypatch)
+    handles = []
+
+    def acquire():
+        handle = (Path(workflow["run_dir"]) / "fixture.lock").open("a+b")
+        handles.append(handle)
+        return handle
+
+    def fail(*args, **kwargs):
+        raise ValueError(f"actual {stage} failure")
+
+    monkeypatch.setattr(rw, "acquire_venv_lock", acquire)
+    target = {"startup": "load", "venv-lock": "acquire_venv_lock", "verify": "verify_worker"}[stage]
+    monkeypatch.setattr(rw, target, fail)
+    with pytest.raises(rw.WorkerFailure) as captured:
+        rw.worker(workflow, "cpu")
+    assert captured.value.exit_code == 2
+    assert launches == []
+    record = json.loads(rw.state_path(workflow).read_text())
+    assert record["status"] == "FAILED" and record["stage"] == stage
+    assert record["error"] == f"actual {stage} failure"
+    reports = rw.cw.tower_reports_for_job(workflow, "41001")
+    assert len(reports) == 1
+    summary = json.loads((reports[0] / "summary.json").read_text())
+    assert summary["state"] == "FAILED" and summary["exit_code"] == 2
+    assert summary["metadata"]["error"] == record["error"]
+    assert "verified_software_sha256" not in summary["metadata"]
+    assert "software_sha256" not in summary["parameters"]
+    assert (reports[0] / "metrics.jsonl").stat().st_size > 0
+    assert not rw.software_path(workflow).exists()
+    assert "TDN_TOWER_DIR" not in os.environ
+    assert all(handle.closed for handle in handles)
+    rw.cw.atomic_json(Path(workflow["run_dir"]) / "jobs.json", [{"job_id": "41001", "phase": "cpu"}])
+    monkeypatch.setattr(rw.cw, "scheduler_state", lambda *args: "FAILED")
+    before = {path: path.read_bytes() for path in Path(workflow["run_dir"]).rglob("*") if path.is_file()}
+    rw.status(workflow)
+    output = capsys.readouterr().out
+    assert f"{stage}: FAILED" in output
+    assert f"error: actual {stage} failure" in output
+    assert f"TDN_TOWER_DIR={reports[0]}" in output
+    assert before == {path: path.read_bytes() for path in Path(workflow["run_dir"]).rglob("*") if path.is_file()}
+
+
+def test_research_unowned_allocation_creates_no_attempt(workflow, monkeypatch):
+    rw, launches = configure_research_worker(workflow, monkeypatch)
+
+    def reject(*args):
+        raise ValueError("Allocation is not this research workflow's running job")
+
+    monkeypatch.setattr(rw, "verify_allocation", reject)
+    with pytest.raises(ValueError, match="not this research"):
+        rw.worker(workflow, "cpu")
+    assert launches == []
+    assert not rw.state_path(workflow).exists()
+    assert not (Path(workflow["run_dir"]) / "tower").exists()

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
+import errno
 import hashlib
 import importlib.util
 import json
@@ -265,7 +266,8 @@ print(json.dumps({'python':platform.python_version(), 'prefix':str(pathlib.Path(
     return json.loads(cw.command([python, "-c", program, ROOT, workflow["torch_version"]]).stdout)
 
 
-def verify_worker(workflow, phase):
+def verify_allocation(workflow, phase):
+    """Verify actual job ownership before creating any attempt evidence."""
     cw.actual_policy(worker=True)
     if phase != workflow["phase"]:
         raise ValueError("Allocated phase differs from workflow")
@@ -276,6 +278,30 @@ def verify_worker(workflow, phase):
                 "Comment": f"tdn-research:{workflow['run_id']}:{phase}", "JobState": "RUNNING"}
     if any(fields.get(key) != value for key, value in expected.items()) or fields.get("UserId", "").split("(")[0] != cw.USER:
         raise ValueError("Allocation is not this research workflow's running job")
+
+
+def acquire_venv_lock():
+    """Hold a readable shared lock compatible with NFS flock emulation."""
+    import fcntl
+
+    path = cw.inside(ROOT / ".cache" / "carc-phase.lock")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    # NFS emulates shared flock with a POSIX read lock. A write-only descriptor
+    # produces EBADF there even though local-filesystem flock accepts it.
+    handle = path.open("a+b")
+    try:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_SH | fcntl.LOCK_NB)
+    except OSError as exc:
+        handle.close()
+        if exc.errno in (errno.EACCES, errno.EAGAIN):
+            raise ValueError("Another workflow holds the project venv lock exclusively; "
+                             "preserve this run and submit a fresh one after it finishes") from exc
+        raise OSError(f"Cannot acquire project venv shared lock: {exc}") from exc
+    return handle
+
+
+def verify_worker(workflow, phase):
+    verify_allocation(workflow, phase)
     report = software_report(workflow)
     if phase == "gpu":
         source = completed_source(workflow["source_workflow"])
@@ -308,20 +334,20 @@ def worker_commands(workflow):
 
 def worker(workflow, phase):
     started = time.monotonic()
-    software = verify_worker(workflow, phase)
+    verify_allocation(workflow, phase)
     base = cw.inside(workflow["run_dir"])
     if state_path(workflow).exists() or (base / "experiment").exists():
         raise ValueError("Research worker was already started; preserve it and use a fresh workflow")
-    cw.atomic_json(software_path(workflow), software)
-    record = {"status": "RUNNING", "exit_code": 0, "stage": "verify", "updated_at": cw.now(),
+    record = {"status": "RUNNING", "exit_code": 0, "stage": "startup", "updated_at": cw.now(),
               "slurm_job_id": os.environ["SLURM_JOB_ID"], "slurm_step_id": os.environ["SLURM_STEP_ID"],
-              "source_sha256": workflow["source_sha256"], "config_sha256": workflow["config_sha256"],
-              "software_sha256": cw.digest(software_path(workflow))}
+              "source_sha256": workflow["source_sha256"], "config_sha256": workflow["config_sha256"]}
     cw.atomic_json(state_path(workflow), record)
     child = None
     stopped = False
     stop_signal = None
     report_dir = None
+    venv_lock = None
+    software = None
     inherited_report = os.environ.pop("TDN_TOWER_DIR", None)
 
     def stop(signum, frame):
@@ -335,12 +361,23 @@ def worker(workflow, phase):
                 pass
 
     prior = {item: signal.signal(item, stop) for item in (signal.SIGTERM, signal.SIGINT, signal.SIGUSR1)}
-    code = 1
+    code = 2
     observed_child_code = None
     try:
-        report_dir = cw.begin_workflow_report(workflow, phase, research=True, software=software)
+        report_dir = cw.begin_workflow_report(workflow, phase, research=True)
         os.environ["TDN_TOWER_DIR"] = str(report_dir)
         print(f"TDN research: Tower report: {report_dir}", flush=True)
+        cw.reporting_api().emit({"started": 1}, phase=f"workflow.research.{phase}.startup")
+        load(base / "research-workflow.json")
+        record.update(stage="venv-lock", updated_at=cw.now())
+        cw.atomic_json(state_path(workflow), record)
+        venv_lock = acquire_venv_lock()
+        record.update(stage="verify", updated_at=cw.now())
+        cw.atomic_json(state_path(workflow), record)
+        software = verify_worker(workflow, phase)
+        cw.atomic_json(software_path(workflow), software)
+        record.update(software_sha256=cw.digest(software_path(workflow)), updated_at=cw.now())
+        cw.atomic_json(state_path(workflow), record)
         commands = worker_commands(workflow)
         for stage_index, (stage, args) in enumerate(commands):
             if stopped:
@@ -396,7 +433,8 @@ def worker(workflow, phase):
         record.update(status="COMPLETED", exit_code=0, updated_at=cw.now())
         cw.atomic_json(state_path(workflow), record)
         cw.finish_workflow_report(workflow, phase, report_dir, state="COMPLETED",
-                                  runtime_seconds=time.monotonic() - started, exit_code=0, research=True)
+                                  runtime_seconds=time.monotonic() - started, exit_code=0,
+                                  research=True, software=software)
         return 0
     except BaseException as exc:
         if stopped:
@@ -413,7 +451,7 @@ def worker(workflow, phase):
             try:
                 cw.finish_workflow_report(workflow, phase, report_dir, state=record["status"],
                                           runtime_seconds=time.monotonic() - started,
-                                          exit_code=failure_code, research=True, error=exc)
+                                          exit_code=failure_code, research=True, error=exc, software=software)
             except Exception as reporting_error:
                 print(f"TDN research: Tower reporting failed: {reporting_error}; original failure retained", file=sys.stderr)
         raise WorkerFailure(str(exc), failure_code) from exc
@@ -427,6 +465,8 @@ def worker(workflow, phase):
                 child.wait()
         for item, handler in prior.items():
             signal.signal(item, handler)
+        if venv_lock is not None:
+            venv_lock.close()
         if inherited_report is None:
             os.environ.pop("TDN_TOWER_DIR", None)
         else:
@@ -449,6 +489,8 @@ def status(workflow):
             print(f"  TDN_TOWER_DIR={report}")
     record = cw.read_json(state_path(workflow)) if state_path(workflow).exists() else {}
     print(f"  {record.get('stage', 'worker')}: {record.get('status', 'NOT_STARTED')}")
+    if record.get("error"):
+        print(f"  error: {record['error']}")
     summary_path = base / "experiment" / "summary.json"
     if summary_path.is_file():
         report = cw.read_json(summary_path)
@@ -530,7 +572,9 @@ def main(argv=None):
                 lock = cw.controller_lock()
             start(args)
         elif args.command == "worker":
-            return worker(load(args.workflow), args.phase)
+            # Record a changed source/config as a startup failure after verifying
+            # actual ownership; worker repeats immutable fingerprint validation.
+            return worker(load(args.workflow, verify=False), args.phase)
         else:
             workflow = load(workflow_path(args.run), verify=False)
             if args.command == "status":
