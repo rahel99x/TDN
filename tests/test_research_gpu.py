@@ -6,7 +6,7 @@ import pytest
 import torch
 
 from tdn.numerics import Equation, Geometry
-from tdn.research import OPTIONAL_FAMILIES, RESEARCH_FAMILIES, build_research_model
+from tdn.research import NEURAL_BASELINE_FAMILIES, OPTIONAL_FAMILIES, RESEARCH_FAMILIES, build_research_model
 
 
 pytestmark = [pytest.mark.gpu,
@@ -24,7 +24,7 @@ def allocated_a100():
     reference_precision()
 
 
-@pytest.mark.parametrize("family", RESEARCH_FAMILIES + OPTIONAL_FAMILIES)
+@pytest.mark.parametrize("family", RESEARCH_FAMILIES + OPTIONAL_FAMILIES + NEURAL_BASELINE_FAMILIES)
 @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
 def test_research_allocated_gpu_forward_and_full_gradients(family, dtype):
     torch.manual_seed(8021)
@@ -32,7 +32,7 @@ def test_research_allocated_gpu_forward_and_full_gradients(family, dtype):
     # Exercise learned corrections, not only the zero-head base flow.
     with torch.no_grad():
         for name, parameter in model.named_parameters():
-            if ".head." in name or ".amplitude." in name:
+            if ".head." in name or name.startswith("head.") or ".amplitude." in name:
                 parameter.add_(.002 * torch.randn_like(parameter))
     gpu_model = deepcopy(model).cuda()
     u = (.2 + .6 * torch.rand(2, 1, 8, 8, dtype=dtype)).requires_grad_()

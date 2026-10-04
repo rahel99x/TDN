@@ -5,6 +5,12 @@ navigation, exported scientific tables, historical imports and scheduler-state
 reconciliation. Each allocated workflow prints `TDN_TOWER_DIR`; pass that exact
 directory as Tower's `--workdir`. CPU, GPU and resumed jobs use separate reports.
 
+For representative neural competitors, use the [neural benchmark workflow](NEURAL_BENCHMARKS.md)
+with `bash scripts/carc_neural_benchmarks.sh --submit`. It compares a generic
+time-conditioned MLP, periodic residual CNN, U-Net and FNO with all TDN controls.
+One 30-minute CPU job trains/evaluates the initial screen; optional frozen A100
+inference timing is a separate 30-minute job.
+
 The [architecture research workflow](RESEARCH.md) runs the three proposed models
 and their controls with `bash scripts/carc_research.sh --submit`. It uses one
 30-minute CPU allocation for correctness tests, reference generation, bounded

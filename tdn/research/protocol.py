@@ -9,6 +9,9 @@ from pathlib import Path
 VERSION = 1
 FAMILIES = ("confluent_decay", "fixed_decay", "fixed_decay_r", "fixed_undamped", "reaction_clock",
             "reaction_additive", "transport", "temporal_mlp")
+NEURAL_BASELINES = ("generic_mlp", "residual_cnn", "unet", "fno",
+                    "residual_cnn_split", "unet_split", "fno_split")
+NEURAL_FAMILIES = (*FAMILIES, *NEURAL_BASELINES)
 CLASSICAL = ("split", "richardson_split", "adaptive_split", "coupled_rk4", "e3_anchor")
 REGIMES = (("baseline", .01, 2.), ("intermediate", .03, 6.), ("stiff", .1, 12.))
 STATE_CLASSES = ("mixed_frequency", "bounded_random", "boundary")
@@ -22,6 +25,10 @@ DEFAULT = {
     "rollout_time": .32, "benchmark_steps": [.04, .08, .16, .32],
     "rollout_weight": .5, "timing_repeats": 3,
 }
+
+
+def benchmark_suite(config: dict) -> str:
+    return "neural-benchmarks" if config.get("families") == list(NEURAL_FAMILIES) else "architecture"
 
 
 def digest(value: object) -> str:
@@ -54,7 +61,7 @@ def validate_config(config: dict, *, smoke: bool = False) -> dict:
     rate = checked["learning_rate"]
     if isinstance(rate, bool) or not isinstance(rate, (int, float)) or not math.isfinite(rate) or not 0 < rate <= .01:
         raise ValueError("learning_rate must lie in (0,.01]")
-    if checked["families"] not in (list(FAMILIES), [*FAMILIES, "reaction_hybrid"]):
+    if checked["families"] not in (list(FAMILIES), [*FAMILIES, "reaction_hybrid"], list(NEURAL_FAMILIES)):
         raise ValueError("Retain every architecture and its paired controls")
     if smoke:
         checked.update(grid=[8, 8], max_steps=min(2, checked["max_steps"]),
@@ -89,12 +96,20 @@ def assert_parent_disjoint(parents: list[dict]) -> None:
 
 def make_protocol(config: dict, *, smoke: bool, software: dict, command: list[str]) -> dict:
     return {"version": VERSION, "config": config, "smoke": smoke,
+            "benchmark_suite": benchmark_suite(config),
             "parents": parent_plan(smoke=smoke), "software": software, "command": command,
             "state_precision": "float32", "teacher_precision": "float64", "tf32": False,
             "normalization": "training initial states only; shared across all learned families",
             "rate_sharing": "one learned shared rate across all training regimes; no per-parent rate oracle",
             "training_loss": "physical one-step MSE + 0.5*two-step MSE, divided by tolerance squared",
             "checkpoint_selection": "minimum validation loss only, including initialization; diagnostics after freeze",
+            "training_budget": {"optimizer": "Adam", "learning_rate": config["learning_rate"],
+                                "maximum_updates_per_family": config["max_steps"],
+                                "batch": "one identical scheduled training parent/horizon per update",
+                                "initialization_seed": 74001, "sample_schedule_seed": 74002,
+                                "matched": "data, updates, objective, validation schedule, horizons and device",
+                                "unmatched": "parameter count, FLOPs and training walltime; recorded per family",
+                                "scope": "small representative adaptations; no converged or published-SOTA claim"},
             "reference": {"method": "coupled RK4 n,2n,4n", "error_fraction": .05,
                           "tolerance_fraction": .1, "noise_floor": 1e-10},
             "headroom_rule": "both split and Richardson error minus reference uncertainty >0.002 at h=.32,T=.32",

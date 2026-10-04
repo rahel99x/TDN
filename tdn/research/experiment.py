@@ -21,7 +21,8 @@ from tdn.numerics import Equation, Geometry, choose_substeps, refined_reference
 from tdn.numerics.invariants import validate_state
 from tdn.runtime.metadata import write_json
 from tdn.reporting import emit
-from .protocol import CLASSICAL, TOLERANCE, assert_parent_disjoint, digest, file_digest
+from .protocol import (CLASSICAL, NEURAL_BASELINES, TOLERANCE, assert_parent_disjoint,
+                       benchmark_suite, digest, file_digest)
 
 
 class InvalidTrajectory(FloatingPointError):
@@ -176,6 +177,7 @@ def _cpu_state(model) -> dict:
 
 def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
                  normalization: tuple, budget: Budget, device="cpu") -> tuple[object | None, dict]:
+    started = time.monotonic()
     from . import build_research_model
     config = protocol["config"]
     geometry = Geometry(tuple(config["grid"]), (1., 1.))
@@ -191,6 +193,12 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
               "training_parent_ids": [parent["parent_id"] for parent in parents["train"]],
               "validation_parent_ids": [parent["parent_id"] for parent in parents["validation"]],
               "diagnostics_seen_during_training": False}
+    record.update(benchmark_role="neural_baseline" if family in NEURAL_BASELINES else "tdn",
+                  optimizer="Adam", learning_rate=config["learning_rate"],
+                  maximum_optimizer_updates=config["max_steps"], initialization_seed=74001,
+                  sample_schedule_seed=74002,
+                  architecture=(model.architecture_metadata() if hasattr(model, "architecture_metadata")
+                                else {"backbone": family, "track": "hybrid", "time_input": "structured temporal decoder"}))
     checkpoint_path = run_dir / "checkpoints" / f"{family}.pt"
     record_path = run_dir / "training" / f"{family}.json"
     best = math.inf
@@ -206,11 +214,15 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
                 if not order:
                     order = torch.randperm(len(candidates), generator=generator).tolist()
                 parent, h = candidates[order.pop()]
+                record.update(optimizer_attempt=step, training_parent_id=parent["parent_id"], training_h=h)
                 model.train()
                 optimizer.zero_grad(set_to_none=True)
                 loss = physical_loss(model, parent, h, geometry, device)
                 loss.backward()
-                if any(parameter.grad is not None and not bool(torch.isfinite(parameter.grad).all()) for parameter in model.parameters()):
+                bad_gradients = [name for name, parameter in model.named_parameters()
+                                 if parameter.grad is not None and not bool(torch.isfinite(parameter.grad).all())]
+                if bad_gradients:
+                    record["nonfinite_gradient_parameters"] = bad_gradients
                     raise FloatingPointError("Nonfinite neural gradient")
                 torch.nn.utils.clip_grad_norm_(model.parameters(), 10.)
                 optimizer.step()
@@ -247,20 +259,36 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
         model.load_state_dict(checkpoint["state_dict"])
         model.eval()
         record.update(status="COMPLETED", checkpoint_sha256=file_digest(checkpoint_path),
+                      training_seconds=time.monotonic() - started,
                       selected_parameters_changed=any(not torch.equal(initial[name], parameter.detach().cpu())
                                                       for name, parameter in model.named_parameters()))
         write_json(record_path, record)
+        emit({"training_seconds": record["training_seconds"],
+              "selected_step": record["selected_step"],
+              "selected_parameters_changed": int(record["selected_parameters_changed"])},
+             phase=f"research-trained-{family}")
         return model, record
     except FloatingPointError as error:
         # Numerical architecture failure is a recorded hypothesis outcome, not a silent omission.
-        record.update(status="NUMERICAL_FAILURE", error=str(error))
+        record.update(status="NUMERICAL_FAILURE", error=str(error), training_seconds=time.monotonic() - started)
+        if record.get("optimizer_attempt") and hasattr(model, "audit_step"):
+            try:
+                with torch.no_grad():
+                    _, stages = model.audit_step(parent["initial"].to(device=device, dtype=torch.float32), h,
+                                                 Equation(parent["kappa"], parent["reaction_rate"]), geometry)
+                    record["failure_stages"] = {name: {"finite": bool(torch.isfinite(value).all()),
+                        "minimum": float(value.min()) if bool(torch.isfinite(value).all()) else None,
+                        "maximum": float(value.max()) if bool(torch.isfinite(value).all()) else None}
+                        for name, value in stages.items()}
+            except Exception as audit_error:
+                record["failure_stage_audit_error"] = str(audit_error)
         write_json(record_path, record)
         emit({"numerical_failures": 1, "optimizer_steps": record["steps"]},
              phase=f"research-failure-{family}", step=record["steps"])
         return None, record
     except BaseException as error:
         record.update(status="INTERRUPTED" if isinstance(error, (InterruptedError, KeyboardInterrupt, TimeoutError)) else "FAILED",
-                      error=f"{type(error).__name__}: {error}")
+                      error=f"{type(error).__name__}: {error}", training_seconds=time.monotonic() - started)
         write_json(record_path, record)
         raise
 
@@ -296,7 +324,8 @@ def whole_rollout(model, state, steps, equation, geometry, *, method: str):
     return state
 
 
-def evaluate(models: dict, dataset: dict, protocol: dict, run_dir: Path, budget: Budget, device: str) -> dict:
+def evaluate(models: dict, dataset: dict, protocol: dict, run_dir: Path, budget: Budget, device: str,
+             training_records=None) -> dict:
     from . import build_research_model
     config = protocol["config"]
     geometry = Geometry(tuple(config["grid"]), (1., 1.))
@@ -360,7 +389,19 @@ def evaluate(models: dict, dataset: dict, protocol: dict, run_dir: Path, budget:
                   "invalid_trajectories": sum(row["status"] != "COMPLETED" for row in rows)},
                  phase="research-evaluation", step=parent_index,
                  completed=parent_index, total=len(parents), unit="diagnostic parents")
-    return summarize_frontier(rows, config)
+    summary = summarize_frontier(rows, config)
+    if benchmark_suite(config) == "neural-benchmarks":
+        from .neural_comparison import summarize_neural_comparisons
+        comparison = summarize_neural_comparisons(rows, heldout, config["families"], training_records)
+        write_json(run_dir / "neural-comparisons.json", comparison)
+        eligible = [row for row in comparison["comparisons"] if row["eligible"]]
+        summary["neural_benchmark_results"] = {
+            "comparison_file": "neural-comparisons.json", "baseline_families": list(NEURAL_BASELINES),
+            "comparison_count": len(comparison["comparisons"]), "eligible_comparison_count": len(eligible),
+            "faster_than_neural_baseline_count": sum(row["speedup"] > 1 for row in eligible),
+            "twenty_percent_faster_than_neural_baseline_count": sum(row["speedup"] >= 1.25 for row in eligible),
+            "scope": "matched tolerance per-parent development frontier; training selection status retained"}
+    return summary
 
 
 def summarize_frontier(rows: list[dict], config: dict) -> dict:
@@ -407,11 +448,12 @@ def run(protocol: dict, run_dir: Path, *, stop=None) -> dict:
         training.append(record)
         if model is not None:
             models[family] = model
-    summary = evaluate(models, dataset, protocol, run_dir, budget, "cpu")
+    summary = evaluate(models, dataset, protocol, run_dir, budget, "cpu", training_records=training)
     summary.update(status="COMPLETED", device="cpu", smoke=protocol["smoke"], training=training,
                    trained_family_count=len(models), elapsed_seconds=time.monotonic() - start,
                    scope=protocol["scope"], actual_neural_training=any(row["steps"] > 0 for row in training),
                    training_attempted=True)
+    summary["benchmark_suite"] = benchmark_suite(protocol["config"])
     write_json(run_dir / "summary.json", summary)
     return summary
 
@@ -444,8 +486,10 @@ def benchmark(protocol: dict, source_run: Path, run_dir: Path, *, stop=None) -> 
         model.load_state_dict(checkpoint["state_dict"])
         model.eval()
         models[family] = model
-    summary = evaluate(models, dataset, protocol, run_dir, Budget(min(600, protocol["config"]["max_seconds"]), stop), "cuda")
+    summary = evaluate(models, dataset, protocol, run_dir, Budget(min(600, protocol["config"]["max_seconds"]), stop),
+                       "cuda", training_records=source_summary["training"])
     summary.update(status="COMPLETED", device="cuda", smoke=protocol["smoke"], source_run=str(source_run),
                    scope="Allocated GPU timing of frozen CPU checkpoints; no additional training or confirmation")
+    summary["benchmark_suite"] = benchmark_suite(protocol["config"])
     write_json(run_dir / "summary.json", summary)
     return summary

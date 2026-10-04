@@ -48,7 +48,9 @@ COLUMNS = {
         "wall_seconds_median", "cuda_event_seconds_median", "peak_allocated_bytes",
         "peak_reserved_bytes", "host_process_peak_rss_bytes", "timing_scope", "reason"],
     "training": PREFIX + ["record_type", "family", "status", "step", "selected_step", "loss",
-        "training_loss", "validation_loss", "admissible_validation", "selected_parameters_changed", "reason"],
+        "training_loss", "validation_loss", "admissible_validation", "selected_parameters_changed", "reason",
+        "parameter_count", "training_seconds", "benchmark_role", "learning_rate", "optimizer",
+        "maximum_optimizer_updates", "architecture_track", "architecture_backbone"],
     "heldout": PREFIX + ["case_id", "parent_id", "family", "h", "device", "status",
         "one_step_rms", "one_step_upper", "one_step_reference_uncertainty", "two_step_rms",
         "two_step_upper", "two_step_reference_uncertainty", "heldout_absolute_rms",
@@ -58,7 +60,23 @@ COLUMNS = {
     "gates": PREFIX + ["case_id", "gate", "passed", "decision", "scope", "reason"],
     "stages": PREFIX + ["stage", "status", "device", "execution_mode", "actually_ran", "elapsed_seconds", "reason"],
     "tests": PREFIX + ["suite", "test", "classname", "status", "elapsed_seconds", "reason"],
+    "neural_comparisons": PREFIX + ["parent_id", "tdn_family", "baseline_family", "baseline_kind",
+        "tdn_training_status", "baseline_training_status", "tdn_training_selection", "baseline_training_selection",
+        "tdn_selected_step", "baseline_selected_step", "tdn_optimizer_steps", "baseline_optimizer_steps",
+        "tdn_status", "baseline_status", "eligible", "tdn_h", "baseline_h", "tdn_error", "baseline_error",
+        "tdn_error_upper", "baseline_error_upper", "tdn_wall_seconds", "baseline_wall_seconds",
+        "tdn_device", "baseline_device", "speedup", "speed_outcome", "tdn_feasible_h_count",
+        "baseline_feasible_h_count", "tdn_missing_h_count", "baseline_missing_h_count", "tdn_invalid_h_count",
+        "baseline_invalid_h_count", "tdn_heldout_missing_h_count", "baseline_heldout_missing_h_count",
+        "tdn_heldout_invalid_h_count", "baseline_heldout_invalid_h_count", "ineligible_reasons",
+        "tdn_failure_reason", "baseline_failure_reason"],
+    "neural_accuracy": PREFIX + ["tdn_family", "baseline_family", "baseline_kind", "tdn_training_selection",
+        "baseline_training_selection", "metric", "cases", "eligible", "wins", "losses", "ties", "ineligible",
+        "failure_reasons"],
 }
+NEURAL_METRICS = ("matched_tolerance_speed", "same_h_rollout_rms", "same_h_rollout_upper_error",
+                  "heldout_one_step_rms", "heldout_two_step_rms", "heldout_one_step_upper_error",
+                  "heldout_two_step_upper_error")
 
 
 def _safe_directory(path):
@@ -278,7 +296,11 @@ class _Projection:
         self.add("frontier", source, pointer, values)
 
     def training(self, source, pointer, row):
-        values = _pick(row, ["family", "status", "selected_step", "selected_parameters_changed"])
+        values = _pick(row, ["family", "status", "selected_step", "selected_parameters_changed", "parameter_count",
+                            "training_seconds", "benchmark_role", "learning_rate", "optimizer", "maximum_optimizer_updates"])
+        architecture = _dict(row.get("architecture"))
+        values.update({"architecture_" + name: architecture[name] for name in ("track", "backbone")
+                       if name in architecture})
         values.update({"record_type": "final"})
         for old, new in [("steps", "step"), ("global_step", "step"), ("best_validation_loss", "validation_loss"),
                          ("last_training_loss", "training_loss"), ("error", "reason")]:
@@ -300,11 +322,93 @@ class _Projection:
             self.add("gates", source, pointer, {**context, "gate": name,
                      **_pick(row, ["passed", "decision", "scope", "reason"])})
 
+    def neural(self, source, value):
+        """Project declared neural comparisons without requiring classical headroom.
+
+        Selection at initialization and failed training remain separate from
+        timing eligibility. Counts of trained-baseline wins are therefore
+        distinct from counts against all recorded baseline checkpoints.
+        """
+        if value.get("version") != 1 or not all(isinstance(value.get(key), list)
+                for key in ("comparisons", "aggregates", "training", "parents")):
+            self.budget.omit(source, "neural comparison version or required record lists unsupported")
+            return
+        training = {row.get("family"): row for row in value["training"] if isinstance(row, dict)
+                    and isinstance(row.get("family"), str)}
+        parents = {(parent.get("parent_id"), row.get("family")): row for parent in value["parents"]
+                   if isinstance(parent, dict) and isinstance(parent.get("parent_id"), str)
+                   for row in _records(parent.get("families")) if isinstance(row, dict)
+                   and isinstance(row.get("family"), str)}
+        comparison_records = []
+        for index, row in enumerate(value["comparisons"]):
+            if isinstance(row, dict) and all(isinstance(row.get(key), str)
+                    for key in ("parent_id", "tdn_family", "baseline_family")):
+                comparison_records.append((index, row))
+            else:
+                self.budget.omit(source, "neural comparison row has unsupported parent/family labels")
+        baseline_kinds = {}
+        comparisons = [row for _, row in comparison_records]
+        for index, row in comparison_records:
+            values = _pick(row, ["parent_id", "tdn_family", "baseline_family", "baseline_kind", "eligible",
+                                "speedup", "speed_outcome", "ineligible_reasons"])
+            baseline_kinds[(row.get("tdn_family"), row.get("baseline_family"))] = row.get("baseline_kind")
+            for side in ("tdn", "baseline"):
+                family = row.get(side + "_family")
+                selected = training.get(family, {})
+                coverage = parents.get((row.get("parent_id"), family), {})
+                best = _dict(row.get(side + "_best"))
+                for field in ("h", "error", "error_upper", "wall_seconds", "device"):
+                    values[side + "_" + field] = best.get(field)
+                for field in ("status", "feasible_h_count", "missing_h_count", "invalid_h_count",
+                              "heldout_missing_h_count", "heldout_invalid_h_count"):
+                    values[side + "_" + field] = coverage.get(field)
+                values[side + "_training_status"] = selected.get("status")
+                values[side + "_training_selection"] = selected.get("selection",
+                    row.get(side + "_training_selection", coverage.get("training_selection")))
+                for field in ("selected_step", "optimizer_steps", "failure_reason"):
+                    values[side + "_" + field] = selected.get(field)
+            self.add("neural_comparisons", source, f"/comparisons/{index}", values)
+        for index, row in enumerate(value["aggregates"]):
+            if not isinstance(row, dict) or not all(isinstance(row.get(key), str)
+                    for key in ("tdn_family", "baseline_family")):
+                self.budget.omit(source, "neural aggregate row has unsupported family labels")
+                continue
+            context = _pick(row, ["tdn_family", "baseline_family", "baseline_training_selection"])
+            context["baseline_kind"] = baseline_kinds.get((row.get("tdn_family"), row.get("baseline_family")))
+            context["tdn_training_selection"] = _dict(training.get(row.get("tdn_family"))).get("selection")
+            for metric in NEURAL_METRICS:
+                counts = row.get(metric)
+                if isinstance(counts, dict):
+                    self.add("neural_accuracy", source, f"/aggregates/{index}/{metric}", {**context,
+                        "metric": metric, **_pick(counts, ["cases", "eligible", "wins", "losses", "ties",
+                                                          "ineligible", "failure_reasons"])})
+        eligible = [row for row in comparisons if row.get("eligible") is True]
+        trained = [row for row in eligible
+                   if _dict(training.get(row.get("baseline_family"))).get("selection") == "TRAINED_CHECKPOINT"]
+        wins = sum(row.get("speed_outcome") == "WIN" for row in eligible)
+        trained_wins = sum(row.get("speed_outcome") == "WIN" for row in trained)
+        self.science.append({"source_path": source, "kind": "neural_solver_comparison",
+            **_pick(value, ["diagnostic_parent_count", "scope", "cost_scope", "accuracy_scope", "selection_scope"]),
+            "neural_comparison_count": len(comparisons), "neural_eligible_comparison_count": len(eligible),
+            "neural_speed_advantage_count": wins,
+            "neural_speed_advantage_observed": wins > 0 if eligible else None,
+            "neural_trained_baseline_eligible_comparison_count": len(trained),
+            "neural_trained_baseline_speed_advantage_count": trained_wins,
+            "neural_trained_baseline_speed_advantage_observed": trained_wins > 0 if trained else None,
+            "neural_baseline_initialization_comparison_count": sum(
+                _dict(training.get(row.get("baseline_family"))).get("selection") == "SELECTED_INITIALIZATION"
+                for row in comparisons),
+            "neural_baseline_training_failure_comparison_count": sum(
+                _dict(training.get(row.get("baseline_family"))).get("selection") == "TRAINING_FAILURE"
+                for row in comparisons)})
+
     def consume(self, path, source, value):
         if not isinstance(value, dict):
             return
         name = path.name
-        if name == "stage.json":
+        if name == "neural-comparisons.json":
+            self.neural(source, value)
+        elif name == "stage.json":
             row = _pick(value, COLUMNS["stages"])
             if "error" in value:
                 row["reason"] = value["error"]
@@ -510,9 +614,28 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         "units": {"h": "model physical time", "error": "source-defined state error (research RMS)",
                   "*_rms": "state RMS", "*_seconds*": "seconds", "*_bytes": "bytes",
                   "loss": "source-defined training objective; not comparable across protocols",
-                  "refinement_substeps": "JSON array of integer step counts"},
+                  "refinement_substeps": "JSON array of integer step counts",
+                  "tdn_h": "model physical time", "baseline_h": "model physical time",
+                  "tdn_error": "state RMS", "baseline_error": "state RMS",
+                  "tdn_error_upper": "state RMS plus accepted-reference uncertainty",
+                  "baseline_error_upper": "state RMS plus accepted-reference uncertainty",
+                  "speedup": "baseline complete-rollout wall seconds / TDN complete-rollout wall seconds",
+                  "neural_accuracy.cases": "parent pairs for speed; parent x horizon pairs for error",
+                  "neural_accuracy.eligible": "eligible pairs for the specified metric",
+                  "neural_accuracy.wins": "pairs won by TDN; no statistical significance claim",
+                  "*_selected_step": "validation-selected optimizer step; 0 means initialization",
+                  "*_optimizer_steps": "completed optimizer updates", "*_h_count": "declared horizon counts",
+                  "parameter_count": "trainable and frozen model parameter elements",
+                  "training_seconds": "actual training wall seconds including validation/checkpoint overhead",
+                  "maximum_optimizer_updates": "declared maximum optimizer updates per family",
+                  "learning_rate": "declared optimizer learning rate"},
         "interpretation": "No cross-run aggregation, scheduler inference, imputation, or scientific gate relaxation. "
                           "History rows retain null losses and failed/invalid outcomes. Empty tables mean no projected rows.",
+        "neural_comparison_interpretation": "Speed eligibility uses each family's fastest feasible declared-grid "
+            "complete rollout on the same device, independently of classical headroom. WIN/LOSS/TIE are from TDN's "
+            "perspective; speedup > 1 means TDN is faster. Error counts use finite completed same-h or held-out "
+            "trajectories regardless of tolerance. Checkpoint selection and failures are explicit; comparisons against "
+            "initialization are not evidence of superiority over a trained baseline. No overall neural solver ranking.",
         "columns": COLUMNS, "rows": table_rows}
     atomic_json(outputs / "tables.json", metadata)
     # Prefer actual stdout/stderr and readable summaries; all other text artifacts remain inventoried.
@@ -562,6 +685,15 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         "numerical_failure_records": len(failure_rows), "table_rows": table_rows,
         "artifact_count": len(inventory), "reporting_omission_count": budget.omission_count,
         "science_sources_mutated": False}
+    neural = [row for row in science if row.get("kind") == "neural_solver_comparison"]
+    if neural:
+        for field in ("neural_comparison_count", "neural_eligible_comparison_count", "neural_speed_advantage_count",
+                      "neural_trained_baseline_eligible_comparison_count", "neural_trained_baseline_speed_advantage_count",
+                      "neural_baseline_initialization_comparison_count", "neural_baseline_training_failure_comparison_count"):
+            results[field] = sum(row[field] for row in neural)
+        for field, eligibility in (("neural_speed_advantage_observed", "neural_eligible_comparison_count"),
+                ("neural_trained_baseline_speed_advantage_observed", "neural_trained_baseline_eligible_comparison_count")):
+            results[field] = any(row[field] is True for row in neural) if results[eligibility] else None
     if projection.tables["gates"]:
         results["gate_outcomes"] = {
             "passed": sum(row.get("passed") is True for row in projection.tables["gates"]),

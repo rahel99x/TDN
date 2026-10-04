@@ -8,6 +8,8 @@ from __future__ import annotations
 RESEARCH_FAMILIES = ("confluent_decay", "fixed_decay_r", "fixed_decay", "fixed_undamped",
                      "reaction_clock", "reaction_additive", "transport", "temporal_mlp")
 OPTIONAL_FAMILIES = ("reaction_hybrid", "reaction_polynomial")
+NEURAL_BASELINE_FAMILIES = ("generic_mlp", "residual_cnn", "unet", "fno",
+                            "residual_cnn_split", "unet_split", "fno_split")
 CLASSICAL_FAMILIES = ("split", "richardson_split", "e3_anchor")
 
 
@@ -21,7 +23,7 @@ def build_research_model(family: str, *, ndim: int = 2, width: int = 16,
     this is stricter than the historical per-parent teacher-informed oracle.
     """
     # Keep protocol/config inspection on login nodes free of scientific imports.
-    from .adapters import ExistingTemporalTDN, RichardsonStep, SplitStep
+    from .adapters import ExistingGenericTDN, ExistingTemporalTDN, RichardsonStep, SplitStep
     from .confluent import ConfluentTDN, FixedDecayTDN
     from .reaction import (AdditiveClockTDN, HybridReactionTDN,
                            PolynomialClockTDN, ReactionClockTDN)
@@ -44,6 +46,13 @@ def build_research_model(family: str, *, ndim: int = 2, width: int = 16,
         return TransportTDN(**common)
     if family == "temporal_mlp":
         return ExistingTemporalTDN(ndim=ndim, t_ref=t_ref, U_ref=U_ref)
+    if family == "generic_mlp":
+        return ExistingGenericTDN(ndim=ndim, t_ref=t_ref, U_ref=U_ref)
+    if family in NEURAL_BASELINE_FAMILIES:
+        from .neural_baselines import ResidualCNN, PeriodicUNet, FourierNeuralOperator
+        name = family.removesuffix("_split")
+        constructor = {"residual_cnn": ResidualCNN, "unet": PeriodicUNet, "fno": FourierNeuralOperator}[name]
+        return constructor(mode="hybrid" if family.endswith("_split") else "direct", **common)
     if family == "split":
         return SplitStep()
     if family == "richardson_split":
@@ -54,4 +63,4 @@ def build_research_model(family: str, *, ndim: int = 2, width: int = 16,
 
 
 __all__ = ["build_research_model", "RESEARCH_FAMILIES", "OPTIONAL_FAMILIES",
-           "CLASSICAL_FAMILIES"]
+           "NEURAL_BASELINE_FAMILIES", "CLASSICAL_FAMILIES"]

@@ -49,6 +49,7 @@ def main(argv=None):
         sub = commands.add_parser(name)
         sub.add_argument("--config", type=Path, default=ROOT / "configs/research.yaml")
         sub.add_argument("--run-dir", type=Path, required=True)
+        sub.add_argument("--expected-suite", choices=("architecture", "neural-benchmarks"))
         sub.add_argument("--device", choices=("cpu", "cuda"), default="cpu" if name == "run" else "cuda")
         if name == "run":
             sub.add_argument("--smoke", action="store_true")
@@ -66,7 +67,7 @@ def main(argv=None):
         from tdn.runtime.preflight import execution_mode, verify_runtime
         configure_storage()
         verify_runtime("cpu", "research")
-        from tdn.research.protocol import digest, file_digest, make_protocol, readable_summary, validate_config, verify_artifacts
+        from tdn.research.protocol import benchmark_suite, digest, file_digest, make_protocol, readable_summary, validate_config, verify_artifacts
         import yaml
         config_path = contained_path(args.config)
         raw_config = yaml.safe_load(config_path.read_text())
@@ -85,8 +86,16 @@ def main(argv=None):
             source_summary = json.loads((source_run / "summary.json").read_text())
             if source_summary.get("status") != "COMPLETED" or source_summary.get("device") != "cpu":
                 raise ValueError("Benchmark requires a completed CPU research source")
+            if benchmark_suite(config) == "neural-benchmarks":
+                trained_roles = {row.get("benchmark_role") for row in source_summary.get("training", [])
+                    if row.get("status") == "COMPLETED" and row.get("selected_parameters_changed") is True
+                    and isinstance(row.get("selected_step"), int) and row["selected_step"] > 0}
+                if not {"tdn", "neural_baseline"} <= trained_roles:
+                    raise ValueError("Neural GPU timing requires trained validation-selected checkpoints on both sides")
         else:
             config = validate_config(raw_config, smoke=args.smoke)
+        if args.expected_suite is not None and benchmark_suite(config) != args.expected_suite:
+            raise ValueError("Configuration suite differs from the submitted workflow; use its matching launcher")
         import torch
         from tdn.runtime.metadata import software_metadata, write_json
         from tdn.runtime.precision import reference_precision
@@ -107,6 +116,7 @@ def main(argv=None):
         write_json(run_dir / "protocol.json", protocol)
         from tdn.reporting import attach_report, emit
         tower_parameters = {"action": args.action, "device": args.device, "smoke": protocol["smoke"],
+                            "benchmark_suite": benchmark_suite(config),
                             "config_sha256": digest(config), "protocol_version": protocol["version"],
                             "source_tree_sha256": software["source_tree_sha256"],
                             "parent_plan_sha256": digest(protocol["parents"])}
@@ -118,7 +128,7 @@ def main(argv=None):
             metadata={"source_tree_sha256": software["source_tree_sha256"], "protocol_sha256": digest(protocol)})
         os.environ["TDN_TOWER_DIR"] = str(tower_report)
         emit({"started": 1}, phase=f"research-{args.action}")
-        if source_run is not None and not source_summary["headroom"]["passed"]:
+        if source_run is not None and benchmark_suite(config) != "neural-benchmarks" and not source_summary["headroom"]["passed"]:
             result = {"status": "SKIPPED", "actually_ran": False, "device": "cuda",
                       "reason": "CPU classical headroom screen did not pass; no GPU numerical work performed",
                       "source_run": str(source_run)}
@@ -148,6 +158,10 @@ def main(argv=None):
         stage.update(status="COMPLETED", elapsed_seconds=time.monotonic() - start)
         write_json(run_dir / "stage.json", stage)
         report = readable_summary(result)
+        neural_path = run_dir / "neural-comparisons.json"
+        if neural_path.is_file():
+            from tdn.research.neural_comparison import readable_neural_summary
+            report += readable_neural_summary(json.loads(neural_path.read_text()))
         (run_dir / "summary.txt").write_text(report)
         write_manifest(run_dir, protocol, software, file_digest(config_path))
         print(report, end="")

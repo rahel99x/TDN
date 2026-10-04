@@ -356,6 +356,7 @@ def begin_workflow_report(workflow, phase, *, research=False, software=None):
         parameters["software_sha256"] = digest(software_record(workflow))
     if research:
         parameters["smoke"] = workflow["smoke"]
+        parameters["benchmark_suite"] = workflow.get("benchmark_suite", "architecture")
         if workflow.get("source_manifest_sha256"):
             parameters["input_manifest_sha256"] = workflow["source_manifest_sha256"]
     else:
@@ -364,7 +365,9 @@ def begin_workflow_report(workflow, phase, *, research=False, software=None):
         if manifest.is_file():
             parameters["input_manifest_sha256"] = digest(manifest)
     kind = "research" if research else "carc"
-    return api.begin_report(base, name=f"TDN/{kind}/{parameters.get('profile', 'smoke' if parameters.get('smoke') else 'default')}/{phase}",
+    label = ("neural-benchmarks" if research and parameters["benchmark_suite"] == "neural-benchmarks"
+             else parameters.get("profile", "smoke" if parameters.get("smoke") else "default"))
+    return api.begin_report(base, name=f"TDN/{kind}/{label}/{phase}",
                             script=f"scripts/{kind}_{phase}.sbatch", parameters=parameters,
                             resources=resources, job_id=job, report_parent=base / "tower",
                             logs=[{"id": "scheduler.stdout", "path": str(base / "logs" / f"{phase}-{job}.out"),

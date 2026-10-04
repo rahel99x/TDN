@@ -1,0 +1,4453 @@
+{
+  "category": "newly_measured_result",
+  "scope": "Initial matched neural architecture screen on cloud CPU; no CARC or A100 execution.",
+  "command": "bash scripts/neural_benchmarks_local.sh --run-dir runs/neural-benchmark-validation",
+  "actually_ran": true,
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "source_tree_sha256": "11ee195a61f193ca2cb03538891fdbaa5bd5e646dfdd3284f1671420ae4cedca",
+    "git_commit": "40dbfc3e1a3cc4884dbc293eeaf5c2f43073ac40",
+    "tracked_or_untracked_changes": true
+  },
+  "execution_mode": "local-cpu",
+  "device": "cpu",
+  "precision": {
+    "model": "float32",
+    "reference": "float64",
+    "tf32": false
+  },
+  "thread_counts": {
+    "intraop": 1,
+    "interop": 1
+  },
+  "elapsed_seconds": 118.95041082100943,
+  "protocol_sha256": "04cf5aa6738a6c9c829cf256c7ba0d990c0f8e29d322436cfe592032d6bc762b",
+  "config_sha256": "e1d7888357a6faa4364a3f2e44d7107a5d3995309ea868ea66f64541fe754330",
+  "config": {
+    "protocol_version": 1,
+    "grid": [
+      32,
+      32
+    ],
+    "max_steps": 96,
+    "width": 16,
+    "learning_rate": 0.001,
+    "validation_every": 8,
+    "max_seconds": 1200,
+    "max_finest_substeps": 4096,
+    "families": [
+      "confluent_decay",
+      "fixed_decay",
+      "fixed_decay_r",
+      "fixed_undamped",
+      "reaction_clock",
+      "reaction_additive",
+      "transport",
+      "temporal_mlp",
+      "generic_mlp",
+      "residual_cnn",
+      "unet",
+      "fno",
+      "residual_cnn_split",
+      "unet_split",
+      "fno_split"
+    ],
+    "tolerance": 0.002,
+    "train_horizons": [
+      0.02,
+      0.08,
+      0.16
+    ],
+    "heldout_horizons": [
+      0.03,
+      0.11
+    ],
+    "rollout_time": 0.32,
+    "benchmark_steps": [
+      0.04,
+      0.08,
+      0.16,
+      0.32
+    ],
+    "rollout_weight": 0.5,
+    "timing_repeats": 3
+  },
+  "reference_acceptance": {
+    "accepted": 135,
+    "declared": 135,
+    "parents": 27,
+    "maximum_uncertainty": 1.5407583387433966e-07
+  },
+  "training": [
+    {
+      "family": "confluent_decay",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 277,
+      "benchmark_role": "tdn",
+      "training_seconds": 2.679268535983283,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "fixed_decay",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 276,
+      "benchmark_role": "tdn",
+      "training_seconds": 1.5108945189858787,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "fixed_decay_r",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 276,
+      "benchmark_role": "tdn",
+      "training_seconds": 1.5278884590079542,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "fixed_undamped",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 276,
+      "benchmark_role": "tdn",
+      "training_seconds": 1.553399897995405,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "reaction_clock",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 88,
+      "parameter_count": 242,
+      "benchmark_role": "tdn",
+      "training_seconds": 1.4422062649973668,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "reaction_additive",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 80,
+      "parameter_count": 242,
+      "benchmark_role": "tdn",
+      "training_seconds": 1.3543187959876377,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "transport",
+      "status": "NUMERICAL_FAILURE",
+      "steps": 96,
+      "selected_step": null,
+      "parameter_count": 295,
+      "benchmark_role": "tdn",
+      "training_seconds": 1.2892727899888996,
+      "learning_rate": 0.001,
+      "error": "No checkpoint had admissible finite validation trajectories"
+    },
+    {
+      "family": "temporal_mlp",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 8,
+      "parameter_count": 1736,
+      "benchmark_role": "tdn",
+      "training_seconds": 1.3689853700052481,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "generic_mlp",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 8,
+      "parameter_count": 1537,
+      "benchmark_role": "neural_baseline",
+      "training_seconds": 1.076594031008426,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "residual_cnn",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 14161,
+      "benchmark_role": "neural_baseline",
+      "training_seconds": 2.521769573999336,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "unet",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 88,
+      "parameter_count": 126913,
+      "benchmark_role": "neural_baseline",
+      "training_seconds": 3.654604470997583,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "fno",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 67137,
+      "benchmark_role": "neural_baseline",
+      "training_seconds": 2.869101796008181,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "residual_cnn_split",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 14161,
+      "benchmark_role": "neural_baseline",
+      "training_seconds": 2.9809188220242504,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "unet_split",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 80,
+      "parameter_count": 126913,
+      "benchmark_role": "neural_baseline",
+      "training_seconds": 4.176232547004474,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "fno_split",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 67137,
+      "benchmark_role": "neural_baseline",
+      "training_seconds": 3.2293279840087052,
+      "learning_rate": 0.001,
+      "selected_parameters_changed": true
+    }
+  ],
+  "feasible_diagnostic_parent_counts": {
+    "confluent_decay": 7,
+    "fixed_decay": 7,
+    "fixed_decay_r": 7,
+    "fixed_undamped": 7,
+    "reaction_clock": 9,
+    "reaction_additive": 5,
+    "transport": 0,
+    "temporal_mlp": 7,
+    "generic_mlp": 7,
+    "residual_cnn": 0,
+    "unet": 0,
+    "fno": 0,
+    "residual_cnn_split": 8,
+    "unet_split": 8,
+    "fno_split": 7
+  },
+  "neural_summary": {
+    "comparison_file": "neural-comparisons.json",
+    "baseline_families": [
+      "generic_mlp",
+      "residual_cnn",
+      "unet",
+      "fno",
+      "residual_cnn_split",
+      "unet_split",
+      "fno_split"
+    ],
+    "comparison_count": 504,
+    "eligible_comparison_count": 190,
+    "faster_than_neural_baseline_count": 132,
+    "twenty_percent_faster_than_neural_baseline_count": 109,
+    "scope": "matched tolerance per-parent development frontier; training selection status retained"
+  },
+  "neural_aggregates": [
+    {
+      "tdn_family": "confluent_decay",
+      "baseline_family": "generic_mlp",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 0,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "confluent_decay",
+      "baseline_family": "residual_cnn",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "confluent_decay",
+      "baseline_family": "unet",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "confluent_decay",
+      "baseline_family": "fno",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "confluent_decay",
+      "baseline_family": "residual_cnn_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 1,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 1,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 1,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 1,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "confluent_decay",
+      "baseline_family": "unet_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 7,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "confluent_decay",
+      "baseline_family": "fno_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 5,
+        "losses": 2,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay",
+      "baseline_family": "generic_mlp",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 18,
+        "losses": 18,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 18,
+        "losses": 18,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 15,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 15,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 15,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 15,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay",
+      "baseline_family": "residual_cnn",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay",
+      "baseline_family": "unet",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay",
+      "baseline_family": "fno",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay",
+      "baseline_family": "residual_cnn_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay",
+      "baseline_family": "unet_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 7,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay",
+      "baseline_family": "fno_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 6,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay_r",
+      "baseline_family": "generic_mlp",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 25,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 25,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 17,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 17,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay_r",
+      "baseline_family": "residual_cnn",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay_r",
+      "baseline_family": "unet",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay_r",
+      "baseline_family": "fno",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay_r",
+      "baseline_family": "residual_cnn_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay_r",
+      "baseline_family": "unet_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 7,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_decay_r",
+      "baseline_family": "fno_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 6,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_undamped",
+      "baseline_family": "generic_mlp",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 3,
+        "losses": 4,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 33,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 33,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_undamped",
+      "baseline_family": "residual_cnn",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_undamped",
+      "baseline_family": "unet",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_undamped",
+      "baseline_family": "fno",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_undamped",
+      "baseline_family": "residual_cnn_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_undamped",
+      "baseline_family": "unet_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 7,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "fixed_undamped",
+      "baseline_family": "fno_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 5,
+        "losses": 2,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_clock",
+      "baseline_family": "generic_mlp",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 23,
+        "losses": 13,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 23,
+        "losses": 13,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_clock",
+      "baseline_family": "residual_cnn",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_clock",
+      "baseline_family": "unet",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_clock",
+      "baseline_family": "fno",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_clock",
+      "baseline_family": "residual_cnn_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 8,
+        "wins": 5,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 1,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 19,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 19,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 9,
+        "losses": 9,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 9,
+        "losses": 9,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_clock",
+      "baseline_family": "unet_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 8,
+        "wins": 7,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 1,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 23,
+        "losses": 13,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 23,
+        "losses": 13,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_clock",
+      "baseline_family": "fno_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 7,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 20,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 20,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_additive",
+      "baseline_family": "generic_mlp",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 5,
+        "wins": 4,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 4,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 4
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 14,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 14,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_additive",
+      "baseline_family": "residual_cnn",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 4
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 33,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 33,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_additive",
+      "baseline_family": "unet",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 4
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 32,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 32,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_additive",
+      "baseline_family": "fno",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 4
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 33,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 33,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_additive",
+      "baseline_family": "residual_cnn_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 5,
+        "wins": 3,
+        "losses": 2,
+        "ties": 0,
+        "ineligible": 4,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 4
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 15,
+        "losses": 18,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 15,
+        "losses": 18,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 9,
+        "losses": 9,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 9,
+        "losses": 9,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_additive",
+      "baseline_family": "unet_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 5,
+        "wins": 4,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 4,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 4
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 16,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 16,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "reaction_additive",
+      "baseline_family": "fno_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 5,
+        "wins": 5,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 4,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 4
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 17,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 33,
+        "wins": 17,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 3,
+        "failure_reasons": {
+          "tdn:INVALID_TRAJECTORY": 3
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "transport",
+      "baseline_family": "generic_mlp",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:TRAINING_FAILURE": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      }
+    },
+    {
+      "tdn_family": "transport",
+      "baseline_family": "residual_cnn",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:TRAINING_FAILURE": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      }
+    },
+    {
+      "tdn_family": "transport",
+      "baseline_family": "unet",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:TRAINING_FAILURE": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      }
+    },
+    {
+      "tdn_family": "transport",
+      "baseline_family": "fno",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:TRAINING_FAILURE": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      }
+    },
+    {
+      "tdn_family": "transport",
+      "baseline_family": "residual_cnn_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:TRAINING_FAILURE": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      }
+    },
+    {
+      "tdn_family": "transport",
+      "baseline_family": "unet_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:TRAINING_FAILURE": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      }
+    },
+    {
+      "tdn_family": "transport",
+      "baseline_family": "fno_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:TRAINING_FAILURE": 9
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 36,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 36
+        }
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 18,
+        "failure_reasons": {
+          "tdn:MISSING_RESULT": 18
+        }
+      }
+    },
+    {
+      "tdn_family": "temporal_mlp",
+      "baseline_family": "generic_mlp",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 0,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 10,
+        "losses": 26,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 10,
+        "losses": 26,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 10,
+        "losses": 8,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 10,
+        "losses": 8,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "temporal_mlp",
+      "baseline_family": "residual_cnn",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "temporal_mlp",
+      "baseline_family": "unet",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 35,
+        "losses": 1,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "temporal_mlp",
+      "baseline_family": "fno",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 0,
+        "wins": 0,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 9,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 9,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 36,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "temporal_mlp",
+      "baseline_family": "residual_cnn_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 17,
+        "losses": 19,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 1,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 1,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 1,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 1,
+        "losses": 17,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "temporal_mlp",
+      "baseline_family": "unet_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 7,
+        "losses": 0,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 1,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 22,
+        "losses": 14,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "tdn_family": "temporal_mlp",
+      "baseline_family": "fno_split",
+      "baseline_training_selection": "TRAINED_CHECKPOINT",
+      "matched_tolerance_speed": {
+        "cases": 9,
+        "eligible": 7,
+        "wins": 5,
+        "losses": 2,
+        "ties": 0,
+        "ineligible": 2,
+        "failure_reasons": {
+          "baseline:NO_FEASIBLE_ROLLOUT": 2,
+          "tdn:NO_FEASIBLE_ROLLOUT": 2
+        }
+      },
+      "same_h_rollout_rms": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "same_h_rollout_upper_error": {
+        "cases": 36,
+        "eligible": 36,
+        "wins": 14,
+        "losses": 22,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_one_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 2,
+        "losses": 16,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_upper_error": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 3,
+        "losses": 15,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    }
+  ],
+  "classical_summary": {
+    "eligible_comparisons": 79,
+    "twenty_percent_faster_comparisons": 0,
+    "headroom_parent_count": 5
+  },
+  "validation": {
+    "cpu_tests": {
+      "passed": 736,
+      "skipped": 1,
+      "gpu_deselected": 43,
+      "optional_skip": "jsonschema development dependency absent from project venv",
+      "junit_sha256": "eb2ba2db8790110e453838c53ff039ab09ee4d59f0587e219d90a1f4b2fb10a6"
+    },
+    "manifest_files_verified": 38,
+    "tower_native_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+    "tower_native_contract_checks": 16,
+    "tower_schema_objects_validated": 1709,
+    "tower_metrics_records": 1705,
+    "tower_log_entries": 25,
+    "tower_table_rows": {
+      "references": 135,
+      "heldout": 342,
+      "gates": 1,
+      "neural_comparisons": 504,
+      "tests": 0,
+      "neural_accuracy": 392,
+      "frontier": 684,
+      "stages": 1,
+      "training": 210
+    },
+    "reporting_omissions": 0,
+    "actual_a100_execution": false
+  },
+  "artifact_sha256": {
+    "checkpoints/confluent_decay.pt": "b0db75ee2047b0efbf3c094686127bc409aab932460c7ee9c95b01a2619727f4",
+    "checkpoints/fixed_decay.pt": "cded74aa1c710ac0a6cc0d65547d7e13b5c8715c6596f4abde697a62f8f0bef0",
+    "checkpoints/fixed_decay_r.pt": "c6f4c3dc092d6c32c590f6d87c3e4b3a6e5d0049f8ca4a069761f66692064093",
+    "checkpoints/fixed_undamped.pt": "aaea400dc2793bdd2d6b254679d4b5a92ba5f4e445a36cf2bd0f884027c5bbc5",
+    "checkpoints/fno.pt": "00012ba9ca749e727e6588e60bb660e796dee91b7a65b31909581c049443d618",
+    "checkpoints/fno_split.pt": "4d162c012ab6280fae6de8bb2d79915a7f31e9367f6747961ba074adf1872c77",
+    "checkpoints/generic_mlp.pt": "28c943bcb31e5782754294be5be05e2a3fa666222eb6449fc60d4f986babef3d",
+    "checkpoints/reaction_additive.pt": "3f3c0c0faf77b5de4f514e54825516549b2cd78d9ed862ac797bdeae73864cbf",
+    "checkpoints/reaction_clock.pt": "d5be4ef3dd5aefbf0950418db66d19a739a612c0401c9b76a35a24795373834b",
+    "checkpoints/residual_cnn.pt": "ddd6232259edad6b3c0fcb6dfd8431a87f509f356753b5f3827303083b2b1da8",
+    "checkpoints/residual_cnn_split.pt": "2834ed3794f623339b7278f95da476a52ff51aac0f3b91397176beac818bb34e",
+    "checkpoints/temporal_mlp.pt": "4ae14394797930ca1db385c0ada87f297f564f6a8abd2dc3cc0906a586ff0b95",
+    "checkpoints/unet.pt": "15da76889bdca5dbcc49c9d20a1b4cd3bb2ef2e4087391b79e8064093c8bd2e6",
+    "checkpoints/unet_split.pt": "a7d51eb08d8140fbcd49ee67341430ad462790a4d9ed1decc19086255322d305",
+    "dataset.pt": "081138b293c891199e6056832c6923f4ed70d92a90ca5d8b012f9d82981d1c6f",
+    "frontier.json": "adefd564bb3c7f9320c7be4ab76c3967fb4ea98ab6b5743c3480000942eac583",
+    "heldout.json": "0f6083ba08c26500adefc921f113568145860cdc7aea359e7a1bb93f1bbeb4d1",
+    "neural-comparisons.json": "c18e045f1f67e2e59297801180246cae62b3a1b4b3a5a44a98e921ce3776164a",
+    "normalization.json": "2ad1290333f0cf051a987882f759ee4a905ee2ba28117a7b9e2feeda6c88d6b7",
+    "protocol.json": "05564a77de75e5cfb93ee1e8f58b0da5b0fb900216cda44a4e76089ca76aefb2",
+    "references.json": "f45b01e7b9d0d2b6590fdfc12464c9fb292609d09916f164f3587c91dd0082a1",
+    "summary.json": "32ffd3ec8e5548e4faa77c540f9ad7b3fc829860cd6fa086b933892cda863f27",
+    "summary.txt": "b3c97b564a03ebef6ba718079979f17c0660038805ec43dff6738b3764814f7d",
+    "training/confluent_decay.json": "5b0b5d1357afdd95daf5f7ebd9a52df1f4f7747e49a7ae2620d30464839fb730",
+    "training/fixed_decay.json": "5d88380c5d084785b7e0f792eb6018b0d27ef835b2f2e02d10e76443a43a2589",
+    "training/fixed_decay_r.json": "0ba8253d31a57a8a0111996a1fbae5e62c6044b9ac532533b52bc963222d80ce",
+    "training/fixed_undamped.json": "4d0f7791573c8017499bef3e41c599e68b12e43ca034d4f98fd6d33a8f893f4f",
+    "training/fno.json": "e7f4109a2264aa98c9d6929140b54ee06eb046f3a52071e49bdfdca6f7bb132b",
+    "training/fno_split.json": "2ab737ee518508814aa028585a4a7898b21a39716a0c6ed625936c10c82d7ac5",
+    "training/generic_mlp.json": "b38d05f0c10bc7dbd60d34844d891f4d0ef13e72b44ff627ac9911dd9aad6c7f",
+    "training/reaction_additive.json": "b91cd50ce8acca5ca419d0487c1450f2bfee6b7b557d2f5512ee5a2527a4a390",
+    "training/reaction_clock.json": "ffbf0d25007f03ef1a278861c218009ed16392e2e48eb1371cd1330cf8a9c6b8",
+    "training/residual_cnn.json": "73daac86b8c6b4a324cce5aab6d8458bc334b1a274dd1db06238a50e5dc93b10",
+    "training/residual_cnn_split.json": "7e7c9ab2172bda30a980ed2d803bffd3ce890a0bce0ccb74b6e6b8f6def84538",
+    "training/temporal_mlp.json": "177bb566170fdfc851e4fb90166d1c13ee4920bf120aa2ae399624348ed804a6",
+    "training/transport.json": "18d3529b100bd7e1a42def6a235144cf10ce7ca21a73a741a73126d3346caad6",
+    "training/unet.json": "b911b910da83e7a8678cfaf620c785faecce6f6a1cbd505646844ca4017eaf90",
+    "training/unet_split.json": "89552260cd308e945c27be225ff12a1bfb0fc2f34250558432d2e8ad5315d7ba",
+    "manifest.json": "7ee12c606c6e20ae3c734db94ae682bc9b6408ea75c5ccd5745512d180aa559f"
+  },
+  "limitations": [
+    "One initialization seed, nine training parents and at most 96 optimizer updates; no convergence or repeated-seed study.",
+    "Matched data, loss, optimizer updates and checkpoint selection; parameter count, FLOPs and training walltime are not matched.",
+    "Adapted established backbones with physical feature access and explicit output capacity; not published-model reproductions or pretrained SOTA.",
+    "Speed comparisons use a post-hoc diagnostic feasible frontier, not a deployable per-parent step selector.",
+    "Repeated horizons and family comparisons are correlated; counts are descriptive, not significance tests.",
+    "Direct CNN/U-Net/FNO controls had no tolerance-feasible diagnostic rollout in this bounded screen; this does not establish that these architecture families cannot solve the problem.",
+    "All timings are cloud CPU. A100 correctness and cost remain unmeasured for these changes.",
+    "Run generated before commit from modified source, identified by recorded source_tree_sha256; parent git commit is not the implementation commit."
+  ]
+}

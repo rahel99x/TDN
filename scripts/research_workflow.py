@@ -74,6 +74,8 @@ def validate(workflow):
         raise ValueError("Research GPU work requires the GPU partition")
     if not isinstance(workflow.get("smoke"), bool):
         raise ValueError("Malformed smoke flag")
+    if workflow.get("benchmark_suite", "architecture") not in ("architecture", "neural-benchmarks"):
+        raise ValueError("Unknown research benchmark suite")
     if phase == "cpu" and workflow.get("source_workflow") is not None:
         raise ValueError("CPU research cannot consume a benchmark predecessor")
     if phase == "gpu" and not workflow.get("source_workflow"):
@@ -129,7 +131,10 @@ def verify_experiment(workflow, *, require_headroom=False):
             raise ValueError(f"Research artifact is missing or unsafe: {relative}")
         if cw.digest(path) != expected:
             raise ValueError(f"Research artifact changed: {relative}")
-    protocol_digest = hashlib.sha256(json.dumps(cw.read_json(base / "protocol.json"),
+    protocol = cw.read_json(base / "protocol.json")
+    if protocol.get("benchmark_suite", "architecture") != workflow.get("benchmark_suite", "architecture"):
+        raise ValueError("Experiment benchmark suite differs from its submitted workflow")
+    protocol_digest = hashlib.sha256(json.dumps(protocol,
         sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
     if manifest.get("protocol_sha256") != protocol_digest:
         raise ValueError("Research protocol fingerprint differs")
@@ -152,7 +157,15 @@ def completed_source(path):
                 "software_sha256": cw.digest(software_path(workflow))}
     if any(record.get(key) != value for key, value in expected.items()):
         raise ValueError("CPU tests and experiment must have completed with matching fingerprints")
-    verify_experiment(workflow, require_headroom=True)
+    neural = workflow.get("benchmark_suite", "architecture") == "neural-benchmarks"
+    verify_experiment(workflow, require_headroom=not neural)
+    if neural:
+        summary = cw.read_json(Path(workflow["run_dir"]) / "experiment" / "summary.json")
+        trained_roles = {row.get("benchmark_role") for row in summary.get("training", [])
+                         if row.get("status") == "COMPLETED" and row.get("selected_parameters_changed") is True
+                         and isinstance(row.get("selected_step"), int) and row["selected_step"] > 0}
+        if not {"tdn", "neural_baseline"} <= trained_roles:
+            raise ValueError("Neural GPU timing requires a trained validation-selected checkpoint on both sides")
     return workflow
 
 
@@ -171,6 +184,8 @@ def prepare(args):
     if not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+\+cu[0-9]+", torch_version):
         raise ValueError("CARC research requires an exact CUDA Torch version")
     workflow = {"schema_version": 1, "kind": "bounded-research", "run_id": run_id,
+                "benchmark_suite": (source.get("benchmark_suite", "architecture") if source else
+                                    "neural-benchmarks" if args.neural_benchmarks else "architecture"),
                 "root": str(ROOT.resolve()), "run_dir": str(base), "created_at": cw.now(),
                 "phase": phase, "smoke": source["smoke"] if source else args.smoke,
                 "original_config": str(original_config), "config_path": str(base / "config.yaml"),
@@ -204,6 +219,7 @@ def start(args):
     workflow = prepare(args)
     print(f"Research workflow: {workflow['run_id']} ({workflow['phase']})")
     print(f"Run: {workflow['run_dir']}\nConfig: {workflow['original_config']}")
+    print(f"Suite: {workflow.get('benchmark_suite', 'architecture')}")
     print("Scope: bounded development hypotheses; no confirmatory campaign or automatic GPU successor.")
     print(shlex.join(scheduler_args(workflow)))
     if not args.submit or args.dry_run:
@@ -316,13 +332,18 @@ def worker_commands(workflow):
     python = str(cw.inside(ROOT / ".venv" / "bin") / "python")
     base = cw.inside(workflow["run_dir"])
     engine = [python, str(ROOT / "scripts" / "research.py")]
-    common = ["--config", workflow["config_path"], "--run-dir", str(base / "experiment")]
+    common = ["--config", workflow["config_path"], "--run-dir", str(base / "experiment"),
+              "--expected-suite", workflow.get("benchmark_suite", "architecture")]
     if workflow["phase"] == "cpu":
         tests = sorted((ROOT / "tests").glob("test_research_*.py"))
+        launcher_test = ROOT / "tests" / "test_neural_benchmark_scripts.py"
+        if launcher_test.is_file():
+            tests.append(launcher_test)
         if not tests:
             raise ValueError("Focused research tests are missing")
         return [("tests", [python, "-m", "pytest", "-q", "-m", "not gpu", *map(str, tests),
-                           "--basetemp", str(base / "pytest-work"), "-o", f"cache_dir={base / 'pytest-cache'}"]),
+                           "--basetemp", str(base / "pytest-work"), "-o", f"cache_dir={base / 'pytest-cache'}",
+                           "--junitxml", str(base / "cpu-tests.xml")]),
                 ("experiment", engine + ["run", *common, "--device", "cpu"] + (["--smoke"] if workflow["smoke"] else []))]
     source = load(workflow["source_workflow"])
     return [("preflight", [python, str(ROOT / "scripts" / "gpu_preflight.py"), "--output", str(base / "gpu-preflight.json")]),
@@ -476,6 +497,7 @@ def worker(workflow, phase):
 def status(workflow):
     base = cw.inside(workflow["run_dir"])
     print(f"Research workflow {workflow['run_id']} ({workflow['phase']})\nRun: {base}")
+    print(f"Suite: {workflow.get('benchmark_suite', 'architecture')}")
     for entry in cw.read_json(base / "jobs.json"):
         job = entry["job_id"]
         if not JOB_PATTERN.fullmatch(job):
@@ -547,6 +569,8 @@ def parser():
             item.add_argument("source", help="Completed CPU research run ID (or latest)")
         else:
             item.add_argument("--config", type=Path)
+            item.add_argument("--neural-benchmarks", action="store_true",
+                              help="Require matched neural suite; GPU prerequisite is trained checkpoints on both sides")
             item.add_argument("--smoke", action="store_true", help="Tiny integration test; not a scientific comparison")
         item.add_argument("--run-id")
         item.add_argument("--submit", action="store_true")

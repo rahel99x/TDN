@@ -16,6 +16,12 @@ selected planning histories. The integration is project-owned and uses your
 existing Tower installation. Each job/attempt keeps a separate report; original
 scientific results and checkpoint manifests remain intact.
 
+For comparisons against representative neural solvers, use the
+[neural benchmark workflow](docs/NEURAL_BENCHMARKS.md):
+`bash scripts/carc_neural_benchmarks.sh --submit`. It adds a time-conditioned
+MLP and direct/hybrid residual CNN, U-Net and FNO controls, with matched data and
+optimizer updates and separate neural accuracy/cost reports.
+
 For the new architecture hypotheses, use the [research workflow](docs/RESEARCH.md):
 
 ```bash

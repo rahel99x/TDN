@@ -1,5 +1,12 @@
 # Automated architecture hypothesis experiments
 
+For comparisons against a time-conditioned MLP, residual CNN, U-Net and FNO,
+use the [neural benchmark workflow](NEURAL_BENCHMARKS.md):
+`bash scripts/carc_neural_benchmarks.sh --submit`. It retains all TDN controls
+and reports neural accuracy/cost comparisons independently of classical
+headroom. Direct neural steppers and matched split-based corrections are
+reported as separate tracks.
+
 This workflow implements the three research proposals and their paired controls
 in a separate development experiment. It trains real neural encoders on fresh,
 parent-disjoint training states, selects checkpoints using validation states,
