@@ -10,6 +10,26 @@ The native Windows edition supports a standalone Python `.venv`, PowerShell laun
 
 ## Run on CARC
 
+For the new architecture hypotheses, use the [research workflow](docs/RESEARCH.md):
+
+```bash
+cd /home1/aadaniel/projects/TDN
+git pull --ff-only origin main
+bash scripts/carc_research.sh --submit
+bash scripts/carc_research.sh status latest
+bash scripts/carc_research.sh logs latest --lines 200
+bash scripts/carc_research.sh collect latest
+```
+
+This runs focused correctness tests, accepted FP64 references, bounded neural
+training and complete-solve comparisons in one CPU allocation: 4 CPUs, 16 GiB,
+30 minutes, charged to `anakano_81`. Eight learned families include the three
+proposals and matched controls. Training, validation and diagnostic parents are
+disjoint. A separate, headroom-gated A100 benchmark loads the frozen checkpoints;
+it has a 30-minute limit and submits no additional training. See the
+[architecture definitions and known limitations](docs/RESEARCH_ARCHITECTURES.md).
+These development comparisons do not replace the pilot's scientific gates.
+
 For a short CPU-only scientific check, use the new
 [light-test workflow](docs/CARC_LIGHT_TESTS.md):
 

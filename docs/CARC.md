@@ -1,5 +1,12 @@
 # CARC runbook
 
+The [architecture research workflow](RESEARCH.md) runs the three proposed models
+and their controls with `bash scripts/carc_research.sh --submit`. It uses one
+30-minute CPU allocation for correctness tests, reference generation, bounded
+neural training and diagnostic comparisons. GPU timing is a separate gated
+30-minute action. The [architecture document](RESEARCH_ARCHITECTURES.md) records
+the mathematical constraints and unresolved limitations.
+
 For light CPU-only scientific screening in an existing verified venv, use
 `bash scripts/carc_light_tests.sh --submit`, then
 `bash scripts/carc_status.sh`. The [light-test runbook](CARC_LIGHT_TESTS.md)

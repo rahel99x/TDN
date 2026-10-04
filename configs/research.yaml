@@ -1,0 +1,17 @@
+# Bounded development research; GPU benchmarking is a separate, gated action.
+protocol_version: 1
+grid: [32, 32]
+max_steps: 96
+width: 16
+learning_rate: 0.003
+validation_every: 8
+max_seconds: 1200
+max_finest_substeps: 4096
+families: [confluent_decay, fixed_decay, fixed_decay_r, fixed_undamped, reaction_clock, reaction_additive, transport, temporal_mlp]
+tolerance: 0.002
+train_horizons: [0.02, 0.08, 0.16]
+heldout_horizons: [0.03, 0.11]
+rollout_time: 0.32
+benchmark_steps: [0.04, 0.08, 0.16, 0.32]
+rollout_weight: 0.5
+timing_repeats: 3

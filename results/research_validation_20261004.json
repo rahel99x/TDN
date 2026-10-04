@@ -1,0 +1,878 @@
+{
+  "category": "newly_measured_result",
+  "date_utc": "2026-10-04",
+  "execution": "cloud CPU in project Python venv; no CARC allocation or CUDA execution",
+  "command": "bash scripts/research_local.sh --run-dir runs/research-validation-cloud-final-20261004",
+  "config": "configs/research.yaml",
+  "smoke": false,
+  "software": {
+    "python": "3.12.14",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "source_tree_sha256": "3394782eaff3cebf82316de7234b2454ad88a2d358bc214c4b36451ca3636288",
+  "config_file_sha256": "3bf0c74c7779b941192aa12c15b69e440908b7902f60c53ccc36027182442863",
+  "protocol_sha256": "535e67675343ba46bab7419cfa53e13a18614218eb94a7fb2b6bf6fc844420a2",
+  "manifest_sha256": "d5acdb0d329d59f72ff367067e61f3f672964a437a04457867703b2256193bed",
+  "verified_artifact_count": 23,
+  "status": "COMPLETED",
+  "numerical_elapsed_seconds": 86.19660425698385,
+  "accepted_reference_count": 135,
+  "reference_count": 135,
+  "completed_parent_count": 27,
+  "diagnostic_parent_count": 9,
+  "accuracy_tolerance": 0.002,
+  "headroom": {
+    "passed": true,
+    "case_ids": [
+      "diagnostic-baseline-boundary-33003",
+      "diagnostic-baseline-bounded_random-33002",
+      "diagnostic-intermediate-boundary-33006",
+      "diagnostic-intermediate-bounded_random-33005",
+      "diagnostic-stiff-bounded_random-33008"
+    ],
+    "scope": "fixed coarse-step classical failure; no G0-G6 or pilot authorization"
+  },
+  "trained_family_count": 7,
+  "training": [
+    {
+      "family": "confluent_decay",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 277,
+      "best_validation_loss": 89.87264921775214,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "fixed_decay",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 276,
+      "best_validation_loss": 89.59379977533374,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "fixed_decay_r",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 276,
+      "best_validation_loss": 88.82632066081644,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "fixed_undamped",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 96,
+      "parameter_count": 276,
+      "best_validation_loss": 86.10273579168198,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "reaction_clock",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 32,
+      "parameter_count": 242,
+      "best_validation_loss": 43.69695736324664,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "reaction_additive",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 32,
+      "parameter_count": 242,
+      "best_validation_loss": 54.86821525584229,
+      "selected_parameters_changed": true
+    },
+    {
+      "family": "transport",
+      "status": "NUMERICAL_FAILURE",
+      "steps": 42,
+      "selected_step": null,
+      "parameter_count": 295,
+      "best_validation_loss": null,
+      "error": "Nonfinite neural gradient"
+    },
+    {
+      "family": "temporal_mlp",
+      "status": "COMPLETED",
+      "steps": 96,
+      "selected_step": 0,
+      "parameter_count": 1736,
+      "best_validation_loss": 90.24142585775608,
+      "selected_parameters_changed": false
+    }
+  ],
+  "frontier_row_count": 432,
+  "failed_trajectories": 30,
+  "matched_accuracy_comparison_count": 72,
+  "eligible_comparison_count": 49,
+  "twenty_percent_faster_count": 0,
+  "maximum_eligible_cpu_speedup": 0.7521803203222776,
+  "comparisons": [
+    {
+      "parent_id": "diagnostic-baseline-boundary-33003",
+      "family": "confluent_decay",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.04,
+      "speedup": 0.18223473205202936,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-boundary-33003",
+      "family": "fixed_decay",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.08,
+      "speedup": 0.3815871700311139,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-boundary-33003",
+      "family": "fixed_decay_r",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.08,
+      "speedup": 0.4374844133174811,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-boundary-33003",
+      "family": "fixed_undamped",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.08,
+      "speedup": 0.39475666313668045,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-boundary-33003",
+      "family": "reaction_clock",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.08,
+      "speedup": 0.465226668972622,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-boundary-33003",
+      "family": "reaction_additive",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.08,
+      "speedup": 0.4709048366131321,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-boundary-33003",
+      "family": "transport",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.16,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-baseline-boundary-33003",
+      "family": "temporal_mlp",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.04,
+      "speedup": 0.1662718921097936,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-bounded_random-33002",
+      "family": "confluent_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.22486520108264826,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-bounded_random-33002",
+      "family": "fixed_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.26589273923005385,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-bounded_random-33002",
+      "family": "fixed_decay_r",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.3236151866410292,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-bounded_random-33002",
+      "family": "fixed_undamped",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.33545740898819554,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-bounded_random-33002",
+      "family": "reaction_clock",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.16,
+      "speedup": 0.6178295815203387,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-bounded_random-33002",
+      "family": "reaction_additive",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.37028759362349617,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-bounded_random-33002",
+      "family": "transport",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-baseline-bounded_random-33002",
+      "family": "temporal_mlp",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.2161710697820708,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-mixed_frequency-33001",
+      "family": "confluent_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.32,
+      "speedup": 0.25699013341087723,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-mixed_frequency-33001",
+      "family": "fixed_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.16,
+      "speedup": 0.1370773874143512,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-mixed_frequency-33001",
+      "family": "fixed_decay_r",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.16,
+      "speedup": 0.08624891912687993,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-mixed_frequency-33001",
+      "family": "fixed_undamped",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.16,
+      "speedup": 0.135455469021244,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-mixed_frequency-33001",
+      "family": "reaction_clock",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.16,
+      "speedup": 0.16020449793750816,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-mixed_frequency-33001",
+      "family": "reaction_additive",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.16,
+      "speedup": 0.17948051863837372,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-baseline-mixed_frequency-33001",
+      "family": "transport",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-baseline-mixed_frequency-33001",
+      "family": "temporal_mlp",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.32,
+      "speedup": 0.24899852812931494,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-boundary-33006",
+      "family": "confluent_decay",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.08,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-boundary-33006",
+      "family": "fixed_decay",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.08,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-boundary-33006",
+      "family": "fixed_decay_r",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.08,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-boundary-33006",
+      "family": "fixed_undamped",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.08,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-boundary-33006",
+      "family": "reaction_clock",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.04,
+      "speedup": 0.36488336646040015,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-boundary-33006",
+      "family": "reaction_additive",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.08,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-boundary-33006",
+      "family": "transport",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.08,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-boundary-33006",
+      "family": "temporal_mlp",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.08,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-bounded_random-33005",
+      "family": "confluent_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.04,
+      "best_learned_h": 0.04,
+      "speedup": 0.23277335700234675,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-bounded_random-33005",
+      "family": "fixed_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.04,
+      "best_learned_h": 0.04,
+      "speedup": 0.2840210629006587,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-bounded_random-33005",
+      "family": "fixed_decay_r",
+      "best_classical_family": "split",
+      "best_classical_h": 0.04,
+      "best_learned_h": 0.04,
+      "speedup": 0.28535585477330755,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-bounded_random-33005",
+      "family": "fixed_undamped",
+      "best_classical_family": "split",
+      "best_classical_h": 0.04,
+      "best_learned_h": 0.04,
+      "speedup": 0.31754993291968586,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-bounded_random-33005",
+      "family": "reaction_clock",
+      "best_classical_family": "split",
+      "best_classical_h": 0.04,
+      "best_learned_h": 0.08,
+      "speedup": 0.6726087802990574,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-bounded_random-33005",
+      "family": "reaction_additive",
+      "best_classical_family": "split",
+      "best_classical_h": 0.04,
+      "best_learned_h": 0.08,
+      "speedup": 0.7521803203222776,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-bounded_random-33005",
+      "family": "transport",
+      "best_classical_family": "split",
+      "best_classical_h": 0.04,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-bounded_random-33005",
+      "family": "temporal_mlp",
+      "best_classical_family": "split",
+      "best_classical_h": 0.04,
+      "best_learned_h": 0.04,
+      "speedup": 0.2395122028315318,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-mixed_frequency-33004",
+      "family": "confluent_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.16,
+      "speedup": 0.2841418502516036,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-mixed_frequency-33004",
+      "family": "fixed_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.16,
+      "speedup": 0.32495397569827617,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-mixed_frequency-33004",
+      "family": "fixed_decay_r",
+      "best_classical_family": "split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.32,
+      "speedup": 0.6406028112186539,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-mixed_frequency-33004",
+      "family": "fixed_undamped",
+      "best_classical_family": "split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.16,
+      "speedup": 0.27617230880804683,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-mixed_frequency-33004",
+      "family": "reaction_clock",
+      "best_classical_family": "split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.04,
+      "speedup": 0.08882914332145771,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-intermediate-mixed_frequency-33004",
+      "family": "reaction_additive",
+      "best_classical_family": "split",
+      "best_classical_h": 0.16,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-mixed_frequency-33004",
+      "family": "transport",
+      "best_classical_family": "split",
+      "best_classical_h": 0.16,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-intermediate-mixed_frequency-33004",
+      "family": "temporal_mlp",
+      "best_classical_family": "split",
+      "best_classical_h": 0.16,
+      "best_learned_h": 0.16,
+      "speedup": 0.22400686147474283,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-boundary-33009",
+      "family": "confluent_decay",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-boundary-33009",
+      "family": "fixed_decay",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-boundary-33009",
+      "family": "fixed_decay_r",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-boundary-33009",
+      "family": "fixed_undamped",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-boundary-33009",
+      "family": "reaction_clock",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.08,
+      "speedup": 0.22793515511730064,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-boundary-33009",
+      "family": "reaction_additive",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-boundary-33009",
+      "family": "transport",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-boundary-33009",
+      "family": "temporal_mlp",
+      "best_classical_family": "richardson_split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-bounded_random-33008",
+      "family": "confluent_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.19096643085573467,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-bounded_random-33008",
+      "family": "fixed_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.28991029414365,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-bounded_random-33008",
+      "family": "fixed_decay_r",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.23215496019597298,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-bounded_random-33008",
+      "family": "fixed_undamped",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.16,
+      "speedup": 0.5202986314335829,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-bounded_random-33008",
+      "family": "reaction_clock",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.2871474834459139,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-bounded_random-33008",
+      "family": "reaction_additive",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.39271652399431384,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-bounded_random-33008",
+      "family": "transport",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-bounded_random-33008",
+      "family": "temporal_mlp",
+      "best_classical_family": "split",
+      "best_classical_h": 0.08,
+      "best_learned_h": 0.08,
+      "speedup": 0.23058519716670176,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-mixed_frequency-33007",
+      "family": "confluent_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.32,
+      "speedup": 0.22789716592994494,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-mixed_frequency-33007",
+      "family": "fixed_decay",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.32,
+      "speedup": 0.21787561787584825,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-mixed_frequency-33007",
+      "family": "fixed_decay_r",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.32,
+      "speedup": 0.27240961615746123,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-mixed_frequency-33007",
+      "family": "fixed_undamped",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.16,
+      "speedup": 0.12291411659812934,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-mixed_frequency-33007",
+      "family": "reaction_clock",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.32,
+      "speedup": 0.3237688072981974,
+      "twenty_percent_faster": false,
+      "eligible": true
+    },
+    {
+      "parent_id": "diagnostic-stiff-mixed_frequency-33007",
+      "family": "reaction_additive",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-mixed_frequency-33007",
+      "family": "transport",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": null,
+      "speedup": null,
+      "twenty_percent_faster": false,
+      "eligible": false
+    },
+    {
+      "parent_id": "diagnostic-stiff-mixed_frequency-33007",
+      "family": "temporal_mlp",
+      "best_classical_family": "split",
+      "best_classical_h": 0.32,
+      "best_learned_h": 0.32,
+      "speedup": 0.17504587284205508,
+      "twenty_percent_faster": false,
+      "eligible": true
+    }
+  ],
+  "interpretation": "No CPU speed advantage in this bounded 96-step development run. Transport failed with nonfinite gradients; temporal_mlp selected initialization. These are retained limitations, not successful learned improvements. No claim of converged performance, statistical superiority, novelty, or GPU performance.",
+  "scope": "bounded development hypotheses; neither G0-G6 authorization nor confirmatory evidence",
+  "checks": [
+    {
+      "command": ".venv/bin/python -m pytest -q -m 'not gpu' --basetemp=.runtime/pytest-complete-research-final",
+      "passed": 496,
+      "deselected": 19,
+      "note": "Full CPU regression suite before the final readable-report helper and expanded CUDA-only test matrix."
+    },
+    {
+      "command": ".venv/bin/python -m pytest -q -m 'not gpu' tests/test_research_*.py --basetemp=.runtime/pytest-research-final-followup",
+      "passed": 147,
+      "deselected": 21,
+      "note": "Research suite after expanding the CUDA parity matrix; before the final readable-report helper."
+    },
+    {
+      "command": ".venv/bin/python -m pytest -q tests/test_research_cli.py -k 'not actual_neural_smoke' --basetemp=.runtime/pytest-research-report-final",
+      "passed": 5,
+      "deselected": 1,
+      "note": "Final report, failure retention and entry-point checks. Final full numerical workflow separately executed above."
+    },
+    {
+      "command": "bash -n scripts/carc_research.sh scripts/research_cpu.sbatch scripts/research_gpu.sbatch scripts/research_worker.sh scripts/research_local.sh",
+      "result": "passed"
+    },
+    {
+      "command": "bash scripts/carc_research.sh --dry-run",
+      "result": "passed; no job submitted"
+    },
+    {
+      "check": "verify_artifacts(final_run, source_tree_sha256=current_source_hash)",
+      "result": "passed; all 23 sealed files match current scientific source"
+    },
+    {
+      "check": "Actual CUDA and CARC scheduler execution",
+      "result": "not performed in this cloud CPU environment"
+    }
+  ]
+}
