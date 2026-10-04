@@ -18,6 +18,7 @@ import re
 import shlex
 import subprocess
 import sys
+import time
 
 ROOT = Path(__file__).resolve().parents[1]
 CARC_ROOT = Path("/home1/aadaniel/projects/TDN")
@@ -313,6 +314,140 @@ def mark(workflow, phase, stage, status, exit_code, *, recovered=False):
     summary = {"phase": phase, "stage": stage, "status": "COMPLETED" if final else "RUNNING" if status == "COMPLETED" else status,
                "exit_code": exit_code, "updated_at": now()}
     atomic_json(Path(workflow["run_dir"]) / "state" / f"{phase}.json", summary)
+    if os.environ.get("TDN_TOWER_DIR") and not recovered:
+        emit = reporting_api().emit
+        stages = phase_stages(workflow, phase)
+        position = stages.index(stage) + (status == "COMPLETED")
+        emit({"stage_exit_code": exit_code}, phase=f"workflow.{phase}",
+             step=position, completed=position,
+             total=len(stages), unit="stages")
+
+
+def reporting_api():
+    # Allocated setup may run before the editable package or Torch is installed.
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from tdn import reporting
+    return reporting
+
+
+def begin_workflow_report(workflow, phase, *, research=False, software=None):
+    """Create one sidecar attempt after the caller verifies scheduler ownership."""
+    api = reporting_api()
+    base = inside(workflow["run_dir"])
+    job = os.environ["SLURM_JOB_ID"]
+    if not re.fullmatch(r"[1-9][0-9]*", job):
+        raise ValueError("Tower allocation reports require the actual numeric job ID")
+    resource = workflow["resources"][phase]
+    hours, minutes, seconds = map(int, resource["walltime"].split(":"))
+    resources = {"account": ACCOUNT, "partition": resource["partition"],
+                 "nodes": 1, "cpus": resource["cpus"], "gpus": int(phase == "gpu"),
+                 "mem_bytes": resource["mem_gib"] * 1024 ** 3,
+                 "time_seconds": hours * 3600 + minutes * 60 + seconds}
+    if phase == "gpu":
+        resources["gpu_type"] = "a100"
+    parameters = {"source_sha256": workflow["source_sha256"],
+                  "config_sha256": workflow["config_sha256"], "phase": phase,
+                  "execution_mode": "carc"}
+    if software is not None:
+        parameters["software_sha256"] = hashlib.sha256(json.dumps(
+            software, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
+    elif software_record(workflow).is_file():
+        parameters["software_sha256"] = digest(software_record(workflow))
+    if research:
+        parameters["smoke"] = workflow["smoke"]
+        if workflow.get("source_manifest_sha256"):
+            parameters["input_manifest_sha256"] = workflow["source_manifest_sha256"]
+    else:
+        parameters.update(profile=workflow["profile"], action=workflow["action"])
+        manifest = base / "dataset" / "manifest.json"
+        if manifest.is_file():
+            parameters["input_manifest_sha256"] = digest(manifest)
+    kind = "research" if research else "carc"
+    return api.begin_report(base, name=f"TDN/{kind}/{parameters.get('profile', 'smoke' if parameters.get('smoke') else 'default')}/{phase}",
+                            script=f"scripts/{kind}_{phase}.sbatch", parameters=parameters,
+                            resources=resources, job_id=job, report_parent=base / "tower",
+                            logs=[{"id": "scheduler.stdout", "path": str(base / "logs" / f"{phase}-{job}.out"),
+                                   "label": "Slurm stdout", "group": "Scheduler"},
+                                  {"id": "scheduler.stderr", "path": str(base / "logs" / f"{phase}-{job}.err"),
+                                   "label": "Slurm stderr", "group": "Scheduler"}],
+                            metadata={"workflow_id": workflow["run_id"], "phase": phase,
+                                      "resource_source": "verified single-node single-task workflow request",
+                                      "execution_scope": "one actual allocated workflow phase"})
+
+
+def finish_workflow_report(workflow, phase, report_dir, *, state, runtime_seconds, exit_code,
+                           research=False, error=None):
+    api = reporting_api()
+    from tdn.tower_analytics import publish_outputs
+    base = inside(workflow["run_dir"])
+    report_dir = inside(report_dir)
+    if report_dir.parent != base / "tower":
+        raise ValueError("Tower report is not a sidecar of this workflow")
+    inventory = read_json(report_dir / "run.json")
+    if inventory.get("job_id") != os.environ.get("SLURM_JOB_ID"):
+        raise ValueError("Tower report belongs to a different scheduler job")
+    # The bounded adapter excludes Tower sidecars and pytest/cache directories.
+    results = publish_outputs(report_dir, [base])
+    api.finish_report(report_dir, state=state, runtime_seconds=runtime_seconds,
+                      exit_code=exit_code, results=results,
+                      metadata={"workflow_id": workflow["run_id"], "phase": phase,
+                                "execution_scope": "allocated worker elapsed time; excludes pending time",
+                                **({"error": str(error)} if error is not None else {})})
+
+
+def worker_report_begin(workflow, phase):
+    actual_policy(worker=True)
+    if phase not in workflow_phases(workflow):
+        raise ValueError("Unknown workflow phase")
+    allocation = ownership(workflow, phase, os.environ["SLURM_JOB_ID"])
+    if allocation is None or allocation.get("JobState") != "RUNNING":
+        raise ValueError("Tower reporting requires this workflow's running allocation")
+    path = Path(workflow["run_dir"]) / "state" / f"tower-{phase}-{os.environ['SLURM_JOB_ID']}.json"
+    if path.exists():
+        raise ValueError("This allocation already has a Tower attempt; preserve its evidence")
+    started = time.monotonic()
+    report = begin_workflow_report(workflow, phase)
+    atomic_json(path, {"report_dir": str(report), "started_monotonic": started})
+    return report
+
+
+def worker_report_finish(workflow, phase, exit_code, *, interrupted=False):
+    path = Path(workflow["run_dir"]) / "state" / f"tower-{phase}-{os.environ['SLURM_JOB_ID']}.json"
+    evidence = read_json(path)
+    report = inside(os.environ["TDN_TOWER_DIR"])
+    if report != inside(evidence["report_dir"]):
+        raise ValueError("Tower report does not match this allocated worker attempt")
+    state = "INTERRUPTED" if interrupted or exit_code == 75 else "FAILED" if exit_code else "COMPLETED"
+    finish_workflow_report(workflow, phase, report, state=state,
+                           runtime_seconds=max(0., time.monotonic() - evidence["started_monotonic"]),
+                           exit_code=exit_code)
+
+
+def tower_reports_for_job(workflow, job):
+    """Bounded read-only discovery of exact job-bound coordinator sidecars."""
+    from itertools import islice
+    parent = Path(workflow["run_dir"]) / "tower"
+    if parent.is_symlink() or not parent.is_dir():
+        return []
+    candidates = list(islice(parent.iterdir(), 259))
+    if len(candidates) > 258:  # 256 attempts plus the lock and attempt index.
+        return []
+    result = []
+    for path in sorted(candidates):
+        if not path.name.startswith("tdn-") or path.is_symlink() or not path.is_dir():
+            continue
+        inventory = path / "run.json"
+        try:
+            if inventory.is_symlink() or not inventory.is_file() or inventory.stat().st_size > 1024 * 1024:
+                continue
+            entry = read_json(inventory)
+            if (entry.get("schema") == "tower.run/v1" and entry.get("job_id") == job
+                    and entry.get("run_id") == path.name):
+                result.append(inside(path))
+        except (ValueError, OSError, TypeError):
+            continue
+    return result
 
 
 def worker_verify(workflow, phase):
@@ -538,6 +673,8 @@ def status(workflow):
             job = entry["job_id"]
             current_scheduler = scheduler_state(job)
             print(f"{phase} job {job}: {current_scheduler}")
+            for report in tower_reports_for_job(workflow, job):
+                print(f"  TDN_TOWER_DIR={report}")
         for stage in phase_stages(workflow, phase):
             path = stage_record(workflow, phase, stage)
             entry = read_json(path) if path.exists() else {}
@@ -631,7 +768,8 @@ def parser():
         if name == "cancel":
             item.add_argument("--submit", action="store_true")
             item.add_argument("--dry-run", action="store_true")
-    for name in ("worker-verify", "worker-mark", "worker-venv-ready", "worker-stage-complete"):
+    for name in ("worker-verify", "worker-mark", "worker-venv-ready", "worker-stage-complete",
+                 "worker-report-begin", "worker-report-finish"):
         item = commands.add_parser(name)
         item.add_argument("--workflow", "--workflow-path", required=True)
         item.add_argument("--phase", choices=("cpu", "gpu"), required=True)
@@ -640,6 +778,9 @@ def parser():
         if name == "worker-mark":
             item.add_argument("--status", choices=("RUNNING", "COMPLETED", "FAILED", "PAUSED_NEEDS_RESUME"), required=True)
             item.add_argument("--exit-code", type=int, required=True)
+        if name == "worker-report-finish":
+            item.add_argument("--exit-code", type=int, required=True)
+            item.add_argument("--interrupted", action="store_true")
     return result
 
 
@@ -653,7 +794,8 @@ def main(argv=None):
             actual_policy()
             lock = controller_lock()
         if args.command.startswith("worker-"):
-            workflow = load_workflow(args.workflow)
+            # Finish reporting even if a source edit caused the worker failure.
+            workflow = load_workflow(args.workflow, verify=args.command != "worker-report-finish")
             actual_policy(worker=True)
             if args.command == "worker-verify":
                 worker_verify(workflow, args.phase)
@@ -661,6 +803,10 @@ def main(argv=None):
                 mark(workflow, args.phase, args.stage, args.status, args.exit_code)
             elif args.command == "worker-venv-ready":
                 venv_ready(workflow, args.phase)
+            elif args.command == "worker-report-begin":
+                print(worker_report_begin(workflow, args.phase))
+            elif args.command == "worker-report-finish":
+                worker_report_finish(workflow, args.phase, args.exit_code, interrupted=args.interrupted)
             else:
                 return 0 if completed(workflow, args.phase, args.stage) else 1
         elif args.command in ("start", "light", "setup"):

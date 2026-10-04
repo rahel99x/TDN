@@ -13,7 +13,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 EXCLUDED_ROOTS = {".git", ".venv", ".runtime", ".cache", ".local", ".pytest_cache",
-                  "build", "dist", "runs", "logs", "data", "datasets"}
+                  "build", "dist", "runs", "logs", "data", "datasets", "reports"}
 
 
 def excluded(path: Path) -> bool:
@@ -22,6 +22,7 @@ def excluded(path: Path) -> bool:
             any(part.endswith(".egg-info") for part in parts) or
             path.suffix in (".pyc", ".pyo", ".zip", ".gz", ".whl") or
             path.name in ("user.env.sh", ".env") or path.name.startswith(".env.") or
+            (len(parts) > 1 and parts[0] == ".tower" and parts[1] in ("passports", "state")) or
             path.as_posix().startswith("requirements/environment-") or
             (len(parts) > 1 and parts[0] == "results" and
              (parts[1] in ("generated", "test-work") or parts[1].startswith(("dev-", "analysis-agent-")))))

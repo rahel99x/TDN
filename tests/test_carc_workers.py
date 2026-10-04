@@ -38,7 +38,8 @@ def worker_project(tmp_path, monkeypatch):
     (commands / "id").write_text("#!/usr/bin/env bash\nprintf 'aadaniel\\n'\n")
     (commands / "id").chmod(0o755)
     (scripts / "carc_workflow.py").write_text(
-        """import argparse, json, os, signal
+        f"import sys\nsys.path.insert(0, {str(ROOT)!r})\n" +
+        """import argparse, json, os, signal, time
 from pathlib import Path
 p=argparse.ArgumentParser()
 p.add_argument('command')
@@ -47,12 +48,27 @@ p.add_argument('--phase',required=True)
 p.add_argument('--stage')
 p.add_argument('--status')
 p.add_argument('--exit-code',type=int)
+p.add_argument('--interrupted',action='store_true')
 a=p.parse_args()
 root=Path(a.workflow).parent
 calls=root/'calls.json'
 items=json.loads(calls.read_text()) if calls.exists() else []
 items.append(vars(a))
 calls.write_text(json.dumps(items))
+if a.command=='worker-report-begin':
+    from tdn.reporting import begin_report
+    report=begin_report(root, name='TDN/mocked-grouped-worker', script='scripts/carc_worker.sh',
+                        job_id=os.environ['SLURM_JOB_ID'], report_parent=root/'tower',
+                        metadata={'validation_scope':'mocked scheduler unit test'})
+    (root/'tower-start.json').write_text(json.dumps({'started':time.monotonic()}))
+    print(report)
+if a.command=='worker-report-finish':
+    from tdn.reporting import finish_report
+    started=json.loads((root/'tower-start.json').read_text())['started']
+    state='INTERRUPTED' if a.interrupted or a.exit_code==75 else 'FAILED' if a.exit_code else 'COMPLETED'
+    finish_report(Path(os.environ['TDN_TOWER_DIR']), state=state,
+                  runtime_seconds=time.monotonic()-started, exit_code=a.exit_code,
+                  results={'validation_scope':'mocked scheduler unit test'})
 if a.command=='worker-verify' and os.environ.get('MOCK_VERIFY_FAIL')=='1':
     raise SystemExit(2)
 if a.command=='worker-venv-ready':
@@ -142,6 +158,9 @@ def test_cpu_auto_reuses_ready_venv_and_finishes_three_stages(worker_project):
     assert [item[0] for item in executed(base)] == ["cpu-tests", "audit", "generate"]
     assert ("setup", "COMPLETED", 0) in marks(base)
     assert all(item[1:] == ["cpu", "none"] for item in executed(base))
+    summaries = list((base / "tower").glob("tdn-*/summary.json"))
+    assert len(summaries) == 1
+    assert json.loads(summaries[0].read_text())["state"] == "COMPLETED"
 
 
 @pytest.mark.parametrize("mode,initial_ready", [("auto", False), ("always", True)])
@@ -201,6 +220,9 @@ def test_failed_or_paused_train_stops_successors(worker_project, code, status):
     assert [item[0] for item in executed(base)] == ["gpu-tests", "calibrate", "train"]
     assert ("train", status, int(code)) in marks(base)
     assert not any(item[0] in ("evaluate", "benchmark") for item in marks(base))
+    summary = json.loads(next((base / "tower").glob("tdn-*/summary.json")).read_text())
+    assert summary["exit_code"] == int(code)
+    assert summary["state"] == ("INTERRUPTED" if code == "75" else "FAILED")
 
 
 def test_completed_prerequisites_are_preserved_on_checked_resume(worker_project):

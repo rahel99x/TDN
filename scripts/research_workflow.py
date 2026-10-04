@@ -20,6 +20,7 @@ import signal
 import subprocess
 import sys
 import tarfile
+import time
 
 _spec = importlib.util.spec_from_file_location(
     "tdn_research_carc_policy", Path(__file__).with_name("carc_workflow.py"))
@@ -30,6 +31,13 @@ ACCOUNT = cw.ACCOUNT
 ID_PATTERN = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]*\Z")
 JOB_PATTERN = re.compile(r"[1-9][0-9]*\Z")
 RESOURCE = {"cpus": 4, "mem_gib": 16, "walltime": "00:30:00"}
+
+
+class WorkerFailure(ValueError):
+    """Preserve an allocated child's actual failure code through the controller."""
+    def __init__(self, message, exit_code):
+        super().__init__(message)
+        self.exit_code = exit_code
 
 
 def identifier(value):
@@ -299,6 +307,7 @@ def worker_commands(workflow):
 
 
 def worker(workflow, phase):
+    started = time.monotonic()
     software = verify_worker(workflow, phase)
     base = cw.inside(workflow["run_dir"])
     if state_path(workflow).exists() or (base / "experiment").exists():
@@ -311,10 +320,14 @@ def worker(workflow, phase):
     cw.atomic_json(state_path(workflow), record)
     child = None
     stopped = False
+    stop_signal = None
+    report_dir = None
+    inherited_report = os.environ.pop("TDN_TOWER_DIR", None)
 
     def stop(signum, frame):
-        nonlocal stopped
+        nonlocal stopped, stop_signal
         stopped = True
+        stop_signal = signum
         if child is not None and child.poll() is None:
             try:
                 os.killpg(child.pid, signal.SIGTERM)
@@ -323,8 +336,13 @@ def worker(workflow, phase):
 
     prior = {item: signal.signal(item, stop) for item in (signal.SIGTERM, signal.SIGINT, signal.SIGUSR1)}
     code = 1
+    observed_child_code = None
     try:
-        for stage, args in worker_commands(workflow):
+        report_dir = cw.begin_workflow_report(workflow, phase, research=True, software=software)
+        os.environ["TDN_TOWER_DIR"] = str(report_dir)
+        print(f"TDN research: Tower report: {report_dir}", flush=True)
+        commands = worker_commands(workflow)
+        for stage_index, (stage, args) in enumerate(commands):
             if stopped:
                 raise InterruptedError("Stop requested; no successor stage started")
             load(base / "research-workflow.json")
@@ -332,18 +350,26 @@ def worker(workflow, phase):
                 raise ValueError("Software changed while research was running")
             record.update(stage=stage, updated_at=cw.now())
             cw.atomic_json(state_path(workflow), record)
+            cw.reporting_api().emit({}, phase=f"workflow.research.{phase}", step=stage_index,
+                                    completed=stage_index, total=len(commands), unit="stages")
             print(f"TDN research: starting {stage} in job {record['slurm_job_id']} step {record['slurm_step_id']}", flush=True)
             env = os.environ.copy()
+            if stage in ("tests", "gpu-tests"):
+                # Test fixtures exercise reporting themselves; they are separate
+                # attempts and must not append into this production stream.
+                env.pop("TDN_TOWER_DIR", None)
             if stage == "gpu-tests":
                 env["TDN_REQUIRE_GPU_TESTS"] = "1"
             if stopped:
                 raise InterruptedError("Stop requested; no successor stage started")
+            observed_child_code = None
             child = subprocess.Popen(args, cwd=ROOT, env=env, start_new_session=True)
             if stopped and child.poll() is None:
                 os.killpg(child.pid, signal.SIGTERM)
             while True:
                 try:
                     code = child.wait(timeout=5)
+                    observed_child_code = code
                     break
                 except subprocess.TimeoutExpired:
                     if stopped:
@@ -360,18 +386,37 @@ def worker(workflow, phase):
                         any(int(suite.get(key, 0)) for suite in suites for key in ("skipped", "failures", "errors"))):
                     raise ValueError("Actual research GPU tests must execute and pass with no skips")
             print(f"TDN research: completed {stage}", flush=True)
+            cw.reporting_api().emit({"stage_exit_code": code}, phase=f"workflow.research.{phase}",
+                                    step=stage_index + 1, completed=stage_index + 1,
+                                    total=len(commands), unit="stages")
         load(base / "research-workflow.json")
         if software_report(workflow) != software:
             raise ValueError("Software changed while research was running")
         verify_experiment(workflow)
         record.update(status="COMPLETED", exit_code=0, updated_at=cw.now())
         cw.atomic_json(state_path(workflow), record)
+        cw.finish_workflow_report(workflow, phase, report_dir, state="COMPLETED",
+                                  runtime_seconds=time.monotonic() - started, exit_code=0, research=True)
         return 0
     except BaseException as exc:
-        record.update(status="INTERRUPTED" if stopped else "FAILED", exit_code=143 if stopped else max(1, code),
+        if stopped:
+            failure_code = (128 - observed_child_code if observed_child_code < 0 else observed_child_code) if observed_child_code else 128 + stop_signal
+        else:
+            failure_code = 128 - code if code < 0 else max(1, code)
+        interrupted = stopped or code == 75 or isinstance(exc, KeyboardInterrupt)
+        if isinstance(exc, KeyboardInterrupt):
+            failure_code = 130
+        record.update(status="INTERRUPTED" if interrupted else "FAILED", exit_code=failure_code,
                       error=str(exc), updated_at=cw.now())
         cw.atomic_json(state_path(workflow), record)
-        raise
+        if report_dir is not None:
+            try:
+                cw.finish_workflow_report(workflow, phase, report_dir, state=record["status"],
+                                          runtime_seconds=time.monotonic() - started,
+                                          exit_code=failure_code, research=True, error=exc)
+            except Exception as reporting_error:
+                print(f"TDN research: Tower reporting failed: {reporting_error}; original failure retained", file=sys.stderr)
+        raise WorkerFailure(str(exc), failure_code) from exc
     finally:
         if child is not None and child.poll() is None:
             os.killpg(child.pid, signal.SIGTERM)
@@ -382,6 +427,10 @@ def worker(workflow, phase):
                 child.wait()
         for item, handler in prior.items():
             signal.signal(item, handler)
+        if inherited_report is None:
+            os.environ.pop("TDN_TOWER_DIR", None)
+        else:
+            os.environ["TDN_TOWER_DIR"] = inherited_report
 
 
 def status(workflow):
@@ -396,6 +445,8 @@ def status(workflow):
         except FileNotFoundError:
             state = "UNKNOWN (scheduler unavailable in this checkout)"
         print(f"{workflow['phase']} job {job}: {state}")
+        for report in cw.tower_reports_for_job(workflow, job):
+            print(f"  TDN_TOWER_DIR={report}")
     record = cw.read_json(state_path(workflow)) if state_path(workflow).exists() else {}
     print(f"  {record.get('stage', 'worker')}: {record.get('status', 'NOT_STARTED')}")
     summary_path = base / "experiment" / "summary.json"
@@ -492,7 +543,7 @@ def main(argv=None):
                 collect(workflow)
     except (ValueError, OSError, KeyError, TypeError) as exc:
         print(f"TDN research: {exc}", file=sys.stderr)
-        return 2
+        return exc.exit_code if isinstance(exc, WorkerFailure) else 2
     finally:
         if lock is not None:
             lock.close()

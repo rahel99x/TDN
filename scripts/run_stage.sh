@@ -11,6 +11,13 @@ TDN_DATASET="$(tdn_inside "${TDN_DATASET:-$TDN_REPO_ROOT/data/pilot}")"
 export TDN_CONFIG TDN_RUN_DIR TDN_DATASET
 tdn_mkdir "$TDN_RUN_DIR"
 cd "$TDN_REPO_ROOT"
+if [[ -z "${TDN_TOWER_DIR:-}" ]]; then
+    # Metadata/bootstrap reporting uses stdlib Python; scientific stages retain
+    # their verified project venv. Grouped workers already own their report.
+    exec python3 "$TDN_REPO_ROOT/scripts/tower_task.py" \
+        --stage "$TDN_STAGE" --source "$TDN_RUN_DIR" --config "$TDN_CONFIG" -- \
+        bash "$TDN_REPO_ROOT/scripts/run_stage.sh"
+fi
 if [[ "$TDN_STAGE" == driver-audit ]]; then
     [[ "$TDN_DEVICE" == cuda ]] || tdn_die 'Driver audit requires a GPU task'
     exec bash "$TDN_REPO_ROOT/scripts/driver_audit.sh"
@@ -28,19 +35,21 @@ fi
 case "$TDN_STAGE" in
     light-tests)
         pytest_work="$(tdn_inside "$TDN_RUN_DIR/pytest-work")"
-        exec "$python" -m pytest -q tests/test_light_screen.py tests/test_temporal_oracle_screen.py \
+        exec env -u TDN_TOWER_DIR "$python" -m pytest -q tests/test_light_screen.py tests/test_temporal_oracle_screen.py \
             tests/test_light_screen_cli.py tests/test_analysis.py \
-            --basetemp "$pytest_work" ;;
+            --basetemp "$pytest_work" --junitxml "$TDN_RUN_DIR/pytest-results.xml" ;;
     light-screen)
         exec "$python" -u "$TDN_REPO_ROOT/scripts/light_screen.py" \
             --config "$TDN_CONFIG" --run-dir "$TDN_RUN_DIR" ;;
     cpu-tests)
         pytest_work="$(tdn_inside "$TDN_RUN_DIR/pytest-work")"
-        exec "$python" -m pytest -q -m 'not gpu' --basetemp "$pytest_work" ;;
+        exec env -u TDN_TOWER_DIR "$python" -m pytest -q -m 'not gpu' \
+            --basetemp "$pytest_work" --junitxml "$TDN_RUN_DIR/pytest-results.xml" ;;
     gpu-tests)
         export TDN_REQUIRE_GPU_TESTS=1
         pytest_work="$(tdn_inside "$TDN_RUN_DIR/pytest-work")"
-        exec "$python" -m pytest -q -m gpu --basetemp "$pytest_work" ;;
+        exec env -u TDN_TOWER_DIR "$python" -m pytest -q -m gpu \
+            --basetemp "$pytest_work" --junitxml "$TDN_RUN_DIR/pytest-results.xml" ;;
     audit|generate|calibrate|train|evaluate|benchmark) ;;
     *) tdn_die "Unknown stage $TDN_STAGE" ;;
 esac

@@ -1,6 +1,7 @@
 """Executable stages with contained outputs, real exit status and factual reports."""
 from __future__ import annotations
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -9,6 +10,30 @@ import time
 from tdn.config import config_hash, load_config
 from tdn.runtime.storage import configure_storage, contained_path
 from tdn.runtime.metadata import software_metadata, write_json
+
+
+def finalize_tower_report(report, *, source_dirs, state, started, exit_code, metadata=None):
+    """Publish a separate reporting view without changing scientific evidence.
+
+    Return False on a reporting failure so successful science cannot be
+    mistaken for a complete reporting export. Callers retain nonzero exits.
+    """
+    try:
+        from tdn.reporting import finish_report
+        from tdn.tower_analytics import publish_outputs
+        results = publish_outputs(report, source_dirs)
+        terminal = "INTERRUPTED" if state.startswith("PAUSED") else state
+        # A withheld GPU benchmark is a completed decision, not GPU work.
+        if terminal == "SKIPPED":
+            terminal = "COMPLETED"
+        finish_report(report, state=terminal, runtime_seconds=time.monotonic()-started,
+                      exit_code=exit_code, results=results,
+                      metadata={"scientific_status": state, **(metadata or {})})
+        print(f"TDN Tower report: {report}")
+        return True
+    except Exception as error:
+        print(f"TDN Tower reporting failed: {type(error).__name__}: {error}", file=sys.stderr)
+        return False
 
 def parser():
     p=argparse.ArgumentParser(prog="tdn")
@@ -57,7 +82,21 @@ def main(argv=None):
             "actually_ran":True,"scope":"newly measured development run", "device":args.device,
             "software":software_metadata(),"project_root":str(root)}
     write_json(run/"stage.json",status);write_json(run/"config.json",config)
+    tower_report, tower_owned, exit_code = None, False, 1
+    previous_tower = os.environ.get("TDN_TOWER_DIR")
     try:
+        from tdn.reporting import attach_report, emit
+        tower_parameters = {"stage": args.stage, "device": args.device,
+                            "config_sha256": config_hash(config), "experiment": config["experiment"],
+                            "source_tree_sha256": status["software"]["source_tree_sha256"]}
+        if args.stage in ("train", "evaluate", "benchmark", "compare") and (data / "manifest.json").is_file():
+            tower_parameters["dataset_manifest_sha256"] = hashlib.sha256((data / "manifest.json").read_bytes()).hexdigest()
+        tower_report, tower_owned = attach_report(
+            run, name=f"tdn-{args.stage}", script="tdn/cli.py",
+            parameters=tower_parameters,
+            metadata={"source_tree_sha256": status["software"]["source_tree_sha256"]})
+        os.environ["TDN_TOWER_DIR"] = str(tower_report)
+        emit({"started": 1}, phase=args.stage, completed=0, total=1, unit="stages")
         import torch
         torch.set_num_threads(config["runtime"]["intraop_threads"])
         torch.set_num_interop_threads(config["runtime"]["interop_threads"])
@@ -106,8 +145,16 @@ def main(argv=None):
         with (root/"WORK_LOG.md").open("a") as log:
             log.write(f"\n- Executed `{args.stage}`; config `{config_hash(config)}`; commit `{status['software']['git_commit']}`; report `{run.relative_to(root)}/stage.json`; status COMPLETED, {status['elapsed_seconds']:.3f} seconds.\n")
         print(json.dumps({"status":"COMPLETED","stage":args.stage,"report":str(run/"stage.json")},indent=2))
+        exit_code = 0
     except SystemExit as e:
+        exit_code = e.code if isinstance(e.code, int) else 1
         status.update(status="PAUSED_NEEDS_RESUME" if e.code == 75 else "FAILED",elapsed_seconds=time.monotonic()-start)
+        write_json(run/"stage.json",status)
+        raise
+    except KeyboardInterrupt:
+        exit_code = 130
+        status.update(status="INTERRUPTED", error="KeyboardInterrupt",
+                      elapsed_seconds=time.monotonic()-start)
         write_json(run/"stage.json",status)
         raise
     except Exception as e:
@@ -115,6 +162,23 @@ def main(argv=None):
         write_json(run/"stage.json",status)
         print(status["error"],file=sys.stderr)
         return 1
+    finally:
+        try:
+            if tower_owned:
+                sources = [run]
+                if args.stage in ("generate", "train", "evaluate", "benchmark", "compare") and data.is_dir():
+                    sources.append(data)
+                reported = finalize_tower_report(
+                    tower_report, source_dirs=sources, state=status["status"],
+                    started=start, exit_code=exit_code,
+                    metadata={"device": args.device, "actually_ran": status["actually_ran"]})
+                if not reported and exit_code == 0:
+                    return 1
+        finally:
+            if previous_tower is None:
+                os.environ.pop("TDN_TOWER_DIR", None)
+            else:
+                os.environ["TDN_TOWER_DIR"] = previous_tower
     return 0
 
 if __name__ == "__main__": sys.exit(main())

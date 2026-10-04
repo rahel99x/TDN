@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import signal
 import sys
@@ -25,6 +26,8 @@ def main(argv=None):
     stage = None
     run_dir = None
     previous_handlers = {}
+    tower_report, tower_owned, exit_code = None, False, 1
+    previous_tower = os.environ.get("TDN_TOWER_DIR")
     start = time.monotonic()
     try:
         # Storage and allocation checks precede scientific imports or outputs.
@@ -56,6 +59,14 @@ def main(argv=None):
                  "scope": "Bounded CPU scientific screening; no training or pilot authorization"}
         write_json(run_dir / "stage.json", stage)
         write_json(run_dir / "config.json", config)
+        from tdn.reporting import attach_report, emit
+        tower_report, tower_owned = attach_report(
+            run_dir, name="tdn-light-screen", script="scripts/light_screen.py",
+            parameters={"device": "cpu", "config_sha256": config_hash(config),
+                        "source_tree_sha256": stage["software"]["source_tree_sha256"]},
+            metadata={"source_tree_sha256": stage["software"]["source_tree_sha256"]})
+        os.environ["TDN_TOWER_DIR"] = str(tower_report)
+        emit({"started": 1}, phase="light-screen", completed=0, total=6, unit="cases")
         for name in ("SIGUSR1", "SIGTERM"):
             if hasattr(signal, name):
                 signum = getattr(signal, name)
@@ -74,6 +85,7 @@ def main(argv=None):
         print((run_dir / "summary.txt").read_text())
         print(json.dumps({"status": "COMPLETED", "stage": "light-screen",
                           "report": str(run_dir / "summary.json")}, indent=2))
+        exit_code = 0
         return 0
     except (Exception, KeyboardInterrupt) as error:
         if stage is not None:
@@ -81,10 +93,25 @@ def main(argv=None):
                          error=f"{type(error).__name__}: {error}")
             write_json(run_dir / "stage.json", stage)
         print(f"TDN light screen: {type(error).__name__}: {error}", file=sys.stderr)
-        return 130 if isinstance(error, KeyboardInterrupt) else 1
+        exit_code = 130 if isinstance(error, KeyboardInterrupt) else 1
+        return exit_code
     finally:
         for signum, handler in previous_handlers.items():
             signal.signal(signum, handler)
+        try:
+            if tower_owned:
+                from tdn.cli import finalize_tower_report
+                reported = finalize_tower_report(
+                    tower_report, source_dirs=[run_dir], state=stage["status"],
+                    started=start, exit_code=exit_code,
+                    metadata={"device": "cpu", "actually_ran": stage["actually_ran"]})
+                if not reported and exit_code == 0:
+                    return 1
+        finally:
+            if previous_tower is None:
+                os.environ.pop("TDN_TOWER_DIR", None)
+            else:
+                os.environ["TDN_TOWER_DIR"] = previous_tower
 
 
 if __name__ == "__main__":

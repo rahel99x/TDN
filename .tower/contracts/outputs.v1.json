@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "outputs": [
+    {
+      "path": "run.json",
+      "required": true,
+      "format": "json",
+      "max_bytes": 65536,
+      "required_keys": [
+        "schema",
+        "run_id",
+        "experiment_id",
+        "attempt",
+        "state"
+      ]
+    },
+    {
+      "path": "logs.json",
+      "required": true,
+      "format": "json",
+      "max_bytes": 262144,
+      "required_keys": [
+        "schema",
+        "logs"
+      ]
+    },
+    {
+      "path": "summary.json",
+      "required": true,
+      "format": "json",
+      "max_bytes": 262144,
+      "required_keys": [
+        "schema",
+        "id",
+        "name",
+        "state"
+      ]
+    },
+    {
+      "path": "metrics.jsonl",
+      "required": true,
+      "format": "text",
+      "min_bytes": 1,
+      "max_bytes": 4194304
+    },
+    {
+      "path": "outputs/results.json",
+      "required": false,
+      "format": "json",
+      "max_bytes": 1048576
+    },
+    {
+      "path": "outputs/artifacts.json",
+      "required": false,
+      "format": "json",
+      "max_bytes": 1048576
+    },
+    {
+      "path": "outputs/tables.json",
+      "required": false,
+      "format": "json",
+      "max_bytes": 1048576,
+      "required_keys": [
+        "columns",
+        "rows",
+        "units"
+      ]
+    },
+    {
+      "path": "outputs/frontier.csv",
+      "required": false,
+      "format": "csv",
+      "columns": [
+        "source_path",
+        "source_record",
+        "case_id",
+        "parent_id",
+        "split",
+        "family",
+        "h",
+        "sequence",
+        "device",
+        "status",
+        "failed",
+        "feasible",
+        "error",
+        "error_upper",
+        "reference_uncertainty",
+        "wall_seconds_median",
+        "cuda_event_seconds_median",
+        "peak_allocated_bytes",
+        "peak_reserved_bytes",
+        "host_process_peak_rss_bytes",
+        "timing_scope",
+        "reason"
+      ],
+      "min_rows": 0,
+      "max_rows": 10000,
+      "max_bytes": 2097152
+    },
+    {
+      "path": "outputs/training.csv",
+      "required": false,
+      "format": "csv",
+      "columns": [
+        "source_path",
+        "source_record",
+        "record_type",
+        "family",
+        "status",
+        "step",
+        "selected_step",
+        "loss",
+        "training_loss",
+        "validation_loss",
+        "admissible_validation",
+        "selected_parameters_changed",
+        "reason"
+      ],
+      "min_rows": 0,
+      "max_rows": 10000,
+      "max_bytes": 2097152
+    },
+    {
+      "path": "outputs/heldout.csv",
+      "required": false,
+      "format": "csv",
+      "columns": [
+        "source_path",
+        "source_record",
+        "case_id",
+        "parent_id",
+        "family",
+        "h",
+        "device",
+        "status",
+        "one_step_rms",
+        "one_step_upper",
+        "one_step_reference_uncertainty",
+        "two_step_rms",
+        "two_step_upper",
+        "two_step_reference_uncertainty",
+        "heldout_absolute_rms",
+        "heldout_relative_rms_with_noise_floor",
+        "reason"
+      ],
+      "min_rows": 0,
+      "max_rows": 10000,
+      "max_bytes": 2097152
+    },
+    {
+      "path": "outputs/references.csv",
+      "required": false,
+      "format": "csv",
+      "columns": [
+        "source_path",
+        "source_record",
+        "case_id",
+        "parent_id",
+        "role",
+        "h",
+        "accepted",
+        "reason",
+        "uncertainty",
+        "defect_norm",
+        "substeps",
+        "refinement_substeps",
+        "refinement_differences",
+        "observed_order"
+      ],
+      "min_rows": 0,
+      "max_rows": 10000,
+      "max_bytes": 2097152
+    },
+    {
+      "path": "outputs/gates.csv",
+      "required": false,
+      "format": "csv",
+      "columns": [
+        "source_path",
+        "source_record",
+        "case_id",
+        "gate",
+        "passed",
+        "decision",
+        "scope",
+        "reason"
+      ],
+      "min_rows": 0,
+      "max_rows": 10000,
+      "max_bytes": 2097152
+    },
+    {
+      "path": "outputs/stages.csv",
+      "required": false,
+      "format": "csv",
+      "columns": [
+        "source_path",
+        "source_record",
+        "stage",
+        "status",
+        "device",
+        "execution_mode",
+        "actually_ran",
+        "elapsed_seconds",
+        "reason"
+      ],
+      "min_rows": 0,
+      "max_rows": 10000,
+      "max_bytes": 2097152
+    },
+    {
+      "path": "outputs/tests.csv",
+      "required": false,
+      "format": "csv",
+      "columns": [
+        "source_path",
+        "source_record",
+        "suite",
+        "test",
+        "classname",
+        "status",
+        "elapsed_seconds",
+        "reason"
+      ],
+      "min_rows": 0,
+      "max_rows": 10000,
+      "max_bytes": 2097152
+    }
+  ]
+}

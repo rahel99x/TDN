@@ -100,6 +100,13 @@ The smoke's permissive `require_headroom: false` is an existing bounded developm
 
 ## 5. Find reports and checkpoints
 
+Desktop pipeline attempts also publish [Tower-compatible analytics](TOWER.md)
+under `runs/<RunId>/tower/`. Each retry gets a new report directory and retains
+the previous attempt. These files describe actual local measurements; they do
+not invent scheduler allocations. Use the existing Tower separately to inspect
+them, or read the JSON/CSV files directly. Native Windows validation remains a
+separate check from the Linux/cloud reporting tests.
+
 The source directory is the project root. All project caches and temporary files are rooted there, including dependency installation caches. New runs are kept under `runs/<RunId>`; source and historical `results/` records remain available for provenance.
 
 ```powershell

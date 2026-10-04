@@ -11,6 +11,7 @@ import torch
 
 from tdn.numerics import (Equation, Geometry, REFERENCE_METHOD, SPLIT_METHOD,
                           choose_substeps, refined_reference, split_step, weighted_norm)
+from tdn.reporting import emit
 from .dataset import DatasetStore, make_parent_split
 from .provenance import atomic_json, canonical_hash, file_hash, source_provenance
 
@@ -72,6 +73,7 @@ def generate_dataset(config: dict, destination: Path) -> Path:
         if (destination / "COMPLETE.json").exists():
             existing = DatasetStore(destination)
             if existing.manifest["generation_hash"] == generation_hash:
+                emit({"dataset_reused": 1}, phase="generate-references")
                 return destination / "manifest.json"
             raise ValueError("Existing immutable dataset has a different generation configuration")
         raise ValueError("Dataset directory contains incomplete or unrelated work; choose a new destination")
@@ -85,6 +87,9 @@ def generate_dataset(config: dict, destination: Path) -> Path:
     anchors = int(config["data"].get("anchors_per_parent", 1))
     if anchors < 1:
         raise ValueError("At least one anchor per parent is required")
+    declared_anchors = anchors * sum(len(parents[name]) for name in ("train", "validation", "diagnostic"))
+    completed_anchors = 0
+    metric_every = max(1, math.ceil(declared_anchors / 512))
     manifest = {"schema_version": 1, "generation_hash": generation_hash,
                 "generation_configuration": generation_config, "problem": config["problem"],
                 "source_provenance": provenance, "teacher_code_hash": teacher_code_hash, "parents": parents,
@@ -172,6 +177,10 @@ def generate_dataset(config: dict, destination: Path) -> Path:
                                 "anchor_time": anchor_time, "parent_id": parent["parent_id"],
                                 "input_quantization_state_norm": input_quantization_norm,
                                 "references": reference_records, "final_reference": final_record})
+                completed_anchors += 1
+                if completed_anchors == 1 or completed_anchors == declared_anchors or completed_anchors % metric_every == 0:
+                    emit({"accepted_anchor_teachers": completed_anchors}, phase="generate-references",
+                         step=completed_anchors, completed=completed_anchors, total=declared_anchors, unit="anchors")
         entries = {}
         for name, array in arrays.items():
             array.flush()

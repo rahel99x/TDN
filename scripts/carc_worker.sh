@@ -5,13 +5,6 @@ source "$(dirname -- "${BASH_SOURCE[0]}")/common.sh"
 tdn_runtime_policy
 tdn_allocation
 tdn_prepare_env
-# One checkout owns one shared venv. Hold this lock through every child stage
-# so a concurrent CPU installer cannot change software under a GPU phase.
-command -v flock >/dev/null || tdn_die 'CARC grouped workflow requires flock'
-phase_lock_path="$(tdn_inside "$TDN_REPO_ROOT/.cache/carc-phase.lock")"
-exec {phase_lock_fd}>"$phase_lock_path"
-flock --nonblock "$phase_lock_fd" ||
-    tdn_die 'Another CARC phase is using this checkout; wait for it to finish'
 : "${TDN_WORKFLOW:?}" "${TDN_WORKFLOW_ROOT:?}" "${TDN_WORKFLOW_PHASE:?}"
 : "${TDN_CONFIG:?}" "${TDN_DATASET:?}" "${TDN_SETUP_MODE:?}"
 TDN_WORKFLOW_ACTION="${TDN_WORKFLOW_ACTION:-start}"
@@ -53,7 +46,6 @@ cd "$TDN_REPO_ROOT"
 workflow_command() {
     python3 "$controller" "$1" --workflow "$TDN_WORKFLOW" --phase "$TDN_WORKFLOW_PHASE" "${@:2}"
 }
-workflow_command worker-verify
 
 # The coordinator survives Slurm's warning while Python saves at a safe boundary.
 # Traps interrupt Bash wait, so repeat wait while the child is still alive.
@@ -144,7 +136,7 @@ run_stage() {
     fi
 }
 on_exit() {
-    local code=$?
+    local code=$? report_code=0
     trap - EXIT
     if [[ -n "$current_stage" ]]; then
         if [[ -n "$child_pid" ]]; then
@@ -153,9 +145,33 @@ on_exit() {
         fi
         mark_stage "$current_stage" FAILED "$code" || true
     fi
+    if [[ -n "${TDN_TOWER_DIR:-}" ]]; then
+        report_args=(--exit-code "$code")
+        [[ "$stop_requested" == true ]] && report_args+=(--interrupted)
+        workflow_command worker-report-finish "${report_args[@]}" || report_code=$?
+        if [[ "$report_code" != 0 ]]; then
+            printf 'TDN: Tower reporting failed (exit %s); scientific outputs and original failure code are preserved.\n' "$report_code" >&2
+            [[ "$code" != 0 ]] || code="$report_code"
+        fi
+    fi
     exit "$code"
 }
+# Never attach a caller's unrelated report to this allocation.
+unset TDN_TOWER_DIR
+TDN_TOWER_DIR="$(workflow_command worker-report-begin)"
+export TDN_TOWER_DIR
+printf 'TDN: Tower report: %s\n' "$TDN_TOWER_DIR"
 trap on_exit EXIT
+workflow_command worker-verify
+
+# One checkout owns one shared venv. Hold this lock through every child stage
+# so a concurrent CPU installer cannot change software under a GPU phase.
+# Reporting starts first so a rejected lock is retained as an attempted job.
+command -v flock >/dev/null || tdn_die 'CARC grouped workflow requires flock'
+phase_lock_path="$(tdn_inside "$TDN_REPO_ROOT/.cache/carc-phase.lock")"
+exec {phase_lock_fd}>"$phase_lock_path"
+flock --nonblock "$phase_lock_fd" ||
+    tdn_die 'Another CARC phase is using this checkout; wait for it to finish'
 
 train_resume="${TDN_RESUME:-none}"
 if [[ "$train_resume" != none ]]; then train_resume="$(tdn_inside "$train_resume")"; fi

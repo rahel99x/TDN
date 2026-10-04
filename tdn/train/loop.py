@@ -24,6 +24,7 @@ from tdn.models import build_model
 from tdn.numerics import Equation, Geometry, validate_state
 from tdn.runtime.precision import reference_precision
 from tdn.runtime.signal_handling import StopRequest
+from tdn.reporting import emit
 from tdn.models.solver import corrected_step
 from .checkpoint import capture_rng, load_checkpoint, restore_rng, save_checkpoint
 from .model import NormalizedModel
@@ -318,6 +319,9 @@ def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: st
     last_saved = time.monotonic()
     status = "RUNNING"
     last_committed_status = None
+    metric_phase = f"train-{config['model']['family']}"
+    metric_every = max(1, math.ceil(target_steps / 512))
+    next_validation_metric = global_step
 
     def commit(*, best: bool = False):
         nonlocal last_committed_status
@@ -340,6 +344,8 @@ def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: st
         return checkpoint
 
     with StopRequest() as stop:
+        emit({"optimizer_steps": global_step}, phase=metric_phase, step=global_step,
+             completed=global_step, total=max(1, target_steps), unit="optimizer steps")
         while global_step < target_steps:
             optimizer.zero_grad(set_to_none=True)
             loss = 0.0
@@ -359,6 +365,9 @@ def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: st
             global_step += 1
             cursor += batch_parents
             history.append({"step": global_step, "loss": loss})
+            if global_step == 1 or global_step == target_steps or global_step % metric_every == 0:
+                emit({"loss": loss, "optimizer_steps": global_step}, phase=metric_phase, step=global_step,
+                     completed=global_step, total=target_steps, unit="optimizer steps")
             memory_failure = memory.observe(global_step) if global_step == 1 else None
             best = False
             validation_due = global_step % config["training"]["validation_every_steps"] == 0
@@ -366,6 +375,14 @@ def _train_with_data(config: dict, data: DatasetStore, run_dir: Path, device: st
                 model.eval()
                 latest_validation = _validate(model, config, data, geometry, device)
                 model.train()
+                validation_metrics = {"validation_feasible": int(latest_validation["feasible"]),
+                                      "validation_failed_parents": len(latest_validation["failures"])}
+                for key in ("mean_error", "max_error"):
+                    if latest_validation[key] is not None:
+                        validation_metrics[f"validation_{key}"] = latest_validation[key]
+                if global_step >= next_validation_metric or global_step == target_steps:
+                    emit(validation_metrics, phase=f"{metric_phase}-validation", step=global_step)
+                    next_validation_metric = global_step + metric_every
                 if latest_validation["feasible"] and latest_validation["mean_error"] < best_metric:
                     best_metric = latest_validation["mean_error"]
                     best = True

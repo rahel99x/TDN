@@ -184,7 +184,12 @@ def execute(command: list[str], log_path: Path) -> int:
     with log_path.open("a", encoding="utf-8") as log:
         log.write("\nCOMMAND: " + subprocess.list2cmdline(command) + "\n")
         log.flush()
-        with subprocess.Popen(command, cwd=ROOT, env=os.environ.copy(), stdout=subprocess.PIPE,
+        child_env = os.environ.copy()
+        if command[1:3] == ["-m", "pytest"]:
+            # Test fixtures execute unrelated miniature experiments. They must
+            # not write their resets/results into the production attempt.
+            child_env.pop("TDN_TOWER_DIR", None)
+        with subprocess.Popen(command, cwd=ROOT, env=child_env, stdout=subprocess.PIPE,
                               stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace") as proc:
             assert proc.stdout is not None
             try:
@@ -258,9 +263,11 @@ def run(args) -> int:
     for stage in stages:
         stage_dir = inside(base / stage)
         if stage == "cpu-tests":
-            command = [sys.executable, "-m", "pytest", "-q", "-m", "not gpu", "--basetemp", str(stage_dir / "pytest-work")]
+            command = [sys.executable, "-m", "pytest", "-q", "-m", "not gpu", "--basetemp", str(stage_dir / "pytest-work"),
+                       "--junitxml", str(stage_dir / "pytest-results.xml")]
         elif stage == "gpu-tests":
-            command = [sys.executable, "-m", "pytest", "-q", "tests/test_desktop_gpu.py", "-m", "gpu", "--basetemp", str(stage_dir / "pytest-work")]
+            command = [sys.executable, "-m", "pytest", "-q", "tests/test_desktop_gpu.py", "-m", "gpu", "--basetemp", str(stage_dir / "pytest-work"),
+                       "--junitxml", str(stage_dir / "pytest-results.xml")]
         else:
             # Numerical audits and immutable teacher data stay on CPU in both modes.
             device = "cpu" if stage in ("audit", "generate") else args.device
@@ -297,65 +304,114 @@ def run(args) -> int:
                     "device": args.device, "cuda_device": args.cuda_device, "max_steps_budget": args.max_steps,
                     "software": software_snapshot, "hardware": hardware,
                     "stages": {}, "gpu_checks": "PENDING" if args.device == "cuda" else "UNRUN_CPU_MODE"}
-    manifest["status"] = "RUNNING"
-    manifest.pop("error", None)
-    write_json(manifest_path, manifest)
-    for stage in stages:
-        stage_dir = inside(base / stage)
-        previous = manifest["stages"].get(stage, {})
-        def fail_before_stage(message: str) -> None:
-            manifest["status"] = "FAILED"
-            manifest["error"] = message
-            manifest["stages"][stage] = {"status": "FAILED", "error": message,
-                                          "actually_ran": False, "previous_attempt": previous or None}
+    from tdn.reporting import begin_report, emit, finish_report
+    from tdn.tower_analytics import publish_outputs
+    report = begin_report(
+        base, name=f"TDN/desktop/{args.device}", script="scripts/desktop.py",
+        parameters={"config_sha256": config_digest, "source_sha256": source_digest,
+                    "device": args.device, "protocol": "desktop-development-v1"},
+        report_parent=base / "tower",
+        logs=[{"id": f"stage.{stage}", "path": (base / "logs" / f"{stage}.log").as_posix(),
+               "label": f"{stage} transcript", "group": "Desktop stages"} for stage in stages],
+        metadata={"execution_mode": "desktop", "hardware": hardware,
+                  "software": software_snapshot, "resume": bool(args.resume)},
+    )
+    print(f"TDN_TOWER_DIR={report}", flush=True)
+    previous_tower = os.environ.get("TDN_TOWER_DIR")
+    os.environ["TDN_TOWER_DIR"] = str(report)
+    report_start = time.monotonic()
+    outcome, caught = 1, None
+
+    def execute_stages():
+        manifest["status"] = "RUNNING"
+        manifest.pop("error", None)
+        write_json(manifest_path, manifest)
+        for stage in stages:
+            stage_dir = inside(base / stage)
+            previous = manifest["stages"].get(stage, {})
+            def fail_before_stage(message: str) -> None:
+                manifest["status"] = "FAILED"
+                manifest["error"] = message
+                manifest["stages"][stage] = {"status": "FAILED", "error": message,
+                                              "actually_ran": False, "previous_attempt": previous or None}
+                write_json(manifest_path, manifest)
+                raise ValueError(message)
+            if args.resume and previous.get("status") == "COMPLETED":
+                if stage not in ("cpu-tests", "gpu-tests") and not (stage_dir / "COMPLETED").is_file():
+                    fail_before_stage(f"Completed {stage} stage marker is missing; preserve the inconsistent run")
+                print(f"Already completed: {stage}")
+                continue
+            command = commands[stage].copy()
+            if stage == "train" and args.resume:
+                last = inside(stage_dir / "checkpoints" / "last.pt")
+                if last.is_file():
+                    command += ["--resume", str(last)]
+                elif previous.get("status") in ("PAUSED_NEEDS_RESUME", "RUNNING", "INTERRUPTED"):
+                    fail_before_stage("Interrupted training has no last.pt checkpoint; preserve results and use a fresh run")
+            if stage in ("evaluate", "benchmark") and not best.is_file():
+                fail_before_stage("Training produced no feasible validation-selected best.pt; evaluation cannot proceed")
+            if stage == "gpu-tests":
+                if not inside(ROOT / "tests" / "test_desktop_gpu.py").is_file():
+                    fail_before_stage("Desktop GPU test suite is missing; CUDA readiness cannot be claimed")
+                os.environ["TDN_REQUIRE_GPU_TESTS"] = "1"
+            else:
+                os.environ.pop("TDN_REQUIRE_GPU_TESTS", None)
+            stage_dir.mkdir(parents=True, exist_ok=True)
+            entry = {"status": "RUNNING", "command": command, "actually_ran": True}
+            manifest["stages"][stage] = entry
             write_json(manifest_path, manifest)
-            raise ValueError(message)
-        if args.resume and previous.get("status") == "COMPLETED":
-            if stage not in ("cpu-tests", "gpu-tests") and not (stage_dir / "COMPLETED").is_file():
-                fail_before_stage(f"Completed {stage} stage marker is missing; preserve the inconsistent run")
-            print(f"Already completed: {stage}")
-            continue
-        command = commands[stage].copy()
-        if stage == "train" and args.resume:
-            last = inside(stage_dir / "checkpoints" / "last.pt")
-            if last.is_file():
-                command += ["--resume", str(last)]
-            elif previous.get("status") in ("PAUSED_NEEDS_RESUME", "RUNNING", "INTERRUPTED"):
-                fail_before_stage("Interrupted training has no last.pt checkpoint; preserve results and use a fresh run")
-        if stage in ("evaluate", "benchmark") and not best.is_file():
-            fail_before_stage("Training produced no feasible validation-selected best.pt; evaluation cannot proceed")
-        if stage == "gpu-tests":
-            if not inside(ROOT / "tests" / "test_desktop_gpu.py").is_file():
-                fail_before_stage("Desktop GPU test suite is missing; CUDA readiness cannot be claimed")
-            os.environ["TDN_REQUIRE_GPU_TESTS"] = "1"
-        else:
-            os.environ.pop("TDN_REQUIRE_GPU_TESTS", None)
-        stage_dir.mkdir(parents=True, exist_ok=True)
-        entry = {"status": "RUNNING", "command": command, "actually_ran": True}
-        manifest["stages"][stage] = entry
+            emit({}, phase=f"desktop.{stage}", completed=0, total=1, unit="stages")
+            started = time.monotonic()
+            try:
+                exit_code = execute(command, inside(base / "logs" / f"{stage}.log"))
+            except (OSError, subprocess.SubprocessError) as error:
+                fail_before_stage(f"Could not execute {stage}: {error}")
+            entry.update(exit_code=exit_code, elapsed_seconds=time.monotonic() - started,
+                         status="COMPLETED" if exit_code == 0 else "PAUSED_NEEDS_RESUME" if exit_code == 75 else "INTERRUPTED" if exit_code == 130 else "FAILED")
+            emit({"stage_runtime_seconds": entry["elapsed_seconds"], "stage_exit_code": exit_code},
+                 phase=f"desktop.{stage}", completed=int(exit_code == 0), total=1, unit="stages")
+            if stage in ("cpu-tests", "gpu-tests"):
+                write_json(stage_dir / "stage.json", entry)
+            if stage == "gpu-tests":
+                manifest["gpu_checks"] = entry["status"]
+            manifest["status"] = entry["status"] if exit_code else "RUNNING"
+            write_json(manifest_path, manifest)
+            if exit_code:
+                print(f"Stopped at {stage} (exit {exit_code}); see {base / 'logs' / (stage + '.log')}", file=sys.stderr)
+                if exit_code == 75:
+                    print(f"Resume with the same config/device and --run-id {run_id} --resume", file=sys.stderr)
+                return exit_code
+        manifest["status"] = "COMPLETED"
         write_json(manifest_path, manifest)
-        started = time.monotonic()
+        print(f"Desktop pipeline completed. Results: {base}")
+        return 0
+
+    try:
+        outcome = execute_stages()
+        return outcome
+    except BaseException as error:
+        caught = error
+        outcome = 130 if isinstance(error, KeyboardInterrupt) else 1
+        raise
+    finally:
         try:
-            exit_code = execute(command, inside(base / "logs" / f"{stage}.log"))
-        except (OSError, subprocess.SubprocessError) as error:
-            fail_before_stage(f"Could not execute {stage}: {error}")
-        entry.update(exit_code=exit_code, elapsed_seconds=time.monotonic() - started,
-                     status="COMPLETED" if exit_code == 0 else "PAUSED_NEEDS_RESUME" if exit_code == 75 else "INTERRUPTED" if exit_code == 130 else "FAILED")
-        if stage in ("cpu-tests", "gpu-tests"):
-            write_json(stage_dir / "stage.json", entry)
-        if stage == "gpu-tests":
-            manifest["gpu_checks"] = entry["status"]
-        manifest["status"] = entry["status"] if exit_code else "RUNNING"
-        write_json(manifest_path, manifest)
-        if exit_code:
-            print(f"Stopped at {stage} (exit {exit_code}); see {base / 'logs' / (stage + '.log')}", file=sys.stderr)
-            if exit_code == 75:
-                print(f"Resume with the same config/device and --run-id {run_id} --resume", file=sys.stderr)
-            return exit_code
-    manifest["status"] = "COMPLETED"
-    write_json(manifest_path, manifest)
-    print(f"Desktop pipeline completed. Results: {base}")
-    return 0
+            results = publish_outputs(report, [base])
+            finish_report(report,
+                          state="COMPLETED" if outcome == 0 else "INTERRUPTED" if outcome in (75, 130, 143) else "FAILED",
+                          runtime_seconds=time.monotonic() - report_start, exit_code=outcome,
+                          results=results,
+                          metadata={"execution_mode": "desktop", "hardware": hardware,
+                                    "measurement_scope": "desktop pipeline attempt; excludes setup and queueing",
+                                    "error": None if caught is None else f"{type(caught).__name__}: {caught}"})
+        except Exception as reporting_error:
+            print(f"TDN Tower reporting failed: {reporting_error}", file=sys.stderr)
+            if outcome == 0 and caught is None:
+                raise RuntimeError("Desktop scientific work finished but Tower reporting failed") from reporting_error
+        finally:
+            if previous_tower is None:
+                os.environ.pop("TDN_TOWER_DIR", None)
+            else:
+                os.environ["TDN_TOWER_DIR"] = previous_tower
 
 
 def parser() -> argparse.ArgumentParser:

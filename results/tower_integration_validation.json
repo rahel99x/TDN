@@ -1,0 +1,102 @@
+{
+  "category": "newly_measured_result",
+  "scope": "Cloud CPU integration validation; no live CARC scheduler, A100 or native Windows execution",
+  "tower_version": "2.3.1",
+  "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+  "tower_application_changed": false,
+  "project_source_tree_sha256": "96a056227d24a92ac556a0582c9a1518d728d54a3665acd17d2896c518c0d3b2",
+  "software": {
+    "python": "3.12.14",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "commands": [
+    ".venv/bin/python -m pytest -q -m 'not gpu' --basetemp=.runtime/pytest-tower-final --junitxml=.runtime/tower-validation-final-tests.xml",
+    "bash scripts/research_local.sh --run-dir runs/tower-validation-default",
+    "bash scripts/tower.sh show latest",
+    "bash scripts/tower.sh validate latest"
+  ],
+  "cpu_tests": {
+    "failure": 0,
+    "error": 0,
+    "skipped": 1,
+    "passed": 592,
+    "gpu_tests_deselected": 29,
+    "optional_schema_test": "Skipped in project venv; exact schemas independently validated with available system jsonschema"
+  },
+  "default_experiment": {
+    "scientific_status": "COMPLETED",
+    "tower_state": "COMPLETED",
+    "smoke": false,
+    "trained_families": 7,
+    "attempted_families": 8,
+    "numerical_elapsed_seconds": 83.35822245798772,
+    "headroom_case_count": 5,
+    "eligible_comparisons": 49,
+    "twenty_percent_faster_count": 0,
+    "retained_failures": [
+      {
+        "family": "transport",
+        "status": "NUMERICAL_FAILURE",
+        "error": "Nonfinite neural gradient"
+      }
+    ],
+    "manifest_sha256": "09d0e4554fdf7a048f4c2bee3a633ab466c312f6a4f364c86222e94da6d06a9d",
+    "sealed_artifact_count": 23
+  },
+  "native_and_schema_validation": {
+    "native": {
+      "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+      "reports": [
+        {
+          "path": "runs/tower-validation-default-tower/tdn-20261004T041542590363Z-7ff96fda12b9",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 14,
+          "metrics_records": 860,
+          "metric_series": 14,
+          "native_log_entries": 17
+        }
+      ],
+      "planning": [
+        {
+          "path": ".runtime/tower-native-validation/default-planning.json",
+          "predict": "insufficient",
+          "records_considered": 1,
+          "exclusions": {
+            "invalid_or_ineligible_record": 1,
+            "conflicting_duplicate_id": 0
+          },
+          "tradeoffs": "empty",
+          "scaling": "insufficient",
+          "workflow": "empty"
+        }
+      ]
+    },
+    "schemas": {
+      "draft": "2020-12",
+      "validated_objects": 865,
+      "sources": 3
+    },
+    "science_manifest": {
+      "verified_files": 23,
+      "source_tree_sha256": "96a056227d24a92ac556a0582c9a1518d728d54a3665acd17d2896c518c0d3b2",
+      "current_source_matches": true,
+      "reporting_excluded_from_science_manifest": true
+    },
+    "report": "runs/tower-validation-default-tower/tdn-20261004T041542590363Z-7ff96fda12b9"
+  },
+  "additional_checks": [
+    "Bash syntax and git diff whitespace checks passed",
+    "Actual historical research import and combined research/light/legacy projections passed native Tower readers",
+    "Project configuration bound real metric, log and artifact files through the pinned native ResearchHub without scheduler queries",
+    "Copied-controller scheduler fixtures covered real report generation, separate CPU/GPU identities, failures, pauses and readonly status paths",
+    "Generated reports are project-local sidecars; scientific files remain unchanged and no checkpoints are loaded by the exporter"
+  ],
+  "limitations": [
+    "No scientific efficiency advantage established by reporting validation",
+    "Live Slurm/UI and native Windows behavior still require validation on those systems",
+    "Scaling and queue forecast evidence is not synthesized; native analysis abstention is expected without sufficient measurements"
+  ]
+}

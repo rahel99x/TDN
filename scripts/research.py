@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import sys
 import time
@@ -56,6 +57,8 @@ def main(argv=None):
     args = parser.parse_args(argv)
     stage = None
     run_dir = None
+    tower_report, tower_owned, exit_code = None, False, 1
+    previous_tower = os.environ.get("TDN_TOWER_DIR")
     start = time.monotonic()
     try:
         # Require project storage and a real CPU/Slurm task before importing torch.
@@ -102,6 +105,19 @@ def main(argv=None):
                  "protocol_sha256": digest(protocol), "actually_ran": False}
         write_json(run_dir / "stage.json", stage)
         write_json(run_dir / "protocol.json", protocol)
+        from tdn.reporting import attach_report, emit
+        tower_parameters = {"action": args.action, "device": args.device, "smoke": protocol["smoke"],
+                            "config_sha256": digest(config), "protocol_version": protocol["version"],
+                            "source_tree_sha256": software["source_tree_sha256"],
+                            "parent_plan_sha256": digest(protocol["parents"])}
+        if source_run is not None:
+            tower_parameters["source_manifest_sha256"] = file_digest(source_run / "manifest.json")
+        tower_report, tower_owned = attach_report(
+            run_dir, name=f"tdn-research-{args.action}", script="scripts/research.py",
+            parameters=tower_parameters,
+            metadata={"source_tree_sha256": software["source_tree_sha256"], "protocol_sha256": digest(protocol)})
+        os.environ["TDN_TOWER_DIR"] = str(tower_report)
+        emit({"started": 1}, phase=f"research-{args.action}")
         if source_run is not None and not source_summary["headroom"]["passed"]:
             result = {"status": "SKIPPED", "actually_ran": False, "device": "cuda",
                       "reason": "CPU classical headroom screen did not pass; no GPU numerical work performed",
@@ -113,6 +129,7 @@ def main(argv=None):
             write_json(run_dir / "stage.json", stage)
             print(report, end="")
             print(json.dumps(result, indent=2))
+            exit_code = 0
             return 0
         if args.device == "cuda":
             verify_runtime("cuda", "research-benchmark")
@@ -136,6 +153,7 @@ def main(argv=None):
         print(report, end="")
         print(json.dumps({"status": result["status"], "report": str(run_dir / "summary.json"),
                           "headroom_passed": result.get("headroom_passed")}, indent=2))
+        exit_code = 0
         return 0
     except (Exception, KeyboardInterrupt) as error:
         interrupted = isinstance(error, (InterruptedError, KeyboardInterrupt, TimeoutError))
@@ -144,7 +162,23 @@ def main(argv=None):
                          elapsed_seconds=time.monotonic() - start)
             write_json(run_dir / "stage.json", stage)
         print(f"TDN research: {type(error).__name__}: {error}", file=sys.stderr)
-        return 75 if interrupted else 1
+        exit_code = 75 if interrupted else 1
+        return exit_code
+    finally:
+        try:
+            if tower_owned:
+                from tdn.cli import finalize_tower_report
+                reported = finalize_tower_report(
+                    tower_report, source_dirs=[run_dir], state=stage["status"],
+                    started=start, exit_code=exit_code,
+                    metadata={"device": args.device, "actually_ran": stage["actually_ran"]})
+                if not reported and exit_code == 0:
+                    return 1
+        finally:
+            if previous_tower is None:
+                os.environ.pop("TDN_TOWER_DIR", None)
+            else:
+                os.environ["TDN_TOWER_DIR"] = previous_tower
 
 
 if __name__ == "__main__":

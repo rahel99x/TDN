@@ -10,6 +10,12 @@ The native Windows edition supports a standalone Python `.venv`, PowerShell laun
 
 ## Run on CARC
 
+TDN now emits [Tower 2.3.1-compatible reports](docs/TOWER.md) for its workflows:
+live metrics, grouped logs, scientific tables, artifact inventories and explicitly
+selected planning histories. The integration is project-owned and uses your
+existing Tower installation. Each job/attempt keeps a separate report; original
+scientific results and checkpoint manifests remain intact.
+
 For the new architecture hypotheses, use the [research workflow](docs/RESEARCH.md):
 
 ```bash

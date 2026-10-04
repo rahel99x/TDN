@@ -11,6 +11,7 @@ import numpy as np
 import torch
 
 from tdn.numerics import Equation, Geometry, choose_substeps, reference_step, refined_reference, split_step, weighted_norm
+from tdn.reporting import emit
 from .convergence import (configure_plot_cache, fit_order, plot_orders, temporal_oracle_fits,
                           temporal_screen_horizons, tier_a_audit)
 from .influence import derivative_audit, same_observation_audit
@@ -470,6 +471,8 @@ def _evaluate_store(config, store, checkpoint, run_dir, device, *, benchmark_mod
     validation_candidates, selected, diagnostic, summaries = {}, {}, {}, {}
     reference_cache = {}
     candidate_steps = sorted({float(h) for h in config["horizons"]["evaluation_steps"]})
+    metric_phase = f"{'benchmark' if benchmark_mode else 'evaluate'}-{config['model']['family']}"
+    emit({"completed_solver_policies": 0}, phase=metric_phase, completed=0, total=len(methods), unit="methods")
     for method in methods:
         trials = []
         for h in candidate_steps:
@@ -494,6 +497,10 @@ def _evaluate_store(config, store, checkpoint, run_dir, device, *, benchmark_mod
                                                 device=device, model=model, benchmark_mode=benchmark_mode,
                                                 reference_cache=reference_cache)
         summaries[method] = _aggregate(diagnostic[method], config)
+        # The complete candidate/rollout timings above exclude metric writes.
+        emit({"completed_solver_policies": len(summaries),
+              "diagnostic_failed_parents": sum(row["failed_parents"] for row in summaries.values())},
+             phase=metric_phase, step=len(summaries), completed=len(summaries), total=len(methods), unit="methods")
     comparisons = {}
     if "learned" in summaries:
         for baseline in methods[:-1]:

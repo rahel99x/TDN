@@ -20,6 +20,7 @@ from tdn.analysis.workflow import _rollout as classical_rollout, step_schedule
 from tdn.numerics import Equation, Geometry, choose_substeps, refined_reference
 from tdn.numerics.invariants import validate_state
 from tdn.runtime.metadata import write_json
+from tdn.reporting import emit
 from .protocol import CLASSICAL, TOLERANCE, assert_parent_disjoint, digest, file_digest
 
 
@@ -84,6 +85,8 @@ def generate_data(protocol: dict, run_dir: Path, budget: Budget) -> dict:
     dataset = {"protocol_sha256": digest(protocol), "parents": [], "geometry": config["grid"]}
     records = []
     initial_hashes = set()
+    emit({"reference_records": 0, "accepted_references": 0}, phase="research-references",
+         completed=0, total=len(protocol["parents"]), unit="parents")
     for declared in protocol["parents"]:
         budget.check()
         equation = Equation(declared["kappa"], declared["reaction_rate"])
@@ -112,6 +115,10 @@ def generate_data(protocol: dict, run_dir: Path, budget: Budget) -> dict:
         write_json(run_dir / "references.json", {"records": records, "completed_parents": len(dataset["parents"]),
                                                   "declared_parents": len(protocol["parents"])})
         atomic_torch_save(dataset, run_dir / "dataset.partial.pt")
+        emit({"reference_records": len(records),
+              "accepted_references": sum(row["accepted"] for row in records)},
+             phase="research-references", step=len(dataset["parents"]),
+             completed=len(dataset["parents"]), total=len(protocol["parents"]), unit="parents")
     if not all(row["accepted"] for row in records):
         raise FloatingPointError("Teacher acceptance failed; all cases retained and training withheld")
     atomic_torch_save(dataset, run_dir / "dataset.pt")
@@ -190,6 +197,8 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
     candidates = [(parent, h) for parent in parents["train"] for h in config["train_horizons"]]
     generator = torch.Generator().manual_seed(74002)
     order = []
+    emit({"optimizer_steps": 0, "parameter_count": record["parameter_count"]},
+         phase=f"research-train-{family}", step=0, completed=0, total=config["max_steps"], unit="optimizer steps")
     try:
         for step in range(config["max_steps"] + 1):
             budget.check()
@@ -207,6 +216,9 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
                 optimizer.step()
                 record["steps"] = step
                 record["last_training_loss"] = float(loss.detach())
+                emit({"loss": record["last_training_loss"], "optimizer_steps": step},
+                     phase=f"research-train-{family}", step=step,
+                     completed=step, total=config["max_steps"], unit="optimizer steps")
             if step % config["validation_every"] == 0 or step == config["max_steps"]:
                 score = validation_loss(model, parents["validation"], config["heldout_horizons"], geometry, device, budget)
                 record["history"].append({"step": step, "validation_loss": score if math.isfinite(score) else None,
@@ -219,6 +231,12 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
                                        "validation_loss": score}, checkpoint_path)
                 record["best_validation_loss"] = best if math.isfinite(best) else None
                 write_json(record_path, record)
+                metrics = {"validation_admissible": int(math.isfinite(score))}
+                if math.isfinite(score):
+                    metrics["validation_loss"] = score
+                if math.isfinite(best):
+                    metrics["best_validation_loss"] = best
+                emit(metrics, phase=f"research-validation-{family}", step=step)
         record["parameters_changed"] = any(not torch.equal(initial[name], parameter.detach().cpu())
                                            for name, parameter in model.named_parameters())
         if not record["parameters_changed"]:
@@ -237,6 +255,8 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
         # Numerical architecture failure is a recorded hypothesis outcome, not a silent omission.
         record.update(status="NUMERICAL_FAILURE", error=str(error))
         write_json(record_path, record)
+        emit({"numerical_failures": 1, "optimizer_steps": record["steps"]},
+             phase=f"research-failure-{family}", step=record["steps"])
         return None, record
     except BaseException as error:
         record.update(status="INTERRUPTED" if isinstance(error, (InterruptedError, KeyboardInterrupt, TimeoutError)) else "FAILED",
@@ -287,8 +307,10 @@ def evaluate(models: dict, dataset: dict, protocol: dict, run_dir: Path, budget:
     methods.update(models)
     parents = split_parents(dataset)["diagnostic"]
     rows, heldout = [], []
+    emit({"timed_trajectories": 0}, phase="research-evaluation", completed=0,
+         total=len(parents), unit="diagnostic parents")
     with torch.no_grad():
-        for parent in parents:
+        for parent_index, parent in enumerate(parents, 1):
             equation = Equation(parent["kappa"], parent["reaction_rate"])
             initial = parent["initial"].to(device=device, dtype=torch.float32)
             reference = parent["references"][horizon_key(config["rollout_time"]) ]
@@ -332,6 +354,12 @@ def evaluate(models: dict, dataset: dict, protocol: dict, run_dir: Path, budget:
             write_json(run_dir / "frontier.json", {"rows": rows, "scope": "diagnostic development parents; no confirmation"})
             write_json(run_dir / "heldout.json", {"rows": heldout, "checkpoint_selection": False,
                                                    "scope": "fresh diagnostic parents, off-training-grid horizons"})
+            # Reporting stays outside measure(operation): solver timing includes
+            # the scientific checks but excludes dashboard serialization.
+            emit({"timed_trajectories": len(rows), "feasible_trajectories": sum(row["feasible"] for row in rows),
+                  "invalid_trajectories": sum(row["status"] != "COMPLETED" for row in rows)},
+                 phase="research-evaluation", step=parent_index,
+                 completed=parent_index, total=len(parents), unit="diagnostic parents")
     return summarize_frontier(rows, config)
 
 

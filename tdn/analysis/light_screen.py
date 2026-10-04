@@ -16,6 +16,7 @@ import torch
 
 from tdn.config import config_hash, validate_config
 from tdn.numerics import Equation, Geometry, choose_substeps, refined_reference, split_step
+from tdn.reporting import emit
 from .convergence import temporal_oracle_fits
 from .profiling import measure
 from .workflow import _rms, _rollout, _safe_state, _write, step_schedule
@@ -286,6 +287,10 @@ def run(config: dict, run_dir: str | Path, device: str = "cpu") -> dict:
         case["plan_hash"] = plan["plan_hash"]
         _write(target / "cases" / f"{declared['case_id']}.json", case)
         cases.append(case)
+        emit({"accepted_reference_cases": sum(row["reference_passed"] for row in cases),
+              "headroom_cases": sum(row["numerical_headroom_screen"]["passed"] for row in cases),
+              "temporal_advantage_cases": sum(row["temporal_representation_screen"]["passed"] for row in cases)},
+             phase="light-screen", step=len(cases), completed=len(cases), total=len(plan["cases"]), unit="cases")
     candidates = [case["case_id"] for case in cases if case["candidate_requires_full_audit"]]
     _check_deadline(started + MAX_SCREEN_SECONDS)
     report = {"stage": "light-screen", "status": "COMPLETED",

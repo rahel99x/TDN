@@ -1,5 +1,10 @@
 # CARC runbook
 
+The [Tower integration runbook](TOWER.md) explains live metrics, grouped log
+navigation, exported scientific tables, historical imports and scheduler-state
+reconciliation. Each allocated workflow prints `TDN_TOWER_DIR`; pass that exact
+directory as Tower's `--workdir`. CPU, GPU and resumed jobs use separate reports.
+
 The [architecture research workflow](RESEARCH.md) runs the three proposed models
 and their controls with `bash scripts/carc_research.sh --submit`. It uses one
 30-minute CPU allocation for correctness tests, reference generation, bounded

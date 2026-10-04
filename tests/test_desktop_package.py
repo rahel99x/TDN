@@ -12,12 +12,14 @@ spec.loader.exec_module(package)
 
 @pytest.mark.parametrize("name", [".venv/Scripts/python.exe", ".runtime/tmp/file.txt",
                                  "data/train.npy", "runs/run/checkpoints/last.pt", "scripts/user.env.sh",
-                                 "requirements/environment-versions.json", "dist/archive.zip"])
+                                 "requirements/environment-versions.json", "dist/archive.zip",
+                                 "reports/planning.json", ".tower/passports/private.json", ".tower/state/session.json"])
 def test_archive_excludes_machine_state(name):
     assert package.excluded(Path(name))
 
 
-@pytest.mark.parametrize("name", ["tdn/data/dataset.py", "reference/temporal_core.py", "scripts/windows/Setup.ps1"])
+@pytest.mark.parametrize("name", ["tdn/data/dataset.py", "reference/temporal_core.py", "scripts/windows/Setup.ps1",
+                                 ".tower/config.json", ".tower/contracts/outputs.v1.json"])
 def test_archive_preserves_all_source_packages(name):
     assert not package.excluded(Path(name))
 

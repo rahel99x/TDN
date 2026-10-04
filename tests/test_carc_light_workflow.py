@@ -270,11 +270,19 @@ def test_actual_controller_batch_worker_coupling_is_only_one_cpu_phase(light_int
 
 
 @pytest.fixture
-def stage_project(worker_project):
+def stage_project(worker_project, monkeypatch):
     root, base = worker_project
     (root / "scripts/run_stage.sh").write_text((ROOT / "scripts/run_stage.sh").read_text())
+    # Dispatch runs inside the grouped worker's existing report. Exercise that
+    # real attachment contract; manual reporting has separate launcher tests.
+    from tdn.reporting import begin_report
+    report = begin_report(base, name="TDN/mocked-light-dispatch", script="scripts/run_stage.sh",
+                          job_id=os.environ["SLURM_JOB_ID"], report_parent=base / "tower",
+                          metadata={"validation_scope": "mocked scheduler stage dispatch test"})
+    monkeypatch.setenv("TDN_TOWER_DIR", str(report))
     python = root / "commands/stage-python"
-    python.write_text("#!/usr/bin/env bash\nprintf '%s\\n' \"$@\" > \"$TDN_WORKFLOW_ROOT/python-args.txt\"\n")
+    python.write_text("#!/usr/bin/env bash\nprintf '%s\\n' \"$@\" > \"$TDN_WORKFLOW_ROOT/python-args.txt\"\n"
+                      "printf '%s' \"${TDN_TOWER_DIR:-}\" > \"$TDN_WORKFLOW_ROOT/python-tower-env.txt\"\n")
     python.chmod(0o755)
     common = root / "scripts/common.sh"
     with common.open("a") as stream:
@@ -300,7 +308,9 @@ def test_light_tests_dispatch_only_scientific_regressions(stage_project):
     assert args[:3] == ["-m", "pytest", "-q"]
     assert args[3:7] == ["tests/test_light_screen.py", "tests/test_temporal_oracle_screen.py",
                          "tests/test_light_screen_cli.py", "tests/test_analysis.py"]
-    assert args[7:] == ["--basetemp", str(base / "light-tests/pytest-work")]
+    assert args[7:] == ["--basetemp", str(base / "light-tests/pytest-work"),
+                       "--junitxml", str(base / "light-tests/pytest-results.xml")]
+    assert (base / "python-tower-env.txt").read_text() == ""
 
 
 def test_light_screen_dispatch_uses_cpu_wrapper_without_dataset_or_training(stage_project):
@@ -312,3 +322,4 @@ def test_light_screen_dispatch_uses_cpu_wrapper_without_dataset_or_training(stag
         "-u", str(root / "scripts/light_screen.py"), "--config", str(base / "config.yaml"),
         "--run-dir", str(base / "light-screen"),
     ]
+    assert (base / "python-tower-env.txt").read_text() == os.environ["TDN_TOWER_DIR"]

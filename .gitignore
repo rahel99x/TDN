@@ -12,6 +12,9 @@ dist/
 /datasets/
 /runs/
 /logs/
+/reports/
+.tower/passports/
+.tower/state/
 scripts/user.env.sh
 results/generated/
 results/dev-*/

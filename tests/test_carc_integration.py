@@ -44,7 +44,7 @@ def carc_integration(tmp_path):
     for name in ("configs", "tdn", "reference", "tests"):
         (root / name).mkdir()
     shutil.copy2(ROOT / "configs/carc-smoke.yaml", root / "configs/carc-smoke.yaml")
-    for name in ("__init__.py", "config.py"):
+    for name in ("__init__.py", "config.py", "reporting.py", "tower_analytics.py"):
         shutil.copy2(ROOT / "tdn" / name, root / "tdn" / name)
     mocks = root / "mocks"
     mocks.mkdir()
@@ -232,6 +232,10 @@ def test_actual_controller_and_workers_complete_two_mocked_allocations(carc_inte
     assert status.returncode == 0, status.stderr
     assert "setup: COMPLETED" in status.stdout and "benchmark: COMPLETED" in status.stdout
     assert "NOT_STARTED" not in status.stdout
+    tower_summaries = [json.loads(path.read_text()) for path in (base / "tower").glob("tdn-*/summary.json")]
+    assert {item["job_id"] for item in tower_summaries} == {"7101", "7102"}
+    assert all(item["state"] == "COMPLETED" for item in tower_summaries)
+    assert status.stdout.count("TDN_TOWER_DIR=") == 2
 
 
 @pytest.mark.parametrize("code,status", [("17", "FAILED"), ("75", "PAUSED_NEEDS_RESUME")])
@@ -266,3 +270,4 @@ def test_actual_worker_rejects_another_workflows_scheduler_ownership(carc_integr
     assert cpu.returncode != 0
     assert "ownership" in cpu.stderr
     assert not (base / "mock-executed.jsonl").exists()
+    assert not (base / "tower").exists()

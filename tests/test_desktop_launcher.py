@@ -101,6 +101,12 @@ def test_failed_stage_stops_all_successors(project, monkeypatch):
     assert report["status"] == "FAILED"
     assert report["stages"]["cpu-tests"]["exit_code"] == 9
     assert not (project / "runs" / "smoke-test" / "audit").exists()
+    attempts = list((project / "runs" / "smoke-test" / "tower").glob("*/summary.json"))
+    assert len(attempts) == 1
+    tower = json.loads(attempts[0].read_text())
+    assert tower["state"] == "FAILED" and tower["exit_code"] == 9
+    assert "job_id" not in tower and "cpus" not in tower
+    assert "TDN_TOWER_DIR" not in os.environ
 
 
 def test_resume_refuses_changed_software_before_any_execution(project, monkeypatch):
@@ -140,3 +146,34 @@ def test_missing_best_records_failed_unexecuted_evaluation(project, monkeypatch)
     assert report["status"] == "FAILED"
     assert report["stages"]["train"]["status"] == "COMPLETED"
     assert report["stages"]["evaluate"]["actually_ran"] is False
+
+
+def test_desktop_retry_retains_distinct_tower_attempts(project, monkeypatch):
+    monkeypatch.setattr(desktop, "execute", lambda *args: 75)
+    assert desktop.run(args()) == 75
+    assert desktop.run(args(resume=True)) == 75
+    attempts = list((project / "runs" / "smoke-test" / "tower").glob("*/summary.json"))
+    records = [json.loads(path.read_text()) for path in attempts]
+    assert len(records) == 2 and len({row["id"] for row in records}) == 2
+    assert all(row["state"] == "INTERRUPTED" for row in records)
+    assert sorted(row["attempt"] for row in records) == [1, 2]
+
+
+def test_desktop_pytest_does_not_inherit_production_metrics(project, monkeypatch):
+    captured = []
+
+    class Child:
+        stdout = []
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+        def wait(self): return 0
+
+    def popen(command, **kwargs):
+        captured.append(kwargs["env"])
+        return Child()
+
+    monkeypatch.setattr(desktop.subprocess, "Popen", popen)
+    monkeypatch.setenv("TDN_TOWER_DIR", "production-report")
+    assert desktop.execute([sys.executable, "-m", "pytest", "-q"], project / "test.log") == 0
+    assert "TDN_TOWER_DIR" not in captured[0]
+    assert os.environ["TDN_TOWER_DIR"] == "production-report"
