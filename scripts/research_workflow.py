@@ -74,7 +74,7 @@ def validate(workflow):
         raise ValueError("Research GPU work requires the GPU partition")
     if not isinstance(workflow.get("smoke"), bool):
         raise ValueError("Malformed smoke flag")
-    if workflow.get("benchmark_suite", "architecture") not in ("architecture", "neural-benchmarks"):
+    if workflow.get("benchmark_suite", "architecture") not in ("architecture", "neural-benchmarks", "neural-replication"):
         raise ValueError("Unknown research benchmark suite")
     if phase == "cpu" and workflow.get("source_workflow") is not None:
         raise ValueError("CPU research cannot consume a benchmark predecessor")
@@ -120,6 +120,9 @@ def verify_experiment(workflow, *, require_headroom=False):
         raise ValueError("Research artifact configuration fingerprint differs")
     files = manifest.get("files", {})
     required = {"protocol.json", "dataset.pt", "summary.json"}
+    replication = workflow.get("benchmark_suite", "architecture") == "neural-replication"
+    if replication:
+        required.update({"replication.json", "normalization.json", "references.json"})
     if not isinstance(files, dict) or not required.issubset(files):
         raise ValueError("Research artifact manifest is incomplete")
     for relative, expected in files.items():
@@ -134,6 +137,11 @@ def verify_experiment(workflow, *, require_headroom=False):
     protocol = cw.read_json(base / "protocol.json")
     if protocol.get("benchmark_suite", "architecture") != workflow.get("benchmark_suite", "architecture"):
         raise ValueError("Experiment benchmark suite differs from its submitted workflow")
+    if replication and (type(manifest.get("version")) is not int or manifest["version"] != 2
+                        or type(protocol.get("version")) is not int or protocol["version"] != 2
+                        or type(protocol.get("config", {}).get("protocol_version")) is not int
+                        or protocol["config"]["protocol_version"] != 2):
+        raise ValueError("Neural replication requires coherent version-2 manifest, protocol and config")
     protocol_digest = hashlib.sha256(json.dumps(protocol,
         sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
     if manifest.get("protocol_sha256") != protocol_digest:
@@ -141,6 +149,8 @@ def verify_experiment(workflow, *, require_headroom=False):
     summary = cw.read_json(base / "summary.json")
     if summary.get("status") != "COMPLETED" or summary.get("device") != ("cpu" if workflow["phase"] == "cpu" else "cuda"):
         raise ValueError("Research experiment did not complete")
+    if replication and summary.get("benchmark_suite") != "neural-replication":
+        raise ValueError("Replication summary benchmark suite differs from its submitted workflow")
     if require_headroom and summary.get("headroom", {}).get("passed") is not True:
         raise ValueError("CPU research found no eligible numerical headroom; no A100 job is submitted")
     return manifest
@@ -157,9 +167,35 @@ def completed_source(path):
                 "software_sha256": cw.digest(software_path(workflow))}
     if any(record.get(key) != value for key, value in expected.items()):
         raise ValueError("CPU tests and experiment must have completed with matching fingerprints")
-    neural = workflow.get("benchmark_suite", "architecture") == "neural-benchmarks"
-    verify_experiment(workflow, require_headroom=not neural)
-    if neural:
+    suite = workflow.get("benchmark_suite", "architecture")
+    manifest = verify_experiment(workflow, require_headroom=suite == "architecture")
+    if suite == "neural-replication":
+        # This helper is standard-library-only: login preview must not import
+        # Torch or load a checkpoint. Sealed hashes bind its training evidence
+        # to real checkpoint artifacts before any A100 request is made.
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from tdn.research.replication_protocol import FAMILIES, replicates, trained_checkpoint_pairs
+        experiment = Path(workflow["run_dir"]) / "experiment"
+        protocol = cw.read_json(experiment / "protocol.json")
+        if manifest.get("version") != 2 or protocol.get("version") != 2:
+            raise ValueError("Neural replication requires a version-2 sealed protocol")
+        if protocol.get("config", {}).get("families") != list(FAMILIES) or protocol.get("replicates") != replicates():
+            raise ValueError("Neural replication family or seed declaration differs")
+        summary = cw.read_json(experiment / "summary.json")
+        records = summary.get("training", [])
+        eligible = trained_checkpoint_pairs(records)
+        if not eligible:
+            raise ValueError("Neural replication GPU timing requires trained validation-selected clock and baseline checkpoints in the same training seed")
+        eligible_records = [row for row in records if row.get("replicate_id") in eligible
+                            and row.get("status") == "COMPLETED"
+                            and row.get("selected_parameters_changed") is True
+                            and type(row.get("selected_step")) is int and row["selected_step"] > 0]
+        for row in eligible_records:
+            relative = f"replicates/{row['replicate_id']}/checkpoints/{row['family']}.pt"
+            if not row.get("checkpoint_sha256") or manifest["files"].get(relative) != row["checkpoint_sha256"]:
+                raise ValueError("Neural replication selected checkpoint is absent from its sealed artifact manifest")
+    elif suite == "neural-benchmarks":
         summary = cw.read_json(Path(workflow["run_dir"]) / "experiment" / "summary.json")
         trained_roles = {row.get("benchmark_role") for row in summary.get("training", [])
                          if row.get("status") == "COMPLETED" and row.get("selected_parameters_changed") is True
@@ -185,6 +221,7 @@ def prepare(args):
         raise ValueError("CARC research requires an exact CUDA Torch version")
     workflow = {"schema_version": 1, "kind": "bounded-research", "run_id": run_id,
                 "benchmark_suite": (source.get("benchmark_suite", "architecture") if source else
+                                    "neural-replication" if args.neural_replication else
                                     "neural-benchmarks" if args.neural_benchmarks else "architecture"),
                 "root": str(ROOT.resolve()), "run_dir": str(base), "created_at": cw.now(),
                 "phase": phase, "smoke": source["smoke"] if source else args.smoke,
@@ -517,7 +554,7 @@ def status(workflow):
     if summary_path.is_file():
         report = cw.read_json(summary_path)
         print(f"  experiment: {report.get('status', 'UNKNOWN')}")
-        if workflow["phase"] == "cpu":
+        if workflow["phase"] == "cpu" and workflow.get("benchmark_suite", "architecture") == "architecture":
             print(f"  numerical headroom: {report.get('headroom', {}).get('passed', False)}")
 
 
@@ -569,8 +606,11 @@ def parser():
             item.add_argument("source", help="Completed CPU research run ID (or latest)")
         else:
             item.add_argument("--config", type=Path)
-            item.add_argument("--neural-benchmarks", action="store_true",
+            suite = item.add_mutually_exclusive_group()
+            suite.add_argument("--neural-benchmarks", action="store_true",
                               help="Require matched neural suite; GPU prerequisite is trained checkpoints on both sides")
+            suite.add_argument("--neural-replication", action="store_true",
+                              help="Require paired three-seed replication; optional GPU timing uses frozen same-seed checkpoint pairs")
             item.add_argument("--smoke", action="store_true", help="Tiny integration test; not a scientific comparison")
         item.add_argument("--run-id")
         item.add_argument("--submit", action="store_true")

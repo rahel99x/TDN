@@ -112,6 +112,16 @@ The report contains:
 | `outputs/tables.json` | Canonical table descriptions and projection limitations |
 | `outputs/*.csv` | Canonical accuracy/cost, training, held-out, reference, gate, stage and test rows when available |
 
+The [neural replication workflow](NEURAL_REPLICATION.md) adds
+`outputs/replication.csv` for per-family, per-training-seed accuracy endpoints and
+`outputs/replication_comparisons.csv` for paired clock/control timing summaries.
+Training and trajectory tables carry the training seed and diagnostic block so
+repeated observations of the same parent stay identifiable. The endpoint tables
+come from the canonical `replication.json`; its compact copy in the experiment
+summary is not exported a second time. Full-rollout feasibility and one-/two-step
+transient passes remain separate. Three trained seeds share the same 27 diagnostic
+parents, so their repeats are not 81 independent samples.
+
 Live metrics are observations from the executing coordinator. Phase progress
 resets for distinct work; Tower derives an ETA only when sufficient consistent
 progress exists. Reporting does not rewrite losses, tolerances, validation

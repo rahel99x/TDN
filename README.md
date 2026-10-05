@@ -22,6 +22,14 @@ For comparisons against representative neural solvers, use the
 MLP and direct/hybrid residual CNN, U-Net and FNO controls, with matched data and
 optimizer updates and separate neural accuracy/cost reports.
 
+The next bounded experiment is the [three-seed neural replication](docs/NEURAL_REPLICATION.md):
+`bash scripts/carc_neural_replication.sh --submit`. It repeats reaction-clock,
+the generic MLP and three spatial hybrid controls on 27 fresh diagnostic parents.
+All fifteen checkpoints freeze before diagnostics. Separate final-rollout and
+transient endpoints retain missing, invalid and initialization-selected results.
+It uses one 30-minute CPU allocation; optional frozen A100 timing is a separate
+30-minute request.
+
 For the new architecture hypotheses, use the [research workflow](docs/RESEARCH.md):
 
 ```bash

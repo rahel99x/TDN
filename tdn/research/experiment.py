@@ -153,7 +153,8 @@ def physical_loss(model, parent: dict, h: float, geometry: Geometry, device: str
     return loss
 
 
-def validation_loss(model, parents: list[dict], horizons: list[float], geometry: Geometry, device: str, budget: Budget) -> float:
+def validation_loss(model, parents: list[dict], horizons: list[float], geometry: Geometry, device: str,
+                    budget: Budget, failure_details: list | None = None) -> float:
     model.eval()
     values = []
     with torch.no_grad():
@@ -162,7 +163,10 @@ def validation_loss(model, parents: list[dict], horizons: list[float], geometry:
                 budget.check()
                 try:
                     values.append(float(physical_loss(model, parent, h, geometry, device, audit=True)))
-                except FloatingPointError:
+                except FloatingPointError as error:
+                    if failure_details is not None:
+                        failure_details.append({"parent_id": parent["parent_id"], "h": h,
+                                                "error": f"{type(error).__name__}: {error}"})
                     return math.inf
     return sum(values) / len(values)
 
@@ -176,13 +180,14 @@ def _cpu_state(model) -> dict:
 
 
 def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
-                 normalization: tuple, budget: Budget, device="cpu") -> tuple[object | None, dict]:
+                 normalization: tuple, budget: Budget, device="cpu", *, initialization_seed=74001,
+                 sample_schedule_seed=74002, replicate_id: str | None = None) -> tuple[object | None, dict]:
     started = time.monotonic()
     from . import build_research_model
     config = protocol["config"]
     geometry = Geometry(tuple(config["grid"]), (1., 1.))
     parents = split_parents(dataset)
-    torch.manual_seed(74001)
+    torch.manual_seed(initialization_seed)
     model = build_research_model(family, ndim=2, width=config["width"]).to(device=device, dtype=torch.float32)
     model.set_normalization(*normalization)
     initial = {name: parameter.detach().cpu().clone() for name, parameter in model.named_parameters()}
@@ -195,22 +200,28 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
               "diagnostics_seen_during_training": False}
     record.update(benchmark_role="neural_baseline" if family in NEURAL_BASELINES else "tdn",
                   optimizer="Adam", learning_rate=config["learning_rate"],
-                  maximum_optimizer_updates=config["max_steps"], initialization_seed=74001,
-                  sample_schedule_seed=74002,
+                  maximum_optimizer_updates=config["max_steps"], initialization_seed=initialization_seed,
+                  sample_schedule_seed=sample_schedule_seed,
                   architecture=(model.architecture_metadata() if hasattr(model, "architecture_metadata")
                                 else {"backbone": family, "track": "hybrid", "time_input": "structured temporal decoder"}))
+    replication = ({"replicate_id": replicate_id, "training_seed": initialization_seed,
+                    "sample_schedule_seed": sample_schedule_seed} if replicate_id is not None else {})
+    record.update(replication)
     checkpoint_path = run_dir / "checkpoints" / f"{family}.pt"
     record_path = run_dir / "training" / f"{family}.json"
     best = math.inf
     candidates = [(parent, h) for parent in parents["train"] for h in config["train_horizons"]]
-    generator = torch.Generator().manual_seed(74002)
+    generator = torch.Generator().manual_seed(sample_schedule_seed)
     order = []
+    phase_suffix = f"{replicate_id}-{family}" if replicate_id is not None else family
+    failure_context = "initialization"
     emit({"optimizer_steps": 0, "parameter_count": record["parameter_count"]},
-         phase=f"research-train-{family}", step=0, completed=0, total=config["max_steps"], unit="optimizer steps")
+         phase=f"research-train-{phase_suffix}", step=0, completed=0, total=config["max_steps"], unit="optimizer steps")
     try:
         for step in range(config["max_steps"] + 1):
             budget.check()
             if step:
+                failure_context = "training"
                 if not order:
                     order = torch.randperm(len(candidates), generator=generator).tolist()
                 parent, h = candidates[order.pop()]
@@ -229,18 +240,26 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
                 record["steps"] = step
                 record["last_training_loss"] = float(loss.detach())
                 emit({"loss": record["last_training_loss"], "optimizer_steps": step},
-                     phase=f"research-train-{family}", step=step,
+                     phase=f"research-train-{phase_suffix}", step=step,
                      completed=step, total=config["max_steps"], unit="optimizer steps")
             if step % config["validation_every"] == 0 or step == config["max_steps"]:
-                score = validation_loss(model, parents["validation"], config["heldout_horizons"], geometry, device, budget)
-                record["history"].append({"step": step, "validation_loss": score if math.isfinite(score) else None,
-                                          "admissible_validation": math.isfinite(score)})
+                failure_context = "validation"
+                validation_failures = []
+                score = validation_loss(model, parents["validation"], config["heldout_horizons"], geometry,
+                                        device, budget, validation_failures)
+                history = {"step": step, "validation_loss": score if math.isfinite(score) else None,
+                           "admissible_validation": math.isfinite(score)}
+                if validation_failures:
+                    failures = [{**row, "step": step} for row in validation_failures]
+                    history["failures"] = failures
+                    record.setdefault("validation_failures", []).extend(failures)
+                record["history"].append(history)
                 if checkpoint_is_better(score, best):
                     best = score
                     record["selected_step"] = step
                     atomic_torch_save({"family": family, "state_dict": _cpu_state(model),
                                        "protocol_sha256": digest(protocol), "selected_step": step,
-                                       "validation_loss": score}, checkpoint_path)
+                                       "validation_loss": score, **replication}, checkpoint_path)
                 record["best_validation_loss"] = best if math.isfinite(best) else None
                 write_json(record_path, record)
                 metrics = {"validation_admissible": int(math.isfinite(score))}
@@ -248,7 +267,8 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
                     metrics["validation_loss"] = score
                 if math.isfinite(best):
                     metrics["best_validation_loss"] = best
-                emit(metrics, phase=f"research-validation-{family}", step=step)
+                emit(metrics, phase=f"research-validation-{phase_suffix}", step=step)
+        failure_context = "checkpoint_selection"
         record["parameters_changed"] = any(not torch.equal(initial[name], parameter.detach().cpu())
                                            for name, parameter in model.named_parameters())
         if not record["parameters_changed"]:
@@ -266,12 +286,13 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
         emit({"training_seconds": record["training_seconds"],
               "selected_step": record["selected_step"],
               "selected_parameters_changed": int(record["selected_parameters_changed"])},
-             phase=f"research-trained-{family}")
+             phase=f"research-trained-{phase_suffix}")
         return model, record
     except FloatingPointError as error:
         # Numerical architecture failure is a recorded hypothesis outcome, not a silent omission.
-        record.update(status="NUMERICAL_FAILURE", error=str(error), training_seconds=time.monotonic() - started)
-        if record.get("optimizer_attempt") and hasattr(model, "audit_step"):
+        record.update(status="NUMERICAL_FAILURE", error=str(error), training_seconds=time.monotonic() - started,
+                      failure_context=failure_context)
+        if failure_context == "training" and record.get("optimizer_attempt") and hasattr(model, "audit_step"):
             try:
                 with torch.no_grad():
                     _, stages = model.audit_step(parent["initial"].to(device=device, dtype=torch.float32), h,
@@ -284,7 +305,7 @@ def train_family(family: str, dataset: dict, protocol: dict, run_dir: Path,
                 record["failure_stage_audit_error"] = str(audit_error)
         write_json(record_path, record)
         emit({"numerical_failures": 1, "optimizer_steps": record["steps"]},
-             phase=f"research-failure-{family}", step=record["steps"])
+             phase=f"research-failure-{phase_suffix}", step=record["steps"])
         return None, record
     except BaseException as error:
         record.update(status="INTERRUPTED" if isinstance(error, (InterruptedError, KeyboardInterrupt, TimeoutError)) else "FAILED",
@@ -325,7 +346,7 @@ def whole_rollout(model, state, steps, equation, geometry, *, method: str):
 
 
 def evaluate(models: dict, dataset: dict, protocol: dict, run_dir: Path, budget: Budget, device: str,
-             training_records=None) -> dict:
+             training_records=None, *, replication: dict | None = None) -> dict:
     from . import build_research_model
     config = protocol["config"]
     geometry = Geometry(tuple(config["grid"]), (1., 1.))
@@ -336,7 +357,9 @@ def evaluate(models: dict, dataset: dict, protocol: dict, run_dir: Path, budget:
     methods.update(models)
     parents = split_parents(dataset)["diagnostic"]
     rows, heldout = [], []
-    emit({"timed_trajectories": 0}, phase="research-evaluation", completed=0,
+    phase = (f"research-evaluation-{replication['replicate_id']}-block-{replication['diagnostic_block']}"
+             if replication is not None else "research-evaluation")
+    emit({"timed_trajectories": 0}, phase=phase, completed=0,
          total=len(parents), unit="diagnostic parents")
     with torch.no_grad():
         for parent_index, parent in enumerate(parents, 1):
@@ -380,27 +403,32 @@ def evaluate(models: dict, dataset: dict, protocol: dict, run_dir: Path, budget:
                         # _safe_step's finite/bounds checks intentionally reject invalid trajectories.
                         row.update(status="INVALID_TRAJECTORY", error_message=f"{type(error).__name__}: {error}")
                     rows.append(row)
-            write_json(run_dir / "frontier.json", {"rows": rows, "scope": "diagnostic development parents; no confirmation"})
+            context = {"replication": replication} if replication is not None else {}
+            write_json(run_dir / "frontier.json", {"rows": rows, "scope": "diagnostic development parents; no confirmation", **context})
             write_json(run_dir / "heldout.json", {"rows": heldout, "checkpoint_selection": False,
-                                                   "scope": "fresh diagnostic parents, off-training-grid horizons"})
+                                                   "scope": "fresh diagnostic parents, off-training-grid horizons", **context})
             # Reporting stays outside measure(operation): solver timing includes
             # the scientific checks but excludes dashboard serialization.
             emit({"timed_trajectories": len(rows), "feasible_trajectories": sum(row["feasible"] for row in rows),
                   "invalid_trajectories": sum(row["status"] != "COMPLETED" for row in rows)},
-                 phase="research-evaluation", step=parent_index,
+                 phase=phase, step=parent_index,
                  completed=parent_index, total=len(parents), unit="diagnostic parents")
     summary = summarize_frontier(rows, config)
-    if benchmark_suite(config) == "neural-benchmarks":
+    if benchmark_suite(config) in ("neural-benchmarks", "neural-replication"):
         from .neural_comparison import summarize_neural_comparisons
         comparison = summarize_neural_comparisons(rows, heldout, config["families"], training_records)
+        if replication is not None:
+            comparison["replication"] = replication
         write_json(run_dir / "neural-comparisons.json", comparison)
         eligible = [row for row in comparison["comparisons"] if row["eligible"]]
         summary["neural_benchmark_results"] = {
-            "comparison_file": "neural-comparisons.json", "baseline_families": list(NEURAL_BASELINES),
+            "comparison_file": "neural-comparisons.json", "baseline_families": comparison["baseline_families"],
             "comparison_count": len(comparison["comparisons"]), "eligible_comparison_count": len(eligible),
             "faster_than_neural_baseline_count": sum(row["speedup"] > 1 for row in eligible),
             "twenty_percent_faster_than_neural_baseline_count": sum(row["speedup"] >= 1.25 for row in eligible),
             "scope": "matched tolerance per-parent development frontier; training selection status retained"}
+    if replication is not None:
+        summary["replication"] = replication
     return summary
 
 

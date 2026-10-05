@@ -28,6 +28,9 @@ DEFAULT = {
 
 
 def benchmark_suite(config: dict) -> str:
+    if config.get("protocol_version") == 2:
+        from .replication_protocol import SUITE
+        return SUITE
     return "neural-benchmarks" if config.get("families") == list(NEURAL_FAMILIES) else "architecture"
 
 
@@ -45,6 +48,9 @@ def file_digest(path: Path) -> str:
 
 
 def validate_config(config: dict, *, smoke: bool = False) -> dict:
+    if isinstance(config, dict) and config.get("protocol_version") == 2:
+        from .replication_protocol import validate_config as validate_replication
+        return validate_replication(config, smoke=smoke)
     if not isinstance(config, dict) or set(config) != set(DEFAULT):
         raise ValueError("Research configuration must contain exactly the documented protocol fields")
     checked = json.loads(json.dumps(config, allow_nan=False))
@@ -95,6 +101,9 @@ def assert_parent_disjoint(parents: list[dict]) -> None:
 
 
 def make_protocol(config: dict, *, smoke: bool, software: dict, command: list[str]) -> dict:
+    if config.get("protocol_version") == 2:
+        from .replication_protocol import make_protocol as make_replication_protocol
+        return make_replication_protocol(config, smoke=smoke, software=software, command=command)
     return {"version": VERSION, "config": config, "smoke": smoke,
             "benchmark_suite": benchmark_suite(config),
             "parents": parent_plan(smoke=smoke), "software": software, "command": command,
@@ -124,6 +133,9 @@ def readable_summary(summary: dict) -> str:
     if summary["status"] == "SKIPPED":
         lines.extend([summary["reason"], "No GPU numerical work was performed."])
         return "\n".join(lines) + "\n"
+    if summary.get("benchmark_suite") == "neural-replication":
+        from .replication_summary import readable_replication_summary
+        return readable_replication_summary(summary)
     if summary.get("smoke"):
         lines.append("Smoke integration fixture; not the full development comparison.")
     training = summary.get("training")
@@ -166,9 +178,11 @@ def verify_artifacts(run_dir: Path, *, source_tree_sha256: str | None = None) ->
     if (run_dir / "COMPLETED").read_text().strip() != file_digest(manifest_path):
         raise ValueError("Completed research manifest digest mismatch")
     manifest = json.loads(manifest_path.read_text())
-    if manifest.get("version") != VERSION or not isinstance(manifest.get("files"), dict):
+    if type(manifest.get("version")) is not int or manifest["version"] not in (VERSION, 2) or not isinstance(manifest.get("files"), dict):
         raise ValueError("Unsupported or incomplete research artifact manifest")
     required = {"protocol.json", "dataset.pt", "summary.json"}
+    if manifest["version"] == 2:
+        required.update({"replication.json", "normalization.json", "references.json"})
     if not required <= set(manifest["files"]):
         raise ValueError("Research manifest omits required artifacts")
     for name, expected in manifest["files"].items():
@@ -178,6 +192,10 @@ def verify_artifacts(run_dir: Path, *, source_tree_sha256: str | None = None) ->
         if not path.resolve().is_relative_to(run_dir.resolve()) or file_digest(path) != expected:
             raise ValueError(f"Research artifact digest mismatch: {name}")
     protocol = json.loads((run_dir / "protocol.json").read_text())
+    if protocol.get("version") != manifest["version"] or (
+        manifest["version"] == 2 and protocol.get("config", {}).get("protocol_version") != 2
+    ):
+        raise ValueError("Research manifest and protocol versions differ")
     if digest(protocol) != manifest["protocol_sha256"]:
         raise ValueError("Research protocol digest mismatch")
     if source_tree_sha256 is not None and manifest["source_tree_sha256"] != source_tree_sha256:

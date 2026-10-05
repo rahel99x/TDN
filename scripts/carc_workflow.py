@@ -365,7 +365,7 @@ def begin_workflow_report(workflow, phase, *, research=False, software=None):
         if manifest.is_file():
             parameters["input_manifest_sha256"] = digest(manifest)
     kind = "research" if research else "carc"
-    label = ("neural-benchmarks" if research and parameters["benchmark_suite"] == "neural-benchmarks"
+    label = (parameters["benchmark_suite"] if research and parameters["benchmark_suite"] in ("neural-benchmarks", "neural-replication")
              else parameters.get("profile", "smoke" if parameters.get("smoke") else "default"))
     return api.begin_report(base, name=f"TDN/{kind}/{label}/{phase}",
                             script=f"scripts/{kind}_{phase}.sbatch", parameters=parameters,

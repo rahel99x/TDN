@@ -1,0 +1,21 @@
+# Fixed paired-seed replication of the strongest screened neural controls.
+# All fifteen checkpoints are selected on validation before diagnostics open.
+protocol_version: 2
+grid: [32, 32]
+max_steps: 96
+width: 16
+learning_rate: 0.001
+validation_every: 8
+max_seconds: 1200
+max_finest_substeps: 4096
+families: [reaction_clock, generic_mlp, residual_cnn_split, unet_split, fno_split]
+tolerance: 0.002
+train_horizons: [0.02, 0.08, 0.16]
+heldout_horizons: [0.03, 0.11]
+rollout_time: 0.32
+benchmark_steps: [0.04, 0.08, 0.16, 0.32]
+rollout_weight: 0.5
+timing_repeats: 3
+training_seeds: [74011, 74021, 74031]
+sample_schedule_seeds: [74012, 74022, 74032]
+diagnostic_replicates: 3

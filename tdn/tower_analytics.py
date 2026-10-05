@@ -44,16 +44,18 @@ KINDS = {".json": "json", ".csv": "csv", ".jsonl": "jsonl", ".txt": "text",
          ".xml": "test_report", ".md": "text", ".gz": "archive", ".zip": "archive"}
 TEXT_KINDS = {"json", "csv", "jsonl", "text", "log", "configuration", "test_report"}
 PREFIX = ["source_path", "source_record"]
+REPLICATION_CONTEXT = ["replicate_id", "training_seed", "sample_schedule_seed", "diagnostic_block"]
 COLUMNS = {
-    "frontier": PREFIX + ["case_id", "parent_id", "split", "family", "h", "sequence", "device",
+    "frontier": PREFIX + REPLICATION_CONTEXT + ["case_id", "parent_id", "split", "family", "h", "sequence", "device",
         "status", "failed", "feasible", "error", "error_upper", "reference_uncertainty",
         "wall_seconds_median", "cuda_event_seconds_median", "peak_allocated_bytes",
         "peak_reserved_bytes", "host_process_peak_rss_bytes", "timing_scope", "reason"],
-    "training": PREFIX + ["record_type", "family", "status", "step", "selected_step", "loss",
+    "training": PREFIX + REPLICATION_CONTEXT + ["record_type", "family", "status", "step", "selected_step", "loss",
         "training_loss", "validation_loss", "admissible_validation", "selected_parameters_changed", "reason",
         "parameter_count", "training_seconds", "benchmark_role", "learning_rate", "optimizer",
-        "maximum_optimizer_updates", "architecture_track", "architecture_backbone"],
-    "heldout": PREFIX + ["case_id", "parent_id", "family", "h", "device", "status",
+        "maximum_optimizer_updates", "architecture_track", "architecture_backbone", "failure_context",
+        "validation_failures", "failures", "failure_stages"],
+    "heldout": PREFIX + REPLICATION_CONTEXT + ["case_id", "parent_id", "family", "h", "device", "status",
         "one_step_rms", "one_step_upper", "one_step_reference_uncertainty", "two_step_rms",
         "two_step_upper", "two_step_reference_uncertainty", "heldout_absolute_rms",
         "heldout_relative_rms_with_noise_floor", "reason"],
@@ -62,7 +64,7 @@ COLUMNS = {
     "gates": PREFIX + ["case_id", "gate", "passed", "decision", "scope", "reason"],
     "stages": PREFIX + ["stage", "status", "device", "execution_mode", "actually_ran", "elapsed_seconds", "reason"],
     "tests": PREFIX + ["suite", "test", "classname", "status", "elapsed_seconds", "reason"],
-    "neural_comparisons": PREFIX + ["parent_id", "tdn_family", "baseline_family", "baseline_kind",
+    "neural_comparisons": PREFIX + REPLICATION_CONTEXT + ["parent_id", "tdn_family", "baseline_family", "baseline_kind",
         "tdn_training_status", "baseline_training_status", "tdn_training_selection", "baseline_training_selection",
         "tdn_selected_step", "baseline_selected_step", "tdn_optimizer_steps", "baseline_optimizer_steps",
         "tdn_status", "baseline_status", "eligible", "tdn_h", "baseline_h", "tdn_error", "baseline_error",
@@ -72,9 +74,23 @@ COLUMNS = {
         "baseline_invalid_h_count", "tdn_heldout_missing_h_count", "baseline_heldout_missing_h_count",
         "tdn_heldout_invalid_h_count", "baseline_heldout_invalid_h_count", "ineligible_reasons",
         "tdn_failure_reason", "baseline_failure_reason"],
-    "neural_accuracy": PREFIX + ["tdn_family", "baseline_family", "baseline_kind", "tdn_training_selection",
+    "neural_accuracy": PREFIX + REPLICATION_CONTEXT + ["tdn_family", "baseline_family", "baseline_kind", "tdn_training_selection",
         "baseline_training_selection", "metric", "cases", "eligible", "wins", "losses", "ties", "ineligible",
         "failure_reasons"],
+    "replication": PREFIX + REPLICATION_CONTEXT + ["family", "status", "selection", "selected_step",
+        "optimizer_steps", "parameter_count", "training_seconds", "failure_reason", "parent_count",
+        *[prefix + "_" + field for prefix in ("rollout", "heldout_one", "heldout_two")
+          for field in ("expected", "completed", "invalid", "missing", "pass", "invalid_reasons")],
+        "feasible_parent_count", "robust_joint_parent_pass_count", "trained_checkpoint",
+        "robust_joint_trained_parent_pass_count", "worst_rollout_upper_error", "worst_one_step_upper_error",
+        "worst_two_step_upper_error", "worst_rollout", "worst_heldout_one", "worst_heldout_two",
+        "regime_counts", "state_counts"],
+    "replication_comparisons": PREFIX + REPLICATION_CONTEXT + ["tdn_family", "baseline_family",
+        "expected_parent_count", "eligible", "wins", "losses", "ties", "ineligible", "failure_reasons",
+        "speedup_median", "speedup_min", "speedup_max", "trained_pair", "tdn_training_selection",
+        "baseline_training_selection", "block_rows",
+        *[prefix + "_" + field for prefix in ("same_h_rollout", "heldout_one", "heldout_two")
+          for field in ("expected", "eligible", "wins", "losses", "ties", "ineligible")]],
 }
 NEURAL_METRICS = ("matched_tolerance_speed", "same_h_rollout_rms", "same_h_rollout_upper_error",
                   "heldout_one_step_rms", "heldout_two_step_rms", "heldout_one_step_upper_error",
@@ -237,6 +253,7 @@ def _atomic_csv(path, rows, columns, budget):
     out = io.StringIO(newline="")
     writer = csv.DictWriter(out, columns, lineterminator="\n")
     writer.writeheader()
+    encoded_bytes = len(out.getvalue().encode("utf-8"))
     count = 0
     # JSON null and booleans have explicit spellings; an absent key is blank.
     for row in rows:
@@ -244,11 +261,15 @@ def _atomic_csv(path, rows, columns, budget):
                           if not isinstance(value, str) else value) for key, value in row.items() if key in columns}
         previous = out.tell()
         writer.writerow(converted)
-        if out.tell() > MAX_TABLE_BYTES // 4:  # conservative UTF-8 byte bound
+        out.seek(previous)
+        encoded_row_bytes = len(out.read().encode("utf-8"))
+        if encoded_bytes + encoded_row_bytes > MAX_TABLE_BYTES:
             out.seek(previous)
             out.truncate()
             budget.omit(path.name, "table byte budget exhausted; remaining rows remain in source artifacts")
             break
+        encoded_bytes += encoded_row_bytes
+        out.seek(0, io.SEEK_END)
         count += 1
     raw = out.getvalue().encode("utf-8")
     if path.exists() and not stat.S_ISREG(path.lstat().st_mode):
@@ -302,13 +323,15 @@ class _Projection:
             values["reason"] = row["reason"]
         self.add("frontier", source, pointer, values)
 
-    def training(self, source, pointer, row):
-        values = _pick(row, ["family", "status", "selected_step", "selected_parameters_changed", "parameter_count",
-                            "training_seconds", "benchmark_role", "learning_rate", "optimizer", "maximum_optimizer_updates"])
+    def training(self, source, pointer, row, record_type="final", **context):
+        context = {**context, **_pick(row, REPLICATION_CONTEXT)}
+        values = {**context, **_pick(row, ["family", "status", "selected_step", "selected_parameters_changed", "parameter_count",
+                            "training_seconds", "benchmark_role", "learning_rate", "optimizer", "maximum_optimizer_updates",
+                            "failure_context", "validation_failures", "failure_stages"])}
         architecture = _dict(row.get("architecture"))
         values.update({"architecture_" + name: architecture[name] for name in ("track", "backbone")
                        if name in architecture})
-        values.update({"record_type": "final"})
+        values.update({"record_type": record_type})
         for old, new in [("steps", "step"), ("global_step", "step"), ("best_validation_loss", "validation_loss"),
                          ("last_training_loss", "training_loss"), ("error", "reason")]:
             if old in row:
@@ -317,8 +340,9 @@ class _Projection:
         for index, item in enumerate(_records(row.get("history"))):
             if isinstance(item, dict):
                 self.add("training", source, f"{pointer}/history/{index}", {
-                    **_pick(row, ["family", "status"]), "record_type": "history",
-                    **_pick(item, ["step", "loss", "training_loss", "validation_loss", "admissible_validation"])})
+                    **context, **_pick(row, ["family", "status"]),
+                    "record_type": "history" if record_type == "final" else "source_history",
+                    **_pick(item, ["step", "loss", "training_loss", "validation_loss", "admissible_validation", "failures"])})
 
     def reference(self, source, pointer, row, **context):
         if isinstance(row, dict):
@@ -329,7 +353,7 @@ class _Projection:
             self.add("gates", source, pointer, {**context, "gate": name,
                      **_pick(row, ["passed", "decision", "scope", "reason"])})
 
-    def neural(self, source, value):
+    def neural(self, source, value, **replication):
         """Project declared neural comparisons without requiring classical headroom.
 
         Selection at initialization and failed training remain separate from
@@ -356,8 +380,8 @@ class _Projection:
         baseline_kinds = {}
         comparisons = [row for _, row in comparison_records]
         for index, row in comparison_records:
-            values = _pick(row, ["parent_id", "tdn_family", "baseline_family", "baseline_kind", "eligible",
-                                "speedup", "speed_outcome", "ineligible_reasons"])
+            values = {**replication, **_pick(row, ["parent_id", "tdn_family", "baseline_family", "baseline_kind", "eligible",
+                                "speedup", "speed_outcome", "ineligible_reasons"])}
             baseline_kinds[(row.get("tdn_family"), row.get("baseline_family"))] = row.get("baseline_kind")
             for side in ("tdn", "baseline"):
                 family = row.get(side + "_family")
@@ -380,7 +404,7 @@ class _Projection:
                     for key in ("tdn_family", "baseline_family")):
                 self.budget.omit(source, "neural aggregate row has unsupported family labels")
                 continue
-            context = _pick(row, ["tdn_family", "baseline_family", "baseline_training_selection"])
+            context = {**replication, **_pick(row, ["tdn_family", "baseline_family", "baseline_training_selection"])}
             context["baseline_kind"] = baseline_kinds.get((row.get("tdn_family"), row.get("baseline_family")))
             context["tdn_training_selection"] = _dict(training.get(row.get("tdn_family"))).get("selection")
             for metric in NEURAL_METRICS:
@@ -395,6 +419,7 @@ class _Projection:
         wins = sum(row.get("speed_outcome") == "WIN" for row in eligible)
         trained_wins = sum(row.get("speed_outcome") == "WIN" for row in trained)
         self.science.append({"source_path": source, "kind": "neural_solver_comparison",
+            **replication,
             **_pick(value, ["diagnostic_parent_count", "scope", "cost_scope", "accuracy_scope", "selection_scope"]),
             "neural_comparison_count": len(comparisons), "neural_eligible_comparison_count": len(eligible),
             "neural_speed_advantage_count": wins,
@@ -409,12 +434,77 @@ class _Projection:
                 _dict(training.get(row.get("baseline_family"))).get("selection") == "TRAINING_FAILURE"
                 for row in comparisons)})
 
+    def replication(self, source, value):
+        """Export the canonical prespecified endpoint document once.
+
+        Diagnostic parents are reused across training seeds. Per-seed records
+        stay separate and do not imply three independent diagnostic populations.
+        """
+        if (value.get("version") != 1 or value.get("protocol_version") != 2
+                or value.get("benchmark_suite") != "neural-replication"
+                or not all(isinstance(value.get(key), list) for key in
+                           ("replicates", "families", "endpoint_rows", "comparison_rows"))
+                or len(value["replicates"]) != 3 or len(value["families"]) != 5
+                or len(value["endpoint_rows"]) > 15 or len(value["comparison_rows"]) > 12):
+            self.budget.omit(source, "replication version or required record lists unsupported")
+            return
+        plans = {}
+        for row in value["replicates"]:
+            if (not isinstance(row, dict) or not isinstance(row.get("replicate_id"), str)
+                    or row["replicate_id"] in plans
+                    or any(type(row.get(key)) is not int for key in ("training_seed", "sample_schedule_seed"))):
+                self.budget.omit(source, "replication seed declarations unsupported")
+                return
+            plans[row["replicate_id"]] = row
+        families = value["families"]
+        if not all(isinstance(family, str) for family in families) or len(set(families)) != len(families):
+            self.budget.omit(source, "replication family declarations unsupported")
+            return
+        for table, field, identity in (("replication", "endpoint_rows", ("family",)),
+                                      ("replication_comparisons", "comparison_rows", ("tdn_family", "baseline_family"))):
+            seen = set()
+            for index, row in enumerate(value[field]):
+                if not isinstance(row, dict):
+                    self.budget.omit(source, "replication summary row unsupported")
+                    continue
+                plan = plans.get(row.get("replicate_id")) if isinstance(row.get("replicate_id"), str) else None
+                if (plan is None or any(type(row.get(key)) is not int or row[key] != plan[key]
+                                        for key in ("training_seed", "sample_schedule_seed"))
+                        or any(row.get(key) not in families for key in identity)):
+                    self.budget.omit(source, "replication summary row has undeclared seed/family context")
+                    continue
+                key = (row["replicate_id"], *(row[name] for name in identity))
+                if key in seen:
+                    self.budget.omit(source, "duplicate canonical replication summary row")
+                    continue
+                seen.add(key)
+                values = _pick(row, [column for column in COLUMNS[table] if column not in PREFIX])
+                if table == "replication_comparisons":
+                    for metric in ("same_h_rollout", "heldout_one", "heldout_two"):
+                        values.update({metric + "_" + name: count for name, count in
+                                       _dict(row.get(metric)).items()
+                                       if metric + "_" + name in COLUMNS[table]})
+                self.add(table, source, f"/{field}/{index}", values)
+        self.science.append({"source_path": source, "kind": "neural_replication",
+            **_pick(value, ["status", "device", "smoke", "scope", "diagnostic_parent_count", "diagnostic_blocks",
+                "replicates", "families", "expected_block_result_count", "observed_block_result_count",
+                "training_record_count", "endpoint_scope", "timing_scope", "pairing_scope", "classical_scope",
+                "missing_scope", "selection_scope", "training_attempted", "actual_neural_training"]),
+            "endpoint_record_count": len(value["endpoint_rows"]),
+            "comparison_record_count": len(value["comparison_rows"]),
+            "diagnostic_parent_interpretation": "The same declared diagnostic parents are evaluated for each "
+                "training seed; seed-by-parent measurements are not independent diagnostic parents.",
+            "scientific_gate_authorized": False})
+
     def consume(self, path, source, value):
         if not isinstance(value, dict):
             return
         name = path.name
-        if name == "neural-comparisons.json":
-            self.neural(source, value)
+        replication = _pick(_dict(value.get("replication")), REPLICATION_CONTEXT)
+        if name == "replication.json":
+            self.replication(source, value)
+        elif name == "neural-comparisons.json":
+            self.neural(source, value, **replication)
         elif name == "stage.json":
             row = _pick(value, COLUMNS["stages"])
             if "error" in value:
@@ -422,11 +512,11 @@ class _Projection:
             self.add("stages", source, "", row)
         elif name == "frontier.json":
             for i, row in enumerate(_records(value.get("rows"))):
-                self.frontier(source, f"/rows/{i}", row)
+                self.frontier(source, f"/rows/{i}", row, **replication)
         elif name == "heldout.json":
             for i, row in enumerate(_records(value.get("rows"))):
                 if isinstance(row, dict):
-                    flat = _pick(row, ["parent_id", "family", "h", "device", "status", "reason"])
+                    flat = {**replication, **_pick(row, ["parent_id", "family", "h", "device", "status", "reason"])}
                     for part in ("one_step", "two_step"):
                         flat.update({part + "_" + k: v for k, v in _dict(row.get(part)).items()
                                      if k in {"rms", "upper", "reference_uncertainty"}})
@@ -439,7 +529,22 @@ class _Projection:
                 self.gate(source, "/" + gate, gate, row)
         elif name == "training_result.json" or path.parent.name == "training":
             if "history" in value or "status" in value:
-                self.training(source, "", value)
+                self.training(source, "", value, **replication)
+        elif name == "summary.json" and value.get("benchmark_suite") == "neural-replication":
+            # Endpoint/comparison records are exported only from replication.json.
+            # Frozen GPU runs describe source checkpoints and do not retrain them.
+            field = "source_training" if isinstance(value.get("source_training"), list) else "training"
+            for index, row in enumerate(_records(value.get(field))):
+                if not isinstance(row, dict):
+                    continue
+                identity, family = row.get("replicate_id"), row.get("family")
+                if not isinstance(identity, str) or not isinstance(family, str):
+                    self.budget.omit(source, "replication training summary has unsupported seed/family context")
+                    continue
+                original = path.parent / "replicates" / identity / "training" / f"{family}.json"
+                if original not in self.existing_paths:
+                    self.training(source, f"/{field}/{index}", row,
+                                  record_type="source_checkpoint" if field == "source_training" else "final")
         elif name == "summary.json" and "comparisons" in value:
             comparisons = [v for v in _records(value.get("comparisons")) if isinstance(v, dict)]
             eligible = [v for v in comparisons if v.get("eligible") is True]
@@ -447,6 +552,7 @@ class _Projection:
             failed = [v for v in _records(value.get("training")) if isinstance(v, dict)
                       and v.get("status") == "NUMERICAL_FAILURE"]
             summary = {"source_path": source, "kind": "architecture_research",
+                **replication,
                 **_pick(value, ["status", "device", "scope", "selection_scope", "headroom_passed", "trained_family_count",
                                "diagnostic_parent_count", "failed_trajectories", "accuracy_tolerance", "actual_neural_training"]),
                 "comparison_count": len(comparisons), "eligible_comparison_count": len(eligible),
@@ -635,7 +741,17 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                   "parameter_count": "trainable and frozen model parameter elements",
                   "training_seconds": "actual training wall seconds including validation/checkpoint overhead",
                   "maximum_optimizer_updates": "declared maximum optimizer updates per family",
-                  "learning_rate": "declared optimizer learning rate"},
+                  "learning_rate": "declared optimizer learning rate",
+                  "replicate_id": "paired training-seed identifier; not an independent diagnostic population",
+                  "training_seed": "initialization random seed paired across families",
+                  "sample_schedule_seed": "training-parent/horizon sampling random seed paired across families",
+                  "diagnostic_block": "prespecified fresh diagnostic-parent block index",
+                  "replication.*_expected": "prespecified parent x horizon endpoint count for this training seed",
+                  "replication.*_pass": "finite completed upper error <= fixed tolerance; missing/invalid never passes",
+                  "replication.parent_count": "distinct diagnostic parents reused across training seeds",
+                  "replication.robust_joint_parent_pass_count": "parents passing both heldout horizons at both one/two steps",
+                  "replication_comparisons.speedup_*": "baseline wall seconds / reaction-clock wall seconds within one seed",
+                  "replication_comparisons.trained_pair": "both same-seed models selected a positive step with changed parameters"},
         "interpretation": "No cross-run aggregation, scheduler inference, imputation, or scientific gate relaxation. "
                           "History rows retain null losses and failed/invalid outcomes. Empty tables mean no projected rows.",
         "neural_comparison_interpretation": "Speed eligibility uses each family's fastest feasible declared-grid "
@@ -643,6 +759,12 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             "perspective; speedup > 1 means TDN is faster. Error counts use finite completed same-h or held-out "
             "trajectories regardless of tolerance. Checkpoint selection and failures are explicit; comparisons against "
             "initialization are not evidence of superiority over a trained baseline. No overall neural solver ranking.",
+        "replication_interpretation": "replication.csv and replication_comparisons.csv project only canonical "
+            "replication.json. Full-rollout and one/two-step transient endpoints remain separate. The same diagnostic "
+            "parents are reused across three training seeds; repeated classical timings and seed-by-parent rows "
+            "are not additional independent parents. Missing/invalid results and initialization remain explicit. "
+            "Per-seed speed ratios use each family's fastest feasible declared grid entry, a post-hoc diagnostic "
+            "rather than a deployable step selector. No significance, SOTA, ranking or scientific gate authorization.",
         "columns": COLUMNS, "rows": table_rows}
     atomic_json(outputs / "tables.json", metadata)
     # Prefer actual stdout/stderr and readable summaries; all other text artifacts remain inventoried.
@@ -694,6 +816,10 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         "science_sources_mutated": False}
     neural = [row for row in science if row.get("kind") == "neural_solver_comparison"]
     if neural:
+        if any(row.get("replicate_id") for row in neural):
+            results["neural_observation_scope"] = (
+                "Counts include separate seed-by-parent observations; shared diagnostic parents are not independent "
+                "across training seeds. Canonical replication tables retain per-seed outcomes.")
         for field in ("neural_comparison_count", "neural_eligible_comparison_count", "neural_speed_advantage_count",
                       "neural_trained_baseline_eligible_comparison_count", "neural_trained_baseline_speed_advantage_count",
                       "neural_baseline_initialization_comparison_count", "neural_baseline_training_failure_comparison_count"):

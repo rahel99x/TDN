@@ -33,7 +33,7 @@ def write_manifest(run_dir, protocol, software, config_file_sha256):
     for path in sorted(run_dir.rglob("*")):
         if path.is_file() and path.name not in ("stage.json", "manifest.json", "COMPLETED") and ".partial" not in path.name:
             files[path.relative_to(run_dir).as_posix()] = file_digest(path)
-    manifest = {"version": 1, "protocol_sha256": digest(protocol),
+    manifest = {"version": protocol["version"], "protocol_sha256": digest(protocol),
                 "config_sha256": digest(protocol["config"]), "config_file_sha256": config_file_sha256,
                 "source_tree_sha256": software["source_tree_sha256"],
                 "software": {name: software[name] for name in ("python", "torch", "numpy", "scipy")},
@@ -49,7 +49,7 @@ def main(argv=None):
         sub = commands.add_parser(name)
         sub.add_argument("--config", type=Path, default=ROOT / "configs/research.yaml")
         sub.add_argument("--run-dir", type=Path, required=True)
-        sub.add_argument("--expected-suite", choices=("architecture", "neural-benchmarks"))
+        sub.add_argument("--expected-suite", choices=("architecture", "neural-benchmarks", "neural-replication"))
         sub.add_argument("--device", choices=("cpu", "cuda"), default="cpu" if name == "run" else "cuda")
         if name == "run":
             sub.add_argument("--smoke", action="store_true")
@@ -92,6 +92,10 @@ def main(argv=None):
                     and isinstance(row.get("selected_step"), int) and row["selected_step"] > 0}
                 if not {"tdn", "neural_baseline"} <= trained_roles:
                     raise ValueError("Neural GPU timing requires trained validation-selected checkpoints on both sides")
+            elif benchmark_suite(config) == "neural-replication":
+                from tdn.research.replication_protocol import trained_checkpoint_pairs
+                if not trained_checkpoint_pairs(source_summary.get("training", [])):
+                    raise ValueError("Replication GPU timing requires a trained clock/baseline checkpoint pair in the same seed replicate")
         else:
             config = validate_config(raw_config, smoke=args.smoke)
         if args.expected_suite is not None and benchmark_suite(config) != args.expected_suite:
@@ -128,7 +132,7 @@ def main(argv=None):
             metadata={"source_tree_sha256": software["source_tree_sha256"], "protocol_sha256": digest(protocol)})
         os.environ["TDN_TOWER_DIR"] = str(tower_report)
         emit({"started": 1}, phase=f"research-{args.action}")
-        if source_run is not None and benchmark_suite(config) != "neural-benchmarks" and not source_summary["headroom"]["passed"]:
+        if source_run is not None and benchmark_suite(config) == "architecture" and not source_summary["headroom"]["passed"]:
             result = {"status": "SKIPPED", "actually_ran": False, "device": "cuda",
                       "reason": "CPU classical headroom screen did not pass; no GPU numerical work performed",
                       "source_run": str(source_run)}
@@ -146,7 +150,10 @@ def main(argv=None):
         torch.set_num_threads(1)
         torch.set_num_interop_threads(1)
         reference_precision()
-        from tdn.research.experiment import benchmark, run
+        if benchmark_suite(config) == "neural-replication":
+            from tdn.research.replication import benchmark, run
+        else:
+            from tdn.research.experiment import benchmark, run
         stage["actually_ran"] = True
         write_json(run_dir / "stage.json", stage)
         with StopRequest() as stop:

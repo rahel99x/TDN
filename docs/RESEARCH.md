@@ -1,5 +1,11 @@
 # Automated architecture hypothesis experiments
 
+For the next development experiment after the initial neural screen, use the
+[three-seed replication workflow](NEURAL_REPLICATION.md):
+`bash scripts/carc_neural_replication.sh --submit`. Its fixed five-family study
+adds fresh diagnostic parents and separates transient accuracy from final-rollout
+feasibility. It does not expand the optimizer budget or start GPU work automatically.
+
 For comparisons against a time-conditioned MLP, residual CNN, U-Net and FNO,
 use the [neural benchmark workflow](NEURAL_BENCHMARKS.md):
 `bash scripts/carc_neural_benchmarks.sh --submit`. It retains all TDN controls
