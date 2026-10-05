@@ -120,12 +120,29 @@ not an efficiency advantage or permission for a larger scientific campaign.
 
 Analytics are bounded derivative views. The exporter visits at most 4,096
 directory entries and 1,024 files, reads at most 16 MiB in total and 1 MiB per
-source file, and limits projected rows to 10,000. Oversized, unreadable, malformed
+ordinary source file, and limits projected rows to 10,000. The recognized
+`frontier.json` format has a 2 MiB per-file limit because GPU timing records
+contain both wall-clock and CUDA-event repetitions. Oversized, unreadable, malformed
 or unrecognized artifacts stay in the source and appear as omissions or inventory
 entries. Model checkpoints and arrays are inventoried; the reporter never
 unpickles a checkpoint or loads numerical arrays. The output contract names exact
 files under the sidecar; an inventoried source path is not an artifact-contract
 permission to traverse outside that root.
+
+An older GPU report can have an empty `outputs/frontier.csv` when its complete
+`frontier.json` exceeded the previous 1 MiB limit. Reimport the terminal experiment
+with the updated project exporter to create a corrected sidecar; the scientific
+files and original report are preserved. For the reviewed A100 benchmark:
+
+```bash
+git pull --ff-only
+bash scripts/tower.sh import runs/carc-research-gpu-20261005T003505289617Z/experiment
+bash scripts/tower.sh validate latest
+bash scripts/tower.sh show latest
+```
+
+The new historical sidecar contains one export event, not a replay of live
+measurements. The original job's `metrics.jsonl` retains its live observations.
 
 ## Validate, reconcile and export evidence
 

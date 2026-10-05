@@ -27,6 +27,8 @@ MAX_ENTRIES = 4096
 MAX_DEPTH = 12
 MAX_READ_BYTES = 16 << 20
 MAX_FILE_BYTES = 1 << 20
+# GPU frontier rows retain raw wall/CUDA repetitions as well as their medians.
+MAX_FRONTIER_FILE_BYTES = 2 << 20
 MAX_INVENTORY_BYTES = 512 << 10
 MAX_TABLE_BYTES = 2 << 20
 MAX_ROWS = 10000
@@ -107,6 +109,10 @@ def _pick(value, names):
     return {name: value[name] for name in names if name in value}
 
 
+def _file_read_limit(path):
+    return MAX_FRONTIER_FILE_BYTES if path.name == "frontier.json" else MAX_FILE_BYTES
+
+
 class _Budget:
     def __init__(self):
         self.deadline = time.monotonic() + MAX_SECONDS
@@ -124,7 +130,8 @@ class _Budget:
         return time.monotonic() >= self.deadline
 
     def read(self, path, expected):
-        if expected.st_size > MAX_FILE_BYTES or self.read_bytes + expected.st_size > MAX_READ_BYTES:
+        file_limit = _file_read_limit(path)
+        if expected.st_size > file_limit or self.read_bytes + expected.st_size > MAX_READ_BYTES:
             raise ValueError("per-file or total read budget exceeded")
         if self.expired():
             raise ValueError("analytics time budget exceeded")
@@ -134,8 +141,8 @@ class _Budget:
             if not stat.S_ISREG(before.st_mode) or before.st_size != expected.st_size:
                 raise ValueError("source is not the inventoried regular file")
             raw = bytearray()
-            while len(raw) <= MAX_FILE_BYTES:
-                part = os.read(fd, min(65536, MAX_FILE_BYTES + 1 - len(raw)))
+            while len(raw) <= file_limit:
+                part = os.read(fd, min(65536, file_limit + 1 - len(raw)))
                 if not part:
                     break
                 raw.extend(part)
@@ -550,7 +557,7 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             relative = _relative(path, report_dir)
             entry = {"path": relative, "kind": KINDS.get(path.suffix.lower(), "other"), "bytes": info.st_size}
             raw = None
-            if info.st_size <= MAX_FILE_BYTES and budget.read_bytes + info.st_size <= MAX_READ_BYTES and not budget.expired():
+            if info.st_size <= _file_read_limit(path) and budget.read_bytes + info.st_size <= MAX_READ_BYTES and not budget.expired():
                 try:
                     _safe_directory(path.parent)
                     raw = budget.read(path, info)
@@ -709,6 +716,7 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         "omissions_list_truncated": budget.omission_count > len(budget.omissions),
         "limits": {"files": MAX_FILES, "directory_entries": MAX_ENTRIES, "depth": MAX_DEPTH,
                    "read_bytes": MAX_READ_BYTES, "per_file_read_bytes": MAX_FILE_BYTES,
+                   "per_file_read_bytes_overrides": {"frontier.json": MAX_FRONTIER_FILE_BYTES},
                    "source_read_seconds": MAX_SECONDS, "canonical_rows": MAX_ROWS},
         "observed_read_bytes": budget.read_bytes,
         "hash_semantics": "computed = bytes read here; declared_unverified = original manifest assertion only; "

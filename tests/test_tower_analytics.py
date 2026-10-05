@@ -100,6 +100,197 @@ def test_inventory_covers_nested_binary_and_text_without_loading_large_checkpoin
     assert not any(row["path"].endswith((".pt", ".png", ".npz", ".pdf")) for row in index["logs"])
 
 
+def test_gpu_frontier_with_raw_timing_repetitions_above_one_mib_is_projected(tmp_path):
+    source, target = report(tmp_path)
+    # Synthetic rows match the retained A100 frontier structure, including raw
+    # timings that remain authoritative in JSON while CSV exposes the medians.
+    frontier = []
+    for index in range(684):
+        frontier.append({"parent_id": f"diagnostic-baseline-mixed_frequency-{33001 + index}",
+            "family": "split", "h": 0.04, "device": "cuda", "state_precision": "float32",
+            "reference_uncertainty": 2.7544566599632488e-11, "status": "COMPLETED", "feasible": True,
+            "error": 1.7747025952074326e-05, "error_upper": 1.7747053496640926e-05,
+            "timing": {"device": "cuda", "initialization_first_use_seconds": 0.005166283110156655,
+                "warmup_seconds": 0.005066324025392532, "warmup_repeats": 1,
+                "first_use_and_warmup_memory": {"peak_allocated_bytes": 1804800, "peak_reserved_bytes": 2097152},
+                "steady_state_repeats": 3,
+                "wall_seconds_raw": [0.005130474921315908, 0.0052804669830948114, 0.0051416761707514524],
+                "wall_seconds_median": 0.0051416761707514524,
+                "cuda_event_seconds_raw": [0.005075712203979493, 0.005242688179016113, 0.005104191780090332],
+                "cuda_event_seconds_median": 0.005104191780090332,
+                "peak_allocated_bytes": 1804800, "peak_reserved_bytes": 2097152,
+                "device_used_bytes_observed_peak": 535625728,
+                "device_used_sampling": "after each synchronized repetition; not a per-kernel peak",
+                "host_process_peak_rss_bytes": 965042176,
+                "host_memory_scope": "process lifetime peak RSS (linux), not stage-specific allocation",
+                "includes": "full operation including feature construction, layout conversion, solver and inference",
+                "data_io_included": False, "device_total_bytes": 42404806656,
+                "soft_budget_bytes": 32212254720, "soft_budget_passed": True,
+                "hard_device_memory_warning": False}, "macrosteps": 8})
+    artifact = source / "experiment/frontier.json"
+    artifact.parent.mkdir()
+    artifact.write_text(json.dumps({"rows": frontier, "scope": "synthetic GPU timing regression"},
+                                   allow_nan=False, indent=2))
+    raw = artifact.read_bytes()
+    assert analytics.MAX_FILE_BYTES < len(raw) < analytics.MAX_FRONTIER_FILE_BYTES
+    digest = hashlib.sha256(raw).hexdigest()
+    put(source / "manifest.json", {"files": {"experiment/frontier.json": digest}})
+    source_hashes = {path: hashlib.sha256(path.read_bytes()).hexdigest()
+                     for path in source.rglob("*") if path.is_file()}
+
+    result = analytics.publish_outputs(target, [source])
+
+    projected = rows(target, "frontier")
+    assert result["table_rows"]["frontier"] == len(projected) == len(frontier)
+    assert result["reporting_omission_count"] == 0
+    for index, row in enumerate(projected):
+        assert row["source_path"].endswith("/experiment/frontier.json")
+        assert row["source_record"] == f"/rows/{index}"
+        assert row["parent_id"] == frontier[index]["parent_id"]
+        assert row["device"] == "cuda" and row["status"] == "COMPLETED"
+        assert row["wall_seconds_median"] == "0.0051416761707514524"
+        assert row["cuda_event_seconds_median"] == "0.005104191780090332"
+        assert row["peak_allocated_bytes"] == "1804800"
+        assert row["peak_reserved_bytes"] == "2097152"
+        assert row["host_process_peak_rss_bytes"] == "965042176"
+        assert row["timing_scope"] == frontier[index]["timing"]["includes"]
+    observed = inventory(target)
+    entry = next(row for row in observed["artifacts"] if row["path"].endswith("/experiment/frontier.json"))
+    assert entry["hash_status"] == "computed"
+    assert entry["sha256"] == entry["declared_sha256"] == digest
+    assert entry["bytes"] == len(raw)
+    assert observed["limits"]["per_file_read_bytes"] == 1 << 20
+    assert observed["limits"]["per_file_read_bytes_overrides"] == {"frontier.json": 2 << 20}
+    assert observed["limits"]["read_bytes"] == 16 << 20
+    assert observed["limits"]["source_read_seconds"] == 10
+    assert observed["limits"]["canonical_rows"] == 10000
+    assert observed["observed_read_bytes"] == sum(path.stat().st_size for path in source_hashes)
+    assert source_hashes == {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in source_hashes}
+
+
+def test_frontier_exactly_at_extended_file_limit_is_read(tmp_path):
+    source, target = report(tmp_path)
+    artifact = source / "frontier.json"
+    raw = b'{"rows":[{"family":"split","device":"cuda","status":"COMPLETED"}]}'
+    raw += b" " * (analytics.MAX_FRONTIER_FILE_BYTES - len(raw))
+    artifact.write_bytes(raw)
+
+    result = analytics.publish_outputs(target, [source])
+
+    assert result["table_rows"]["frontier"] == 1
+    observed = inventory(target)
+    assert observed["artifacts"][0]["hash_status"] == "computed"
+    assert observed["artifacts"][0]["sha256"] == hashlib.sha256(raw).hexdigest()
+    assert observed["observed_read_bytes"] == analytics.MAX_FRONTIER_FILE_BYTES
+    assert artifact.read_bytes() == raw
+
+
+@pytest.mark.parametrize("name,limit", [
+    ("frontier.json", analytics.MAX_FRONTIER_FILE_BYTES),
+    ("summary.json", analytics.MAX_FILE_BYTES),
+    ("Frontier.json", analytics.MAX_FILE_BYTES),
+    ("frontier.JSON", analytics.MAX_FILE_BYTES),
+])
+def test_oversized_frontier_and_ordinary_json_remain_unread(tmp_path, monkeypatch, name, limit):
+    source, target = report(tmp_path)
+    artifact = source / name
+    raw = b'{"rows":[{"family":"split","device":"cuda","status":"COMPLETED"}]}'
+    raw += b" " * (limit + 1 - len(raw))
+    artifact.write_bytes(raw)
+    before = artifact.stat()
+    with pytest.raises(ValueError, match="per-file or total read budget exceeded"):
+        analytics._Budget().read(artifact, before)
+
+    def forbidden_read(*args):
+        pytest.fail("oversized source must not be read or parsed")
+    monkeypatch.setattr(analytics._Budget, "read", forbidden_read)
+    result = analytics.publish_outputs(target, [source])
+
+    assert result["table_rows"]["frontier"] == 0
+    observed = inventory(target)
+    assert len(observed["artifacts"]) == 1
+    entry = observed["artifacts"][0]
+    assert entry["path"].endswith("/" + name)
+    assert entry["bytes"] == limit + 1
+    assert entry["hash_status"] == "not_read_budget"
+    assert "sha256" not in entry
+    assert observed["observed_read_bytes"] == 0
+    assert artifact.read_bytes() == raw
+
+
+def test_extended_frontier_limit_still_obeys_total_read_budget(tmp_path, monkeypatch):
+    source, target = report(tmp_path)
+    artifact = source / "frontier.json"
+    raw = b'{"rows":[{"family":"split","status":"COMPLETED"}]}'
+    raw += b" " * (analytics.MAX_FILE_BYTES + 1 - len(raw))
+    artifact.write_bytes(raw)
+    budget = analytics._Budget()
+    budget.read_bytes = analytics.MAX_READ_BYTES - len(raw)
+    assert budget.read(artifact, artifact.stat()) == raw
+    assert budget.read_bytes == analytics.MAX_READ_BYTES
+    with pytest.raises(ValueError, match="per-file or total read budget exceeded"):
+        budget.read(artifact, artifact.stat())
+
+    monkeypatch.setattr(analytics, "MAX_READ_BYTES", len(raw) - 1)
+    result = analytics.publish_outputs(target, [source])
+    assert result["table_rows"]["frontier"] == 0
+    observed = inventory(target)
+    assert observed["artifacts"][0]["hash_status"] == "not_read_budget"
+    assert observed["observed_read_bytes"] == 0
+
+
+@pytest.mark.parametrize("raw,reason", [
+    (b'{"rows":[],"rows":[{"family":"split"}]}', "duplicate JSON key"),
+    (b'{"rows":[{"family":"split","error":NaN}]}', "nonfinite JSON value"),
+    (b'{"rows":[{"family":"split","error":1e999}]}', "nonfinite JSON number"),
+    (b'{"rows":[' + b"null," * 100000 + b"null]}", "JSON value budget exceeded"),
+])
+def test_large_frontier_retains_strict_json_guards(tmp_path, raw, reason):
+    source, target = report(tmp_path)
+    artifact = source / "frontier.json"
+    raw += b" " * (analytics.MAX_FILE_BYTES + 1 - len(raw))
+    artifact.write_bytes(raw)
+
+    result = analytics.publish_outputs(target, [source])
+
+    assert result["table_rows"]["frontier"] == 0
+    assert result["reporting_omission_count"] == 1
+    observed = inventory(target)
+    assert observed["artifacts"][0]["hash_status"] == "computed"
+    assert reason in observed["omissions"][0]["reason"]
+    assert artifact.read_bytes() == raw
+
+
+def test_large_frontier_replacement_during_read_is_rejected(tmp_path, monkeypatch):
+    source, target = report(tmp_path)
+    artifact = source / "frontier.json"
+    raw = b'{"rows":[{"family":"split","status":"COMPLETED"}]}'
+    raw += b" " * (analytics.MAX_FILE_BYTES + 1 - len(raw))
+    artifact.write_bytes(raw)
+    replacement = tmp_path / "replacement.json"
+    replacement.write_bytes(raw)
+    real_read = analytics.os.read
+    replaced = False
+
+    def replace_during_read(fd, size):
+        nonlocal replaced
+        part = real_read(fd, size)
+        if not replaced:
+            replacement.replace(artifact)
+            replaced = True
+        return part
+
+    monkeypatch.setattr(analytics.os, "read", replace_during_read)
+    result = analytics.publish_outputs(target, [source])
+
+    assert replaced
+    assert result["table_rows"]["frontier"] == 0
+    observed = inventory(target)
+    assert observed["artifacts"][0]["hash_status"] == "unavailable"
+    assert "sha256" not in observed["artifacts"][0]
+    assert "source changed while reporting" in observed["omissions"][0]["reason"]
+
+
 def test_light_screen_and_legacy_artifacts_are_projected(tmp_path):
     source, target = report(tmp_path)
     put(source / "light/summary.json", {"stage": "light-screen", "status": "COMPLETED", "headroom_passed_cases": 0,

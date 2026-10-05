@@ -1,0 +1,508 @@
+{
+  "category": "source_reported_observation",
+  "scope": "Uploaded actual CARC A100 frozen-checkpoint benchmark, independently reviewed from sealed artifacts; GPU computation was not rerun in the cloud review environment.",
+  "source_archive": {
+    "filename": "carc-research-gpu-20261005T003505289617Z-review-20261005T190333915069Z.tar.gz",
+    "sha256": "788d525919175e34cdb67567a4cd37ef12c73b5b2d3c5983ca966c7b2809ce7e"
+  },
+  "cpu_run_id": "carc-research-20261004T063906877187Z",
+  "gpu_run_id": "carc-research-gpu-20261005T003505289617Z",
+  "cpu_job_id": "12637103",
+  "gpu_job_id": "12652643",
+  "implementation_commit": "9ecc7926d5d89b80b5cd87bb4d413398c7752275",
+  "source_tree_sha256": "11ee195a61f193ca2cb03538891fdbaa5bd5e646dfdd3284f1671420ae4cedca",
+  "protocol_sha256": "b13bf7eaf8d67ac28c5ee5160dd52a13e2a367c7e79dd2254a82671929df90b9",
+  "config": {
+    "protocol_version": 1,
+    "grid": [
+      32,
+      32
+    ],
+    "max_steps": 96,
+    "width": 16,
+    "learning_rate": 0.001,
+    "validation_every": 8,
+    "max_seconds": 1200,
+    "max_finest_substeps": 4096,
+    "families": [
+      "confluent_decay",
+      "fixed_decay",
+      "fixed_decay_r",
+      "fixed_undamped",
+      "reaction_clock",
+      "reaction_additive",
+      "transport",
+      "temporal_mlp",
+      "generic_mlp",
+      "residual_cnn",
+      "unet",
+      "fno",
+      "residual_cnn_split",
+      "unet_split",
+      "fno_split"
+    ],
+    "tolerance": 0.002,
+    "train_horizons": [
+      0.02,
+      0.08,
+      0.16
+    ],
+    "heldout_horizons": [
+      0.03,
+      0.11
+    ],
+    "rollout_time": 0.32,
+    "benchmark_steps": [
+      0.04,
+      0.08,
+      0.16,
+      0.32
+    ],
+    "rollout_weight": 0.5,
+    "timing_repeats": 3
+  },
+  "provenance": {
+    "cpu_manifest_sha256": "01fe1f3b10d7ac75d01558af5fc932b3fe72627d71914c1298ce2b9e8ac608f9",
+    "gpu_manifest_sha256": "f70d58b20d1735b0d43a23b699c7b74973ea426046cf3bf67dc95efb6e00e05c",
+    "cpu_artifact_files_verified": 38,
+    "gpu_artifact_files_verified": 8,
+    "protocol_and_config_identical": true,
+    "cpu_source_matches_previous_review": true,
+    "gpu_has_additional_training": false,
+    "review_source_matches_checked_out_implementation_before_reporting_fix": true
+  },
+  "hardware": {
+    "gpu_name": "NVIDIA A100-PCIE-40GB",
+    "compute_capability": [
+      8,
+      0
+    ],
+    "total_bytes": 42404806656,
+    "free_bytes_at_start": 41959358464,
+    "device_used_bytes_at_start": 445448192,
+    "soft_reserved_budget_bytes": 32212254720,
+    "category": "newly_measured_result",
+    "python": "3.11.9",
+    "torch": "2.10.0+cu126",
+    "torch_cuda_runtime": "12.6",
+    "bfloat16_supported": true,
+    "cuda_visible_devices": "0",
+    "slurm_job_id": "12652643",
+    "slurm_step_id": "0",
+    "peak_allocated_bytes": 8704,
+    "peak_reserved_bytes": 2097152,
+    "nvidia_smi": "NVIDIA A100-PCIE-40GB, 40960 MiB, 580.159.04",
+    "nvidia_smi_note": "May list physical GPUs beyond the task-visible mapping."
+  },
+  "gpu_benchmark_elapsed_seconds": 61.22287691384554,
+  "gpu_allocated_worker_runtime_seconds": 69.95136341196485,
+  "execution_checks": {
+    "cpu_tests_passed": 282,
+    "gpu_tests_passed": 35,
+    "test_failures": 0,
+    "test_skips": 0
+  },
+  "neural_summary": {
+    "comparison_file": "neural-comparisons.json",
+    "baseline_families": [
+      "generic_mlp",
+      "residual_cnn",
+      "unet",
+      "fno",
+      "residual_cnn_split",
+      "unet_split",
+      "fno_split"
+    ],
+    "comparison_count": 504,
+    "eligible_comparison_count": 190,
+    "faster_than_neural_baseline_count": 110,
+    "twenty_percent_faster_than_neural_baseline_count": 87,
+    "scope": "matched tolerance per-parent development frontier; training selection status retained"
+  },
+  "reaction_clock_comparisons": [
+    {
+      "baseline": "generic_mlp",
+      "eligible": 7,
+      "speed_wins": 5,
+      "at_least_twenty_percent_less_wall_time": 3,
+      "median_speedup_ratio": 1.0499192495046343,
+      "minimum_ratio": 0.2674790952182857,
+      "maximum_ratio": 2.0749466705912933,
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "baseline": "residual_cnn_split",
+      "eligible": 8,
+      "speed_wins": 5,
+      "at_least_twenty_percent_less_wall_time": 2,
+      "median_speedup_ratio": 1.1250205376614435,
+      "minimum_ratio": 0.29549029667624993,
+      "maximum_ratio": 8.735798939366429,
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 7,
+        "losses": 11,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 9,
+        "losses": 9,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "baseline": "unet_split",
+      "eligible": 8,
+      "speed_wins": 6,
+      "at_least_twenty_percent_less_wall_time": 6,
+      "median_speedup_ratio": 3.013652778894757,
+      "minimum_ratio": 0.3955201919355994,
+      "maximum_ratio": 11.806951083077326,
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    },
+    {
+      "baseline": "fno_split",
+      "eligible": 7,
+      "speed_wins": 5,
+      "at_least_twenty_percent_less_wall_time": 5,
+      "median_speedup_ratio": 1.853417885319659,
+      "minimum_ratio": 0.945276623887663,
+      "maximum_ratio": 7.22759338112478,
+      "heldout_one_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      },
+      "heldout_two_step_rms": {
+        "cases": 18,
+        "eligible": 18,
+        "wins": 11,
+        "losses": 7,
+        "ties": 0,
+        "ineligible": 0,
+        "failure_reasons": {}
+      }
+    }
+  ],
+  "classical_comparison": {
+    "eligible": 79,
+    "declared": 135,
+    "twenty_percent_wall_reduction_winners": [
+      {
+        "parent_id": "diagnostic-intermediate-bounded_random-33005",
+        "family": "residual_cnn_split",
+        "best_classical_family": "split",
+        "best_classical_h": 0.04,
+        "best_learned_h": 0.16,
+        "speedup": 1.3125373301822114,
+        "twenty_percent_faster": true,
+        "eligible": true,
+        "learned_wall_seconds": 0.003854893846437335,
+        "classical_wall_seconds": 0.0050596920773386955,
+        "wall_time_reduction_fraction": 0.23811690760736215,
+        "learned_error_upper": 0.001982868573101038,
+        "classical_error_upper": 0.0015424041265947395,
+        "learned_raw_wall_seconds": [
+          0.00385423400439322,
+          0.0038571790792047977,
+          0.003854893846437335
+        ],
+        "classical_raw_wall_seconds": [
+          0.005063168006017804,
+          0.0050596920773386955,
+          0.005032350076362491
+        ],
+        "worst_observed_repeat_ratio": 1.304671101088718
+      },
+      {
+        "parent_id": "diagnostic-stiff-bounded_random-33008",
+        "family": "fixed_undamped",
+        "best_classical_family": "split",
+        "best_classical_h": 0.08,
+        "best_learned_h": 0.32,
+        "speedup": 1.325157004166856,
+        "twenty_percent_faster": true,
+        "eligible": true,
+        "learned_wall_seconds": 0.0019478658214211464,
+        "classical_wall_seconds": 0.0025812280364334583,
+        "wall_time_reduction_fraction": 0.24537243748810467,
+        "learned_error_upper": 0.001840385651491809,
+        "classical_error_upper": 0.001524600654193632,
+        "learned_raw_wall_seconds": [
+          0.0019675518851727247,
+          0.0019478658214211464,
+          0.001944670220836997
+        ],
+        "classical_raw_wall_seconds": [
+          0.0025812280364334583,
+          0.002577170031145215,
+          0.002646510023623705
+        ],
+        "worst_observed_repeat_ratio": 1.3098358678957907
+      }
+    ],
+    "reaction_clock_faster_than_best_classical_parents": 0,
+    "reaction_clock_eligible_parents": 9
+  },
+  "accuracy_summary": [
+    {
+      "family": "reaction_clock",
+      "feasible_rollout_horizons": 20,
+      "declared_rollout_horizons": 36,
+      "parents_with_feasible_rollout": 9,
+      "diagnostic_parents": 9,
+      "heldout_one_step_passes": 7,
+      "heldout_two_step_passes": 10,
+      "heldout_cases": 18
+    },
+    {
+      "family": "generic_mlp",
+      "feasible_rollout_horizons": 17,
+      "declared_rollout_horizons": 36,
+      "parents_with_feasible_rollout": 7,
+      "diagnostic_parents": 9,
+      "heldout_one_step_passes": 7,
+      "heldout_two_step_passes": 8,
+      "heldout_cases": 18
+    },
+    {
+      "family": "temporal_mlp",
+      "feasible_rollout_horizons": 17,
+      "declared_rollout_horizons": 36,
+      "parents_with_feasible_rollout": 7,
+      "diagnostic_parents": 9,
+      "heldout_one_step_passes": 7,
+      "heldout_two_step_passes": 8,
+      "heldout_cases": 18
+    },
+    {
+      "family": "confluent_decay",
+      "feasible_rollout_horizons": 17,
+      "declared_rollout_horizons": 36,
+      "parents_with_feasible_rollout": 7,
+      "diagnostic_parents": 9,
+      "heldout_one_step_passes": 7,
+      "heldout_two_step_passes": 8,
+      "heldout_cases": 18
+    },
+    {
+      "family": "fixed_decay_r",
+      "feasible_rollout_horizons": 17,
+      "declared_rollout_horizons": 36,
+      "parents_with_feasible_rollout": 7,
+      "diagnostic_parents": 9,
+      "heldout_one_step_passes": 7,
+      "heldout_two_step_passes": 8,
+      "heldout_cases": 18
+    },
+    {
+      "family": "residual_cnn_split",
+      "feasible_rollout_horizons": 18,
+      "declared_rollout_horizons": 36,
+      "parents_with_feasible_rollout": 8,
+      "diagnostic_parents": 9,
+      "heldout_one_step_passes": 8,
+      "heldout_two_step_passes": 8,
+      "heldout_cases": 18
+    },
+    {
+      "family": "unet_split",
+      "feasible_rollout_horizons": 15,
+      "declared_rollout_horizons": 36,
+      "parents_with_feasible_rollout": 8,
+      "diagnostic_parents": 9,
+      "heldout_one_step_passes": 7,
+      "heldout_two_step_passes": 7,
+      "heldout_cases": 18
+    },
+    {
+      "family": "fno_split",
+      "feasible_rollout_horizons": 15,
+      "declared_rollout_horizons": 36,
+      "parents_with_feasible_rollout": 7,
+      "diagnostic_parents": 9,
+      "heldout_one_step_passes": 8,
+      "heldout_two_step_passes": 9,
+      "heldout_cases": 18
+    }
+  ],
+  "original_tdn_vs_generic_mlp": {
+    "tdn_family": "temporal_mlp",
+    "baseline_family": "generic_mlp",
+    "baseline_training_selection": "TRAINED_CHECKPOINT",
+    "matched_tolerance_speed": {
+      "cases": 9,
+      "eligible": 7,
+      "wins": 0,
+      "losses": 7,
+      "ties": 0,
+      "ineligible": 2,
+      "failure_reasons": {
+        "baseline:NO_FEASIBLE_ROLLOUT": 2,
+        "tdn:NO_FEASIBLE_ROLLOUT": 2
+      }
+    },
+    "same_h_rollout_rms": {
+      "cases": 36,
+      "eligible": 36,
+      "wins": 10,
+      "losses": 26,
+      "ties": 0,
+      "ineligible": 0,
+      "failure_reasons": {}
+    },
+    "same_h_rollout_upper_error": {
+      "cases": 36,
+      "eligible": 36,
+      "wins": 10,
+      "losses": 26,
+      "ties": 0,
+      "ineligible": 0,
+      "failure_reasons": {}
+    },
+    "heldout_one_step_rms": {
+      "cases": 18,
+      "eligible": 18,
+      "wins": 13,
+      "losses": 5,
+      "ties": 0,
+      "ineligible": 0,
+      "failure_reasons": {}
+    },
+    "heldout_two_step_rms": {
+      "cases": 18,
+      "eligible": 18,
+      "wins": 10,
+      "losses": 8,
+      "ties": 0,
+      "ineligible": 0,
+      "failure_reasons": {}
+    },
+    "heldout_one_step_upper_error": {
+      "cases": 18,
+      "eligible": 18,
+      "wins": 13,
+      "losses": 5,
+      "ties": 0,
+      "ineligible": 0,
+      "failure_reasons": {}
+    },
+    "heldout_two_step_upper_error": {
+      "cases": 18,
+      "eligible": 18,
+      "wins": 10,
+      "losses": 8,
+      "ties": 0,
+      "ineligible": 0,
+      "failure_reasons": {}
+    }
+  },
+  "reaction_clock_stiff_boundary_example": {
+    "parent_id": "diagnostic-stiff-boundary-33009",
+    "family": "reaction_clock",
+    "h": 0.11,
+    "device": "cuda",
+    "status": "COMPLETED",
+    "one_step": {
+      "rms": 0.04872064777220375,
+      "upper": 0.048720648675689565,
+      "reference_uncertainty": 9.034858109786506e-10
+    },
+    "two_step": {
+      "rms": 0.01580050492998892,
+      "upper": 0.01580050533947489,
+      "reference_uncertainty": 4.0948596835001987e-10
+    }
+  },
+  "timing_protocol": {
+    "warmup_repeats": 1,
+    "steady_state_repeats": 3,
+    "reported_statistic": "median synchronized complete-rollout wall time",
+    "precision": "FP32",
+    "cuda_event_times_also_retained": true
+  },
+  "reporting_issue": {
+    "gpu_frontier_source_bytes": 1223541,
+    "original_tower_frontier_rows": 0,
+    "cause": "GPU raw wall/CUDA repetition records exceeded generic 1 MiB per-file reader cap.",
+    "fix": "Project exporter grants exact frontier.json filename a bounded 2 MiB allowance; generic 1 MiB, total 16 MiB, 10-second,JSON/race guards retained.",
+    "recovered_frontier_rows": 684,
+    "invalid_rows_preserved": 26,
+    "raw_scientific_manifest_unchanged": true,
+    "unmodified_tower_native_artifact_checks": 16,
+    "original_gpu_live_metric_records": 19,
+    "historical_recovery_metric_records": 1
+  },
+  "limitations": [
+    "One training initialization and nine diagnostic parents; repeated family/horizon pairs are correlated.",
+    "All families have the same 96-update ceiling, data, loss and validation schedule, but parameter counts and convergence are not matched.",
+    "Each reported speed ratio uses the fastest feasible step size selected post hoc on diagnostic parents; it is not a deployable step selector.",
+    "Three timing repetitions establish within-run observations, not replicated statistical significance.",
+    "Final-rollout tolerance success does not establish accuracy at intermediate times; stiff/boundary transients remain substantially above tolerance.",
+    "32x32 eager checked workloads do not establish A100 scaling or an advantage over published converged neural solvers."
+  ],
+  "next_development_experiment": {
+    "purpose": "Replicate compact clock and strong neural controls while checking transient accuracy.",
+    "training_initialization_seeds": 3,
+    "maximum_updates_per_family": 96,
+    "proposed_families": [
+      "reaction_clock",
+      "generic_mlp",
+      "residual_cnn_split",
+      "unet_split",
+      "fno_split"
+    ],
+    "fresh_diagnostic_parents": 27,
+    "endpoints": [
+      "full-rollout feasibility",
+      "heldout one-step and two-step tolerance success",
+      "complete inference and separate training cost"
+    ],
+    "scope": "Proposed bounded development replication; not implemented or submitted by this review, and not a confirmatory campaign."
+  }
+}
