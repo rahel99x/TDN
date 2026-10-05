@@ -44,6 +44,58 @@ pinned Tower accepted all eighteen contract outputs and 1,803 live metric
 records; independent JSON Schema checks validated 1,807 objects. No new CARC
 submission or GPU execution occurred during this validation.
 
+## CARC CPU replication review
+
+The [uploaded CARC review](../results/carc-neural-replication-review.json) covers
+job `12669726`, workflow `carc-research-20261005T201029757953Z`, at source commit
+`d382830`. All 73 sealed artifacts verify, and the executable source fingerprints
+match the reviewed implementation. All 386 allocated CPU tests passed with no
+failures or skips; 35 GPU tests were deselected. The numerical study took 311.07
+seconds and the worker, including tests, took 403.87 seconds. All 225 references
+passed. This is CARC CPU evidence; no A100 inference is included.
+
+Clock again had a feasible declared rollout for all 27 parents in all three
+seeds, but only 6, 6 and 5 parents passed all four transient checks. FNO-split
+passed 9, 10 and 9. Clock had zero joint transient passes on intermediate, stiff
+or boundary parents; no tested learned family passed a boundary parent jointly.
+Clock's worst one-step error was about 24 times tolerance. It lost all 36
+mixed-frequency rollout error comparisons against the selected generic control
+in every seed; the generic control selected initialization in seed 74011 and
+step 8 in the other seeds. This does not establish well-converged MLP training.
+
+On this CPU, clock's median conditional speedup over generic MLP was only
+1.051–1.060×. Its corresponding speedup over FNO-split was 2.219–2.222×. These
+use the post-hoc fastest feasible step on each parent's declared grid, exclude
+infeasible opponents and do not provide a deployment step selector.
+
+The cloud and CARC runs agree on parent coverage and all held-out tolerance
+decisions. Six CNN-split seed-74031 rollout decisions pass on CARC and fail in
+cloud validation, increasing that model's passing horizons from 30 to 36. The
+cause is unestablished; the runs trained independently with different CPU
+environments. Clock's maximum rollout RMS change is only 1.77e-7.
+
+Native Tower validated all 18 contract outputs, 1,808 metric records and 68 log
+entries; independent schemas validated 1,812 objects. Every scientific table
+field matches its original JSON source. All 204 invalid rollout and 63 invalid
+heldout rows belong to the classical `e3_anchor` and remain visible. Three
+reported omissions are intentional cache/work/report exclusions.
+
+The next architecture hypothesis is a compact bounded state correction before
+the final exact reaction, compared with the existing clock and unchanged generic
+MLP/FNO-split controls. At an initial zero cell whose split intermediate is
+`O(h)`, an `O(h^3)` clock perturbation changes the state only by `O(h^4)`. A
+capacity correction before the final reaction can supply an `O(h^3)` state
+correction when directional capacity is sufficiently large. This is a proposed
+mechanism to test, not an implemented or validated successor. The local commuting
+gate and small directional capacities may still obstruct boundary improvements.
+
+A later spatial-encoder comparison should include a parameter-matched pointwise
+control and explicit temporal heads that receive no queried horizon. Existing
+FNO-split is already bounded and horizon-conditioned; rebranding it would not
+establish a new TDN architecture. Future studies should use fresh diagnostic
+parents, retain the original accuracy endpoints and remain within the fixed
+CPU/GPU budgets.
+
 ## Start on CARC
 
 Use the existing verified project Python venv. Pull the current source before
