@@ -10,7 +10,13 @@ The native Windows edition supports a standalone Python `.venv`, PowerShell laun
 
 ## Run on CARC
 
-For the next architecture experiment, use the [runtime interaction screen](docs/INTERACTION_SCREEN.md):
+For the next experiment, use the [time-to-accuracy comparison](docs/WORK_PRECISION.md):
+`bash scripts/carc_work_precision.sh --submit`. One bounded CPU job tests the
+cheap spectral mean correction against full GL3/GL5, smaller-step Strang and
+ETDRK2/4, with repeated timings and separate RMS/maximum-error frontiers.
+It retains the earlier 2D failures and adds fresh amplitude stress tests.
+
+The preceding [runtime interaction screen](docs/INTERACTION_SCREEN.md) remains available:
 `bash scripts/carc_interactions.sh --submit`. One bounded CPU job tests
 field-derived nonlinear corrections, bounded/mean ablations, Strang and
 ETDRK2/4 with accepted FP64 references and Tower metrics. It has no training or

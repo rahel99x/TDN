@@ -1,0 +1,13 @@
+# Frozen training-free CPU diagnostic. Smoke keeps five measured repeats.
+protocol_version: 1
+suite: work-precision
+max_seconds: 1200
+reference_tolerance: 1.0e-8
+reference_attempts: 3
+intraop_threads: 1
+interop_threads: 1
+warmup_rollouts: 1
+timing_repeats: 5
+nsteps: [1, 2, 4, 8, 16, 32]
+error_targets: [0.002, 0.0002, 0.00002, 0.000002]
+methods: [strang, etdrk2, etdrk4, gl3, gl5, gl3_mean_full, gl3_mean_spectral]

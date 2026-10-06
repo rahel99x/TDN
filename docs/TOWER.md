@@ -139,12 +139,24 @@ progress exists. Reporting does not rewrite losses, tolerances, validation
 selection, failed trajectories or checkpoints. `COMPLETED` describes execution,
 not an efficiency advantage or permission for a larger scientific campaign.
 
+The [work–precision experiment](WORK_PRECISION.md) adds compact
+`outputs/work_precision.csv`, `outputs/tolerance_frontiers.csv` and
+`outputs/work_precision_checks.csv` tables. Each candidate or frontier gets one
+row with an exact pointer into the canonical `work-precision.json`; raw timing
+repetitions and work counters remain in that source. Reference acceptance,
+parity, explicit infeasibility and post-hoc selection scope remain visible.
+The selected frontier is a diagnostic over fixed step counts, not an adaptive
+solver. These tables use the existing shared 10,000-row budget and a 2 MiB
+per-table limit.
+
 Analytics are bounded derivative views. The exporter visits at most 4,096
 directory entries and 1,024 files, reads at most 16 MiB in total and 1 MiB per
 ordinary source file, and limits projected rows to 10,000. The recognized
 `frontier.json` format has a 2 MiB per-file limit because GPU timing records
 contain both wall-clock and CUDA-event repetitions. The canonical
 `interaction-screen.json` also has a 2 MiB limit for its per-method diagnostics.
+`work-precision.json` has an 8 MiB limit for repeated complete-rollout timings
+and a 300,000-value JSON limit; ordinary JSON retains its 100,000-value limit.
 Oversized, unreadable, malformed
 or unrecognized artifacts stay in the source and appear as omissions or inventory
 entries. Model checkpoints and arrays are inventoried; the reporter never

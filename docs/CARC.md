@@ -5,7 +5,14 @@ navigation, exported scientific tables, historical imports and scheduler-state
 reconciliation. Each allocated workflow prints `TDN_TOWER_DIR`; pass that exact
 directory as Tower's `--workdir`. CPU, GPU and resumed jobs use separate reports.
 
-The next architecture experiment is the [runtime interaction screen](INTERACTION_SCREEN.md),
+The next experiment is the [time-to-accuracy comparison](WORK_PRECISION.md),
+started with `bash scripts/carc_work_precision.sh --submit`. One 30-minute CPU
+job runs correctness tests and compares seven prepared solvers over 24
+conditions, six step counts and separate RMS/maximum-error targets. It includes
+the cheap spectral mean correction, full GL3/GL5 and ETDRK2/4. No training or
+GPU successor is submitted.
+
+The preceding [runtime interaction screen](INTERACTION_SCREEN.md) remains available,
 started with `bash scripts/carc_interactions.sh --submit`. One 30-minute CPU job
 runs correctness tests and field-derived nonlinear correction comparisons,
 including ETDRK2/4 baselines. It has no training or GPU successor.

@@ -31,6 +31,10 @@ MAX_FILE_BYTES = 1 << 20
 MAX_FRONTIER_FILE_BYTES = 2 << 20
 # Frozen interaction screens retain complete per-method work/error records.
 MAX_INTERACTION_FILE_BYTES = 2 << 20
+# CPU work-precision candidates retain repeated timing and work records in JSON.
+# Only this exact canonical filename receives the larger read allowance.
+MAX_WORK_PRECISION_FILE_BYTES = 8 << 20
+MAX_WORK_PRECISION_JSON_VALUES = 300000
 MAX_INVENTORY_BYTES = 512 << 10
 MAX_TABLE_BYTES = 2 << 20
 MAX_ROWS = 10000
@@ -99,6 +103,26 @@ COLUMNS = {
           for field in ("expected", "eligible", "wins", "losses", "ties", "ineligible")]],
     "mechanisms": PREFIX + ["case_record", "case_id", "panel", "mechanism", "test", "variant",
         "kind", "outcome", "device", "training_attempted", "metric", "value", "value_type", "inputs", "note"],
+    "work_precision": PREFIX + ["candidate_id", "case_id", "case_role", "variant", "nsteps", "h",
+        "final_time", "grid", "dtype", "device", "training_attempted", "status", "trajectory_completed",
+        "completed_steps", "finite", "in_bounds", "error_rms", "error_max", "error_mean",
+        "error_upper_rms", "error_upper_max_estimate", "reference_accepted", "reference_uncertainty_rms",
+        "reference_uncertainty_max_estimate", "preparation_seconds", "prepared_median_seconds",
+        "prepared_min_seconds", "prepared_max_seconds", "setup_inclusive_median_seconds",
+        "timing_repeats_record", "warmup_record", "work_per_rollout_record", "cache_metadata_record",
+        "failure_reason"],
+    "tolerance_frontiers": PREFIX + ["frontier_id", "case_id", "case_role", "variant", "norm", "tolerance",
+        "device", "training_attempted", "status", "selected_candidate_id", "selected_candidate_record",
+        "selected_nsteps", "selected_error", "reference_uncertainty", "adjusted_error", "prepared_seconds",
+        "setup_inclusive_seconds", "setup_selected_candidate_id", "setup_selected_candidate_record",
+        "setup_selected_nsteps", "setup_selected_seconds", "setup_selected_error", "setup_selected_adjusted_error",
+        "feasible_candidate_count", "selection_scope"],
+    "work_precision_checks": PREFIX + ["record_type", "reference_id", "parity_id", "case_id", "case_role",
+        "device", "training_attempted", "reference_accepted", "uncertainty_rms", "uncertainty_max_estimate",
+        "reference_n", "reference_2n", "reference_4n", "difference_n_2n", "difference_2n_4n", "observed_order",
+        "reference_reason", "attempts", "rhs_evaluations", "reference_seconds", "check", "dtype", "nodes",
+        "nsteps", "max_difference", "rms_difference", "allowed_absolute_difference", "passed", "status",
+        "failure_reason"],
 }
 MECHANISM_KINDS = ("correctness", "representation", "scientific", "negative_control")
 MECHANISM_OUTCOMES = ("PASS", "FAIL", "OBSERVED", "INCONCLUSIVE", "EXPECTED_LIMITATION")
@@ -120,7 +144,12 @@ def _relative(path, report_dir):
 
 
 def _finite(value):
-    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return False
+    try:
+        return math.isfinite(value)
+    except OverflowError:
+        return False
 
 
 def _dict(value):
@@ -140,7 +169,36 @@ def _file_read_limit(path):
         return MAX_FRONTIER_FILE_BYTES
     if path.name == "interaction-screen.json":
         return MAX_INTERACTION_FILE_BYTES
+    if path.name == "work-precision.json":
+        return MAX_WORK_PRECISION_FILE_BYTES
     return MAX_FILE_BYTES
+
+
+def _work_precision_row_supported(row, columns):
+    """Keep null distinct from absent, while refusing structured scalar cells."""
+    text = {"candidate_id", "frontier_id", "reference_id", "parity_id", "case_id", "case_role", "variant",
+            "dtype", "status", "failure_reason", "selected_candidate_id", "setup_selected_candidate_id",
+            "norm", "selection_scope",
+            "reference_reason", "check", "device", "record_type"}
+    boolean = {"trajectory_completed", "finite", "in_bounds", "reference_accepted", "passed", "training_attempted"}
+    if row.get("device", "cpu") != "cpu" or row.get("training_attempted", False) is not False:
+        return False
+    for key in columns:
+        if key not in row or row[key] is None or key in PREFIX or key.endswith("_record"):
+            continue
+        item = row[key]
+        if key == "grid":
+            if not isinstance(item, list) or not item or any(type(n) is not int or n <= 0 for n in item):
+                return False
+        elif key in text:
+            if not isinstance(item, str):
+                return False
+        elif key in boolean:
+            if type(item) is not bool:
+                return False
+        elif not _finite(item):
+            return False
+    return True
 
 
 class _Budget:
@@ -235,7 +293,7 @@ def _walk(root, report_dir, budget):
             budget.omit(_relative(parent, report_dir), f"source directory unavailable: {exc.__class__.__name__}")
 
 
-def _decode(raw):
+def _decode(raw, *, max_values=100000):
     def pairs(items):
         result = {}
         for key, value in items:
@@ -252,7 +310,7 @@ def _decode(raw):
     while stack:
         item = stack.pop()
         count += 1
-        if count > 100000:
+        if count > max_values:
             raise ValueError("JSON value budget exceeded")
         if isinstance(item, float) and not math.isfinite(item):
             raise ValueError("nonfinite JSON number")
@@ -598,7 +656,152 @@ class _Projection:
                 "INCONCLUSIVE and missing metrics provide no affirmative evidence.",
             "scientific_gate_authorized": False})
 
+    def work_precision(self, source, value):
+        """Project compact canonical records; raw timings stay in the source.
+
+        A frontier is a reported posthoc choice, never an inferred scientific
+        success. Unsupported rows are counted and omitted, and valid failures
+        retain their original status, nulls and provenance.
+        """
+        fields = ("candidate_rows", "frontier_rows", "reference_rows", "parity_rows")
+        summary = {"source_path": source, "kind": "work_precision", "benchmark_suite": "work-precision",
+            "status": "UNSUPPORTED", "unsupported_document_count": 0, "unsupported_row_count": 0,
+            "scientific_gate_authorized": False, "neural_superiority_claim": False,
+            "selection_scope": "posthoc_declared_grid",
+            "interpretation": "CPU training-free observations; posthoc declared-grid selection is not a "
+                "deployable step controller. Failed or infeasible rows provide no affirmative evidence.",
+            "counts_scope": "Supported source rows before shared row and per-table byte budgets; "
+                "raw timings and complete records remain authoritative in source JSON."}
+        if (not isinstance(value, dict) or value.get("schema") != "tdn.work-precision/v1"
+                or value.get("benchmark_suite") != "work-precision"
+                or value.get("status") not in ("COMPLETED", "INCOMPLETE", "FAILED")
+                or value.get("computational_status", value.get("status")) != value.get("status")
+                or value.get("device") != "cpu" or value.get("training_attempted") is not False
+                or value.get("training_performed", False) is not False
+                or not all(isinstance(value.get(field), list) for field in fields)):
+            self.budget.omit(source, "work-precision schema, terminal status, CPU/training-free scope or lists unsupported")
+            summary["unsupported_document_count"] = 1
+            self.science.append(summary)
+            return
+        summary.update(status=value["status"], device="cpu", training_attempted=False,
+                       actual_neural_training=False)
+        candidates, supported = {}, {}
+        for field, table, id_field, labels, statuses in (
+            ("candidate_rows", "work_precision", "candidate_id", ("case_id", "case_role", "variant"),
+             ("VALID", "INVALID", "INCOMPLETE", "FAILED")),
+            ("frontier_rows", "tolerance_frontiers", "frontier_id", ("case_id", "case_role", "variant", "norm"),
+             ("FEASIBLE", "NO_FEASIBLE_CANDIDATE", "INCONCLUSIVE")),
+            ("reference_rows", "work_precision_checks", "reference_id", ("case_id", "case_role"), None),
+            ("parity_rows", "work_precision_checks", "parity_id", ("case_id", "check", "dtype"),
+             ("PASS", "FAIL", "UNAVAILABLE")),
+        ):
+            seen_ids, seen_keys, accepted = set(), set(), []
+            for index, row in enumerate(value[field]):
+                pointer = f"/{field}/{index}"
+                if (not isinstance(row, dict)
+                        or any(not isinstance(row.get(key), str) or not row[key] for key in (id_field, *labels))
+                        or (statuses is not None and row.get("status") not in statuses)
+                        or ("case_role" in labels and row["case_role"] not in ("fresh", "historical_control"))
+                        or not _work_precision_row_supported(row, COLUMNS[table])):
+                    self.budget.omit(source, f"work-precision {pointer} has unsupported identity, status or scalar fields")
+                    continue
+                if field == "candidate_rows":
+                    valid = (type(row.get("nsteps")) is int and row["nsteps"] > 0
+                        and all(key not in row or isinstance(row[key], kind) for key, kind in
+                                (("timing_repeats", list), ("work_per_rollout", dict), ("cache_metadata", dict)))
+                        and (row.get("warmup") is None or isinstance(row["warmup"], dict)))
+                    identity = (row["case_id"], row["variant"], row.get("nsteps"))
+                elif field == "frontier_rows":
+                    valid = (row["norm"] in ("rms", "max") and _finite(row.get("tolerance"))
+                        and row["tolerance"] > 0 and row.get("selection_scope") == "posthoc_declared_grid")
+                    identity = (row["case_id"], row["variant"], row["norm"], row.get("tolerance"))
+                    if row["status"] == "FEASIBLE":
+                        selected = candidates.get(row.get("selected_candidate_id"))
+                        valid = valid and selected is not None
+                        if selected is not None:
+                            candidate = selected[1]
+                            valid = valid and (candidate["status"] == "VALID"
+                                and candidate.get("trajectory_completed") is True
+                                and candidate.get("finite") is True and candidate.get("in_bounds") is True
+                                and candidate.get("reference_accepted") is True
+                                and candidate["case_id"] == row["case_id"]
+                                and candidate["case_role"] == row["case_role"]
+                                and candidate["variant"] == row["variant"]
+                                and candidate["nsteps"] == row.get("selected_nsteps")
+                                and all(_finite(row.get(key)) and row[key] >= 0 for key in
+                                        ("selected_error", "reference_uncertainty", "adjusted_error",
+                                         "prepared_seconds", "setup_inclusive_seconds"))
+                                and row["adjusted_error"] <= row["tolerance"]
+                                and type(row.get("feasible_candidate_count")) is int
+                                and row["feasible_candidate_count"] > 0)
+                    else:
+                        valid = valid and row.get("selected_candidate_id") is None
+                    if row.get("setup_selected_candidate_id") is not None:
+                        setup_selected = candidates.get(row["setup_selected_candidate_id"])
+                        valid = valid and row["status"] == "FEASIBLE" and setup_selected is not None
+                        if setup_selected is not None:
+                            candidate = setup_selected[1]
+                            valid = valid and (candidate["status"] == "VALID"
+                                and candidate.get("trajectory_completed") is True
+                                and candidate.get("finite") is True and candidate.get("in_bounds") is True
+                                and candidate.get("reference_accepted") is True
+                                and candidate["case_id"] == row["case_id"]
+                                and candidate["case_role"] == row["case_role"]
+                                and candidate["variant"] == row["variant"]
+                                and candidate["nsteps"] == row.get("setup_selected_nsteps")
+                                and all(_finite(row.get(key)) and row[key] >= 0 for key in
+                                        ("setup_selected_seconds", "setup_selected_error",
+                                         "setup_selected_adjusted_error"))
+                                and row["setup_selected_adjusted_error"] <= row["tolerance"])
+                elif field == "reference_rows":
+                    valid = type(row.get("reference_accepted")) is bool
+                    identity = (row["case_id"],)
+                else:
+                    valid = (type(row.get("nodes")) is int and row["nodes"] > 0
+                        and type(row.get("nsteps")) is int and row["nsteps"] > 0
+                        and row.get("passed") is {"PASS": True, "FAIL": False, "UNAVAILABLE": None}[row["status"]])
+                    identity = (row["case_id"], row["check"], row["dtype"], row.get("nodes"), row.get("nsteps"))
+                if not valid:
+                    self.budget.omit(source, f"work-precision {pointer} has inconsistent candidate, selection or check fields")
+                    continue
+                if row[id_field] in seen_ids or identity in seen_keys:
+                    self.budget.omit(source, f"duplicate canonical work-precision identity at {pointer}")
+                    continue
+                seen_ids.add(row[id_field])
+                seen_keys.add(identity)
+                accepted.append(row)
+                values = _pick(row, [key for key in COLUMNS[table] if key not in PREFIX
+                                    and not key.endswith("_record")])
+                values.update(device="cpu", training_attempted=False)
+                if field == "candidate_rows":
+                    candidates[row[id_field]] = (pointer, row)
+                    for key in ("timing_repeats", "warmup", "work_per_rollout", "cache_metadata"):
+                        if key in row:
+                            values[key + "_record"] = pointer + "/" + key
+                elif field == "frontier_rows" and row.get("selected_candidate_id") in candidates:
+                    values["selected_candidate_record"] = candidates[row["selected_candidate_id"]][0]
+                    if row.get("setup_selected_candidate_id") in candidates:
+                        values["setup_selected_candidate_record"] = candidates[row["setup_selected_candidate_id"]][0]
+                elif field in ("reference_rows", "parity_rows"):
+                    values["record_type"] = "reference" if field == "reference_rows" else "parity"
+                self.add(table, source, pointer, values)
+            supported[field] = accepted
+            name = field.removesuffix("_rows")
+            summary[f"source_{name}_count"] = len(value[field])
+            summary[f"supported_{name}_count"] = len(accepted)
+            summary[f"unsupported_{name}_count"] = len(value[field]) - len(accepted)
+            summary["unsupported_row_count"] += len(value[field]) - len(accepted)
+            if statuses is not None:
+                summary[f"{name}_status_counts"] = {status: sum(row["status"] == status for row in accepted)
+                                                    for status in statuses}
+        summary["rejected_reference_count"] = sum(row["reference_accepted"] is False
+                                                   for row in supported["reference_rows"])
+        self.science.append(summary)
+
     def consume(self, path, source, value):
+        if path.name == "work-precision.json":
+            self.work_precision(source, value)
+            return
         if not isinstance(value, dict):
             return
         name = path.name
@@ -781,7 +984,8 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                 entry["hash_status"] = "not_read_budget"
             if raw is not None and path.suffix.lower() == ".json":
                 try:
-                    documents[path] = _decode(raw)
+                    documents[path] = _decode(raw, max_values=MAX_WORK_PRECISION_JSON_VALUES
+                                              if path.name == "work-precision.json" else 100000)
                 except (ValueError, UnicodeError, RecursionError) as exc:
                     budget.omit(relative, f"JSON not projected: {exc}")
             elif raw is not None and path.suffix.lower() == ".xml":
@@ -815,6 +1019,11 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                 entry["hash_status"] = "computed_manifest_mismatch"
                 budget.omit(entry["path"], "computed hash disagrees with source manifest")
     projection = _Projection(budget, set(files))
+    for path in files:
+        if path.name == "work-precision.json" and path not in documents:
+            # An unreadable/oversized canonical artifact must not resemble an
+            # empty successful experiment in the scientific summary.
+            projection.work_precision(_relative(path, report_dir), None)
     for path, value in documents.items():
         if budget.expired():
             budget.omit(_relative(path, report_dir), "projection time budget exhausted")
@@ -884,6 +1093,16 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             "trained-model accuracy or efficiency; expected limitations do not imply failed unit tests. "
             "Interaction-screen case notes appear on the first metric row only; case_record on every row "
             "resolves the complete original note and inputs without duplicating long prose.",
+        "work_precision_interpretation": "work_precision.csv has one row per candidate and "
+            "tolerance_frontiers.csv one row per case/method/norm/tolerance, projected only from canonical "
+            "work-precision.json. work_precision_checks.csv retains reference and parity checks. "
+            "Source JSON remains authoritative for raw repeated timings, warmups, work counters and cache metadata; "
+            "*_record fields are JSON Pointers within source_path. Selection is posthoc over the declared step "
+            "grid, not a deployable step controller. selected_* identifies the fastest prepared candidate; "
+            "setup_selected_* independently identifies the fastest setup-inclusive candidate. "
+            "Failed, infeasible and incomplete outcomes provide no "
+            "affirmative evidence. Training-free CPU measurements make no neural superiority, GPU, significance "
+            "or scientific gate claim. Max-error uncertainty is an estimate; norms remain separate.",
         "limits": {"ordinary_tables_shared_rows": MAX_ROWS, "ordinary_table_bytes": MAX_TABLE_BYTES,
                    "table_overrides": {"mechanisms": {"rows": MAX_MECHANISM_ROWS,
                                                        "bytes": MAX_MECHANISM_TABLE_BYTES}},
@@ -908,6 +1127,23 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                     budget.omit("outputs/mechanisms.csv", f"log registration unavailable: {exc}")
             else:
                 budget.omit("outputs/mechanisms.csv", "log index capacity reached")
+    if any(row.get("kind") == "work_precision" for row in projection.science):
+        for name, label in (("work_precision", "Work-precision candidates"),
+                            ("tolerance_frontiers", "Posthoc tolerance frontiers"),
+                            ("work_precision_checks", "Work-precision reference and parity checks")):
+            target = outputs / f"{name}.csv"
+            if str(target) in registered:
+                continue
+            if len(registered) >= 256:
+                budget.omit(f"outputs/{name}.csv", "log index capacity reached")
+                continue
+            try:
+                register_log(report_dir, f"analytics.{name}", f"outputs/{name}.csv", label=label,
+                             group="Scientific outputs", description="Compact CPU training-free projection; "
+                             "JSON pointers retain raw timing and scientific evidence")
+                registered.add(str(target))
+            except (ValueError, OSError) as exc:
+                budget.omit(f"outputs/{name}.csv", f"log registration unavailable: {exc}")
     candidates = sorted(zip(files, inventory), key=lambda pair: (
         0 if pair[0].suffix.lower() in {".out", ".err", ".log", ".stdout", ".stderr"} else
         1 if pair[0].name in {"summary.txt", "stage.json", "summary.json"} else 2, str(pair[0])))
@@ -945,6 +1181,10 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             outcomes.add("NO_SPEED_ADVANTAGE_OBSERVED")
         if row.get("numerical_failure_count", 0):
             outcomes.add("NUMERICAL_FAILURE")
+        if row.get("kind") == "work_precision":
+            if (row["status"] != "COMPLETED" or row.get("unsupported_row_count", 0)
+                    or row.get("unsupported_document_count", 0)):
+                outcomes.add("WORK_PRECISION_INCOMPLETE")
         if row.get("kind") in ("mechanism_audit", "interaction_screen"):
             prefix = "INTERACTION" if row["kind"] == "interaction_screen" else "MECHANISM"
             if row["kind_outcome_counts"]["correctness"]["FAIL"]:
@@ -987,7 +1227,10 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         "limits": {"files": MAX_FILES, "directory_entries": MAX_ENTRIES, "depth": MAX_DEPTH,
                    "read_bytes": MAX_READ_BYTES, "per_file_read_bytes": MAX_FILE_BYTES,
                    "per_file_read_bytes_overrides": {"frontier.json": MAX_FRONTIER_FILE_BYTES,
-                                                      "interaction-screen.json": MAX_INTERACTION_FILE_BYTES},
+                                                      "interaction-screen.json": MAX_INTERACTION_FILE_BYTES,
+                                                      "work-precision.json": MAX_WORK_PRECISION_FILE_BYTES},
+                   "json_values": 100000,
+                   "json_values_overrides": {"work-precision.json": MAX_WORK_PRECISION_JSON_VALUES},
                    "source_read_seconds": MAX_SECONDS, "canonical_rows": MAX_ROWS,
                    "canonical_rows_scope": "Shared ordinary science tables; mechanisms has a separate bounded reserve",
                    "mechanisms_rows": MAX_MECHANISM_ROWS,
