@@ -10,6 +10,11 @@ The native Windows edition supports a standalone Python `.venv`, PowerShell laun
 
 ## Run on CARC
 
+For the current architecture pivot, start the [training-free mechanism audits](docs/MECHANISM_AUDITS.md):
+`bash scripts/carc_mechanisms.sh --submit`. One bounded CPU job checks all eight
+mechanism areas, coordinate/gate combinations and temporal representations,
+with a dedicated Tower table. It does not train models or request an A100.
+
 TDN now emits [Tower 2.3.1-compatible reports](docs/TOWER.md) for its workflows:
 live metrics, grouped logs, scientific tables, artifact inventories and explicitly
 selected planning histories. The integration is project-owned and uses your
@@ -22,7 +27,7 @@ For comparisons against representative neural solvers, use the
 MLP and direct/hybrid residual CNN, U-Net and FNO controls, with matched data and
 optimizer updates and separate neural accuracy/cost reports.
 
-The next bounded experiment is the [three-seed neural replication](docs/NEURAL_REPLICATION.md):
+The [three-seed neural replication](docs/NEURAL_REPLICATION.md) remains available:
 `bash scripts/carc_neural_replication.sh --submit`. It repeats reaction-clock,
 the generic MLP and three spatial hybrid controls on 27 fresh diagnostic parents.
 All fifteen checkpoints freeze before diagnostics. Separate final-rollout and

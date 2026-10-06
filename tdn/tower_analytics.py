@@ -32,6 +32,10 @@ MAX_FRONTIER_FILE_BYTES = 2 << 20
 MAX_INVENTORY_BYTES = 512 << 10
 MAX_TABLE_BYTES = 2 << 20
 MAX_ROWS = 10000
+# Mechanism cases expose many scalar diagnostics. This separate reserve keeps
+# their complete projection without consuming the existing science row budget.
+MAX_MECHANISM_TABLE_BYTES = 8 << 20
+MAX_MECHANISM_ROWS = 12000
 MAX_SECONDS = 10
 MAX_OMISSIONS = 128
 EXCLUDED = {".git", ".venv", "__pycache__", ".cache", ".runtime", ".pytest_cache",
@@ -91,7 +95,11 @@ COLUMNS = {
         "baseline_training_selection", "block_rows",
         *[prefix + "_" + field for prefix in ("same_h_rollout", "heldout_one", "heldout_two")
           for field in ("expected", "eligible", "wins", "losses", "ties", "ineligible")]],
+    "mechanisms": PREFIX + ["case_record", "case_id", "panel", "mechanism", "test", "variant",
+        "kind", "outcome", "device", "training_attempted", "metric", "value", "value_type", "inputs", "note"],
 }
+MECHANISM_KINDS = ("correctness", "representation", "scientific", "negative_control")
+MECHANISM_OUTCOMES = ("PASS", "FAIL", "OBSERVED", "INCONCLUSIVE", "EXPECTED_LIMITATION")
 NEURAL_METRICS = ("matched_tolerance_speed", "same_h_rollout_rms", "same_h_rollout_upper_error",
                   "heldout_one_step_rms", "heldout_two_step_rms", "heldout_one_step_upper_error",
                   "heldout_two_step_upper_error")
@@ -249,7 +257,8 @@ def _decode(raw):
     return value
 
 
-def _atomic_csv(path, rows, columns, budget):
+def _atomic_csv(path, rows, columns, budget, *, max_bytes=None):
+    max_bytes = MAX_TABLE_BYTES if max_bytes is None else max_bytes
     out = io.StringIO(newline="")
     writer = csv.DictWriter(out, columns, lineterminator="\n")
     writer.writeheader()
@@ -263,7 +272,7 @@ def _atomic_csv(path, rows, columns, budget):
         writer.writerow(converted)
         out.seek(previous)
         encoded_row_bytes = len(out.read().encode("utf-8"))
-        if encoded_bytes + encoded_row_bytes > MAX_TABLE_BYTES:
+        if encoded_bytes + encoded_row_bytes > max_bytes:
             out.seek(previous)
             out.truncate()
             budget.omit(path.name, "table byte budget exhausted; remaining rows remain in source artifacts")
@@ -293,15 +302,24 @@ class _Projection:
         self.tables = {key: [] for key in COLUMNS}
         self.science = []
         self.row_count = 0
+        self.mechanism_row_count = 0
 
     def add(self, table, source, pointer, values):
-        if self.row_count >= MAX_ROWS:
-            if self.row_count == MAX_ROWS:
-                self.budget.omit(source, "canonical row budget exhausted; originals retained")
-                self.row_count += 1
-            return
+        if table == "mechanisms":
+            if self.mechanism_row_count >= MAX_MECHANISM_ROWS:
+                if self.mechanism_row_count == MAX_MECHANISM_ROWS:
+                    self.budget.omit(source, "mechanisms row budget exhausted; originals retained")
+                    self.mechanism_row_count += 1
+                return
+            self.mechanism_row_count += 1
+        else:
+            if self.row_count >= MAX_ROWS:
+                if self.row_count == MAX_ROWS:
+                    self.budget.omit(source, "canonical row budget exhausted; originals retained")
+                    self.row_count += 1
+                return
+            self.row_count += 1
         self.tables[table].append({"source_path": source, "source_record": pointer, **values})
-        self.row_count += 1
 
     def frontier(self, source, pointer, row, **context):
         if not isinstance(row, dict):
@@ -496,12 +514,85 @@ class _Projection:
                 "training seed; seed-by-parent measurements are not independent diagnostic parents.",
             "scientific_gate_authorized": False})
 
+    def mechanisms(self, source, value):
+        """Project only the canonical training-free audit, including non-results.
+
+        Each metric points to its scalar in the original JSON; case_record
+        preserves the case context. Empty metric dictionaries get one explicit
+        row so an inconclusive case cannot disappear from the readable table.
+        Scientific observations and expected limitations are not unit-test or
+        neural-training results.
+        """
+        if (value.get("schema") != "tdn.mechanism-audit/v1"
+                or value.get("benchmark_suite") != "mechanism-audit"
+                or value.get("status") not in ("COMPLETED", "INCOMPLETE", "FAILED")
+                or value.get("device") != "cpu" or value.get("training_attempted") is not False
+                or not isinstance(value.get("rows"), list)):
+            self.budget.omit(source, "mechanism audit schema, CPU/training-free scope or record list unsupported")
+            return
+        seen, accepted = set(), []
+        for index, row in enumerate(value["rows"]):
+            if (not isinstance(row, dict)
+                    or any(not isinstance(row.get(key), str) or not row[key]
+                           for key in ("case_id", "panel", "mechanism", "test", "variant"))
+                    or row.get("kind") not in MECHANISM_KINDS
+                    or row.get("outcome") not in MECHANISM_OUTCOMES
+                    or not isinstance(row.get("metrics"), dict)
+                    or not isinstance(row.get("inputs"), dict) or not isinstance(row.get("note"), str)):
+                self.budget.omit(source, f"mechanism audit row {index} has unsupported identity or fields")
+                continue
+            identity = (row["panel"], row["case_id"])
+            if identity in seen:
+                self.budget.omit(source, f"duplicate canonical mechanism case at row {index}")
+                continue
+            seen.add(identity)
+            if any(not isinstance(key, str) or not key
+                   or not (item is None or isinstance(item, (str, bool)) or _finite(item))
+                   for key, item in row["metrics"].items()):
+                self.budget.omit(source, f"mechanism audit row {index} has non-scalar or nonfinite metrics")
+                continue
+            accepted.append(row)
+            pointer = f"/rows/{index}"
+            context = {**_pick(row, ["case_id", "panel", "mechanism", "test", "variant", "kind", "outcome",
+                                   "inputs", "note"]), "case_record": pointer,
+                       "device": value["device"], "training_attempted": False}
+            if not row["metrics"]:
+                self.add("mechanisms", source, pointer, {**context, "value_type": "absent"})
+            for metric, item in row["metrics"].items():
+                escaped = metric.replace("~", "~0").replace("/", "~1")
+                value_type = ("null" if item is None else "boolean" if isinstance(item, bool)
+                              else "string" if isinstance(item, str) else "number")
+                self.add("mechanisms", source, pointer + "/metrics/" + escaped,
+                         {**context, "metric": metric, "value": item, "value_type": value_type})
+        by_kind = {kind: {outcome: sum(row["kind"] == kind and row["outcome"] == outcome for row in accepted)
+                         for outcome in MECHANISM_OUTCOMES} for kind in MECHANISM_KINDS}
+        resources = {key: item for key, item in _dict(value.get("resources")).items()
+                     if isinstance(key, str) and (item is None or isinstance(item, (str, bool)) or _finite(item))}
+        self.science.append({"source_path": source, "kind": "mechanism_audit", "status": value["status"],
+            "device": "cpu", "training_attempted": False, "actual_neural_training": False,
+            "source_case_count": len(value["rows"]), "valid_case_count": len(accepted),
+            "unsupported_case_count": len(value["rows"]) - len(accepted),
+            "metric_count": sum(len(row["metrics"]) for row in accepted),
+            "no_metric_case_count": sum(not row["metrics"] for row in accepted),
+            "outcome_counts": {outcome: sum(row["outcome"] == outcome for row in accepted)
+                               for outcome in MECHANISM_OUTCOMES},
+            "kind_outcome_counts": by_kind, "resources": resources,
+            **_pick(value, [key for key in ("elapsed_seconds", "host_process_peak_rss_bytes", "numerical_budget_seconds")
+                           if _finite(value.get(key))]),
+            "counts_scope": "Valid source cases, before table row/byte budgets; metric rows are not independent cases.",
+            "interpretation": "Training-free correctness checks, representation probes and scientific observations. "
+                "Negative controls and expected limitations are explicit. PASS is not trained-model superiority; "
+                "INCONCLUSIVE and missing metrics provide no affirmative evidence.",
+            "scientific_gate_authorized": False})
+
     def consume(self, path, source, value):
         if not isinstance(value, dict):
             return
         name = path.name
         replication = _pick(_dict(value.get("replication")), REPLICATION_CONTEXT)
-        if name == "replication.json":
+        if name == "mechanism-audit.json":
+            self.mechanisms(source, value)
+        elif name == "replication.json":
             self.replication(source, value)
         elif name == "neural-comparisons.json":
             self.neural(source, value, **replication)
@@ -719,7 +810,8 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             projection.junit(_relative(path, report_dir), raw)
         except (ValueError, ET.ParseError) as exc:
             budget.omit(_relative(path, report_dir), f"JUnit not projected: {exc}")
-    table_rows = {name: _atomic_csv(outputs / f"{name}.csv", rows, COLUMNS[name], budget)
+    table_rows = {name: _atomic_csv(outputs / f"{name}.csv", rows, COLUMNS[name], budget,
+                                  max_bytes=MAX_MECHANISM_TABLE_BYTES if name == "mechanisms" else MAX_TABLE_BYTES)
                   for name, rows in projection.tables.items()}
     metadata = {"schema": "tdn.tower.analytics-tables/v1", "path_base": "Tower report directory",
         "null_encoding": "literal null = observed source null; empty cell = absent field; booleans = true/false",
@@ -751,7 +843,11 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                   "replication.parent_count": "distinct diagnostic parents reused across training seeds",
                   "replication.robust_joint_parent_pass_count": "parents passing both heldout horizons at both one/two steps",
                   "replication_comparisons.speedup_*": "baseline wall seconds / reaction-clock wall seconds within one seed",
-                  "replication_comparisons.trained_pair": "both same-seed models selected a positive step with changed parameters"},
+                  "replication_comparisons.trained_pair": "both same-seed models selected a positive step with changed parameters",
+                  "mechanisms.value": "source-defined scalar metric; metric name and inputs define its meaning",
+                  "mechanisms.source_record": "JSON Pointer to the metric scalar, or case object when metrics are empty",
+                  "mechanisms.case_record": "JSON Pointer to the original case object",
+                  "mechanisms.value_type": "number, boolean, string, null, or absent (empty metric dictionary)"},
         "interpretation": "No cross-run aggregation, scheduler inference, imputation, or scientific gate relaxation. "
                           "History rows retain null losses and failed/invalid outcomes. Empty tables mean no projected rows.",
         "neural_comparison_interpretation": "Speed eligibility uses each family's fastest feasible declared-grid "
@@ -765,6 +861,15 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             "are not additional independent parents. Missing/invalid results and initialization remain explicit. "
             "Per-seed speed ratios use each family's fastest feasible declared grid entry, a post-hoc diagnostic "
             "rather than a deployable step selector. No significance, SOTA, ranking or scientific gate authorization.",
+        "mechanism_interpretation": "mechanisms.csv projects only canonical mechanism-audit.json, never its "
+            "panel files or summary duplicates. One row represents one scalar metric, not one independent case. "
+            "Empty metrics remain explicit. Correctness, representation, scientific observations and negative "
+            "controls retain separate kinds and outcomes. A completed training-free audit does not demonstrate "
+            "trained-model accuracy or efficiency; expected limitations do not imply failed unit tests.",
+        "limits": {"ordinary_tables_shared_rows": MAX_ROWS, "ordinary_table_bytes": MAX_TABLE_BYTES,
+                   "table_overrides": {"mechanisms": {"rows": MAX_MECHANISM_ROWS,
+                                                       "bytes": MAX_MECHANISM_TABLE_BYTES}},
+                   "combined_rows": MAX_ROWS + MAX_MECHANISM_ROWS},
         "columns": COLUMNS, "rows": table_rows}
     atomic_json(outputs / "tables.json", metadata)
     # Prefer actual stdout/stderr and readable summaries; all other text artifacts remain inventoried.
@@ -772,6 +877,19 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
     logs = _records(_dict(log_index).get("logs"))
     registered = {os.path.abspath(report_dir / row["path"]) for row in logs
                   if isinstance(row, dict) and isinstance(row.get("path"), str)}
+    if any(row.get("kind") == "mechanism_audit" for row in projection.science):
+        target = outputs / "mechanisms.csv"
+        if str(target) not in registered:
+            if len(registered) < 256:
+                try:
+                    register_log(report_dir, "analytics.mechanisms", "outputs/mechanisms.csv",
+                                 label="Mechanism audit metrics", group="Scientific outputs",
+                                 description="Bounded scalar projection; source pointers retain original case evidence")
+                    registered.add(str(target))
+                except (ValueError, OSError) as exc:
+                    budget.omit("outputs/mechanisms.csv", f"log registration unavailable: {exc}")
+            else:
+                budget.omit("outputs/mechanisms.csv", "log index capacity reached")
     candidates = sorted(zip(files, inventory), key=lambda pair: (
         0 if pair[0].suffix.lower() in {".out", ".err", ".log", ".stdout", ".stderr"} else
         1 if pair[0].name in {"summary.txt", "stage.json", "summary.json"} else 2, str(pair[0])))
@@ -809,6 +927,13 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             outcomes.add("NO_SPEED_ADVANTAGE_OBSERVED")
         if row.get("numerical_failure_count", 0):
             outcomes.add("NUMERICAL_FAILURE")
+        if row.get("kind") == "mechanism_audit":
+            if row["kind_outcome_counts"]["correctness"]["FAIL"]:
+                outcomes.add("MECHANISM_CORRECTNESS_FAILURE")
+            if row["kind_outcome_counts"]["negative_control"]["FAIL"]:
+                outcomes.add("MECHANISM_NEGATIVE_CONTROL_FAILURE")
+            if row["status"] != "COMPLETED" or row["unsupported_case_count"]:
+                outcomes.add("MECHANISM_AUDIT_INCOMPLETE")
     results = {"schema": "tdn.tower.scientific-results/v1", "application_completion_is_scientific_success": False,
         "scientific_outcomes": sorted(outcomes), "reports": science,
         "numerical_failure_records": len(failure_rows), "table_rows": table_rows,
@@ -843,7 +968,12 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         "limits": {"files": MAX_FILES, "directory_entries": MAX_ENTRIES, "depth": MAX_DEPTH,
                    "read_bytes": MAX_READ_BYTES, "per_file_read_bytes": MAX_FILE_BYTES,
                    "per_file_read_bytes_overrides": {"frontier.json": MAX_FRONTIER_FILE_BYTES},
-                   "source_read_seconds": MAX_SECONDS, "canonical_rows": MAX_ROWS},
+                   "source_read_seconds": MAX_SECONDS, "canonical_rows": MAX_ROWS,
+                   "canonical_rows_scope": "Shared ordinary science tables; mechanisms has a separate bounded reserve",
+                   "mechanisms_rows": MAX_MECHANISM_ROWS,
+                   "combined_canonical_rows": MAX_ROWS + MAX_MECHANISM_ROWS,
+                   "table_bytes": MAX_TABLE_BYTES,
+                   "table_bytes_overrides": {"mechanisms.csv": MAX_MECHANISM_TABLE_BYTES}},
         "observed_read_bytes": budget.read_bytes,
         "hash_semantics": "computed = bytes read here; declared_unverified = original manifest assertion only; "
                           "not_read_budget = no hash available within budgets. Source paths may name large binary files; "

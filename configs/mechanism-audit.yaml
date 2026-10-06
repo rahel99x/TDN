@@ -1,0 +1,8 @@
+# Frozen development protocol. No training, GPU stage, or automatic follow-up.
+protocol_version: 1
+suite: mechanism-audit
+max_seconds: 1200
+tolerance: 0.002
+intraop_threads: 1
+interop_threads: 1
+panels: [coordinates, temporal, structure]

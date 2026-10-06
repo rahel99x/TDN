@@ -440,6 +440,33 @@
       "min_rows": 0,
       "max_rows": 10000,
       "max_bytes": 2097152
+    },
+    {
+      "path": "outputs/mechanisms.csv",
+      "required": false,
+      "format": "csv",
+      "columns": [
+        "source_path",
+        "source_record",
+        "case_record",
+        "case_id",
+        "panel",
+        "mechanism",
+        "test",
+        "variant",
+        "kind",
+        "outcome",
+        "device",
+        "training_attempted",
+        "metric",
+        "value",
+        "value_type",
+        "inputs",
+        "note"
+      ],
+      "min_rows": 0,
+      "max_rows": 12000,
+      "max_bytes": 8388608
     }
   ]
 }

@@ -155,7 +155,9 @@ def test_contract_has_optional_exact_replication_tables_and_context_columns():
         row = entries[f"outputs/{table}.csv"]
         assert row["required"] is False and row["format"] == "csv"
         assert row["columns"] == analytics.COLUMNS[table]
-        assert row["max_bytes"] == analytics.MAX_TABLE_BYTES and row["max_rows"] == analytics.MAX_ROWS
+        expected_bytes = analytics.MAX_MECHANISM_TABLE_BYTES if table == "mechanisms" else analytics.MAX_TABLE_BYTES
+        expected_rows = analytics.MAX_MECHANISM_ROWS if table == "mechanisms" else analytics.MAX_ROWS
+        assert row["max_bytes"] == expected_bytes and row["max_rows"] == expected_rows
     for table in ("training", "frontier", "heldout", "neural_comparisons", "neural_accuracy"):
         assert set(analytics.REPLICATION_CONTEXT) <= set(analytics.COLUMNS[table])
 

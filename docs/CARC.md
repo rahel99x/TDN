@@ -5,7 +5,12 @@ navigation, exported scientific tables, historical imports and scheduler-state
 reconciliation. Each allocated workflow prints `TDN_TOWER_DIR`; pass that exact
 directory as Tower's `--workdir`. CPU, GPU and resumed jobs use separate reports.
 
-The next bounded study is [neural replication](NEURAL_REPLICATION.md), started
+The current first step is the [training-free mechanism audit](MECHANISM_AUDITS.md),
+started with `bash scripts/carc_mechanisms.sh --submit`. One 30-minute CPU job
+runs correctness tests and frozen mathematical probes across eight mechanism
+areas. It has no training or GPU successor and exports Tower mechanism metrics.
+
+The [neural replication](NEURAL_REPLICATION.md) study remains available, started
 with `bash scripts/carc_neural_replication.sh --submit`. One 30-minute CPU job
 compares five fixed families across three paired training seeds and 27 fresh
 diagnostic parents. Optional A100 inference timing uses frozen CPU checkpoints

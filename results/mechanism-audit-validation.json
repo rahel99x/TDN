@@ -1,0 +1,153 @@
+{
+  "category": "newly_measured_result",
+  "scope": "Cloud CPU validation of the training-free mechanism program; no CARC allocation or GPU execution performed",
+  "source_tree_sha256": "e4b513b644919b672bb16638f4daadd910a520b24e59c5c1e1ef1ac56f49f1f8",
+  "source_base_commit": "8df71ee93f1f555c93fdcd940796575b40b33fd3",
+  "source_worktree_changed": true,
+  "software": {
+    "python": "3.12.14",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "command": ".venv/bin/python scripts/mechanism_audit.py --config configs/mechanism-audit.yaml --run-dir runs/mechanism-audit-release-20261006",
+  "scientific_summary": {
+    "schema": "tdn.mechanism-audit/v1",
+    "benchmark_suite": "mechanism-audit",
+    "status": "COMPLETED",
+    "device": "cpu",
+    "training_attempted": false,
+    "elapsed_seconds": 4.6787718429695815,
+    "numerical_budget_seconds": 1200,
+    "panel_states": {
+      "coordinates": "COMPLETED",
+      "temporal": "COMPLETED",
+      "structure": "COMPLETED"
+    },
+    "errors": [],
+    "correctness_failures": [],
+    "audit_failures": [],
+    "expected_cases": 600,
+    "reported_cases": 600,
+    "outcome_counts": {
+      "PASS": 155,
+      "OBSERVED": 416,
+      "EXPECTED_LIMITATION": 29
+    },
+    "kind_counts": {
+      "correctness": 155,
+      "negative_control": 16,
+      "representation": 322,
+      "scientific": 107
+    },
+    "scope": "Deterministic mechanism diagnostics, not trained neural solver comparisons",
+    "interpretation": [
+      "Oracle fits and controlled coefficients are representation probes, not trained accuracy.",
+      "Negative scientific results are retained; failed declared controls prevent completion.",
+      "Budget exhaustion or unaccepted references are inconclusive, never a pass.",
+      "No result authorizes GPU work or establishes superiority to the FNO paper."
+    ]
+  },
+  "panel_summaries": {
+    "coordinates": {
+      "row_count": 397,
+      "outcome_counts": {
+        "PASS": 74,
+        "OBSERVED": 308,
+        "EXPECTED_LIMITATION": 15
+      },
+      "correctness_failed": 0,
+      "variants": [
+        "clock_local",
+        "post_capacity_local",
+        "clock_global",
+        "post_capacity_global",
+        "pre_capacity_global",
+        "additive_global"
+      ],
+      "trained_models": 0,
+      "distinct_reference_cases": 40,
+      "reference_rows_rejected": 0
+    },
+    "temporal": {
+      "rows": 165,
+      "correctness_failures": 0,
+      "oracle_rows": 96,
+      "trained_models": 0,
+      "optimizer_steps": 0
+    },
+    "structure": {
+      "row_count": 38,
+      "outcome_counts": {
+        "PASS": 17,
+        "EXPECTED_LIMITATION": 9,
+        "OBSERVED": 12
+      },
+      "training_performed": false,
+      "device": "cpu",
+      "arithmetic": "float64"
+    }
+  },
+  "integrity": {
+    "sealed_artifacts": 7,
+    "canonical_bytes": 877173,
+    "metric_rows": 10173,
+    "cases": 600,
+    "omissions": 0,
+    "csv_bytes": 6018544,
+    "all_scalar_source_pointers_verified": true
+  },
+  "tower_native": {
+    "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+    "reports": [
+      {
+        "path": "runs/mechanism-audit-release-20261006-tower/tdn-20261006T003541723274Z-13c6aa03d900",
+        "state": "COMPLETED",
+        "artifact_status": "valid",
+        "artifacts_checked": 19,
+        "metrics_records": 4,
+        "metric_series": 3,
+        "native_log_entries": 11
+      }
+    ],
+    "planning": []
+  },
+  "tower_schema": {
+    "draft": "2020-12",
+    "validated_objects": 8,
+    "sources": 2
+  },
+  "mechanisms_export_limits": {
+    "rows": 12000,
+    "bytes": 8388608,
+    "ordinary_shared_rows_unchanged": 10000,
+    "ordinary_table_bytes_unchanged": 2097152
+  },
+  "readiness": {
+    "new_carc_workflow_executed": false,
+    "gpu_executed": false,
+    "training_attempted": false,
+    "fnopaper_reproduction": false
+  },
+  "interpretation": [
+    "600 deterministic cases are not 600 independent statistical replicates.",
+    "155 passed controls establish correctness identities, not trained neural solver superiority.",
+    "416 observations and 29 expected limitations are retained; no failed or inconclusive cases.",
+    "Output-phi temporal representations can worsen nonlinear heldout fits; input-pair and reaction information can matter.",
+    "The transported DC dictionary has two nominal but only one effective coefficient; it is an explicit representation limitation.",
+    "Capacity interval preservation does not establish stability or uniform cubic defect cancellation.",
+    "Flux/projection and adaptive control examples are algebraic or scalar demonstrations, not new PDE benchmarks.",
+    "The next stage requires matched trained coordinate/context and temporal/context comparisons before large-scale FNO claims."
+  ],
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q -m 'not gpu' --basetemp .runtime/pytest-mechanisms-release --junitxml=.runtime/mechanism-regression-release.xml",
+    "passed": 986,
+    "skipped": 1,
+    "gpu_deselected": 43,
+    "failed": 0,
+    "errors": 0,
+    "wall_seconds": 324.98,
+    "skip_reason": "Optional jsonschema development dependency is absent in the project venv; independent system-jsonschema validation passed eight real report/contract objects."
+  },
+  "source_still_matches_after_full_regression": true
+}
