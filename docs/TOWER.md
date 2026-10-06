@@ -122,6 +122,17 @@ summary is not exported a second time. Full-rollout feasibility and one-/two-ste
 transient passes remain separate. Three trained seeds share the same 27 diagnostic
 parents, so their repeats are not 81 independent samples.
 
+The [mechanism audit](MECHANISM_AUDITS.md) and
+[runtime interaction screen](INTERACTION_SCREEN.md) export scientific scalar
+metrics to `outputs/mechanisms.csv`, also registered as `analytics.mechanisms`
+in the log catalog. Only their canonical `mechanism-audit.json` and
+`interaction-screen.json` project case metrics; panel and summary copies do
+not duplicate rows. Every scalar retains its exact source JSON pointer, case,
+variant, inputs, type and outcome. The table has a separate 12,000-row / 8 MiB
+reserve. Completion and numerical observations do not imply neural training or
+a scientific advantage. Interaction-screen notes appear once per case, on its
+first metric row; every row retains the case pointer to the full original note.
+
 Live metrics are observations from the executing coordinator. Phase progress
 resets for distinct work; Tower derives an ETA only when sufficient consistent
 progress exists. Reporting does not rewrite losses, tolerances, validation
@@ -132,7 +143,9 @@ Analytics are bounded derivative views. The exporter visits at most 4,096
 directory entries and 1,024 files, reads at most 16 MiB in total and 1 MiB per
 ordinary source file, and limits projected rows to 10,000. The recognized
 `frontier.json` format has a 2 MiB per-file limit because GPU timing records
-contain both wall-clock and CUDA-event repetitions. Oversized, unreadable, malformed
+contain both wall-clock and CUDA-event repetitions. The canonical
+`interaction-screen.json` also has a 2 MiB limit for its per-method diagnostics.
+Oversized, unreadable, malformed
 or unrecognized artifacts stay in the source and appear as omissions or inventory
 entries. Model checkpoints and arrays are inventoried; the reporter never
 unpickles a checkpoint or loads numerical arrays. The output contract names exact

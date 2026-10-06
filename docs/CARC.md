@@ -5,7 +5,12 @@ navigation, exported scientific tables, historical imports and scheduler-state
 reconciliation. Each allocated workflow prints `TDN_TOWER_DIR`; pass that exact
 directory as Tower's `--workdir`. CPU, GPU and resumed jobs use separate reports.
 
-The current first step is the [training-free mechanism audit](MECHANISM_AUDITS.md),
+The next architecture experiment is the [runtime interaction screen](INTERACTION_SCREEN.md),
+started with `bash scripts/carc_interactions.sh --submit`. One 30-minute CPU job
+runs correctness tests and field-derived nonlinear correction comparisons,
+including ETDRK2/4 baselines. It has no training or GPU successor.
+
+The preceding [training-free mechanism audit](MECHANISM_AUDITS.md) remains available,
 started with `bash scripts/carc_mechanisms.sh --submit`. One 30-minute CPU job
 runs correctness tests and frozen mathematical probes across eight mechanism
 areas. It has no training or GPU successor and exports Tower mechanism metrics.

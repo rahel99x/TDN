@@ -1,0 +1,9 @@
+# Frozen CPU-only development screen; smoke has a predeclared subset and 180s budget.
+protocol_version: 1
+suite: interaction-screen
+max_seconds: 1200
+reference_tolerance: 1.0e-8
+reference_attempts: 3
+intraop_threads: 1
+interop_threads: 1
+panels: [controls, one_step, rollout]

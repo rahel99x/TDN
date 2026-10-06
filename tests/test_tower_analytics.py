@@ -160,7 +160,8 @@ def test_gpu_frontier_with_raw_timing_repetitions_above_one_mib_is_projected(tmp
     assert entry["sha256"] == entry["declared_sha256"] == digest
     assert entry["bytes"] == len(raw)
     assert observed["limits"]["per_file_read_bytes"] == 1 << 20
-    assert observed["limits"]["per_file_read_bytes_overrides"] == {"frontier.json": 2 << 20}
+    assert observed["limits"]["per_file_read_bytes_overrides"] == {
+        "frontier.json": 2 << 20, "interaction-screen.json": 2 << 20}
     assert observed["limits"]["read_bytes"] == 16 << 20
     assert observed["limits"]["source_read_seconds"] == 10
     assert observed["limits"]["canonical_rows"] == 10000

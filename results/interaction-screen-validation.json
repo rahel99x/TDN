@@ -1,0 +1,113 @@
+{
+  "category": "newly_measured_result",
+  "scope": "Cloud CPU implementation and reporting validation; no live CARC allocation, GPU execution, neural training or FNO comparison",
+  "protocol": "interaction-screen/v1",
+  "run_dir": "runs/interaction-screen-release-002",
+  "report_dir": "runs/interaction-screen-release-002-tower/tdn-20261006T031606564717Z-8da08ac2f01e",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "ddd0af85c48266188e55d61e784d54cdb38930bd",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "580745f7178b8a9650f747141b531b33bb7f666581347218c923015c2245ffbd",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "commands": [
+    ".venv/bin/python -m pytest -q tests/test_interaction_*.py tests/test_mechanism_*.py tests/test_research_carc.py tests/test_research_neural_workflow.py tests/test_research_replication_carc.py tests/test_tower_*.py --basetemp .runtime/pytest-interaction-release-verified --junitxml .runtime/interaction-release-verified-tests.xml",
+    ".venv/bin/python -m pytest -q tests/test_interaction_tower.py tests/test_tower_analytics.py tests/test_tower_mechanisms.py --basetemp .runtime/pytest-interaction-export --junitxml .runtime/interaction-export-tests.xml",
+    "bash scripts/interactions_local.sh --run-dir runs/interaction-screen-release-002",
+    "bash scripts/carc_interactions.sh --dry-run",
+    "bash -n scripts/carc_interactions.sh scripts/interactions_local.sh scripts/carc_research.sh",
+    "git diff --check"
+  ],
+  "regression_suite": {
+    "tests": 493,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 492,
+    "seconds": 36.625
+  },
+  "report_export_followup_tests": {
+    "tests": 53,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 53,
+    "seconds": 2.438
+  },
+  "optional_test_note": "One pytest optional jsonschema test skipped in project venv; generated report independently passed 37 schema validations with existing development jsonschema.",
+  "experiment": {
+    "status": "COMPLETED",
+    "scientific_outcome": "OBSERVED_MIXED",
+    "expected_cases": 502,
+    "reported_cases": 502,
+    "scalar_metrics": 10882,
+    "outcome_counts": {
+      "PASS": 48,
+      "OBSERVED": 454
+    },
+    "elapsed_seconds": 3.60704624400023,
+    "numerical_budget_seconds": 1200,
+    "reference_scope": "FP64 coupled three-level RK4 on the same semidiscrete grid; full final refinement difference",
+    "timing_scope": "One sequential sample of complete uncached CPU method steps; rollout sums all method calls; excludes reference/report costs",
+    "work_scope": "Actual successful-call counters accumulated across steps; split charges each active FFT pair and exact reaction; validation is timed; failed-call partial counters are unavailable when work_counts_complete is false"
+  },
+  "references": {
+    "accepted": 32,
+    "total": 32
+  },
+  "artifact_checks": {
+    "manifest_verified_files": 5,
+    "manifest_sha256": "ef7c7b0c4c413655f8e073e8ad5cdac4cc3386fcc04c5079b19b98b469fe3f37",
+    "source_tree_sha256": "580745f7178b8a9650f747141b531b33bb7f666581347218c923015c2245ffbd",
+    "source_matches": true,
+    "verified_scalar_pointers": 10882,
+    "verified_case_notes": 502,
+    "reporting_omissions": 0,
+    "canonical_bytes": 914317,
+    "table_bytes": 5855230
+  },
+  "native_tower": {
+    "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+    "reports": [
+      {
+        "path": "runs/interaction-screen-release-002-tower/tdn-20261006T031606564717Z-8da08ac2f01e",
+        "state": "COMPLETED",
+        "artifact_status": "valid",
+        "artifacts_checked": 19,
+        "metrics_records": 33,
+        "metric_series": 3,
+        "native_log_entries": 8
+      }
+    ],
+    "planning": []
+  },
+  "schemas": {
+    "draft": "2020-12",
+    "validated_objects": 37,
+    "sources": 2
+  },
+  "tower_application_changed": false,
+  "limitations": [
+    "Quadratic correction is a finite-amplitude truncation, not a whole-solver order upgrade.",
+    "Same-grid references do not certify continuum accuracy.",
+    "Single uncached CPU timing samples do not establish cost-to-tolerance superiority.",
+    "No scientific gate, automatic training or GPU successor is authorized by completion."
+  ],
+  "retained_attempts": [
+    {
+      "run_dir": "runs/interaction-screen-release-001",
+      "numerics": "502 completed; original artifacts preserved",
+      "reporting": "Initial repeated-note CSV exceeded byte budget; corrected project exporter tested and fresh release-002 run validated."
+    }
+  ]
+}

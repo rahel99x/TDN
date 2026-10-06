@@ -29,6 +29,8 @@ MAX_READ_BYTES = 16 << 20
 MAX_FILE_BYTES = 1 << 20
 # GPU frontier rows retain raw wall/CUDA repetitions as well as their medians.
 MAX_FRONTIER_FILE_BYTES = 2 << 20
+# Frozen interaction screens retain complete per-method work/error records.
+MAX_INTERACTION_FILE_BYTES = 2 << 20
 MAX_INVENTORY_BYTES = 512 << 10
 MAX_TABLE_BYTES = 2 << 20
 MAX_ROWS = 10000
@@ -134,7 +136,11 @@ def _pick(value, names):
 
 
 def _file_read_limit(path):
-    return MAX_FRONTIER_FILE_BYTES if path.name == "frontier.json" else MAX_FILE_BYTES
+    if path.name == "frontier.json":
+        return MAX_FRONTIER_FILE_BYTES
+    if path.name == "interaction-screen.json":
+        return MAX_INTERACTION_FILE_BYTES
+    return MAX_FILE_BYTES
 
 
 class _Budget:
@@ -514,7 +520,7 @@ class _Projection:
                 "training seed; seed-by-parent measurements are not independent diagnostic parents.",
             "scientific_gate_authorized": False})
 
-    def mechanisms(self, source, value):
+    def mechanisms(self, source, value, *, suite="mechanism-audit"):
         """Project only the canonical training-free audit, including non-results.
 
         Each metric points to its scalar in the original JSON; case_record
@@ -523,8 +529,8 @@ class _Projection:
         Scientific observations and expected limitations are not unit-test or
         neural-training results.
         """
-        if (value.get("schema") != "tdn.mechanism-audit/v1"
-                or value.get("benchmark_suite") != "mechanism-audit"
+        if (value.get("schema") != f"tdn.{suite}/v1"
+                or value.get("benchmark_suite") != suite
                 or value.get("status") not in ("COMPLETED", "INCOMPLETE", "FAILED")
                 or value.get("device") != "cpu" or value.get("training_attempted") is not False
                 or not isinstance(value.get("rows"), list)):
@@ -558,17 +564,22 @@ class _Projection:
                        "device": value["device"], "training_attempted": False}
             if not row["metrics"]:
                 self.add("mechanisms", source, pointer, {**context, "value_type": "absent"})
-            for metric, item in row["metrics"].items():
+            for metric_index, (metric, item) in enumerate(row["metrics"].items()):
                 escaped = metric.replace("~", "~0").replace("/", "~1")
                 value_type = ("null" if item is None else "boolean" if isinstance(item, bool)
                               else "string" if isinstance(item, str) else "number")
                 self.add("mechanisms", source, pointer + "/metrics/" + escaped,
-                         {**context, "metric": metric, "value": item, "value_type": value_type})
+                         {**context, "metric": metric, "value": item, "value_type": value_type,
+                          # Keep every scalar and its full inputs, but do not repeat
+                          # long interaction notes dozens of times per case. Every
+                          # row retains case_record into the authoritative JSON.
+                          "note": "" if suite == "interaction-screen" and metric_index else row["note"]})
         by_kind = {kind: {outcome: sum(row["kind"] == kind and row["outcome"] == outcome for row in accepted)
                          for outcome in MECHANISM_OUTCOMES} for kind in MECHANISM_KINDS}
         resources = {key: item for key, item in _dict(value.get("resources")).items()
                      if isinstance(key, str) and (item is None or isinstance(item, (str, bool)) or _finite(item))}
-        self.science.append({"source_path": source, "kind": "mechanism_audit", "status": value["status"],
+        self.science.append({"source_path": source, "kind": suite.replace("-", "_"),
+            "benchmark_suite": suite, "status": value["status"],
             "device": "cpu", "training_attempted": False, "actual_neural_training": False,
             "source_case_count": len(value["rows"]), "valid_case_count": len(accepted),
             "unsupported_case_count": len(value["rows"]) - len(accepted),
@@ -577,6 +588,8 @@ class _Projection:
             "outcome_counts": {outcome: sum(row["outcome"] == outcome for row in accepted)
                                for outcome in MECHANISM_OUTCOMES},
             "kind_outcome_counts": by_kind, "resources": resources,
+            **_pick(value, [key for key in ("scientific_outcome", "reference_scope", "timing_scope", "work_scope")
+                           if isinstance(value.get(key), str)]),
             **_pick(value, [key for key in ("elapsed_seconds", "host_process_peak_rss_bytes", "numerical_budget_seconds")
                            if _finite(value.get(key))]),
             "counts_scope": "Valid source cases, before table row/byte budgets; metric rows are not independent cases.",
@@ -592,6 +605,8 @@ class _Projection:
         replication = _pick(_dict(value.get("replication")), REPLICATION_CONTEXT)
         if name == "mechanism-audit.json":
             self.mechanisms(source, value)
+        elif name == "interaction-screen.json":
+            self.mechanisms(source, value, suite="interaction-screen")
         elif name == "replication.json":
             self.replication(source, value)
         elif name == "neural-comparisons.json":
@@ -861,11 +876,14 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             "are not additional independent parents. Missing/invalid results and initialization remain explicit. "
             "Per-seed speed ratios use each family's fastest feasible declared grid entry, a post-hoc diagnostic "
             "rather than a deployable step selector. No significance, SOTA, ranking or scientific gate authorization.",
-        "mechanism_interpretation": "mechanisms.csv projects only canonical mechanism-audit.json, never its "
+        "mechanism_interpretation": "mechanisms.csv projects only canonical mechanism-audit.json or "
+            "interaction-screen.json, never their "
             "panel files or summary duplicates. One row represents one scalar metric, not one independent case. "
             "Empty metrics remain explicit. Correctness, representation, scientific observations and negative "
             "controls retain separate kinds and outcomes. A completed training-free audit does not demonstrate "
-            "trained-model accuracy or efficiency; expected limitations do not imply failed unit tests.",
+            "trained-model accuracy or efficiency; expected limitations do not imply failed unit tests. "
+            "Interaction-screen case notes appear on the first metric row only; case_record on every row "
+            "resolves the complete original note and inputs without duplicating long prose.",
         "limits": {"ordinary_tables_shared_rows": MAX_ROWS, "ordinary_table_bytes": MAX_TABLE_BYTES,
                    "table_overrides": {"mechanisms": {"rows": MAX_MECHANISM_ROWS,
                                                        "bytes": MAX_MECHANISM_TABLE_BYTES}},
@@ -877,13 +895,13 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
     logs = _records(_dict(log_index).get("logs"))
     registered = {os.path.abspath(report_dir / row["path"]) for row in logs
                   if isinstance(row, dict) and isinstance(row.get("path"), str)}
-    if any(row.get("kind") == "mechanism_audit" for row in projection.science):
+    if any(row.get("kind") in ("mechanism_audit", "interaction_screen") for row in projection.science):
         target = outputs / "mechanisms.csv"
         if str(target) not in registered:
             if len(registered) < 256:
                 try:
                     register_log(report_dir, "analytics.mechanisms", "outputs/mechanisms.csv",
-                                 label="Mechanism audit metrics", group="Scientific outputs",
+                                 label="Mechanism and interaction metrics", group="Scientific outputs",
                                  description="Bounded scalar projection; source pointers retain original case evidence")
                     registered.add(str(target))
                 except (ValueError, OSError) as exc:
@@ -927,13 +945,14 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             outcomes.add("NO_SPEED_ADVANTAGE_OBSERVED")
         if row.get("numerical_failure_count", 0):
             outcomes.add("NUMERICAL_FAILURE")
-        if row.get("kind") == "mechanism_audit":
+        if row.get("kind") in ("mechanism_audit", "interaction_screen"):
+            prefix = "INTERACTION" if row["kind"] == "interaction_screen" else "MECHANISM"
             if row["kind_outcome_counts"]["correctness"]["FAIL"]:
-                outcomes.add("MECHANISM_CORRECTNESS_FAILURE")
+                outcomes.add(f"{prefix}_CORRECTNESS_FAILURE")
             if row["kind_outcome_counts"]["negative_control"]["FAIL"]:
-                outcomes.add("MECHANISM_NEGATIVE_CONTROL_FAILURE")
+                outcomes.add(f"{prefix}_NEGATIVE_CONTROL_FAILURE")
             if row["status"] != "COMPLETED" or row["unsupported_case_count"]:
-                outcomes.add("MECHANISM_AUDIT_INCOMPLETE")
+                outcomes.add("INTERACTION_SCREEN_INCOMPLETE" if prefix == "INTERACTION" else "MECHANISM_AUDIT_INCOMPLETE")
     results = {"schema": "tdn.tower.scientific-results/v1", "application_completion_is_scientific_success": False,
         "scientific_outcomes": sorted(outcomes), "reports": science,
         "numerical_failure_records": len(failure_rows), "table_rows": table_rows,
@@ -967,7 +986,8 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         "omissions_list_truncated": budget.omission_count > len(budget.omissions),
         "limits": {"files": MAX_FILES, "directory_entries": MAX_ENTRIES, "depth": MAX_DEPTH,
                    "read_bytes": MAX_READ_BYTES, "per_file_read_bytes": MAX_FILE_BYTES,
-                   "per_file_read_bytes_overrides": {"frontier.json": MAX_FRONTIER_FILE_BYTES},
+                   "per_file_read_bytes_overrides": {"frontier.json": MAX_FRONTIER_FILE_BYTES,
+                                                      "interaction-screen.json": MAX_INTERACTION_FILE_BYTES},
                    "source_read_seconds": MAX_SECONDS, "canonical_rows": MAX_ROWS,
                    "canonical_rows_scope": "Shared ordinary science tables; mechanisms has a separate bounded reserve",
                    "mechanisms_rows": MAX_MECHANISM_ROWS,

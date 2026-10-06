@@ -10,7 +10,13 @@ The native Windows edition supports a standalone Python `.venv`, PowerShell laun
 
 ## Run on CARC
 
-For the current architecture pivot, start the [training-free mechanism audits](docs/MECHANISM_AUDITS.md):
+For the next architecture experiment, use the [runtime interaction screen](docs/INTERACTION_SCREEN.md):
+`bash scripts/carc_interactions.sh --submit`. One bounded CPU job tests
+field-derived nonlinear corrections, bounded/mean ablations, Strang and
+ETDRK2/4 with accepted FP64 references and Tower metrics. It has no training or
+GPU successor.
+
+The preceding [training-free mechanism audits](docs/MECHANISM_AUDITS.md) remain available:
 `bash scripts/carc_mechanisms.sh --submit`. One bounded CPU job checks all eight
 mechanism areas, coordinate/gate combinations and temporal representations,
 with a dedicated Tower table. It does not train models or request an A100.

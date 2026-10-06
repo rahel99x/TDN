@@ -74,10 +74,12 @@ def validate(workflow):
         raise ValueError("Research GPU work requires the GPU partition")
     if not isinstance(workflow.get("smoke"), bool):
         raise ValueError("Malformed smoke flag")
-    if workflow.get("benchmark_suite", "architecture") not in ("architecture", "neural-benchmarks", "neural-replication", "mechanism-audit"):
+    if workflow.get("benchmark_suite", "architecture") not in ("architecture", "neural-benchmarks", "neural-replication", "mechanism-audit", "interaction-screen"):
         raise ValueError("Unknown research benchmark suite")
     if workflow.get("benchmark_suite") == "mechanism-audit" and phase != "cpu":
         raise ValueError("Mechanism audits are CPU-only and have no GPU benchmark successor")
+    if workflow.get("benchmark_suite") == "interaction-screen" and phase != "cpu":
+        raise ValueError("Interaction screens are CPU-only and have no GPU benchmark successor")
     if phase == "cpu" and workflow.get("source_workflow") is not None:
         raise ValueError("CPU research cannot consume a benchmark predecessor")
     if phase == "gpu" and not workflow.get("source_workflow"):
@@ -122,8 +124,10 @@ def verify_experiment(workflow, *, require_headroom=False):
         raise ValueError("Research artifact configuration fingerprint differs")
     files = manifest.get("files", {})
     mechanism = workflow.get("benchmark_suite") == "mechanism-audit"
+    interaction = workflow.get("benchmark_suite") == "interaction-screen"
     required = ({"protocol.json", "summary.json", "config.json", "mechanism-audit.json", "temporal.json",
                  "coordinates.json", "structure.json"} if mechanism else
+                {"protocol.json", "summary.json", "config.json", "interaction-screen.json", "summary.txt"} if interaction else
                 {"protocol.json", "dataset.pt", "summary.json"})
     replication = workflow.get("benchmark_suite", "architecture") == "neural-replication"
     if replication:
@@ -145,6 +149,9 @@ def verify_experiment(workflow, *, require_headroom=False):
     if mechanism and (type(manifest.get("version")) is not int or manifest["version"] != 1
                       or type(protocol.get("version")) is not int or protocol["version"] != 1):
         raise ValueError("Mechanism audits require coherent version-1 manifest and protocol")
+    if interaction and (type(manifest.get("version")) is not int or manifest["version"] != 1
+                        or type(protocol.get("version")) is not int or protocol["version"] != 1):
+        raise ValueError("Interaction screens require coherent version-1 manifest and protocol")
     if replication and (type(manifest.get("version")) is not int or manifest["version"] != 2
                         or type(protocol.get("version")) is not int or protocol["version"] != 2
                         or type(protocol.get("config", {}).get("protocol_version")) is not int
@@ -161,6 +168,11 @@ def verify_experiment(workflow, *, require_headroom=False):
         raise ValueError("Replication summary benchmark suite differs from its submitted workflow")
     if mechanism and summary.get("benchmark_suite") != "mechanism-audit":
         raise ValueError("Mechanism summary benchmark suite differs from its submitted workflow")
+    if interaction:
+        if summary.get("benchmark_suite") != "interaction-screen":
+            raise ValueError("Interaction summary benchmark suite differs from its submitted workflow")
+        if summary.get("training_attempted") is not False or summary.get("training_performed") is not False:
+            raise ValueError("Interaction screens require explicit training-free execution evidence")
     if require_headroom and summary.get("headroom", {}).get("passed") is not True:
         raise ValueError("CPU research found no eligible numerical headroom; no A100 job is submitted")
     return manifest
@@ -172,6 +184,8 @@ def completed_source(path):
         raise ValueError("Benchmark source must be a CPU research workflow")
     if workflow.get("benchmark_suite") == "mechanism-audit":
         raise ValueError("Mechanism audits are CPU-only and have no GPU benchmark successor")
+    if workflow.get("benchmark_suite") == "interaction-screen":
+        raise ValueError("Interaction screens are CPU-only and have no GPU benchmark successor")
     record = cw.read_json(state_path(workflow))
     expected = {"status": "COMPLETED", "exit_code": 0, "stage": "experiment",
                 "source_sha256": workflow["source_sha256"],
@@ -221,11 +235,13 @@ def prepare(args):
     phase = "gpu" if args.command == "benchmark" else "cpu"
     source = completed_source(workflow_path(args.source)) if phase == "gpu" else None
     mechanism = getattr(args, "mechanism_audit", False)
-    default_config = "mechanism-audit.yaml" if mechanism else "research.yaml"
+    interaction = getattr(args, "interaction_screen", False)
+    default_config = "interaction-screen.yaml" if interaction else "mechanism-audit.yaml" if mechanism else "research.yaml"
     original_config = cw.inside(source["config_path"] if source else args.config or ROOT / "configs" / default_config)
     if not original_config.is_file():
         raise ValueError(f"Research configuration missing: {original_config}")
-    run_prefix = "carc-mechanisms-" if mechanism else "carc-research-" + ("gpu-" if phase == "gpu" else "")
+    run_prefix = ("carc-interactions-" if interaction else "carc-mechanisms-" if mechanism else
+                  "carc-research-" + ("gpu-" if phase == "gpu" else ""))
     run_id = identifier(args.run_id or run_prefix +
                         datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ"))
     base = cw.inside(ROOT / "runs" / run_id)
@@ -236,6 +252,7 @@ def prepare(args):
         raise ValueError("CARC research requires an exact CUDA Torch version")
     workflow = {"schema_version": 1, "kind": "bounded-research", "run_id": run_id,
                 "benchmark_suite": (source.get("benchmark_suite", "architecture") if source else
+                                    "interaction-screen" if interaction else
                                     "mechanism-audit" if mechanism else
                                     "neural-replication" if args.neural_replication else
                                     "neural-benchmarks" if args.neural_benchmarks else "architecture"),
@@ -275,6 +292,8 @@ def start(args):
     print(f"Suite: {workflow.get('benchmark_suite', 'architecture')}")
     if workflow.get("benchmark_suite") == "mechanism-audit":
         print("Scope: bounded CPU-only mechanism audits; no neural training or GPU successor.")
+    elif workflow.get("benchmark_suite") == "interaction-screen":
+        print("Scope: bounded CPU-only interaction screen with a 1,200-second numerical cap; no neural training or GPU successor.")
     else:
         print("Scope: bounded development hypotheses; no confirmatory campaign or automatic GPU successor.")
     print(shlex.join(scheduler_args(workflow)))
@@ -387,16 +406,20 @@ def verify_worker(workflow, phase):
 def worker_commands(workflow):
     python = str(cw.inside(ROOT / ".venv" / "bin") / "python")
     base = cw.inside(workflow["run_dir"])
-    if workflow.get("benchmark_suite") == "mechanism-audit":
+    if workflow.get("benchmark_suite") in ("mechanism-audit", "interaction-screen"):
+        interaction = workflow["benchmark_suite"] == "interaction-screen"
+        label = "Interaction screens" if interaction else "Mechanism audits"
+        test_group = "interaction" if interaction else "mechanism"
+        runner = "interaction_screen.py" if interaction else "mechanism_audit.py"
         if workflow["phase"] != "cpu":
-            raise ValueError("Mechanism audits are CPU-only and have no GPU benchmark successor")
-        tests = sorted((ROOT / "tests").glob("test_mechanism_*.py"))
+            raise ValueError(f"{label} are CPU-only and have no GPU benchmark successor")
+        tests = sorted((ROOT / "tests").glob(f"test_{test_group}_*.py"))
         if not tests:
-            raise ValueError("Focused mechanism tests are missing")
+            raise ValueError(f"Focused {test_group} tests are missing")
         return [("tests", [python, "-m", "pytest", "-q", "-m", "not gpu", *map(str, tests),
                            "--basetemp", str(base / "pytest-work"), "-o", f"cache_dir={base / 'pytest-cache'}",
                            "--junitxml", str(base / "cpu-tests.xml")]),
-                ("experiment", [python, str(ROOT / "scripts" / "mechanism_audit.py"),
+                ("experiment", [python, str(ROOT / "scripts" / runner),
                                 "--config", workflow["config_path"], "--run-dir", str(base / "experiment")]
                                + (["--smoke"] if workflow["smoke"] else []))]
     engine = [python, str(ROOT / "scripts" / "research.py")]
@@ -582,15 +605,23 @@ def status(workflow):
     if record.get("error"):
         print(f"  error: {record['error']}")
     summary_path = base / "experiment" / "summary.json"
+    report = {}
     if summary_path.is_file():
         report = cw.read_json(summary_path)
         print(f"  experiment: {report.get('status', 'UNKNOWN')}")
         if workflow["phase"] == "cpu" and workflow.get("benchmark_suite", "architecture") == "architecture":
             print(f"  numerical headroom: {report.get('headroom', {}).get('passed', False)}")
+    if workflow.get("benchmark_suite") == "interaction-screen":
+        print(f"  scientific outcome: {report.get('scientific_outcome', 'UNKNOWN')}")
+        if record.get("status") == "COMPLETED" or report.get("status") == "COMPLETED":
+            verify_experiment(workflow)
+            print("  sealed interaction artifacts: VERIFIED")
 
 
 def logs(workflow, lines):
     from collections import deque
+    print(f"Research workflow {workflow['run_id']} ({workflow['phase']})")
+    print(f"Suite: {workflow.get('benchmark_suite', 'architecture')}")
     for path in sorted(cw.inside(Path(workflow["run_dir"]) / "logs").glob("*")):
         path = cw.inside(path)
         if path.is_file():
@@ -626,6 +657,17 @@ def collect(workflow):
     print(f"Review archive: {destination}")
     if workflow.get("benchmark_suite") == "mechanism-audit":
         print("Includes sealed mechanism audits, protocol, metrics, logs and failures; excludes pytest temporary directories.")
+    elif workflow.get("benchmark_suite") == "interaction-screen":
+        print("Suite: interaction-screen")
+        print("Includes interaction screen, protocol, scientific outcome, metrics, logs and failures; excludes pytest temporary directories.")
+        # Preserve failed or damaged evidence for review, but never label it
+        # verified merely because it was successfully archived.
+        try:
+            verify_experiment(workflow)
+        except (ValueError, OSError, KeyError, TypeError) as exc:
+            print(f"Interaction artifact verification: NOT VERIFIED ({exc})")
+        else:
+            print("Interaction artifact verification: VERIFIED")
     else:
         print("Includes protocol, data, checkpoints, metrics, logs and failures; excludes pytest temporary directories.")
     return destination
@@ -647,6 +689,8 @@ def parser():
                               help="Require paired three-seed replication; optional GPU timing uses frozen same-seed checkpoint pairs")
             suite.add_argument("--mechanism-audit", action="store_true",
                               help="Run bounded CPU-only mechanism audits without neural training or a GPU successor")
+            suite.add_argument("--interaction-screen", action="store_true",
+                              help="Run bounded CPU-only interaction screens without neural training or a GPU successor")
             item.add_argument("--smoke", action="store_true", help="Tiny integration test; not a scientific comparison")
         item.add_argument("--run-id")
         item.add_argument("--submit", action="store_true")
