@@ -18,8 +18,14 @@ Both completed and actually interrupted runs passed unmodified native Tower
 validation, plus 34 independent schema checks. All table values and provenance
 pointers verified with zero export omissions. A real SIGUSR1 retained partial
 evidence, exited 75, and finalized Tower as `INTERRUPTED` without a completion
-seal. This validates the implementation on cloud CPU; CARC timing still needs
-the allocated run below.
+seal. These figures validate the implementation on cloud CPU; the subsequent
+allocated CARC measurements are reviewed below.
+
+The subsequent [CARC work–precision review](WORK_PRECISION_REVIEW.md) verifies
+job **12698969** and analyzes its measured costs. The mean shortcut is about
+1.4x faster than the original mean ablation, but has no fastest complete-solver
+entries at matched targets. Full spatial GL3 has limited useful wins; Strang
+and prepared ETDRK4 lead most comparisons.
 
 ## Run on CARC
 
