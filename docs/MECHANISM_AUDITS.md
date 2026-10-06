@@ -12,8 +12,10 @@ metric rows are not independent statistical replicates.
 The [recorded cloud CPU validation](../results/mechanism-audit-validation.json)
 completed all 600 cases: 155 passed controls, 416 observations and 29 expected
 limitations. All 10,173 scalar metrics exported with zero omissions and passed
-native Tower validation. This is development evidence; the new workflow has
-not yet run on CARC.
+native Tower validation. CARC job **12678403** subsequently completed the same
+600-case protocol and 103 allocated tests, with every scientific metric
+preserved. The [CARC review and next-test proposal](MECHANISM_REVIEW.md) explain
+the coordinate/context restrictions, temporal oracle findings and limitations.
 
 ## Run on CARC
 
