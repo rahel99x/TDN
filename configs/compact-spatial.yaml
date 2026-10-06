@@ -1,0 +1,14 @@
+# Frozen CPU experiment: compact spatial interactions, paired accuracy and scaling.
+protocol_version: 1
+suite: compact-spatial
+max_seconds: 1200
+reference_tolerance: 1.0e-8
+reference_attempts: 5
+intraop_threads: 1
+interop_threads: 1
+warmup_rollouts: 1
+timing_repeats: 5
+nsteps: [1, 2, 4, 8, 16, 32]
+scaling_nsteps: [2, 8]
+error_targets: [0.002, 0.0002, 0.00002, 0.000002]
+methods: [strang, etdrk4, gl3, gl5, gl3_mean_spectral, gl3_fused, compact_gl3_m2, compact_gl3_m4, compact_gl3_m8, compact_gl3_m4_no_mean]

@@ -5,7 +5,14 @@ navigation, exported scientific tables, historical imports and scheduler-state
 reconciliation. Each allocated workflow prints `TDN_TOWER_DIR`; pass that exact
 directory as Tower's `--workdir`. CPU, GPU and resumed jobs use separate reports.
 
-The next experiment is the [time-to-accuracy comparison](WORK_PRECISION.md),
+The next experiment is the [compact spatial correction comparison](COMPACT_SPATIAL.md),
+started with `bash scripts/carc_compact_spatial.sh --submit`. One 30-minute CPU
+job runs correctness tests and compares ten prepared methods across reused
+controls, new amplitude/phase cases, and grid/batch scaling. Its 1,200-second
+numerical budget includes fused GL3, fixed compact-mode cutoffs and a mean
+ablation against Strang and ETDRK4. No training or GPU successor is submitted.
+
+The preceding [time-to-accuracy comparison](WORK_PRECISION.md) remains available,
 started with `bash scripts/carc_work_precision.sh --submit`. One 30-minute CPU
 job runs correctness tests and compares seven prepared solvers over 24
 conditions, six step counts and separate RMS/maximum-error targets. It includes

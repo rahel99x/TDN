@@ -35,6 +35,12 @@ MAX_INTERACTION_FILE_BYTES = 2 << 20
 # Only this exact canonical filename receives the larger read allowance.
 MAX_WORK_PRECISION_FILE_BYTES = 8 << 20
 MAX_WORK_PRECISION_JSON_VALUES = 300000
+# Compact spatial scaling keeps independent per-member errors and raw repeats.
+# Its dedicated reserves cannot consume the ordinary analytics budgets.
+MAX_COMPACT_SPATIAL_FILE_BYTES = 24 << 20
+MAX_COMPACT_SPATIAL_JSON_VALUES = 1500000
+MAX_COMPACT_SPATIAL_ROWS = 16000
+MAX_COMPACT_SPATIAL_TABLE_BYTES = 8 << 20
 MAX_INVENTORY_BYTES = 512 << 10
 MAX_TABLE_BYTES = 2 << 20
 MAX_ROWS = 10000
@@ -124,6 +130,16 @@ COLUMNS = {
         "nsteps", "max_difference", "rms_difference", "allowed_absolute_difference", "passed", "status",
         "failure_reason"],
 }
+COMPACT_SPATIAL_TABLES = ("compact_spatial", "compact_spatial_frontiers", "compact_spatial_checks")
+for _table, _base in zip(COMPACT_SPATIAL_TABLES,
+                         ("work_precision", "tolerance_frontiers", "work_precision_checks")):
+    COLUMNS[_table] = COLUMNS[_base] + ["panel", "batch_size", "cells"]
+COLUMNS["compact_spatial"] += ["error_spatial_rms", "error_spatial_max", "error_mean_abs",
+    "error_rms_worst_member", "error_max_worst_member", "throughput_members_per_second", "member_errors_record"]
+COLUMNS["compact_spatial_checks"] += ["variant", "reference_defect_rms", "reference_defect_max",
+    "relative_rms_when_resolved", "relative_resolution_threshold", "mean_difference_abs",
+    "spatial_rms_difference", "member_references_record"]
+COLUMNS["compact_spatial_frontiers"] += ["throughput_members_per_second"]
 MECHANISM_KINDS = ("correctness", "representation", "scientific", "negative_control")
 MECHANISM_OUTCOMES = ("PASS", "FAIL", "OBSERVED", "INCONCLUSIVE", "EXPECTED_LIMITATION")
 NEURAL_METRICS = ("matched_tolerance_speed", "same_h_rollout_rms", "same_h_rollout_upper_error",
@@ -171,6 +187,8 @@ def _file_read_limit(path):
         return MAX_INTERACTION_FILE_BYTES
     if path.name == "work-precision.json":
         return MAX_WORK_PRECISION_FILE_BYTES
+    if path.name == "compact-spatial.json":
+        return MAX_COMPACT_SPATIAL_FILE_BYTES
     return MAX_FILE_BYTES
 
 
@@ -179,7 +197,7 @@ def _work_precision_row_supported(row, columns):
     text = {"candidate_id", "frontier_id", "reference_id", "parity_id", "case_id", "case_role", "variant",
             "dtype", "status", "failure_reason", "selected_candidate_id", "setup_selected_candidate_id",
             "norm", "selection_scope",
-            "reference_reason", "check", "device", "record_type"}
+            "reference_reason", "check", "device", "record_type", "panel"}
     boolean = {"trajectory_completed", "finite", "in_bounds", "reference_accepted", "passed", "training_attempted"}
     if row.get("device", "cpu") != "cpu" or row.get("training_attempted", False) is not False:
         return False
@@ -201,10 +219,72 @@ def _work_precision_row_supported(row, columns):
     return True
 
 
+def _compact_reference_supported(row):
+    """Reference acceptance and uncertainty summarize all declared members."""
+    batch = row.get("batch_size")
+    members = row.get("member_references")
+    if (type(batch) is not int or batch <= 0 or not isinstance(members, list)
+            or len(members) != batch or any(not isinstance(item, dict) for item in members)
+            or [item.get("member_index") for item in members] != list(range(batch))
+            or any(type(item.get("reference_accepted")) is not bool for item in members)):
+        return False
+    if row.get("reference_accepted") is not all(item["reference_accepted"] for item in members):
+        return False
+    for key in ("uncertainty_rms", "uncertainty_max_estimate"):
+        values = [item.get(key) for item in members]
+        if any(item is not None and (not _finite(item) or item < 0) for item in values):
+            return False
+        if row.get(key) != (max(values) if all(item is not None for item in values) else None):
+            return False
+        if row["reference_accepted"] and any(item is None for item in values):
+            return False
+    return True
+
+
+def _compact_candidate_members_supported(row, reference):
+    """Avoid a pooled batch error or a mismatched member uncertainty sum."""
+    if (not isinstance(reference, dict) or not _compact_reference_supported(reference)
+            or row.get("batch_size") != reference.get("batch_size")
+            or row.get("reference_accepted") != reference.get("reference_accepted")):
+        return False
+    members = row.get("member_errors")
+    if not isinstance(members, list):
+        return False
+    for suffix in ("rms", "max_estimate"):
+        if row.get("reference_uncertainty_" + suffix) != reference.get("uncertainty_" + suffix):
+            return False
+    errors = ("error_rms", "error_max", "error_spatial_rms", "error_spatial_max",
+              "error_upper_rms", "error_upper_max_estimate")
+    if row.get("trajectory_completed") is not True or row.get("finite") is not True:
+        return not members and all(row.get(key) is None for key in (*errors, "error_mean", "error_mean_abs"))
+    if (len(members) != row["batch_size"] or any(not isinstance(item, dict) for item in members)
+            or [item.get("member_index") for item in members] != list(range(row["batch_size"]))):
+        return False
+    for item, ref in zip(members, reference["member_references"]):
+        for key in (*errors, "error_mean"):
+            if item.get(key) is not None and (not _finite(item[key]) or (key != "error_mean" and item[key] < 0)):
+                return False
+        for norm, suffix in (("rms", "rms"), ("max", "max_estimate")):
+            error, uncertainty = item.get("error_" + norm), ref.get("uncertainty_" + suffix)
+            expected = error + uncertainty if error is not None and uncertainty is not None else None
+            if item.get("error_upper_" + suffix) != expected:
+                return False
+    for key in errors:
+        values = [item.get(key) for item in members]
+        if row.get(key) != (max(values) if all(item is not None for item in values) else None):
+            return False
+    means = [item.get("error_mean") for item in members]
+    mean = max(means, key=abs) if all(item is not None for item in means) else None
+    return (row.get("error_mean") == mean and row.get("error_mean_abs") == (abs(mean) if mean is not None else None)
+            and row.get("error_rms_worst_member") == row.get("error_rms")
+            and row.get("error_max_worst_member") == row.get("error_max"))
+
+
 class _Budget:
     def __init__(self):
         self.deadline = time.monotonic() + MAX_SECONDS
         self.read_bytes = 0
+        self.compact_read_bytes = 0
         self.entries = 0
         self.omissions = []
         self.omission_count = 0
@@ -217,9 +297,16 @@ class _Budget:
     def expired(self):
         return time.monotonic() >= self.deadline
 
+    def can_read(self, path, size):
+        if size > _file_read_limit(path):
+            return False
+        if path.name == "compact-spatial.json":
+            return self.compact_read_bytes + size <= MAX_COMPACT_SPATIAL_FILE_BYTES
+        return self.read_bytes - self.compact_read_bytes + size <= MAX_READ_BYTES
+
     def read(self, path, expected):
         file_limit = _file_read_limit(path)
-        if expected.st_size > file_limit or self.read_bytes + expected.st_size > MAX_READ_BYTES:
+        if not self.can_read(path, expected.st_size):
             raise ValueError("per-file or total read budget exceeded")
         if self.expired():
             raise ValueError("analytics time budget exceeded")
@@ -235,7 +322,10 @@ class _Budget:
                     break
                 raw.extend(part)
                 self.read_bytes += len(part)
-                if self.read_bytes > MAX_READ_BYTES or self.expired():
+                if path.name == "compact-spatial.json":
+                    self.compact_read_bytes += len(part)
+                if (self.read_bytes - self.compact_read_bytes > MAX_READ_BYTES
+                        or self.compact_read_bytes > MAX_COMPACT_SPATIAL_FILE_BYTES or self.expired()):
                     raise ValueError("analytics read/time budget exceeded")
             after = os.fstat(fd)
             named = path.lstat()
@@ -367,9 +457,17 @@ class _Projection:
         self.science = []
         self.row_count = 0
         self.mechanism_row_count = 0
+        self.compact_row_count = 0
 
     def add(self, table, source, pointer, values):
-        if table == "mechanisms":
+        if table in COMPACT_SPATIAL_TABLES:
+            if self.compact_row_count >= MAX_COMPACT_SPATIAL_ROWS:
+                if self.compact_row_count == MAX_COMPACT_SPATIAL_ROWS:
+                    self.budget.omit(source, "compact-spatial row budget exhausted; originals retained")
+                    self.compact_row_count += 1
+                return
+            self.compact_row_count += 1
+        elif table == "mechanisms":
             if self.mechanism_row_count >= MAX_MECHANISM_ROWS:
                 if self.mechanism_row_count == MAX_MECHANISM_ROWS:
                     self.budget.omit(source, "mechanisms row budget exhausted; originals retained")
@@ -656,44 +754,56 @@ class _Projection:
                 "INCONCLUSIVE and missing metrics provide no affirmative evidence.",
             "scientific_gate_authorized": False})
 
-    def work_precision(self, source, value):
+    def work_precision(self, source, value, *, suite="work-precision"):
         """Project compact canonical records; raw timings stay in the source.
 
         A frontier is a reported posthoc choice, never an inferred scientific
         success. Unsupported rows are counted and omitted, and valid failures
         retain their original status, nulls and provenance.
         """
+        compact = suite == "compact-spatial"
+        kind = "compact_spatial" if compact else "work_precision"
+        candidate_table, frontier_table, checks_table = (COMPACT_SPATIAL_TABLES if compact else
+            ("work_precision", "tolerance_frontiers", "work_precision_checks"))
+        roles = (("reused_review", "new_diagnostic", "scaling_control", "historical_control")
+                 if compact else ("fresh", "historical_control"))
+        selection_scope = "posthoc_declared_grid_worst_member" if compact else "posthoc_declared_grid"
         fields = ("candidate_rows", "frontier_rows", "reference_rows", "parity_rows")
-        summary = {"source_path": source, "kind": "work_precision", "benchmark_suite": "work-precision",
+        summary = {"source_path": source, "kind": kind, "benchmark_suite": suite,
             "status": "UNSUPPORTED", "unsupported_document_count": 0, "unsupported_row_count": 0,
             "scientific_gate_authorized": False, "neural_superiority_claim": False,
-            "selection_scope": "posthoc_declared_grid",
+            "selection_scope": selection_scope,
             "interpretation": "CPU training-free observations; posthoc declared-grid selection is not a "
                 "deployable step controller. Failed or infeasible rows provide no affirmative evidence.",
             "counts_scope": "Supported source rows before shared row and per-table byte budgets; "
                 "raw timings and complete records remain authoritative in source JSON."}
-        if (not isinstance(value, dict) or value.get("schema") != "tdn.work-precision/v1"
-                or value.get("benchmark_suite") != "work-precision"
+        if (not isinstance(value, dict) or value.get("schema") != f"tdn.{suite}/v1"
+                or value.get("benchmark_suite") != suite
                 or value.get("status") not in ("COMPLETED", "INCOMPLETE", "FAILED")
                 or value.get("computational_status", value.get("status")) != value.get("status")
                 or value.get("device") != "cpu" or value.get("training_attempted") is not False
                 or value.get("training_performed", False) is not False
+                or (compact and value.get("scientific_outcome") not in ("OBSERVED_MIXED", "INCONCLUSIVE"))
                 or not all(isinstance(value.get(field), list) for field in fields)):
-            self.budget.omit(source, "work-precision schema, terminal status, CPU/training-free scope or lists unsupported")
+            self.budget.omit(source, f"{suite} schema, terminal status, CPU/training-free scope or lists unsupported")
             summary["unsupported_document_count"] = 1
             self.science.append(summary)
             return
         summary.update(status=value["status"], device="cpu", training_attempted=False,
                        actual_neural_training=False)
+        if compact:
+            summary["scientific_outcome"] = value["scientific_outcome"]
+        references = {row.get("case_id"): row for row in value["reference_rows"]
+                      if isinstance(row, dict) and isinstance(row.get("case_id"), str)} if compact else {}
         candidates, supported = {}, {}
         for field, table, id_field, labels, statuses in (
-            ("candidate_rows", "work_precision", "candidate_id", ("case_id", "case_role", "variant"),
+            ("candidate_rows", candidate_table, "candidate_id", ("case_id", "case_role", "variant"),
              ("VALID", "INVALID", "INCOMPLETE", "FAILED")),
-            ("frontier_rows", "tolerance_frontiers", "frontier_id", ("case_id", "case_role", "variant", "norm"),
+            ("frontier_rows", frontier_table, "frontier_id", ("case_id", "case_role", "variant", "norm"),
              ("FEASIBLE", "NO_FEASIBLE_CANDIDATE", "INCONCLUSIVE")),
-            ("reference_rows", "work_precision_checks", "reference_id", ("case_id", "case_role"), None),
-            ("parity_rows", "work_precision_checks", "parity_id", ("case_id", "check", "dtype"),
-             ("PASS", "FAIL", "UNAVAILABLE")),
+            ("reference_rows", checks_table, "reference_id", ("case_id", "case_role"), None),
+            ("parity_rows", checks_table, "parity_id", ("case_id", "check", "dtype"),
+             ("PASS", "FAIL", "UNAVAILABLE", "OBSERVED") if compact else ("PASS", "FAIL", "UNAVAILABLE")),
         ):
             seen_ids, seen_keys, accepted = set(), set(), []
             for index, row in enumerate(value[field]):
@@ -701,9 +811,9 @@ class _Projection:
                 if (not isinstance(row, dict)
                         or any(not isinstance(row.get(key), str) or not row[key] for key in (id_field, *labels))
                         or (statuses is not None and row.get("status") not in statuses)
-                        or ("case_role" in labels and row["case_role"] not in ("fresh", "historical_control"))
+                        or ("case_role" in labels and row["case_role"] not in roles)
                         or not _work_precision_row_supported(row, COLUMNS[table])):
-                    self.budget.omit(source, f"work-precision {pointer} has unsupported identity, status or scalar fields")
+                    self.budget.omit(source, f"{suite} {pointer} has unsupported identity, status or scalar fields")
                     continue
                 if field == "candidate_rows":
                     valid = (type(row.get("nsteps")) is int and row["nsteps"] > 0
@@ -711,9 +821,20 @@ class _Projection:
                                 (("timing_repeats", list), ("work_per_rollout", dict), ("cache_metadata", dict)))
                         and (row.get("warmup") is None or isinstance(row["warmup"], dict)))
                     identity = (row["case_id"], row["variant"], row.get("nsteps"))
+                    if compact:
+                        valid = (valid and row.get("panel") in ("accuracy", "scaling")
+                            and type(row.get("batch_size")) is int and row["batch_size"] > 0
+                            and type(row.get("cells")) is int and row["cells"] > 0
+                            and isinstance(row.get("grid"), list) and bool(row["grid"])
+                            and row["cells"] == math.prod(row["grid"])
+                            and all(row.get(key) is None or (_finite(row[key]) and row[key] >= 0)
+                                for key in ("error_spatial_rms", "error_spatial_max", "error_mean_abs",
+                                    "error_rms_worst_member", "error_max_worst_member",
+                                    "throughput_members_per_second"))
+                            and _compact_candidate_members_supported(row, references.get(row["case_id"])))
                 elif field == "frontier_rows":
                     valid = (row["norm"] in ("rms", "max") and _finite(row.get("tolerance"))
-                        and row["tolerance"] > 0 and row.get("selection_scope") == "posthoc_declared_grid")
+                        and row["tolerance"] > 0 and row.get("selection_scope") == selection_scope)
                     identity = (row["case_id"], row["variant"], row["norm"], row.get("tolerance"))
                     if row["status"] == "FEASIBLE":
                         selected = candidates.get(row.get("selected_candidate_id"))
@@ -734,6 +855,10 @@ class _Projection:
                                 and row["adjusted_error"] <= row["tolerance"]
                                 and type(row.get("feasible_candidate_count")) is int
                                 and row["feasible_candidate_count"] > 0)
+                            if compact:
+                                valid = valid and (row.get("selected_error") == candidate.get("error_" + row["norm"])
+                                    and row.get("adjusted_error") == candidate.get(
+                                        "error_upper_rms" if row["norm"] == "rms" else "error_upper_max_estimate"))
                     else:
                         valid = valid and row.get("selected_candidate_id") is None
                     if row.get("setup_selected_candidate_id") is not None:
@@ -753,19 +878,33 @@ class _Projection:
                                         ("setup_selected_seconds", "setup_selected_error",
                                          "setup_selected_adjusted_error"))
                                 and row["setup_selected_adjusted_error"] <= row["tolerance"])
+                            if compact:
+                                valid = valid and (row.get("setup_selected_error") == candidate.get("error_" + row["norm"])
+                                    and row.get("setup_selected_adjusted_error") == candidate.get(
+                                        "error_upper_rms" if row["norm"] == "rms" else "error_upper_max_estimate"))
                 elif field == "reference_rows":
                     valid = type(row.get("reference_accepted")) is bool
+                    if compact:
+                        valid = valid and _compact_reference_supported(row)
                     identity = (row["case_id"],)
                 else:
                     valid = (type(row.get("nodes")) is int and row["nodes"] > 0
                         and type(row.get("nsteps")) is int and row["nsteps"] > 0
-                        and row.get("passed") is {"PASS": True, "FAIL": False, "UNAVAILABLE": None}[row["status"]])
+                        and row.get("passed") is {"PASS": True, "FAIL": False, "UNAVAILABLE": None,
+                                                "OBSERVED": None}[row["status"]])
                     identity = (row["case_id"], row["check"], row["dtype"], row.get("nodes"), row.get("nsteps"))
+                    if compact:
+                        identity += (row.get("variant"),)
+                        if row["status"] == "OBSERVED":
+                            valid = (valid and row["check"] == "approximation"
+                                     and isinstance(row.get("variant"), str) and bool(row["variant"]))
+                        elif row["check"] == "approximation":
+                            valid = valid and row["status"] == "UNAVAILABLE"
                 if not valid:
-                    self.budget.omit(source, f"work-precision {pointer} has inconsistent candidate, selection or check fields")
+                    self.budget.omit(source, f"{suite} {pointer} has inconsistent candidate, selection or check fields")
                     continue
                 if row[id_field] in seen_ids or identity in seen_keys:
-                    self.budget.omit(source, f"duplicate canonical work-precision identity at {pointer}")
+                    self.budget.omit(source, f"duplicate canonical {suite} identity at {pointer}")
                     continue
                 seen_ids.add(row[id_field])
                 seen_keys.add(identity)
@@ -775,7 +914,8 @@ class _Projection:
                 values.update(device="cpu", training_attempted=False)
                 if field == "candidate_rows":
                     candidates[row[id_field]] = (pointer, row)
-                    for key in ("timing_repeats", "warmup", "work_per_rollout", "cache_metadata"):
+                    for key in ("timing_repeats", "warmup", "work_per_rollout", "cache_metadata",
+                                *(("member_errors",) if compact else ())):
                         if key in row:
                             values[key + "_record"] = pointer + "/" + key
                 elif field == "frontier_rows" and row.get("selected_candidate_id") in candidates:
@@ -784,6 +924,8 @@ class _Projection:
                         values["setup_selected_candidate_record"] = candidates[row["setup_selected_candidate_id"]][0]
                 elif field in ("reference_rows", "parity_rows"):
                     values["record_type"] = "reference" if field == "reference_rows" else "parity"
+                    if compact and field == "reference_rows":
+                        values["member_references_record"] = pointer + "/member_references"
                 self.add(table, source, pointer, values)
             supported[field] = accepted
             name = field.removesuffix("_rows")
@@ -799,6 +941,9 @@ class _Projection:
         self.science.append(summary)
 
     def consume(self, path, source, value):
+        if path.name == "compact-spatial.json":
+            self.work_precision(source, value, suite="compact-spatial")
+            return
         if path.name == "work-precision.json":
             self.work_precision(source, value)
             return
@@ -972,7 +1117,7 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             relative = _relative(path, report_dir)
             entry = {"path": relative, "kind": KINDS.get(path.suffix.lower(), "other"), "bytes": info.st_size}
             raw = None
-            if info.st_size <= _file_read_limit(path) and budget.read_bytes + info.st_size <= MAX_READ_BYTES and not budget.expired():
+            if budget.can_read(path, info.st_size) and not budget.expired():
                 try:
                     _safe_directory(path.parent)
                     raw = budget.read(path, info)
@@ -984,8 +1129,9 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                 entry["hash_status"] = "not_read_budget"
             if raw is not None and path.suffix.lower() == ".json":
                 try:
-                    documents[path] = _decode(raw, max_values=MAX_WORK_PRECISION_JSON_VALUES
-                                              if path.name == "work-precision.json" else 100000)
+                    values_limit = {"work-precision.json": MAX_WORK_PRECISION_JSON_VALUES,
+                                    "compact-spatial.json": MAX_COMPACT_SPATIAL_JSON_VALUES}.get(path.name, 100000)
+                    documents[path] = _decode(raw, max_values=values_limit)
                 except (ValueError, UnicodeError, RecursionError) as exc:
                     budget.omit(relative, f"JSON not projected: {exc}")
             elif raw is not None and path.suffix.lower() == ".xml":
@@ -1020,23 +1166,44 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                 budget.omit(entry["path"], "computed hash disagrees with source manifest")
     projection = _Projection(budget, set(files))
     for path in files:
-        if path.name == "work-precision.json" and path not in documents:
+        if path.name in ("work-precision.json", "compact-spatial.json") and path not in documents:
             # An unreadable/oversized canonical artifact must not resemble an
             # empty successful experiment in the scientific summary.
-            projection.work_precision(_relative(path, report_dir), None)
+            projection.work_precision(_relative(path, report_dir), None, suite=path.stem)
     for path, value in documents.items():
         if budget.expired():
             budget.omit(_relative(path, report_dir), "projection time budget exhausted")
             break
         projection.consume(path, _relative(path, report_dir), value)
+    for path in files:
+        if (path.name == "compact-spatial.json" and not any(
+                row["kind"] == "compact_spatial" and row["source_path"] == _relative(path, report_dir)
+                for row in projection.science)):
+            projection.work_precision(_relative(path, report_dir), None, suite="compact-spatial")
     for path, raw in xml_documents.items():
         try:
             projection.junit(_relative(path, report_dir), raw)
         except (ValueError, ET.ParseError) as exc:
             budget.omit(_relative(path, report_dir), f"JUnit not projected: {exc}")
     table_rows = {name: _atomic_csv(outputs / f"{name}.csv", rows, COLUMNS[name], budget,
-                                  max_bytes=MAX_MECHANISM_TABLE_BYTES if name == "mechanisms" else MAX_TABLE_BYTES)
+                                  max_bytes=MAX_COMPACT_SPATIAL_TABLE_BYTES if name in COMPACT_SPATIAL_TABLES
+                                  else MAX_MECHANISM_TABLE_BYTES if name == "mechanisms" else MAX_TABLE_BYTES)
                   for name, rows in projection.tables.items()}
+    # Report source support separately from actual emitted rows: truncation must
+    # never resemble a complete compact-spatial experiment to a consumer.
+    for summary in projection.science:
+        if summary["kind"] != "compact_spatial":
+            continue
+        projected = {name: sum(row["source_path"] == summary["source_path"] for row in
+                              projection.tables[table][:table_rows[table]]
+                              if row.get("record_type", name) == name)
+                     for name, table in (("candidate", "compact_spatial"),
+                                         ("frontier", "compact_spatial_frontiers"),
+                                         ("reference", "compact_spatial_checks"),
+                                         ("parity", "compact_spatial_checks"))}
+        summary["projected_counts"] = projected
+        summary["reporting_complete"] = (not summary["unsupported_document_count"] and
+            all(projected[name] == summary.get(f"source_{name}_count") for name in projected))
     metadata = {"schema": "tdn.tower.analytics-tables/v1", "path_base": "Tower report directory",
         "null_encoding": "literal null = observed source null; empty cell = absent field; booleans = true/false",
         "source_record": "JSON Pointer into source_path; source files are authoritative and are never rewritten",
@@ -1103,11 +1270,28 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             "Failed, infeasible and incomplete outcomes provide no "
             "affirmative evidence. Training-free CPU measurements make no neural superiority, GPU, significance "
             "or scientific gate claim. Max-error uncertainty is an estimate; norms remain separate.",
+        "compact_spatial_interpretation": "compact_spatial.csv, compact_spatial_frontiers.csv and "
+            "compact_spatial_checks.csv project only canonical compact-spatial.json, retaining complete "
+            "raw repetitions and member records through source JSON pointers. Batches reuse a coefficient "
+            "case; their members are not independent cases. RMS and spatial RMS use the worst member, "
+            "not a pooled batch RMS; error_mean_abs is the worst absolute member mean error. Adjusted "
+            "errors maximize each member's error plus that same member's uncertainty, not the sum of "
+            "separately maximized errors and uncertainties. A frontier "
+            "is posthoc over the declared grid, not a deployable step controller. Accuracy and scaling "
+            "panels and reused/new diagnostic roles remain distinct. Computational completion and source "
+            "scientific_outcome are separate; reporting_complete is false if any projected row is omitted. "
+            "No neural/FNO, GPU, continuum convergence or independent-replication advantage is established.",
         "limits": {"ordinary_tables_shared_rows": MAX_ROWS, "ordinary_table_bytes": MAX_TABLE_BYTES,
                    "table_overrides": {"mechanisms": {"rows": MAX_MECHANISM_ROWS,
                                                        "bytes": MAX_MECHANISM_TABLE_BYTES}},
                    "combined_rows": MAX_ROWS + MAX_MECHANISM_ROWS},
         "columns": COLUMNS, "rows": table_rows}
+    if any(row["kind"] == "compact_spatial" for row in projection.science):
+        metadata["limits"].update(compact_spatial_shared_rows=MAX_COMPACT_SPATIAL_ROWS,
+                                 combined_rows=MAX_ROWS + MAX_MECHANISM_ROWS + MAX_COMPACT_SPATIAL_ROWS)
+        metadata["limits"]["table_overrides"].update({name: {
+            "rows": MAX_COMPACT_SPATIAL_ROWS, "bytes": MAX_COMPACT_SPATIAL_TABLE_BYTES}
+            for name in COMPACT_SPATIAL_TABLES})
     atomic_json(outputs / "tables.json", metadata)
     # Prefer actual stdout/stderr and readable summaries; all other text artifacts remain inventoried.
     log_index = read_json(report_dir / "logs.json") if (report_dir / "logs.json").exists() else {"logs": []}
@@ -1127,10 +1311,15 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                     budget.omit("outputs/mechanisms.csv", f"log registration unavailable: {exc}")
             else:
                 budget.omit("outputs/mechanisms.csv", "log index capacity reached")
-    if any(row.get("kind") == "work_precision" for row in projection.science):
-        for name, label in (("work_precision", "Work-precision candidates"),
+    for kind, tables in (("work_precision", (("work_precision", "Work-precision candidates"),
                             ("tolerance_frontiers", "Posthoc tolerance frontiers"),
-                            ("work_precision_checks", "Work-precision reference and parity checks")):
+                            ("work_precision_checks", "Work-precision reference and parity checks"))),
+                         ("compact_spatial", (("compact_spatial", "Compact spatial candidates"),
+                            ("compact_spatial_frontiers", "Compact spatial posthoc tolerance frontiers"),
+                            ("compact_spatial_checks", "Compact spatial reference and parity checks")))):
+        if not any(row.get("kind") == kind for row in projection.science):
+            continue
+        for name, label in tables:
             target = outputs / f"{name}.csv"
             if str(target) in registered:
                 continue
@@ -1185,6 +1374,11 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             if (row["status"] != "COMPLETED" or row.get("unsupported_row_count", 0)
                     or row.get("unsupported_document_count", 0)):
                 outcomes.add("WORK_PRECISION_INCOMPLETE")
+        if row.get("kind") == "compact_spatial":
+            if row["status"] != "COMPLETED" or not row.get("reporting_complete"):
+                outcomes.add("COMPACT_SPATIAL_INCOMPLETE")
+            if row.get("scientific_outcome") == "INCONCLUSIVE":
+                outcomes.add("COMPACT_SPATIAL_INCONCLUSIVE")
         if row.get("kind") in ("mechanism_audit", "interaction_screen"):
             prefix = "INTERACTION" if row["kind"] == "interaction_screen" else "MECHANISM"
             if row["kind_outcome_counts"]["correctness"]["FAIL"]:
@@ -1241,6 +1435,17 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         "hash_semantics": "computed = bytes read here; declared_unverified = original manifest assertion only; "
                           "not_read_budget = no hash available within budgets. Source paths may name large binary files; "
                           "these are not copied or deserialized."}
+    if any(path.name == "compact-spatial.json" for path in files):
+        limits = artifact_report["limits"]
+        limits.update(compact_spatial_read_bytes=MAX_COMPACT_SPATIAL_FILE_BYTES,
+                      combined_read_bytes=MAX_READ_BYTES + MAX_COMPACT_SPATIAL_FILE_BYTES,
+                      compact_spatial_rows=MAX_COMPACT_SPATIAL_ROWS,
+                      combined_canonical_rows=MAX_ROWS + MAX_MECHANISM_ROWS + MAX_COMPACT_SPATIAL_ROWS)
+        limits["per_file_read_bytes_overrides"]["compact-spatial.json"] = MAX_COMPACT_SPATIAL_FILE_BYTES
+        limits["json_values_overrides"]["compact-spatial.json"] = MAX_COMPACT_SPATIAL_JSON_VALUES
+        limits["table_bytes_overrides"].update({name + ".csv": MAX_COMPACT_SPATIAL_TABLE_BYTES
+                                               for name in COMPACT_SPATIAL_TABLES})
+        artifact_report["observed_compact_spatial_read_bytes"] = budget.compact_read_bytes
     atomic_json(outputs / "artifacts.json", artifact_report)
     atomic_json(outputs / "results.json", results)
     return results

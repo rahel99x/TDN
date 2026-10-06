@@ -74,7 +74,7 @@ def validate(workflow):
         raise ValueError("Research GPU work requires the GPU partition")
     if not isinstance(workflow.get("smoke"), bool):
         raise ValueError("Malformed smoke flag")
-    if workflow.get("benchmark_suite", "architecture") not in ("architecture", "neural-benchmarks", "neural-replication", "mechanism-audit", "interaction-screen", "work-precision"):
+    if workflow.get("benchmark_suite", "architecture") not in ("architecture", "neural-benchmarks", "neural-replication", "mechanism-audit", "interaction-screen", "work-precision", "compact-spatial"):
         raise ValueError("Unknown research benchmark suite")
     if workflow.get("benchmark_suite") == "mechanism-audit" and phase != "cpu":
         raise ValueError("Mechanism audits are CPU-only and have no GPU benchmark successor")
@@ -82,6 +82,8 @@ def validate(workflow):
         raise ValueError("Interaction screens are CPU-only and have no GPU benchmark successor")
     if workflow.get("benchmark_suite") == "work-precision" and phase != "cpu":
         raise ValueError("Work-precision experiments are CPU-only and have no GPU benchmark successor")
+    if workflow.get("benchmark_suite") == "compact-spatial" and phase != "cpu":
+        raise ValueError("Compact-spatial experiments are CPU-only and have no GPU benchmark successor")
     if phase == "cpu" and workflow.get("source_workflow") is not None:
         raise ValueError("CPU research cannot consume a benchmark predecessor")
     if phase == "gpu" and not workflow.get("source_workflow"):
@@ -128,10 +130,12 @@ def verify_experiment(workflow, *, require_headroom=False):
     mechanism = workflow.get("benchmark_suite") == "mechanism-audit"
     interaction = workflow.get("benchmark_suite") == "interaction-screen"
     precision = workflow.get("benchmark_suite") == "work-precision"
+    compact = workflow.get("benchmark_suite") == "compact-spatial"
     required = ({"protocol.json", "summary.json", "config.json", "mechanism-audit.json", "temporal.json",
                  "coordinates.json", "structure.json"} if mechanism else
                 {"protocol.json", "summary.json", "config.json", "interaction-screen.json", "summary.txt"} if interaction else
                 {"protocol.json", "summary.json", "config.json", "work-precision.json", "summary.txt"} if precision else
+                {"protocol.json", "summary.json", "config.json", "compact-spatial.json", "summary.txt"} if compact else
                 {"protocol.json", "dataset.pt", "summary.json"})
     replication = workflow.get("benchmark_suite", "architecture") == "neural-replication"
     if replication:
@@ -159,6 +163,9 @@ def verify_experiment(workflow, *, require_headroom=False):
     if precision and (type(manifest.get("version")) is not int or manifest["version"] != 1
                       or type(protocol.get("version")) is not int or protocol["version"] != 1):
         raise ValueError("Work-precision experiments require coherent version-1 manifest and protocol")
+    if compact and (type(manifest.get("version")) is not int or manifest["version"] != 1
+                    or type(protocol.get("version")) is not int or protocol["version"] != 1):
+        raise ValueError("Compact-spatial experiments require coherent version-1 manifest and protocol")
     if replication and (type(manifest.get("version")) is not int or manifest["version"] != 2
                         or type(protocol.get("version")) is not int or protocol["version"] != 2
                         or type(protocol.get("config", {}).get("protocol_version")) is not int
@@ -185,6 +192,11 @@ def verify_experiment(workflow, *, require_headroom=False):
             raise ValueError("Work-precision summary benchmark suite differs from its submitted workflow")
         if summary.get("training_attempted") is not False or summary.get("training_performed") is not False:
             raise ValueError("Work-precision experiments require explicit training-free execution evidence")
+    if compact:
+        if summary.get("benchmark_suite") != "compact-spatial":
+            raise ValueError("Compact-spatial summary benchmark suite differs from its submitted workflow")
+        if summary.get("training_attempted") is not False or summary.get("training_performed") is not False:
+            raise ValueError("Compact-spatial experiments require explicit training-free execution evidence")
     if require_headroom and summary.get("headroom", {}).get("passed") is not True:
         raise ValueError("CPU research found no eligible numerical headroom; no A100 job is submitted")
     return manifest
@@ -200,6 +212,8 @@ def completed_source(path):
         raise ValueError("Interaction screens are CPU-only and have no GPU benchmark successor")
     if workflow.get("benchmark_suite") == "work-precision":
         raise ValueError("Work-precision experiments are CPU-only and have no GPU benchmark successor")
+    if workflow.get("benchmark_suite") == "compact-spatial":
+        raise ValueError("Compact-spatial experiments are CPU-only and have no GPU benchmark successor")
     record = cw.read_json(state_path(workflow))
     expected = {"status": "COMPLETED", "exit_code": 0, "stage": "experiment",
                 "source_sha256": workflow["source_sha256"],
@@ -251,12 +265,13 @@ def prepare(args):
     mechanism = getattr(args, "mechanism_audit", False)
     interaction = getattr(args, "interaction_screen", False)
     precision = getattr(args, "work_precision", False)
-    default_config = ("work-precision.yaml" if precision else "interaction-screen.yaml" if interaction else
+    compact = getattr(args, "compact_spatial", False)
+    default_config = ("compact-spatial.yaml" if compact else "work-precision.yaml" if precision else "interaction-screen.yaml" if interaction else
                       "mechanism-audit.yaml" if mechanism else "research.yaml")
     original_config = cw.inside(source["config_path"] if source else args.config or ROOT / "configs" / default_config)
     if not original_config.is_file():
         raise ValueError(f"Research configuration missing: {original_config}")
-    run_prefix = ("carc-work-precision-" if precision else "carc-interactions-" if interaction else "carc-mechanisms-" if mechanism else
+    run_prefix = ("carc-compact-spatial-" if compact else "carc-work-precision-" if precision else "carc-interactions-" if interaction else "carc-mechanisms-" if mechanism else
                   "carc-research-" + ("gpu-" if phase == "gpu" else ""))
     run_id = identifier(args.run_id or run_prefix +
                         datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ"))
@@ -268,6 +283,7 @@ def prepare(args):
         raise ValueError("CARC research requires an exact CUDA Torch version")
     workflow = {"schema_version": 1, "kind": "bounded-research", "run_id": run_id,
                 "benchmark_suite": (source.get("benchmark_suite", "architecture") if source else
+                                    "compact-spatial" if compact else
                                     "work-precision" if precision else
                                     "interaction-screen" if interaction else
                                     "mechanism-audit" if mechanism else
@@ -313,6 +329,8 @@ def start(args):
         print("Scope: bounded CPU-only interaction screen with a 1,200-second numerical cap; no neural training or GPU successor.")
     elif workflow.get("benchmark_suite") == "work-precision":
         print("Scope: bounded CPU-only work-precision experiment with a 1,200-second numerical cap; no neural training or GPU successor.")
+    elif workflow.get("benchmark_suite") == "compact-spatial":
+        print("Scope: bounded CPU-only compact-spatial experiment with a 1,200-second numerical cap; no neural training or GPU successor.")
     else:
         print("Scope: bounded development hypotheses; no confirmatory campaign or automatic GPU successor.")
     print(shlex.join(scheduler_args(workflow)))
@@ -425,17 +443,25 @@ def verify_worker(workflow, phase):
 def worker_commands(workflow):
     python = str(cw.inside(ROOT / ".venv" / "bin") / "python")
     base = cw.inside(workflow["run_dir"])
-    if workflow.get("benchmark_suite") in ("mechanism-audit", "interaction-screen", "work-precision"):
+    if workflow.get("benchmark_suite") in ("mechanism-audit", "interaction-screen", "work-precision", "compact-spatial"):
         interaction = workflow["benchmark_suite"] == "interaction-screen"
         precision = workflow["benchmark_suite"] == "work-precision"
-        label = "Work-precision experiments" if precision else "Interaction screens" if interaction else "Mechanism audits"
-        test_group = "work_precision" if precision else "interaction" if interaction else "mechanism"
-        runner = "work_precision.py" if precision else "interaction_screen.py" if interaction else "mechanism_audit.py"
+        compact = workflow["benchmark_suite"] == "compact-spatial"
+        label = "Compact-spatial experiments" if compact else "Work-precision experiments" if precision else "Interaction screens" if interaction else "Mechanism audits"
+        test_group = "compact_spatial" if compact else "work_precision" if precision else "interaction" if interaction else "mechanism"
+        runner = "compact_spatial.py" if compact else "work_precision.py" if precision else "interaction_screen.py" if interaction else "mechanism_audit.py"
         if workflow["phase"] != "cpu":
             raise ValueError(f"{label} are CPU-only and have no GPU benchmark successor")
         tests = sorted((ROOT / "tests").glob(f"test_{test_group}_*.py"))
         if not tests:
             raise ValueError(f"Focused {test_group} tests are missing")
+        if compact:
+            # This experiment reuses the prepared classical controls; verify
+            # their numerical contracts in the same allocated job.
+            baseline_test = ROOT / "tests" / "test_work_precision_numerics.py"
+            if not baseline_test.is_file():
+                raise ValueError("Compact-spatial baseline numerical tests are missing")
+            tests.append(baseline_test)
         return [("tests", [python, "-m", "pytest", "-q", "-m", "not gpu", *map(str, tests),
                            "--basetemp", str(base / "pytest-work"), "-o", f"cache_dir={base / 'pytest-cache'}",
                            "--junitxml", str(base / "cpu-tests.xml")]),
@@ -631,8 +657,8 @@ def status(workflow):
         print(f"  experiment: {report.get('status', 'UNKNOWN')}")
         if workflow["phase"] == "cpu" and workflow.get("benchmark_suite", "architecture") == "architecture":
             print(f"  numerical headroom: {report.get('headroom', {}).get('passed', False)}")
-    if workflow.get("benchmark_suite") in ("interaction-screen", "work-precision"):
-        label = "work-precision" if workflow["benchmark_suite"] == "work-precision" else "interaction"
+    if workflow.get("benchmark_suite") in ("interaction-screen", "work-precision", "compact-spatial"):
+        label = "interaction" if workflow["benchmark_suite"] == "interaction-screen" else workflow["benchmark_suite"]
         print(f"  scientific outcome: {report.get('scientific_outcome', 'UNKNOWN')}")
         if record.get("status") == "COMPLETED" or report.get("status") == "COMPLETED":
             verify_experiment(workflow)
@@ -678,10 +704,11 @@ def collect(workflow):
     print(f"Review archive: {destination}")
     if workflow.get("benchmark_suite") == "mechanism-audit":
         print("Includes sealed mechanism audits, protocol, metrics, logs and failures; excludes pytest temporary directories.")
-    elif workflow.get("benchmark_suite") in ("interaction-screen", "work-precision"):
+    elif workflow.get("benchmark_suite") in ("interaction-screen", "work-precision", "compact-spatial"):
         precision = workflow["benchmark_suite"] == "work-precision"
-        label = "Work-precision" if precision else "Interaction"
-        artifact = "work-precision experiment" if precision else "interaction screen"
+        compact = workflow["benchmark_suite"] == "compact-spatial"
+        label = "Compact-spatial" if compact else "Work-precision" if precision else "Interaction"
+        artifact = "compact-spatial experiment" if compact else "work-precision experiment" if precision else "interaction screen"
         print(f"Suite: {workflow['benchmark_suite']}")
         print(f"Includes {artifact}, protocol, scientific outcome, metrics, logs and failures; excludes pytest temporary directories.")
         # Preserve failed or damaged evidence for review, but never label it
@@ -717,6 +744,8 @@ def parser():
                               help="Run bounded CPU-only interaction screens without neural training or a GPU successor")
             suite.add_argument("--work-precision", action="store_true",
                               help="Run bounded CPU-only work-precision experiments without neural training or a GPU successor")
+            suite.add_argument("--compact-spatial", action="store_true",
+                              help="Run bounded CPU-only compact-spatial experiments without neural training or a GPU successor")
             item.add_argument("--smoke", action="store_true", help="Tiny integration test; not a scientific comparison")
         item.add_argument("--run-id")
         item.add_argument("--submit", action="store_true")

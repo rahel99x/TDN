@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import math
+from collections.abc import Callable
 
 import torch
 from torch import Tensor
@@ -50,25 +51,30 @@ def choose_substeps(h_max: float, equation: Equation, geometry: Geometry) -> int
 
 
 def reference_step(u: Tensor, h: float | Tensor, equation: Equation, geometry: Geometry,
-                   substeps: int) -> Tensor:
+                   substeps: int, *, check: Callable[[], None] | None = None) -> Tensor:
     """Coupled RK4 at a caller-frozen count, fully differentiable in u and h."""
     check_shape(u, geometry)
     if type(substeps) is not int or substeps < 1:
         raise ValueError("substeps must be a positive integer")
     step = broadcast_h(h, u) / substeps
     result = u
-    for _ in range(substeps):
+    for index in range(substeps):
+        if check is not None and index % 32 == 0:
+            check()
         k1 = rhs(result, equation, geometry)
         k2 = rhs(result + step * k1 / 2, equation, geometry)
         k3 = rhs(result + step * k2 / 2, equation, geometry)
         k4 = rhs(result + step * k3, equation, geometry)
         result = result + step * (k1 + 2 * k2 + 2 * k3 + k4) / 6
+    if check is not None:
+        check()
     return result
 
 
 def refined_reference(u: Tensor, h: float | Tensor, equation: Equation, geometry: Geometry,
                       substeps: int, error_fraction: float = 0.05,
-                      tolerance: float | None = None, noise_floor: float = 1e-10) -> ReferenceResult:
+                      tolerance: float | None = None, noise_floor: float = 1e-10,
+                      *, check: Callable[[], None] | None = None) -> ReferenceResult:
     """Three levels n,2n,4n; report the finest FP64 state and acceptance.
 
     The conservative uncertainty is the full last refinement difference, with
@@ -96,7 +102,9 @@ def refined_reference(u: Tensor, h: float | Tensor, equation: Equation, geometry
             raise ValueError("teacher horizons must be finite and nonnegative")
         validate_state(initial)
         counts = (substeps, 2 * substeps, 4 * substeps)
-        states = [reference_step(initial, step, equation, geometry, n) for n in counts]
+        states = [reference_step(initial, step, equation, geometry, n, check=check)
+                  if check is not None else reference_step(initial, step, equation, geometry, n)
+                  for n in counts]
         finite = all(bool(torch.isfinite(state).all()) for state in states)
         if not finite:
             return ReferenceResult(states[-1], math.inf, math.inf, False, counts[-1], counts,

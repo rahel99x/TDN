@@ -1,0 +1,319 @@
+{
+  "schema": "tdn.compact-spatial-validation/v1",
+  "execution_scope": "cloud_cpu_validation_not_CARC_or_GPU",
+  "status": "VERIFIED",
+  "source_tree_sha256": "d5d6ab764b3074d0a3598df70db8a84c6c6c96349635a24bd870e712491b69cd",
+  "git_commit_at_execution": "91043388f43a6a0494198185a147548743c42b06",
+  "working_tree_changes_present_at_execution": true,
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "91043388f43a6a0494198185a147548743c42b06",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "d5d6ab764b3074d0a3598df70db8a84c6c6c96349635a24bd870e712491b69cd",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "experiment_command": "bash scripts/compact_spatial_local.sh --run-dir runs/compact-spatial-cloud-validation-20261006",
+  "experiment": {
+    "computational_status": "COMPLETED",
+    "scientific_outcome": "OBSERVED_MIXED",
+    "elapsed_seconds": 399.5457469899993,
+    "numerical_budget_seconds": 1200,
+    "expected_candidates": 2760,
+    "reported_candidates": 2760,
+    "candidate_status_counts": {
+      "VALID": 2760
+    },
+    "expected_frontiers": 4640,
+    "reported_frontiers": 4640,
+    "frontier_status_counts": {
+      "FEASIBLE": 4593,
+      "NO_FEASIBLE_CANDIDATE": 47
+    },
+    "reference_groups": 58,
+    "accepted_reference_groups": 58,
+    "individual_references": 166,
+    "parity_status_counts": {
+      "PASS": 392,
+      "OBSERVED": 232
+    },
+    "correctness_failures": [],
+    "unreported_ids": {
+      "candidate_rows": [],
+      "frontier_rows": [],
+      "reference_rows": [],
+      "parity_rows": []
+    },
+    "file_sha256": {
+      "protocol.json": "f29393819b371bd9f3be8eab828df49ddef2dfc45f104bba6fe3f0cd1e5608d9",
+      "config.json": "79943fbec3e4d15a1ae3d90216114647d5a34c4c937a0087d7a4394ae656129d",
+      "summary.json": "6de16d3a17bf7dcf37540009e2470127a228584c1a1bb8c3de2a692f9173b25d",
+      "compact-spatial.json": "a09a36e95295bc840be5ac39f7d286805ffaacf4adb2378a87c692ce443991f2",
+      "summary.txt": "c6e5457c323ef9014f23cb8631c9b4dac7fe324014559000a1735e33c530cac4",
+      "manifest.json": "05b27504d3fe08ad695ea0efa5ae07bb04939a20978a6c94e8e90e5356be40f3",
+      "COMPLETED": "a29f905e73f879eb3f831731f9785163d100b637b35b682b85a54c25f811e0de",
+      "stage.json": "7c1d2154c4b13efefac21f45ceb7fcb0726629a728b957375fe7551a7e3e12d1"
+    }
+  },
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_compact_spatial_*.py tests/test_work_precision_*.py tests/test_interaction_*.py tests/test_tower_*.py tests/test_numerics.py tests/test_research_carc.py tests/test_research_lock.py tests/test_research_transport.py tests/test_research_neural_workflow.py tests/test_research_replication_carc.py --basetemp=.runtime/pytest-compact-final --junitxml=.runtime/compact-spatial-validation/tests.xml",
+    "collected": 924,
+    "passed": 923,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "skip_reason": "optional jsonschema development dependency unavailable in project venv; independent native/schema validations recorded below",
+    "seconds": 61.849,
+    "junit_sha256": "73228758465e57f33dfeaa24a8f51667063af057357884ea1d72fc333479ae3b"
+  },
+  "tower": {
+    "schema": "tdn.compact-spatial.tower-validation/v1",
+    "status": "VERIFIED",
+    "execution_scope": "cloud CPU full experiment; not CARC or GPU evidence",
+    "source_run": "runs/compact-spatial-cloud-validation-20261006",
+    "report": "runs/compact-spatial-cloud-validation-20261006-tower/tdn-20261006T234444995646Z-175c81c9766a",
+    "commands": [
+      {
+        "command": ".venv/bin/python .runtime/compact-spatial-validation/audit_tower_projection.py runs/compact-spatial-cloud-validation-20261006-tower/tdn-20261006T234444995646Z-175c81c9766a runs/compact-spatial-cloud-validation-20261006",
+        "exit_code": 0
+      },
+      {
+        "command": ".venv/bin/python .runtime/tower_validate_native.py runs/compact-spatial-cloud-validation-20261006-tower/tdn-20261006T234444995646Z-175c81c9766a",
+        "exit_code": 0
+      },
+      {
+        "command": "python3 .runtime/tower_validate_schemas.py runs/compact-spatial-cloud-validation-20261006-tower/tdn-20261006T234444995646Z-175c81c9766a .tower/contracts/outputs.v1.json",
+        "exit_code": 0
+      }
+    ],
+    "cell_audit": {
+      "status": "VERIFIED",
+      "canonical_sha256": "a09a36e95295bc840be5ac39f7d286805ffaacf4adb2378a87c692ce443991f2",
+      "canonical_bytes": 20979376,
+      "rows": {
+        "compact_spatial": 2760,
+        "compact_spatial_frontiers": 4640,
+        "compact_spatial_checks": 682
+      },
+      "csv_cells_checked": 300126,
+      "json_pointers_checked": 31126,
+      "explicit_nulls_retained": 4412,
+      "absent_fields_retained": 12538,
+      "scientific_outcome": "OBSERVED_MIXED",
+      "reporting_omission_count": 0
+    },
+    "native_tower": {
+      "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+      "reports": [
+        {
+          "path": "runs/compact-spatial-cloud-validation-20261006-tower/tdn-20261006T234444995646Z-175c81c9766a",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 25,
+          "metrics_records": 59,
+          "metric_series": 3,
+          "native_log_entries": 10
+        }
+      ],
+      "planning": []
+    },
+    "schema_validation": {
+      "draft": "2020-12",
+      "validated_objects": 63,
+      "sources": 2
+    },
+    "source_files": {
+      "COMPLETED": {
+        "sha256": "a29f905e73f879eb3f831731f9785163d100b637b35b682b85a54c25f811e0de",
+        "bytes": 65
+      },
+      "compact-spatial.json": {
+        "sha256": "a09a36e95295bc840be5ac39f7d286805ffaacf4adb2378a87c692ce443991f2",
+        "bytes": 20979376
+      },
+      "config.json": {
+        "sha256": "79943fbec3e4d15a1ae3d90216114647d5a34c4c937a0087d7a4394ae656129d",
+        "bytes": 632
+      },
+      "manifest.json": {
+        "sha256": "05b27504d3fe08ad695ea0efa5ae07bb04939a20978a6c94e8e90e5356be40f3",
+        "bytes": 756
+      },
+      "protocol.json": {
+        "sha256": "f29393819b371bd9f3be8eab828df49ddef2dfc45f104bba6fe3f0cd1e5608d9",
+        "bytes": 1074610
+      },
+      "stage.json": {
+        "sha256": "7c1d2154c4b13efefac21f45ceb7fcb0726629a728b957375fe7551a7e3e12d1",
+        "bytes": 1169
+      },
+      "summary.json": {
+        "sha256": "6de16d3a17bf7dcf37540009e2470127a228584c1a1bb8c3de2a692f9173b25d",
+        "bytes": 4331
+      },
+      "summary.txt": {
+        "sha256": "c6e5457c323ef9014f23cb8631c9b4dac7fe324014559000a1735e33c530cac4",
+        "bytes": 557
+      }
+    },
+    "projected_tables": {
+      "compact_spatial.csv": {
+        "sha256": "896452cc8fda5064cafe69bf32048686bb2d80d8c1e68c0749249da471ffbe1b",
+        "bytes": 2279387
+      },
+      "compact_spatial_checks.csv": {
+        "sha256": "ef208a519d716e96f862f72f7db36afc9c99192a9d8f6de527ff0ea34919c462",
+        "bytes": 243392
+      },
+      "compact_spatial_frontiers.csv": {
+        "sha256": "9347b6d7f9ea60264e05b8bd000476080366916229cec571746a27537ea730ee",
+        "bytes": 2651860
+      }
+    },
+    "project_contract_sha256": "9604fb250e183b8f11059eed640dfbb57bec2d636172ed48d1a0c909ec8bfbba",
+    "source_tree_sha256": "d5d6ab764b3074d0a3598df70db8a84c6c6c96349635a24bd870e712491b69cd",
+    "protocol_semantic_sha256": "3f1bfb7f805a8a5a65d9ce0c143b3a409cd339f2c625f0e227fd3200db545b1b",
+    "manifest_files_verified": 5,
+    "completion_seal_verified": true,
+    "tower_checkout_unmodified": true,
+    "source_files_unchanged": true
+  },
+  "real_signal": {
+    "command": [
+      "bash",
+      "scripts/compact_spatial_local.sh",
+      "--smoke",
+      "--run-dir",
+      "/workspace/TDN/runs/compact-spatial-cloud-signal-20261006"
+    ],
+    "signal": "SIGUSR1",
+    "exit_code": 75,
+    "status": "INCOMPLETE",
+    "completion_seal_present": false,
+    "retained_candidates": 60,
+    "retained_references": 2,
+    "tower_report": "/workspace/TDN/runs/compact-spatial-cloud-signal-20261006-tower/tdn-20261006T235150453469Z-9bd81b3679b2",
+    "tower_state": "INTERRUPTED"
+  },
+  "tower_interrupted": {
+    "schema": "tdn.compact-spatial.tower-validation/v1",
+    "status": "VERIFIED",
+    "execution_scope": "cloud CPU real SIGUSR1 interrupted smoke; no completed scientific claim",
+    "source_run": "runs/compact-spatial-cloud-signal-20261006",
+    "report": "runs/compact-spatial-cloud-signal-20261006-tower/tdn-20261006T235150453469Z-9bd81b3679b2",
+    "commands": [
+      {
+        "command": ".venv/bin/python .runtime/compact-spatial-validation/audit_tower_projection.py runs/compact-spatial-cloud-signal-20261006-tower/tdn-20261006T235150453469Z-9bd81b3679b2 runs/compact-spatial-cloud-signal-20261006",
+        "exit_code": 0
+      },
+      {
+        "command": ".venv/bin/python .runtime/tower_validate_native.py runs/compact-spatial-cloud-signal-20261006-tower/tdn-20261006T235150453469Z-9bd81b3679b2",
+        "exit_code": 0
+      },
+      {
+        "command": "python3 .runtime/tower_validate_schemas.py runs/compact-spatial-cloud-signal-20261006-tower/tdn-20261006T235150453469Z-9bd81b3679b2 .tower/contracts/outputs.v1.json",
+        "exit_code": 0
+      }
+    ],
+    "cell_audit": {
+      "status": "VERIFIED",
+      "canonical_sha256": "a616a0e800aa96bbc1a22edcaa7854ec1cf19cf0f72b25e29b233f3846dd2eb3",
+      "canonical_bytes": 605237,
+      "rows": {
+        "compact_spatial": 60,
+        "compact_spatial_frontiers": 320,
+        "compact_spatial_checks": 14
+      },
+      "csv_cells_checked": 13282,
+      "json_pointers_checked": 856,
+      "explicit_nulls_retained": 3202,
+      "absent_fields_retained": 266,
+      "scientific_outcome": "INCONCLUSIVE",
+      "reporting_omission_count": 0
+    },
+    "native_tower": {
+      "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+      "reports": [
+        {
+          "path": "runs/compact-spatial-cloud-signal-20261006-tower/tdn-20261006T235150453469Z-9bd81b3679b2",
+          "state": "INTERRUPTED",
+          "artifact_status": "valid",
+          "artifacts_checked": 25,
+          "metrics_records": 2,
+          "metric_series": 3,
+          "native_log_entries": 9
+        }
+      ],
+      "planning": []
+    },
+    "schema_validation": {
+      "draft": "2020-12",
+      "validated_objects": 6,
+      "sources": 2
+    },
+    "source_files": {
+      "compact-spatial.json": {
+        "sha256": "a616a0e800aa96bbc1a22edcaa7854ec1cf19cf0f72b25e29b233f3846dd2eb3",
+        "bytes": 605237
+      },
+      "config.json": {
+        "sha256": "837420b2e219c8a8531264306ed8ccf25fa282af46e9070dc54ffe8f33f9ca97",
+        "bytes": 630
+      },
+      "protocol.json": {
+        "sha256": "f8041e3c5f47b64ce6b24151cdd3bb4579956ed8ebb726655d9c7cdf9981a2dc",
+        "bytes": 83244
+      },
+      "stage.json": {
+        "sha256": "3d5837b89094c2921d67242e54350e0838d5b78703f37968e268bb9ffc0e7980",
+        "bytes": 1235
+      },
+      "summary.json": {
+        "sha256": "3742a07aee866f89964f238bedb4443e5363249a09ec603bf974be0f00d90866",
+        "bytes": 12726
+      },
+      "summary.txt": {
+        "sha256": "9c7065e380767f7caba614fb7d818fcd90581eb090f45c5388c53491c895f30f",
+        "bytes": 627
+      }
+    },
+    "projected_tables": {
+      "compact_spatial.csv": {
+        "sha256": "bf57d7834ad172e9a3a9680809d66e41475ead98def5d84729e5e4324f79fb9c",
+        "bytes": 50916
+      },
+      "compact_spatial_checks.csv": {
+        "sha256": "4fea7cce5e2cb2c022a55e5ea0866f6058127e9bad262cb57d8039c59fd9e8ed",
+        "bytes": 5715
+      },
+      "compact_spatial_frontiers.csv": {
+        "sha256": "964e68e42db0f3e514ea0dfa83bae1ece140ec4af1379bd75bb6e00c2f442c6b",
+        "bytes": 128238
+      }
+    },
+    "project_contract_sha256": "9604fb250e183b8f11059eed640dfbb57bec2d636172ed48d1a0c909ec8bfbba",
+    "completion_seal_present": false,
+    "manifest_present": false,
+    "scientific_outcomes": [
+      "COMPACT_SPATIAL_INCOMPLETE",
+      "COMPACT_SPATIAL_INCONCLUSIVE"
+    ],
+    "source_status": "INCOMPLETE",
+    "reporting_complete": true,
+    "tower_checkout_unmodified": true,
+    "source_files_unchanged": true
+  },
+  "limitations": [
+    "Cloud CPU evidence is distinct from actual CARC allocation, hardware performance and A100 validation.",
+    "Tests and completion establish implementation/reporting behavior, not a universal scientific efficiency advantage or superiority to FNO.",
+    "No CARC job or neural training was launched during this validation."
+  ]
+}
