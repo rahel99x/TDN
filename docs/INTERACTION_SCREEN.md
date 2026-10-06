@@ -13,6 +13,10 @@ Independent native Tower validation and 37 schema checks passed, and all
 10,882 scalar values and 502 case notes verified with zero export omissions.
 These are implementation results, not a learned-solver efficiency claim.
 
+The subsequent [CARC review](INTERACTION_REVIEW.md) verifies job **12690663**
+and analyzes its accuracy/cost results. GL3 improved Strang in all 32 diagnostic
+problems but cost more per step; ETDRK4 won all three two-dimensional cases.
+
 ## Run on CARC
 
 Use the existing verified project Python venv. One CPU allocation runs focused
