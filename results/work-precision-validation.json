@@ -1,0 +1,170 @@
+{
+  "category": "newly_measured_result",
+  "scope": "Cloud CPU implementation and reporting validation; no live CARC allocation, GPU execution, neural training or FNO comparison",
+  "protocol": "work-precision/v1",
+  "run_dir": "runs/work-precision-release-001",
+  "report_dir": "runs/work-precision-release-001-tower/tdn-20261006T091338690886Z-f0174fc894ee",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "0cedefadc9443f422c3782cf078ce779dbbf0eb7",
+    "git_available": true,
+    "tracked_or_untracked_changes": false,
+    "source_tree_sha256": "495d627527575dcf4a6af4537a048cf0416032811a534f24155704dbdaae7670",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "case_plan_sha256": "f0bb51c00ee034347ddcec4ef5a1d5d52c80de816e126077db029cc4fc4170ec",
+  "commands": [
+    ".venv/bin/python -m pytest -q tests/test_work_precision_*.py tests/test_interaction_*.py tests/test_mechanism_carc.py tests/test_research_carc.py tests/test_research_neural_workflow.py tests/test_research_replication_carc.py tests/test_tower_*.py --basetemp .runtime/pytest-work-precision-release --junitxml .runtime/work-precision-release-tests.xml",
+    "bash scripts/work_precision_local.sh --run-dir runs/work-precision-release-001",
+    "bash scripts/carc_work_precision.sh --dry-run",
+    "bash -n scripts/carc_work_precision.sh scripts/work_precision_local.sh scripts/carc_research.sh",
+    "git diff --check"
+  ],
+  "regression_suite": {
+    "tests": 721,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "passed": 720,
+    "seconds": 44.259
+  },
+  "optional_test_note": "One optional jsonschema pytest test skipped in the project venv; both generated reports and output contract independently passed 34 schema checks with the existing development validator. All numerical execution used the project venv.",
+  "experiment": {
+    "status": "COMPLETED",
+    "scientific_outcome": "INCONCLUSIVE",
+    "expected_candidates": 1008,
+    "reported_candidates": 1008,
+    "expected_frontiers": 1344,
+    "reported_frontiers": 1344,
+    "elapsed_seconds": 84.34383979500126,
+    "numerical_budget_seconds": 1200,
+    "candidate_status_counts": {
+      "VALID": 1008
+    },
+    "frontier_status_counts": {
+      "FEASIBLE": 1228,
+      "INCONCLUSIVE": 56,
+      "NO_FEASIBLE_CANDIDATE": 60
+    },
+    "reference_scope": "Same-grid coupled FP64 RK4 n/2n/4n; full last RMS difference and rounding allowance; sqrt(N)*RMS maximum estimate is not a certificate",
+    "timing_scope": "Prepared full CPU rollouts: all-method warmup once, then five rotated/interleaved repeats; validation and stop checks timed; setup separately timed",
+    "setup_inclusive_scope": "One separately timed preparation sample plus median warmed rollout; excludes cache-metadata reporting, reference, warmup, parity, cloning, endpoint errors, reports and post-hoc selection; not a physical cold-cache measurement",
+    "selection_scope": "posthoc_declared_grid; reference-informed, not a deployable adaptive policy",
+    "work_scope": "Per-rollout actual method counters, including attempted invalid work; failed-call partial counters may be incomplete; no reference or setup work hidden in rollout counts"
+  },
+  "references": {
+    "total": 24,
+    "accepted": 23,
+    "rejected": [
+      {
+        "reference_id": "fresh/1d/05/reference",
+        "case_id": "fresh/1d/05",
+        "case_role": "fresh",
+        "reference_accepted": false,
+        "uncertainty_rms": 1.1448773619031197e-10,
+        "uncertainty_max_estimate": 5.608730709452712e-10,
+        "reference_n": 16,
+        "reference_2n": 32,
+        "reference_4n": 64,
+        "difference_n_2n": 1.8809719588427197e-09,
+        "difference_2n_4n": 1.1448773619031197e-10,
+        "observed_order": 4.038213369921554,
+        "reference_reason": "uncertainty_exceeds_tolerance_budget",
+        "attempts": 3,
+        "rhs_evaluations": 784,
+        "reference_seconds": 0.04766437099897303
+      }
+    ],
+    "interpretation": "The predeclared reference budget was unchanged. One rejected reference leaves all 56 of its method/norm/tolerance frontiers inconclusive; its candidate and parity observations remain retained."
+  },
+  "parity": {
+    "total": 240,
+    "passed": 240,
+    "failed": 0
+  },
+  "artifact_checks": {
+    "run_dir": "runs/work-precision-release-001",
+    "report_dir": "runs/work-precision-release-001-tower/tdn-20261006T091338690886Z-f0174fc894ee",
+    "manifest_verified_files": 5,
+    "manifest_sha256": "2b11f30aeceefb937c0395d17df0e1418926528598d8fb38c05136ece6280bb8",
+    "source_tree_sha256": "495d627527575dcf4a6af4537a048cf0416032811a534f24155704dbdaae7670",
+    "table_rows": {
+      "work_precision": 1008,
+      "tolerance_frontiers": 1344,
+      "work_precision_checks": 264
+    },
+    "verified_scalar_cells": 59712,
+    "verified_nested_pointers": 6488,
+    "canonical_bytes": 5214166,
+    "report_output_bytes": 1287546,
+    "reporting_omissions": 0,
+    "source_matches": true
+  },
+  "interruption_check": {
+    "command": "bash scripts/work_precision_local.sh --smoke --run-dir runs/work-precision-interrupted-validation-001",
+    "signal": "SIGUSR1",
+    "exit_code": 75,
+    "stage": "INCOMPLETE",
+    "canonical_status": "INCOMPLETE",
+    "tower_state": "INTERRUPTED",
+    "run_dir": "runs/work-precision-interrupted-validation-001",
+    "report_dir": "runs/work-precision-interrupted-validation-001-tower/tdn-20261006T091318470624Z-9566528a3398",
+    "retained_candidates": 42,
+    "reporting_omissions": 0,
+    "successful_seal_present": false
+  },
+  "native_tower": {
+    "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+    "reports": [
+      {
+        "path": "runs/work-precision-release-001-tower/tdn-20261006T091338690886Z-f0174fc894ee",
+        "state": "COMPLETED",
+        "artifact_status": "valid",
+        "artifacts_checked": 22,
+        "metrics_records": 25,
+        "metric_series": 3,
+        "native_log_entries": 10
+      },
+      {
+        "path": "runs/work-precision-interrupted-validation-001-tower/tdn-20261006T091318470624Z-9566528a3398",
+        "state": "INTERRUPTED",
+        "artifact_status": "valid",
+        "artifacts_checked": 22,
+        "metrics_records": 2,
+        "metric_series": 3,
+        "native_log_entries": 9
+      }
+    ],
+    "planning": []
+  },
+  "schemas": {
+    "draft": "2020-12",
+    "validated_objects": 34,
+    "sources": 3
+  },
+  "carc_preview": {
+    "submitted": false,
+    "account": "anakano_81",
+    "partition": "main",
+    "cpus": 4,
+    "memory_gib": 16,
+    "walltime": "00:30:00",
+    "gpu_successor": false
+  },
+  "limitations": [
+    "Same-grid reference estimates are not continuum or rigorous error certificates.",
+    "Prepared-time and setup-inclusive frontiers are post-hoc choices using references, not runtime adaptive controllers.",
+    "Five rollout timing repetitions and one preparation measurement are descriptive CPU observations, not independent problem samples.",
+    "The 24 conditions are a partial stress design; several factors are coupled.",
+    "One reference did not satisfy the frozen precision budget; completion is not universal scientific feasibility."
+  ],
+  "tower_application_changed": false
+}

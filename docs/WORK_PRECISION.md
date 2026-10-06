@@ -6,6 +6,21 @@ mean correction retains enough accuracy to reduce time to a specified error,
 and whether full GL3 or GL5 earns its additional work. ETDRK4 and smaller-step
 Strang remain controls, including the earlier two-dimensional failures.
 
+[Cloud CPU validation](../results/work-precision-validation.json) passed
+**720 tests** (one optional schema-dependency test skipped) and completed all
+**1,008 candidates in 84.34 seconds**. All **240 parity checks** passed.
+Twenty-three of 24 references were accepted; `fresh/1d/05` narrowly exceeded
+the frozen reference precision budget, so its 56 frontier entries remain
+inconclusive. Another 60 entries had no feasible candidate on the declared
+step grid. No thresholds or cases were changed after observing those results.
+
+Both completed and actually interrupted runs passed unmodified native Tower
+validation, plus 34 independent schema checks. All table values and provenance
+pointers verified with zero export omissions. A real SIGUSR1 retained partial
+evidence, exited 75, and finalized Tower as `INTERRUPTED` without a completion
+seal. This validates the implementation on cloud CPU; CARC timing still needs
+the allocated run below.
+
 ## Run on CARC
 
 One allocation runs correctness tests and the complete frozen experiment:
