@@ -1,0 +1,126 @@
+{
+  "schema": "tdn.premix-startup-fix-validation/v1",
+  "validated_at_utc": "2026-10-07T03:32:02.218645+00:00",
+  "base_commit": "c185a3e508dc3b50f894b85f6e890d9c293304ce",
+  "problem": "Premix passed the workflow root (containing frozen protocol.json) as its science source while requesting a nested tower/ directory. The reporter correctly rejected this layout before any science ran.",
+  "fix": "Bind each allocated report to run_dir/stage while retaining run_dir/tower as the shared sibling report parent. Keep scientific isolation and immutable protocols unchanged.",
+  "red_reproduction": {
+    "new_regressions": 5,
+    "all_failed_before_fix": true,
+    "error": "Tower reports must be outside science directories; only an explicit coordinator tower/ is allowed"
+  },
+  "test_runs": [
+    {
+      "junit_path": ".runtime/premix-startup-fix/workflow-reporting.xml",
+      "sha256": "aa34788bed87a38d2a3aa4a2c9718472debeec530ec7c79a5fec8b56459f94da",
+      "passed": 78,
+      "failed": 0,
+      "skipped": 1
+    },
+    {
+      "junit_path": ".runtime/premix-startup-fix/compatibility-tests.xml",
+      "sha256": "52aceaec0a1cc8acb9b2f70542dda112c5ea52536bf8b834d8ed5bcd3b783b26",
+      "passed": 54,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "test_commands": [
+    ".venv/bin/python -m pytest -q tests/test_premix_workflow.py tests/test_tower_reporting.py",
+    "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_premix_cli.py tests/test_premix_tower.py tests/test_tower_analytics.py tests/test_carc_integration.py"
+  ],
+  "optional_skip": "Project venv lacks optional jsonschema; new and retained report schemas separately passed the installed system validator.",
+  "tower": {
+    "version": "4.0.0",
+    "commit": "51265b2e4b07076dfce0cfa97a9f6bbb8c0d4275",
+    "reference_checkout_unmodified": true,
+    "native_validation": [
+      {
+        "scope": "Retained cloud CPU full accuracy, scaling, prepare, neural, and interrupted reports",
+        "evidence": ".runtime/premix-startup-fix/tower-current-native.json",
+        "sha256": "d47e9844c40acef65de98d8526e6db6eed25fb716289838db4577f33652dd62b",
+        "reports": 5,
+        "valid_reports": 5,
+        "contract_entries": 170,
+        "metric_records": 310,
+        "log_entries": 87,
+        "schema_objects": 326
+      },
+      {
+        "scope": "New real reporting lifecycle fixtures: four successful stages and one startup failure",
+        "evidence": ".runtime/premix-startup-fix/tower-current-workflow-native.json",
+        "sha256": "957ff0f685f364494e25039d303a97ac35eb5795db58d55d59ad2b9505780a49",
+        "reports": 5,
+        "valid_reports": 5,
+        "contract_entries": 170,
+        "metric_records": 9,
+        "log_entries": 27,
+        "schema_objects": 24
+      }
+    ],
+    "full_neural_cli_validation": {
+      "status": "valid",
+      "valid": true,
+      "summary": "34 valid",
+      "budget": {
+        "max_bytes": 8388608,
+        "bytes_read": 7428683,
+        "max_entries": 256,
+        "entries_checked": 34
+      }
+    },
+    "paged_neural_tables": [
+      {
+        "file": "outputs/premix_candidates.csv",
+        "size_bytes": 1284984,
+        "records": 2592,
+        "sequential_pages": 21,
+        "all_rows_exact": true,
+        "global_sort_first_page": "ready"
+      },
+      {
+        "file": "outputs/premix_frontiers.csv",
+        "size_bytes": 1728839,
+        "records": 6912,
+        "sequential_pages": 54,
+        "all_rows_exact": true,
+        "global_sort_first_page": "ready"
+      },
+      {
+        "file": "outputs/premix_checks.csv",
+        "size_bytes": 837,
+        "records": 0,
+        "sequential_pages": 1,
+        "all_rows_exact": true,
+        "global_sort_first_page": "ready"
+      },
+      {
+        "file": "outputs/premix_training.csv",
+        "size_bytes": 19664,
+        "records": 120,
+        "sequential_pages": 1,
+        "all_rows_exact": true,
+        "global_sort_first_page": "ready"
+      },
+      {
+        "file": "outputs/premix_comparisons.csv",
+        "size_bytes": 3862212,
+        "records": 6912,
+        "sequential_pages": 54,
+        "all_rows_exact": true,
+        "global_sort_first_page": "ready"
+      },
+      {
+        "file": "outputs/premix_groups.csv",
+        "size_bytes": 415281,
+        "records": 2304,
+        "sequential_pages": 18,
+        "all_rows_exact": true,
+        "global_sort_first_page": "ready"
+      }
+    ],
+    "launch_check": "Existing explicit config/workdir/research-view options render retained neural metrics with a fake scheduler and --no-state; this checks CLI compatibility only.",
+    "project_picker": "Tower 4.0 scans direct runs/<id>/run.json. Nested stage reports use explicit workdirs from TDN paths/list commands."
+  },
+  "scope": "Cloud CPU regression and native reporting compatibility validation. Scheduler ownership and venv failures in orchestration fixtures are simulated; reporting I/O and native Tower readers are real. No actual CARC submission, new scientific experiment, or CUDA execution."
+}

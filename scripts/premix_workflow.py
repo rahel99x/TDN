@@ -313,7 +313,9 @@ def worker_commands(workflow, stage):
 def begin_report(workflow, stage):
     base, resource = Path(workflow["run_dir"]), workflow["resources"][stage]
     job = os.environ["SLURM_JOB_ID"]
-    return cw.reporting_api().begin_report(base, name=f"TDN/premix/{stage}", script="scripts/premix_worker.sh",
+    # The workflow root has its own protocol.json. Bind the report to this
+    # stage's science directory, with tower/ alongside it, never inside it.
+    return cw.reporting_api().begin_report(base / stage, name=f"TDN/premix/{stage}", script="scripts/premix_worker.sh",
         parameters={"source_sha256": workflow["source_sha256"], "protocol_sha256": workflow["protocol_sha256"],
                     "stage": stage, "profile": workflow["profile"], "execution_mode": "carc"},
         resources={"account": cw.ACCOUNT, "partition": resource["partition"], "nodes": 1,

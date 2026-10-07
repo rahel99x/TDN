@@ -79,6 +79,15 @@ under `/home1/aadaniel/projects/TDN`. They require its Python `.venv`, real Slur
 allocations and the correct identity/account. Do not source `common.sh` or run
 numerical stages on a login node. Tower itself is unchanged.
 
+If an older checkout failed at `startup` with `Tower reports must be outside
+science directories`, update `main` and submit `run` again to create a fresh
+workflow. Preserve the failed run and its review archive. The corrected launcher
+binds each report to its stage's science directory while storing reports in
+`tower/` alongside the science stages; the frozen workflow `protocol.json`
+remains intact. A startup failure before report creation has no metrics path,
+so `paths` has nothing to print for that job. A dependency-cancelled neural job
+does not need manual resubmission: the fresh workflow submits all dependencies.
+
 ## The numerical mechanism
 
 The equation remains the same spatially discrete periodic system:

@@ -1,4 +1,4 @@
-"""Mocked orchestration contracts; these tests do not establish CARC execution."""
+"""Orchestration contracts with real Tower I/O, without live CARC execution."""
 from __future__ import annotations
 
 import importlib.util
@@ -294,6 +294,110 @@ def test_gpu_junit_accepts_actual_pass_record(controller, tmp_path):
     path = tmp_path / "gpu.xml"
     path.write_text('<testsuites><testsuite tests="3" skipped="0" failures="0" errors="0"/></testsuites>')
     controller.validate_gpu_junit(path)
+
+
+@pytest.fixture
+def real_reports(controller, monkeypatch):
+    """Use the reporting boundary that mocked worker tests cannot exercise."""
+    from tdn import reporting
+
+    monkeypatch.setattr(reporting, "ROOT", controller.ROOT)
+    for key in ("TDN_TOWER_DIR", "SLURM_ARRAY_JOB_ID", "SLURM_ARRAY_TASK_ID"):
+        monkeypatch.delenv(key, raising=False)
+    # The reporter hashes this actual script. Create it before freezing source.
+    (controller.ROOT / "scripts" / "premix_worker.sh").write_bytes(
+        (ROOT / "scripts" / "premix_worker.sh").read_bytes())
+    return reporting
+
+
+@pytest.mark.parametrize("stage", ["accuracy", "scaling", "prepare", "neural"])
+def test_real_report_stage_sidecar_inheritance_and_finalization(
+        controller, real_reports, monkeypatch, capsys, stage):
+    workflow = plan(controller)
+    base = freeze(controller, workflow)
+    protocol_before = (base / "protocol.json").read_bytes()
+    job = str(9001 + controller.STAGES.index(stage))
+    monkeypatch.setenv("SLURM_JOB_ID", job)
+    controller.cw.atomic_json(base / "jobs.json", [{"stage": stage, "job_id": job}])
+    for suffix in ("out", "err"):
+        (base / "logs" / f"{stage}-{job}.{suffix}").write_text("scheduler fixture\n")
+
+    # Match allocation startup exactly: the coordinator protocol already exists,
+    # but the child must still be able to create its own science directory.
+    source = base / stage
+    report = controller.begin_report(workflow, stage)
+    assert not source.exists()
+    assert report.parent == base / "tower"
+    assert not report.is_relative_to(source)
+    inventory = real_reports.read_json(report / "run.json")
+    assert inventory["metadata"]["source_directory"] == source.relative_to(controller.ROOT).as_posix()
+    assert inventory["job_id"] == job
+    assert inventory["state"] == "RUNNING"
+    assert inventory["resources"]["gpus"] == int(stage == "neural")
+
+    # The child inherits this job's stream without making or owning another
+    # report. Fixture artifacts are not evidence of a numerical experiment.
+    seal(controller, workflow, stage)
+    source_before = {path.name: path.read_bytes() for path in source.iterdir()}
+    monkeypatch.setenv("TDN_TOWER_DIR", str(report))
+    assert real_reports.attach_report(source) == (report, False)
+    monkeypatch.setenv("SLURM_JOB_ID", "9999")
+    with pytest.raises(ValueError, match="different job"):
+        real_reports.attach_report(source)
+    monkeypatch.setenv("SLURM_JOB_ID", job)
+    real_reports.emit({"stage_completed": 1}, phase=f"premix/{stage}")
+
+    # Use actual analytics publication and terminal sealing, rather than a
+    # mock that would hide another layout or ownership failure.
+    controller.finish_report(workflow, stage, report, state="COMPLETED",
+                             runtime_seconds=0.1, exit_code=0)
+    summary = real_reports.read_json(report / "summary.json")
+    assert summary["state"] == "COMPLETED" and summary["job_id"] == job
+    assert summary["metadata"]["source_directory"] == inventory["metadata"]["source_directory"]
+    assert summary["results"]["science_sources_mutated"] is False
+    assert summary["results"]["reporting_omission_count"] == 0
+    assert summary["results"]["artifact_count"] == len(source_before)
+    assert real_reports.read_json(report / "run.json")["state"] == "COMPLETED"
+    artifacts = real_reports.read_json(report / "outputs" / "artifacts.json")
+    assert artifacts["source_dirs"] == [os.path.relpath(source, report)]
+    assert source_before == {path.name: path.read_bytes() for path in source.iterdir()}
+    assert (base / "protocol.json").read_bytes() == protocol_before
+    assert controller.cw.tower_reports_for_job(workflow, job) == [report]
+    controller.paths(workflow)
+    assert f"TDN_TOWER_METRICS={report / 'metrics.jsonl'}" in capsys.readouterr().out
+    with pytest.raises(ValueError, match="terminal"):
+        real_reports.attach_report(source)
+
+
+def test_real_report_worker_startup_failure_is_terminal(controller, real_reports, monkeypatch):
+    workflow = plan(controller)
+    base = freeze(controller, workflow)
+    protocol_before = (base / "protocol.json").read_bytes()
+    monkeypatch.setenv("SLURM_JOB_ID", "9001")
+    monkeypatch.setenv("SLURM_STEP_ID", "0")
+    monkeypatch.setenv("SLURM_JOB_ACCOUNT", "anakano_81")
+    monkeypatch.setattr(controller, "verify_allocation", lambda *args: None)
+
+    def mismatched_venv(*args):
+        raise ValueError("Existing venv differs from pinned dependencies")
+
+    monkeypatch.setattr(controller.rw, "software_report", mismatched_venv)
+    monkeypatch.setattr(controller.subprocess, "Popen", lambda *a, **kw: pytest.fail("venv mismatch"))
+    with pytest.raises(controller.rw.WorkerFailure, match="venv differs"):
+        controller.worker(workflow, "accuracy")
+    state = controller.cw.read_json(controller.state_path(workflow, "accuracy"))
+    assert state["status"] == "FAILED" and state["stage"] == "startup"
+    assert "venv differs" in state["error"]
+    reports = controller.cw.tower_reports_for_job(workflow, "9001")
+    assert len(reports) == 1
+    summary = real_reports.read_json(reports[0] / "summary.json")
+    assert summary["state"] == "FAILED" and summary["exit_code"] == 2
+    assert "venv differs" in summary["metadata"]["error"]
+    assert summary["results"]["artifact_count"] == 0
+    assert real_reports.read_json(reports[0] / "run.json")["state"] == "FAILED"
+    assert not (base / "accuracy").exists()
+    assert (base / "protocol.json").read_bytes() == protocol_before
+    assert "TDN_TOWER_DIR" not in os.environ
 
 
 def worker_fixture(controller, monkeypatch, *, stage="accuracy"):

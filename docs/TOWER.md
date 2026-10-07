@@ -1,7 +1,10 @@
 # TDN reports in Slurm Tower
 
-TDN writes the formats documented by Slurm Tower 2.3.1. The Tower application,
-its installation and its user settings remain unchanged. Project-owned
+TDN writes Tower's v1 reporting formats, originally integrated against 2.3.1
+and also checked with unmodified Tower 4.0.0 at commit `51265b2`. The
+[compatibility record](../results/premix-startup-fix-validation.json) covers
+native contracts, metrics, logs, schemas and paged scientific tables. The Tower
+application, its installation and its user settings remain unchanged. Project-owned
 `.tower/config.json` binds the metrics, exact log index, output contract and
 explicit planning aggregate. Its CARC profile identifies `aadaniel` and
 `anakano_81`; reporting does not submit jobs or alter allocation limits.
@@ -51,6 +54,12 @@ prints its path, source, workload, job ID and state. When several jobs run in
 parallel, select a concrete directory from `list` instead. You can limit the
 listing to one workflow with `bash scripts/tower.sh list runs/RUN_ID`.
 Discovery visits known report locations, not datasets or caches.
+
+Tower 4.0's `:project` picker scans direct `runs/<id>/run.json` locations.
+Premix stage reports are nested under the workflow's `tower/` directory, so use
+the explicit report paths from `carc_premix.sh paths` or `tower.sh list` and the
+`show`/`open` commands below. Its paged output viewer can read all six premix
+CSV tables, including the full neural comparison and group tables.
 
 `show REPORT_DIR` only prints the command. `open REPORT_DIR` executes it using
 the existing `tower` executable on `PATH`, from the project root:
