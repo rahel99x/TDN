@@ -95,7 +95,9 @@ def desktop_memory_policy() -> dict:
 def _fields(line: str) -> dict[str, str]:
     # scontrol -o does not reliably quote paths with spaces. Split at field names,
     # not whitespace, so WorkDir=/home/user/my project remains an exact path.
-    markers = list(re.finditer(r"(?:^|\s)([A-Za-z][A-Za-z0-9_]*)=", line))
+    # Slurm also emits compound keys such as AllocNode:Sid immediately after
+    # Partition; they must terminate the preceding value like ordinary keys.
+    markers = list(re.finditer(r"(?:^|\s)([A-Za-z][A-Za-z0-9_]*(?::[A-Za-z][A-Za-z0-9_]*)*)=", line))
     result = {}
     for index, marker in enumerate(markers):
         key = marker.group(1)
@@ -158,7 +160,8 @@ def verify_allocation(device: str, *, profile: dict | None = None, root: Path | 
     if job.get("JobId") != job_id or job.get("JobState") != "RUNNING" or job.get("UserId") != owner:
         raise ValueError("Actual desktop Slurm job is not this user's running allocation")
     if job.get("Partition") != partition:
-        raise ValueError("Actual desktop Slurm job partition differs from the profile")
+        raise ValueError("Actual desktop Slurm job partition differs from the profile "
+                         f"(expected {partition!r}, observed {job.get('Partition')!r})")
     if profile["account"] is not None and job.get("Account") != profile["account"]:
         raise ValueError("Actual desktop Slurm job account differs from the profile")
     workdir = job.get("WorkDir", "")

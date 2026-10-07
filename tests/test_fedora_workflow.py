@@ -226,17 +226,51 @@ def test_allocation_checks_job_profile_comment_and_workdir(controller, monkeypat
     monkeypatch.setenv("SLURM_JOB_ID", "9001")
     monkeypatch.setenv("TDN_SLURM_CONFIG", str(base / "slurm-profile.json"))
     verified = []
-    monkeypatch.setattr(controller, "runtime_allocation", lambda *args, **kw: verified.append((args, kw)))
-    good = (f"JobId=9001 JobName=tdn-fedora-accuracy UserId={getpass.getuser()}(1000) "
-            f"Comment={controller.comment(workflow, 'accuracy')} JobState=RUNNING Partition=workstation WorkDir={controller.ROOT}")
-    monkeypatch.setattr(controller.cw, "command", lambda *a, **kw: SimpleNamespace(stdout=good))
+    good = {"JobId": "9001", "JobName": "tdn-fedora-accuracy", "UserId": f"{getpass.getuser()}(1000)",
+            "Comment": controller.comment(workflow, "accuracy"), "JobState": "RUNNING",
+            "Partition": "workstation", "WorkDir": str(controller.ROOT)}
+
+    def runtime(*args, **kwargs):
+        verified.append((args, kwargs))
+        return {"job_id": "9001", "job": good}
+
+    monkeypatch.setattr(controller, "runtime_allocation", runtime)
+    monkeypatch.setattr(controller.cw, "command", lambda *a, **kw: pytest.fail("Duplicated scheduler query"))
     controller.verify_allocation(workflow, "accuracy")
     assert verified[0][0] == ("cpu",)
-    for wrong in (good.replace("tdn-fedora-accuracy", "other"), good.replace(str(controller.ROOT), "/elsewhere"),
-                  good.replace(workflow["slurm_profile_sha256"], "0" * 64)):
-        monkeypatch.setattr(controller.cw, "command", lambda *a, **kw: SimpleNamespace(stdout=wrong))
+    for key, wrong in (("JobName", "other"), ("WorkDir", "/elsewhere"), ("Comment", "unrelated-workflow")):
+        original = good[key]
+        good[key] = wrong
         with pytest.raises(ValueError, match="running stage"):
             controller.verify_allocation(workflow, "accuracy")
+        good[key] = original
+
+
+@pytest.mark.parametrize("stage", ["accuracy", "neural"])
+def test_allocation_verifies_native_job_and_step_fields(controller, monkeypatch, stage):
+    from tdn.runtime import desktop_slurm
+    workflow = plan(controller)
+    base = freeze(controller, workflow)
+    monkeypatch.setenv("SLURM_JOB_ID", "9001")
+    monkeypatch.setenv("SLURM_STEP_ID", "0")
+    monkeypatch.setenv("TDN_SLURM_CONFIG", str(base / "slurm-profile.json"))
+    job = (f"JobId=9001 JobName=tdn-fedora-{stage} UserId={getpass.getuser()}({os.getuid()}) "
+           f"JobState=RUNNING Partition=workstation AllocNode:Sid=system:8749 "
+           f"NumNodes=1 AllocTRES=cpu=4,mem=16G,node=1,gres/gpu=1 "
+           f"WorkDir={controller.ROOT} Comment={controller.comment(workflow, stage)}")
+    step = (f"StepId=9001.0 UserId={os.getuid()} State=RUNNING Partition=workstation "
+            "Nodes=1 Tasks=1 TRES=cpu=4,mem=16G,node=1,gres/gpu=1")
+    queries = []
+
+    def scheduler(command, **kwargs):
+        queries.append(command)
+        assert command in (["scontrol", "show", "job", "9001", "-o"],
+                           ["scontrol", "show", "step", "9001.0", "-o"])
+        return SimpleNamespace(returncode=0, stdout=job if command[2] == "job" else step, stderr="")
+
+    monkeypatch.setattr(desktop_slurm.subprocess, "run", scheduler)
+    controller.verify_allocation(workflow, stage)
+    assert len(queries) == 2
 
 
 @pytest.fixture

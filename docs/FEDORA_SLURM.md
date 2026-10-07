@@ -175,6 +175,10 @@ Fedora GPU smoke above.
 
 ## Common startup failures
 
+- **Partition mismatch on the original Fedora launcher:** an older parser
+  included Slurm's following `AllocNode:Sid` field in the partition value.
+  Pull the current `main` and submit a fresh smoke workflow; keep the failed
+  run for review. Current errors print the expected and observed partition.
 - **Ambiguous partition:** pass both partition names from `doctor` explicitly.
 - **No GPU GRES:** inspect the existing Slurm configuration; a GPU visible to
   `nvidia-smi` alone is insufficient for a Slurm GPU allocation.

@@ -245,11 +245,9 @@ def verify_allocation(workflow, stage):
     site = workflow["slurm_profile"]
     if load_profile(root=ROOT) != site:
         raise ValueError("Active Slurm profile differs from this frozen workflow")
-    runtime_allocation("cuda" if stage == "neural" else "cpu", profile=site, root=ROOT)
-    job = os.environ["SLURM_JOB_ID"]
-    result = cw.command(["scontrol", "show", "job", job, "-o"])
-    # Split at the next key so paths containing spaces remain intact.
-    fields = dict(re.findall(r"(?:^|\s)(\w+)=(.*?)(?=\s\w+=|$)", result.stdout.strip()))
+    allocation = runtime_allocation("cuda" if stage == "neural" else "cpu", profile=site, root=ROOT)
+    # Bind the workflow to the same scheduler record verified by the runtime.
+    job, fields = allocation["job_id"], allocation["job"]
     expected = {"JobId": job, "JobName": f"tdn-fedora-{stage}", "Comment": comment(workflow, stage),
                 "JobState": "RUNNING", "Partition": workflow["resources"][stage]["partition"], "WorkDir": str(ROOT)}
     if any(fields.get(key) != value for key, value in expected.items()) or fields.get("UserId", "").split("(")[0] != site["user"]:

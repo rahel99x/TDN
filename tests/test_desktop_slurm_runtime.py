@@ -143,6 +143,29 @@ def test_cpu_runtime_reads_actual_job_and_step_without_cuda(desktop_slurm, monke
     assert len(commands) == 2
 
 
+@pytest.mark.parametrize("device", ["cpu", "cuda"])
+def test_allocation_accepts_slurm_allocnode_sid_field(desktop_slurm, monkeypatch, device):
+    root, _ = desktop_slurm
+    commands = scheduler(monkeypatch, root, device=device)
+    scheduler_run = policy.subprocess.run
+
+    def actual_format(command, **kwargs):
+        result = scheduler_run(command, **kwargs)
+        if command[2] == "job":
+            partition = "local-gpu" if device == "cuda" else "local"
+            result.stdout = result.stdout.replace(
+                f"Partition={partition} ",
+                f"Partition={partition} AllocNode:Sid=system:8749 ")
+        return result
+
+    monkeypatch.setattr(policy.subprocess, "run", actual_format)
+    evidence = policy.verify_allocation(device)
+    assert evidence["job"]["Partition"] == ("local-gpu" if device == "cuda" else "local")
+    assert evidence["job"]["AllocNode:Sid"] == "system:8749"
+    assert evidence["job"]["WorkDir"] == str(root)
+    assert len(commands) == 2
+
+
 def test_numeric_slurm_step_owner_is_checked_by_actual_uid(desktop_slurm, monkeypatch):
     root, _ = desktop_slurm
     scheduler(monkeypatch, root, step_changes={"UserId": "1000"})

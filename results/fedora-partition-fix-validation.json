@@ -1,0 +1,34 @@
+{
+  "schema": "tdn.fedora-partition-fix-validation/v1",
+  "validated_at_utc": "2026-10-07T08:23:00.938583+00:00",
+  "base_commit": "3917b390b35ed1b4ab04a9f3ad6155c89c89e04c",
+  "source_tree_sha256": "8459a4c3c41926489716a4811f2fa212998ba81e862d2c4198de3ec3d91d2c30",
+  "reported_failure": {
+    "run_id": "fedora-premix-20261007T081750297327Z",
+    "accuracy_job_id": "17",
+    "error": "Actual desktop Slurm job partition differs from the profile",
+    "computation_started": false
+  },
+  "defect": "The scontrol field parser recognized word-only keys. Slurm's AllocNode:Sid key following Partition caused Partition=local to parse as 'local AllocNode:Sid=system:8749'. The workflow also independently used the same deficient parsing pattern.",
+  "fix": [
+    "Recognize colon-separated scontrol field keys while preserving values containing spaces and rejecting duplicate fields.",
+    "Use the already verified job record for workflow identity checks instead of a second scheduler query and parser.",
+    "Include expected and observed partition values in genuine mismatch errors."
+  ],
+  "regressions": {
+    "before_fix": "Both CPU and CUDA allocation-format regressions failed with the reported partition error.",
+    "after_fix": "Both pass; raw job/step workflow integrations also pass for accuracy and neural stages. Existing ownership, partition, account, root, node/task and GPU allocation mismatch checks remain active."
+  },
+  "test_run": {
+    "command": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_desktop_slurm_runtime.py tests/test_fedora_workflow.py tests/test_fedora_setup.py tests/test_premix_workflow.py tests/test_desktop_runtime.py tests/test_carc_integration.py --basetemp=.runtime/pytest-fedora-partition-fix --junitxml=.runtime/fedora-partition-fix.xml",
+    "junit_path": ".runtime/fedora-partition-fix.xml",
+    "junit_sha256": "81ebeae5311e17e4e09ab5caa19d71759b64340e46ac4814c4d8348e0befe739",
+    "passed": 223,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "junit_seconds": 36.422
+  },
+  "scope": "Cloud CPU tests with mocked Slurm records. No actual Fedora submission or CUDA computation occurred. Native verification requires a fresh allocated smoke on the desktop.",
+  "recovery": "Pull main and run bash scripts/fedora_slurm.sh run --smoke. Preserve the failed run; existing Python venv and local partition profile can be reused."
+}
