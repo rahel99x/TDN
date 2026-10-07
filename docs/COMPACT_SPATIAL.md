@@ -20,7 +20,13 @@ diagnostics** were retained as observations. The regression suite passed
 Tower and schema checks passed for both the completed run and a real SIGUSR1
 interruption. All 8,082 scientific CSV rows were retained, with their cells and
 provenance pointers checked against the canonical report. This validates the
-cloud implementation; CARC timing still requires the allocated run below.
+cloud implementation; the subsequent allocated CARC results are reviewed below.
+
+The subsequent [CARC review](COMPACT_SPATIAL_REVIEW.md) verifies job
+**12764081**. Fused GL3 is about 1.59x faster than original GL3 on the accuracy
+bank. Compact input cutoffs have no globally fastest matched-target entries;
+the review distinguishes their large-batch cost crossover from their missing
+high-frequency interactions and the scaling panel's permissive targets.
 
 ## Run on CARC
 
