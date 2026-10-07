@@ -103,6 +103,17 @@ def test_cpu_and_carc_cuda_neural_are_distinct_valid_envelopes(tmp_path):
         assert a.verify_stage(root)["stage"] == "neural"
 
 
+@pytest.mark.parametrize("stage", a.STAGES)
+def test_desktop_slurm_envelope_requires_its_own_profile_fingerprint(tmp_path, stage):
+    root = evidence(tmp_path, stage, device="cuda" if stage == "neural" else "cpu")
+    mutate(root, "execution.json", lambda item: item.update(execution_mode="desktop-slurm"))
+    with pytest.raises(ValueError, match="profile fingerprint"):
+        seal(root, stage)
+    mutate(root, "execution.json", lambda item: item.update(slurm_profile_sha256="d" * 64))
+    seal(root, stage)
+    assert a.verify_stage(root)["stage"] == stage
+
+
 @pytest.mark.parametrize("stage,filename", [("accuracy", "config.json"), ("scaling", "metrics.json"),
     ("prepare", "normalization.json"), ("neural", "checkpoint_freeze.json")])
 def test_mandatory_scientific_files_cannot_be_omitted(tmp_path, stage, filename):

@@ -143,3 +143,29 @@ def test_success_reporting_failure_does_not_destroy_seal(launcher):
     assert launcher.module.main(launcher.argv) == 1
     assert artifacts.verify_stage(launcher.root)["stage"] == "accuracy"
     assert launcher.finalized[0]["state"] == "COMPLETED"
+
+
+@pytest.mark.parametrize("change_profile", [False, True])
+def test_desktop_slurm_cli_freezes_profile_in_execution(launcher, monkeypatch, change_profile):
+    from tdn.runtime import desktop_slurm
+    profile = {"root": str(ROOT), "user": "fixture"}
+    monkeypatch.setattr(preflight, "execution_mode", lambda: "desktop-slurm")
+    monkeypatch.setattr(desktop_slurm, "load_profile", lambda: dict(profile))
+
+    def run(protocol, directory, **kwargs):
+        execution = json.loads((directory / "execution.json").read_text())
+        assert execution["execution_mode"] == "desktop-slurm"
+        assert execution["slurm_profile_sha256"] == artifacts.digest(profile)
+        evidence(directory)
+        metadata.write_json(directory / "execution.json", execution)
+        if change_profile:
+            profile["user"] = "changed"
+        return {"status": "COMPLETED"}
+
+    monkeypatch.setattr(launcher.engine, "run", run)
+    assert launcher.module.main(launcher.argv) == int(change_profile)
+    assert (launcher.root / "COMPLETED").exists() is not change_profile
+    if change_profile:
+        assert "profile changed" in json.loads((launcher.root / "stage.json").read_text())["error"]
+    else:
+        assert artifacts.verify_stage(launcher.root)["stage"] == "accuracy"

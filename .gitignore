@@ -2,6 +2,7 @@
 .runtime/
 .cache/
 .local/
+.tdn/
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -15,6 +16,7 @@ dist/
 /reports/
 .tower/passports/
 .tower/state/
+.tower/fedora-slurm.json
 scripts/user.env.sh
 results/generated/
 results/dev-*/

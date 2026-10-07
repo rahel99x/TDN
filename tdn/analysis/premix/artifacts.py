@@ -102,8 +102,11 @@ def _validate_payload(root, manifest):
         raise ValueError("Premix execution source differs from its seal")
     device, mode = execution.get("device"), execution.get("execution_mode")
     if (device not in ("cpu", "cuda") or (stage != "neural" and device != "cpu")
-            or mode not in ("local-cpu", "carc") or (device == "cuda" and mode != "carc")):
+            or mode not in ("local-cpu", "carc", "desktop-slurm")
+            or (device == "cuda" and mode not in ("carc", "desktop-slurm"))):
         raise ValueError("Premix execution device/mode is inconsistent with its stage")
+    if mode == "desktop-slurm" and not _SHA.fullmatch(str(execution.get("slurm_profile_sha256", ""))):
+        raise ValueError("Premix desktop Slurm execution requires a profile fingerprint")
     if summary.get("status") != "COMPLETED" or summary.get("profile") != profile:
         raise ValueError("Premix summary did not complete the declared profile")
     if stage in ("accuracy", "scaling"):

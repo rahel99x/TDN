@@ -11,9 +11,12 @@ def project_root() -> Path:
     root = Path(os.environ.get("TDN_PROJECT_ROOT", checkout)).resolve()
     if root != checkout: raise ValueError("TDN_PROJECT_ROOT must be this repository, including for local CPU validation")
     slurm = any(os.environ.get(name) for name in ("SLURM_JOB_ID", "SLURM_STEP_ID", "SLURM_JOB_ACCOUNT"))
-    if os.environ.get("TDN_EXECUTION_MODE") == "desktop" and (root == CARC_ROOT or slurm):
+    mode = os.environ.get("TDN_EXECUTION_MODE", "")
+    if mode == "desktop" and (root == CARC_ROOT or slurm):
         raise ValueError("Desktop execution cannot bypass CARC or an active Slurm environment")
-    if slurm and root != CARC_ROOT:
+    if mode == "desktop-slurm" and root == CARC_ROOT:
+        raise ValueError("Desktop Slurm execution cannot bypass the CARC root policy")
+    if slurm and root != CARC_ROOT and mode != "desktop-slurm":
         raise ValueError(f"CARC runtime root must be {CARC_ROOT}")
     return root
 

@@ -34,14 +34,15 @@ def main(argv=None):
                     os.environ.get(key) for key in ("SLURM_JOB_ID", "SLURM_STEP_ID", "TDN_EXECUTION_MODE")):
                 raise ValueError("Local premix requires this CPU checkout without Slurm or desktop overrides")
             if args.device != "cpu":
-                raise ValueError("Local premix is CPU-only; CUDA requires a real CARC allocation")
+                raise ValueError("Local premix is CPU-only; CUDA requires a configured Slurm allocation")
         if args.stage != "neural" and (args.device != "cpu" or args.dataset_dir is not None):
             raise ValueError("Only the neural stage accepts CUDA or a prepared dataset")
         if args.stage == "neural" and args.dataset_dir is None:
             raise ValueError("Neural stage requires its sealed prepared dataset")
         configure_storage()
-        if execution_mode() not in ("local-cpu", "carc"):
-            raise ValueError("Premix supports CARC and the separate local CPU workflow")
+        mode = execution_mode()
+        if mode not in ("local-cpu", "carc", "desktop-slurm"):
+            raise ValueError("Premix supports CARC, desktop Slurm, and the separate local CPU workflow")
         verify_runtime(args.device, "premix-" + args.stage)
         candidate = contained_path(args.run_dir)
         if candidate.exists():
@@ -50,6 +51,10 @@ def main(argv=None):
         from tdn.runtime.metadata import software_metadata, write_json
         from tdn.runtime.precision import reference_precision
         from tdn.runtime.signal_handling import StopRequest
+        slurm_profile = None
+        if mode == "desktop-slurm":
+            from tdn.runtime.desktop_slurm import load_profile
+            slurm_profile = load_profile()
         import torch
         torch.set_num_threads(1)
         torch.set_num_interop_threads(1)
@@ -69,6 +74,11 @@ def main(argv=None):
                                         source_tree_sha256=software["source_tree_sha256"])
             if dataset_seal["protocol_sha256"] != digest(protocol):
                 raise ValueError("Prepared dataset has a different neural protocol")
+            if slurm_profile is not None:
+                prepared_execution = json.loads((dataset / "execution.json").read_text())
+                if (prepared_execution.get("execution_mode") != mode or
+                        prepared_execution.get("slurm_profile_sha256") != digest(slurm_profile)):
+                    raise ValueError("Prepared dataset belongs to a different desktop Slurm profile")
         command = [sys.executable, str(Path(__file__).resolve()), *(sys.argv[1:] if argv is None else argv)]
         candidate.mkdir(parents=True, exist_ok=False)
         run_dir = candidate
@@ -77,6 +87,8 @@ def main(argv=None):
                      "protocol_sha256": digest(protocol)}
         if os.environ.get("TDN_PREMIX_PROTOCOL_SHA256"):
             execution["workflow_protocol_sha256"] = os.environ["TDN_PREMIX_PROTOCOL_SHA256"]
+        if slurm_profile is not None:
+            execution["slurm_profile_sha256"] = digest(slurm_profile)
         if dataset is not None:
             execution.update(dataset_dir=str(dataset), dataset_manifest_sha256=file_digest(dataset / "manifest.json"))
         write_json(run_dir / "execution.json", execution)
@@ -87,7 +99,7 @@ def main(argv=None):
         from tdn.reporting import attach_report, emit
         report, owned = attach_report(run_dir, name="TDN/premix/" + args.stage,
             script="scripts/premix.py", parameters={"device": args.device, "stage": args.stage,
-                "benchmark_suite": "premix", "profile": args.profile,
+                "benchmark_suite": "premix", "profile": args.profile, "execution_mode": mode,
                 "protocol_sha256": digest(protocol), "source_tree_sha256": software["source_tree_sha256"]})
         os.environ["TDN_TOWER_DIR"] = str(report)
         stage["actually_ran"] = True
@@ -119,6 +131,8 @@ def main(argv=None):
             raise RuntimeError("Execution source changed during premix stage; start a fresh run")
         if digest(json.loads((run_dir / "protocol.json").read_text())) != digest(protocol):
             raise RuntimeError("Premix protocol changed during execution")
+        if slurm_profile is not None and digest(load_profile()) != digest(slurm_profile):
+            raise RuntimeError("Desktop Slurm profile changed during execution; use a fresh workflow")
         if dataset is not None:
             verify_stage(dataset, stage="prepare", profile=args.profile,
                          source_tree_sha256=software["source_tree_sha256"])

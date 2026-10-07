@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from pathlib import Path
 import statistics
 import time
@@ -195,11 +196,21 @@ class _RunBudget(Budget):
         self.memory = {"enabled": device == "cuda", "observations": 0,
                        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"}
         self.last_observation = 0.
+        self.timing_memory_policy = None
         if device == "cuda":
             free, total = torch.cuda.mem_get_info(device)
+            cap, fraction, hard = 30 * 2**30, .8, .9
+            if os.environ.get("TDN_EXECUTION_MODE") == "desktop-slurm":
+                from tdn.runtime.desktop_slurm import desktop_memory_policy
+                policy = desktop_memory_policy()
+                cap, fraction, hard = (policy[key] for key in ("soft_cap_bytes", "soft_fraction", "hard_fraction"))
+                # Candidate timing must use the same available-memory cap as
+                # the complete run, including VRAM used by the desktop display.
+                self.timing_memory_policy = {"soft_vram_gib": min(cap, fraction * total, fraction * free) / 2**30,
+                                             "soft_vram_fraction": fraction, "hard_memory_fraction": hard}
             self.memory.update(initial_free_bytes=free, total_bytes=total,
-                               soft_budget_bytes=int(min(30 * 2**30, .8 * total, .8 * free)),
-                               hard_device_used_fraction=.9, peak_allocated_bytes=0,
+                               soft_budget_bytes=int(min(cap, fraction * total, fraction * free)),
+                               hard_device_used_fraction=hard, peak_allocated_bytes=0,
                                peak_reserved_bytes=0, peak_sampled_device_used_bytes=0)
             torch.cuda.reset_peak_memory_stats(device)
 
@@ -213,7 +224,8 @@ class _RunBudget(Budget):
                             ("peak_reserved_bytes", torch.cuda.max_memory_reserved(self.device)),
                             ("peak_sampled_device_used_bytes", total - free)):
             self.memory[name] = max(self.memory[name], value)
-        if self.memory["peak_reserved_bytes"] > self.memory["soft_budget_bytes"] or total - free >= .9 * total:
+        if (self.memory["peak_reserved_bytes"] > self.memory["soft_budget_bytes"] or
+                total - free >= self.memory["hard_device_used_fraction"] * total):
             raise MemoryError("CUDA memory budget exceeded; preserve partial artifacts and use a fresh bounded run")
 
     def check(self):
@@ -535,7 +547,8 @@ def _evaluate(protocol, dataset, models, records, path, device, budget, candidat
                                 else:
                                     state = _safe(model, state, horizon / steps, equation, geometry)
                             return state
-                        value, timing = measure(operation, device=device, warmup=protocol["timing_warmup"], repeats=protocol["timing_repeats"])
+                        value, timing = measure(operation, device=device, warmup=protocol["timing_warmup"],
+                                                repeats=protocol["timing_repeats"], memory_policy=budget.timing_memory_policy)
                         row.update(status="COMPLETED", admissible=True, timing=timing, **_errors(value, reference),
                                    memory_ok=timing.get("soft_budget_passed", True) and not timing.get("hard_device_memory_warning", False))
                     except FloatingPointError as error:

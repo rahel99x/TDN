@@ -174,6 +174,7 @@ def test_error_decomposition_and_norm_specific_uncertainty():
 
 def test_mock_cuda_memory_policy_accounts_for_initial_free_memory(monkeypatch):
     # This policy unit check supplies no GPU performance/readiness evidence.
+    monkeypatch.delenv("TDN_EXECUTION_MODE", raising=False)
     monkeypatch.setattr(torch.cuda, "mem_get_info", lambda device: (20 * 2**30, 40 * 2**30))
     monkeypatch.setattr(torch.cuda, "reset_peak_memory_stats", lambda device: None)
     monkeypatch.setattr(torch.cuda, "max_memory_allocated", lambda device: 2**20)
@@ -184,6 +185,23 @@ def test_mock_cuda_memory_policy_accounts_for_initial_free_memory(monkeypatch):
     assert budget.memory["observations"] == 1
     monkeypatch.setattr(torch.cuda, "max_memory_reserved", lambda device: 17 * 2**30)
     with pytest.raises(MemoryError, match="budget"):
+        budget.observe(force=True)
+
+
+@pytest.mark.parametrize("free_gib,expected_gib", [(24, 18), (16, 12)])
+def test_desktop_slurm_budget_reserves_display_vram(monkeypatch, free_gib, expected_gib):
+    monkeypatch.setenv("TDN_EXECUTION_MODE", "desktop-slurm")
+    monkeypatch.setattr(torch.cuda, "mem_get_info", lambda device: (free_gib * 2**30, 24 * 2**30))
+    monkeypatch.setattr(torch.cuda, "reset_peak_memory_stats", lambda device: None)
+    monkeypatch.setattr(torch.cuda, "max_memory_allocated", lambda device: 2**20)
+    monkeypatch.setattr(torch.cuda, "max_memory_reserved", lambda device: 2**21)
+    budget = neural._RunBudget(10, None, "cuda")
+    assert budget.memory["soft_budget_bytes"] == expected_gib * 2**30
+    assert budget.timing_memory_policy["soft_vram_gib"] == expected_gib
+    assert budget.memory["hard_device_used_fraction"] == .9
+    budget.observe(force=True)
+    monkeypatch.setattr(torch.cuda, "max_memory_reserved", lambda device: (expected_gib + 1) * 2**30)
+    with pytest.raises(MemoryError):
         budget.observe(force=True)
 
 

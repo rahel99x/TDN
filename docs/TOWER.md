@@ -9,6 +9,12 @@ application, its installation and its user settings remain unchanged. Project-ow
 explicit planning aggregate. Its CARC profile identifies `aadaniel` and
 `anakano_81`; reporting does not submit jobs or alter allocation limits.
 
+Fedora desktop Slurm setup writes a separate project-local
+`.tower/fedora-slurm.json` using its configured user and optional account.
+`tower.sh show` and `open` select that profile for reports explicitly marked
+`desktop-slurm`; historical CARC reports retain their CARC profile. Both use
+the same report contracts and the existing Tower application.
+
 The [premix program](PREMIX.md) produces one report per CPU/GPU stage. Run
 `bash scripts/carc_premix.sh paths latest` for each exact report and live
 `metrics.jsonl` path. Its dedicated `premix_candidates.csv`,

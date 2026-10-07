@@ -4,6 +4,18 @@ A runnable research pipeline for learning the finite-time error of a symmetric s
 
 CARC deployment is fixed to **`/home1/aadaniel/projects/TDN`**, user **`aadaniel`**, account **`anakano_81`**, and a Python **`.venv`**. All temporary files, caches, data, logs and checkpoints stay under that directory. The user's storage and venv requirements replace the uploaded document's environment examples.
 
+## Run on Fedora with local Slurm
+
+Use the [Fedora Slurm runbook](docs/FEDORA_SLURM.md) for the current premix
+experiment on `/home/rahel/TDN`, standalone Python 3.13, a Ryzen 7800X3D,
+128 GB RAM and an RTX 4090 with 24 GB dedicated VRAM. Start with
+`bash scripts/fedora_slurm.sh doctor`, then configure and set up the local
+profile. The launcher submits CPU accuracy, scaling and preparation sequentially,
+followed by one GPU job, each limited to 30 minutes. It uses a project `.venv`,
+an 18 GiB GPU soft cap, local Slurm partitions and project-owned Tower reports.
+The profile does not inherit CARC billing or request an A100. Historical CARC
+launchers retain their own environment requirements.
+
 ## Run on a Windows desktop
 
 The native Windows edition supports a standalone Python `.venv`, PowerShell launchers, explicit CPU or NVIDIA CUDA execution, and a bounded sequential smoke adapted for an RTX 4090 with 24 GB dedicated VRAM. Extract the source ZIP to a writable local directory and begin with [WINDOWS_START_HERE.md](WINDOWS_START_HERE.md). The [Windows runbook](docs/WINDOWS.md) includes driver discovery, installation, the 12-step run, reports, resume and a prompt for a new local chat. Desktop execution keeps all generated files inside the extracted repository; it requires no Slurm allocation or lab account.

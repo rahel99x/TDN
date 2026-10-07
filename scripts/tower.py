@@ -106,10 +106,22 @@ def find_reports(root, source=None):
     return found
 
 
+def tower_profile(root, report):
+    manifest = read_json(Path(report) / "run.json")
+    mode = manifest.get("parameters", {}).get("execution_mode", manifest.get("metadata", {}).get("execution_mode"))
+    if mode == "desktop-slurm":
+        config = project_path(root, Path(root) / ".tower/fedora-slurm.json", directory=False)
+        if not config.is_file():
+            raise ValueError("Fedora Tower configuration is missing; run fedora_slurm.sh configure first")
+        return "desktop-slurm", config
+    return "carc", Path(root) / ".tower/config.json"
+
+
 def tower_command(root, report_dir, *, view="experiment"):
     root = Path(root).absolute()
     report = project_path(root, report_dir)
-    return ["tower", "--profile", "carc", "--config", str(root / ".tower/config.json"),
+    profile, config = tower_profile(root, report)
+    return ["tower", "--profile", profile, "--config", str(config),
             "--workdir", str(report), "--tab", "research", "--research-view", view]
 
 
@@ -385,7 +397,8 @@ def main(argv=None):
             if args.native:
                 if shutil.which("tower") is None:
                     raise ValueError("Native validation requires your existing Tower executable on PATH")
-                command = ["tower", "--no-state", "--no-plugins", "--config", str(ROOT / ".tower/config.json"),
+                _, config = tower_profile(ROOT, report)
+                command = ["tower", "--no-state", "--no-plugins", "--config", str(config),
                            "run", "validate", str(ROOT / ".tower/contracts/outputs.v1.json"),
                            str(report)]
                 return subprocess.run(command, cwd=ROOT, check=False).returncode

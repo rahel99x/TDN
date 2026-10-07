@@ -23,6 +23,11 @@ A100 correctness and performance are measured by the allocated workflow below.
 
 ## Run the complete program on CARC
 
+For the separate Fedora desktop Slurm deployment, use
+[FEDORA_SLURM.md](FEDORA_SLURM.md). It runs the same numerical and learned
+protocols with local scheduler settings and the RTX 4090 memory policy. Existing
+CARC results remain separate observations; their timings are not desktop timings.
+
 Use the existing project Python venv and the fixed project directory. The
 launcher submits three independent CPU jobs and one dependent A100 job:
 

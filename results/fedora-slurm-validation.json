@@ -1,0 +1,230 @@
+{
+  "schema": "tdn.fedora-slurm-validation/v1",
+  "validated_at_utc": "2026-10-07T08:13:00.793768+00:00",
+  "base_commit": "00ab6974f448df70675147ce877b73531bc5f114",
+  "source_tree_sha256": "559c5f5ad35e07e3e483a8640ae960fc240b307aecf948749d4526b73688ac47",
+  "scope": "Cloud CPU implementation/regression and native Tower compatibility validation. Scheduler/GPU test fixtures are simulations; no actual Fedora Slurm submission or CUDA execution occurred.",
+  "target": {
+    "project_root": "/home/rahel/TDN",
+    "user": "rahel",
+    "python": "3.13.13",
+    "cpu": "AMD Ryzen 7 7800X3D",
+    "host_memory_gib": 128,
+    "gpu": "NVIDIA RTX 4090",
+    "dedicated_vram_gib": 24,
+    "user_reported_slurm": {
+      "partition": "local",
+      "default": true,
+      "availability": "up",
+      "time_limit": "7-00:00:00",
+      "nodes": 1,
+      "cpus": 16,
+      "memory_mb": 110000,
+      "gres": "gpu:1"
+    },
+    "account": null
+  },
+  "actual_cloud_software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "00ab6974f448df70675147ce877b73531bc5f114",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "559c5f5ad35e07e3e483a8640ae960fc240b307aecf948749d4526b73688ac47",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "test_runs": [
+    {
+      "command": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q -m 'not gpu' --basetemp=.runtime/pytest-fedora-full --junitxml=.runtime/fedora-validation/full-cpu.xml",
+      "junit_path": ".runtime/fedora-validation/full-cpu.xml",
+      "junit_sha256": "ed5cbfe1bf112d4899074ab77abe33a67cecbf13b33dd1337ea84d684602cd8f",
+      "passed": 2101,
+      "tests": 2102,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "deselected": 70,
+      "junit_seconds": 447.225
+    },
+    {
+      "command": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_premix_cli.py tests/test_premix_artifacts.py tests/test_premix_neural_engine.py tests/test_tower_tools.py --basetemp=.runtime/pytest-fedora-integration --junitxml=.runtime/fedora-validation/integration.xml",
+      "junit_path": ".runtime/fedora-validation/integration.xml",
+      "junit_sha256": "def7796a5b409e74815fcb5feff74dbf1d4e59cedd01a7211c2cb864e5cf1907",
+      "passed": 90,
+      "tests": 90,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "deselected": 0,
+      "junit_seconds": 14.511
+    }
+  ],
+  "test_count_note": "Focused results overlap the full regression; do not add them. The single optional jsonschema dependency skip is separate from the native Tower schema validation recorded below. Deselected GPU tests establish no GPU readiness.",
+  "local_smoke": {
+    "command": "bash scripts/premix_local.sh --run-dir .runtime/fedora-validation/local-smoke",
+    "log_sha256": "07dbb4a31b06d6b8e405faf46a7057d723ed56272667b7138fe337b2d4bc3f3e",
+    "stages": {
+      "accuracy": {
+        "execution_mode": "local-cpu",
+        "device": "cpu",
+        "status": "COMPLETED",
+        "scientific_outcome": "OBSERVED_MIXED",
+        "artifact_verification": "VERIFIED",
+        "sealed_files": 6,
+        "manifest_sha256": "1d91cc964527fc1323b6291e5673adf5e2b5c2bb306fc40eae1b2e974f6a3ab8",
+        "elapsed_seconds": 12.778108079000958,
+        "coverage": {
+          "candidate_rows": {
+            "expected": 74,
+            "reported": 74
+          },
+          "frontier_rows": {
+            "expected": 444,
+            "reported": 444
+          },
+          "reference_rows": {
+            "expected": 4,
+            "reported": 4
+          },
+          "parity_rows": {
+            "expected": 58,
+            "reported": 58
+          }
+        },
+        "candidate_status_counts": {
+          "VALID": 73,
+          "INVALID": 1
+        },
+        "frontier_status_counts": {
+          "FEASIBLE": 262,
+          "NO_FEASIBLE_CANDIDATE": 182
+        },
+        "correctness_failures": [],
+        "accepted_reference_members": 4,
+        "cached_reference_members": 0
+      },
+      "scaling": {
+        "execution_mode": "local-cpu",
+        "device": "cpu",
+        "status": "COMPLETED",
+        "scientific_outcome": "OBSERVED_MIXED",
+        "artifact_verification": "VERIFIED",
+        "sealed_files": 6,
+        "manifest_sha256": "7577f8ba9b0af2164adcce1b7b118dc895ebf47a5d80bce4b37c9647c01dea05",
+        "elapsed_seconds": 27.19732946199656,
+        "coverage": {
+          "candidate_rows": {
+            "expected": 54,
+            "reported": 54
+          },
+          "frontier_rows": {
+            "expected": 324,
+            "reported": 324
+          },
+          "reference_rows": {
+            "expected": 3,
+            "reported": 3
+          },
+          "parity_rows": {
+            "expected": 42,
+            "reported": 42
+          }
+        },
+        "candidate_status_counts": {
+          "VALID": 54
+        },
+        "frontier_status_counts": {
+          "FEASIBLE": 185,
+          "NO_FEASIBLE_CANDIDATE": 139
+        },
+        "correctness_failures": [],
+        "accepted_reference_members": 9,
+        "cached_reference_members": 1
+      },
+      "prepare": {
+        "execution_mode": "local-cpu",
+        "device": "cpu",
+        "status": "COMPLETED",
+        "scientific_outcome": "NOT_ESTABLISHED",
+        "artifact_verification": "VERIFIED",
+        "sealed_files": 7,
+        "manifest_sha256": "4234e354f026adc5ea0fedf4c43baf59ee84ac2081d793bb36b42c4cce537064",
+        "elapsed_seconds": 1.9100955369940493,
+        "coverage": {
+          "parents": 20,
+          "references": 32,
+          "accepted_references": 32
+        }
+      },
+      "neural": {
+        "execution_mode": "local-cpu",
+        "device": "cpu",
+        "status": "COMPLETED",
+        "scientific_outcome": "DESCRIPTIVE_BOUNDED_COMPARISON",
+        "artifact_verification": "VERIFIED",
+        "sealed_files": 22,
+        "manifest_sha256": "221706ca7f23de2a9dba868b8d0b756f7ff61034bc25b2da441cf89fd354d6ab",
+        "elapsed_seconds": 4.079515795994666,
+        "coverage": {
+          "training_records": 5,
+          "trained_checkpoints": 0,
+          "selected_initializations": 5,
+          "numerical_training_failures": 0,
+          "candidates": 192,
+          "completed_candidates": 192,
+          "diagnostic_parents": 12
+        }
+      }
+    },
+    "interpretation": "Functional smoke only. Neural training ran, but all five validation-selected outputs retained initialization. This does not demonstrate a trained-model advantage."
+  },
+  "tower": {
+    "version": "4.0.0",
+    "commit": "51265b2e4b07076dfce0cfa97a9f6bbb8c0d4275",
+    "application_modified": false,
+    "record_path": ".runtime/fedora-validation/native-tower.json",
+    "record_sha256": "f172f1f94661d663413921ada21b8e1db47cd53dc59d7af2767427ddb0c8e2db",
+    "scope": "Unmodified native Tower 4 readers and schemas; Fedora reports use mocked scheduler/science records, local smoke is actual cloud CPU computation. No Fedora Slurm or CUDA hardware validation.",
+    "report_counts": {
+      "mocked_fedora_boundary": 5,
+      "actual_local_cpu_smoke": 4
+    },
+    "schema_objects_validated": 99,
+    "totals": {
+      "contracts": 306,
+      "contract_bytes": 1647001,
+      "metric_records": 71,
+      "native_log_entries": 94,
+      "csv_tables": 186,
+      "csv_pages": 206,
+      "csv_rows": 3383
+    },
+    "profile": "desktop-slurm",
+    "account": "",
+    "gpu_sampling": false
+  },
+  "deployment_limits": {
+    "stage_order": [
+      "accuracy",
+      "scaling",
+      "prepare",
+      "neural"
+    ],
+    "cpus_per_stage": 4,
+    "host_memory_gib_per_stage": 16,
+    "wall_minutes_per_stage": 30,
+    "neural_gpu_count": 1,
+    "soft_vram_cap_gib": 18,
+    "soft_fraction_of_initial_free_and_total": 0.75,
+    "hard_device_use_fraction": 0.9,
+    "pending_job_cap": null
+  },
+  "remaining_native_validation": "Run the allocated Fedora smoke workflow before the full experiment. Setup checks actual Python/driver/wheel compatibility; GPU preflight checks Slurm ownership, assigned device, CUDA arithmetic and available VRAM in the real task."
+}

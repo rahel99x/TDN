@@ -211,7 +211,7 @@ def state_path(workflow, stage):
     return cw.inside(Path(workflow["run_dir"]) / "state" / f"{stage}.json")
 
 
-def verify_stage(workflow, stage):
+def verify_stage(workflow, stage, *, execution_mode="carc"):
     """Hash every sealed artifact; Slurm success alone is not a prerequisite."""
     base = cw.inside(Path(workflow["run_dir"]) / stage)
     manifest_path, marker = base / "manifest.json", base / "COMPLETED"
@@ -247,13 +247,13 @@ def verify_stage(workflow, stage):
     if summary.get("status") != "COMPLETED":
         raise ValueError(f"{stage}: scientific engine did not complete")
     for key, value in {"stage": stage, "profile": workflow["profile"],
-                       "device": "cuda" if stage == "neural" else "cpu", "execution_mode": "carc"}.items():
+                       "device": "cuda" if stage == "neural" else "cpu", "execution_mode": execution_mode}.items():
         if execution.get(key) != value:
             raise ValueError(f"{stage}: execution {key} differs")
     return manifest
 
 
-def verify_prerequisites(workflow, software):
+def verify_prerequisites(workflow, software, *, execution_mode="carc"):
     hashes = {}
     for stage in CPU_STAGES:
         record = cw.read_json(state_path(workflow, stage))
@@ -266,7 +266,7 @@ def verify_prerequisites(workflow, software):
         if (record.get("software_sha256") != cw.digest(software_path) or
                 cw.read_json(software_path) != software):
             raise ValueError(f"{stage}: prerequisite software differs")
-        verify_stage(workflow, stage)
+        verify_stage(workflow, stage, execution_mode=execution_mode)
         hashes[stage] = cw.digest(Path(workflow["run_dir"]) / stage / "manifest.json")
     return hashes
 
@@ -356,8 +356,15 @@ def finish_report(workflow, stage, report, *, state, runtime_seconds, exit_code,
                   **({"error": str(error)} if error is not None else {})})
 
 
-def worker(workflow, stage):
-    verify_allocation(workflow, stage)
+def worker(workflow, stage, *, backend=None):
+    # Policy adapters share interruption, locking, reporting and sealing. The
+    # default remains CARC; desktop Slurm supplies its own explicit policy.
+    if backend is None:
+        from types import SimpleNamespace
+        backend = SimpleNamespace(**{name: globals()[name] for name in (
+            "verify_allocation", "load", "begin_report", "worker_commands",
+            "verify_stage", "verify_prerequisites")})
+    backend.verify_allocation(workflow, stage)
     base = Path(workflow["run_dir"])
     if state_path(workflow, stage).exists() or (base / stage).exists():
         raise ValueError("Premix stage already started; preserve it and submit a fresh workflow")
@@ -386,21 +393,21 @@ def worker(workflow, stage):
 
     handlers = {sig: signal.signal(sig, stop) for sig in (signal.SIGUSR1, signal.SIGTERM, signal.SIGINT)}
     try:
-        report = begin_report(workflow, stage)
+        report = backend.begin_report(workflow, stage)
         os.environ["TDN_TOWER_DIR"] = str(report)
         print(f"TDN_PREMIX_STAGE={stage}\nTDN_TOWER_DIR={report}\nTDN_TOWER_METRICS={report / 'metrics.jsonl'}", flush=True)
-        load(base / "premix-workflow.json")
+        backend.load(base / "premix-workflow.json")
         lock = rw.acquire_venv_lock()
         software = rw.software_report(workflow)
         software_path = base / "state" / f"{stage}-software.json"
         cw.atomic_json(software_path, software)
         record["software_sha256"] = cw.digest(software_path)
         if stage == "neural":
-            record["prerequisite_manifest_sha256"] = verify_prerequisites(workflow, software)
-        for name, command in worker_commands(workflow, stage):
+            record["prerequisite_manifest_sha256"] = backend.verify_prerequisites(workflow, software)
+        for name, command in backend.worker_commands(workflow, stage):
             if stopped_at is not None:
                 raise InterruptedError("Stop requested; no successor started")
-            load(base / "premix-workflow.json")
+            backend.load(base / "premix-workflow.json")
             if rw.software_report(workflow) != software:
                 raise ValueError("Software changed during premix execution")
             record.update(stage=name, updated_at=cw.now())
@@ -414,6 +421,8 @@ def worker(workflow, stage):
                 # metadata remains available to allocated CUDA parity tests.
                 for key in ("TDN_TOWER_DIR", "TDN_PREMIX_WORKFLOW", "TDN_PREMIX_STAGE", "TDN_PREMIX_PROTOCOL_SHA256"):
                     env.pop(key, None)
+                if hasattr(backend, "prepare_test_environment"):
+                    backend.prepare_test_environment(env, name)
             if name == "gpu-tests":
                 env["TDN_REQUIRE_GPU_TESTS"] = "1"
             print(f"TDN premix {stage}: starting {name}", flush=True)
@@ -438,12 +447,12 @@ def worker(workflow, stage):
                                        128 - code if code < 0 else code)
             if name == "gpu-tests":
                 validate_gpu_junit(base / "neural-tests.xml")
-        load(base / "premix-workflow.json")
+        backend.load(base / "premix-workflow.json")
         if rw.software_report(workflow) != software:
             raise ValueError("Software changed during premix execution")
-        if stage == "neural" and verify_prerequisites(workflow, software) != record["prerequisite_manifest_sha256"]:
+        if stage == "neural" and backend.verify_prerequisites(workflow, software) != record["prerequisite_manifest_sha256"]:
             raise ValueError("CPU prerequisite seal changed during neural execution")
-        verify_stage(workflow, stage)
+        backend.verify_stage(workflow, stage)
         finish_report(workflow, stage, report, state="COMPLETED",
             runtime_seconds=time.monotonic() - started, exit_code=0, software=software)
         record.update(status="COMPLETED", exit_code=0, updated_at=cw.now())

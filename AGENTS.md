@@ -26,4 +26,23 @@ Write factual reports: record actual commands, execution mode, device, versions 
 
 The cluster workflow requires user `aadaniel`, charging account `anakano_81`, root `/home1/aadaniel/projects/TDN`, a project `.venv` and real Slurm allocations for substantial compute. Preserve those checks. Desktop mode must not bypass them on CARC or masquerade as an A100 allocation. All CARC project/cache/temp/run files remain under its fixed root, with no `/tmp` or `/scratch1` use.
 
+## Fedora desktop Slurm
+
+- The user moved the current premix experiment to `/home/rahel/TDN` on Fedora,
+  with standalone Python 3.13.13, a Ryzen 7800X3D, 128 GB RAM and an RTX 4090
+  with 24 GB dedicated VRAM. Read `docs/FEDORA_SLURM.md` for its launchers.
+- Use `scripts/fedora_slurm.sh` and explicit `desktop-slurm` execution. The
+  local profile records the checkout root, actual user, partitions and optional
+  account. Never assume the CARC account or A100 constraints apply locally.
+- Scientific work still requires real `sbatch`/`srun` allocations, checked against
+  scheduler ownership, working directory and task-visible hardware. No invented
+  scheduler variables or silent CPU fallback can establish GPU readiness.
+- Keep all project outputs, caches and temporary files under this checkout and
+  install its own `.venv`; do not copy the CARC or Windows venv. Retain FP32
+  inference/training, TF32 off and FP64 teachers. GPU soft limits are 18 GiB and
+  75% of initially free/total memory, with a 90% device-use hard threshold.
+- CPU stages run in sequence on the eight-core desktop. Every stage has a
+  30-minute allocation; there is no pending-job cap or automatic expansion.
+  Start with the allocated smoke before the full hypothesis run.
+
 When editing, run tests appropriate to the change. Windows launcher syntax and actual NVIDIA execution need native-machine validation; Linux checks cannot substantiate those claims. Never delete results or overwrite a completed run to make a check pass.

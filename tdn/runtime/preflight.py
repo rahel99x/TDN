@@ -12,13 +12,17 @@ def execution_mode() -> str:
     """Desktop is explicit and cannot relax checks for a real CARC task."""
     root = project_root()
     requested = os.environ.get("TDN_EXECUTION_MODE", "")
-    if requested not in ("", "desktop"):
-        raise ValueError("TDN_EXECUTION_MODE must be unset or desktop")
+    if requested not in ("", "desktop", "desktop-slurm"):
+        raise ValueError("TDN_EXECUTION_MODE must be unset, desktop, or desktop-slurm")
     slurm = any(os.environ.get(name) for name in ("SLURM_JOB_ID", "SLURM_STEP_ID", "SLURM_JOB_ACCOUNT"))
     if requested == "desktop":
         if root == CARC_ROOT or slurm:
             raise ValueError("Desktop execution cannot bypass CARC or an active Slurm environment")
         return "desktop"
+    if requested == "desktop-slurm":
+        if root == CARC_ROOT:
+            raise ValueError("Desktop Slurm execution cannot bypass the CARC root policy")
+        return "desktop-slurm"
     return "carc" if root == CARC_ROOT or slurm else "local-cpu"
 
 
@@ -50,6 +54,16 @@ def verify_runtime(device: str, stage: str):
         raise ValueError("Use a standalone Python venv, outside an active Conda environment")
     if device not in ("cpu", "cuda"):
         raise ValueError("Select device cpu or cuda")
+    if mode == "desktop-slurm":
+        from .desktop_slurm import load_profile, verify_allocation, verify_cuda_device
+        profile = load_profile(root=root)
+        if stage != "validate-config":
+            verify_allocation(device, profile=profile, root=root)
+        if device == "cuda":
+            if stage == "validate-config":
+                raise ValueError("Desktop Slurm CUDA checks require an allocated compute stage")
+            verify_cuda_device(profile)
+        return
     is_carc=root == CARC_ROOT
     if is_carc:
         if getpass.getuser() != "aadaniel": raise ValueError("CARC user must be aadaniel")

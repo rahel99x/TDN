@@ -81,6 +81,25 @@ def test_show_is_exact_and_never_launches(tmp_path, monkeypatch, capsys):
         f"tower --profile carc --config {tmp_path}/.tower/config.json --workdir {report} --tab research --research-view experiment")
 
 
+def test_fedora_report_uses_its_local_tower_profile(tmp_path, monkeypatch, capsys):
+    report = report_fixture(tmp_path)
+    manifest = tools.read_json(report / "run.json")
+    manifest["parameters"] = {"execution_mode": "desktop-slurm"}
+    write_json(report / "run.json", manifest)
+    monkeypatch.setattr(tools, "ROOT", tmp_path)
+    assert tools.main(["show", str(report)]) == 2
+    assert "configuration is missing" in capsys.readouterr().err
+    (tmp_path / ".tower").mkdir()
+    config = tmp_path / ".tower/fedora-slurm.json"
+    write_json(config, {"user": "rahel", "profiles": {"desktop-slurm": {}}})
+    monkeypatch.setattr(tools.subprocess, "run", lambda *a, **kw: pytest.fail("show must not launch Tower"))
+    assert tools.main(["show", str(report)]) == 0
+    command = capsys.readouterr().out
+    assert "--profile desktop-slurm" in command
+    assert f"--config {config}" in command
+    assert "--profile carc" not in command
+
+
 def test_latest_selects_report_creation_and_announces_identity(tmp_path, monkeypatch, capsys):
     older = report_fixture(tmp_path, "runs/older/tower/attempt-1", job="111")
     newer = report_fixture(tmp_path, "runs/newer/tower/attempt-2", state="FAILED", job="222")
