@@ -1,5 +1,26 @@
 # Work log
 
+- Created the 2026-10-07 comprehensive research roadmap from ten recent experiment
+  groups, with 62 supported work items (51 active, 11 regression controls), 24
+  proposed mechanisms, five sparse combinations and eight bounded next stages.
+  Reviewed 14 closely related primary-source work records for the
+  2025-10-07–2026-10-07 window, distinguishing first publication, recent editions,
+  author-reported venue metadata, full-text limitations and released-code
+  deductions. Independently checked 27 cited byte hashes and rehashed 61 native
+  premix / 69 native consistency scientific files. Separate mathematical review
+  verified finite-step DF defect kernels, BCH signs, spatial refinement factors,
+  residual bounds, selective calibration assumptions, RK order constraints,
+  closure endpoints, fractional units and complete fallback-cost algebra.
+  The standalone HTML provides five searchable tabs, nine tables / 154 rows,
+  236 rendered equations, cross-tab links and canonical JSON export; real
+  Chromium checks passed for keyboard, offline assets, print, mobile layout and
+  anchor/data consistency. All projections are hypotheses; historical gates and
+  scientific artifacts remain immutable. Executable source SHA remains
+  `a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3`.
+  See docs/RESEARCH_ROADMAP_20261007.html, its Markdown companion and
+  results/RESEARCH_ROADMAP_20261007.json. No model training, new solver runs or
+  Tower application changes were made for this research deliverable.
+
 The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implementation and validation were completed locally before publication. Each executed CLI stage records its exact command, configuration hash, commit and source fingerprint in its `stage.json`. Historical development runs are retained and do not overwrite the final reports.
 
 - M0 completed: audited the README-only checkout and entire uploaded protocol; preserved the original specification, source ledger and repository audit. The user requirements replace its Conda/scratch templates. CARC mount/account/Slurm access are unverified external prerequisites.

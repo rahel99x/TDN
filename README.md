@@ -2,6 +2,13 @@
 
 A runnable research pipeline for learning the finite-time error of a symmetric split solver. It includes exact noncommuting linear controls, periodic logistic reaction–diffusion, refined FP64 coupled teachers, six local-input learned models, deterministic datasets/training, checkpoint resume, and complete-solver accuracy/cost reports.
 
+The [tabbed research roadmap](docs/RESEARCH_ROADMAP_20261007.html) reviews ten
+recent experiment groups, 62 supported work items, 24 proposed mechanisms and
+14 related primary-source work records. It includes mathematical derivations,
+falsifiable projections and a bounded next program for the Fedora desktop.
+[Markdown](docs/RESEARCH_ROADMAP_20261007.md) and
+[structured data](results/RESEARCH_ROADMAP_20261007.json) are also available.
+
 CARC deployment is fixed to **`/home1/aadaniel/projects/TDN`**, user **`aadaniel`**, account **`anakano_81`**, and a Python **`.venv`**. All temporary files, caches, data, logs and checkpoints stay under that directory. The user's storage and venv requirements replace the uploaded document's environment examples.
 
 ## Run on Fedora with local Slurm
@@ -198,4 +205,7 @@ Fedora budgets and the runbook. Start with
 
 [results/agenda-validation.json](results/agenda-validation.json) records the
 completed eight-stage CPU smoke, 222-case structural audit and independent Tower
-checks. Actual Fedora Slurm and RTX 4090 execution remain for the native run.
+checks. The [native full agenda review](docs/AGENDA_REVIEW.md) records all eight
+completed Fedora stages and their verified scientific artifacts. No trained
+complete joint solver gate passed; the roadmap above sets out the next research
+questions without changing the archived gates.
