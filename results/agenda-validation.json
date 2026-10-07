@@ -1,0 +1,1438 @@
+{
+  "schema": "tdn.research-agenda-validation/v1",
+  "scope": "cloud CPU development correctness and actual unmodified Tower validation; no native Slurm or CUDA execution",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2090922c72c4c098becbbaccab3fbec59e54c108",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+  "source_parent_commit": "2090922c72c4c098becbbaccab3fbec59e54c108",
+  "tests": {
+    "broad_regression": {
+      "path": ".runtime/agenda-regression.xml",
+      "sha256": "45dd48281b714b7b4e59060a3e01d2a44cff3d2895560d292ce6658ce0e83b77",
+      "tests": 2668,
+      "passed": 2667,
+      "skipped": 1,
+      "seconds": 686.068
+    },
+    "final_shared_reporting": {
+      "path": ".runtime/agenda-shared-final.xml",
+      "sha256": "4472780115210595d81a550cca7cd346a555a2e5005e1e58c4ca9ebfede8d43b",
+      "tests": 131,
+      "passed": 130,
+      "skipped": 1,
+      "seconds": 46.819
+    },
+    "gpu": "114 new CUDA cases collected but not executed in this CPU cloud; each native GPU stage requires exactly those plus 38 consistency cases, 152 distinct cases without failures/errors/skips or filtering",
+    "optional_skip": "JSON-schema development dependency absent; native Tower contracts independently validated",
+    "final_agenda_and_affected_workflows": {
+      "scope": "final frozen-source agenda and existing consistency/Fedora/premix workflow regression",
+      "path": ".runtime/agenda-release-tests.xml",
+      "sha256": "2b450074843a2f2e08d7785abf7a921021333ceb0a66f9b6e596be0dda0eaed6",
+      "tests": 558,
+      "passed": 558,
+      "skipped": 0,
+      "seconds": 121.73
+    }
+  },
+  "full_protocol_sha256": "8ee177101e3e4a719a709ffa841be3199c0f94583a8e7ad282df2b5d88896aa3",
+  "question_stages": {
+    "Q1": [
+      "structure",
+      "controls",
+      "confirm"
+    ],
+    "Q2": [
+      "structure",
+      "kernel",
+      "confirm"
+    ],
+    "Q3": [
+      "structure",
+      "kernel",
+      "confirm"
+    ],
+    "Q4": [
+      "structure",
+      "prepare",
+      "compression",
+      "confirm"
+    ],
+    "Q5": [
+      "structure",
+      "policy"
+    ],
+    "Q6": [
+      "structure",
+      "confirm",
+      "policy"
+    ],
+    "Q7": [
+      "policy"
+    ]
+  },
+  "desktop": {
+    "hardware": {
+      "user": "rahel",
+      "root": "/home/rahel/TDN",
+      "physical_cpu_cores": 8,
+      "scheduler_cpus": 16,
+      "physical_host_ram_gib": 128,
+      "scheduler_memory_mib": 110000,
+      "gpu_name": "RTX 4090",
+      "dedicated_gpu_vram_gib": 24,
+      "gpu_count": 1
+    },
+    "stage_budgets": {
+      "structure": {
+        "seconds": 600,
+        "cpus": 8,
+        "mem_gib": 48,
+        "walltime": "00:20:00"
+      },
+      "prepare": {
+        "seconds": 1800,
+        "cpus": 8,
+        "mem_gib": 48,
+        "walltime": "00:45:00"
+      },
+      "controls": {
+        "seconds": 1200,
+        "cpus": 4,
+        "mem_gib": 32,
+        "walltime": "00:30:00"
+      },
+      "optimize": {
+        "seconds": 1800,
+        "cpus": 4,
+        "mem_gib": 32,
+        "walltime": "00:45:00"
+      },
+      "compression": {
+        "seconds": 1200,
+        "cpus": 4,
+        "mem_gib": 32,
+        "walltime": "00:30:00"
+      },
+      "kernel": {
+        "seconds": 1200,
+        "cpus": 4,
+        "mem_gib": 32,
+        "walltime": "00:30:00"
+      },
+      "confirm": {
+        "seconds": 1800,
+        "cpus": 4,
+        "mem_gib": 48,
+        "walltime": "00:45:00"
+      },
+      "policy": {
+        "seconds": 1200,
+        "cpus": 4,
+        "mem_gib": 32,
+        "walltime": "00:30:00"
+      }
+    },
+    "gpu_memory": {
+      "soft_cap_gib": 18,
+      "soft_fraction": 0.75,
+      "hard_device_used_fraction": 0.9
+    },
+    "stage_order": [
+      "structure",
+      "prepare",
+      "controls",
+      "optimize",
+      "compression",
+      "kernel",
+      "confirm",
+      "policy"
+    ],
+    "full_declared_training_trials": {
+      "controls": 11,
+      "optimize": 36,
+      "compression": 18,
+      "kernel": 4
+    },
+    "maximum_confirmation_variants": 12
+  },
+  "final_cpu_smoke": {
+    "run_dir": "runs/agenda-validation-release-20261007",
+    "protocol_sha256": "d945efb9d1c4dca59389c4e78957ff9808021786123dfd41128ce00fd3374068",
+    "stages": {
+      "structure": {
+        "summary": {
+          "schema": "tdn.agenda-structural/v1",
+          "benchmark_suite": "agenda",
+          "stage": "structure",
+          "status": "COMPLETED",
+          "expected_cases": 32,
+          "reported_cases": 32,
+          "required_failures": [],
+          "correctness_failures": 0,
+          "unreported_case_ids": [],
+          "outcome_counts": {
+            "PASS": 10,
+            "OBSERVED": 22
+          },
+          "elapsed_seconds": 5.344436914994731,
+          "numerical_budget_seconds": 120,
+          "device": "cpu",
+          "training_attempted": false,
+          "question_ids": [
+            "gate_span",
+            "temporal_capacity",
+            "strong_diffusion_orientation",
+            "moment_closure",
+            "cubic_finite_step",
+            "stiff_input_output_scales",
+            "separable_phase_kernel",
+            "aliasing_discretization",
+            "defect_estimator_acceptance",
+            "unequal_unseen_steps"
+          ],
+          "rank_summary": {
+            "2": {
+              "cases": 1,
+              "all_promising": true,
+              "maximum_relative_kernel_error": 0.00046750702710470757
+            },
+            "4": {
+              "cases": 1,
+              "all_promising": true,
+              "maximum_relative_kernel_error": 5.3142242897063156e-11
+            },
+            "8": {
+              "cases": 1,
+              "all_promising": true,
+              "maximum_relative_kernel_error": 2.4905470358671255e-14
+            }
+          },
+          "error": null,
+          "rank_promising": true,
+          "selected_rank": 2,
+          "rank_gate_convention": "oracle Gauss-Legendre response R terms plus two analytic Strang terms; learned commutator-prefactored rank R expands to up to 3R terms",
+          "rank_gate_limitation": "development eligibility only; passing the response quadrature oracle does not prove learned filter/MLP representability or solver advantage",
+          "interpretation": "oracle representation diagnostics; no learned/FNO/classical solver advantage established"
+        },
+        "manifest_sha256": "7822a165000b9f4a9e04912bb866a83e2a0bef8fa6c207c181bf0e80ef7739d9",
+        "sealed_files": 7,
+        "sealed_bytes": 132142,
+        "execution_mode": "local-cpu",
+        "device": "cpu"
+      },
+      "prepare": {
+        "summary": {
+          "schema": "tdn.research-agenda/v1",
+          "stage": "prepare",
+          "status": "COMPLETED",
+          "profile": "smoke",
+          "device": "cpu",
+          "elapsed_seconds": 6.838492209004471,
+          "scientific_outcome": "DESCRIPTIVE_BOUNDED_AUDIT",
+          "counts": {
+            "parents": {
+              "train": 4,
+              "validation": 4,
+              "calibration": 2,
+              "confirmation": 4
+            },
+            "accepted_references": 76,
+            "continuum_parent_ids": [
+              "confirmation-1500000-field-0-physics-0",
+              "confirmation-1500000-field-1-physics-0"
+            ],
+            "reference_tracks": {
+              "discrete": 68,
+              "continuum": 8
+            },
+            "rows": 76
+          },
+          "cohorts_sealed_separately": true,
+          "normalization_split": "train",
+          "reference_uncertainty_is_certificate": false
+        },
+        "manifest_sha256": "c287055e4bb732f4e5d26a4c165a91e6f74bf961740557c9d2b2f5b8626bb1c6",
+        "sealed_files": 12,
+        "sealed_bytes": 277584,
+        "execution_mode": "local-cpu",
+        "device": "cpu"
+      },
+      "controls": {
+        "summary": {
+          "schema": "tdn.research-agenda/v1",
+          "stage": "controls",
+          "status": "COMPLETED",
+          "profile": "smoke",
+          "device": "cpu",
+          "elapsed_seconds": 9.049326818989357,
+          "scientific_outcome": "DESCRIPTIVE_BOUNDED_AUDIT",
+          "declared_trials": 11,
+          "attempted_trials": 11,
+          "completed_trials": 11,
+          "trained_selected": 6,
+          "initializations_selected": 5,
+          "counts": {
+            "rows": 55
+          },
+          "memory": {
+            "enabled": false,
+            "observations": 0,
+            "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+          },
+          "scope": "bounded mechanism tests; no FNO-paper reproduction or universal superiority claim"
+        },
+        "manifest_sha256": "c9c553d0f0b31ed37a3f7ce2a29fadbb2ac3598ea463795dec1aa2333b5f0ba4",
+        "sealed_files": 51,
+        "sealed_bytes": 515312,
+        "execution_mode": "local-cpu",
+        "device": "cpu"
+      },
+      "optimize": {
+        "summary": {
+          "schema": "tdn.research-agenda/v1",
+          "stage": "optimize",
+          "status": "COMPLETED",
+          "profile": "smoke",
+          "device": "cpu",
+          "elapsed_seconds": 7.929033651002101,
+          "scientific_outcome": "DESCRIPTIVE_BOUNDED_AUDIT",
+          "declared_trials": 16,
+          "attempted_trials": 16,
+          "completed_trials": 16,
+          "trained_selected": 7,
+          "initializations_selected": 9,
+          "selected_hyperparameters": {
+            "local_gate": {
+              "trial_id": "optimize-local_gate-960011-reaction-first-lr0.001-b1",
+              "learning_rate": 0.001,
+              "batch_size": 1,
+              "best_validation_loss": 5.467587038121557e-07,
+              "selection": "TRAINED_CHECKPOINT"
+            },
+            "source_closure": {
+              "trial_id": "optimize-source_closure-960011-reaction-first-lr0.001-b2",
+              "learning_rate": 0.001,
+              "batch_size": 2,
+              "best_validation_loss": 5.497631597091898e-07,
+              "selection": "TRAINED_CHECKPOINT"
+            },
+            "source": {
+              "trial_id": "optimize-source-960011-reaction-first-lr0.0003-b1",
+              "learning_rate": 0.0003,
+              "batch_size": 1,
+              "best_validation_loss": 5.512614219641924e-07,
+              "selection": "SELECTED_INITIALIZATION"
+            },
+            "source_time": {
+              "trial_id": "optimize-source_time-960011-reaction-first-lr0.0003-b1",
+              "learning_rate": 0.0003,
+              "batch_size": 1,
+              "best_validation_loss": 5.512614219641924e-07,
+              "selection": "SELECTED_INITIALIZATION"
+            }
+          },
+          "counts": {
+            "rows": 80
+          },
+          "memory": {
+            "enabled": false,
+            "observations": 0,
+            "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+          },
+          "scope": "bounded mechanism tests; no FNO-paper reproduction or universal superiority claim"
+        },
+        "manifest_sha256": "ee6fe3a4f255621f84c89e42276a8a73aa84e41ec0c27dab25fe402d9f5d145d",
+        "sealed_files": 71,
+        "sealed_bytes": 730891,
+        "execution_mode": "local-cpu",
+        "device": "cpu"
+      },
+      "compression": {
+        "summary": {
+          "schema": "tdn.research-agenda/v1",
+          "stage": "compression",
+          "status": "COMPLETED",
+          "profile": "smoke",
+          "device": "cpu",
+          "elapsed_seconds": 4.311564452000312,
+          "scientific_outcome": "DESCRIPTIVE_BOUNDED_AUDIT",
+          "declared_trials": 6,
+          "attempted_trials": 6,
+          "completed_trials": 6,
+          "trained_selected": 2,
+          "initializations_selected": 4,
+          "counts": {
+            "rows": 36
+          },
+          "memory": {
+            "enabled": false,
+            "observations": 0,
+            "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+          },
+          "scope": "bounded mechanism tests; no FNO-paper reproduction or universal superiority claim"
+        },
+        "manifest_sha256": "00d27fc8589f5818857acfd6df60d0397cf1007d09680a820a143d3918f3f1ed",
+        "sealed_files": 31,
+        "sealed_bytes": 339621,
+        "execution_mode": "local-cpu",
+        "device": "cpu"
+      },
+      "kernel": {
+        "summary": {
+          "schema": "tdn.research-agenda/v1",
+          "stage": "kernel",
+          "status": "COMPLETED",
+          "profile": "smoke",
+          "device": "cpu",
+          "elapsed_seconds": 6.840229681998608,
+          "scientific_outcome": "DESCRIPTIVE_BOUNDED_AUDIT",
+          "declared_trials": 4,
+          "attempted_trials": 4,
+          "completed_trials": 4,
+          "trained_selected": 3,
+          "initializations_selected": 1,
+          "counts": {
+            "rows": 20
+          },
+          "memory": {
+            "enabled": false,
+            "observations": 0,
+            "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+          },
+          "scope": "bounded mechanism tests; no FNO-paper reproduction or universal superiority claim"
+        },
+        "manifest_sha256": "305d9362458645a05cacdcb389dd5e0f82c505adf6e452e1d16f4c25241a0bdd",
+        "sealed_files": 23,
+        "sealed_bytes": 201311,
+        "execution_mode": "local-cpu",
+        "device": "cpu"
+      },
+      "confirm": {
+        "summary": {
+          "schema": "tdn.research-agenda/v1",
+          "stage": "confirm",
+          "status": "COMPLETED",
+          "profile": "smoke",
+          "device": "cpu",
+          "elapsed_seconds": 11.09977833100129,
+          "scientific_outcome": "NO_JOINT_PREDECLARED_GATE_PASS",
+          "models": 6,
+          "candidates": 660,
+          "frontiers": 2112,
+          "continuous_field_clusters": 2,
+          "phase_seed_clusters": 1,
+          "physical_parents": 4,
+          "confirmed_criteria": {
+            "primary_target": 0.0002,
+            "norms": [
+              "rms",
+              "max"
+            ],
+            "minimum_overall_coverage": 0.9,
+            "minimum_each_regime_coverage": 0.75,
+            "maximum_spatial_regression_ratio": 1.1,
+            "spatial_absolute_floor": 1e-06,
+            "minimum_median_speedup_over_classical": 1.1,
+            "classical_coverage_must_be_retained": true,
+            "maximum_false_acceptance_rate": 0.01,
+            "operational_proposal": true,
+            "statistical_significance_claim": false
+          },
+          "planned_slots": 6,
+          "missing_slots": 0,
+          "criteria_rows": 48,
+          "descriptive_per_norm_passes": 8,
+          "joint_criteria_rows": 12,
+          "joint_criteria_passes": 0,
+          "fresh_confirmation_used_for_tuning": false,
+          "counts": {
+            "rows": 2838
+          },
+          "memory": {
+            "enabled": false,
+            "observations": 0,
+            "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+          },
+          "scope": "bounded mechanism tests; no FNO-paper reproduction or universal superiority claim"
+        },
+        "manifest_sha256": "69ce4614a0ad228400fc44fec0f08c7d9a31056701923d60e97e9d9618ddef9f",
+        "sealed_files": 9,
+        "sealed_bytes": 6128239,
+        "execution_mode": "local-cpu",
+        "device": "cpu"
+      },
+      "policy": {
+        "summary": {
+          "schema": "tdn.research-agenda/v1",
+          "stage": "policy",
+          "status": "COMPLETED",
+          "profile": "smoke",
+          "device": "cpu",
+          "elapsed_seconds": 39.51830336000421,
+          "scientific_outcome": "FALSE_ACCEPTANCE_GATE_PASS",
+          "models": 3,
+          "calibration_rows": 48,
+          "attempts": 207,
+          "policy_endpoints": 216,
+          "accepted": 109,
+          "fallbacks": 35,
+          "false_accepts": 0,
+          "false_accept_rate": 0.0,
+          "false_accepts_rms": 0,
+          "false_accepts_max": 0,
+          "all_rejected_work_charged": true,
+          "calibration_sha256": "04c5b8fd94830806f7d4ce9b32002fd75907cdede2f42d31f7bcc1140d581239",
+          "timing_scope": "component-attributed separate-policy costs; shared benchmark computes all estimator components, actual benchmark time reported separately",
+          "actual_attempt_benchmark_seconds": 19.70873247194686,
+          "effective_attempt_cap": 2,
+          "frozen_step_sizes": [
+            0.09,
+            0.045
+          ],
+          "uncertainty_is_certificate": false,
+          "policy_status": "EMPIRICAL_UNCERTIFIED_ACCEPTANCE_AUDIT",
+          "counts": {
+            "rows": 489
+          },
+          "memory": {
+            "enabled": false,
+            "observations": 0,
+            "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+          },
+          "scope": "bounded mechanism tests; no FNO-paper reproduction or universal superiority claim"
+        },
+        "manifest_sha256": "7cff83e99fccb8b21cfddad2ef33a41092209730645087cf7a2ade50223740ce",
+        "sealed_files": 9,
+        "sealed_bytes": 2014193,
+        "execution_mode": "local-cpu",
+        "device": "cpu"
+      }
+    }
+  },
+  "full_training_free_structural_development_audit": {
+    "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+    "scope": "cloud CPU training-free mathematical development audit; no full confirmation data loaded",
+    "schema": "tdn.agenda-structural/v1",
+    "benchmark_suite": "agenda",
+    "stage": "structure",
+    "status": "COMPLETED",
+    "expected_cases": 222,
+    "reported_cases": 222,
+    "required_failures": [],
+    "correctness_failures": 0,
+    "unreported_case_ids": [],
+    "outcome_counts": {
+      "PASS": 34,
+      "OBSERVED": 188
+    },
+    "elapsed_seconds": 92.7455535629997,
+    "numerical_budget_seconds": 600,
+    "device": "cpu",
+    "training_attempted": false,
+    "question_ids": [
+      "gate_span",
+      "temporal_capacity",
+      "strong_diffusion_orientation",
+      "moment_closure",
+      "cubic_finite_step",
+      "stiff_input_output_scales",
+      "separable_phase_kernel",
+      "aliasing_discretization",
+      "defect_estimator_acceptance",
+      "unequal_unseen_steps"
+    ],
+    "rank_summary": {
+      "2": {
+        "cases": 24,
+        "all_promising": false,
+        "maximum_relative_kernel_error": 0.10843339959755902
+      },
+      "4": {
+        "cases": 24,
+        "all_promising": true,
+        "maximum_relative_kernel_error": 0.01917239107138399
+      },
+      "8": {
+        "cases": 24,
+        "all_promising": true,
+        "maximum_relative_kernel_error": 3.0242817385322428e-05
+      }
+    },
+    "error": null,
+    "rank_promising": true,
+    "selected_rank": 4,
+    "rank_gate_convention": "oracle Gauss-Legendre response R terms plus two analytic Strang terms; learned commutator-prefactored rank R expands to up to 3R terms",
+    "rank_gate_limitation": "development eligibility only; passing the response quadrature oracle does not prove learned filter/MLP representability or solver advantage",
+    "interpretation": "oracle representation diagnostics; no learned/FNO/classical solver advantage established"
+  },
+  "actual_parallel_teacher_validation": {
+    "category": "cloud_cpu_correctness_validation",
+    "native_gpu_validation": false,
+    "profile": "smoke",
+    "device": "cpu",
+    "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+    "worker_processes": 2,
+    "reference_count": 76,
+    "accepted_reference_count": 76,
+    "completed_parents": 14,
+    "stages": {
+      "structure": {
+        "sealed": "VERIFIED",
+        "manifest_sha256": "044979a2a43c836f9cc025c1ffda0599627f043f63d20d6baa9ff7fd4345e80e",
+        "status": "COMPLETED",
+        "elapsed_seconds": 4.227781517998665,
+        "execution_mode": "local-cpu",
+        "summary": {
+          "schema": "tdn.agenda-structural/v1",
+          "benchmark_suite": "agenda",
+          "stage": "structure",
+          "status": "COMPLETED",
+          "expected_cases": 32,
+          "reported_cases": 32,
+          "required_failures": [],
+          "correctness_failures": 0,
+          "unreported_case_ids": [],
+          "outcome_counts": {
+            "PASS": 10,
+            "OBSERVED": 22
+          },
+          "elapsed_seconds": 2.2559648400056176,
+          "numerical_budget_seconds": 120,
+          "device": "cpu",
+          "training_attempted": false,
+          "question_ids": [
+            "gate_span",
+            "temporal_capacity",
+            "strong_diffusion_orientation",
+            "moment_closure",
+            "cubic_finite_step",
+            "stiff_input_output_scales",
+            "separable_phase_kernel",
+            "aliasing_discretization",
+            "defect_estimator_acceptance",
+            "unequal_unseen_steps"
+          ],
+          "rank_summary": {
+            "2": {
+              "cases": 1,
+              "all_promising": true,
+              "maximum_relative_kernel_error": 0.00046750702710470757
+            },
+            "4": {
+              "cases": 1,
+              "all_promising": true,
+              "maximum_relative_kernel_error": 5.3142242897063156e-11
+            },
+            "8": {
+              "cases": 1,
+              "all_promising": true,
+              "maximum_relative_kernel_error": 2.4905470358671255e-14
+            }
+          },
+          "error": null,
+          "rank_promising": true,
+          "selected_rank": 2,
+          "rank_gate_convention": "oracle Gauss-Legendre response R terms plus two analytic Strang terms; learned commutator-prefactored rank R expands to up to 3R terms",
+          "rank_gate_limitation": "development eligibility only; passing the response quadrature oracle does not prove learned filter/MLP representability or solver advantage",
+          "interpretation": "oracle representation diagnostics; no learned/FNO/classical solver advantage established"
+        }
+      },
+      "prepare": {
+        "sealed": "VERIFIED",
+        "manifest_sha256": "6741c7bda2cc4f65a861de8dbefad5ffe7d2fe956a36d40d6fa2f23e4c088add",
+        "status": "COMPLETED",
+        "elapsed_seconds": 11.382765407004626,
+        "execution_mode": "local-cpu",
+        "summary": {
+          "schema": "tdn.research-agenda/v1",
+          "stage": "prepare",
+          "status": "COMPLETED",
+          "profile": "smoke",
+          "device": "cpu",
+          "elapsed_seconds": 8.528252403004444,
+          "scientific_outcome": "DESCRIPTIVE_BOUNDED_AUDIT",
+          "counts": {
+            "parents": {
+              "train": 4,
+              "validation": 4,
+              "calibration": 2,
+              "confirmation": 4
+            },
+            "accepted_references": 76,
+            "continuum_parent_ids": [
+              "confirmation-1500000-field-0-physics-0",
+              "confirmation-1500000-field-1-physics-0"
+            ],
+            "reference_tracks": {
+              "discrete": 68,
+              "continuum": 8
+            },
+            "rows": 76
+          },
+          "cohorts_sealed_separately": true,
+          "normalization_split": "train",
+          "reference_uncertainty_is_certificate": false
+        }
+      }
+    },
+    "logs": {
+      "structure": "/workspace/TDN/.runtime/agenda-parallel-release/structure.log",
+      "prepare": "/workspace/TDN/.runtime/agenda-parallel-release/prepare.log"
+    }
+  },
+  "actual_native_tower_smoke_validation": {
+    "scope": "actual cloud CPU eight-stage smoke and unmodified native Tower reader, no CUDA validation",
+    "tower_commit": "356861e5b83cd9e162fb39727604e1bc52bcf5a9",
+    "stages": [
+      {
+        "stage": "structure",
+        "report": "runs/agenda-validation-release-20261007/structure-tower/tdn-20261007T131337464527Z-467905f13188",
+        "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+        "seal_verified": true,
+        "contract_valid": true,
+        "metric_records": 3,
+        "log_entries": 17,
+        "reporting_complete": true,
+        "science_files_unchanged": true,
+        "table_rows": 32,
+        "tables": {
+          "agenda_cases": {
+            "rows": 29,
+            "pages": 1
+          },
+          "agenda_references": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_training": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_optimization": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_capacity": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_kernels": {
+            "rows": 3,
+            "pages": 1
+          },
+          "agenda_confirmation": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_policy": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_comparisons": {
+            "rows": 0,
+            "pages": 1
+          }
+        },
+        "learning_curves": {},
+        "matched_learning_metric_values": 0,
+        "reporting_omission_count": 0,
+        "all_science_files_inventoried": true,
+        "artifact_count": 10,
+        "artifact_hash_status_counts": {
+          "computed": 5,
+          "computed_agenda_projection": 5
+        }
+      },
+      {
+        "stage": "prepare",
+        "report": "runs/agenda-validation-release-20261007/prepare-tower/tdn-20261007T131346445900Z-1151d332b9af",
+        "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+        "seal_verified": true,
+        "contract_valid": true,
+        "metric_records": 3,
+        "log_entries": 19,
+        "reporting_complete": true,
+        "science_files_unchanged": true,
+        "table_rows": 76,
+        "tables": {
+          "agenda_cases": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_references": {
+            "rows": 76,
+            "pages": 1
+          },
+          "agenda_training": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_optimization": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_capacity": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_kernels": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_confirmation": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_policy": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_comparisons": {
+            "rows": 0,
+            "pages": 1
+          }
+        },
+        "learning_curves": {},
+        "matched_learning_metric_values": 0,
+        "reporting_omission_count": 0,
+        "all_science_files_inventoried": true,
+        "artifact_count": 15,
+        "artifact_hash_status_counts": {
+          "computed": 10,
+          "computed_agenda_projection": 5
+        }
+      },
+      {
+        "stage": "controls",
+        "report": "runs/agenda-validation-release-20261007/controls-tower/tdn-20261007T131402476222Z-4be65bc1f7b9",
+        "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+        "seal_verified": true,
+        "contract_valid": true,
+        "metric_records": 36,
+        "log_entries": 29,
+        "reporting_complete": true,
+        "science_files_unchanged": true,
+        "table_rows": 55,
+        "tables": {
+          "agenda_cases": {
+            "rows": 44,
+            "pages": 1
+          },
+          "agenda_references": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_training": {
+            "rows": 11,
+            "pages": 1
+          },
+          "agenda_optimization": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_capacity": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_kernels": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_confirmation": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_policy": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_comparisons": {
+            "rows": 0,
+            "pages": 1
+          }
+        },
+        "learning_curves": {
+          "controls-local_endpoint-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "controls-local_gate-960011-diffusion-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "controls-local_gate-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "controls-local_gate_time-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "controls-source-960011-diffusion-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "controls-source-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "controls-source_closure-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "controls-source_endpoint-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "controls-source_time-960011-diffusion-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "controls-source_time-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "controls-source_time_closure-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          }
+        },
+        "matched_learning_metric_values": 385,
+        "reporting_omission_count": 0,
+        "all_science_files_inventoried": true,
+        "artifact_count": 54,
+        "artifact_hash_status_counts": {
+          "computed": 49,
+          "computed_agenda_projection": 5
+        }
+      },
+      {
+        "stage": "optimize",
+        "report": "runs/agenda-validation-release-20261007/optimize-tower/tdn-20261007T131416007728Z-c72ee8825c51",
+        "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+        "seal_verified": true,
+        "contract_valid": true,
+        "metric_records": 51,
+        "log_entries": 34,
+        "reporting_complete": true,
+        "science_files_unchanged": true,
+        "table_rows": 80,
+        "tables": {
+          "agenda_cases": {
+            "rows": 64,
+            "pages": 1
+          },
+          "agenda_references": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_training": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_optimization": {
+            "rows": 16,
+            "pages": 1
+          },
+          "agenda_capacity": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_kernels": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_confirmation": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_policy": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_comparisons": {
+            "rows": 0,
+            "pages": 1
+          }
+        },
+        "learning_curves": {
+          "optimize-local_gate-960011-reaction-first-lr0.0003-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "optimize-local_gate-960011-reaction-first-lr0.0003-b2": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "optimize-local_gate-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "optimize-local_gate-960011-reaction-first-lr0.001-b2": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "optimize-source-960011-reaction-first-lr0.0003-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "optimize-source-960011-reaction-first-lr0.0003-b2": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "optimize-source-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "optimize-source-960011-reaction-first-lr0.001-b2": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "optimize-source_closure-960011-reaction-first-lr0.0003-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "optimize-source_closure-960011-reaction-first-lr0.0003-b2": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "optimize-source_closure-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "optimize-source_closure-960011-reaction-first-lr0.001-b2": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "optimize-source_time-960011-reaction-first-lr0.0003-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "optimize-source_time-960011-reaction-first-lr0.0003-b2": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "optimize-source_time-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "optimize-source_time-960011-reaction-first-lr0.001-b2": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          }
+        },
+        "matched_learning_metric_values": 560,
+        "reporting_omission_count": 0,
+        "all_science_files_inventoried": true,
+        "artifact_count": 74,
+        "artifact_hash_status_counts": {
+          "computed": 69,
+          "computed_agenda_projection": 5
+        }
+      },
+      {
+        "stage": "compression",
+        "report": "runs/agenda-validation-release-20261007/compression-tower/tdn-20261007T131428584415Z-9685a042b726",
+        "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+        "seal_verified": true,
+        "contract_valid": true,
+        "metric_records": 27,
+        "log_entries": 24,
+        "reporting_complete": true,
+        "science_files_unchanged": true,
+        "table_rows": 36,
+        "tables": {
+          "agenda_cases": {
+            "rows": 24,
+            "pages": 1
+          },
+          "agenda_references": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_training": {
+            "rows": 6,
+            "pages": 1
+          },
+          "agenda_optimization": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_capacity": {
+            "rows": 6,
+            "pages": 1
+          },
+          "agenda_kernels": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_confirmation": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_policy": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_comparisons": {
+            "rows": 0,
+            "pages": 1
+          }
+        },
+        "learning_curves": {
+          "compression-fno_anchor-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 4,
+            "gradient_points": 3,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "compression-fno_source-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 4,
+            "gradient_points": 3,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "compression-fno_source_depth4-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 4,
+            "gradient_points": 3,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "compression-fno_source_matched-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 4,
+            "gradient_points": 3,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "compression-precompress_source-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 4,
+            "gradient_points": 3,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "compression-source-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 4,
+            "gradient_points": 3,
+            "selection": "TRAINED_CHECKPOINT"
+          }
+        },
+        "matched_learning_metric_values": 294,
+        "reporting_omission_count": 0,
+        "all_science_files_inventoried": true,
+        "artifact_count": 34,
+        "artifact_hash_status_counts": {
+          "computed": 29,
+          "computed_agenda_projection": 5
+        }
+      },
+      {
+        "stage": "kernel",
+        "report": "runs/agenda-validation-release-20261007/kernel-tower/tdn-20261007T131438189672Z-3b664b43d16b",
+        "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+        "seal_verified": true,
+        "contract_valid": true,
+        "metric_records": 15,
+        "log_entries": 22,
+        "reporting_complete": true,
+        "science_files_unchanged": true,
+        "table_rows": 20,
+        "tables": {
+          "agenda_cases": {
+            "rows": 16,
+            "pages": 1
+          },
+          "agenda_references": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_training": {
+            "rows": 4,
+            "pages": 1
+          },
+          "agenda_optimization": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_capacity": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_kernels": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_confirmation": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_policy": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_comparisons": {
+            "rows": 0,
+            "pages": 1
+          }
+        },
+        "learning_curves": {
+          "kernel-pair_rank2-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "kernel-pair_rank4-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          },
+          "kernel-pair_rank4_closure-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "SELECTED_INITIALIZATION"
+          },
+          "kernel-pair_rank8-960011-reaction-first-lr0.001-b1": {
+            "validation_points": 3,
+            "gradient_points": 2,
+            "selection": "TRAINED_CHECKPOINT"
+          }
+        },
+        "matched_learning_metric_values": 140,
+        "reporting_omission_count": 0,
+        "all_science_files_inventoried": true,
+        "artifact_count": 26,
+        "artifact_hash_status_counts": {
+          "computed": 21,
+          "computed_agenda_projection": 5
+        }
+      },
+      {
+        "stage": "confirm",
+        "report": "runs/agenda-validation-release-20261007/confirm-tower/tdn-20261007T131451858303Z-40dcff7435a5",
+        "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+        "seal_verified": true,
+        "contract_valid": true,
+        "metric_records": 3,
+        "log_entries": 20,
+        "reporting_complete": true,
+        "science_files_unchanged": true,
+        "table_rows": 2838,
+        "tables": {
+          "agenda_cases": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_references": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_training": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_optimization": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_capacity": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_kernels": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_confirmation": {
+            "rows": 2778,
+            "pages": 22
+          },
+          "agenda_policy": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_comparisons": {
+            "rows": 60,
+            "pages": 1
+          }
+        },
+        "learning_curves": {},
+        "matched_learning_metric_values": 0,
+        "reporting_omission_count": 0,
+        "all_science_files_inventoried": true,
+        "artifact_count": 12,
+        "artifact_hash_status_counts": {
+          "computed": 5,
+          "declared_unverified": 2,
+          "computed_agenda_projection": 5
+        }
+      },
+      {
+        "stage": "policy",
+        "report": "runs/agenda-validation-release-20261007/policy-tower/tdn-20261007T131509844440Z-db8ebb9ded88",
+        "source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+        "seal_verified": true,
+        "contract_valid": true,
+        "metric_records": 3,
+        "log_entries": 20,
+        "reporting_complete": true,
+        "science_files_unchanged": true,
+        "table_rows": 489,
+        "tables": {
+          "agenda_cases": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_references": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_training": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_optimization": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_capacity": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_kernels": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_confirmation": {
+            "rows": 0,
+            "pages": 1
+          },
+          "agenda_policy": {
+            "rows": 489,
+            "pages": 4
+          },
+          "agenda_comparisons": {
+            "rows": 0,
+            "pages": 1
+          }
+        },
+        "learning_curves": {},
+        "matched_learning_metric_values": 0,
+        "reporting_omission_count": 0,
+        "all_science_files_inventoried": true,
+        "artifact_count": 12,
+        "artifact_hash_status_counts": {
+          "computed": 7,
+          "computed_agenda_projection": 5
+        }
+      }
+    ],
+    "current_source_tree_sha256": "a5605ac67aac5737a51873825e2054ec997e79206133328dfdd69d17b0f6e5f3",
+    "source_generation_matches_current_release": true
+  },
+  "production_shaped_reporting_fixture": {
+    "scope": "production-shaped full-size synthetic publication fixture, not neural/GPU evidence",
+    "tower_commit": "356861e5b83cd9e162fb39727604e1bc52bcf5a9",
+    "native_contract_valid": true,
+    "native_metric_records": 1,
+    "native_log_entries": 12,
+    "tables": [
+      {
+        "path": "outputs/agenda_cases.csv",
+        "rows": 0,
+        "pages": 1
+      },
+      {
+        "path": "outputs/agenda_references.csv",
+        "rows": 0,
+        "pages": 1
+      },
+      {
+        "path": "outputs/agenda_training.csv",
+        "rows": 0,
+        "pages": 1
+      },
+      {
+        "path": "outputs/agenda_optimization.csv",
+        "rows": 0,
+        "pages": 1
+      },
+      {
+        "path": "outputs/agenda_capacity.csv",
+        "rows": 0,
+        "pages": 1
+      },
+      {
+        "path": "outputs/agenda_kernels.csv",
+        "rows": 0,
+        "pages": 1
+      },
+      {
+        "path": "outputs/agenda_confirmation.csv",
+        "rows": 42852,
+        "pages": 335
+      },
+      {
+        "path": "outputs/agenda_policy.csv",
+        "rows": 0,
+        "pages": 1
+      },
+      {
+        "path": "outputs/agenda_comparisons.csv",
+        "rows": 120,
+        "pages": 1
+      }
+    ],
+    "canonical_rows_bytes": 49191793,
+    "agenda_outputs_bytes": 31057304,
+    "report": ".runtime/pytest-agenda-reporting-real-size/test_complete_declared_confirm0/tower/tdn-20261007T124739264620Z-833b2db60ee7"
+  },
+  "scientific_interpretation": [
+    "Computational completion does not establish a learned/FNO/classical efficiency advantage.",
+    "The tiny smoke has no joint predeclared solver gate pass; initialization selections are retained.",
+    "Observed policy false acceptance is descriptive on paired development cases and is not a population-risk certificate.",
+    "Nominal learned pair rank differs from the constructive offline response rank.",
+    "Full confirmation data have not been generated or loaded in this cloud implementation session.",
+    "Article text/metadata were not independently verified; the supplied source URLs were blocked by proxy 403."
+  ],
+  "commands": {
+    "smoke": "bash scripts/agenda_local.sh --smoke --run-dir runs/agenda-validation-release-20261007",
+    "native_smoke": "bash scripts/fedora_agenda.sh run --smoke",
+    "native_full": "bash scripts/fedora_agenda.sh run",
+    "review": "bash scripts/fedora_agenda.sh collect latest"
+  }
+}

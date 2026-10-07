@@ -174,7 +174,7 @@ This helper has an explicit small CPU development budget and preserves failed/in
 
 [results/validation.json](results/validation.json) records actual prepared-machine checks; [results/gates.json](results/gates.json) records scientific status. CPU and mocked scheduler tests do not establish CARC authorization or A100 behavior. GPU parity tests are skipped locally and are required to execute in the allocated GPU stage.
 
-The current small development regime has no demonstrated TDN efficiency advantage over cheap classical controls. A working training pipeline does not establish scientific merit. The smoke tolerance is a proposed screening value; confirmation remains blocked pending a reviewed tolerance/observable, physical ranges, untouched parents, and measured GPU gates.
+The current small development regime has no demonstrated TDN efficiency advantage over cheap classical controls. A working training pipeline does not establish scientific merit. The original RD pipeline's smoke tolerance remains a proposed screening value; its historical confirmation gates require reviewed tolerances, physical ranges, untouched parents and measured GPU evidence. The separately declared research agenda below implements the user's authorized bounded confirmation program.
 
 See [SOURCE_LEDGER.md](SOURCE_LEDGER.md), [REPO_AUDIT.md](REPO_AUDIT.md), [implementation map](docs/IMPLEMENTATION_MAP.md), [WORK_LOG.md](WORK_LOG.md) and [NEXT_ACTIONS.md](NEXT_ACTIONS.md). The original [implementation specification](docs/IMPLEMENTATION_SPEC.md) is retained for provenance. Gray–Scott, advection, distributed HALO, KAN, custom kernels and a confirmatory campaign are later extensions, not validated features of this initial RD pipeline.
 
@@ -184,3 +184,18 @@ The physical gate and mean/spatial ablations are described in
 [docs/CONSISTENCY.md](docs/CONSISTENCY.md). On the configured Fedora desktop,
 start with `bash scripts/fedora_consistency.sh run --smoke`, then use `run`
 for the full three-seed, 300-update experiment after the smoke completes.
+
+## Full bounded research agenda
+
+The uploaded research audit is implemented as an eight-stage program with
+source-before-transport, nonlinear-time, mean–variance and mode-pair controls,
+matched compression, fresh paired-grid confirmation and an audited fallback
+policy. See [docs/RESEARCH_AGENDA.md](docs/RESEARCH_AGENDA.md) for every question,
+Fedora budgets and the runbook. Start with
+`bash scripts/fedora_agenda.sh run --smoke`, then use the separate
+`--development` and full profiles. All stage allocations fit the desktop's
+110000 MiB Slurm memory ceiling and end within 20–45 minutes each.
+
+[results/agenda-validation.json](results/agenda-validation.json) records the
+completed eight-stage CPU smoke, 222-case structural audit and independent Tower
+checks. Actual Fedora Slurm and RTX 4090 execution remain for the native run.

@@ -41,9 +41,10 @@ The cluster workflow requires user `aadaniel`, charging account `anakano_81`, ro
   install its own `.venv`; do not copy the CARC or Windows venv. Retain FP32
   inference/training, TF32 off and FP64 teachers. GPU soft limits are 18 GiB and
   75% of initially free/total memory, with a 90% device-use hard threshold.
-- CPU stages run in sequence on the eight-core desktop. Every stage has a
-  30-minute allocation; there is no pending-job cap or automatic expansion.
-  Start with the allocated smoke before the full hypothesis run.
+- CPU stages run in sequence on the eight-core desktop. The historical premix
+  and consistency stages use 30-minute allocations; the research agenda uses
+  explicitly frozen 20/30/45-minute stage limits. There is no pending-job cap or
+  automatic expansion. Start with the allocated smoke before a full run.
 
 ## Bounded consistency program
 
@@ -66,3 +67,36 @@ The cluster workflow requires user `aadaniel`, charging account `anakano_81`, ro
   the original arms' lack of those constraints is reported as an observation.
 
 When editing, run tests appropriate to the change. Windows launcher syntax and actual NVIDIA execution need native-machine validation; Linux checks cannot substantiate those claims. Never delete results or overwrite a completed run to make a check pass.
+
+## Full bounded research agenda
+
+- Read `docs/RESEARCH_AGENDA.md`, `docs/AGENDA_REQUIREMENTS.json` and
+  `docs/AGENDA_LITERATURE.md` before changing the new eight-stage program.
+  `scripts/fedora_agenda.sh` keeps separate profiles, run IDs and latest pointers
+  from premix and consistency. Implemented question IDs Q1–Q7 cover all six
+  supplied literature questions and the deployment-policy extension.
+- The current Slurm node exposes 110000 MiB host memory, not all 128 GB of
+  physical RAM. Keep CPU stages at no more than eight physical cores and
+  48 GiB, GPU stages at four CPUs and 32/48 GiB, one RTX 4090, and the existing
+  18 GiB/75% VRAM soft limits. The eight stages run sequentially.
+- Keep source-before-transport zero-preserving, gate-placement and nonlinear
+  time controls separate, and phase/symmetry/reality intact in the pair kernel.
+  An already-quadratic pair branch must not acquire another quadratic gate.
+  Nominal learned rank and expanded separable terms are distinct quantities.
+- Mean–variance closure is an approximate dynamical treatment with exact
+  instantaneous identities, not the exact future mean/variance law. Retain the
+  old endpoint mean head and analytic spectral-mean control. Strong-diffusion
+  Strang orientation is an established classical control, not a novelty claim.
+- Full confirmation uses eight continuous-field variants crossed with four
+  physics choices and paired grids. The selected continuum subset is declared
+  separately. Keep same-grid FD/nodal and dealiased continuum-estimate targets
+  distinct. Reused parent/phase/seed/grid rows remain paired observations.
+- Freeze checkpoints, selection, source/profile/software and success criteria
+  before loading fresh confirmation. Smoke and development parent seed ranges
+  are disjoint from full confirmation; local wrappers reject full confirmation.
+- Policy fitting uses calibration only. Fresh references audit accepted
+  accuracy and false acceptance; they must not make deployment decisions.
+  Include rejected work, estimator work and measured classical fallback cost.
+- Preserve negative, failed, infeasible and initialization-selected outcomes.
+  Literal question-bearing executable evidence is required; documentation,
+  passing tests or computational completion alone does not show superiority.

@@ -1113,7 +1113,17 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
     from tdn.consistency_reporting import publish_consistency_outputs
     consistency_sources = {}
     consistency = publish_consistency_outputs(report_dir, roots, delegated_sources=consistency_sources)
-    delegated_sources = {**premix_sources, **consistency_sources}
+    # Legacy isolated workflow fixtures omit modules from later programs. Load
+    # the new publisher only for explicitly present canonical agenda row files.
+    agenda_sources = {}
+    agenda = None
+    agenda_stages = ("structure", "prepare", "controls", "optimize", "compression", "kernel", "confirm", "policy")
+    if any((root / "rows.json").exists() or (root / "rows.json").is_symlink() or any(
+            (root / stage / "rows.json").exists() or (root / stage / "rows.json").is_symlink()
+            for stage in agenda_stages) for root in roots):
+        from tdn.agenda_reporting import publish_agenda_outputs
+        agenda = publish_agenda_outputs(report_dir, roots, delegated_sources=agenda_sources)
+    delegated_sources = {**premix_sources, **consistency_sources, **agenda_sources}
     # The premix parser has its own explicit time budget.
     budget.deadline = time.monotonic() + MAX_SECONDS
     files, inventory, documents, xml_documents, used_paths = [], [], {}, {}, set()
@@ -1131,7 +1141,7 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             raw = None
             if path in delegated_sources:
                 delegated = delegated_sources[path]
-                suite = "consistency" if path in consistency_sources else "premix"
+                suite = "agenda" if path in agenda_sources else "consistency" if path in consistency_sources else "premix"
                 signature = (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns)
                 if signature == delegated["signature"]:
                     entry.update(sha256=delegated["sha256"], hash_status="computed_" + suite + "_projection",
@@ -1172,6 +1182,9 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
     for path, value in documents.items():
         if path.name == "manifest.json" and isinstance(value, dict):
             for key, digest in _dict(value.get("files")).items():
+                if (isinstance(digest, dict) and set(digest) == {"sha256", "bytes"}
+                        and type(digest["bytes"]) is int and digest["bytes"] >= 0):
+                    digest = digest["sha256"]
                 if (isinstance(key, str) and not Path(key).is_absolute() and ".." not in Path(key).parts
                         and isinstance(digest, str) and re.fullmatch(r"[0-9a-fA-F]{64}", digest)):
                     declared[path.parent / key] = (digest.lower(), _relative(path, report_dir))
@@ -1455,7 +1468,7 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                    "table_bytes_overrides": {"mechanisms.csv": MAX_MECHANISM_TABLE_BYTES}},
         "observed_read_bytes": budget.read_bytes,
         "hash_semantics": "computed = bytes read here; computed_premix_projection = bytes read by the dedicated "
-                          "premix parser with unchanged file identity; computed_consistency_projection = bytes read by the dedicated consistency parser with unchanged file identity; declared_unverified = original manifest assertion only; "
+                          "premix parser with unchanged file identity; computed_consistency_projection = bytes read by the dedicated consistency parser with unchanged file identity; computed_agenda_projection = bytes read by the dedicated agenda parser with unchanged file identity; declared_unverified = original manifest assertion only; "
                           "not_read_budget = no hash available within budgets. Source paths may name large binary files; "
                           "these are not copied or deserialized."}
     if any(path.name == "compact-spatial.json" for path in files):
@@ -1482,5 +1495,14 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         if not consistency["reporting_complete"]:
             results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) |
                                                     {"CONSISTENCY_REPORTING_INCOMPLETE"})
+    if agenda is not None:
+        results["agenda"] = agenda
+        results["reporting_omission_count"] += agenda["reporting_omission_count"]
+        results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) | {
+            source["scientific_outcome"] for source in agenda["sources"]
+            if isinstance(source.get("scientific_outcome"), str)})
+        if not agenda["reporting_complete"]:
+            results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) |
+                                                    {"AGENDA_REPORTING_INCOMPLETE"})
     atomic_json(outputs / "results.json", results)
     return results

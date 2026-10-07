@@ -196,3 +196,17 @@ Fedora GPU smoke above.
 - **Existing incompatible venv/profile:** preserve the old environment and
   results. Reconfigure explicitly for this checkout and create a compatible
   project venv; do not copy an environment between operating systems.
+
+## Complete research-audit program
+
+The new [research agenda](RESEARCH_AGENDA.md) implements every stage and
+literature question from the uploaded audit. Use
+`bash scripts/fedora_agenda.sh run --smoke`, followed by
+`run --development` and then `run` for the fresh full protocol. It reuses this
+Fedora profile and venv while keeping separate manifests/latest pointers.
+
+The eight stages run in sequence, using eight CPUs/48 GiB for CPU preparation
+and four CPUs/32–48 GiB plus one RTX 4090 for GPU work. Allocation limits are
+20, 30 or 45 minutes; exact science caps are frozen in `plan`. The observed
+Slurm ceiling is 110000 MiB host memory; all requests fit it. The existing
+18 GiB/75% VRAM soft policy remains in force.

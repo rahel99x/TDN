@@ -1,0 +1,445 @@
+{
+  "schema": "tdn.research-agenda.requirements.v1",
+  "source": "User-uploaded TDN research audit, Pasted text.txt, file_00000000008c81f8844baf3fa3e94e95",
+  "scope": "Every named stage, four architecture mechanisms, six literature experimental questions, and the deployment-policy extension",
+  "interpretation": "Requirements are declared before new full-cohort measurement. A completed computation is not a scientific success. Each question must expose independently resolved errors, uncertainty, controls, and limitations.",
+  "system": {
+    "project_root": "/home/rahel/TDN",
+    "host_cpu": "AMD Ryzen 7800X3D, 8 physical cores, 16 scheduled threads",
+    "physical_host_ram_gb": 128,
+    "slurm_total_memory_mb": 110000,
+    "gpu": "NVIDIA RTX 4090",
+    "dedicated_vram_gib": 24,
+    "venv": ".venv",
+    "partition": "local",
+    "account": "profile-defined optional local account; no CARC account inheritance",
+    "path_policy": "All project outputs, caches, temporary files, and reports stay inside the checkout. No /tmp or /scratch1.",
+    "allocation_policy": "Per-stage allocations must fit 110000 MiB scheduler memory. Short stages, no pending-job cap, no automatic budget expansion, no 20-hour neural allocation. Preserve an 18 GiB and 75% initially-free/total VRAM soft limit. Host/shared memory is not extra VRAM."
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "literature_direction": "Non-asymptotic splitting, large gradients, stiff order reduction",
+      "literal_question": "When does cubic defect scaling stop being an adequate finite-step model?",
+      "stages": [
+        "structure",
+        "controls",
+        "confirm"
+      ],
+      "required_measurements": [
+        "Independent FP64 coupled defect at multiple step sizes",
+        "Symmetric positive/negative perturbations and background subtraction",
+        "Uncertainty propagated after division by amplitude squared",
+        "Gate-only and gate-plus-constant least-squares residuals",
+        "Actual bounded-map temporal fit and nonlinear-time control",
+        "Crossed reaction, diffusion, amplitude, step size, mean and spectra"
+      ],
+      "interpretation": "Separate small-step local order, finite-step representability, and stiff accuracy; a cubic prefactor does not establish stiff order."
+    },
+    {
+      "id": "Q2",
+      "literature_direction": "Exponential integrators and stiff order conditions",
+      "literal_question": "Which input/output diffusion scales must the learned kernel retain?",
+      "stages": [
+        "structure",
+        "kernel",
+        "confirm"
+      ],
+      "required_measurements": [
+        "Actual discrete diffusion eigenvalues for both input modes and output mode",
+        "Mode pairs with the same output frequency and different input damping",
+        "Ablated input-only, output-only and full input/output-conditioned responses",
+        "Both Strang orientations against independently resolved strong-diffusion endpoints",
+        "Maximum-eigenvalue stiffness and spectral-gap homogenization separately"
+      ],
+      "interpretation": "Diffusion-first strong-diffusion behavior is an established classical control; the learned eigenvalue-conditioned response is a hypothesis."
+    },
+    {
+      "id": "Q3",
+      "literature_direction": "Bilinear/Volterra operators, separable interaction kernels, learned exponential integrators",
+      "literal_question": "Can the pair kernel be compressed without losing phase-dependent response?",
+      "stages": [
+        "structure",
+        "kernel",
+        "confirm"
+      ],
+      "required_measurements": [
+        "Offline rank 2, 4 and 8 response study before a trained-kernel interpretation",
+        "Mixed mode pairs with varied phases",
+        "Pair symmetry, Hermitian reality and translation-equivariance checks",
+        "Signed source dictionary and zero-preserving nonlocal transport",
+        "Count actual FFTs, local operator applications and complete-rollout cost",
+        "No multiplication of an already-quadratic pair branch by the existing quadratic gate"
+      ],
+      "interpretation": "State nominal rank and expanded separable terms separately; neither low rank nor physical limits alone demonstrate accuracy or efficiency."
+    },
+    {
+      "id": "Q4",
+      "literature_direction": "Operator aliasing and discretization consistency",
+      "literal_question": "Which rough-field failures arise from representation mismatch rather than temporal error?",
+      "stages": [
+        "structure",
+        "compression",
+        "confirm"
+      ],
+      "required_measurements": [
+        "The same continuous initial field sampled onto paired grids",
+        "Separate same-grid discrete-accuracy and continuum-refinement tracks",
+        "Native circular-grid product and a declared dealiased product diagnostic",
+        "Actual Fourier-support masks, not only identical mode integers",
+        "Near-Nyquist, rough, mixed/high-input-to-low-output pairs",
+        "Document information bypasses, including a full-state physical source into a precompressed encoder"
+      ],
+      "interpretation": "A changed product or dealiased solver is a changed target; do not pool its errors with the original finite-difference discrete target."
+    },
+    {
+      "id": "Q5",
+      "literature_direction": "Defect-based error estimators",
+      "literal_question": "Can a validated estimator eventually replace reference-informed step selection?",
+      "stages": [
+        "prepare",
+        "policy"
+      ],
+      "required_measurements": [
+        "Estimator and thresholds fitted on development/calibration parents only",
+        "Independent endpoint accuracy of accepted predictions",
+        "Reference uncertainty and both RMS and maximum norms",
+        "Composition agreement compared against an independent teacher",
+        "Accept/reject decisions, false-acceptance denominator and rates",
+        "Frozen thresholds and no fresh-reference-informed acceptance decisions"
+      ],
+      "interpretation": "Report an empirical audited policy, not a certified error estimator. Agreement of two wrong predictions is insufficient."
+    },
+    {
+      "id": "Q6",
+      "literature_direction": "Variable-step operator learning",
+      "literal_question": "Can unequal unseen steps remain accurate, rather than merely self-consistent?",
+      "stages": [
+        "structure",
+        "confirm",
+        "policy"
+      ],
+      "required_measurements": [
+        "Equal and unequal step compositions at the same final time",
+        "Genuinely unseen step sizes not used for training or validation selection",
+        "Independent resolved endpoints and composition-consistency error separately",
+        "Multiple step orderings with crossed stiffness",
+        "Complete-rollout accuracy and timed work including all substeps"
+      ],
+      "interpretation": "Self-consistency is an auxiliary diagnostic, not an endpoint accuracy target."
+    },
+    {
+      "id": "Q7",
+      "literature_direction": "Deployment acceptance, rejected work and classical fallback",
+      "literal_question": "Does an independently audited acceptance policy improve actual complete-solver accuracy and cost after rejected work and classical fallback?",
+      "stages": [
+        "policy"
+      ],
+      "required_measurements": [
+        "Fresh held-out accept/reject outcomes with independent teacher errors",
+        "False acceptances at each declared RMS and maximum target",
+        "Rejected neural and estimator work",
+        "Classical fallback calls and measured cost",
+        "Total accepted-plus-rejected-plus-fallback work",
+        "Comparison against directly running ETDRK4 and fused GL3",
+        "If estimator work is shared, distinguish actual benchmark work from selected-component policy cost estimates; do not label an attributed sum as independently timed standalone policy wall-clock work."
+      ],
+      "interpretation": "Post-hoc reference frontiers and deployable policy frontiers are distinct outputs. No claimed benefit may omit rejected work or fallback cost."
+    }
+  ],
+  "mechanisms": [
+    {
+      "id": "A1",
+      "name": "Source before spatial transport",
+      "stages": [
+        "structure",
+        "controls",
+        "compression",
+        "confirm"
+      ],
+      "requirements": [
+        "Zero-preserving transport of physically vanishing commutator-derived sources",
+        "Compare local gate, gate plus constant, filtered source, and signed-source dictionary",
+        "Use uniform backgrounds, single modes, phase-varied mixed modes and remote bumps",
+        "Arbitrary finite-weight zero limits for homogeneous fields, zero reaction, zero diffusion and zero time",
+        "Report quadratic spatial-shape residual and flat-receiver response"
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "Phase-aware stiffness-conditioned pair interaction",
+      "stages": [
+        "structure",
+        "kernel",
+        "confirm"
+      ],
+      "requirements": [
+        "Condition on h times the actual discrete input and output diffusion eigenvalues, reaction and mean",
+        "Rank 2, 4 and 8 offline study and learned controls",
+        "Preserve input phases, pair symmetry, real output and declared product convention",
+        "Do not raise quadratic response to fourth order with an additional quadratic gate",
+        "Report every transform and effective expanded factor count"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "Base solver strong-diffusion orientation",
+      "stages": [
+        "structure",
+        "controls",
+        "confirm"
+      ],
+      "requirements": [
+        "Reaction-first R(h/2)D(h)R(h/2) and diffusion-first D(h/2)R(h)D(h/2)",
+        "Independent cross of diffusion, reaction, h, mean and amplitude",
+        "Strong-diffusion limit R(h, mean(u0)) on connected periodic grids",
+        "Separate global homogenization from high-frequency stiffness",
+        "Full-rollout timing with actual feasible half-step fusion recorded"
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "Dynamical mean-variance closure",
+      "stages": [
+        "structure",
+        "controls",
+        "confirm"
+      ],
+      "requirements": [
+        "Exact instantaneous mean derivative r*(c-c*c-V)",
+        "Exact instantaneous variance derivative 2*mean(v*L(v))+2*r*(1-2*c)*V-2*r*mean(v*v*v)",
+        "Bounded moment representation and explicit approximate evolution/integration",
+        "Compare existing arbitrary mean head and existing spectral-mean classical correction",
+        "Fields with equal means and variances but different spectra and phases",
+        "Keep phase-dependent spatial kernel separate from moment energy summaries"
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "id": "S1",
+      "name": "structure",
+      "audit_stage": "1. Structural response audit",
+      "questions": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4",
+        "Q6"
+      ],
+      "mechanisms": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ],
+      "must_expose": [
+        "Gate-span representational obstruction above reference uncertainty",
+        "Temporal representability through actual bounded map",
+        "Strong-diffusion orientations",
+        "Offline pair rank",
+        "Exact mean/variance law and phase/spectrum diagnostics"
+      ]
+    },
+    {
+      "id": "S2",
+      "name": "prepare",
+      "audit_stage": "Shared teacher and calibration prerequisites",
+      "questions": [
+        "Q5"
+      ],
+      "mechanisms": [],
+      "must_expose": [
+        "Accepted independent FP64 teachers",
+        "Parent-disjoint training/validation/calibration/confirmation manifests",
+        "Training-only normalization",
+        "Continuous field/grid provenance",
+        "Frozen pre-confirmation success criteria"
+      ]
+    },
+    {
+      "id": "S3",
+      "name": "controls",
+      "audit_stage": "2. Minimal architecture controls",
+      "questions": [
+        "Q1",
+        "Q2"
+      ],
+      "mechanisms": [
+        "A1",
+        "A3",
+        "A4"
+      ],
+      "must_expose": [
+        "Gate-placement and nonlinear-time changes separately and together",
+        "Both orientations",
+        "Current gate and arbitrary mean-head anchors",
+        "Closure versus spectral-mean and classical controls"
+      ]
+    },
+    {
+      "id": "S4",
+      "name": "optimize",
+      "audit_stage": "3. Optimization diagnosis",
+      "questions": [
+        "Q1"
+      ],
+      "mechanisms": [
+        "A1"
+      ],
+      "must_expose": [
+        "Bounded learning-rate and batch alternatives",
+        "Gradient norms, correction magnitudes and losses by regime",
+        "Physical defect scales",
+        "Validation-only checkpoint selection including initialization",
+        "No longer training as an assumed fix"
+      ]
+    },
+    {
+      "id": "S5",
+      "name": "compression",
+      "audit_stage": "4. Matched compression study",
+      "questions": [
+        "Q4"
+      ],
+      "mechanisms": [
+        "A1"
+      ],
+      "must_expose": [
+        "Trained source-constrained premix versus precompression",
+        "Physical treatment, data, initialization and selection paired",
+        "Matched actual spectral support",
+        "Parameter-matched FNO and measured-cost comparison separately",
+        "Information bypass inventory",
+        "Initialization-selected pairs inconclusive"
+      ]
+    },
+    {
+      "id": "S6",
+      "name": "kernel",
+      "audit_stage": "5. Structured kernel study",
+      "questions": [
+        "Q2",
+        "Q3"
+      ],
+      "mechanisms": [
+        "A2"
+      ],
+      "must_expose": [
+        "Offline rank evidence retained even if negative",
+        "Rank 2, 4 and 8 independently selected trained arms",
+        "Economical representation versus fused GL3 rollout cost",
+        "Mixed-phase and stiff-response accuracy"
+      ]
+    },
+    {
+      "id": "S7",
+      "name": "confirm",
+      "audit_stage": "6. Fresh confirmation",
+      "questions": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4",
+        "Q6"
+      ],
+      "mechanisms": [
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ],
+      "must_expose": [
+        "Fresh continuous parents sampled on paired grids",
+        "Genuinely unseen equal and unequal steps",
+        "Crossed amplitude, variance, spectrum, diffusion and reaction",
+        "Rough/Nyquist RMS and maximum coverage",
+        "Independent mean/spatial errors and base regressions",
+        "Complete-solver ETDRK4 and fused GL3 frontiers"
+      ]
+    },
+    {
+      "id": "S8",
+      "name": "policy",
+      "audit_stage": "Deployment acceptance-policy extension",
+      "questions": [
+        "Q5",
+        "Q6",
+        "Q7"
+      ],
+      "mechanisms": [],
+      "must_expose": [
+        "Frozen calibration-only estimator and thresholds",
+        "False-acceptance counts/rates and denominators",
+        "Rejected neural/estimator work and measured fallback",
+        "Independent accepted endpoint RMS/maximum accuracy",
+        "Total policy work and direct classical controls"
+      ]
+    }
+  ],
+  "common_requirements": [
+    {
+      "id": "R01",
+      "requirement": "All named scientific questions must have actual executable records, including null/negative/inconclusive findings; a documentation-only mapping does not implement a question."
+    },
+    {
+      "id": "R02",
+      "requirement": "Freeze protocol, sources, software, profiles, prerequisite seals, splits and success criteria before fresh confirmation; development/full runs remain distinct."
+    },
+    {
+      "id": "R03",
+      "requirement": "Separate computational completion, numerical correctness, and scientific conclusions. Do not treat training or test success as a solver advantage."
+    },
+    {
+      "id": "R04",
+      "requirement": "Keep reference uncertainty, failed/infeasible cases, initialization selections and per-regime regressions visible. Repeated parent/seed/norm/schedule rows are paired descriptive evidence."
+    },
+    {
+      "id": "R05",
+      "requirement": "Use RMS and maximum norms separately; retain mean and spatial error components and compare matched uncertainty-aware tolerances."
+    },
+    {
+      "id": "R06",
+      "requirement": "Retain Strang, ETDRK4 and fused GL3 complete-solver controls; retain analytic spectral-mean correction for mean-closure comparison."
+    },
+    {
+      "id": "R07",
+      "requirement": "Keep training/inference FP32 and TF32 off, independent teachers FP64. Actual CUDA tests need a real allocated desktop GPU; cloud CPU evidence is not GPU validation."
+    },
+    {
+      "id": "R08",
+      "requirement": "Project reporting adapts to Tower; do not change Tower. Stage-specific JUnit files and declared science outputs must be published with exact provenance."
+    },
+    {
+      "id": "R09",
+      "requirement": "Established splitting, exponential/Volterra mechanisms and classical moment identities are not novel by relabeling. Local implementation deductions and new architecture hypotheses must be distinguished from measured results."
+    }
+  ],
+  "predeclared_success_criteria": {
+    "primary_target": 0.0002,
+    "norms": [
+      "rms",
+      "max"
+    ],
+    "minimum_overall_coverage": 0.9,
+    "minimum_each_regime_coverage": 0.75,
+    "maximum_spatial_regression_ratio": 1.1,
+    "spatial_absolute_floor": 1e-06,
+    "minimum_median_speedup_over_classical": 1.1,
+    "classical_coverage_must_be_retained": true,
+    "maximum_false_acceptance_rate": 0.01,
+    "interpretation": "Operational preregistered criteria; no statistical significance or uniform superiority assertion."
+  },
+  "full_confirmation_design": {
+    "continuous_field_variants": 8,
+    "physics_combinations_per_field": 4,
+    "physical_cases": 32,
+    "paired_grids": [
+      32,
+      64,
+      128
+    ],
+    "continuum_predeclared_cases": 8,
+    "interpretation": "Paired physical-factor cases and reused phase/seed clusters; not 32 independent random fields."
+  }
+}

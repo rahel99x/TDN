@@ -153,17 +153,21 @@ def native_validation_command(root, report):
     parameters = manifest.get("parameters", {})
     consistency = (isinstance(parameters, dict) and parameters.get("benchmark_suite") == "consistency"
                    or str(manifest.get("name", "")).startswith("TDN/consistency/"))
+    agenda = (isinstance(parameters, dict) and parameters.get("benchmark_suite") == "agenda"
+              or str(manifest.get("name", "")).startswith("TDN/agenda/"))
     _, config = tower_profile(root, report)
     ordinary = ["tower", "--no-state", "--no-plugins", "--config", str(config),
                 "run", "validate", str(root / ".tower/contracts/outputs.v1.json"), str(report)]
-    if not consistency:
+    if not consistency and not agenda:
         return ordinary, {}
     executable = shutil.which("tower")
     if executable is None:
         raise ValueError("Native validation requires your existing Tower executable on PATH")
     interpreter, source_root = tower_interpreter(executable)
     command = [interpreter, str(root / "scripts/tower_native_validate.py"),
-               str(root / ".tower/contracts/outputs.v1.json"), str(report), "--max-bytes", str(32 << 20)]
+               str(root / ".tower/contracts/outputs.v1.json"), str(report), "--max-bytes", str((64 if agenda else 32) << 20)]
+    if agenda:
+        command.extend(["--suite", "agenda"])
     environment = dict(os.environ)
     environment["PYTHONDONTWRITEBYTECODE"] = "1"
     if source_root is not None:

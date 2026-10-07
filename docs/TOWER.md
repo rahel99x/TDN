@@ -46,6 +46,36 @@ keep CPU/GPU JUnit results in `tests.csv` without changing sealed science files
 or importing unrelated workflow directories. Run its `paths latest` command
 for exact Tower report and `metrics.jsonl` paths. Tower itself is unchanged.
 
+The research agenda publishes one report per allocated stage: `structure`,
+`prepare`, `controls`, `optimize`, `compression`, `kernel`, `confirm`, and
+`policy`. Its nine `agenda_*.csv` tables expose structural cases, accepted and
+unresolved teachers, training and optimizer diagnostics, capacity and actual
+transform support, rank decisions, fresh confirmation, policy attempts, and
+paired comparisons. Every row contains its canonical `rows.json` pointer and
+SHA-256. Nested histories, regime diagnostics, FFT counts, phase spectra,
+attempt timings, and fallback details remain accessible through exact pointers.
+Empty cells mean the source omitted the field; no success or failure is invented.
+The reported GPU memory is dedicated device memory. Host RAM and Slurm's
+110,000 MiB node cap are separate resources.
+
+Agenda stages keep their science seals and stage-specific JUnit sources separate
+from their `tower/` sidecars. Initialization selections, rejected references,
+failed rank gates, spatial regressions, false acceptances, rejected work, and
+classical fallback costs remain visible. A complete report only establishes
+that the declared evidence was projected. Scientific decisions still come from
+the frozen stage protocol and measured errors, costs, and failures.
+
+Full confirmation crosses 32 physical parents, three grids, and unequal
+schedules; its candidates and RMS/maximum-error frontiers share one table.
+Agenda publication has a separate 64 MiB source allowance, a 64 MiB canonical
+file limit, and 40,000 rows / 16 MiB per ordinary agenda CSV table. The explicit
+confirmation override retains up to 80,000 rows / 48 MiB. Its named native validation
+uses the existing Tower API with a fixed **64 MiB shared contract read budget**.
+Only an explicitly marked agenda report selects this allowance; ordinary and
+consistency limits remain unchanged. The project helper requires `--suite
+agenda` for that allowance, never modifies Tower, and reports any truncation as
+incomplete publication. Tower's table viewer still reads bounded pages.
+
 The [premix program](PREMIX.md) produces one report per CPU/GPU stage. Run
 `bash scripts/carc_premix.sh paths latest` for each exact report and live
 `metrics.jsonl` path. Its dedicated `premix_candidates.csv`,
