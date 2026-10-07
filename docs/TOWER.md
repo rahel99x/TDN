@@ -6,6 +6,14 @@ its installation and its user settings remain unchanged. Project-owned
 explicit planning aggregate. Its CARC profile identifies `aadaniel` and
 `anakano_81`; reporting does not submit jobs or alter allocation limits.
 
+The [premix program](PREMIX.md) produces one report per CPU/GPU stage. Run
+`bash scripts/carc_premix.sh paths latest` for each exact report and live
+`metrics.jsonl` path. Its dedicated `premix_candidates.csv`,
+`premix_frontiers.csv`, `premix_checks.csv` and `premix_training.csv` tables keep
+the predeclared regimes, reference uncertainty, training selection, runtime and
+links to canonical source records. Partial exports and unsealed science remain
+explicit; a completed pipeline is not a model superiority claim.
+
 The [integration validation record](../results/tower_integration_validation.json)
 records 592 passing CPU tests and a complete default research run. Unmodified
 Tower 2.3.1 accepted all 14 contract checks, 860 metric records and 17 grouped log

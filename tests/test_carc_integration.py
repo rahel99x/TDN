@@ -44,7 +44,7 @@ def carc_integration(tmp_path):
     for name in ("configs", "tdn", "reference", "tests"):
         (root / name).mkdir()
     shutil.copy2(ROOT / "configs/carc-smoke.yaml", root / "configs/carc-smoke.yaml")
-    for name in ("__init__.py", "config.py", "reporting.py", "tower_analytics.py"):
+    for name in ("__init__.py", "config.py", "reporting.py", "tower_analytics.py", "premix_reporting.py"):
         shutil.copy2(ROOT / "tdn" / name, root / "tdn" / name)
     mocks = root / "mocks"
     mocks.mkdir()

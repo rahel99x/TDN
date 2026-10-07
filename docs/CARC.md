@@ -5,7 +5,15 @@ navigation, exported scientific tables, historical imports and scheduler-state
 reconciliation. Each allocated workflow prints `TDN_TOWER_DIR`; pass that exact
 directory as Tower's `--workdir`. CPU, GPU and resumed jobs use separate reports.
 
-The next experiment is the [compact spatial correction comparison](COMPACT_SPATIAL.md),
+The current experiment is the [premix hypothesis program](PREMIX.md), started
+with `bash scripts/carc_premix.sh run` (`plan` previews without submitting).
+Three independent CPU allocations test mechanisms, scaling and prepare accepted
+teachers. One A100 allocation then trains and evaluates five neural families,
+including FNO, over three paired seeds and predeclared stress regimes. Every
+allocation is capped at 30 minutes; no automatic follow-on campaign is submitted.
+Use `status`, `logs`, `paths` and `collect` with `latest` on the same wrapper.
+
+The preceding [compact spatial correction comparison](COMPACT_SPATIAL.md) remains available,
 started with `bash scripts/carc_compact_spatial.sh --submit`. One 30-minute CPU
 job runs correctness tests and compares ten prepared methods across reused
 controls, new amplitude/phase cases, and grid/batch scaling. Its 1,200-second

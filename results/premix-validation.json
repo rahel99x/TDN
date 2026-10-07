@@ -1,0 +1,408 @@
+{
+  "schema": "tdn.premix-implementation-validation/v1",
+  "validated_at_utc": "2026-10-07T02:10:18.211692+00:00",
+  "scope": "Cloud CPU implementation and reporting validation; no CARC submission or actual CUDA execution",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "f0f921b873f22491802d9a4083537eed5076e647",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "236d8268818939effe6956aba696f5371a36d4aa3aa98d90dc72f2d12364a509",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "commands": [
+    "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q -m 'not gpu'",
+    "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_carc_integration.py tests/test_premix_*.py -m 'not gpu'",
+    "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_research_replication_cli.py::test_replication_cli_actual_smoke_seals_all_seed_blocks",
+    "bash scripts/premix_local.sh --run-dir .runtime/premix-validation/cli-smoke-final-rechecked",
+    "bash scripts/carc_premix.sh plan --smoke --run-id premix-preview-validation"
+  ],
+  "test_runs": [
+    {
+      "junit_path": ".runtime/premix-validation/all-cpu-tests.xml",
+      "sha256": "ffb44b775f92dcf10eded52de4ac8bb2d4fdeedd58fb21f33ab09a5769ee53b6",
+      "observed_counts": {
+        "passed": 1949,
+        "failed": 4,
+        "skipped": 1
+      }
+    },
+    {
+      "junit_path": ".runtime/premix-validation/final-targeted-tests.xml",
+      "sha256": "d4c109e7415e5dbf1483debb15bc6fdbf89d72fee90c6d8f37cb3bee317348ce",
+      "observed_counts": {
+        "passed": 288
+      }
+    },
+    {
+      "junit_path": ".runtime/premix-validation/replication-recheck.xml",
+      "sha256": "71788e35bf20465dd47db5866f88d9db30155dcb0c519dbe6ec3e265774d4ba8",
+      "observed_counts": {
+        "passed": 1
+      }
+    }
+  ],
+  "latest_outcome_by_unique_test": {
+    "passed": 1953,
+    "failed": 0,
+    "skipped": 1
+  },
+  "test_reconciliation": "The initial full suite had three failures from an old fixture omitting the new reporting module and one source-change guard while that fixture was being updated. All four passed focused reruns. Original JUnit results are retained; totals above reconcile unique test IDs and are not a claim that the original full invocation exited zero.",
+  "optional_skip": "One optional jsonschema development dependency test skipped in the venv; actual report schemas were separately validated with the installed schema tool.",
+  "gpu_validation": {
+    "executed": false,
+    "new_allocated_gpu_cases": 27,
+    "full_suite_gpu_deselected": 70,
+    "required_next": "Actual A100 preflight and all 27 GPU checks must pass in the CARC neural allocation before training."
+  },
+  "full_cpu_stages": {
+    "accuracy": {
+      "directory": ".runtime/premix-validation/cli-accuracy-full",
+      "status": "COMPLETED",
+      "summary_sha256": "98456ee21bb1d55b73bd95751388fccf7314d10270e7d6dddf2e038fdc334891",
+      "protocol_sha256": "83f9b52cd0d0cd4cb88fd48cc88daaaee14a9717f98c162aabd506d80fd09173",
+      "wall_seconds": 282.5709495320043,
+      "counts": {
+        "candidate_rows": {
+          "expected": 1308,
+          "reported": 1308
+        },
+        "frontier_rows": {
+          "expected": 2616,
+          "reported": 2616
+        },
+        "reference_rows": {
+          "expected": 24,
+          "reported": 24
+        },
+        "parity_rows": {
+          "expected": 532,
+          "reported": 532
+        }
+      },
+      "execution": "coordinator CLI with artifact seal",
+      "scientific_outcome": "OBSERVED_MIXED",
+      "reference_status_counts": {
+        "ACCEPTED": 24
+      },
+      "accepted_reference_members": 24,
+      "cached_reference_members": 0,
+      "correctness_failures": [],
+      "candidate_status_counts": {
+        "VALID": 1304,
+        "INVALID": 4
+      },
+      "parity_status_counts": {
+        "PASS": 436,
+        "OBSERVED": 96
+      },
+      "sealed_artifact_count": 6,
+      "execution_source_tree_sha256": "3525d4632e9845cf7fd3af6476913a03f58386b82d8b5c76392b3f5d312ecfc1"
+    },
+    "prepare": {
+      "directory": ".runtime/premix-validation/cli-prepare-full",
+      "status": "COMPLETED",
+      "summary_sha256": "8a285ce189aab203bebf0c8168625cdffc8be608041834d1a58ad60f3b6b0df8",
+      "protocol_sha256": "4c3cb260eedbf793029bf67b435bc94d70dc7c23f932ca66c3a9b87f1fd609a8",
+      "wall_seconds": 59.23517863699817,
+      "counts": {
+        "parents": 120,
+        "references": 240,
+        "accepted_references": 240
+      },
+      "execution": "coordinator CLI with artifact seal",
+      "scientific_outcome": "NOT_ESTABLISHED",
+      "sealed_artifact_count": 7,
+      "execution_source_tree_sha256": "3525d4632e9845cf7fd3af6476913a03f58386b82d8b5c76392b3f5d312ecfc1"
+    },
+    "neural": {
+      "directory": ".runtime/premix-validation/cli-neural-full",
+      "status": "COMPLETED",
+      "summary_sha256": "cbeceeb69e25e1065e5eaadb20f4296444226855acc1cee5febbddd4bf0f04fa",
+      "protocol_sha256": "4c3cb260eedbf793029bf67b435bc94d70dc7c23f932ca66c3a9b87f1fd609a8",
+      "wall_seconds": 185.99890348300687,
+      "counts": {
+        "training_records": 15,
+        "trained_checkpoints": 14,
+        "selected_initializations": 1,
+        "numerical_training_failures": 0,
+        "candidates": 2592,
+        "completed_candidates": 2592,
+        "diagnostic_parents": 48
+      },
+      "execution": "coordinator CLI with artifact seal",
+      "scientific_outcome": "DESCRIPTIVE_BOUNDED_COMPARISON",
+      "actual_neural_training": true,
+      "sealed_artifact_count": 42,
+      "execution_source_tree_sha256": "3525d4632e9845cf7fd3af6476913a03f58386b82d8b5c76392b3f5d312ecfc1"
+    },
+    "scaling": {
+      "directory": ".runtime/premix-mechanism-full-scaling-seven",
+      "status": "COMPLETED",
+      "summary_sha256": "b165d3b3c83eebc8fbf1149933fac75b57c3fb66d25e43b9a7b87a6ceaf642c9",
+      "protocol_sha256": "ce48311654ee89384a48e77363e3eada8ef8c109c674cbb77fb3be0bb0556b8d",
+      "wall_seconds": 652.9812736320018,
+      "counts": {
+        "candidate_rows": {
+          "expected": 648,
+          "reported": 648
+        },
+        "frontier_rows": {
+          "expected": 3888,
+          "reported": 3888
+        },
+        "reference_rows": {
+          "expected": 36,
+          "reported": 36
+        },
+        "parity_rows": {
+          "expected": 504,
+          "reported": 504
+        }
+      },
+      "execution": "direct engine validation; no coordinator seal",
+      "scientific_outcome": "OBSERVED_MIXED",
+      "reference_status_counts": {
+        "ACCEPTED": 36
+      },
+      "accepted_reference_members": 252,
+      "cached_reference_members": 60,
+      "correctness_failures": [],
+      "candidate_status_counts": {
+        "VALID": 648
+      },
+      "parity_status_counts": {
+        "PASS": 360,
+        "OBSERVED": 144
+      }
+    }
+  },
+  "final_source_smoke": [
+    {
+      "stage": "accuracy",
+      "status": "COMPLETED",
+      "source_tree_sha256": "236d8268818939effe6956aba696f5371a36d4aa3aa98d90dc72f2d12364a509",
+      "manifest_sha256": "640a14cac7a1d13146737b5c316c3e06fe398c4b8ca876675f916ef7e5ef9653"
+    },
+    {
+      "stage": "scaling",
+      "status": "COMPLETED",
+      "source_tree_sha256": "236d8268818939effe6956aba696f5371a36d4aa3aa98d90dc72f2d12364a509",
+      "manifest_sha256": "dc0e816c15cbb1bfb3432a87f7e2ea766ecc0c2a091e5b9c768354c32813c0ce"
+    },
+    {
+      "stage": "prepare",
+      "status": "COMPLETED",
+      "source_tree_sha256": "236d8268818939effe6956aba696f5371a36d4aa3aa98d90dc72f2d12364a509",
+      "manifest_sha256": "70ce84fb906f73bde4470341d21b277b1c6f4b7aad72f2a8ed916a04a61dcf9d"
+    },
+    {
+      "stage": "neural",
+      "status": "COMPLETED",
+      "source_tree_sha256": "236d8268818939effe6956aba696f5371a36d4aa3aa98d90dc72f2d12364a509",
+      "manifest_sha256": "c023bab0e6223fa5dd20390768ac0a86b2056a2d412a883f3603ee1c74a3302a"
+    }
+  ],
+  "source_note": "Full CLI runs used the same scientific implementation before the fixture-only module-copy fix. The final four-stage smoke and targeted tests use the recorded final source fingerprint.",
+  "timing_scope": "Shared cloud CPU runs overlapped validation workloads. Times establish bounded execution only; they are not CARC timings or model-superiority evidence.",
+  "reference_refinement": "The first six-attempt scaling development run retained six unresolved 64-square groups. The final protocol permits seven attempts under the same tolerance and 1200-second cap; all 36 groups accepted. The initial artifacts remain separate.",
+  "actual_sigusr1": {
+    "exit_code": 75,
+    "stage_status": "INTERRUPTED",
+    "tower_state": "INTERRUPTED",
+    "completion_seal_present": false,
+    "log": "/workspace/TDN/.runtime/premix-validation/cli-interrupted.log"
+  },
+  "native_tower": [
+    {
+      "log": ".runtime/premix-tower-final-validation/rechecked-smoke-native.log",
+      "sha256": "27b584096d46c592cef4379bc38ec4e7d5bb5031fb0ab94c38bf441583f3b10e",
+      "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+      "reports": [
+        {
+          "path": ".runtime/premix-validation/cli-smoke-final-rechecked/accuracy-tower/tdn-20261007T010928311277Z-372825d3296f",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 34,
+          "metrics_records": 7,
+          "metric_series": 5,
+          "native_log_entries": 14
+        },
+        {
+          "path": ".runtime/premix-validation/cli-smoke-final-rechecked/neural-tower/tdn-20261007T011020924542Z-719ed388a784",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 34,
+          "metrics_records": 30,
+          "metric_series": 9,
+          "native_log_entries": 25
+        },
+        {
+          "path": ".runtime/premix-validation/cli-smoke-final-rechecked/prepare-tower/tdn-20261007T011016711393Z-87334bfcb2bd",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 34,
+          "metrics_records": 23,
+          "metric_series": 5,
+          "native_log_entries": 14
+        },
+        {
+          "path": ".runtime/premix-validation/cli-smoke-final-rechecked/scaling-tower/tdn-20261007T010945623416Z-19eca465e6cf",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 34,
+          "metrics_records": 6,
+          "metric_series": 5,
+          "native_log_entries": 14
+        }
+      ],
+      "planning": []
+    },
+    {
+      "log": ".runtime/premix-tower-final-validation/final-full-native.log",
+      "sha256": "5f6e54da7b95d4f21b5f233bd82dca5734ca0d718b270c5d3993806d15b8c3f1",
+      "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+      "reports": [
+        {
+          "path": ".runtime/premix-validation/cli-accuracy-full-tower/tdn-20261007T010426318529Z-07518ce70d5a",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 34,
+          "metrics_records": 27,
+          "metric_series": 5,
+          "native_log_entries": 14
+        },
+        {
+          "path": ".runtime/premix-validation/cli-neural-full-tower/tdn-20261007T010559224182Z-255c2faca67e",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 34,
+          "metrics_records": 156,
+          "metric_series": 9,
+          "native_log_entries": 35
+        }
+      ],
+      "planning": []
+    },
+    {
+      "log": ".runtime/premix-tower-final-validation/scaling-full-native.log",
+      "sha256": "381fcc9f85851a6842a9696333ee0cf9238ff36caf472b479d32e3b480b4ca71",
+      "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+      "reports": [
+        {
+          "path": ".runtime/premix-mechanism-full-scaling-seven-tower/tdn-20261007T020900718346Z-f1fa85fb3141",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 34,
+          "metrics_records": 1,
+          "metric_series": 1,
+          "native_log_entries": 11
+        }
+      ],
+      "planning": []
+    },
+    {
+      "log": ".runtime/premix-tower-final-validation/prepare-full-and-signal-native.log",
+      "sha256": "28dc85862cd8eda6a60c912c8e52169589c97192ac2d661fcd42ef7ee4695c41",
+      "tower_commit": "b7e28338683526453ec16ba3fb864884b5944e46",
+      "reports": [
+        {
+          "path": ".runtime/premix-validation/cli-prepare-full-tower/tdn-20261007T010426311360Z-2ccbe985c5f1",
+          "state": "COMPLETED",
+          "artifact_status": "valid",
+          "artifacts_checked": 34,
+          "metrics_records": 123,
+          "metric_series": 5,
+          "native_log_entries": 14
+        },
+        {
+          "path": ".runtime/premix-validation/cli-interrupted-tower/tdn-20261007T010541333592Z-80037a2ce092",
+          "state": "INTERRUPTED",
+          "artifact_status": "valid",
+          "artifacts_checked": 34,
+          "metrics_records": 3,
+          "metric_series": 4,
+          "native_log_entries": 13
+        }
+      ],
+      "planning": []
+    }
+  ],
+  "full_csv_pointer_audit": {
+    "reports": [
+      {
+        "stage": "accuracy",
+        "csv_rows": 4480,
+        "populated_cells_verified": 158092,
+        "source_json_pointers_verified": 11044,
+        "sealed_files_verified": 6,
+        "reporting_omissions": 0
+      },
+      {
+        "stage": "neural",
+        "csv_rows": 18840,
+        "populated_cells_verified": 620991,
+        "source_json_pointers_verified": 62972,
+        "sealed_files_verified": 42,
+        "reporting_omissions": 0
+      }
+    ],
+    "total_rows": 23320,
+    "total_populated_cells": 779083,
+    "total_source_pointers": 74016
+  },
+  "final_smoke_csv_pointer_audit": {
+    "reports": [
+      {
+        "stage": "accuracy",
+        "csv_rows": 580,
+        "populated_cells_verified": 18521,
+        "source_json_pointers_verified": 954,
+        "sealed_files_verified": 6,
+        "reporting_omissions": 0
+      },
+      {
+        "stage": "neural",
+        "csv_rows": 2324,
+        "populated_cells_verified": 72801,
+        "source_json_pointers_verified": 6937,
+        "sealed_files_verified": 22,
+        "reporting_omissions": 0
+      },
+      {
+        "stage": "prepare",
+        "csv_rows": 32,
+        "populated_cells_verified": 480,
+        "source_json_pointers_verified": 64,
+        "sealed_files_verified": 7,
+        "reporting_omissions": 0
+      },
+      {
+        "stage": "scaling",
+        "csv_rows": 423,
+        "populated_cells_verified": 13509,
+        "source_json_pointers_verified": 696,
+        "sealed_files_verified": 6,
+        "reporting_omissions": 0
+      }
+    ],
+    "total_rows": 3359,
+    "total_populated_cells": 105311,
+    "total_source_pointers": 8651
+  },
+  "native_tower_scope": "Unmodified pinned Tower at its default 8 MiB output validation budget; direct-engine scaling remains explicitly unsealed in its reporting view.",
+  "limitations": [
+    "No actual CARC or CUDA run performed in this environment.",
+    "Representative hybrid FNO, not a reproduction of the FNO paper.",
+    "One periodic scalar reaction-diffusion PDE; no nonperiodic or other-PDE generalization claim.",
+    "No statistical confirmation or established neural efficiency advantage."
+  ]
+}

@@ -73,12 +73,20 @@ class _SpatialSolver(nn.Module):
     def _network(self, x: Tensor) -> Tensor:
         raise NotImplementedError
 
+    def _feature_state(self, u: Tensor) -> Tensor:
+        """State used by the correction encoder; the physical base stays full.
+
+        Existing backbones use the complete state. Experimental compression
+        controls can override this hook without filtering their Strang base.
+        """
+        return u
+
     def forward(self, u: Tensor, h: float | Tensor, equation, geometry) -> Tensor:
         if geometry.ndim != 2:
             raise ValueError("Spatial neural baselines require two-dimensional geometry")
         check_shape(u, geometry)
         step = broadcast_h(h, u)
-        features = extract_features(u, equation, geometry,
+        features = extract_features(self._feature_state(u), equation, geometry,
                                     t_ref=self.t_ref, U_ref=self.U_ref)
         features = ((features - self.feature_mean.to(features.dtype)) /
                     self.feature_std.to(features.dtype)).movedim(-1, 1)

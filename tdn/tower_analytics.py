@@ -1104,6 +1104,14 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             roots.append(_safe_directory(root))
         except (OSError, ValueError) as exc:
             budget.omit(_relative(root, report_dir), f"source unavailable: {exc}")
+    # Exact premix schemas have a dedicated bounded parser. Preserve its
+    # verified provenance without reading those files through ordinary limits
+    # or interpreting the same training observations a second time.
+    from tdn.premix_reporting import publish_premix_outputs
+    premix_sources = {}
+    premix = publish_premix_outputs(report_dir, roots, delegated_sources=premix_sources)
+    # The premix parser has its own explicit time budget.
+    budget.deadline = time.monotonic() + MAX_SECONDS
     files, inventory, documents, xml_documents, used_paths = [], [], {}, {}, set()
     inventory_bytes = 0
     for root in roots:
@@ -1117,7 +1125,16 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             relative = _relative(path, report_dir)
             entry = {"path": relative, "kind": KINDS.get(path.suffix.lower(), "other"), "bytes": info.st_size}
             raw = None
-            if budget.can_read(path, info.st_size) and not budget.expired():
+            if path in premix_sources:
+                delegated = premix_sources[path]
+                signature = (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns)
+                if signature == delegated["signature"]:
+                    entry.update(sha256=delegated["sha256"], hash_status="computed_premix_projection",
+                                 projection="outputs/premix-tables.json")
+                else:
+                    entry["hash_status"] = "unavailable"
+                    budget.omit(relative, "source changed after premix projection")
+            elif budget.can_read(path, info.st_size) and not budget.expired():
                 try:
                     _safe_directory(path.parent)
                     raw = budget.read(path, info)
@@ -1432,7 +1449,8 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                    "table_bytes": MAX_TABLE_BYTES,
                    "table_bytes_overrides": {"mechanisms.csv": MAX_MECHANISM_TABLE_BYTES}},
         "observed_read_bytes": budget.read_bytes,
-        "hash_semantics": "computed = bytes read here; declared_unverified = original manifest assertion only; "
+        "hash_semantics": "computed = bytes read here; computed_premix_projection = bytes read by the dedicated "
+                          "premix parser with unchanged file identity; declared_unverified = original manifest assertion only; "
                           "not_read_budget = no hash available within budgets. Source paths may name large binary files; "
                           "these are not copied or deserialized."}
     if any(path.name == "compact-spatial.json" for path in files):
@@ -1447,5 +1465,11 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                                                for name in COMPACT_SPATIAL_TABLES})
         artifact_report["observed_compact_spatial_read_bytes"] = budget.compact_read_bytes
     atomic_json(outputs / "artifacts.json", artifact_report)
+    if premix is not None:
+        results["premix"] = premix
+        results["reporting_omission_count"] += premix["reporting_omission_count"]
+        if not premix["reporting_complete"]:
+            results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) |
+                                                    {"PREMIX_REPORTING_INCOMPLETE"})
     atomic_json(outputs / "results.json", results)
     return results

@@ -10,7 +10,16 @@ The native Windows edition supports a standalone Python `.venv`, PowerShell laun
 
 ## Run on CARC
 
-For the next experiment, use the [time-to-accuracy comparison](docs/WORK_PRECISION.md):
+For the current full hypothesis test, use the [premix program](docs/PREMIX.md):
+`bash scripts/carc_premix.sh plan`, then `bash scripts/carc_premix.sh run`.
+It tests nonlinear spatial interactions before compression, larger-grid/batch
+scaling, and five trained neural models over predeclared favorable, typical and
+adverse conditions. Three CPU stages precede one A100 training/evaluation stage;
+every allocation is capped at 30 minutes. Tower paths, logs and review collection
+are automated. This is a bounded research comparison, with no established FNO
+advantage or reproduction of the FNO paper.
+
+The earlier [time-to-accuracy comparison](docs/WORK_PRECISION.md) remains available:
 `bash scripts/carc_work_precision.sh --submit`. One bounded CPU job tests the
 cheap spectral mean correction against full GL3/GL5, smaller-step Strang and
 ETDRK2/4, with repeated timings and separate RMS/maximum-error frontiers.
