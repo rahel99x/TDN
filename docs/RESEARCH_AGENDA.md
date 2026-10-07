@@ -15,6 +15,12 @@ cloud environment's proxy, so bibliographic metadata and paper text are not
 presented as independently verified. This program does not claim a published
 FNO reproduction or architecture novelty.
 
+The first native full-run review is recorded in
+[AGENDA_REVIEW.md](AGENDA_REVIEW.md), with machine-readable evidence in
+[results/fedora-agenda-review.json](../results/fedora-agenda-review.json).
+No trained candidate passed the full solver gate; the cheapest accurate
+diffusion-first base remains the practical comparison to beat.
+
 ## Run on the current Fedora desktop
 
 Use `/home/rahel/TDN`, its existing verified `.venv` and Fedora Slurm profile.
