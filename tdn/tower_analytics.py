@@ -1104,15 +1104,25 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             roots.append(_safe_directory(root))
         except (OSError, ValueError) as exc:
             budget.omit(_relative(root, report_dir), f"source unavailable: {exc}")
+    # Roadmap science has independently bounded paged projections. Recognize
+    # it before older programs whose generic rows.json filenames overlap.
+    roadmap, roadmap_sources, roadmap_roots = None, {}, []
+    # Keep legacy isolated fixtures usable without importing later adapters.
+    if (Path(__file__).parent / "roadmap_reporting.py").is_file():
+        from tdn.roadmap_reporting import is_roadmap_root, publish_roadmap_outputs
+        roadmap_roots = [root for root in roots if is_roadmap_root(root)]
+        if roadmap_roots:
+            roadmap = publish_roadmap_outputs(report_dir, roadmap_roots, delegated_sources=roadmap_sources)
+    legacy_roots = [root for root in roots if root not in roadmap_roots]
     # Exact premix schemas have a dedicated bounded parser. Preserve its
     # verified provenance without reading those files through ordinary limits
     # or interpreting the same training observations a second time.
     from tdn.premix_reporting import publish_premix_outputs
     premix_sources = {}
-    premix = publish_premix_outputs(report_dir, roots, delegated_sources=premix_sources)
+    premix = publish_premix_outputs(report_dir, legacy_roots, delegated_sources=premix_sources)
     from tdn.consistency_reporting import publish_consistency_outputs
     consistency_sources = {}
-    consistency = publish_consistency_outputs(report_dir, roots, delegated_sources=consistency_sources)
+    consistency = publish_consistency_outputs(report_dir, legacy_roots, delegated_sources=consistency_sources)
     # Legacy isolated workflow fixtures omit modules from later programs. Load
     # the new publisher only for explicitly present canonical agenda row files.
     agenda_sources = {}
@@ -1120,10 +1130,10 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
     agenda_stages = ("structure", "prepare", "controls", "optimize", "compression", "kernel", "confirm", "policy")
     if any((root / "rows.json").exists() or (root / "rows.json").is_symlink() or any(
             (root / stage / "rows.json").exists() or (root / stage / "rows.json").is_symlink()
-            for stage in agenda_stages) for root in roots):
+            for stage in agenda_stages) for root in legacy_roots):
         from tdn.agenda_reporting import publish_agenda_outputs
-        agenda = publish_agenda_outputs(report_dir, roots, delegated_sources=agenda_sources)
-    delegated_sources = {**premix_sources, **consistency_sources, **agenda_sources}
+        agenda = publish_agenda_outputs(report_dir, legacy_roots, delegated_sources=agenda_sources)
+    delegated_sources = {**premix_sources, **consistency_sources, **agenda_sources, **roadmap_sources}
     # The premix parser has its own explicit time budget.
     budget.deadline = time.monotonic() + MAX_SECONDS
     files, inventory, documents, xml_documents, used_paths = [], [], {}, {}, set()
@@ -1141,7 +1151,7 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             raw = None
             if path in delegated_sources:
                 delegated = delegated_sources[path]
-                suite = "agenda" if path in agenda_sources else "consistency" if path in consistency_sources else "premix"
+                suite = "roadmap" if path in roadmap_sources else "agenda" if path in agenda_sources else "consistency" if path in consistency_sources else "premix"
                 signature = (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns)
                 if signature == delegated["signature"]:
                     entry.update(sha256=delegated["sha256"], hash_status="computed_" + suite + "_projection",
@@ -1504,5 +1514,14 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         if not agenda["reporting_complete"]:
             results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) |
                                                     {"AGENDA_REPORTING_INCOMPLETE"})
+    if roadmap is not None:
+        results["roadmap"] = roadmap
+        results["reporting_omission_count"] += roadmap["reporting_omission_count"]
+        results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) | {
+            source["scientific_outcome"] for source in roadmap["sources"]
+            if isinstance(source.get("scientific_outcome"), str)})
+        if not roadmap["reporting_complete"]:
+            results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) |
+                                                    {"ROADMAP_REPORTING_INCOMPLETE"})
     atomic_json(outputs / "results.json", results)
     return results

@@ -100,3 +100,47 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
 - Preserve negative, failed, infeasible and initialization-selected outcomes.
   Literal question-bearing executable evidence is required; documentation,
   passing tests or computational completion alone does not show superiority.
+
+## Bounded M00–M23 roadmap program
+
+- Read `docs/ROADMAP_EXPERIMENTS.md` and the dated research roadmap before
+  changing `tdn/analysis/roadmap`. Use `scripts/fedora_roadmap.sh` for the
+  current Fedora workflow; keep its ten stages, manifests and latest pointer
+  separate from agenda, consistency and premix. The local wrapper supports
+  CPU smoke/development only and must reject full fresh confirmation.
+- The desktop scheduler exposes 110000 MiB RAM. CPU stages use at most eight
+  physical cores and 48 GiB; GPU stages use four CPUs, 32/48 GiB and one actual
+  RTX 4090. Preserve 18 GiB/75% soft VRAM and 90% device-use hard limits,
+  project-contained files, a Python venv, FP64 teachers, FP32 models and TF32
+  off. No stage exceeds 45 minutes; no pending cap or automatic expansion.
+- Every GPU stage must run all 40 declared CUDA cases from the protocol:
+  limits and gradients for all 17 families, four numerical parity cases,
+  fractional physical scale and actual visible-allocation verification.
+  The JUnit checker rejects missing, duplicated, skipped or failed cases.
+  CPU tests or a filtered GPU suite cannot establish native readiness.
+- Full training declares 64 tuning trials and 51 final trials across three
+  paired seeds. Preserve the shared-optimizer loss comparator, rank-zero
+  combined control, direct neural-only FNO, cheap/deep hybrid FNO, and
+  strongest classical controls. Freeze every selected checkpoint and its
+  effective settings before creating or reading fresh confirmation teachers.
+- Keep independent fields, physics variants, grids, schedules and training
+  seeds distinguishable. Main confirmation has 24 independent field clusters
+  crossed with two physics choices; the declared continuum subset must retain
+  balanced field regimes. Calibration fits must never inspect confirmation
+  truth. Deployment reads deployable features and frozen calibration only.
+- Preserve exact nulls, quadratic/cubic amplitude order, signed phase products,
+  declared spatial target and one-time mean replacement. A midpoint-only DF
+  quadratic defect is zero. Dynamic moment closure is approximate beyond its
+  instantaneous identities. Explicit RK residual order is not A-stability.
+- Every experiment log needs explicit math/gap evidence, including NA,
+  effective parameters, costs and required check IDs. Scores are weighted
+  evidence attainment, not model quality or theorem proofs; required NA
+  checks retain denominator weight. Structural audit failures block successors;
+  scientific BAD/NA results remain preserved and do not silently stop the
+  other authorized mechanisms. The final report runs after any outcome.
+- Use the true mechanism assessments in `report/mechanism_summary.json` or
+  `experiment_summary.csv`; report inventory checks are infrastructure only.
+  Include rejected/estimator/fallback work and offline amortization, separate
+  numerical time from scheduler accounting, and keep unverified large-grid
+  accuracy and unsupported statistical guarantees NA. Modify project Tower
+  exports only; do not modify the Tower application.

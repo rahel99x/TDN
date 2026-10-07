@@ -1,0 +1,947 @@
+{
+  "schema": "tdn.roadmap-release-validation/v1",
+  "created_at": "2026-10-07T23:28:26.179386+00:00",
+  "scope": "Implementation validation on cloud CPU; not native Fedora/CUDA or full scientific confirmation",
+  "base_commit": "1174a5b4056e456a565c1b3ac0503bd4c2f596b1",
+  "tested_source_tree_sha256": "0655bb4735e3f1d6af81eb103b3e3c21dc42bb78b596af0014e693b264a5bc45",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "1174a5b4056e456a565c1b3ac0503bd4c2f596b1",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "0655bb4735e3f1d6af81eb103b3e3c21dc42bb78b596af0014e693b264a5bc45",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "full_protocol_sha256": "82cfc537a59e5395eed9f5a95a82a5173d887caee373d9100c3d925c584fc879",
+  "declared_full_program": {
+    "mechanisms": [
+      "M00",
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M05",
+      "M06",
+      "M07",
+      "M08",
+      "M09",
+      "M10",
+      "M11",
+      "M12",
+      "M13",
+      "M14",
+      "M15",
+      "M16",
+      "M17",
+      "M18",
+      "M19",
+      "M20",
+      "M21",
+      "M22",
+      "M23"
+    ],
+    "combinations": [
+      "C0",
+      "C1",
+      "C2",
+      "C3",
+      "C4"
+    ],
+    "model_families": [
+      "source",
+      "rank1",
+      "rank2",
+      "source_postcompression",
+      "source_trust",
+      "source_consistency",
+      "source_df_loss",
+      "source_df_loss_shared",
+      "source_multiband",
+      "cheap_fno",
+      "deep_fno",
+      "direct_fno",
+      "c1_rank0",
+      "c1_rank1",
+      "c1_rank2",
+      "c2_rank2",
+      "source_embedded"
+    ],
+    "training_seeds": [
+      2600011,
+      2600021,
+      2600031
+    ],
+    "final_trials": 51,
+    "tuning_trials": 64,
+    "planned_optimizer_updates": 22980,
+    "budgets": {
+      "audit": {
+        "seconds": 600,
+        "cpus": 8,
+        "mem_gib": 48,
+        "walltime": "00:20:00"
+      },
+      "headroom": {
+        "seconds": 1800,
+        "cpus": 8,
+        "mem_gib": 48,
+        "walltime": "00:45:00"
+      },
+      "prepare": {
+        "seconds": 1800,
+        "cpus": 8,
+        "mem_gib": 48,
+        "walltime": "00:45:00"
+      },
+      "train": {
+        "seconds": 1800,
+        "cpus": 4,
+        "mem_gib": 32,
+        "walltime": "00:45:00"
+      },
+      "confirm_prepare": {
+        "seconds": 1800,
+        "cpus": 8,
+        "mem_gib": 48,
+        "walltime": "00:45:00"
+      },
+      "confirm": {
+        "seconds": 1800,
+        "cpus": 4,
+        "mem_gib": 48,
+        "walltime": "00:45:00"
+      },
+      "policy": {
+        "seconds": 1200,
+        "cpus": 4,
+        "mem_gib": 32,
+        "walltime": "00:30:00"
+      },
+      "transfer": {
+        "seconds": 1800,
+        "cpus": 8,
+        "mem_gib": 48,
+        "walltime": "00:45:00"
+      },
+      "scaling": {
+        "seconds": 1200,
+        "cpus": 4,
+        "mem_gib": 32,
+        "walltime": "00:30:00"
+      },
+      "report": {
+        "seconds": 600,
+        "cpus": 4,
+        "mem_gib": 32,
+        "walltime": "00:20:00"
+      }
+    },
+    "hardware": {
+      "root": "/home/rahel/TDN",
+      "python": "3.13.13",
+      "physical_cpu_cores": 8,
+      "scheduler_cpus": 16,
+      "scheduler_memory_mib": 110000,
+      "physical_host_ram_gib": 128,
+      "gpu": "RTX4090",
+      "gpu_count": 1,
+      "dedicated_vram_gib": 24
+    },
+    "gpu_memory": {
+      "soft_cap_gib": 18,
+      "soft_fraction": 0.75,
+      "hard_device_used_fraction": 0.9
+    },
+    "automatic_budget_expansion": false,
+    "pending_job_cap": null
+  },
+  "tests": {
+    "broad_cpu": {
+      "command": ".venv/bin/python -m pytest -q -m 'not gpu' --basetemp=.runtime/pytest-roadmap-release --junitxml=.runtime/roadmap-release-tests.xml",
+      "total_cases": 3051,
+      "passed": 3050,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 1,
+      "xml_sha256": "19b1901061999a2142a1fa6a1ddbffef59c5d352e44b511f63542aea97a12a00"
+    },
+    "final_roadmap_cpu": {
+      "command": ".venv/bin/python -m pytest tests/test_roadmap*.py -q -m 'not gpu' --basetemp=.runtime/pytest-roadmap-final-source --junitxml=.runtime/roadmap-final-source-tests.xml",
+      "total_cases": 322,
+      "passed": 322,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xml_sha256": "7846aa7936fd42b5c12ae9a4e09d8079e84c8308004f9f76f192423e719ffd9c"
+    },
+    "native_cuda": {
+      "status": "NOT_RUN",
+      "mandatory_test_cases": 40,
+      "reason": "No CUDA or native Slurm in the cloud executor; every native GPU stage requires all cases without skips"
+    }
+  },
+  "integrated_smoke": {
+    "command": "bash scripts/roadmap_local.sh --smoke --run-dir runs/roadmap-release-smoke-20261007-r3",
+    "execution_mode": "local-cpu",
+    "run": "runs/roadmap-release-smoke-20261007-r3",
+    "stages_verified": 10,
+    "sealed_science_files_verified": 207,
+    "experiment_records": 1713,
+    "verdict_counts": {
+      "GOOD": 141,
+      "NA": 276,
+      "BAD": 1296
+    },
+    "numerical_seconds": 45.48328362699249,
+    "interpretation": "Two-update development integration under concurrent validation load; not an accuracy, speedup or scientific success claim",
+    "stages": {
+      "audit": {
+        "status": "COMPLETED",
+        "experiment_count": 32,
+        "elapsed_seconds": 2.3094094039988704,
+        "verdict_counts": {
+          "GOOD": 16,
+          "NA": 14,
+          "BAD": 2
+        },
+        "correctness_failures": 0
+      },
+      "headroom": {
+        "status": "COMPLETED",
+        "experiment_count": 59,
+        "elapsed_seconds": 2.00973565899767,
+        "verdict_counts": {
+          "GOOD": 58,
+          "BAD": 1
+        },
+        "correctness_failures": 0
+      },
+      "prepare": {
+        "status": "COMPLETED",
+        "experiment_count": 6,
+        "elapsed_seconds": 2.3378576330142096,
+        "verdict_counts": {
+          "GOOD": 6
+        },
+        "correctness_failures": 0
+      },
+      "train": {
+        "status": "COMPLETED",
+        "experiment_count": 33,
+        "elapsed_seconds": 5.087495813000714,
+        "verdict_counts": {
+          "BAD": 29,
+          "NA": 4
+        },
+        "correctness_failures": 0
+      },
+      "confirm_prepare": {
+        "status": "COMPLETED",
+        "experiment_count": 2,
+        "elapsed_seconds": 1.6798827919992618,
+        "verdict_counts": {
+          "GOOD": 2
+        },
+        "correctness_failures": 0
+      },
+      "confirm": {
+        "status": "COMPLETED",
+        "experiment_count": 1188,
+        "elapsed_seconds": 5.235516603977885,
+        "verdict_counts": {
+          "NA": 177,
+          "BAD": 1001,
+          "GOOD": 10
+        },
+        "correctness_failures": 0
+      },
+      "policy": {
+        "status": "COMPLETED",
+        "experiment_count": 146,
+        "elapsed_seconds": 10.41285899200011,
+        "verdict_counts": {
+          "NA": 40,
+          "BAD": 106
+        },
+        "correctness_failures": 0
+      },
+      "transfer": {
+        "status": "COMPLETED",
+        "experiment_count": 211,
+        "elapsed_seconds": 13.071106805989984,
+        "verdict_counts": {
+          "NA": 40,
+          "GOOD": 46,
+          "BAD": 125
+        },
+        "correctness_failures": 0
+      },
+      "scaling": {
+        "status": "COMPLETED",
+        "experiment_count": 35,
+        "elapsed_seconds": 1.5902148809982464,
+        "verdict_counts": {
+          "GOOD": 3,
+          "BAD": 32
+        },
+        "correctness_failures": 0
+      },
+      "report": {
+        "status": "COMPLETED",
+        "experiment_count": 1,
+        "elapsed_seconds": 1.749205043015536,
+        "verdict_counts": {
+          "NA": 1
+        },
+        "correctness_failures": 0
+      }
+    },
+    "coverage": [
+      {
+        "id": "M00",
+        "kind": "mechanism",
+        "experiment_count": 155,
+        "expected_stages": [
+          "headroom",
+          "confirm"
+        ],
+        "observed_stages": [
+          "confirm",
+          "headroom"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 79,
+        "evidence_coverage": 0.9521235521235522
+      },
+      {
+        "id": "M01",
+        "kind": "mechanism",
+        "experiment_count": 128,
+        "expected_stages": [
+          "headroom",
+          "policy"
+        ],
+        "observed_stages": [
+          "headroom",
+          "policy"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 56,
+        "evidence_coverage": 0.7334689725330621
+      },
+      {
+        "id": "M02",
+        "kind": "mechanism",
+        "experiment_count": 239,
+        "expected_stages": [
+          "audit",
+          "confirm"
+        ],
+        "observed_stages": [
+          "audit",
+          "confirm",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 56,
+        "evidence_coverage": 0.8491054106488467
+      },
+      {
+        "id": "M03",
+        "kind": "mechanism",
+        "experiment_count": 338,
+        "expected_stages": [
+          "train",
+          "confirm"
+        ],
+        "observed_stages": [
+          "confirm",
+          "scaling",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 52,
+        "evidence_coverage": 0.8234183191690274
+      },
+      {
+        "id": "M04",
+        "kind": "mechanism",
+        "experiment_count": 327,
+        "expected_stages": [
+          "audit",
+          "train",
+          "confirm"
+        ],
+        "observed_stages": [
+          "audit",
+          "confirm",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 56,
+        "evidence_coverage": 0.8352336598683154
+      },
+      {
+        "id": "M05",
+        "kind": "mechanism",
+        "experiment_count": 210,
+        "expected_stages": [
+          "audit",
+          "headroom",
+          "transfer"
+        ],
+        "observed_stages": [
+          "audit",
+          "headroom",
+          "transfer"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 83,
+        "evidence_coverage": 0.9321458863443596
+      },
+      {
+        "id": "M06",
+        "kind": "mechanism",
+        "experiment_count": 225,
+        "expected_stages": [
+          "train",
+          "confirm",
+          "policy"
+        ],
+        "observed_stages": [
+          "confirm",
+          "policy",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 55,
+        "evidence_coverage": 0.770659049173638
+      },
+      {
+        "id": "M07",
+        "kind": "mechanism",
+        "experiment_count": 125,
+        "expected_stages": [
+          "policy"
+        ],
+        "observed_stages": [
+          "policy"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 56,
+        "evidence_coverage": 0.7299145299145299
+      },
+      {
+        "id": "M08",
+        "kind": "mechanism",
+        "experiment_count": 145,
+        "expected_stages": [
+          "policy"
+        ],
+        "observed_stages": [
+          "policy"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 56,
+        "evidence_coverage": 0.7226753670473083
+      },
+      {
+        "id": "M09",
+        "kind": "mechanism",
+        "experiment_count": 144,
+        "expected_stages": [
+          "policy"
+        ],
+        "observed_stages": [
+          "policy"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 56,
+        "evidence_coverage": 0.7218954248366013
+      },
+      {
+        "id": "M10",
+        "kind": "mechanism",
+        "experiment_count": 225,
+        "expected_stages": [
+          "train",
+          "confirm",
+          "policy"
+        ],
+        "observed_stages": [
+          "confirm",
+          "policy",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 56,
+        "evidence_coverage": 0.770659049173638
+      },
+      {
+        "id": "M11",
+        "kind": "mechanism",
+        "experiment_count": 305,
+        "expected_stages": [
+          "train",
+          "confirm"
+        ],
+        "observed_stages": [
+          "confirm",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 55,
+        "evidence_coverage": 0.8300554715078164
+      },
+      {
+        "id": "M12",
+        "kind": "mechanism",
+        "experiment_count": 12,
+        "expected_stages": [
+          "audit"
+        ],
+        "observed_stages": [
+          "audit"
+        ],
+        "missing_stages": [],
+        "verdict": "NA",
+        "score_1_100": 93,
+        "evidence_coverage": 0.9315068493150684
+      },
+      {
+        "id": "M13",
+        "kind": "mechanism",
+        "experiment_count": 259,
+        "expected_stages": [
+          "train",
+          "confirm",
+          "transfer"
+        ],
+        "observed_stages": [
+          "confirm",
+          "train",
+          "transfer"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 77,
+        "evidence_coverage": 0.9078976154014439
+      },
+      {
+        "id": "M14",
+        "kind": "mechanism",
+        "experiment_count": 198,
+        "expected_stages": [
+          "transfer"
+        ],
+        "observed_stages": [
+          "transfer"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 84,
+        "evidence_coverage": 0.9378346222486615
+      },
+      {
+        "id": "M15",
+        "kind": "mechanism",
+        "experiment_count": 164,
+        "expected_stages": [
+          "scaling",
+          "policy"
+        ],
+        "observed_stages": [
+          "headroom",
+          "policy",
+          "scaling"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 56,
+        "evidence_coverage": 0.7344028520499108
+      },
+      {
+        "id": "M16",
+        "kind": "mechanism",
+        "experiment_count": 925,
+        "expected_stages": [
+          "headroom",
+          "train",
+          "confirm"
+        ],
+        "observed_stages": [
+          "confirm",
+          "headroom",
+          "scaling",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 44,
+        "evidence_coverage": 0.774327418431597
+      },
+      {
+        "id": "M17",
+        "kind": "mechanism",
+        "experiment_count": 213,
+        "expected_stages": [
+          "prepare",
+          "confirm_prepare",
+          "transfer"
+        ],
+        "observed_stages": [
+          "confirm_prepare",
+          "prepare",
+          "transfer"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 83,
+        "evidence_coverage": 0.932141859815694
+      },
+      {
+        "id": "M18",
+        "kind": "mechanism",
+        "experiment_count": 383,
+        "expected_stages": [
+          "prepare",
+          "confirm_prepare",
+          "confirm",
+          "policy"
+        ],
+        "observed_stages": [
+          "confirm",
+          "confirm_prepare",
+          "headroom",
+          "policy",
+          "prepare"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 46,
+        "evidence_coverage": 0.8018036072144289
+      },
+      {
+        "id": "M19",
+        "kind": "mechanism",
+        "experiment_count": 209,
+        "expected_stages": [
+          "transfer"
+        ],
+        "observed_stages": [
+          "transfer"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 83,
+        "evidence_coverage": 0.9296285953644233
+      },
+      {
+        "id": "M20",
+        "kind": "mechanism",
+        "experiment_count": 52,
+        "expected_stages": [
+          "audit",
+          "train",
+          "confirm"
+        ],
+        "observed_stages": [
+          "audit",
+          "confirm",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 57,
+        "evidence_coverage": 0.8293413173652695
+      },
+      {
+        "id": "M21",
+        "kind": "mechanism",
+        "experiment_count": 234,
+        "expected_stages": [
+          "audit",
+          "confirm",
+          "transfer"
+        ],
+        "observed_stages": [
+          "audit",
+          "confirm",
+          "transfer"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 82,
+        "evidence_coverage": 0.9115646258503401
+      },
+      {
+        "id": "M22",
+        "kind": "mechanism",
+        "experiment_count": 3,
+        "expected_stages": [
+          "audit",
+          "report"
+        ],
+        "observed_stages": [
+          "audit",
+          "headroom",
+          "scaling"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 82,
+        "evidence_coverage": 0.9259259259259259
+      },
+      {
+        "id": "M23",
+        "kind": "mechanism",
+        "experiment_count": 14,
+        "expected_stages": [
+          "audit"
+        ],
+        "observed_stages": [
+          "audit"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 85,
+        "evidence_coverage": 0.8809523809523809
+      },
+      {
+        "id": "C0",
+        "kind": "combination",
+        "experiment_count": 2,
+        "expected_stages": [
+          "headroom"
+        ],
+        "observed_stages": [
+          "headroom",
+          "policy"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 58,
+        "evidence_coverage": 0.7368421052631579
+      },
+      {
+        "id": "C1",
+        "kind": "combination",
+        "experiment_count": 204,
+        "expected_stages": [
+          "train",
+          "confirm"
+        ],
+        "observed_stages": [
+          "confirm",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 53,
+        "evidence_coverage": 0.8301507537688442
+      },
+      {
+        "id": "C2",
+        "kind": "combination",
+        "experiment_count": 197,
+        "expected_stages": [
+          "policy"
+        ],
+        "observed_stages": [
+          "confirm",
+          "policy",
+          "train"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 55,
+        "evidence_coverage": 0.7483411157532563
+      },
+      {
+        "id": "C3",
+        "kind": "combination",
+        "experiment_count": 20,
+        "expected_stages": [
+          "audit"
+        ],
+        "observed_stages": [
+          "audit"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 93,
+        "evidence_coverage": 0.9516129032258065
+      },
+      {
+        "id": "C4",
+        "kind": "combination",
+        "experiment_count": 39,
+        "expected_stages": [
+          "transfer"
+        ],
+        "observed_stages": [
+          "transfer"
+        ],
+        "missing_stages": [],
+        "verdict": "BAD",
+        "score_1_100": 83,
+        "evidence_coverage": 0.9806259314456036
+      }
+    ],
+    "selected_model_attribution": {
+      "selected_models": 17,
+      "tuning_trials": 16,
+      "trained_selections": 1,
+      "initialization_selections": 16,
+      "numerically_failed_trials": 0,
+      "numerically_failed_final_arms": 0,
+      "catalog_sha256": "d5a0250693bb82b081a65d2e3954ddcf436aa1e1af70de3d5d62eda39082b192"
+    }
+  },
+  "tower": {
+    "application_modified": false,
+    "application_commit": "356861e",
+    "reports_verified": 10,
+    "reporting_omissions": 0,
+    "native_all_page_contracts_valid": true,
+    "pages_verified": 812,
+    "table_rows": {
+      "artifacts": 247,
+      "checks": 11149,
+      "experiments": 1713,
+      "metrics": 1713,
+      "values": 84550,
+      "mechanisms": 29
+    },
+    "full_size_synthetic_capacity": {
+      "all_page_verify_seconds": 40.69901048601605,
+      "all_pages_hash_count_parse_verified": true,
+      "dual_ledger": true,
+      "export_seconds": 320.25839092899696,
+      "generation_seconds": 2.0964086439926177,
+      "max_page_bytes": 79372,
+      "max_page_rows": 128,
+      "native_first_last_pages_verified": [
+        "outputs/roadmap/experiments-00001.csv",
+        "outputs/roadmap/experiments-00554.csv",
+        "outputs/roadmap/checks-00001.csv",
+        "outputs/roadmap/checks-04698.csv",
+        "outputs/roadmap/values-00001.csv",
+        "outputs/roadmap/values-36512.csv",
+        "outputs/roadmap/artifacts-00001.csv",
+        "outputs/roadmap/artifacts-00001.csv",
+        "outputs/roadmap/metrics-00001.jsonl",
+        "outputs/roadmap/metrics-00554.jsonl"
+      ],
+      "native_sample_seconds": 0.013830784009769559,
+      "new_scientific_evidence": false,
+      "page_count_by_table": {
+        "artifacts": 1,
+        "checks": 4698,
+        "experiments": 554,
+        "metrics": 554,
+        "values": 36512
+      },
+      "peak_rss_bytes": 5723578368,
+      "report": "/workspace/TDN/.runtime/roadmap-reporting-capacity-70862-01/dual-ledger/tower/tdn-20261007T232432179023Z-ca08e64ebcd8",
+      "reporter_sha256": "20ec725d3fd68796426dc75ba9242c8fd7bec80426e0033b4d9d9be62473ecc1",
+      "result": {
+        "application_completion_is_scientific_success": false,
+        "claim_scope": "Numerical evidence and scores retain gap/math/cost scope; no superiority inferred",
+        "index": "outputs/roadmap-tables.json",
+        "observed_output_bytes": 1977629932,
+        "observed_read_bytes": 963337568,
+        "page_count": 42319,
+        "reporting_complete": true,
+        "reporting_omission_count": 0,
+        "schema": "tdn.roadmap.tower-results/v1",
+        "science_sources_mutated": false,
+        "sources": [
+          {
+            "canonical_rows": 70862,
+            "protocol_sha256": "82cfc537a59e5395eed9f5a95a82a5173d887caee373d9100c3d925c584fc879",
+            "reason": "Projected canonical files match science and available wrapper seals; binaries are not verified here",
+            "scientific_outcome": "NA_SYNTHETIC_REPORT_FIXTURE",
+            "seal_status": "VERIFIED_CANONICAL",
+            "source_dir": "../../confirm",
+            "source_path": "../../confirm/rows.json",
+            "source_sha256": "775a1b30f4f1b2ed8f93ebfa84cd270f92e14c2f7051637441d3519766290bc0",
+            "stage": "confirm"
+          }
+        ],
+        "table_rows": {
+          "artifacts": 6,
+          "checks": 601298,
+          "experiments": 70862,
+          "mechanisms": 0,
+          "metrics": 70862,
+          "values": 4673418
+        },
+        "verdicts": {
+          "NA": 70862
+        }
+      },
+      "scope": "SYNTHETIC REPORTER CAPACITY ONLY; no new scientific evidence",
+      "source_hashes_unchanged": true,
+      "total_seconds": 365.74690845399164
+    },
+    "serialization_parity": {
+      "scope": "Synthetic reporter capacity fixture; no new scientific evidence",
+      "csv_pages_identical": 41764,
+      "tables": [
+        "experiments",
+        "checks",
+        "values"
+      ],
+      "basis": "Every actual page hash, row count and parse independently verified in each run; identical page hash and metadata across both exports",
+      "baseline_single_ledger_export_seconds": 696.7639491180016,
+      "optimized_dual_ledger_export_seconds": 320.25839092899696,
+      "ratio_baseline_single_to_optimized_dual": 2.175630580971969,
+      "timing_comparison_limitation": "Optimized run additionally parses the production JSONL ledger; CPU shared environment timing is descriptive",
+      "metrics_note": "Live metric timestamp changes by execution, so metric byte identity is intentionally excluded; both runs verify all metric records",
+      "artifact_note": "Dual source adds the JSONL ledger artifact"
+    }
+  },
+  "resolved_integration_failure": {
+    "initial_run": "runs/roadmap-release-smoke-20261007",
+    "reason": "Live Tower progress supplied completed without a known total",
+    "fix": "Emit step and experiment count without inventing a progress denominator",
+    "regression": "test_live_tower_emission_uses_count_without_inventing_total"
+  },
+  "limits": [
+    "Numerical checks are not general mathematical proofs",
+    "Full fixed cohorts and GPU cost/accuracy remain unrun",
+    "Formal calibrated coverage is NA at the declared cohort size and unestablished exchangeability",
+    "Large-grid throughput has no accuracy claim without an accepted teacher",
+    "FNO controls are project adaptations, not an official-paper reproduction"
+  ],
+  "packaging": {
+    "clean_staged_export_imported": true,
+    "mechanisms": 24,
+    "combinations": 5,
+    "model_families": 17,
+    "reporting_fixture_present": true,
+    "bash_syntax": "PASSED",
+    "diff_whitespace": "PASSED"
+  }
+}

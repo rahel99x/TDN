@@ -9,6 +9,11 @@ falsifiable projections and a bounded next program for the Fedora desktop.
 [Markdown](docs/RESEARCH_ROADMAP_20261007.md) and
 [structured data](results/RESEARCH_ROADMAP_20261007.json) are also available.
 
+Run the implemented M00–M23 mechanisms and C0–C4 combinations with the
+[bounded Fedora roadmap experiment program](docs/ROADMAP_EXPERIMENTS.md).
+It schedules ten stages and records per-experiment costs, parameters,
+mathematical/gap checks, GOOD/BAD/NA verdicts and evidence-attainment scores.
+
 CARC deployment is fixed to **`/home1/aadaniel/projects/TDN`**, user **`aadaniel`**, account **`anakano_81`**, and a Python **`.venv`**. All temporary files, caches, data, logs and checkpoints stay under that directory. The user's storage and venv requirements replace the uploaded document's environment examples.
 
 ## Run on Fedora with local Slurm
