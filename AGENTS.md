@@ -45,4 +45,24 @@ The cluster workflow requires user `aadaniel`, charging account `anakano_81`, ro
   30-minute allocation; there is no pending-job cap or automatic expansion.
   Start with the allocated smoke before the full hypothesis run.
 
+## Bounded consistency program
+
+- Read `docs/CONSISTENCY.md` before changing the new seven-arm experiment.
+  Use `scripts/fedora_consistency.sh`; its audit → prepare → neural chain has
+  separate run identifiers and does not overwrite the premix protocol/results.
+- Keep the physical gate and mean/spatial treatment paired on premix and FNO.
+  The gated correction must vanish for constant fields, zero reaction, zero
+  diffusion and zero time even with arbitrary nonzero weights. Mean calibration
+  targets a learned bounded mean; logistic reaction does not conserve mean.
+- Full training is three paired seeds with 300 updates per arm. Keep all
+  initialization selections, failures, unmet targets, same-step base regressions
+  and independent mean/spatial errors visible. No scientific superiority follows
+  from successful structural tests or computational completion.
+- Fresh train/validation/diagnostic parents use the immutable consistency
+  protocol. The previously inspected premix diagnostic bank is development
+  evidence and cannot be relabeled as an untouched diagnostic cohort.
+- The required structural audit and independent teacher preparation must seal
+  before GPU work. All four constrained arms must pass the declared checks;
+  the original arms' lack of those constraints is reported as an observation.
+
 When editing, run tests appropriate to the change. Windows launcher syntax and actual NVIDIA execution need native-machine validation; Linux checks cannot substantiate those claims. Never delete results or overwrite a completed run to make a check pass.

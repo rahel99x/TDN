@@ -34,11 +34,11 @@ def _close(first, second):
     return math.isclose(first, second, rel_tol=1e-12, abs_tol=1e-15)
 
 
-def _plan(protocol):
-    if protocol.get("schema") != SOURCE_SCHEMA or protocol.get("version") != 1:
+def _plan(protocol, *, source_schema=SOURCE_SCHEMA, families=FAMILIES):
+    if protocol.get("schema") != source_schema or protocol.get("version") != 1:
         raise ValueError("Unsupported premix neural protocol")
-    if protocol.get("families") != list(FAMILIES):
-        raise ValueError("Comparison requires all five declared neural families in protocol order")
+    if protocol.get("families") != list(families):
+        raise ValueError("Comparison requires all declared neural families in protocol order")
     seeds, targets = protocol.get("seeds"), protocol.get("targets")
     if (not isinstance(seeds, list) or not 1 <= len(seeds) <= 3
             or any(type(seed) is not int or seed <= 0 for seed in seeds) or len(set(seeds)) != len(seeds)):
@@ -220,9 +220,14 @@ def _counts(rows):
     return result
 
 
-def compare(protocol, candidates, frontiers, training):
+def compare(protocol, candidates, frontiers, training, *, source_schema=SOURCE_SCHEMA,
+            families=FAMILIES, pairs=None, schema=SCHEMA):
     """Derive paired rows from immutable observations without running numerics."""
-    parents = _plan(protocol)
+    parents = _plan(protocol, source_schema=source_schema, families=families)
+    pairs = tuple((ours, baseline) for ours in OURS for baseline in BASELINES) if pairs is None else tuple(pairs)
+    if (not pairs or len(set(pairs)) != len(pairs)
+            or any(len(pair) != 2 or pair[0] == pair[1] or any(family not in families for family in pair) for pair in pairs)):
+        raise ValueError("Invalid declared comparison pairs")
     methods = [(None, family) for family in protocol["classical"]]
     methods += [(seed, family) for seed in protocol["seeds"] for family in protocol["families"]]
     expected_training = {(seed, family) for seed in protocol["seeds"] for family in protocol["families"]}
@@ -236,50 +241,49 @@ def compare(protocol, candidates, frontiers, training):
     side_cache, rows = {}, []
     for parent in parents:
         for seed in protocol["seeds"]:
-            for ours in OURS:
-                for baseline in BASELINES:
-                    for norm in ("rms", "max"):
-                        for target_index, target in enumerate(protocol["targets"]):
-                            sides = []
-                            for family in (ours, baseline):
-                                key = (parent["parent_id"], seed, family, norm, target)
-                                if key not in side_cache:
-                                    side_cache[key] = _side(parent, seed, family, norm, target, protocol,
-                                                           candidate_map, frontier_map, training_map)
-                                sides.append(side_cache[key])
-                            first, second = sides
-                            issues = [f"{label}:{issue}" for label, side in zip(("ours", "baseline"), sides)
-                                      for issue in side["issues"]]
-                            eligible = first["feasible"] and second["feasible"]
-                            if eligible and first["device"] != second["device"]:
-                                issues.append("DEVICE_MISMATCH")
-                                eligible = False
-                            row = {key: parent[key] for key in ("parent_id", "regime", "category", "distribution", "grid")}
-                            row.update(comparison_id=f"{parent['parent_id']}:{seed}:{ours}:{baseline}:{norm}:{target_index}",
-                                seed=seed, ours=ours, baseline=baseline, norm=norm, target=target,
-                                timing_eligible=eligible, outcome=None, speedup_baseline_over_ours=None,
-                                trained_pair_eligible=eligible and all(side["selection"] == "TRAINED_CHECKPOINT" for side in sides),
-                                robust_speed_win=False, robust_speed_loss=False, range_status="NOT_ELIGIBLE", issues=issues)
-                            for label, side in zip(("ours", "baseline"), sides):
-                                for key in ("feasible", "status", "selection", "selected_step", "selected_steps", "seconds",
-                                            "frontier_record", "candidate_record", "training_record", "raw_min_seconds",
-                                            "raw_max_seconds", "repeat_count", "device"):
-                                    row[label + "_" + key] = side[key]
-                            row["status"] = ("PAIRED_FEASIBLE" if eligible else "INCOMPLETE_OR_INVALID_RESULT" if issues
-                                             else "UNPAIRED_FEASIBILITY" if any(side["feasible"] for side in sides)
-                                             else "NO_PAIRED_FEASIBLE_RESULT")
-                            if eligible:
-                                row["speedup_baseline_over_ours"] = second["seconds"] / first["seconds"]
-                                row["outcome"] = ("TIE" if _close(first["seconds"], second["seconds"])
-                                                  else "WIN" if first["seconds"] < second["seconds"] else "LOSS")
-                                if min(first["repeat_count"], second["repeat_count"]) >= 2:
-                                    row["robust_speed_win"] = first["raw_max_seconds"] < second["raw_min_seconds"]
-                                    row["robust_speed_loss"] = second["raw_max_seconds"] < first["raw_min_seconds"]
-                                    row["range_status"] = ("DISJOINT_OURS_FASTER" if row["robust_speed_win"] else
-                                                           "DISJOINT_BASELINE_FASTER" if row["robust_speed_loss"] else "OVERLAPPING")
-                                else:
-                                    row["range_status"] = "INSUFFICIENT_REPEATS"
-                            rows.append(row)
+            for ours, baseline in pairs:
+                for norm in ("rms", "max"):
+                    for target_index, target in enumerate(protocol["targets"]):
+                        sides = []
+                        for family in (ours, baseline):
+                            key = (parent["parent_id"], seed, family, norm, target)
+                            if key not in side_cache:
+                                side_cache[key] = _side(parent, seed, family, norm, target, protocol,
+                                                       candidate_map, frontier_map, training_map)
+                            sides.append(side_cache[key])
+                        first, second = sides
+                        issues = [f"{label}:{issue}" for label, side in zip(("ours", "baseline"), sides)
+                                  for issue in side["issues"]]
+                        eligible = first["feasible"] and second["feasible"]
+                        if eligible and first["device"] != second["device"]:
+                            issues.append("DEVICE_MISMATCH")
+                            eligible = False
+                        row = {key: parent[key] for key in ("parent_id", "regime", "category", "distribution", "grid")}
+                        row.update(comparison_id=f"{parent['parent_id']}:{seed}:{ours}:{baseline}:{norm}:{target_index}",
+                            seed=seed, ours=ours, baseline=baseline, norm=norm, target=target,
+                            timing_eligible=eligible, outcome=None, speedup_baseline_over_ours=None,
+                            trained_pair_eligible=eligible and all(side["selection"] == "TRAINED_CHECKPOINT" for side in sides),
+                            robust_speed_win=False, robust_speed_loss=False, range_status="NOT_ELIGIBLE", issues=issues)
+                        for label, side in zip(("ours", "baseline"), sides):
+                            for key in ("feasible", "status", "selection", "selected_step", "selected_steps", "seconds",
+                                        "frontier_record", "candidate_record", "training_record", "raw_min_seconds",
+                                        "raw_max_seconds", "repeat_count", "device"):
+                                row[label + "_" + key] = side[key]
+                        row["status"] = ("PAIRED_FEASIBLE" if eligible else "INCOMPLETE_OR_INVALID_RESULT" if issues
+                                         else "UNPAIRED_FEASIBILITY" if any(side["feasible"] for side in sides)
+                                         else "NO_PAIRED_FEASIBLE_RESULT")
+                        if eligible:
+                            row["speedup_baseline_over_ours"] = second["seconds"] / first["seconds"]
+                            row["outcome"] = ("TIE" if _close(first["seconds"], second["seconds"])
+                                              else "WIN" if first["seconds"] < second["seconds"] else "LOSS")
+                            if min(first["repeat_count"], second["repeat_count"]) >= 2:
+                                row["robust_speed_win"] = first["raw_max_seconds"] < second["raw_min_seconds"]
+                                row["robust_speed_loss"] = second["raw_max_seconds"] < first["raw_min_seconds"]
+                                row["range_status"] = ("DISJOINT_OURS_FASTER" if row["robust_speed_win"] else
+                                                       "DISJOINT_BASELINE_FASTER" if row["robust_speed_loss"] else "OVERLAPPING")
+                            else:
+                                row["range_status"] = "INSUFFICIENT_REPEATS"
+                        rows.append(row)
     grouped = defaultdict(list)
     for row in rows:
         for scope, value in (("all", "all"), ("category", row["category"]), ("regime", row["regime"])):
@@ -287,7 +291,7 @@ def compare(protocol, candidates, frontiers, training):
     group_fields = ("group_scope", "group", "seed", "ours", "baseline", "norm", "target")
     groups = [{**dict(zip(group_fields, key)), "counts": _counts(value),
                "parent_ids": [row["parent_id"] for row in value]} for key, value in sorted(grouped.items())]
-    expected_pairs = len(parents) * len(protocol["seeds"]) * len(OURS) * len(BASELINES) * 2 * len(protocol["targets"])
+    expected_pairs = len(parents) * len(protocol["seeds"]) * len(pairs) * 2 * len(protocol["targets"])
     coverage = {
         "diagnostic_parents": len(parents), "training_seeds": len(protocol["seeds"]),
         "training": {"expected": len(expected_training), "reported": len(training_map)},
@@ -297,7 +301,7 @@ def compare(protocol, candidates, frontiers, training):
         "complete_source_plan": (len(training_map) == len(expected_training) and len(candidate_map) == len(expected_candidates)
                                  and len(frontier_map) == len(expected_frontiers)),
     }
-    return {"schema": SCHEMA, "status": "DERIVED", "coverage": coverage, "counts": _counts(rows),
+    return {"schema": schema, "status": "DERIVED", "coverage": coverage, "counts": _counts(rows),
         "rows": rows, "groups": groups,
         "training_selections": [{"seed": seed, "family": family,
             "selection": _training(training_map.get((seed, family), (None, None))[0])[0],

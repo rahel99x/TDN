@@ -177,3 +177,10 @@ This helper has an explicit small CPU development budget and preserves failed/in
 The current small development regime has no demonstrated TDN efficiency advantage over cheap classical controls. A working training pipeline does not establish scientific merit. The smoke tolerance is a proposed screening value; confirmation remains blocked pending a reviewed tolerance/observable, physical ranges, untouched parents, and measured GPU gates.
 
 See [SOURCE_LEDGER.md](SOURCE_LEDGER.md), [REPO_AUDIT.md](REPO_AUDIT.md), [implementation map](docs/IMPLEMENTATION_MAP.md), [WORK_LOG.md](WORK_LOG.md) and [NEXT_ACTIONS.md](NEXT_ACTIONS.md). The original [implementation specification](docs/IMPLEMENTATION_SPEC.md) is retained for provenance. Gray–Scott, advection, distributed HALO, KAN, custom kernels and a confirmatory campaign are later extensions, not validated features of this initial RD pipeline.
+
+## Next bounded consistency experiment
+
+The physical gate and mean/spatial ablations are described in
+[docs/CONSISTENCY.md](docs/CONSISTENCY.md). On the configured Fedora desktop,
+start with `bash scripts/fedora_consistency.sh run --smoke`, then use `run`
+for the full three-seed, 300-update experiment after the smoke completes.

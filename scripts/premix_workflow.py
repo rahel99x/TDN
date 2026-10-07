@@ -364,10 +364,15 @@ def worker(workflow, stage, *, backend=None):
         backend = SimpleNamespace(**{name: globals()[name] for name in (
             "verify_allocation", "load", "begin_report", "worker_commands",
             "verify_stage", "verify_prerequisites")})
+    label = getattr(backend, "workflow_label", "premix")
+    stage_variable = getattr(backend, "stage_variable", "TDN_PREMIX_STAGE")
+    manifest_name = getattr(backend, "workflow_filename", "premix-workflow.json")
+    prerequisite_required = stage in getattr(backend, "prerequisite_stages", ("neural",))
+    report_finalizer = getattr(backend, "finish_report", finish_report)
     backend.verify_allocation(workflow, stage)
     base = Path(workflow["run_dir"])
     if state_path(workflow, stage).exists() or (base / stage).exists():
-        raise ValueError("Premix stage already started; preserve it and submit a fresh workflow")
+        raise ValueError(f"{label.capitalize()} stage already started; preserve it and submit a fresh workflow")
     record = {"status": "RUNNING", "exit_code": 0, "stage": "startup", "updated_at": cw.now(),
               "source_sha256": workflow["source_sha256"], "protocol_sha256": workflow["protocol_sha256"],
               "slurm_job_id": os.environ["SLURM_JOB_ID"], "slurm_step_id": os.environ["SLURM_STEP_ID"]}
@@ -395,26 +400,31 @@ def worker(workflow, stage, *, backend=None):
     try:
         report = backend.begin_report(workflow, stage)
         os.environ["TDN_TOWER_DIR"] = str(report)
-        print(f"TDN_PREMIX_STAGE={stage}\nTDN_TOWER_DIR={report}\nTDN_TOWER_METRICS={report / 'metrics.jsonl'}", flush=True)
-        backend.load(base / "premix-workflow.json")
+        print(f"{stage_variable}={stage}\nTDN_TOWER_DIR={report}\nTDN_TOWER_METRICS={report / 'metrics.jsonl'}", flush=True)
+        backend.load(base / manifest_name)
         lock = rw.acquire_venv_lock()
         software = rw.software_report(workflow)
+        if hasattr(backend, "verify_software"):
+            backend.verify_software(workflow, software)
         software_path = base / "state" / f"{stage}-software.json"
         cw.atomic_json(software_path, software)
         record["software_sha256"] = cw.digest(software_path)
-        if stage == "neural":
+        if prerequisite_required:
             record["prerequisite_manifest_sha256"] = backend.verify_prerequisites(workflow, software)
         for name, command in backend.worker_commands(workflow, stage):
             if stopped_at is not None:
                 raise InterruptedError("Stop requested; no successor started")
-            backend.load(base / "premix-workflow.json")
+            backend.load(base / manifest_name)
             if rw.software_report(workflow) != software:
                 raise ValueError("Software changed during premix execution")
             record.update(stage=name, updated_at=cw.now())
             cw.atomic_json(state_path(workflow, stage), record)
             env = os.environ.copy()
-            env.update(TDN_PREMIX_PROTOCOL_SHA256=workflow["protocol_sha256"],
-                       TDN_PREMIX_WORKFLOW=str(base / "premix-workflow.json"))
+            if hasattr(backend, "workflow_environment"):
+                env.update(backend.workflow_environment(workflow, stage))
+            else:
+                env.update(TDN_PREMIX_PROTOCOL_SHA256=workflow["protocol_sha256"],
+                           TDN_PREMIX_WORKFLOW=str(base / manifest_name))
             if name in ("tests", "gpu-tests"):
                 # Tests own their fixtures and must not inherit a production
                 # reporting stream or workflow binding. Real allocation/device
@@ -425,7 +435,7 @@ def worker(workflow, stage, *, backend=None):
                     backend.prepare_test_environment(env, name)
             if name == "gpu-tests":
                 env["TDN_REQUIRE_GPU_TESTS"] = "1"
-            print(f"TDN premix {stage}: starting {name}", flush=True)
+            print(f"TDN {label} {stage}: starting {name}", flush=True)
             child = subprocess.Popen(command, cwd=ROOT, env=env, start_new_session=True)
             if stopped_at is not None and child.poll() is None:
                 os.killpg(child.pid, signal.SIGUSR1)
@@ -441,19 +451,20 @@ def worker(workflow, stage, *, backend=None):
                             pass
             child = None
             if stopped_at is not None or code == 75:
-                raise InterruptedError("Premix interrupted; partial evidence preserved")
+                raise InterruptedError(f"{label.capitalize()} interrupted; partial evidence preserved")
             if code:
-                raise rw.WorkerFailure(f"Premix {stage}/{name} failed with exit code {code}",
+                raise rw.WorkerFailure(f"{label.capitalize()} {stage}/{name} failed with exit code {code}",
                                        128 - code if code < 0 else code)
             if name == "gpu-tests":
-                validate_gpu_junit(base / "neural-tests.xml")
-        backend.load(base / "premix-workflow.json")
+                junit_path = backend.gpu_junit_path(workflow) if hasattr(backend, "gpu_junit_path") else base / "neural-tests.xml"
+                validate_gpu_junit(junit_path)
+        backend.load(base / manifest_name)
         if rw.software_report(workflow) != software:
             raise ValueError("Software changed during premix execution")
-        if stage == "neural" and backend.verify_prerequisites(workflow, software) != record["prerequisite_manifest_sha256"]:
+        if prerequisite_required and backend.verify_prerequisites(workflow, software) != record["prerequisite_manifest_sha256"]:
             raise ValueError("CPU prerequisite seal changed during neural execution")
         backend.verify_stage(workflow, stage)
-        finish_report(workflow, stage, report, state="COMPLETED",
+        report_finalizer(workflow, stage, report, state="COMPLETED",
             runtime_seconds=time.monotonic() - started, exit_code=0, software=software)
         record.update(status="COMPLETED", exit_code=0, updated_at=cw.now())
         cw.atomic_json(state_path(workflow, stage), record)
@@ -466,11 +477,11 @@ def worker(workflow, stage, *, backend=None):
         cw.atomic_json(state_path(workflow, stage), record)
         if report is not None:
             try:
-                finish_report(workflow, stage, report, state=record["status"],
+                report_finalizer(workflow, stage, report, state=record["status"],
                     runtime_seconds=time.monotonic() - started, exit_code=failure_code,
                     error=exc, software=software)
             except Exception as report_error:
-                print(f"Premix reporting failed: {report_error}; original failure preserved", file=sys.stderr)
+                print(f"{label.capitalize()} reporting failed: {report_error}; original failure preserved", file=sys.stderr)
         raise rw.WorkerFailure(str(exc), failure_code) from exc
     finally:
         if child is not None and child.poll() is None:

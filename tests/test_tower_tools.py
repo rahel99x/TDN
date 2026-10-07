@@ -248,3 +248,61 @@ def test_read_only_cli_does_not_import_torch():
     code = f"import runpy,sys; sys.argv=['tower.py','--help'];\ntry: runpy.run_path({str(ROOT / 'scripts/tower.py')!r},run_name='__main__')\nexcept SystemExit: pass\nassert 'torch' not in sys.modules"
     result = subprocess.run([sys.executable, "-c", code], cwd=ROOT, text=True, capture_output=True)
     assert result.returncode == 0, result.stderr
+
+
+def test_consistency_native_validation_uses_installed_api_with_fixed_32_mib(tmp_path, monkeypatch):
+    report = report_fixture(tmp_path)
+    manifest = json.loads((report / "run.json").read_text())
+    manifest["name"] = "TDN/consistency/neural"
+    manifest["parameters"] = {"benchmark_suite": "consistency"}
+    write_json(report / "run.json", manifest)
+    executable = tmp_path / "bin/tower"
+    executable.parent.mkdir()
+    executable.write_text("#!" + sys.executable + "\n")
+    calls = []
+    monkeypatch.setattr(tools, "ROOT", tmp_path)
+    monkeypatch.setattr(tools.shutil, "which", lambda _: str(executable))
+    monkeypatch.delenv("TDN_TOWER_PYTHON", raising=False)
+    monkeypatch.setenv("TMPDIR", str(tmp_path / ".runtime/tmp"))
+    monkeypatch.setattr(tools.subprocess, "run", lambda command, **kw: calls.append((command, kw)) or SimpleNamespace(returncode=0))
+    assert tools.main(["validate", str(report), "--native"]) == 0
+    assert calls[0][0] == [sys.executable, str(tmp_path / "scripts/tower_native_validate.py"),
+        str(tmp_path / ".tower/contracts/outputs.v1.json"), str(report), "--max-bytes", "33554432"]
+    assert calls[0][1]["env"]["PYTHONDONTWRITEBYTECODE"] == "1"
+    assert calls[0][1]["env"]["TMPDIR"] == str(tmp_path / ".runtime/tmp")
+
+
+def test_source_tower_launcher_resolution_is_read_only_and_exact(tmp_path, monkeypatch):
+    source = tmp_path / "Tower source"
+    launcher = source / "scripts/tower"
+    launcher.parent.mkdir(parents=True)
+    launcher.write_text("#!/bin/sh\n# Source launcher\n")
+    (source / "tower").mkdir()
+    (source / "tower/artifacts.py").write_text("# Upstream API marker\n")
+    monkeypatch.delenv("TDN_TOWER_PYTHON", raising=False)
+    monkeypatch.setattr(tools.shutil, "which", lambda _: sys.executable)
+    assert tools.tower_interpreter(str(launcher)) == (sys.executable, source)
+    assert not (source / ".venv").exists()
+
+
+def test_env_tower_python_resolution_and_explicit_override(tmp_path, monkeypatch):
+    launcher = tmp_path / "tower"
+    launcher.write_text("#!/usr/bin/env python3\n")
+    monkeypatch.delenv("TDN_TOWER_PYTHON", raising=False)
+    monkeypatch.setattr(tools.shutil, "which", lambda name: sys.executable if name == "python3" else None)
+    assert tools.tower_interpreter(str(launcher)) == (sys.executable, None)
+    launcher.write_text("#!/bin/sh\ncustom wrapper\n")
+    monkeypatch.setenv("TDN_TOWER_PYTHON", sys.executable)
+    assert tools.tower_interpreter(str(launcher)) == (sys.executable, None)
+    monkeypatch.setenv("TDN_TOWER_PYTHON", "python3")
+    with pytest.raises(ValueError, match="absolute"):
+        tools.tower_interpreter(str(launcher))
+
+
+@pytest.mark.parametrize("shebang", ["#!/bin/sh\n", "#!/usr/bin/env python3 -c arbitrary\n", "#!/usr/bin/env -S python3\n", "not a script\n"])
+def test_unsupported_tower_launcher_does_not_execute_shell(tmp_path, monkeypatch, shebang):
+    launcher = tmp_path / "tower"
+    launcher.write_text(shebang)
+    monkeypatch.delenv("TDN_TOWER_PYTHON", raising=False)
+    with pytest.raises(ValueError, match="TDN_TOWER_PYTHON"):
+        tools.tower_interpreter(str(launcher))

@@ -1,0 +1,708 @@
+{
+  "schema": "tdn.consistency-validation/v1",
+  "observed_at": "2026-10-07T09:19:03.205368+00:00",
+  "scope": "Actual managed cloud CPU validation of the fixed consistency program; native Fedora Slurm and RTX 4090 execution remain pending.",
+  "source_parent_commit": "14136f327847c55f8888087f5f78aa121dcaa4bc",
+  "tested_source_tree_sha256": "315c07f66650ac4cf6fb20f70a8eff0d2e1537b27968bbc3dc402fc26c707f0f",
+  "source_unchanged_during_validation": true,
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "14136f327847c55f8888087f5f78aa121dcaa4bc",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "315c07f66650ac4cf6fb20f70a8eff0d2e1537b27968bbc3dc402fc26c707f0f",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "full_protocol_sha256": "3091a1c0000c7f6639e93465e8912ec53424e8a05962d5519dbabab3cab80f2b",
+  "commands": [
+    "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q -m 'not gpu' --basetemp=.runtime/pytest-consistency-full-final --junitxml=.runtime/consistency-validation/full-cpu-final.xml",
+    "bash scripts/consistency_local.sh --run-dir .runtime/consistency-validation/local-smoke-final",
+    "bash scripts/consistency_local.sh --full --run-dir .runtime/consistency-validation/local-full",
+    "bash -n scripts/fedora_consistency.sh scripts/consistency_worker.sh scripts/consistency_local.sh",
+    "bash scripts/fedora_consistency.sh --help"
+  ],
+  "cpu_regression": {
+    "passed": 2307,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "gpu_deselected": 108,
+    "seconds": 416.902,
+    "optional_skip": "tests/test_tower_reporting.py optional jsonschema development dependency; independent installed-jsonschema validation below checked the actual emitted objects.",
+    "junit": ".runtime/consistency-validation/full-cpu-final.xml"
+  },
+  "stages": [
+    {
+      "run": "local-smoke-final",
+      "stage": "audit",
+      "status": "COMPLETED",
+      "sealed_files": 6,
+      "counts": {
+        "checks": 128,
+        "required": 110
+      },
+      "elapsed_seconds": 0.3374108879943378
+    },
+    {
+      "run": "local-smoke-final",
+      "stage": "prepare",
+      "status": "COMPLETED",
+      "sealed_files": 7,
+      "counts": {
+        "parents": 24,
+        "references": 78,
+        "accepted_references": 78
+      },
+      "elapsed_seconds": 4.332788843996241
+    },
+    {
+      "run": "local-smoke-final",
+      "stage": "neural",
+      "status": "COMPLETED",
+      "sealed_files": 28,
+      "counts": {
+        "training_records": 7,
+        "trained_checkpoints": 4,
+        "selected_initializations": 3,
+        "numerical_training_failures": 0,
+        "candidates": 240,
+        "completed_candidates": 240,
+        "diagnostic_parents": 12,
+        "trained_consistency_checks": 28
+      },
+      "elapsed_seconds": 5.123164032003842
+    },
+    {
+      "run": "local-full",
+      "stage": "audit",
+      "status": "COMPLETED",
+      "sealed_files": 6,
+      "counts": {
+        "checks": 128,
+        "required": 110
+      },
+      "elapsed_seconds": 0.44729564199224114
+    },
+    {
+      "run": "local-full",
+      "stage": "prepare",
+      "status": "COMPLETED",
+      "sealed_files": 7,
+      "counts": {
+        "parents": 120,
+        "references": 456,
+        "accepted_references": 456
+      },
+      "elapsed_seconds": 61.92578199999116
+    },
+    {
+      "run": "local-full",
+      "stage": "neural",
+      "status": "COMPLETED",
+      "sealed_files": 56,
+      "counts": {
+        "training_records": 21,
+        "trained_checkpoints": 15,
+        "selected_initializations": 6,
+        "numerical_training_failures": 0,
+        "candidates": 3456,
+        "completed_candidates": 3456,
+        "diagnostic_parents": 48,
+        "trained_consistency_checks": 84
+      },
+      "elapsed_seconds": 348.29183935999754
+    }
+  ],
+  "training_selections": [
+    {
+      "family": "premix",
+      "seed": 940011,
+      "selection": "SELECTED_INITIALIZATION",
+      "steps": 300,
+      "selected_step": 0,
+      "selected_parameters_changed": false,
+      "parameter_count": 23825,
+      "best_validation_loss": 1.062636460601786
+    },
+    {
+      "family": "fno",
+      "seed": 940011,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 150,
+      "selected_parameters_changed": true,
+      "parameter_count": 67137,
+      "best_validation_loss": 1.0118462118896079
+    },
+    {
+      "family": "premix_gated",
+      "seed": 940011,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 200,
+      "selected_parameters_changed": true,
+      "parameter_count": 23825,
+      "best_validation_loss": 0.31330614982373767
+    },
+    {
+      "family": "fno_gated",
+      "seed": 940011,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 250,
+      "selected_parameters_changed": true,
+      "parameter_count": 67137,
+      "best_validation_loss": 0.3965002439380129
+    },
+    {
+      "family": "premix_moment",
+      "seed": 940011,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 250,
+      "selected_parameters_changed": true,
+      "parameter_count": 23842,
+      "best_validation_loss": 0.16250022675038
+    },
+    {
+      "family": "fno_moment",
+      "seed": 940011,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 100,
+      "selected_parameters_changed": true,
+      "parameter_count": 67154,
+      "best_validation_loss": 0.26173800715133416
+    },
+    {
+      "family": "precompress",
+      "seed": 940011,
+      "selection": "SELECTED_INITIALIZATION",
+      "steps": 300,
+      "selected_step": 0,
+      "selected_parameters_changed": false,
+      "parameter_count": 23825,
+      "best_validation_loss": 1.062636460601786
+    },
+    {
+      "family": "premix",
+      "seed": 940021,
+      "selection": "SELECTED_INITIALIZATION",
+      "steps": 300,
+      "selected_step": 0,
+      "selected_parameters_changed": false,
+      "parameter_count": 23825,
+      "best_validation_loss": 1.062636460601786
+    },
+    {
+      "family": "fno",
+      "seed": 940021,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 200,
+      "selected_parameters_changed": true,
+      "parameter_count": 67137,
+      "best_validation_loss": 1.0037841431808436
+    },
+    {
+      "family": "premix_gated",
+      "seed": 940021,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 200,
+      "selected_parameters_changed": true,
+      "parameter_count": 23825,
+      "best_validation_loss": 0.41176828481850064
+    },
+    {
+      "family": "fno_gated",
+      "seed": 940021,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 150,
+      "selected_parameters_changed": true,
+      "parameter_count": 67137,
+      "best_validation_loss": 0.39520574868430436
+    },
+    {
+      "family": "premix_moment",
+      "seed": 940021,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 200,
+      "selected_parameters_changed": true,
+      "parameter_count": 23842,
+      "best_validation_loss": 0.3229085274033896
+    },
+    {
+      "family": "fno_moment",
+      "seed": 940021,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 150,
+      "selected_parameters_changed": true,
+      "parameter_count": 67154,
+      "best_validation_loss": 0.26376679095998945
+    },
+    {
+      "family": "precompress",
+      "seed": 940021,
+      "selection": "SELECTED_INITIALIZATION",
+      "steps": 300,
+      "selected_step": 0,
+      "selected_parameters_changed": false,
+      "parameter_count": 23825,
+      "best_validation_loss": 1.062636460601786
+    },
+    {
+      "family": "premix",
+      "seed": 940031,
+      "selection": "SELECTED_INITIALIZATION",
+      "steps": 300,
+      "selected_step": 0,
+      "selected_parameters_changed": false,
+      "parameter_count": 23825,
+      "best_validation_loss": 1.062636460601786
+    },
+    {
+      "family": "fno",
+      "seed": 940031,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 200,
+      "selected_parameters_changed": true,
+      "parameter_count": 67137,
+      "best_validation_loss": 1.0547049100940866
+    },
+    {
+      "family": "premix_gated",
+      "seed": 940031,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 250,
+      "selected_parameters_changed": true,
+      "parameter_count": 23825,
+      "best_validation_loss": 0.346976100692963
+    },
+    {
+      "family": "fno_gated",
+      "seed": 940031,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 300,
+      "selected_parameters_changed": true,
+      "parameter_count": 67137,
+      "best_validation_loss": 0.38962386496717877
+    },
+    {
+      "family": "premix_moment",
+      "seed": 940031,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 250,
+      "selected_parameters_changed": true,
+      "parameter_count": 23842,
+      "best_validation_loss": 0.23555339431567532
+    },
+    {
+      "family": "fno_moment",
+      "seed": 940031,
+      "selection": "TRAINED_CHECKPOINT",
+      "steps": 300,
+      "selected_step": 300,
+      "selected_parameters_changed": true,
+      "parameter_count": 67154,
+      "best_validation_loss": 0.24007312747267726
+    },
+    {
+      "family": "precompress",
+      "seed": 940031,
+      "selection": "SELECTED_INITIALIZATION",
+      "steps": 300,
+      "selected_step": 0,
+      "selected_parameters_changed": false,
+      "parameter_count": 23825,
+      "best_validation_loss": 1.062636460601786
+    }
+  ],
+  "full_coverage": {
+    "candidates": 3456,
+    "frontiers": 9216,
+    "paired_comparisons": 11520,
+    "groups": 3840,
+    "fresh_diagnostic_parents": 48,
+    "paired_training_seeds": 3,
+    "rms_target_2e_4": [
+      {
+        "family": "fno",
+        "seed": 940021,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      },
+      {
+        "family": "premix_moment",
+        "seed": 940021,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "premix_gated",
+        "seed": 940031,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "premix_moment",
+        "seed": 940011,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "fno_moment",
+        "seed": 940021,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "fno_gated",
+        "seed": 940021,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "precompress",
+        "seed": 940011,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      },
+      {
+        "family": "premix",
+        "seed": 940031,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      },
+      {
+        "family": "etdrk4",
+        "seed": null,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 48
+      },
+      {
+        "family": "fno_moment",
+        "seed": 940011,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "fno_gated",
+        "seed": 940011,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "fno_moment",
+        "seed": 940031,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "premix_moment",
+        "seed": 940031,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "precompress",
+        "seed": 940031,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      },
+      {
+        "family": "gl3_fused",
+        "seed": null,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 48
+      },
+      {
+        "family": "premix_gated",
+        "seed": 940011,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "precompress",
+        "seed": 940021,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      },
+      {
+        "family": "premix",
+        "seed": 940021,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      },
+      {
+        "family": "fno",
+        "seed": 940011,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      },
+      {
+        "family": "premix",
+        "seed": 940011,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      },
+      {
+        "family": "fno_gated",
+        "seed": 940031,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "fno",
+        "seed": 940031,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      },
+      {
+        "family": "premix_gated",
+        "seed": 940021,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 40
+      },
+      {
+        "family": "strang",
+        "seed": null,
+        "norm": "rms",
+        "target": 0.0002,
+        "parents": 48,
+        "feasible_parents": 36
+      }
+    ]
+  },
+  "native_tower": {
+    "smoke": {
+      "observed_at": "2026-10-07T09:08:23.261220+00:00",
+      "tower_commit": "356861e5b83cd9e162fb39727604e1bc52bcf5a9",
+      "tower_code_modified": false,
+      "reports": [
+        {
+          "path": ".runtime/consistency-validation/local-smoke-final/audit-tower/tdn-20261007T090741993226Z-f2681413d506",
+          "scope": "Actual cloud CPU smoke protocol; no Fedora Slurm or CUDA claim",
+          "projected_csv_rows": 128,
+          "populated_cells_verified": 1644,
+          "json_pointers_verified": 216,
+          "source_hashes_verified": 3,
+          "native_contract_entries": 43,
+          "native_contract_bytes": 87805,
+          "native_contract_max_bytes": 33554432,
+          "schema_objects_validated": 6,
+          "native_metric_records": 3,
+          "native_log_entries": 14,
+          "native_csv_tables": 24,
+          "native_csv_pages": 24,
+          "native_csv_rows": 129
+        },
+        {
+          "path": ".runtime/consistency-validation/local-smoke-final/prepare-tower/tdn-20261007T090745506529Z-d21b5234d6ef",
+          "scope": "Actual cloud CPU smoke protocol; no Fedora Slurm or CUDA claim",
+          "projected_csv_rows": 78,
+          "populated_cells_verified": 1170,
+          "json_pointers_verified": 156,
+          "source_hashes_verified": 3,
+          "native_contract_entries": 43,
+          "native_contract_bytes": 82281,
+          "native_contract_max_bytes": 33554432,
+          "schema_objects_validated": 30,
+          "native_metric_records": 27,
+          "native_log_entries": 14,
+          "native_csv_tables": 24,
+          "native_csv_pages": 24,
+          "native_csv_rows": 79
+        },
+        {
+          "path": ".runtime/consistency-validation/local-smoke-final/neural-tower/tdn-20261007T090752557730Z-0b150ca64efd",
+          "scope": "Actual cloud CPU smoke protocol; no Fedora Slurm or CUDA claim",
+          "projected_csv_rows": 3496,
+          "populated_cells_verified": 146951,
+          "json_pointers_verified": 13023,
+          "source_hashes_verified": 7,
+          "native_contract_entries": 43,
+          "native_contract_bytes": 1736227,
+          "native_contract_max_bytes": 33554432,
+          "schema_objects_validated": 39,
+          "native_metric_records": 36,
+          "native_log_entries": 29,
+          "native_csv_tables": 24,
+          "native_csv_pages": 48,
+          "native_csv_rows": 3525
+        }
+      ],
+      "totals": {
+        "projected_csv_rows": 3702,
+        "populated_cells_verified": 149765,
+        "json_pointers_verified": 13395,
+        "source_hashes_verified": 13,
+        "native_contract_entries": 129,
+        "native_contract_bytes": 1906313,
+        "schema_objects_validated": 75,
+        "native_metric_records": 66,
+        "native_log_entries": 57,
+        "native_csv_tables": 72,
+        "native_csv_pages": 96,
+        "native_csv_rows": 3733
+      },
+      "per_report_validation_max_bytes": 33554432
+    },
+    "full": {
+      "observed_at": "2026-10-07T09:15:43.121274+00:00",
+      "tower_commit": "356861e5b83cd9e162fb39727604e1bc52bcf5a9",
+      "tower_code_modified": false,
+      "per_report_validation_max_bytes": 33554432,
+      "reports": [
+        {
+          "path": ".runtime/consistency-validation/local-full/audit-tower/tdn-20261007T090810004284Z-ff38f95bb6cd",
+          "scope": "Actual cloud CPU full protocol; no Fedora Slurm or CUDA claim",
+          "projected_csv_rows": 128,
+          "populated_cells_verified": 1644,
+          "json_pointers_verified": 216,
+          "source_hashes_verified": 3,
+          "native_contract_entries": 43,
+          "native_contract_bytes": 87781,
+          "native_contract_max_bytes": 33554432,
+          "schema_objects_validated": 6,
+          "native_metric_records": 3,
+          "native_log_entries": 14,
+          "native_csv_tables": 24,
+          "native_csv_pages": 24,
+          "native_csv_rows": 129
+        },
+        {
+          "path": ".runtime/consistency-validation/local-full/prepare-tower/tdn-20261007T090812908797Z-5e7f127cecb9",
+          "scope": "Actual cloud CPU full protocol; no Fedora Slurm or CUDA claim",
+          "projected_csv_rows": 456,
+          "populated_cells_verified": 6840,
+          "json_pointers_verified": 912,
+          "source_hashes_verified": 3,
+          "native_contract_entries": 43,
+          "native_contract_bytes": 221476,
+          "native_contract_max_bytes": 33554432,
+          "schema_objects_validated": 126,
+          "native_metric_records": 123,
+          "native_log_entries": 14,
+          "native_csv_tables": 24,
+          "native_csv_pages": 27,
+          "native_csv_rows": 457
+        },
+        {
+          "path": ".runtime/consistency-validation/local-full/neural-tower/tdn-20261007T090917429463Z-df1362eba010",
+          "scope": "Actual cloud CPU full protocol; no Fedora Slurm or CUDA claim",
+          "projected_csv_rows": 28284,
+          "populated_cells_verified": 1363857,
+          "json_pointers_verified": 131547,
+          "source_hashes_verified": 7,
+          "native_contract_entries": 43,
+          "native_contract_bytes": 17959589,
+          "native_contract_max_bytes": 33554432,
+          "schema_objects_validated": 201,
+          "native_metric_records": 198,
+          "native_log_entries": 43,
+          "native_csv_tables": 24,
+          "native_csv_pages": 241,
+          "native_csv_rows": 28453
+        }
+      ],
+      "totals": {
+        "projected_csv_rows": 28868,
+        "populated_cells_verified": 1372341,
+        "json_pointers_verified": 132675,
+        "source_hashes_verified": 13,
+        "native_contract_entries": 129,
+        "native_contract_bytes": 18268846,
+        "schema_objects_validated": 333,
+        "native_metric_records": 324,
+        "native_log_entries": 71,
+        "native_csv_tables": 72,
+        "native_csv_pages": 292,
+        "native_csv_rows": 29039
+      }
+    }
+  },
+  "native_helper_neural": {
+    "valid_entries": 43,
+    "bytes_read": 17959589,
+    "max_bytes": 33554432,
+    "tower_application_modified": false
+  },
+  "resolved_integration_issue": "The initial full regression was stopped after three CARC integration tests exposed an incomplete isolated reporting fixture. The fixture dependency closure was repaired; final full regression passed.",
+  "interpretation": [
+    "The same 48 diagnostic parents are reused across seeds and endpoint targets; repeated rows are paired descriptive observations, not independent evidence.",
+    "Diagnostic query steps 0.24, 0.12 and 0.06 are represented in development schedules; this does not establish unseen query-time generalization.",
+    "Six full selections remain initialization-selected; they do not count as trained superiority.",
+    "The CPU experiment ran alongside regression testing; no deployment speed or GPU memory claim follows from these timings.",
+    "At RMS 2e-4 the four constrained arms cover 40/48 parents per seed, while original premix/FNO cover 36/48. Both backbones benefit; no TDN advantage over the adapted FNO or published FNO paper is established.",
+    "Native Fedora uses this same frozen protocol for device validation and measured timing, rather than a second untouched diagnostic cohort."
+  ],
+  "native_gpu_validation": {
+    "status": "NOT_RUN_IN_CLOUD",
+    "new_allocated_cuda_tests": 38,
+    "required_before_native_training": true
+  },
+  "scientific_superiority_established": false,
+  "artifacts_sealed_and_verified": true
+}

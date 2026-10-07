@@ -147,6 +147,68 @@ def selected_report(root, value):
     return path
 
 
+def native_validation_command(root, report):
+    """Use Tower's existing API for the explicitly bounded larger suite only."""
+    manifest = read_json(report / "run.json")
+    parameters = manifest.get("parameters", {})
+    consistency = (isinstance(parameters, dict) and parameters.get("benchmark_suite") == "consistency"
+                   or str(manifest.get("name", "")).startswith("TDN/consistency/"))
+    _, config = tower_profile(root, report)
+    ordinary = ["tower", "--no-state", "--no-plugins", "--config", str(config),
+                "run", "validate", str(root / ".tower/contracts/outputs.v1.json"), str(report)]
+    if not consistency:
+        return ordinary, {}
+    executable = shutil.which("tower")
+    if executable is None:
+        raise ValueError("Native validation requires your existing Tower executable on PATH")
+    interpreter, source_root = tower_interpreter(executable)
+    command = [interpreter, str(root / "scripts/tower_native_validate.py"),
+               str(root / ".tower/contracts/outputs.v1.json"), str(report), "--max-bytes", str(32 << 20)]
+    environment = dict(os.environ)
+    environment["PYTHONDONTWRITEBYTECODE"] = "1"
+    if source_root is not None:
+        environment["PYTHONPATH"] = str(source_root) + (os.pathsep + environment["PYTHONPATH"] if environment.get("PYTHONPATH") else "")
+    return command, {"env": environment}
+
+
+def tower_interpreter(executable):
+    """Resolve installed Python/source launchers without evaluating shell text."""
+    supplied = os.environ.get("TDN_TOWER_PYTHON")
+    if supplied:
+        interpreter = Path(supplied)
+        if not interpreter.is_absolute() or not interpreter.is_file() or not os.access(interpreter, os.X_OK):
+            raise ValueError("TDN_TOWER_PYTHON must name an existing absolute executable Python path")
+        return str(interpreter), None
+    path = Path(executable).resolve()
+    if not path.is_file():
+        raise ValueError("Existing Tower launcher is not a regular file")
+    with path.open("rb") as stream:
+        first = stream.readline(4097)
+    if not first.startswith(b"#!") or len(first) > 4096:
+        raise ValueError("Cannot resolve Tower's Python; set TDN_TOWER_PYTHON to its absolute interpreter path")
+    try:
+        words = shlex.split(first[2:].decode().strip())
+    except (UnicodeError, ValueError) as error:
+        raise ValueError("Cannot read Tower launcher shebang; set TDN_TOWER_PYTHON") from error
+    if words and Path(words[0]).name == "env":
+        if len(words) == 2 and re.fullmatch(r"python(?:[0-9]+(?:\.[0-9]+)*)?", words[1]):
+            resolved = shutil.which(words[1])
+            if resolved:
+                return resolved, None
+    elif len(words) == 1 and re.fullmatch(r"python(?:[0-9]+(?:\.[0-9]+)*)?", Path(words[0]).name):
+        if Path(words[0]).is_absolute() and Path(words[0]).is_file() and os.access(words[0], os.X_OK):
+            return words[0], None
+    # The unmodified upstream source launcher has this exact conventional
+    # scripts/tower -> ../tower package layout. Import its package read-only.
+    source = path.parent.parent
+    if path.name == "tower" and path.parent.name == "scripts" and (source / "tower/artifacts.py").is_file():
+        own_python = source / ".venv/bin/python"
+        interpreter = str(own_python) if own_python.is_file() and os.access(own_python, os.X_OK) else shutil.which("python3")
+        if interpreter:
+            return interpreter, source
+    raise ValueError("Unsupported Tower launcher; set TDN_TOWER_PYTHON to the Python interpreter that imports your installed Tower")
+
+
 def inspect_report(root, report_dir):
     """Bounded structural checks, deliberately not a full JSON Schema validator."""
     report = project_path(root, report_dir)
@@ -397,11 +459,8 @@ def main(argv=None):
             if args.native:
                 if shutil.which("tower") is None:
                     raise ValueError("Native validation requires your existing Tower executable on PATH")
-                _, config = tower_profile(ROOT, report)
-                command = ["tower", "--no-state", "--no-plugins", "--config", str(config),
-                           "run", "validate", str(ROOT / ".tower/contracts/outputs.v1.json"),
-                           str(report)]
-                return subprocess.run(command, cwd=ROOT, check=False).returncode
+                command, options = native_validation_command(ROOT, report)
+                return subprocess.run(command, cwd=ROOT, check=False, **options).returncode
         elif args.action == "export":
             reports = [project_path(ROOT, path) for path in args.reports]
             reference = project_path(ROOT, args.reference) if args.reference else None

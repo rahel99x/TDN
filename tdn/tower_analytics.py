@@ -1110,6 +1110,10 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
     from tdn.premix_reporting import publish_premix_outputs
     premix_sources = {}
     premix = publish_premix_outputs(report_dir, roots, delegated_sources=premix_sources)
+    from tdn.consistency_reporting import publish_consistency_outputs
+    consistency_sources = {}
+    consistency = publish_consistency_outputs(report_dir, roots, delegated_sources=consistency_sources)
+    delegated_sources = {**premix_sources, **consistency_sources}
     # The premix parser has its own explicit time budget.
     budget.deadline = time.monotonic() + MAX_SECONDS
     files, inventory, documents, xml_documents, used_paths = [], [], {}, {}, set()
@@ -1125,15 +1129,16 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             relative = _relative(path, report_dir)
             entry = {"path": relative, "kind": KINDS.get(path.suffix.lower(), "other"), "bytes": info.st_size}
             raw = None
-            if path in premix_sources:
-                delegated = premix_sources[path]
+            if path in delegated_sources:
+                delegated = delegated_sources[path]
+                suite = "consistency" if path in consistency_sources else "premix"
                 signature = (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns)
                 if signature == delegated["signature"]:
-                    entry.update(sha256=delegated["sha256"], hash_status="computed_premix_projection",
-                                 projection="outputs/premix-tables.json")
+                    entry.update(sha256=delegated["sha256"], hash_status="computed_" + suite + "_projection",
+                                 projection=f"outputs/{suite}-tables.json")
                 else:
                     entry["hash_status"] = "unavailable"
-                    budget.omit(relative, "source changed after premix projection")
+                    budget.omit(relative, "source changed after " + suite + " projection")
             elif budget.can_read(path, info.st_size) and not budget.expired():
                 try:
                     _safe_directory(path.parent)
@@ -1450,7 +1455,7 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
                    "table_bytes_overrides": {"mechanisms.csv": MAX_MECHANISM_TABLE_BYTES}},
         "observed_read_bytes": budget.read_bytes,
         "hash_semantics": "computed = bytes read here; computed_premix_projection = bytes read by the dedicated "
-                          "premix parser with unchanged file identity; declared_unverified = original manifest assertion only; "
+                          "premix parser with unchanged file identity; computed_consistency_projection = bytes read by the dedicated consistency parser with unchanged file identity; declared_unverified = original manifest assertion only; "
                           "not_read_budget = no hash available within budgets. Source paths may name large binary files; "
                           "these are not copied or deserialized."}
     if any(path.name == "compact-spatial.json" for path in files):
@@ -1471,5 +1476,11 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         if not premix["reporting_complete"]:
             results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) |
                                                     {"PREMIX_REPORTING_INCOMPLETE"})
+    if consistency is not None:
+        results["consistency"] = consistency
+        results["reporting_omission_count"] += consistency["reporting_omission_count"]
+        if not consistency["reporting_complete"]:
+            results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) |
+                                                    {"CONSISTENCY_REPORTING_INCOMPLETE"})
     atomic_json(outputs / "results.json", results)
     return results

@@ -15,6 +15,37 @@ Fedora desktop Slurm setup writes a separate project-local
 `desktop-slurm`; historical CARC reports retain their CARC profile. Both use
 the same report contracts and the existing Tower application.
 
+The bounded consistency experiment exports separate `consistency_candidates.csv`,
+`consistency_frontiers.csv`, `consistency_checks.csv`, `consistency_training.csv`,
+`consistency_comparisons.csv` and `consistency_groups.csv` tables. The checks
+include structural audits and post-checkpoint exact-limit observations; required
+failures remain visible. Candidate and comparison tables expose signed mean,
+spatial, and same-step physical-base errors. Matched-constraint backbone pairs,
+within-backbone gate/moment ablations, and compression order have distinct
+`comparison_kind` values. Initialization selections remain explicit and never
+count as trained wins. Every projected row retains its canonical JSON pointer
+and source hash; `consistency-tables.json` explains fields and units.
+
+A full consistency report contains 11,520 paired comparison rows plus 9,216
+frontiers, so its aggregate files exceed Tower's default 8 MiB contract read
+allowance. `bash scripts/tower.sh validate REPORT --native` uses the existing
+Tower Python API with an explicit **32 MiB shared read budget for consistency
+reports**. Other reports keep Tower's default CLI allowance. Individual CSV
+pages remain bounded by Tower's existing viewer limits; paging a table and
+validating all declared files are separate reads. Table and row limits still
+apply, and budget exhaustion remains an incomplete validation.
+
+The helper resolves a standard installed Python launcher or the upstream source
+launcher without running shell text. For a custom launcher, set
+`TDN_TOWER_PYTHON=/absolute/path/to/the/python/that/imports/tower` before native
+validation. It imports your existing Tower read-only and creates no Tower state
+or package bytecode; it never installs or alters Tower.
+
+The consistency launcher's explicitly indexed `reporter-tests/<stage>/` sources
+keep CPU/GPU JUnit results in `tests.csv` without changing sealed science files
+or importing unrelated workflow directories. Run its `paths latest` command
+for exact Tower report and `metrics.jsonl` paths. Tower itself is unchanged.
+
 The [premix program](PREMIX.md) produces one report per CPU/GPU stage. Run
 `bash scripts/carc_premix.sh paths latest` for each exact report and live
 `metrics.jsonl` path. Its dedicated `premix_candidates.csv`,

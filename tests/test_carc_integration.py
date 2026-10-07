@@ -44,8 +44,20 @@ def carc_integration(tmp_path):
     for name in ("configs", "tdn", "reference", "tests"):
         (root / name).mkdir()
     shutil.copy2(ROOT / "configs/carc-smoke.yaml", root / "configs/carc-smoke.yaml")
-    for name in ("__init__.py", "config.py", "reporting.py", "tower_analytics.py", "premix_reporting.py"):
-        shutil.copy2(ROOT / "tdn" / name, root / "tdn" / name)
+    # Copy the reporting dependency closure used by real worker finalization.
+    # These declarations/parsers use only the standard library; numerical
+    # engines and model implementations remain absent from this substitute.
+    for name in (
+        "__init__.py", "config.py", "reporting.py", "tower_analytics.py",
+        "premix_reporting.py", "consistency_reporting.py", "analysis/__init__.py",
+        "analysis/consistency/__init__.py", "analysis/consistency/protocol.py",
+        "analysis/consistency/comparison.py", "analysis/premix/__init__.py",
+        "analysis/premix/comparison.py", "research/__init__.py", "research/protocol.py",
+        "runtime/__init__.py", "runtime/metadata.py",
+    ):
+        destination = root / "tdn" / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / "tdn" / name, destination)
     mocks = root / "mocks"
     mocks.mkdir()
     venv = root / ".venv"

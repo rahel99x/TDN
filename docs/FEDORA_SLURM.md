@@ -96,6 +96,11 @@ same `.cache/carc-phase.lock` lifecycle lock.
 
 ## Run the experiment
 
+The follow-up bounded physical gate and mean/spatial comparison uses the
+separate [consistency runbook](CONSISTENCY.md) and
+`scripts/fedora_consistency.sh`. The commands below retain the original premix
+accuracy/scaling experiment.
+
 Start with the smoke workflow to verify the native desktop driver, Slurm GRES
 assignment, interpreter and launch path together:
 
