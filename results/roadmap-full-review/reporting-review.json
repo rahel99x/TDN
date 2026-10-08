@@ -1,0 +1,304 @@
+{
+  "scope": "Read-only complete native Tower page validation plus every experiment/check/value/metric projection against canonical streamed rows; no archive code executed",
+  "tower_commit": "356861e5b83cd9e162fb39727604e1bc52bcf5a9",
+  "stages": [
+    {
+      "stage": "audit",
+      "report": "tower/tdn-20261008T022527346014Z-830d80a524a0",
+      "native_valid": true,
+      "page_count": 20,
+      "table_rows": {
+        "artifacts": 12,
+        "checks": 254,
+        "experiments": 52,
+        "mechanisms": 0,
+        "metrics": 52,
+        "values": 1863
+      },
+      "page_bytes": 772695,
+      "native_contract_count": 1,
+      "projection_counts": {
+        "experiments": 52,
+        "checks": 254,
+        "values": 1863,
+        "metrics": 52
+      },
+      "mechanism_scores_verified": 0,
+      "live_metric_rows": 6,
+      "registered_log_count": 21,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    },
+    {
+      "stage": "headroom",
+      "report": "tower/tdn-20261008T022555352234Z-3b9ccffc1ab8",
+      "native_valid": true,
+      "page_count": 397,
+      "table_rows": {
+        "artifacts": 12,
+        "checks": 4972,
+        "experiments": 1273,
+        "mechanisms": 0,
+        "metrics": 1273,
+        "values": 43020
+      },
+      "page_bytes": 18857969,
+      "native_contract_count": 4,
+      "projection_counts": {
+        "experiments": 1273,
+        "checks": 4972,
+        "values": 43020,
+        "metrics": 1273
+      },
+      "mechanism_scores_verified": 0,
+      "live_metric_rows": 18,
+      "registered_log_count": 20,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    },
+    {
+      "stage": "prepare",
+      "report": "tower/tdn-20261008T022752686586Z-99b5fe2cf8be",
+      "native_valid": true,
+      "page_count": 134,
+      "table_rows": {
+        "artifacts": 17,
+        "checks": 300,
+        "experiments": 60,
+        "mechanisms": 0,
+        "metrics": 60,
+        "values": 16364
+      },
+      "page_bytes": 6512524,
+      "native_contract_count": 2,
+      "projection_counts": {
+        "experiments": 60,
+        "checks": 300,
+        "values": 16364,
+        "metrics": 60
+      },
+      "mechanism_scores_verified": 0,
+      "live_metric_rows": 6,
+      "registered_log_count": 22,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    },
+    {
+      "stage": "train",
+      "report": "tower/tdn-20261008T022947348122Z-a6f253d58344",
+      "native_valid": true,
+      "page_count": 83,
+      "table_rows": {
+        "artifacts": 245,
+        "checks": 1035,
+        "experiments": 115,
+        "mechanisms": 0,
+        "metrics": 115,
+        "values": 8925
+      },
+      "page_bytes": 3682191,
+      "native_contract_count": 1,
+      "projection_counts": {
+        "experiments": 115,
+        "checks": 1035,
+        "values": 8925,
+        "metrics": 115
+      },
+      "mechanism_scores_verified": 0,
+      "live_metric_rows": 7,
+      "registered_log_count": 139,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    },
+    {
+      "stage": "confirm_prepare",
+      "report": "tower/tdn-20261008T023842694486Z-d7a267f11bd8",
+      "native_valid": true,
+      "page_count": 129,
+      "table_rows": {
+        "artifacts": 16,
+        "checks": 240,
+        "experiments": 48,
+        "mechanisms": 0,
+        "metrics": 48,
+        "values": 15808
+      },
+      "page_bytes": 6641978,
+      "native_contract_count": 2,
+      "projection_counts": {
+        "experiments": 48,
+        "checks": 240,
+        "values": 15808,
+        "metrics": 48
+      },
+      "mechanism_scores_verified": 0,
+      "live_metric_rows": 6,
+      "registered_log_count": 23,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    },
+    {
+      "stage": "confirm",
+      "report": "tower/tdn-20261008T024111343071Z-1f42ddf39875",
+      "native_valid": true,
+      "page_count": 43589,
+      "table_rows": {
+        "artifacts": 15,
+        "checks": 597356,
+        "experiments": 70748,
+        "mechanisms": 0,
+        "metrics": 70748,
+        "values": 4840310
+      },
+      "page_bytes": 2316146422,
+      "native_contract_count": 341,
+      "projection_counts": {
+        "experiments": 70748,
+        "checks": 597356,
+        "values": 4840310,
+        "metrics": 70748
+      },
+      "mechanism_scores_verified": 0,
+      "live_metric_rows": 713,
+      "registered_log_count": 24,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    },
+    {
+      "stage": "policy",
+      "report": "tower/tdn-20261008T031028337935Z-0cb42347ee80",
+      "native_valid": true,
+      "page_count": 556,
+      "table_rows": {
+        "artifacts": 17,
+        "checks": 10632,
+        "experiments": 1111,
+        "mechanisms": 0,
+        "metrics": 1111,
+        "values": 57932
+      },
+      "page_bytes": 24229850,
+      "native_contract_count": 5,
+      "projection_counts": {
+        "experiments": 1111,
+        "checks": 10632,
+        "values": 57932,
+        "metrics": 1111
+      },
+      "mechanism_scores_verified": 0,
+      "live_metric_rows": 17,
+      "registered_log_count": 26,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    },
+    {
+      "stage": "transfer",
+      "report": "tower/tdn-20261008T032814360538Z-7b748a6b8fa0",
+      "native_valid": true,
+      "page_count": 305,
+      "table_rows": {
+        "artifacts": 114,
+        "checks": 4176,
+        "experiments": 595,
+        "mechanisms": 0,
+        "metrics": 595,
+        "values": 33369
+      },
+      "page_bytes": 14792332,
+      "native_contract_count": 3,
+      "projection_counts": {
+        "experiments": 595,
+        "checks": 4176,
+        "values": 33369,
+        "metrics": 595
+      },
+      "mechanism_scores_verified": 0,
+      "live_metric_rows": 11,
+      "registered_log_count": 20,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    },
+    {
+      "stage": "scaling",
+      "report": "tower/tdn-20261008T033444343343Z-3fdcec517f86",
+      "native_valid": true,
+      "page_count": 58,
+      "table_rows": {
+        "artifacts": 12,
+        "checks": 729,
+        "experiments": 147,
+        "mechanisms": 0,
+        "metrics": 147,
+        "values": 5919
+      },
+      "page_bytes": 2520470,
+      "native_contract_count": 1,
+      "projection_counts": {
+        "experiments": 147,
+        "checks": 729,
+        "values": 5919,
+        "metrics": 147
+      },
+      "mechanism_scores_verified": 0,
+      "live_metric_rows": 7,
+      "registered_log_count": 21,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    },
+    {
+      "stage": "report",
+      "report": "tower/tdn-20261008T034106352505Z-d6493fda8718",
+      "native_valid": true,
+      "page_count": 6,
+      "table_rows": {
+        "artifacts": 15,
+        "checks": 3,
+        "experiments": 1,
+        "mechanisms": 29,
+        "metrics": 1,
+        "values": 10
+      },
+      "page_bytes": 22252,
+      "native_contract_count": 1,
+      "projection_counts": {
+        "experiments": 1,
+        "checks": 3,
+        "values": 10,
+        "metrics": 1
+      },
+      "mechanism_scores_verified": 29,
+      "live_metric_rows": 4,
+      "registered_log_count": 24,
+      "registered_logs_exist": true,
+      "omission_count": 0,
+      "source_seal_status": "VERIFIED_CANONICAL"
+    }
+  ],
+  "valid": true,
+  "elapsed_seconds_last_review_invocation": 0.1917489650004427,
+  "verification_invocations": 2,
+  "review_script_correction": "Review-only mechanism score accessor corrected from nested assessment to actual flat mechanism schema; report stage alone rerun. Scientific artifacts unchanged.",
+  "totals": {
+    "artifacts": 475,
+    "checks": 619697,
+    "experiments": 74150,
+    "mechanisms": 29,
+    "metrics": 74150,
+    "values": 5023520
+  },
+  "total_pages": 45277,
+  "total_page_bytes": 2394178683,
+  "total_contracts": 361,
+  "total_live_metric_rows": 795,
+  "base_contracts_valid": true,
+  "page_directories_exact": true
+}

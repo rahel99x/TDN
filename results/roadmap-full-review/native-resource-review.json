@@ -1,0 +1,63 @@
+{
+  "verification": "VERIFIED",
+  "stages": {
+    "train": {
+      "verification": "VERIFIED",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "job_id": "200",
+      "python": "3.13.13",
+      "torch": "2.10.0+cu126",
+      "cuda_runtime": "12.6",
+      "gpu_vram_bytes": 25227100160,
+      "peak_allocated_bytes": 73739776,
+      "peak_reserved_bytes": 75497472,
+      "peak_sampled_device_used_bytes": 2208366592,
+      "soft_budget_bytes": 17499144192,
+      "sampled_memory_within_frozen_caps": true
+    },
+    "confirm": {
+      "verification": "VERIFIED",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "job_id": "202",
+      "python": "3.13.13",
+      "torch": "2.10.0+cu126",
+      "cuda_runtime": "12.6",
+      "gpu_vram_bytes": 25227100160,
+      "peak_allocated_bytes": 44256768,
+      "peak_reserved_bytes": 46137344,
+      "peak_sampled_device_used_bytes": 2354708480,
+      "soft_budget_bytes": 17572429824,
+      "sampled_memory_within_frozen_caps": true
+    },
+    "policy": {
+      "verification": "VERIFIED",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "job_id": "203",
+      "python": "3.13.13",
+      "torch": "2.10.0+cu126",
+      "cuda_runtime": "12.6",
+      "gpu_vram_bytes": 25227100160,
+      "peak_allocated_bytes": 72172544,
+      "peak_reserved_bytes": 73400320,
+      "peak_sampled_device_used_bytes": 1785200640,
+      "soft_budget_bytes": 17749721088,
+      "sampled_memory_within_frozen_caps": true
+    },
+    "scaling": {
+      "verification": "VERIFIED",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "job_id": "205",
+      "python": "3.13.13",
+      "torch": "2.10.0+cu126",
+      "cuda_runtime": "12.6",
+      "gpu_vram_bytes": 25227100160,
+      "peak_allocated_bytes": 6494081024,
+      "peak_reserved_bytes": 8621391872,
+      "peak_sampled_device_used_bytes": 10297081856,
+      "soft_budget_bytes": 17753210880,
+      "sampled_memory_within_frozen_caps": true
+    }
+  },
+  "all_stages_numerical_budget_passed": true,
+  "host_slurm_cap_mib": 110000
+}

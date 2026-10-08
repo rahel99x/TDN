@@ -1,0 +1,297 @@
+{
+  "schema": "tdn.exhaustive-atlas/v1",
+  "run": "fedora-roadmap-20261008T022526329292Z",
+  "source_archive_index_sha256": "1f189f63863e36f3bb5e2d505a40410ea15761f6f9b4605df59e8c01a3df63a7",
+  "read_only_review": true,
+  "source_record_count": 74150,
+  "science_record_count": 74149,
+  "report_inventory_record_count": 1,
+  "check_occurrences": 619697,
+  "junit_occurrences": 642,
+  "junit_status": {
+    "PASS": 641,
+    "SKIP": 1
+  },
+  "allocation_seconds_by_stage": {
+    "audit": 28,
+    "headroom": 118,
+    "prepare": 114,
+    "train": 536,
+    "confirm_prepare": 148,
+    "confirm": 1757,
+    "policy": 1066,
+    "transfer": 390,
+    "scaling": 382,
+    "report": 140
+  },
+  "total_allocation_seconds": 4679,
+  "gpu_allocation_seconds": 3741,
+  "allocated_cpu_seconds": 21908,
+  "scheduler_accounting_sha256": "770dc3aef66a86f4c4d28581b8331c2ebb8da6e5bf62aee175057a401fcdbf3e",
+  "experiment_verdicts": {
+    "GOOD": 1573,
+    "NA": 6404,
+    "BAD": 66173
+  },
+  "check_verdicts": {
+    "GOOD": 370898,
+    "NA": 53438,
+    "BAD": 195361
+  },
+  "check_categories": {
+    "math": {
+      "GOOD": 62258,
+      "NA": 10566,
+      "BAD": 4706
+    },
+    "correctness": {
+      "GOOD": 90173
+    },
+    "gap": {
+      "GOOD": 204209,
+      "NA": 334,
+      "BAD": 116686
+    },
+    "utility": {
+      "GOOD": 14258,
+      "BAD": 73969,
+      "NA": 42538
+    }
+  },
+  "source_ledgers": [
+    {
+      "stage": "audit",
+      "path": "audit/rows.jsonl",
+      "sha256": "d7b022acc136b4a5443d64dc8824bbfecb7aa526deeff65ce2321dcf2187a3ee",
+      "experiments": 52,
+      "checks": 254
+    },
+    {
+      "stage": "headroom",
+      "path": "headroom/rows.jsonl",
+      "sha256": "ae4c4583441d1408576a0d04169c190af04a47c78b25ce933cff23d336bdc446",
+      "experiments": 1273,
+      "checks": 4972
+    },
+    {
+      "stage": "prepare",
+      "path": "prepare/rows.jsonl",
+      "sha256": "44d91ac5524dd76277f748f08f62a7fdd701b7319bb6bd8a04a9b8591528b8c3",
+      "experiments": 60,
+      "checks": 300
+    },
+    {
+      "stage": "train",
+      "path": "train/rows.jsonl",
+      "sha256": "bfc34063d1620c6a7b3c79e2a146f6dccef4a0bf3d5ed781e5476c7b1fae2733",
+      "experiments": 115,
+      "checks": 1035
+    },
+    {
+      "stage": "confirm_prepare",
+      "path": "confirm_prepare/rows.jsonl",
+      "sha256": "93a93ee4d5ea35e2e0c83b53cf175cadeefecb0c0200f02e80be8bc91b14d8f7",
+      "experiments": 48,
+      "checks": 240
+    },
+    {
+      "stage": "confirm",
+      "path": "confirm/rows.jsonl",
+      "sha256": "dd1a8548579819fa336fef50152e3b7a082334f4a592a3e79457f3347a5cfe5f",
+      "experiments": 70748,
+      "checks": 597356
+    },
+    {
+      "stage": "policy",
+      "path": "policy/rows.jsonl",
+      "sha256": "a7ae23b1b6047a4bbec90dfa1b6e8e6917f76552099f204ea6ea85641c31a9d0",
+      "experiments": 1111,
+      "checks": 10632
+    },
+    {
+      "stage": "transfer",
+      "path": "transfer/rows.jsonl",
+      "sha256": "a4132a0d6617d8115c172c27f2bec63637f9e2994fc2364ac721bab2e18b25e9",
+      "experiments": 595,
+      "checks": 4176
+    },
+    {
+      "stage": "scaling",
+      "path": "scaling/rows.jsonl",
+      "sha256": "1ee56fb56b57547a1875a12e854ecb00039184e3283bf15cac961fdb8ada6093",
+      "experiments": 147,
+      "checks": 729
+    },
+    {
+      "stage": "report",
+      "path": "report/rows.jsonl",
+      "sha256": "a80066b06550b694dfa4ef3440b2b1f62c343224e289624b270504dadea9262b",
+      "experiments": 1,
+      "checks": 3
+    }
+  ],
+  "coverage_audit": {
+    "experiment": {
+      "records": 74150,
+      "unique_stage_cell_coordinates": 74150,
+      "columns": 256,
+      "stage_counts": {
+        "audit": 52,
+        "headroom": 1273,
+        "prepare": 60,
+        "train": 115,
+        "confirm_prepare": 48,
+        "confirm": 70748,
+        "policy": 1111,
+        "transfer": 595,
+        "scaling": 147,
+        "report": 1
+      },
+      "zero_omissions": true,
+      "zero_duplicate_cells": true
+    },
+    "check": {
+      "records": 619697,
+      "unique_stage_cell_coordinates": 619697,
+      "columns": 768,
+      "stage_counts": {
+        "audit": 254,
+        "headroom": 4972,
+        "prepare": 300,
+        "train": 1035,
+        "confirm_prepare": 240,
+        "confirm": 597356,
+        "policy": 10632,
+        "transfer": 4176,
+        "scaling": 729,
+        "report": 3
+      },
+      "zero_omissions": true,
+      "zero_duplicate_cells": true
+    }
+  },
+  "rendered_png_cell_audit": {
+    "verdict": {
+      "verified_cell_centers": 74150,
+      "mismatched_colors": 0,
+      "max_allowed_8bit_rounding": 1
+    },
+    "score": {
+      "verified_cell_centers": 74150,
+      "mismatched_colors": 0,
+      "max_allowed_8bit_rounding": 1
+    },
+    "checks": {
+      "verified_cell_centers": 619697,
+      "mismatched_colors": 0,
+      "max_allowed_8bit_rounding": 1
+    }
+  },
+  "rendering": {
+    "png_pixels": [
+      11520,
+      14720
+    ],
+    "raster_mapping": "one logged record per logical color cell, nearest-neighbor; stage-local left-to-right row-major; unfilled cells white",
+    "experiment_columns": 256,
+    "check_columns": 768,
+    "junit_columns": 150,
+    "stage_figure_positions": {
+      "audit": {
+        "top": 0.583,
+        "bottom": 0.5647888351708906,
+        "data_top": 0.5781999999999999,
+        "data_bottom": 0.5667888351708906
+      },
+      "headroom": {
+        "top": 0.5647888351708906,
+        "bottom": 0.5465776703417813,
+        "data_top": 0.5599888351708906,
+        "data_bottom": 0.5485776703417813
+      },
+      "prepare": {
+        "top": 0.5465776703417813,
+        "bottom": 0.528366505512672,
+        "data_top": 0.5417776703417813,
+        "data_bottom": 0.530366505512672
+      },
+      "train": {
+        "top": 0.528366505512672,
+        "bottom": 0.5101553406835626,
+        "data_top": 0.5235665055126719,
+        "data_bottom": 0.5121553406835626
+      },
+      "confirm_prepare": {
+        "top": 0.5101553406835626,
+        "bottom": 0.49194417585445327,
+        "data_top": 0.5053553406835626,
+        "data_bottom": 0.49394417585445327
+      },
+      "confirm": {
+        "top": 0.49194417585445327,
+        "bottom": 0.19684465931643713,
+        "data_top": 0.48714417585445324,
+        "data_bottom": 0.19884465931643713
+      },
+      "policy": {
+        "top": 0.19684465931643713,
+        "bottom": 0.17863349448732782,
+        "data_top": 0.19204465931643713,
+        "data_bottom": 0.18063349448732782
+      },
+      "transfer": {
+        "top": 0.17863349448732782,
+        "bottom": 0.1604223296582185,
+        "data_top": 0.17383349448732782,
+        "data_bottom": 0.1624223296582185
+      },
+      "scaling": {
+        "top": 0.1604223296582185,
+        "bottom": 0.1422111648291092,
+        "data_top": 0.1556223296582185,
+        "data_bottom": 0.1442111648291092
+      },
+      "report": {
+        "top": 0.1422111648291092,
+        "bottom": 0.12399999999999987,
+        "data_top": 0.1374111648291092,
+        "data_bottom": 0.12599999999999986
+      }
+    },
+    "channel_figure_positions": {
+      "verdict": {
+        "left": 0.035,
+        "width": 0.222
+      },
+      "score": {
+        "left": 0.276,
+        "width": 0.222
+      },
+      "checks": {
+        "left": 0.526,
+        "width": 0.437
+      }
+    },
+    "score_meaning": "recorded weighted required-check attainment, 1..100; not accuracy/probability/proof",
+    "raw_scores_preserved": true,
+    "horizon_comparisons": "PDF pages 2\u20134 reconstructed with separate horizons 0.27 and 0.81; not substituted into recorded scores"
+  },
+  "limitations": [
+    "Observations are paired/repeated, not independent sample counts.",
+    "Scientific BAD is distinct from execution failure.",
+    "No official FNO-paper reproduction.",
+    "No retraining or scientific reruns.",
+    "All original scores retained, including known mixed-horizon original frontier flaw."
+  ],
+  "review_input_sha256": {
+    "aggregate-review.json": "b8739e31787ef88c1cbce211850a4f07cac1a5fb1178945b0014ee01a42aef70",
+    "neural-review.json": "dfd77097a59dbc0b5af3b7dc1f57073fc459c9ddc98aec45db9da92b4a0124f6",
+    "neural-fixed-horizon-review.json": "98b101fc421c862e97fa53076f3a5c5541791bf484d9035d168da2a5ea17387b",
+    "policy-review.json": "364d46b68047fe7e5f2c3f613c7a293762eb3efe9d37dce0ac20d1fe1fdad46c"
+  },
+  "pdf_visual_review": {
+    "pages": 4,
+    "page_3_rendered_from_saved_pdf": true,
+    "layout_and_labels_checked": true
+  }
+}

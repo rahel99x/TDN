@@ -1,0 +1,30 @@
+id,name,recorded_verdict,recorded_score_1_100,evidence_coverage,linked_experiment_count
+M00,Headroom map and fused classical reference,BAD,61,0.9656661226682092,4685
+M01,Consistent spatial target and two-resolution discrepancy,BAD,68,0.8156967151642418,1115
+M02,Exact finite-step quadratic DF defect,BAD,61,0.9243273704213354,16473
+M03,Physical factors plus learned rank-1/rank-2 remainder,BAD,60,0.9192519763502291,23532
+M04,Signed nonlinear sources before output compression,BAD,60,0.9195058467037023,23419
+M05,Product-consistent anti-aliasing and grid-scaled filters,BAD,82,0.9370366804659671,640
+M06,Stiffness-aware trust envelope for the correction,BAD,59,0.9058590380944075,8862
+M07,Conditional solver bank with a classical safe path,BAD,68,0.8137787844469612,1090
+M08,Cheap embedded estimator and stability-weighted residual,BAD,68,0.812504693954187,1110
+M09,Function-level calibrated total-error and selective risk,BAD,68,0.8130029088436402,1087
+M10,Unequal-step generator consistency and intermediate supervision,BAD,61,0.9058299657915904,8862
+M11,DF-tuned defect loss with regime and maximum-error control,BAD,60,0.9196476182012087,23384
+M12,Dynamic feasible mean–variance closure,NA,93,0.9330143540669856,17
+M13,Dimensionally consistent multi-band/fractional features,BAD,59,0.91964767211936,4490
+M14,Geometry-aware and anisotropic transport,BAD,82,0.9400404448938322,582
+M15,"Cost-aware algebraic reuse, fusion and batching",BAD,67,0.8054033299591609,1285
+M16,Faithful neural comparison and strongest classical utility,BAD,44,0.8121044908549784,35736
+M17,Factor-isolated stress and coefficient-transfer bank,BAD,84,0.9435592762624899,697
+M18,Fresh independent fields and hierarchical inference,BAD,69,0.8335180892875138,1472
+M19,PDE and boundary portability ladder,BAD,82,0.9370857651597586,593
+M20,Order-constrained learned embedded stages,BAD,65,0.9204771371769384,3899
+M21,Physical monotonicity and growth-envelope diagnostics,BAD,81,0.923062558356676,658
+M22,"Effective configuration, provenance and reproducible measurement",NA,93,0.9259259259259259,3
+M23,Dedicated cubic Volterra remainder,BAD,87,0.8898305084745762,20
+C0,Prerequisite screen,NA,74,0.7368421052631579,2
+C1,Primary compact finite-step residual,BAD,61,0.9206514495168278,15592
+C2,Operational error/cost-controlled hybrid,BAD,62,0.8959877945298237,5009
+C3,Finite-amplitude side branch,BAD,94,0.9516129032258065,30
+C4,Later transfer/geometry branch,BAD,82,0.992609437180216,103

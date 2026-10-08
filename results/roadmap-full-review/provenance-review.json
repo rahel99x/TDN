@@ -1,0 +1,429 @@
+{
+  "schema": "tdn.independent-upload-provenance-review/v1",
+  "run_id": "fedora-roadmap-20261008T022526329292Z",
+  "profile": "full",
+  "verification_implementation": "trusted checked-out e46ae9f code; uploaded artifacts read as data only, .pt files hashed and never unpickled",
+  "source_sha256": "2527656149023f9e89959fb6d3c6b3534a68388fa9a8126b8f13455d74897d17",
+  "git_commit": "e46ae9f03dbffc80a0cc90c061dbb001a121a2db",
+  "scientific_protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+  "stages": {
+    "audit": {
+      "verification": "VERIFIED",
+      "job_id": "197",
+      "device": "cpu",
+      "sealed_science_artifacts": 8,
+      "experiments": 52,
+      "elapsed_numerical_seconds": 0.771389817004092,
+      "memory": {
+        "enabled": false,
+        "observations": 0,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+      },
+      "verdict_counts": {
+        "GOOD": 33,
+        "NA": 17,
+        "BAD": 2
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 28,
+      "allocated_cpu_seconds": 224,
+      "used_cpu_seconds": 27.856,
+      "max_step_rss_bytes": 438906880.0,
+      "allocated_resources": {
+        "billing": "8",
+        "cpu": "8",
+        "mem": "48G",
+        "node": "1"
+      }
+    },
+    "headroom": {
+      "verification": "VERIFIED",
+      "job_id": "198",
+      "device": "cpu",
+      "sealed_science_artifacts": 8,
+      "experiments": 1273,
+      "elapsed_numerical_seconds": 109.96708975000365,
+      "memory": {
+        "enabled": false,
+        "observations": 0,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+      },
+      "verdict_counts": {
+        "GOOD": 1184,
+        "BAD": 89
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 118,
+      "allocated_cpu_seconds": 944,
+      "used_cpu_seconds": 116.325,
+      "max_step_rss_bytes": 616554496.0,
+      "allocated_resources": {
+        "billing": "8",
+        "cpu": "8",
+        "mem": "48G",
+        "node": "1"
+      }
+    },
+    "prepare": {
+      "verification": "VERIFIED",
+      "job_id": "199",
+      "device": "cpu",
+      "sealed_science_artifacts": 13,
+      "experiments": 60,
+      "elapsed_numerical_seconds": 104.6478739669983,
+      "memory": {
+        "enabled": false,
+        "observations": 0,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+      },
+      "verdict_counts": {
+        "GOOD": 60
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 114,
+      "allocated_cpu_seconds": 912,
+      "used_cpu_seconds": 693.027,
+      "max_step_rss_bytes": 3125125120.0,
+      "allocated_resources": {
+        "billing": "8",
+        "cpu": "8",
+        "mem": "48G",
+        "node": "1"
+      }
+    },
+    "train": {
+      "verification": "VERIFIED",
+      "job_id": "200",
+      "device": "cuda",
+      "sealed_science_artifacts": 241,
+      "experiments": 115,
+      "elapsed_numerical_seconds": 519.2405492730031,
+      "memory": {
+        "enabled": true,
+        "observations": 4624,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries",
+        "initial_free_bytes": 23332192256,
+        "total_bytes": 25227100160,
+        "soft_budget_bytes": 17499144192,
+        "hard_device_used_fraction": 0.9,
+        "peak_allocated_bytes": 73739776,
+        "peak_reserved_bytes": 75497472,
+        "peak_sampled_device_used_bytes": 2208366592
+      },
+      "verdict_counts": {
+        "GOOD": 74,
+        "BAD": 34,
+        "NA": 7
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 536,
+      "allocated_cpu_seconds": 2144,
+      "used_cpu_seconds": 532.746,
+      "max_step_rss_bytes": 1577254912.0,
+      "allocated_resources": {
+        "billing": "4",
+        "cpu": "4",
+        "gres/gpu": "1",
+        "mem": "32G",
+        "node": "1"
+      }
+    },
+    "confirm_prepare": {
+      "verification": "VERIFIED",
+      "job_id": "201",
+      "device": "cpu",
+      "sealed_science_artifacts": 12,
+      "experiments": 48,
+      "elapsed_numerical_seconds": 138.21771387699118,
+      "memory": {
+        "enabled": false,
+        "observations": 0,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+      },
+      "verdict_counts": {
+        "GOOD": 48
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 148,
+      "allocated_cpu_seconds": 1184,
+      "used_cpu_seconds": 918.003,
+      "max_step_rss_bytes": 3121713152.0,
+      "allocated_resources": {
+        "billing": "8",
+        "cpu": "8",
+        "mem": "48G",
+        "node": "1"
+      }
+    },
+    "confirm": {
+      "verification": "VERIFIED",
+      "job_id": "202",
+      "device": "cuda",
+      "sealed_science_artifacts": 11,
+      "experiments": 70748,
+      "elapsed_numerical_seconds": 1485.579487068011,
+      "memory": {
+        "enabled": true,
+        "observations": 110911,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries",
+        "initial_free_bytes": 23429906432,
+        "total_bytes": 25227100160,
+        "soft_budget_bytes": 17572429824,
+        "hard_device_used_fraction": 0.9,
+        "peak_allocated_bytes": 44256768,
+        "peak_reserved_bytes": 46137344,
+        "peak_sampled_device_used_bytes": 2354708480
+      },
+      "verdict_counts": {
+        "NA": 6059,
+        "BAD": 64615,
+        "GOOD": 74
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 1757,
+      "allocated_cpu_seconds": 7028,
+      "used_cpu_seconds": 1728.669,
+      "max_step_rss_bytes": 9797828608.0,
+      "allocated_resources": {
+        "billing": "4",
+        "cpu": "4",
+        "gres/gpu": "1",
+        "mem": "48G",
+        "node": "1"
+      }
+    },
+    "policy": {
+      "verification": "VERIFIED",
+      "job_id": "203",
+      "device": "cuda",
+      "sealed_science_artifacts": 13,
+      "experiments": 1111,
+      "elapsed_numerical_seconds": 767.4904455210053,
+      "memory": {
+        "enabled": true,
+        "observations": 6813,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries",
+        "initial_free_bytes": 23666294784,
+        "total_bytes": 25227100160,
+        "soft_budget_bytes": 17749721088,
+        "hard_device_used_fraction": 0.9,
+        "peak_allocated_bytes": 72172544,
+        "peak_reserved_bytes": 73400320,
+        "peak_sampled_device_used_bytes": 1785200640
+      },
+      "verdict_counts": {
+        "NA": 120,
+        "BAD": 991
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 1066,
+      "allocated_cpu_seconds": 4264,
+      "used_cpu_seconds": 1059.608,
+      "max_step_rss_bytes": 5026275328.0,
+      "allocated_resources": {
+        "billing": "4",
+        "cpu": "4",
+        "gres/gpu": "1",
+        "mem": "32G",
+        "node": "1"
+      }
+    },
+    "transfer": {
+      "verification": "VERIFIED",
+      "job_id": "204",
+      "device": "cpu",
+      "sealed_science_artifacts": 110,
+      "experiments": 595,
+      "elapsed_numerical_seconds": 92.22350056799769,
+      "memory": {
+        "enabled": false,
+        "observations": 0,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+      },
+      "verdict_counts": {
+        "NA": 104,
+        "GOOD": 97,
+        "BAD": 394
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 390,
+      "allocated_cpu_seconds": 3120,
+      "used_cpu_seconds": 387.807,
+      "max_step_rss_bytes": 3882496000.0,
+      "allocated_resources": {
+        "billing": "8",
+        "cpu": "8",
+        "mem": "48G",
+        "node": "1"
+      }
+    },
+    "scaling": {
+      "verification": "VERIFIED",
+      "job_id": "205",
+      "device": "cuda",
+      "sealed_science_artifacts": 8,
+      "experiments": 147,
+      "elapsed_numerical_seconds": 79.93015438299335,
+      "memory": {
+        "enabled": true,
+        "observations": 1034,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries",
+        "initial_free_bytes": 23670947840,
+        "total_bytes": 25227100160,
+        "soft_budget_bytes": 17753210880,
+        "hard_device_used_fraction": 0.9,
+        "peak_allocated_bytes": 6494081024,
+        "peak_reserved_bytes": 8621391872,
+        "peak_sampled_device_used_bytes": 10297081856
+      },
+      "verdict_counts": {
+        "GOOD": 3,
+        "BAD": 48,
+        "NA": 96
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 382,
+      "allocated_cpu_seconds": 1528,
+      "used_cpu_seconds": 380.394,
+      "max_step_rss_bytes": 5190643712.0,
+      "allocated_resources": {
+        "billing": "4",
+        "cpu": "4",
+        "gres/gpu": "1",
+        "mem": "32G",
+        "node": "1"
+      }
+    },
+    "report": {
+      "verification": "VERIFIED",
+      "job_id": "206",
+      "device": "cpu",
+      "sealed_science_artifacts": 11,
+      "experiments": 1,
+      "elapsed_numerical_seconds": 75.72691448399564,
+      "memory": {
+        "enabled": false,
+        "observations": 0,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+      },
+      "verdict_counts": {
+        "NA": 1
+      },
+      "correctness_failures": 0,
+      "scheduler_elapsed_seconds": 140,
+      "allocated_cpu_seconds": 560,
+      "used_cpu_seconds": 138.986,
+      "max_step_rss_bytes": 3514257408.0,
+      "allocated_resources": {
+        "billing": "4",
+        "cpu": "4",
+        "mem": "32G",
+        "node": "1"
+      }
+    }
+  },
+  "limitations": [
+    "Hash integrity and recorded provenance do not prove mathematical correctness or reproduce numerical trajectories.",
+    "Scheduler accounting is the retained native sacct snapshot, not a live query.",
+    "No monetary rate was supplied."
+  ],
+  "sealed_science_artifacts": 435,
+  "experiments": 74150,
+  "numerical_seconds": 3373.7951187080034,
+  "native_junit": {
+    "audit": {
+      "cases": 450,
+      "passed": 449,
+      "skipped": [
+        {
+          "name": "test_native_artifact_reader_can_read_every_exported_page_and_metric_record",
+          "reason": "Optional unchanged Tower checkout is unavailable"
+        }
+      ],
+      "failed": [],
+      "mandatory_gpu_identities_verified": false
+    },
+    "train": {
+      "cases": 48,
+      "passed": 48,
+      "skipped": [],
+      "failed": [],
+      "mandatory_gpu_identities_verified": true
+    },
+    "confirm": {
+      "cases": 48,
+      "passed": 48,
+      "skipped": [],
+      "failed": [],
+      "mandatory_gpu_identities_verified": true
+    },
+    "policy": {
+      "cases": 48,
+      "passed": 48,
+      "skipped": [],
+      "failed": [],
+      "mandatory_gpu_identities_verified": true
+    },
+    "scaling": {
+      "cases": 48,
+      "passed": 48,
+      "skipped": [],
+      "failed": [],
+      "mandatory_gpu_identities_verified": true
+    }
+  },
+  "checkpoints": {
+    "catalog_and_training_plan_verified": true,
+    "selected": 51,
+    "tuning": 64,
+    "total_hashes_verified": 115,
+    "selected_validated": 51,
+    "selected_initializations": 9,
+    "selected_trained": 42,
+    "numerically_failed_trials": 0,
+    "selection_split": "validation",
+    "frozen_before_confirmation": true
+  },
+  "data_manifests": {
+    "prepare": {
+      "verification": "VERIFIED",
+      "artifact_hashes": 4,
+      "parents": {
+        "train": 24,
+        "validation": 12,
+        "calibration": 24
+      },
+      "independent_clusters": {
+        "train": 24,
+        "validation": 12,
+        "calibration": 24
+      },
+      "reference_count": 780
+    },
+    "confirm_prepare": {
+      "verification": "VERIFIED",
+      "artifact_hashes": 3,
+      "parents": {
+        "confirmation": 48
+      },
+      "independent_clusters": {
+        "confirmation": 24
+      },
+      "reference_count": 768
+    }
+  },
+  "accounting": {
+    "status": "RECORDED",
+    "allocation_rows": 10,
+    "step_rows": 20,
+    "all_completed_zero_exit": true,
+    "summed_allocation_elapsed_seconds": 4679,
+    "gpu_allocation_elapsed_seconds": 3741,
+    "allocated_cpu_seconds": 21908,
+    "used_cpu_seconds": 5983.421,
+    "maximum_reported_step_rss_bytes": 9797828608.0,
+    "monetary_cost": null,
+    "allocation_maxrss_missing": 10,
+    "scope": "Allocation elapsed/resource quantities summed once; MaxRSS is the largest task-step RSS, not summed and not GPU VRAM."
+  }
+}

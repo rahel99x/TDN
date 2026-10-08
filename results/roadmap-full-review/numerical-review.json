@@ -1,0 +1,5849 @@
+{
+  "run": "fedora-roadmap-20261008T022526329292Z",
+  "review_scope": "Read-only JSON arithmetic and source inspection; no uploaded code/checkpoints executed; no new solver or GPU runs.",
+  "stage_summaries": {
+    "audit": {
+      "schema": "tdn.roadmap/v1",
+      "stage": "audit",
+      "profile": "full",
+      "status": "COMPLETED",
+      "device": "cpu",
+      "source_tree_sha256": "2527656149023f9e89959fb6d3c6b3534a68388fa9a8126b8f13455d74897d17",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "elapsed_seconds": 0.771389817004092,
+      "experiment_count": 52,
+      "verdict_counts": {
+        "GOOD": 33,
+        "NA": 17,
+        "BAD": 2
+      },
+      "correctness_failures": 0,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "memory": {
+        "enabled": false,
+        "observations": 0,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+      },
+      "details": {
+        "numerical_audit_rows": 51,
+        "mechanisms": [
+          "M02",
+          "M04",
+          "M05",
+          "M12",
+          "M20",
+          "M21",
+          "M23"
+        ],
+        "combinations": [
+          "C3"
+        ],
+        "formal_proof": false,
+        "training": "none_in_this_panel_neural_arms_are_separate"
+      }
+    },
+    "headroom": {
+      "schema": "tdn.roadmap/v1",
+      "stage": "headroom",
+      "profile": "full",
+      "status": "COMPLETED",
+      "device": "cpu",
+      "source_tree_sha256": "2527656149023f9e89959fb6d3c6b3534a68388fa9a8126b8f13455d74897d17",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "elapsed_seconds": 109.96708975000365,
+      "experiment_count": 1273,
+      "verdict_counts": {
+        "GOOD": 1184,
+        "BAD": 89
+      },
+      "correctness_failures": 0,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "memory": {
+        "enabled": false,
+        "observations": 0,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+      },
+      "details": {
+        "classical_candidates": 1152,
+        "conditions": 72,
+        "eligible_conditions": 72,
+        "conditions_needing_more_than_one_bare_df_step": 2,
+        "accepted_classical_coverage": 72,
+        "unresolved_reference_conditions": 0,
+        "no_feasible_classical_conditions": 0,
+        "unresolved_conditions": 0,
+        "headroom_conditions": 2
+      }
+    },
+    "transfer": {
+      "schema": "tdn.roadmap/v1",
+      "stage": "transfer",
+      "profile": "full",
+      "status": "COMPLETED",
+      "device": "cpu",
+      "source_tree_sha256": "2527656149023f9e89959fb6d3c6b3534a68388fa9a8126b8f13455d74897d17",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "elapsed_seconds": 92.22350056799769,
+      "experiment_count": 595,
+      "verdict_counts": {
+        "NA": 104,
+        "GOOD": 97,
+        "BAD": 394
+      },
+      "correctness_failures": 0,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "memory": {
+        "enabled": false,
+        "observations": 0,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+      },
+      "details": {
+        "experiments": 595,
+        "independent_field_clusters": 6,
+        "scope": "bounded_numerical_transfer_controls; no cross-PDE trained-neural claim",
+        "mechanisms": [
+          "M14",
+          "M17",
+          "M19"
+        ],
+        "combinations": [
+          "C4"
+        ]
+      }
+    },
+    "scaling": {
+      "schema": "tdn.roadmap/v1",
+      "stage": "scaling",
+      "profile": "full",
+      "status": "COMPLETED",
+      "device": "cuda",
+      "source_tree_sha256": "2527656149023f9e89959fb6d3c6b3534a68388fa9a8126b8f13455d74897d17",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "elapsed_seconds": 79.93015438299335,
+      "experiment_count": 147,
+      "verdict_counts": {
+        "GOOD": 3,
+        "BAD": 48,
+        "NA": 96
+      },
+      "correctness_failures": 0,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "memory": {
+        "enabled": true,
+        "observations": 1034,
+        "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries",
+        "initial_free_bytes": 23670947840,
+        "total_bytes": 25227100160,
+        "soft_budget_bytes": 17753210880,
+        "hard_device_used_fraction": 0.9,
+        "peak_allocated_bytes": 6494081024,
+        "peak_reserved_bytes": 8621391872,
+        "peak_sampled_device_used_bytes": 10297081856
+      },
+      "details": {
+        "workload_cases": 18,
+        "models": 8,
+        "preparation_reuse_rows": 3,
+        "teacher_checked_rows": 48,
+        "throughput_only_rows": 96,
+        "scope": "engineering throughput; accepted bank references used where available, explicit accuracy NA elsewhere"
+      }
+    }
+  },
+  "notes": [
+    "All timing/science from native run. Derived ratios are descriptive, paired, not independent inference.",
+    "A BAD aggregate may be entirely cost-driven; NA can mean missing math/gap category or unsupported certification, not a failed output."
+  ],
+  "audit_failures": [
+    {
+      "id": "c3/amplitude0.04/cubic_only",
+      "checks": [
+        {
+          "check_id": "spatial_not_worse_than_DF",
+          "category": "gap",
+          "measured": 3.525402279547246e-07,
+          "target": 3.5227264501621865e-07,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "BAD",
+          "score_1_100": 1,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "id": "c3/amplitude0.12/cubic_only",
+      "checks": [
+        {
+          "check_id": "spatial_not_worse_than_DF",
+          "category": "gap",
+          "measured": 3.1712594166813344e-06,
+          "target": 3.1674829638280246e-06,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "BAD",
+          "score_1_100": 1,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    }
+  ],
+  "audit_diagnostics": [
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m02/quadratic/1d/c0.4/k0.02",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M02"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "equation": {
+          "kappa": 0.02,
+          "reaction_rate": 1.3
+        },
+        "geometry": {
+          "grid": [
+            16
+          ],
+          "lengths": [
+            1.0
+          ]
+        },
+        "h": 0.15,
+        "background": 0.4,
+        "amplitude_levels": [
+          0.025,
+          0.0125
+        ],
+        "target": "FD_nodal"
+      },
+      "metrics": {
+        "elapsed_seconds": 0.0018596070003695786,
+        "median_seconds": 0.0018596070003695786,
+        "total_seconds": 0.0018596070003695786,
+        "min_seconds": 0.0018596070003695786,
+        "max_seconds": 0.0018596070003695786,
+        "p95_seconds": 0.0018596070003695786,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.0018596070003695786
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "teacher_substeps": [
+          16,
+          32,
+          64
+        ],
+        "teacher_uncertainty_max_estimate": 5.4485860268016495e-12,
+        "teacher_refinement_converged": true,
+        "teacher_uncertainty_is_certificate": false,
+        "coefficient_error_max": 5.155549994079536e-11,
+        "coefficient_uncertainty_estimate": 2.789676045722444e-07,
+        "node2_error_max": 2.809659245757803e-06,
+        "node6_error_max": 1.1167282376600696e-16,
+        "quadrature_nodes": 12,
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.027457096992293373
+      },
+      "checks": [
+        {
+          "check_id": "independent_quadratic_coefficient",
+          "category": "math",
+          "measured": 5.155549994079536e-11,
+          "target": 2.231740836577955e-06,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "coefficient_signal_resolved",
+          "category": "correctness",
+          "measured": 0.0007517330073536498,
+          "target": 2.789676045722444e-06,
+          "relation": "ge",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "small_amplitude_defect_reduced",
+          "category": "gap",
+          "measured": 5.348246845393589e-10,
+          "target": 1.174740141829389e-07,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": true,
+          "target": true,
+          "relation": "eq",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "midpoint_defect_is_zero",
+          "category": "math",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "quadrature_refinement",
+          "category": "math",
+          "measured": 1.1167282376600696e-16,
+          "target": 2.809659245757803e-06,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "independent_quadratic_coefficient",
+        "coefficient_signal_resolved",
+        "small_amplitude_defect_reduced",
+        "teacher_refinement",
+        "midpoint_defect_is_zero",
+        "quadrature_refinement"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 6,
+        "passed_checks": 6,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "39c2fea7b4ee1b5ab779f0712c569f477020698c0af54b12a659e48e73446a1d"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m02/quadratic/1d/c0.1/k0.2",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M02"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "equation": {
+          "kappa": 0.2,
+          "reaction_rate": 1.3
+        },
+        "geometry": {
+          "grid": [
+            16
+          ],
+          "lengths": [
+            1.0
+          ]
+        },
+        "h": 0.025,
+        "background": 0.1,
+        "amplitude_levels": [
+          0.025,
+          0.0125
+        ],
+        "target": "FD_nodal"
+      },
+      "metrics": {
+        "elapsed_seconds": 0.0013001769984839484,
+        "median_seconds": 0.0013001769984839484,
+        "total_seconds": 0.0013001769984839484,
+        "min_seconds": 0.0013001769984839484,
+        "max_seconds": 0.0013001769984839484,
+        "p95_seconds": 0.0013001769984839484,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.0013001769984839484
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "teacher_substeps": [
+          16,
+          32,
+          64
+        ],
+        "teacher_uncertainty_max_estimate": 4.149335042225033e-11,
+        "teacher_refinement_converged": true,
+        "teacher_uncertainty_is_certificate": false,
+        "coefficient_error_max": 1.395897568541582e-11,
+        "coefficient_uncertainty_estimate": 2.1244595416192165e-06,
+        "node2_error_max": 2.454194624157882e-06,
+        "node6_error_max": 6.481631637661467e-15,
+        "quadrature_nodes": 12,
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.017167782003525645
+      },
+      "checks": [
+        {
+          "check_id": "independent_quadratic_coefficient",
+          "category": "math",
+          "measured": 1.395897568541582e-11,
+          "target": 1.6995676332953732e-05,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "coefficient_signal_resolved",
+          "category": "correctness",
+          "measured": 0.00025558353549485574,
+          "target": 2.1244595416192166e-05,
+          "relation": "ge",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "small_amplitude_defect_reduced",
+          "category": "gap",
+          "measured": 1.3947579202699956e-11,
+          "target": 3.992637717664671e-08,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": true,
+          "target": true,
+          "relation": "eq",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "midpoint_defect_is_zero",
+          "category": "math",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "quadrature_refinement",
+          "category": "math",
+          "measured": 6.481631637661467e-15,
+          "target": 2.454194624157882e-06,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "independent_quadratic_coefficient",
+        "coefficient_signal_resolved",
+        "small_amplitude_defect_reduced",
+        "teacher_refinement",
+        "midpoint_defect_is_zero",
+        "quadrature_refinement"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 6,
+        "passed_checks": 6,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "6a62535b16ec46b53c331442b99370bd8cd00150f7bce7a162ed746e74375fca"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m02/quadratic/2d/c0.7/k0.005",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M02"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "equation": {
+          "kappa": 0.005,
+          "reaction_rate": 1.3
+        },
+        "geometry": {
+          "grid": [
+            16,
+            16
+          ],
+          "lengths": [
+            1.0,
+            1.0
+          ]
+        },
+        "h": 0.05,
+        "background": 0.7,
+        "amplitude_levels": [
+          0.025,
+          0.0125
+        ],
+        "target": "FD_nodal"
+      },
+      "metrics": {
+        "elapsed_seconds": 0.0018478760030120611,
+        "median_seconds": 0.0018478760030120611,
+        "total_seconds": 0.0018478760030120611,
+        "min_seconds": 0.0018478760030120611,
+        "max_seconds": 0.0018478760030120611,
+        "p95_seconds": 0.0018478760030120611,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.0018478760030120611
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "teacher_substeps": [
+          16,
+          32,
+          64
+        ],
+        "teacher_uncertainty_max_estimate": 2.842170943040401e-14,
+        "teacher_refinement_converged": true,
+        "teacher_uncertainty_is_certificate": false,
+        "coefficient_error_max": 4.03138246111542e-12,
+        "coefficient_uncertainty_estimate": 1.455191522836685e-09,
+        "node2_error_max": 1.0506437198717846e-10,
+        "node6_error_max": 9.041229678992402e-18,
+        "quadrature_nodes": 12,
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.026728448996436782
+      },
+      "checks": [
+        {
+          "check_id": "independent_quadratic_coefficient",
+          "category": "math",
+          "measured": 4.03138246111542e-12,
+          "target": 2e-07,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "coefficient_signal_resolved",
+          "category": "correctness",
+          "measured": 3.0635764443805625e-06,
+          "target": 1.455191522836685e-08,
+          "relation": "ge",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "small_amplitude_defect_reduced",
+          "category": "gap",
+          "measured": 8.341771717823576e-12,
+          "target": 4.867314329359829e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": true,
+          "target": true,
+          "relation": "eq",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "midpoint_defect_is_zero",
+          "category": "math",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "quadrature_refinement",
+          "category": "math",
+          "measured": 9.041229678992402e-18,
+          "target": 1.0506437198717846e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "independent_quadratic_coefficient",
+        "coefficient_signal_resolved",
+        "small_amplitude_defect_reduced",
+        "teacher_refinement",
+        "midpoint_defect_is_zero",
+        "quadrature_refinement"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 6,
+        "passed_checks": 6,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "3d06866685d85ab6c718feb7b0675b38fe21c580220a1757a86ec6896c25516b"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m02-m23/physical-nullspace",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M02",
+        "M23"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {},
+      "metrics": {
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.006820624010288157,
+        "median_seconds": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null
+      },
+      "checks": [
+        {
+          "check_id": "quadratic_constant",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "cubic_constant",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "quadratic_zero_diffusion",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "cubic_zero_diffusion",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "quadratic_zero_reaction",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "cubic_zero_reaction",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "quadratic_zero_time",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "cubic_zero_time",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "unmeasured-math",
+          "category": "math",
+          "measured": null,
+          "target": null,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 2,
+          "reason": "This experiment does not establish math evidence; retained as NA",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "unmeasured-gap",
+          "category": "gap",
+          "measured": null,
+          "target": null,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 3,
+          "reason": "This experiment does not establish gap evidence; retained as NA",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "quadratic_constant",
+        "cubic_constant",
+        "quadratic_zero_diffusion",
+        "cubic_zero_diffusion",
+        "quadratic_zero_reaction",
+        "cubic_zero_reaction",
+        "quadratic_zero_time",
+        "cubic_zero_time",
+        "unmeasured-math",
+        "unmeasured-gap"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "NA",
+        "score_1_100": 76,
+        "evidence_coverage": 0.7619047619047619,
+        "required_checks": 10,
+        "passed_checks": 8,
+        "failed_checks": 0,
+        "na_checks": 2,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "NA",
+        "score_1_100": 1,
+        "evidence_coverage": 0.0,
+        "required_checks": 1,
+        "passed_checks": 0,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "NA",
+        "score_1_100": 1,
+        "evidence_coverage": 0.0,
+        "required_checks": 1,
+        "passed_checks": 0,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "9d7536186418a28337a06c452351a90fb853d629a845ea0298edb4bc27016bbe"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m04/pure-compression-high-high-low",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M04"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "input_modes": [
+          5,
+          6
+        ],
+        "output_cutoff": 2,
+        "grid": [
+          32
+        ],
+        "identical_DF_base": true
+      },
+      "metrics": {
+        "before_source_rms": 0.6847907540910476,
+        "after_source_rms": 3.441297531105382e-32,
+        "before_cost": {
+          "elapsed_seconds": 0.00023194200184661895,
+          "median_seconds": 0.00023194200184661895,
+          "total_seconds": 0.00023194200184661895,
+          "min_seconds": 0.00023194200184661895,
+          "max_seconds": 0.00023194200184661895,
+          "p95_seconds": 0.00023194200184661895,
+          "repeats": 1,
+          "warmup": 0,
+          "samples_seconds": [
+            0.00023194200184661895
+          ],
+          "peak_allocated_bytes": null,
+          "peak_reserved_bytes": null,
+          "memory_scope": "CPU peak not isolated by this timer"
+        },
+        "after_cost": {
+          "elapsed_seconds": 0.00017274900164920837,
+          "median_seconds": 0.00017274900164920837,
+          "total_seconds": 0.00017274900164920837,
+          "min_seconds": 0.00017274900164920837,
+          "max_seconds": 0.00017274900164920837,
+          "p95_seconds": 0.00017274900164920837,
+          "repeats": 1,
+          "warmup": 0,
+          "samples_seconds": [
+            0.00017274900164920837
+          ],
+          "peak_allocated_bytes": null,
+          "peak_reserved_bytes": null,
+          "memory_scope": "CPU peak not isolated by this timer"
+        },
+        "quadratic_amplitude_ratio": 4.0,
+        "bypass": "none_in_either_source_arm",
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.0016463359934277833,
+        "median_seconds": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null
+      },
+      "checks": [
+        {
+          "check_id": "retained_high_high_response",
+          "category": "gap",
+          "measured": 0.6847907540910476,
+          "target": 0.0001,
+          "relation": "ge",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "compressed_input_loses_response",
+          "category": "math",
+          "measured": 3.441297531105382e-32,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "quadratic_amplitude",
+          "category": "math",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "signed_transport",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "retained_high_high_response",
+        "compressed_input_loses_response",
+        "quadratic_amplitude",
+        "signed_transport"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 4,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 2,
+        "passed_checks": 2,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "478602d429b1c63d2d6465e5687fcc06ad9cfdd7a2a280c1d6a898063636a8cb"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m05/quadratic-dealias/grid12",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M05"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "grid": [
+          12
+        ],
+        "mode": 5,
+        "padding": 19,
+        "target": "Fourier_Galerkin_quadratic_RHS_not_exact_logistic_subflow"
+      },
+      "metrics": {
+        "elapsed_seconds": 0.00016631800099276006,
+        "median_seconds": 0.00016631800099276006,
+        "total_seconds": 0.00016631800099276006,
+        "min_seconds": 0.00016631800099276006,
+        "max_seconds": 0.00016631800099276006,
+        "p95_seconds": 0.00016631800099276006,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.00016631800099276006
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "retained_product_error_max": 2.55351295663786e-15,
+        "nodal_alias_error_max": 0.5,
+        "gradient_direction_error": 5.550829535878899e-12,
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.0018814180075423792
+      },
+      "checks": [
+        {
+          "check_id": "dealiased_retained_target",
+          "category": "math",
+          "measured": 2.55351295663786e-15,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "alias_removed",
+          "category": "gap",
+          "measured": 2.55351295663786e-15,
+          "target": 0.005,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "differentiable_padding",
+          "category": "correctness",
+          "measured": 5.550829535878899e-12,
+          "target": 1e-07,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "dealiased_retained_target",
+        "alias_removed",
+        "differentiable_padding"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "4e4a46465b24e56f285f86f1f274b939a2bafb6d4f6ec1e304d27e42902a1a38"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m05/quadratic-dealias/grid16",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M05"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "grid": [
+          16
+        ],
+        "mode": 7,
+        "padding": 25,
+        "target": "Fourier_Galerkin_quadratic_RHS_not_exact_logistic_subflow"
+      },
+      "metrics": {
+        "elapsed_seconds": 0.00012044700270052999,
+        "median_seconds": 0.00012044700270052999,
+        "total_seconds": 0.00012044700270052999,
+        "min_seconds": 0.00012044700270052999,
+        "max_seconds": 0.00012044700270052999,
+        "p95_seconds": 0.00012044700270052999,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.00012044700270052999
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "retained_product_error_max": 2.55351295663786e-15,
+        "nodal_alias_error_max": 0.5,
+        "gradient_direction_error": 2.0768160424443056e-16,
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.0015431399951921776
+      },
+      "checks": [
+        {
+          "check_id": "dealiased_retained_target",
+          "category": "math",
+          "measured": 2.55351295663786e-15,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "alias_removed",
+          "category": "gap",
+          "measured": 2.55351295663786e-15,
+          "target": 0.005,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "differentiable_padding",
+          "category": "correctness",
+          "measured": 2.0768160424443056e-16,
+          "target": 1e-07,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "dealiased_retained_target",
+        "alias_removed",
+        "differentiable_padding"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "44074698e64406f0bd1a058936d8afc10e0a62b0bf728f50c5f5b2caec5f5b82"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m05/quadratic-dealias/grid24",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M05"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "grid": [
+          24
+        ],
+        "mode": 11,
+        "padding": 37,
+        "target": "Fourier_Galerkin_quadratic_RHS_not_exact_logistic_subflow"
+      },
+      "metrics": {
+        "elapsed_seconds": 9.961500472854823e-05,
+        "median_seconds": 9.961500472854823e-05,
+        "total_seconds": 9.961500472854823e-05,
+        "min_seconds": 9.961500472854823e-05,
+        "max_seconds": 9.961500472854823e-05,
+        "p95_seconds": 9.961500472854823e-05,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          9.961500472854823e-05
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "retained_product_error_max": 6.328271240363392e-15,
+        "nodal_alias_error_max": 0.5,
+        "gradient_direction_error": 1.110119288161293e-11,
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.0015162689960561693
+      },
+      "checks": [
+        {
+          "check_id": "dealiased_retained_target",
+          "category": "math",
+          "measured": 6.328271240363392e-15,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "alias_removed",
+          "category": "gap",
+          "measured": 6.328271240363392e-15,
+          "target": 0.005,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "differentiable_padding",
+          "category": "correctness",
+          "measured": 1.110119288161293e-11,
+          "target": 1e-07,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "dealiased_retained_target",
+        "alias_removed",
+        "differentiable_padding"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "75be2c1a59395116df2b42292a494d7bb3f18879e40bfe02b5df635db9c7a7ce"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m12/dynamic-feasible-closure",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M12"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "moment_steps": 32,
+        "closure": "dynamic_heat_shape_rescaled_moments_with_feasible_flux"
+      },
+      "metrics": {
+        "elapsed_seconds": 0.006896017992403358,
+        "median_seconds": 0.006896017992403358,
+        "total_seconds": 0.006896017992403358,
+        "min_seconds": 0.006896017992403358,
+        "max_seconds": 0.006896017992403358,
+        "p95_seconds": 0.006896017992403358,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.006896017992403358
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "teacher_substeps": [
+          16,
+          32,
+          64
+        ],
+        "teacher_uncertainty_max_estimate": 4.1374015324890934e-11,
+        "teacher_refinement_converged": true,
+        "teacher_uncertainty_is_certificate": false,
+        "initial_mean_rate_error": 3.8342510833011545e-09,
+        "initial_variance_rate_error": 7.733738389276157e-10,
+        "predicted_mean_error": 4.540642506434267e-06,
+        "predicted_variance_error": 1.0924984604926066e-05,
+        "binary_final_normalized_variance": 0.8272185661739887,
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.02775701200880576
+      },
+      "checks": [
+        {
+          "check_id": "instantaneous_mean_identity",
+          "category": "math",
+          "measured": 3.8342510833011545e-09,
+          "target": 2e-07,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "instantaneous_variance_identity",
+          "category": "math",
+          "measured": 7.733738389276157e-10,
+          "target": 2e-07,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "binary_boundary_releases",
+          "category": "gap",
+          "measured": 0.8272185661739887,
+          "target": 0.999,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "feasible_variance",
+          "category": "correctness",
+          "measured": 0.023387091143316826,
+          "target": 1.0,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "future_moment_law_exact",
+          "category": "math",
+          "measured": null,
+          "target": true,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": false,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 2,
+          "reason": "Finite closure is approximate; only instantaneous identities are exact",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "instantaneous_mean_identity",
+        "instantaneous_variance_identity",
+        "binary_boundary_releases",
+        "feasible_variance",
+        "future_moment_law_exact"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "NA",
+        "score_1_100": 82,
+        "evidence_coverage": 0.8181818181818182,
+        "required_checks": 5,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "NA",
+        "score_1_100": 67,
+        "evidence_coverage": 0.6666666666666666,
+        "required_checks": 3,
+        "passed_checks": 2,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "5fd308133c91a132602ca0a84aad5717e9ea14590be642d14aeaa446e6bb6019"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m12/equal-moments-different-spectra",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M12"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "grid": [
+          16
+        ],
+        "modes": [
+          1,
+          4
+        ],
+        "h": 0.15,
+        "initial_mean": 0.4,
+        "amplitude": 0.15
+      },
+      "metrics": {
+        "elapsed_seconds": 0.0070320859958883375,
+        "median_seconds": 0.0070320859958883375,
+        "total_seconds": 0.0070320859958883375,
+        "min_seconds": 0.0070320859958883375,
+        "max_seconds": 0.0070320859958883375,
+        "p95_seconds": 0.0070320859958883375,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.0070320859958883375
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "teacher_substeps": [
+          16,
+          32,
+          64
+        ],
+        "teacher_uncertainty_max_estimate": 2.012695399233877e-09,
+        "teacher_refinement_converged": true,
+        "teacher_uncertainty_is_certificate": false,
+        "actual_future_mean_gap": 0.0013401459156330287,
+        "predicted_future_mean_gap": 0.001312375485107653,
+        "initial_means": [
+          0.4,
+          0.4
+        ],
+        "initial_variances": [
+          0.011250000000000003,
+          0.011250000000000003
+        ],
+        "initial_diffusion_energies": [
+          -0.008769077854699768,
+          -0.11520000000000002
+        ],
+        "parameters": 0,
+        "wall_seconds": 0.02033229699009098
+      },
+      "checks": [
+        {
+          "check_id": "initial_mean_matched",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-14,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "initial_variance_matched",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 1e-14,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "future_moments_need_spectral_information",
+          "category": "math",
+          "measured": 0.0013401459156330287,
+          "target": 2.012695399233877e-07,
+          "relation": "ge",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "closure_retains_spectral_information",
+          "category": "gap",
+          "measured": 0.001312375485107653,
+          "target": 0.00033503647890825716,
+          "relation": "ge",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "initial_mean_matched",
+        "initial_variance_matched",
+        "future_moments_need_spectral_information",
+        "closure_retains_spectral_information"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 4,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "b38a1c8bdd4bc7c731e0e708302b1a80e182a3b54563f27af19bad718edb0678"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m20/order-constrained-residual-and-embedded",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M20"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "counts": [
+          4,
+          8,
+          16
+        ],
+        "horizon": 0.4,
+        "residual_order": 5,
+        "embedded_field_evaluations": 12
+      },
+      "metrics": {
+        "errors_rms": [
+          1.4707731673592993e-07,
+          9.12852114863352e-09,
+          5.687418301598303e-10
+        ],
+        "observed_orders": [
+          4.0100497936297685,
+          4.004535336161304
+        ],
+        "costs": [
+          {
+            "elapsed_seconds": 0.0006288930017035455,
+            "median_seconds": 0.0006288930017035455,
+            "total_seconds": 0.0006288930017035455,
+            "min_seconds": 0.0006288930017035455,
+            "max_seconds": 0.0006288930017035455,
+            "p95_seconds": 0.0006288930017035455,
+            "repeats": 1,
+            "warmup": 0,
+            "samples_seconds": [
+              0.0006288930017035455
+            ],
+            "peak_allocated_bytes": null,
+            "peak_reserved_bytes": null,
+            "memory_scope": "CPU peak not isolated by this timer"
+          },
+          {
+            "elapsed_seconds": 0.0011348689877195284,
+            "median_seconds": 0.0011348689877195284,
+            "total_seconds": 0.0011348689877195284,
+            "min_seconds": 0.0011348689877195284,
+            "max_seconds": 0.0011348689877195284,
+            "p95_seconds": 0.0011348689877195284,
+            "repeats": 1,
+            "warmup": 0,
+            "samples_seconds": [
+              0.0011348689877195284
+            ],
+            "peak_allocated_bytes": null,
+            "peak_reserved_bytes": null,
+            "memory_scope": "CPU peak not isolated by this timer"
+          },
+          {
+            "elapsed_seconds": 0.0022739880078006536,
+            "median_seconds": 0.0022739880078006536,
+            "total_seconds": 0.0022739880078006536,
+            "min_seconds": 0.0022739880078006536,
+            "max_seconds": 0.0022739880078006536,
+            "p95_seconds": 0.0022739880078006536,
+            "repeats": 1,
+            "warmup": 0,
+            "samples_seconds": [
+              0.0022739880078006536
+            ],
+            "peak_allocated_bytes": null,
+            "peak_reserved_bytes": null,
+            "memory_scope": "CPU peak not isolated by this timer"
+          }
+        ],
+        "embedded_cost": {
+          "elapsed_seconds": 0.0004678639961639419,
+          "median_seconds": 0.0004678639961639419,
+          "total_seconds": 0.0004678639961639419,
+          "min_seconds": 0.0004678639961639419,
+          "max_seconds": 0.0004678639961639419,
+          "p95_seconds": 0.0004678639961639419,
+          "repeats": 1,
+          "warmup": 0,
+          "samples_seconds": [
+            0.0004678639961639419
+          ],
+          "peak_allocated_bytes": null,
+          "peak_reserved_bytes": null,
+          "memory_scope": "CPU peak not isolated by this timer"
+        },
+        "embedded_error_estimate_rms": 7.427444983922237e-11,
+        "embedded_actual_error_rms": 7.440344635374686e-11,
+        "parameter_count": 0,
+        "residual_here": "fixed_coefficient_neural_training_arm_is_separate",
+        "teacher_substeps": [
+          16,
+          32,
+          64
+        ],
+        "teacher_uncertainty_max_estimate": 7.924993994379292e-12,
+        "teacher_refinement_converged": true,
+        "teacher_uncertainty_is_certificate": false,
+        "parameters": 0,
+        "wall_seconds": 0.029140634011127986,
+        "median_seconds": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null
+      },
+      "checks": [
+        {
+          "check_id": "fixed_grid_global_order",
+          "category": "math",
+          "measured": 4.004535336161304,
+          "target": 3.7,
+          "relation": "ge",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "embedded_asymptotic_effectivity",
+          "category": "gap",
+          "measured": 7.440344635374686e-11,
+          "target": 2.228233495176671e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "unconditional_stiff_stability",
+          "category": "math",
+          "measured": null,
+          "target": true,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": false,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 2,
+          "reason": "Explicit RK4 has a bounded stability region; no A-stability claim",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "fixed_grid_global_order",
+        "embedded_asymptotic_effectivity",
+        "unconditional_stiff_stability"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "NA",
+        "score_1_100": 72,
+        "evidence_coverage": 0.7142857142857143,
+        "required_checks": 3,
+        "passed_checks": 2,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "NA",
+        "score_1_100": 51,
+        "evidence_coverage": 0.5,
+        "required_checks": 2,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "3c9abe3859474d52502f3bff04f4774d1ea9de37bf6149c9cd73c789cd519cff"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m21/physical-map/DF",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M21"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "model": "DF",
+        "h": 0.15,
+        "equation": {
+          "kappa": 0.02,
+          "reaction_rate": 1.3
+        }
+      },
+      "metrics": {
+        "monotonicity_violation": 0.0,
+        "concavity_violation": 0.0,
+        "growth_ratio": 0.7738656033253435,
+        "growth_envelope": 1.2153109864897307,
+        "bound_violation": 0.0,
+        "evidence_scope": "sampled_numerical_diagnostics_not_a_global_certificate",
+        "elapsed_seconds": 0.0006788050086470321,
+        "median_seconds": 0.0006788050086470321,
+        "total_seconds": 0.0006788050086470321,
+        "min_seconds": 0.0006788050086470321,
+        "max_seconds": 0.0006788050086470321,
+        "p95_seconds": 0.0006788050086470321,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.0006788050086470321
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.0016464359941892326
+      },
+      "checks": [
+        {
+          "check_id": "monotonicity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "concavity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "physical_growth",
+          "category": "math",
+          "measured": 0.7738656033253435,
+          "target": 1.2153109864907308,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "invariant_interval",
+          "category": "math",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "global_certificate",
+          "category": "math",
+          "measured": null,
+          "target": true,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": false,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 2,
+          "reason": "Sampled inequalities are not global bounds",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "unmeasured-gap",
+          "category": "gap",
+          "measured": null,
+          "target": null,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 3,
+          "reason": "This experiment does not establish gap evidence; retained as NA",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "monotonicity",
+        "concavity",
+        "physical_growth",
+        "invariant_interval",
+        "global_certificate",
+        "unmeasured-gap"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "NA",
+        "score_1_100": 62,
+        "evidence_coverage": 0.6153846153846154,
+        "required_checks": 6,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 2,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "NA",
+        "score_1_100": 1,
+        "evidence_coverage": 0.0,
+        "required_checks": 1,
+        "passed_checks": 0,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "NA",
+        "score_1_100": 80,
+        "evidence_coverage": 0.8,
+        "required_checks": 5,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "c45fa5a4c68492a2f6b1ab959ece2f94ead8c8643520c224dd4a69cc678f4cda"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m21/physical-map/quadratic",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M21"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "model": "quadratic",
+        "h": 0.15,
+        "equation": {
+          "kappa": 0.02,
+          "reaction_rate": 1.3
+        }
+      },
+      "metrics": {
+        "monotonicity_violation": 0.0,
+        "concavity_violation": 0.0,
+        "growth_ratio": 0.773818735490511,
+        "growth_envelope": 1.2153109864897307,
+        "bound_violation": 0.0,
+        "evidence_scope": "sampled_numerical_diagnostics_not_a_global_certificate",
+        "elapsed_seconds": 0.005818242992972955,
+        "median_seconds": 0.005818242992972955,
+        "total_seconds": 0.005818242992972955,
+        "min_seconds": 0.005818242992972955,
+        "max_seconds": 0.005818242992972955,
+        "p95_seconds": 0.005818242992972955,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.005818242992972955
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.0067081080051139
+      },
+      "checks": [
+        {
+          "check_id": "monotonicity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "concavity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "physical_growth",
+          "category": "math",
+          "measured": 0.773818735490511,
+          "target": 1.2153109864907308,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "invariant_interval",
+          "category": "math",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "global_certificate",
+          "category": "math",
+          "measured": null,
+          "target": true,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": false,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 2,
+          "reason": "Sampled inequalities are not global bounds",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "unmeasured-gap",
+          "category": "gap",
+          "measured": null,
+          "target": null,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 3,
+          "reason": "This experiment does not establish gap evidence; retained as NA",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "monotonicity",
+        "concavity",
+        "physical_growth",
+        "invariant_interval",
+        "global_certificate",
+        "unmeasured-gap"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "NA",
+        "score_1_100": 62,
+        "evidence_coverage": 0.6153846153846154,
+        "required_checks": 6,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 2,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "NA",
+        "score_1_100": 1,
+        "evidence_coverage": 0.0,
+        "required_checks": 1,
+        "passed_checks": 0,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "NA",
+        "score_1_100": 80,
+        "evidence_coverage": 0.8,
+        "required_checks": 5,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "7d2fdd0ca85ce2187a84bb30c4d5d80248924f1e95648ae1fbfab9709eebd266"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m21/physical-map/cubic",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M21"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "model": "cubic",
+        "h": 0.15,
+        "equation": {
+          "kappa": 0.02,
+          "reaction_rate": 1.3
+        }
+      },
+      "metrics": {
+        "monotonicity_violation": 0.0,
+        "concavity_violation": 0.0,
+        "growth_ratio": 0.7738157921920961,
+        "growth_envelope": 1.2153109864897307,
+        "bound_violation": 0.0,
+        "evidence_scope": "sampled_numerical_diagnostics_not_a_global_certificate",
+        "elapsed_seconds": 0.02249704899440985,
+        "median_seconds": 0.02249704899440985,
+        "total_seconds": 0.02249704899440985,
+        "min_seconds": 0.02249704899440985,
+        "max_seconds": 0.02249704899440985,
+        "p95_seconds": 0.02249704899440985,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.02249704899440985
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.02342446798866149
+      },
+      "checks": [
+        {
+          "check_id": "monotonicity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "concavity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "physical_growth",
+          "category": "math",
+          "measured": 0.7738157921920961,
+          "target": 1.2153109864907308,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "invariant_interval",
+          "category": "math",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "global_certificate",
+          "category": "math",
+          "measured": null,
+          "target": true,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": false,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 2,
+          "reason": "Sampled inequalities are not global bounds",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "unmeasured-gap",
+          "category": "gap",
+          "measured": null,
+          "target": null,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 3,
+          "reason": "This experiment does not establish gap evidence; retained as NA",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "monotonicity",
+        "concavity",
+        "physical_growth",
+        "invariant_interval",
+        "global_certificate",
+        "unmeasured-gap"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "NA",
+        "score_1_100": 62,
+        "evidence_coverage": 0.6153846153846154,
+        "required_checks": 6,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 2,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "NA",
+        "score_1_100": 1,
+        "evidence_coverage": 0.0,
+        "required_checks": 1,
+        "passed_checks": 0,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "NA",
+        "score_1_100": 80,
+        "evidence_coverage": 0.8,
+        "required_checks": 5,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "41c2bd29b1294c4d9ee9e374935cddc2dc5812650adddd0f3d5142c8ebc2655a"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m21/stiffness/1.3-0.002-0.5/DF",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M21"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "h": 0.5,
+        "kappa": 0.002,
+        "reaction_rate": 1.3,
+        "model": "DF"
+      },
+      "metrics": {
+        "monotonicity_violation": 0.0,
+        "concavity_violation": 0.0,
+        "growth_ratio": 0.8959579200983337,
+        "growth_envelope": 1.9155408290138962,
+        "bound_violation": 0.0,
+        "evidence_scope": "sampled_numerical_diagnostics_not_a_global_certificate",
+        "elapsed_seconds": 0.0006650849973084405,
+        "median_seconds": 0.0006650849973084405,
+        "total_seconds": 0.0006650849973084405,
+        "min_seconds": 0.0006650849973084405,
+        "max_seconds": 0.0006650849973084405,
+        "p95_seconds": 0.0006650849973084405,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.0006650849973084405
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "parameters": 0,
+        "wall_seconds": 0.0016188440058613196
+      },
+      "checks": [
+        {
+          "check_id": "monotonicity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "concavity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "physical_growth",
+          "category": "math",
+          "measured": 0.8959579200983337,
+          "target": 1.9155408290148963,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "interval_at_stiff_step",
+          "category": "gap",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "monotonicity",
+        "concavity",
+        "physical_growth",
+        "interval_at_stiff_step"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 4,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "66c1548176716f8460744ab84b845d35ee98cf9bf142e4529456a5708d996963"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m21/stiffness/1.3-0.002-0.5/quadratic_cubic",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M21"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "h": 0.5,
+        "kappa": 0.002,
+        "reaction_rate": 1.3,
+        "model": "quadratic_cubic"
+      },
+      "metrics": {
+        "monotonicity_violation": 0.0,
+        "concavity_violation": 0.0,
+        "growth_ratio": 0.8958778592426373,
+        "growth_envelope": 1.9155408290138962,
+        "bound_violation": 0.0,
+        "evidence_scope": "sampled_numerical_diagnostics_not_a_global_certificate",
+        "elapsed_seconds": 0.03631621800013818,
+        "median_seconds": 0.03631621800013818,
+        "total_seconds": 0.03631621800013818,
+        "min_seconds": 0.03631621800013818,
+        "max_seconds": 0.03631621800013818,
+        "p95_seconds": 0.03631621800013818,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.03631621800013818
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "parameters": 0,
+        "wall_seconds": 0.03716172100394033
+      },
+      "checks": [
+        {
+          "check_id": "monotonicity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "concavity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "physical_growth",
+          "category": "math",
+          "measured": 0.8958778592426373,
+          "target": 1.9155408290148963,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "interval_at_stiff_step",
+          "category": "gap",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "monotonicity",
+        "concavity",
+        "physical_growth",
+        "interval_at_stiff_step"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 4,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "b670cb85bd9f4b01860a09b7dd372dbd3c0156ebff7e4373eb148c8d55a24d98"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m21/stiffness/1.3-0.2-0.2/DF",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M21"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "h": 0.2,
+        "kappa": 0.2,
+        "reaction_rate": 1.3,
+        "model": "DF"
+      },
+      "metrics": {
+        "monotonicity_violation": 0.0,
+        "concavity_violation": 0.0,
+        "growth_ratio": 0.18292446430286846,
+        "growth_envelope": 1.2969300866657718,
+        "bound_violation": 0.0,
+        "evidence_scope": "sampled_numerical_diagnostics_not_a_global_certificate",
+        "elapsed_seconds": 0.0006717749929521233,
+        "median_seconds": 0.0006717749929521233,
+        "total_seconds": 0.0006717749929521233,
+        "min_seconds": 0.0006717749929521233,
+        "max_seconds": 0.0006717749929521233,
+        "p95_seconds": 0.0006717749929521233,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.0006717749929521233
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "parameters": 0,
+        "wall_seconds": 0.0016784170002210885
+      },
+      "checks": [
+        {
+          "check_id": "monotonicity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "concavity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "physical_growth",
+          "category": "math",
+          "measured": 0.18292446430286846,
+          "target": 1.296930086666772,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "interval_at_stiff_step",
+          "category": "gap",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "monotonicity",
+        "concavity",
+        "physical_growth",
+        "interval_at_stiff_step"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 4,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "dc3be2b244bce714035469c62cf731012241692fc96708ec9fbc1e53746fa34e"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m21/stiffness/1.3-0.2-0.2/quadratic_cubic",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M21"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "h": 0.2,
+        "kappa": 0.2,
+        "reaction_rate": 1.3,
+        "model": "quadratic_cubic"
+      },
+      "metrics": {
+        "monotonicity_violation": 0.0,
+        "concavity_violation": 0.0,
+        "growth_ratio": 0.1825820522835618,
+        "growth_envelope": 1.2969300866657718,
+        "bound_violation": 0.0,
+        "evidence_scope": "sampled_numerical_diagnostics_not_a_global_certificate",
+        "elapsed_seconds": 0.03630672600411344,
+        "median_seconds": 0.03630672600411344,
+        "total_seconds": 0.03630672600411344,
+        "min_seconds": 0.03630672600411344,
+        "max_seconds": 0.03630672600411344,
+        "p95_seconds": 0.03630672600411344,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.03630672600411344
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "parameters": 0,
+        "wall_seconds": 0.0371665220009163
+      },
+      "checks": [
+        {
+          "check_id": "monotonicity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "concavity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "physical_growth",
+          "category": "math",
+          "measured": 0.1825820522835618,
+          "target": 1.296930086666772,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "interval_at_stiff_step",
+          "category": "gap",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "monotonicity",
+        "concavity",
+        "physical_growth",
+        "interval_at_stiff_step"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 4,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "b3afbcb5e8d4a83599a3242be2d362d788146af1ab1587f760ab00e419144b55"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m21/stiffness/8.0-0.02-0.5/DF",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M21"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "h": 0.5,
+        "kappa": 0.02,
+        "reaction_rate": 8.0,
+        "model": "DF"
+      },
+      "metrics": {
+        "monotonicity_violation": 0.0,
+        "concavity_violation": 0.0,
+        "growth_ratio": 0.06678509163076184,
+        "growth_envelope": 54.598150033144236,
+        "bound_violation": 0.0,
+        "evidence_scope": "sampled_numerical_diagnostics_not_a_global_certificate",
+        "elapsed_seconds": 0.0006889549986226484,
+        "median_seconds": 0.0006889549986226484,
+        "total_seconds": 0.0006889549986226484,
+        "min_seconds": 0.0006889549986226484,
+        "max_seconds": 0.0006889549986226484,
+        "p95_seconds": 0.0006889549986226484,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.0006889549986226484
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "parameters": 0,
+        "wall_seconds": 0.0016148239956237376
+      },
+      "checks": [
+        {
+          "check_id": "monotonicity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "concavity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "physical_growth",
+          "category": "math",
+          "measured": 0.06678509163076184,
+          "target": 54.59815003314524,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "interval_at_stiff_step",
+          "category": "gap",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "monotonicity",
+        "concavity",
+        "physical_growth",
+        "interval_at_stiff_step"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 4,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "663620258423e48affefd696a1c810662f67a0dfb0d3f2e8278e1df8fd93a794"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m21/stiffness/8.0-0.02-0.5/quadratic_cubic",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M21"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "h": 0.5,
+        "kappa": 0.02,
+        "reaction_rate": 8.0,
+        "model": "quadratic_cubic"
+      },
+      "metrics": {
+        "monotonicity_violation": 0.0,
+        "concavity_violation": 0.0,
+        "growth_ratio": 0.06659388461754369,
+        "growth_envelope": 54.598150033144236,
+        "bound_violation": 0.0,
+        "evidence_scope": "sampled_numerical_diagnostics_not_a_global_certificate",
+        "elapsed_seconds": 0.03542769100749865,
+        "median_seconds": 0.03542769100749865,
+        "total_seconds": 0.03542769100749865,
+        "min_seconds": 0.03542769100749865,
+        "max_seconds": 0.03542769100749865,
+        "p95_seconds": 0.03542769100749865,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.03542769100749865
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "parameters": 0,
+        "wall_seconds": 0.036284714995417744
+      },
+      "checks": [
+        {
+          "check_id": "monotonicity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "concavity",
+          "category": "math",
+          "measured": 0.0,
+          "target": 2e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "physical_growth",
+          "category": "math",
+          "measured": 0.06659388461754369,
+          "target": 54.59815003314524,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "interval_at_stiff_step",
+          "category": "gap",
+          "measured": 0.0,
+          "target": 1e-12,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "monotonicity",
+        "concavity",
+        "physical_growth",
+        "interval_at_stiff_step"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 4,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 3,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "4f6f1de77ed3a155cad9789ffbba3c62eae120133e06a296f4b9eb493056dc97"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "m23/independent-cubic-coefficient",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M23"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "h": 0.15,
+        "amplitudes": [
+          0.04,
+          0.02
+        ],
+        "nodes": 10,
+        "causal_domain": "0<=tau<=s<=h"
+      },
+      "metrics": {
+        "elapsed_seconds": 0.009684613003628328,
+        "median_seconds": 0.009684613003628328,
+        "total_seconds": 0.009684613003628328,
+        "min_seconds": 0.009684613003628328,
+        "max_seconds": 0.009684613003628328,
+        "p95_seconds": 0.009684613003628328,
+        "repeats": 1,
+        "warmup": 0,
+        "samples_seconds": [
+          0.009684613003628328
+        ],
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "CPU peak not isolated by this timer",
+        "teacher_substeps": [
+          16,
+          32,
+          64
+        ],
+        "teacher_uncertainty_max_estimate": 8.868350498403288e-12,
+        "teacher_refinement_converged": true,
+        "teacher_uncertainty_is_certificate": false,
+        "coefficient_error_max": 4.410639654638712e-08,
+        "coefficient_uncertainty_estimate": 8.868350498403286e-06,
+        "quadrature_difference_max": 3.75348650815191e-13,
+        "parameter_count": 0,
+        "parameters": 0,
+        "wall_seconds": 0.02542535100656096
+      },
+      "checks": [
+        {
+          "check_id": "reference_refinement",
+          "category": "correctness",
+          "measured": true,
+          "target": true,
+          "relation": "eq",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "independent_cubic_coefficient",
+          "category": "math",
+          "measured": 4.410639654638712e-08,
+          "target": 7.094680398722629e-05,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "cubic_signal_resolved",
+          "category": "correctness",
+          "measured": 0.00027552140676017256,
+          "target": 8.868350498403287e-05,
+          "relation": "ge",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "causal_quadrature_converged",
+          "category": "correctness",
+          "measured": 3.75348650815191e-13,
+          "target": 1e-07,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "unmeasured-gap",
+          "category": "gap",
+          "measured": null,
+          "target": null,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 3,
+          "reason": "This experiment does not establish gap evidence; retained as NA",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "reference_refinement",
+        "independent_cubic_coefficient",
+        "cubic_signal_resolved",
+        "causal_quadrature_converged",
+        "unmeasured-gap"
+      ],
+      "evidence": {
+        "kind": "finite_numerical_audit",
+        "formal_proof": false,
+        "device": "cpu",
+        "dtype": "float64"
+      },
+      "assessment": {
+        "verdict": "NA",
+        "score_1_100": 73,
+        "evidence_coverage": 0.7272727272727273,
+        "required_checks": 5,
+        "passed_checks": 4,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "NA",
+        "score_1_100": 1,
+        "evidence_coverage": 0.0,
+        "required_checks": 1,
+        "passed_checks": 0,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 1,
+        "passed_checks": 1,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "e03d3bf9d29bdf6cf7467b71d756cf15344deb857a40eeeba7c80bd519c0e066"
+    },
+    {
+      "schema": "tdn.roadmap-experiment/v1",
+      "experiment_id": "provenance/scoring-and-complete-declaration",
+      "stage": "audit",
+      "mechanism_ids": [
+        "M22"
+      ],
+      "combination_ids": [],
+      "status": "COMPLETED",
+      "device": "cpu",
+      "profile": "full",
+      "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+      "effective_config": {
+        "software": {
+          "python": "3.13.13",
+          "executable": "/home/rahel/TDN/.venv/bin/python",
+          "venv": true,
+          "torch": "2.10.0+cu126",
+          "numpy": "2.2.6",
+          "scipy": "1.15.3",
+          "torch_cuda_runtime": "12.6",
+          "git_commit": "e46ae9f03dbffc80a0cc90c061dbb001a121a2db",
+          "git_available": true,
+          "tracked_or_untracked_changes": false,
+          "source_tree_sha256": "2527656149023f9e89959fb6d3c6b3534a68388fa9a8126b8f13455d74897d17",
+          "execution_mode": "desktop-slurm",
+          "slurm_job_id": "197",
+          "cuda_available": false
+        },
+        "source_tree_sha256": "2527656149023f9e89959fb6d3c6b3534a68388fa9a8126b8f13455d74897d17",
+        "scoring": {
+          "weights": {
+            "correctness": 2,
+            "math": 2,
+            "gap": 3,
+            "utility": 3
+          },
+          "labels": [
+            "GOOD",
+            "BAD",
+            "NA"
+          ],
+          "formula": "1+round(99*passed_required_weight/declared_required_weight)",
+          "na_score": 1,
+          "na_meaning": "no credited evidence, not a measured performance result",
+          "mathematical_proof_claim": false,
+          "minimum_mechanism_categories": [
+            "math",
+            "gap"
+          ]
+        }
+      },
+      "metrics": {
+        "parameters": 0,
+        "mechanisms": 24,
+        "combinations": 5,
+        "wall_seconds": 0.0009065869962796569,
+        "median_seconds": null,
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null
+      },
+      "checks": [
+        {
+          "check_id": "all-24-mechanisms-declared",
+          "category": "gap",
+          "measured": 24,
+          "target": 24,
+          "relation": "eq",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "all-five-combinations-declared",
+          "category": "gap",
+          "measured": 5,
+          "target": 5,
+          "relation": "eq",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 3,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "no-numerical-proof-claim",
+          "category": "correctness",
+          "measured": false,
+          "target": false,
+          "relation": "eq",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "unmeasured-math",
+          "category": "math",
+          "measured": null,
+          "target": null,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "NA",
+          "score_1_100": 1,
+          "weight": 2,
+          "reason": "This experiment does not establish math evidence; retained as NA",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ],
+      "required_check_ids": [
+        "all-24-mechanisms-declared",
+        "all-five-combinations-declared",
+        "no-numerical-proof-claim",
+        "unmeasured-math"
+      ],
+      "evidence": [],
+      "assessment": {
+        "verdict": "NA",
+        "score_1_100": 80,
+        "evidence_coverage": 0.8,
+        "required_checks": 4,
+        "passed_checks": 3,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "gap_assessment": {
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "evidence_coverage": 1.0,
+        "required_checks": 2,
+        "passed_checks": 2,
+        "failed_checks": 0,
+        "na_checks": 0,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "math_assessment": {
+        "verdict": "NA",
+        "score_1_100": 1,
+        "evidence_coverage": 0.0,
+        "required_checks": 1,
+        "passed_checks": 0,
+        "failed_checks": 0,
+        "na_checks": 1,
+        "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+        "proof_status": "NOT_A_PROOF"
+      },
+      "scope": "finite declared experiment; numerical support is not a general proof",
+      "row_sha256": "922e51ec6b529f9f97cab16e9f5a57baa132a3d4595264ee04e1346ec94028b6"
+    }
+  ],
+  "C3": [
+    {
+      "amplitude": 0.04,
+      "arm": "DF",
+      "verdict": "GOOD",
+      "rms": 5.49885044734476e-07,
+      "rms_improvement_over_df": 1.0,
+      "median_seconds": 0.00013282599684316665,
+      "cost_multiplier_vs_df": 1.0,
+      "mean_error": 4.222364272110646e-07,
+      "rms_relative_to_quadratic_cubic": 3742.003531158126,
+      "source_experiment_id": "c3/amplitude0.04/DF"
+    },
+    {
+      "amplitude": 0.04,
+      "arm": "quadratic",
+      "verdict": "GOOD",
+      "rms": 8.209168295295566e-09,
+      "rms_improvement_over_df": 66.98425771702098,
+      "median_seconds": 0.0011147979967063293,
+      "cost_multiplier_vs_df": 8.39292023550645,
+      "mean_error": 3.977331852755839e-09,
+      "rms_relative_to_quadratic_cubic": 55.86392472939604,
+      "source_experiment_id": "c3/amplitude0.04/quadratic"
+    },
+    {
+      "amplitude": 0.04,
+      "arm": "cubic_only",
+      "verdict": "BAD",
+      "rms": 5.469362539180565e-07,
+      "rms_improvement_over_df": 1.0053914707523874,
+      "median_seconds": 0.0066870879963971674,
+      "cost_multiplier_vs_df": 50.34472283534148,
+      "mean_error": 4.1815625489993735e-07,
+      "rms_relative_to_quadratic_cubic": 3721.9368176634594,
+      "source_experiment_id": "c3/amplitude0.04/cubic_only"
+    },
+    {
+      "amplitude": 0.04,
+      "arm": "quadratic_cubic",
+      "verdict": "GOOD",
+      "rms": 1.4694936553528321e-10,
+      "rms_improvement_over_df": 3742.003531158126,
+      "median_seconds": 0.007212354990770109,
+      "cost_multiplier_vs_df": 54.29927244804378,
+      "mean_error": 1.0284045837138933e-10,
+      "rms_relative_to_quadratic_cubic": 1.0,
+      "source_experiment_id": "c3/amplitude0.04/quadratic_cubic"
+    },
+    {
+      "amplitude": 0.04,
+      "arm": "mean_only",
+      "verdict": "GOOD",
+      "rms": 4.930518145187277e-07,
+      "rms_improvement_over_df": 1.1152682710867288,
+      "median_seconds": 0.007510249997721985,
+      "cost_multiplier_vs_df": 56.54201870278195,
+      "mean_error": 3.449784484188534e-07,
+      "rms_relative_to_quadratic_cubic": 3355.2496992601423,
+      "source_experiment_id": "c3/amplitude0.04/mean_only"
+    },
+    {
+      "amplitude": 0.04,
+      "arm": "mean_quadratic",
+      "verdict": "GOOD",
+      "rms": 3.450531859326588e-07,
+      "rms_improvement_over_df": 1.593624018419562,
+      "median_seconds": 0.008425387990428135,
+      "cost_multiplier_vs_df": 63.43176931227064,
+      "mean_error": 3.449784484188534e-07,
+      "rms_relative_to_quadratic_cubic": 2348.1093958844617,
+      "source_experiment_id": "c3/amplitude0.04/mean_quadratic"
+    },
+    {
+      "amplitude": 0.04,
+      "arm": "mean_quadratic_cubic",
+      "verdict": "GOOD",
+      "rms": 3.449784643601557e-07,
+      "rms_improvement_over_df": 1.5939691938578489,
+      "median_seconds": 0.014559577000909485,
+      "cost_multiplier_vs_df": 109.61391103355017,
+      "mean_error": 3.449784484188534e-07,
+      "rms_relative_to_quadratic_cubic": 2347.6009107186296,
+      "source_experiment_id": "c3/amplitude0.04/mean_quadratic_cubic"
+    },
+    {
+      "amplitude": 0.04,
+      "arm": "source_before_compression",
+      "verdict": "NA",
+      "rms": 3.739108600285062e-07,
+      "rms_improvement_over_df": 1.470631381748457,
+      "median_seconds": 0.01452923500619363,
+      "cost_multiplier_vs_df": 109.38547687580257,
+      "mean_error": 3.449784484188534e-07,
+      "rms_relative_to_quadratic_cubic": 2544.487746962939,
+      "source_experiment_id": "c3/amplitude0.04/source_before_compression"
+    },
+    {
+      "amplitude": 0.04,
+      "arm": "input_before_source",
+      "verdict": "NA",
+      "rms": 4.2656550000755656e-07,
+      "rms_improvement_over_df": 1.2890987309680104,
+      "median_seconds": 0.014558636001311243,
+      "cost_multiplier_vs_df": 109.60682658005005,
+      "mean_error": 3.449784484188534e-07,
+      "rms_relative_to_quadratic_cubic": 2902.8060002418742,
+      "source_experiment_id": "c3/amplitude0.04/input_before_source"
+    },
+    {
+      "amplitude": 0.04,
+      "arm": "zero_mean_spatial",
+      "verdict": "NA",
+      "rms": 4.2223644028943524e-07,
+      "rms_improvement_over_df": 1.3023154618240436,
+      "median_seconds": 0.007363543001702055,
+      "cost_multiplier_vs_df": 55.43751356443051,
+      "mean_error": null,
+      "rms_relative_to_quadratic_cubic": 2873.34646700502,
+      "source_experiment_id": "c3/amplitude0.04/zero_mean_spatial"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "DF",
+      "verdict": "GOOD",
+      "rms": 4.998111092161945e-06,
+      "rms_improvement_over_df": 1.0,
+      "median_seconds": 0.00014229799853637815,
+      "cost_multiplier_vs_df": 1.0,
+      "mean_error": 3.866311294065117e-06,
+      "rms_relative_to_quadratic_cubic": 428.33327672505567,
+      "source_experiment_id": "c3/amplitude0.12/DF"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "quadratic",
+      "verdict": "GOOD",
+      "rms": 2.1485654162243423e-07,
+      "rms_improvement_over_df": 23.262550231982637,
+      "median_seconds": 0.001102627007639967,
+      "cost_multiplier_vs_df": 7.748717613607776,
+      "mean_error": 1.0197943595136039e-07,
+      "rms_relative_to_quadratic_cubic": 18.41299739080883,
+      "source_experiment_id": "c3/amplitude0.12/quadratic"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "cubic_only",
+      "verdict": "BAD",
+      "rms": 4.915844167591276e-06,
+      "rms_improvement_over_df": 1.0167350554179546,
+      "median_seconds": 0.006363170992699452,
+      "cost_multiplier_vs_df": 44.71722060850155,
+      "mean_error": 3.756146641442637e-06,
+      "rms_relative_to_quadratic_cubic": 421.28308101757983,
+      "source_experiment_id": "c3/amplitude0.12/cubic_only"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "quadratic_cubic",
+      "verdict": "GOOD",
+      "rms": 1.166874339153948e-08,
+      "rms_improvement_over_df": 428.33327672505567,
+      "median_seconds": 0.007162092006183229,
+      "cost_multiplier_vs_df": 50.33164260811622,
+      "mean_error": 8.185216560097075e-09,
+      "rms_relative_to_quadratic_cubic": 1.0,
+      "source_experiment_id": "c3/amplitude0.12/quadratic_cubic"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "mean_only",
+      "verdict": "GOOD",
+      "rms": 4.341545365480383e-06,
+      "rms_improvement_over_df": 1.1512285767878678,
+      "median_seconds": 0.007184582995250821,
+      "cost_multiplier_vs_df": 50.489698162649134,
+      "mean_error": 2.9692195427921675e-06,
+      "rms_relative_to_quadratic_cubic": 372.0662302530585,
+      "source_experiment_id": "c3/amplitude0.12/mean_only"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "mean_quadratic",
+      "verdict": "GOOD",
+      "rms": 2.975235826163938e-06,
+      "rms_improvement_over_df": 1.679904177077002,
+      "median_seconds": 0.00809819099958986,
+      "cost_multiplier_vs_df": 56.91008364758959,
+      "mean_error": 2.9692195427366563e-06,
+      "rms_relative_to_quadratic_cubic": 254.9748268799156,
+      "source_experiment_id": "c3/amplitude0.12/mean_quadratic"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "mean_quadratic_cubic",
+      "verdict": "GOOD",
+      "rms": 2.9692311892826852e-06,
+      "rms_improvement_over_df": 1.6833014250296225,
+      "median_seconds": 0.014304953001555987,
+      "cost_multiplier_vs_df": 100.52813917757922,
+      "mean_error": 2.9692195427921675e-06,
+      "rms_relative_to_quadratic_cubic": 254.4602353185306,
+      "source_experiment_id": "c3/amplitude0.12/mean_quadratic_cubic"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "source_before_compression",
+      "verdict": "NA",
+      "rms": 3.2044856923485326e-06,
+      "rms_improvement_over_df": 1.5597233291120995,
+      "median_seconds": 0.014149814989650622,
+      "cost_multiplier_vs_df": 99.43790591006278,
+      "mean_error": 2.9692195427921675e-06,
+      "rms_relative_to_quadratic_cubic": 274.6213182365439,
+      "source_experiment_id": "c3/amplitude0.12/source_before_compression"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "input_before_source",
+      "verdict": "NA",
+      "rms": 3.7066423900762787e-06,
+      "rms_improvement_over_df": 1.3484200972673517,
+      "median_seconds": 0.01431953499559313,
+      "cost_multiplier_vs_df": 100.63061422422169,
+      "mean_error": 2.9692195427921675e-06,
+      "rms_relative_to_quadratic_cubic": 317.65566057128405,
+      "source_experiment_id": "c3/amplitude0.12/input_before_source"
+    },
+    {
+      "amplitude": 0.12,
+      "arm": "zero_mean_spatial",
+      "verdict": "NA",
+      "rms": 3.8663202381958294e-06,
+      "rms_improvement_over_df": 1.2927307579918035,
+      "median_seconds": 0.007357151989708655,
+      "cost_multiplier_vs_df": 51.70242775992254,
+      "mean_error": null,
+      "rms_relative_to_quadratic_cubic": 331.3398974048171,
+      "source_experiment_id": "c3/amplitude0.12/zero_mean_spatial"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "DF",
+      "verdict": "GOOD",
+      "rms": 2.2010386148722482e-05,
+      "rms_improvement_over_df": 1.0,
+      "median_seconds": 0.00012924701150041074,
+      "cost_multiplier_vs_df": 1.0,
+      "mean_error": 1.7184375617262937e-05,
+      "rms_relative_to_quadratic_cubic": 103.349240609309,
+      "source_experiment_id": "c3/amplitude0.25/DF"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "quadratic",
+      "verdict": "GOOD",
+      "rms": 1.8491994383327688e-06,
+      "rms_improvement_over_df": 11.902656734833839,
+      "median_seconds": 0.0010850670078070834,
+      "cost_multiplier_vs_df": 8.39529668973147,
+      "mean_error": 8.461297055228911e-07,
+      "rms_relative_to_quadratic_cubic": 8.682871640484368,
+      "source_experiment_id": "c3/amplitude0.25/quadratic"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "cubic_only",
+      "verdict": "GOOD",
+      "rms": 2.1233952533782832e-05,
+      "rms_improvement_over_df": 1.0365656659401663,
+      "median_seconds": 0.006371590992785059,
+      "cost_multiplier_vs_df": 49.29778196662451,
+      "mean_error": 1.6188239797432225e-05,
+      "rms_relative_to_quadratic_cubic": 99.70351518017058,
+      "source_experiment_id": "c3/amplitude0.25/cubic_only"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "quadratic_cubic",
+      "verdict": "GOOD",
+      "rms": 2.129709518808011e-07,
+      "rms_improvement_over_df": 103.349240609309,
+      "median_seconds": 0.007272278002346866,
+      "cost_multiplier_vs_df": 56.26650796737188,
+      "mean_error": 1.5000611436333244e-07,
+      "rms_relative_to_quadratic_cubic": 1.0,
+      "source_experiment_id": "c3/amplitude0.25/quadratic_cubic"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "mean_only",
+      "verdict": "GOOD",
+      "rms": 1.7921027645774118e-05,
+      "rms_improvement_over_df": 1.2281877235936667,
+      "median_seconds": 0.007175923004979268,
+      "cost_multiplier_vs_df": 55.52099751998106,
+      "mean_error": 1.1489512557916193e-05,
+      "rms_relative_to_quadratic_cubic": 84.14775577377537,
+      "source_experiment_id": "c3/amplitude0.25/mean_only"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "mean_quadratic",
+      "verdict": "GOOD",
+      "rms": 1.160657149654032e-05,
+      "rms_improvement_over_df": 1.896372770829295,
+      "median_seconds": 0.008112270996207371,
+      "cost_multiplier_vs_df": 62.76563691518385,
+      "mean_error": 1.1489512557916193e-05,
+      "rms_relative_to_quadratic_cubic": 54.49837827196484,
+      "source_experiment_id": "c3/amplitude0.25/mean_quadratic"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "mean_quadratic_cubic",
+      "verdict": "GOOD",
+      "rms": 1.1490507108525297e-05,
+      "rms_improvement_over_df": 1.9155278301331051,
+      "median_seconds": 0.014216858995496295,
+      "cost_multiplier_vs_df": 109.9975839321524,
+      "mean_error": 1.1489512557971704e-05,
+      "rms_relative_to_quadratic_cubic": 53.9534007199089,
+      "source_experiment_id": "c3/amplitude0.25/mean_quadratic_cubic"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "source_before_compression",
+      "verdict": "NA",
+      "rms": 1.2388801826545141e-05,
+      "rms_improvement_over_df": 1.7766355824306947,
+      "median_seconds": 0.014330924008390866,
+      "cost_multiplier_vs_df": 110.88011894453221,
+      "mean_error": 1.1489512557860682e-05,
+      "rms_relative_to_quadratic_cubic": 58.17132203775424,
+      "source_experiment_id": "c3/amplitude0.25/source_before_compression"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "input_before_source",
+      "verdict": "NA",
+      "rms": 1.4850679310527282e-05,
+      "rms_improvement_over_df": 1.4821130864444605,
+      "median_seconds": 0.01455973699921742,
+      "cost_multiplier_vs_df": 112.65047315365703,
+      "mean_error": 1.1489512557916193e-05,
+      "rms_relative_to_quadratic_cubic": 69.73100875672068,
+      "source_experiment_id": "c3/amplitude0.25/input_before_source"
+    },
+    {
+      "amplitude": 0.25,
+      "arm": "zero_mean_spatial",
+      "verdict": "NA",
+      "rms": 1.718504059192833e-05,
+      "rms_improvement_over_df": 1.280787556536851,
+      "median_seconds": 0.007266008004080504,
+      "cost_multiplier_vs_df": 56.21799622080557,
+      "mean_error": null,
+      "rms_relative_to_quadratic_cubic": 80.691946202817,
+      "source_experiment_id": "c3/amplitude0.25/zero_mean_spatial"
+    }
+  ],
+  "headroom": {
+    "aggregate": {
+      "parameters": 0,
+      "independent_development_clusters": 12,
+      "conditions": 72,
+      "eligible_conditions": 72,
+      "conditions_needing_more_than_one_bare_df_step": 2,
+      "accepted_classical_coverage": 72,
+      "unresolved_reference_conditions": 0,
+      "no_feasible_classical_conditions": 0,
+      "unresolved_conditions": 0,
+      "headroom_conditions": 2,
+      "spatial_audit_rows": 72,
+      "maximum_fusion_parity_error": 8.881784197001252e-16,
+      "wall_seconds": 0.001347939993138425,
+      "median_seconds": null,
+      "peak_allocated_bytes": null,
+      "peak_reserved_bytes": null
+    },
+    "failed_checks": {
+      "measured-fusion-speedup": 21,
+      "observed-second-order-regime": 10,
+      "matched-rms-target": 40,
+      "matched-max-target": 46,
+      "spatial-budget-at-2N": 12
+    },
+    "fastest_feasible_family_counts": {
+      "strang_reaction_first": 49,
+      "strang_diffusion_first": 23
+    },
+    "fastest_feasible_step_counts": {
+      "1": 70,
+      "2": 1,
+      "4": 1
+    },
+    "fusion": {
+      "rows": 72,
+      "speedup_cases": 51,
+      "speedup_median": 1.0425774163901096,
+      "speedup_min": 0.8720527199295397,
+      "speedup_max": 1.2324456077867014,
+      "max_parity_error": 8.881784197001252e-16
+    },
+    "spatial": {
+      "rows": 48,
+      "second_order_regime_passed": 38,
+      "budget_passed": 26,
+      "max_coarse_continuum_discrepancy": 0.024853603966308147
+    }
+  },
+  "transfer": {
+    "groups": [
+      {
+        "equation": "anisotropic_periodic_logistic_Galerkin",
+        "arm": "base_galerkin",
+        "count": 96,
+        "verdicts": {
+          "NA": 96
+        },
+        "failed_checks": {},
+        "max_error": {
+          "min": 1.779505320875785e-09,
+          "median": 1.7762123244446926e-08,
+          "max": 7.421102876659091e-08
+        },
+        "cost_ratio_vs_base": {
+          "min": 1.0,
+          "median": 1.0,
+          "max": 1.0
+        },
+        "max_error_improvement_over_base": {
+          "min": 1.0,
+          "median": 1.0,
+          "max": 1.0
+        }
+      },
+      {
+        "equation": "anisotropic_periodic_logistic_Galerkin",
+        "arm": "nodal_unfiltered",
+        "count": 96,
+        "verdicts": {
+          "GOOD": 96
+        },
+        "failed_checks": {},
+        "max_error": {
+          "min": 9.045243998251351e-10,
+          "median": 4.130004394031772e-09,
+          "max": 2.81332828144798e-08
+        },
+        "cost_ratio_vs_base": {
+          "min": 0.0909122816877577,
+          "median": 0.09546649661215302,
+          "max": 0.14776600400843556
+        },
+        "max_error_improvement_over_base": {
+          "min": 0.966796243601287,
+          "median": 1.9607039626354907,
+          "max": 9.047977332901777
+        }
+      },
+      {
+        "equation": "anisotropic_periodic_logistic_Galerkin",
+        "arm": "dealiased_unfiltered",
+        "count": 96,
+        "verdicts": {
+          "BAD": 96
+        },
+        "failed_checks": {
+          "complete_same_step_cost": 96
+        },
+        "max_error": {
+          "min": 9.045336701873907e-10,
+          "median": 3.741013554492412e-09,
+          "max": 2.4831682543524636e-08
+        },
+        "cost_ratio_vs_base": {
+          "min": 1.2374524653336108,
+          "median": 1.2719835720081731,
+          "max": 1.377170693483025
+        },
+        "max_error_improvement_over_base": {
+          "min": 0.9669898852912779,
+          "median": 1.9607173191608511,
+          "max": 10.1302222435355
+        }
+      },
+      {
+        "equation": "anisotropic_periodic_logistic_Galerkin",
+        "arm": "dealiased_fractional",
+        "count": 96,
+        "verdicts": {
+          "BAD": 96
+        },
+        "failed_checks": {
+          "complete_same_step_cost": 96
+        },
+        "max_error": {
+          "min": 9.542698853337583e-10,
+          "median": 4.4360284889854995e-09,
+          "max": 2.5672043990621063e-08
+        },
+        "cost_ratio_vs_base": {
+          "min": 1.1832662362502586,
+          "median": 1.2721797759251552,
+          "max": 1.3588468434669163
+        },
+        "max_error_improvement_over_base": {
+          "min": 0.9813368115261054,
+          "median": 1.9732910174117002,
+          "max": 9.970026389276532
+        }
+      },
+      {
+        "equation": "anisotropic_periodic_logistic_Galerkin",
+        "arm": "grid_index_fractional",
+        "count": 96,
+        "verdicts": {
+          "BAD": 96
+        },
+        "failed_checks": {
+          "complete_same_step_cost": 96
+        },
+        "max_error": {
+          "min": 9.408893109075223e-10,
+          "median": 4.255255064977703e-09,
+          "max": 2.5533620717776984e-08
+        },
+        "cost_ratio_vs_base": {
+          "min": 1.1680573197297366,
+          "median": 1.2722384360408145,
+          "max": 1.4093166962449264
+        },
+        "max_error_improvement_over_base": {
+          "min": 0.9813368115261054,
+          "median": 1.9831014216036027,
+          "max": 9.970026389276532
+        }
+      },
+      {
+        "equation": "anisotropic_periodic_logistic_Galerkin",
+        "arm": "c4_guarded",
+        "count": 96,
+        "verdicts": {
+          "BAD": 96
+        },
+        "failed_checks": {
+          "complete_same_step_cost": 96
+        },
+        "max_error": {
+          "min": 9.542698853337583e-10,
+          "median": 4.4360284889854995e-09,
+          "max": 2.5672043990621063e-08
+        },
+        "cost_ratio_vs_base": {
+          "min": 1.1744491509382349,
+          "median": 1.2720764701261618,
+          "max": 1.4197665812503195
+        },
+        "max_error_improvement_over_base": {
+          "min": 0.9813368115261054,
+          "median": 1.9732910174117002,
+          "max": 9.970026389276532
+        }
+      },
+      {
+        "equation": "other",
+        "arm": "factor-bank",
+        "count": 1,
+        "verdicts": {
+          "NA": 1
+        },
+        "failed_checks": {},
+        "max_error": null,
+        "cost_ratio_vs_base": null,
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "variable_coefficient_logistic_RD",
+        "arm": "base",
+        "count": 2,
+        "verdicts": {
+          "NA": 2
+        },
+        "failed_checks": {},
+        "max_error": {
+          "min": 2.233695267361835e-07,
+          "median": 3.4099645335183837e-07,
+          "max": 4.5862337996749325e-07
+        },
+        "cost_ratio_vs_base": {
+          "min": 1.0,
+          "median": 1.0,
+          "max": 1.0
+        },
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "variable_coefficient_logistic_RD",
+        "arm": "c4_weighted",
+        "count": 2,
+        "verdicts": {
+          "BAD": 2
+        },
+        "failed_checks": {
+          "complete_same_step_cost": 2
+        },
+        "max_error": {
+          "min": 3.357366765155412e-08,
+          "median": 8.730158872899407e-08,
+          "max": 1.4102950980643403e-07
+        },
+        "cost_ratio_vs_base": {
+          "min": 2.9796954380205127,
+          "median": 3.7619780326719043,
+          "max": 4.544260627323296
+        },
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "other",
+        "arm": "independent-remeshing-and-quadrature",
+        "count": 1,
+        "verdicts": {
+          "GOOD": 1
+        },
+        "failed_checks": {},
+        "max_error": null,
+        "cost_ratio_vs_base": null,
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "coupled_gray_scott",
+        "arm": "base_dealiased",
+        "count": 2,
+        "verdicts": {
+          "NA": 2
+        },
+        "failed_checks": {},
+        "max_error": {
+          "min": 8.053348432568441e-09,
+          "median": 8.05351652033437e-09,
+          "max": 8.053684608100298e-09
+        },
+        "cost_ratio_vs_base": {
+          "min": 1.0,
+          "median": 1.0,
+          "max": 1.0
+        },
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "coupled_gray_scott",
+        "arm": "unfiltered_correction",
+        "count": 2,
+        "verdicts": {
+          "BAD": 2
+        },
+        "failed_checks": {
+          "complete_same_step_cost": 2
+        },
+        "max_error": {
+          "min": 1.8496315590255108e-13,
+          "median": 1.8501866705378234e-13,
+          "max": 1.850741782050136e-13
+        },
+        "cost_ratio_vs_base": {
+          "min": 2.956003086463329,
+          "median": 2.9787082084273955,
+          "max": 3.001413330391462
+        },
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "coupled_gray_scott",
+        "arm": "c4_fractional_guarded",
+        "count": 2,
+        "verdicts": {
+          "BAD": 2
+        },
+        "failed_checks": {
+          "complete_same_step_cost": 2
+        },
+        "max_error": {
+          "min": 9.716263349446308e-10,
+          "median": 9.716922821922935e-10,
+          "max": 9.717582294399563e-10
+        },
+        "cost_ratio_vs_base": {
+          "min": 2.9833344120998504,
+          "median": 3.092388157581193,
+          "max": 3.2014419030625354
+        },
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "viscous_burgers_advection",
+        "arm": "base_dealiased",
+        "count": 2,
+        "verdicts": {
+          "NA": 2
+        },
+        "failed_checks": {},
+        "max_error": {
+          "min": 2.81547661004633e-07,
+          "median": 2.815815208709327e-07,
+          "max": 2.8161538073723236e-07
+        },
+        "cost_ratio_vs_base": {
+          "min": 1.0,
+          "median": 1.0,
+          "max": 1.0
+        },
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "viscous_burgers_advection",
+        "arm": "unfiltered_correction",
+        "count": 2,
+        "verdicts": {
+          "BAD": 2
+        },
+        "failed_checks": {
+          "complete_same_step_cost": 2
+        },
+        "max_error": {
+          "min": 2.1970453234487763e-11,
+          "median": 2.4993784819571374e-11,
+          "max": 2.8017116404654985e-11
+        },
+        "cost_ratio_vs_base": {
+          "min": 2.99432060247759,
+          "median": 3.039258054039573,
+          "max": 3.0841955056015564
+        },
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "viscous_burgers_advection",
+        "arm": "c4_fractional_guarded",
+        "count": 2,
+        "verdicts": {
+          "BAD": 2
+        },
+        "failed_checks": {
+          "complete_same_step_cost": 2
+        },
+        "max_error": {
+          "min": 3.8040210717515954e-08,
+          "median": 3.80521451293081e-08,
+          "max": 3.806407954110025e-08
+        },
+        "cost_ratio_vs_base": {
+          "min": 3.0697591173904235,
+          "median": 3.077692275109083,
+          "max": 3.085625432827742
+        },
+        "max_error_improvement_over_base": null
+      },
+      {
+        "equation": "other",
+        "arm": "covariance-and-growth",
+        "count": 1,
+        "verdicts": {
+          "NA": 1
+        },
+        "failed_checks": {},
+        "max_error": null,
+        "cost_ratio_vs_base": null,
+        "max_error_improvement_over_base": null
+      }
+    ],
+    "failed_checks": {
+      "complete_same_step_cost": 394
+    },
+    "zero_reference_uncertainty_rows": 592,
+    "reference_rows": 592,
+    "rhs_evaluation_counts": {
+      "196": 592
+    },
+    "fallback_steps": 0,
+    "reference_limitation": "Both DOP853 solves tighten tolerance but hold max_step=horizon/8; identical capped trajectories explain zero measured difference and do not establish actual temporal refinement. Require smaller max_step and roundoff floor before interpreting near-roundoff improvements.",
+    "C4_filter_limitation": "Applying fixed fractional filter F to Richardson delta restores a leading (I-F)*local-error term. A smooth second-order base has local h^3 error; fixed F generally prevents full Richardson cancellation. Need measured orders and an h-dependent filter or certified correction decision; no order theorem established by this run.",
+    "pde_comparisons": [
+      {
+        "equation": "coupled_gray_scott",
+        "grid": 16,
+        "base_max_error": 8.053684608100298e-09,
+        "unfiltered_max_error": 1.850741782050136e-13,
+        "filtered_max_error": 9.717582294399563e-10,
+        "filtered_error_relative_to_unfiltered": 5250.641871625675,
+        "filtered_cost_multiplier_vs_base": 3.2014419030625354
+      },
+      {
+        "equation": "coupled_gray_scott",
+        "grid": 32,
+        "base_max_error": 8.053348432568441e-09,
+        "unfiltered_max_error": 1.8496315590255108e-13,
+        "filtered_max_error": 9.716263349446308e-10,
+        "filtered_error_relative_to_unfiltered": 5253.080432172869,
+        "filtered_cost_multiplier_vs_base": 2.9833344120998504
+      },
+      {
+        "equation": "viscous_burgers_advection",
+        "grid": 16,
+        "base_max_error": 2.81547661004633e-07,
+        "unfiltered_max_error": 2.1970453234487763e-11,
+        "filtered_max_error": 3.8040210717515954e-08,
+        "filtered_error_relative_to_unfiltered": 1731.4258523262029,
+        "filtered_cost_multiplier_vs_base": 3.085625432827742
+      },
+      {
+        "equation": "viscous_burgers_advection",
+        "grid": 32,
+        "base_max_error": 2.8161538073723236e-07,
+        "unfiltered_max_error": 2.8017116404654985e-11,
+        "filtered_max_error": 3.806407954110025e-08,
+        "filtered_error_relative_to_unfiltered": 1358.600899226588,
+        "filtered_cost_multiplier_vs_base": 3.0697591173904235
+      }
+    ]
+  },
+  "scaling": {
+    "reuse": [
+      {
+        "schema": "tdn.roadmap-experiment/v1",
+        "experiment_id": "preparation-reuse/etdrk4",
+        "stage": "scaling",
+        "mechanism_ids": [
+          "M15"
+        ],
+        "combination_ids": [],
+        "status": "COMPLETED",
+        "device": "cuda",
+        "profile": "full",
+        "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+        "effective_config": {
+          "family": "etdrk4",
+          "grid": 32,
+          "schedule": [
+            0.0675,
+            0.135,
+            0.0675
+          ],
+          "queries": 3,
+          "cost_scope": "coefficient construction plus all complete query rollouts; no persistent warm cache",
+          "state_dependent_cache": false
+        },
+        "metrics": {
+          "elapsed_seconds": 0.030831937983748503,
+          "median_seconds": 0.006164791993796825,
+          "total_seconds": 0.030831937983748503,
+          "min_seconds": 0.006138009994174354,
+          "max_seconds": 0.0061944629997015,
+          "p95_seconds": 0.0061944629997015,
+          "repeats": 5,
+          "warmup": 0,
+          "samples_seconds": [
+            0.006175861999508925,
+            0.006158810996566899,
+            0.0061944629997015,
+            0.006138009994174354,
+            0.006164791993796825
+          ],
+          "peak_allocated_bytes": 3174400,
+          "peak_reserved_bytes": 4194304,
+          "memory_scope": "CUDA allocator whole-process peak during measured call",
+          "parameters": 0,
+          "fresh_cost": {
+            "elapsed_seconds": 0.12572085099236574,
+            "median_seconds": 0.014953478996176273,
+            "total_seconds": 0.12572085099236574,
+            "min_seconds": 0.014852544001769274,
+            "max_seconds": 0.06600615900242701,
+            "p95_seconds": 0.06600615900242701,
+            "repeats": 5,
+            "warmup": 0,
+            "samples_seconds": [
+              0.06600615900242701,
+              0.014987400994868949,
+              0.014921267997124232,
+              0.014953478996176273,
+              0.014852544001769274
+            ],
+            "peak_allocated_bytes": 3137024,
+            "peak_reserved_bytes": 4194304,
+            "memory_scope": "CUDA allocator whole-process peak during measured call"
+          },
+          "reused_cost": {
+            "elapsed_seconds": 0.030831937983748503,
+            "median_seconds": 0.006164791993796825,
+            "total_seconds": 0.030831937983748503,
+            "min_seconds": 0.006138009994174354,
+            "max_seconds": 0.0061944629997015,
+            "p95_seconds": 0.0061944629997015,
+            "repeats": 5,
+            "warmup": 0,
+            "samples_seconds": [
+              0.006175861999508925,
+              0.006158810996566899,
+              0.0061944629997015,
+              0.006138009994174354,
+              0.006164791993796825
+            ],
+            "peak_allocated_bytes": 3174400,
+            "peak_reserved_bytes": 4194304,
+            "memory_scope": "CUDA allocator whole-process peak during measured call"
+          },
+          "fresh_preparations": 9,
+          "reused_preparations": 2,
+          "coefficient_cache_bytes": 49160,
+          "cache_hits": 7,
+          "parity_max": 0.0,
+          "speedup": 2.425625878573495,
+          "wall_seconds": 0.4371711910062004
+        },
+        "checks": [
+          {
+            "check_id": "same-operator-identical-output",
+            "category": "math",
+            "measured": 0.0,
+            "target": 5e-06,
+            "relation": "le",
+            "units": "",
+            "required": true,
+            "applicable": true,
+            "verdict": "GOOD",
+            "score_1_100": 100,
+            "weight": 2,
+            "reason": "",
+            "evidence_kind": "numerical_test",
+            "nonfinite": false,
+            "proof_status": "NOT_A_PROOF"
+          },
+          {
+            "check_id": "fewer-coefficient-preparations",
+            "category": "gap",
+            "measured": 2,
+            "target": 9,
+            "relation": "lt",
+            "units": "",
+            "required": true,
+            "applicable": true,
+            "verdict": "GOOD",
+            "score_1_100": 100,
+            "weight": 3,
+            "reason": "",
+            "evidence_kind": "numerical_test",
+            "nonfinite": false,
+            "proof_status": "NOT_A_PROOF"
+          },
+          {
+            "check_id": "charged-complete-workload-speedup",
+            "category": "utility",
+            "measured": 2.425625878573495,
+            "target": 1.0,
+            "relation": "ge",
+            "units": "",
+            "required": true,
+            "applicable": true,
+            "verdict": "GOOD",
+            "score_1_100": 100,
+            "weight": 3,
+            "reason": "",
+            "evidence_kind": "numerical_test",
+            "nonfinite": false,
+            "proof_status": "NOT_A_PROOF"
+          }
+        ],
+        "required_check_ids": [
+          "same-operator-identical-output",
+          "fewer-coefficient-preparations",
+          "charged-complete-workload-speedup"
+        ],
+        "evidence": [],
+        "assessment": {
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "evidence_coverage": 1.0,
+          "required_checks": 3,
+          "passed_checks": 3,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+          "proof_status": "NOT_A_PROOF"
+        },
+        "gap_assessment": {
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "evidence_coverage": 1.0,
+          "required_checks": 1,
+          "passed_checks": 1,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+          "proof_status": "NOT_A_PROOF"
+        },
+        "math_assessment": {
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "evidence_coverage": 1.0,
+          "required_checks": 1,
+          "passed_checks": 1,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+          "proof_status": "NOT_A_PROOF"
+        },
+        "scope": "finite declared experiment; numerical support is not a general proof",
+        "row_sha256": "ef605be18c77b1f9866e41808b3fb2c9c19dec568d994ef64ec3421886044122"
+      },
+      {
+        "schema": "tdn.roadmap-experiment/v1",
+        "experiment_id": "preparation-reuse/gl3_fused",
+        "stage": "scaling",
+        "mechanism_ids": [
+          "M15"
+        ],
+        "combination_ids": [],
+        "status": "COMPLETED",
+        "device": "cuda",
+        "profile": "full",
+        "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+        "effective_config": {
+          "family": "gl3_fused",
+          "grid": 32,
+          "schedule": [
+            0.0675,
+            0.135,
+            0.0675
+          ],
+          "queries": 3,
+          "cost_scope": "coefficient construction plus all complete query rollouts; no persistent warm cache",
+          "state_dependent_cache": false
+        },
+        "metrics": {
+          "elapsed_seconds": 0.0490804969886085,
+          "median_seconds": 0.00977280898950994,
+          "total_seconds": 0.0490804969886085,
+          "min_seconds": 0.009766299001057632,
+          "max_seconds": 0.009935636990121566,
+          "p95_seconds": 0.009935636990121566,
+          "repeats": 5,
+          "warmup": 0,
+          "samples_seconds": [
+            0.009766299001057632,
+            0.009767159004695714,
+            0.009935636990121566,
+            0.00983859300322365,
+            0.00977280898950994
+          ],
+          "peak_allocated_bytes": 3324928,
+          "peak_reserved_bytes": 4194304,
+          "memory_scope": "CUDA allocator whole-process peak during measured call",
+          "parameters": 0,
+          "fresh_cost": {
+            "elapsed_seconds": 0.09447921201353893,
+            "median_seconds": 0.014633551996666938,
+            "total_seconds": 0.09447921201353893,
+            "min_seconds": 0.014613202001783065,
+            "max_seconds": 0.03587063901068177,
+            "p95_seconds": 0.03587063901068177,
+            "repeats": 5,
+            "warmup": 0,
+            "samples_seconds": [
+              0.03587063901068177,
+              0.014746168002602644,
+              0.014633551996666938,
+              0.014615651001804508,
+              0.014613202001783065
+            ],
+            "peak_allocated_bytes": 3278848,
+            "peak_reserved_bytes": 4194304,
+            "memory_scope": "CUDA allocator whole-process peak during measured call"
+          },
+          "reused_cost": {
+            "elapsed_seconds": 0.0490804969886085,
+            "median_seconds": 0.00977280898950994,
+            "total_seconds": 0.0490804969886085,
+            "min_seconds": 0.009766299001057632,
+            "max_seconds": 0.009935636990121566,
+            "p95_seconds": 0.009935636990121566,
+            "repeats": 5,
+            "warmup": 0,
+            "samples_seconds": [
+              0.009766299001057632,
+              0.009767159004695714,
+              0.009935636990121566,
+              0.00983859300322365,
+              0.00977280898950994
+            ],
+            "peak_allocated_bytes": 3324928,
+            "peak_reserved_bytes": 4194304,
+            "memory_scope": "CUDA allocator whole-process peak during measured call"
+          },
+          "fresh_preparations": 9,
+          "reused_preparations": 2,
+          "coefficient_cache_bytes": 73950,
+          "cache_hits": 7,
+          "parity_max": 0.0,
+          "speedup": 1.4973741953183044,
+          "wall_seconds": 0.1482530549983494
+        },
+        "checks": [
+          {
+            "check_id": "same-operator-identical-output",
+            "category": "math",
+            "measured": 0.0,
+            "target": 5e-06,
+            "relation": "le",
+            "units": "",
+            "required": true,
+            "applicable": true,
+            "verdict": "GOOD",
+            "score_1_100": 100,
+            "weight": 2,
+            "reason": "",
+            "evidence_kind": "numerical_test",
+            "nonfinite": false,
+            "proof_status": "NOT_A_PROOF"
+          },
+          {
+            "check_id": "fewer-coefficient-preparations",
+            "category": "gap",
+            "measured": 2,
+            "target": 9,
+            "relation": "lt",
+            "units": "",
+            "required": true,
+            "applicable": true,
+            "verdict": "GOOD",
+            "score_1_100": 100,
+            "weight": 3,
+            "reason": "",
+            "evidence_kind": "numerical_test",
+            "nonfinite": false,
+            "proof_status": "NOT_A_PROOF"
+          },
+          {
+            "check_id": "charged-complete-workload-speedup",
+            "category": "utility",
+            "measured": 1.4973741953183044,
+            "target": 1.0,
+            "relation": "ge",
+            "units": "",
+            "required": true,
+            "applicable": true,
+            "verdict": "GOOD",
+            "score_1_100": 100,
+            "weight": 3,
+            "reason": "",
+            "evidence_kind": "numerical_test",
+            "nonfinite": false,
+            "proof_status": "NOT_A_PROOF"
+          }
+        ],
+        "required_check_ids": [
+          "same-operator-identical-output",
+          "fewer-coefficient-preparations",
+          "charged-complete-workload-speedup"
+        ],
+        "evidence": [],
+        "assessment": {
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "evidence_coverage": 1.0,
+          "required_checks": 3,
+          "passed_checks": 3,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+          "proof_status": "NOT_A_PROOF"
+        },
+        "gap_assessment": {
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "evidence_coverage": 1.0,
+          "required_checks": 1,
+          "passed_checks": 1,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+          "proof_status": "NOT_A_PROOF"
+        },
+        "math_assessment": {
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "evidence_coverage": 1.0,
+          "required_checks": 1,
+          "passed_checks": 1,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+          "proof_status": "NOT_A_PROOF"
+        },
+        "scope": "finite declared experiment; numerical support is not a general proof",
+        "row_sha256": "87df8b112c893b57966fd6736855669738ae864ca338685895c745781d7e9f31"
+      },
+      {
+        "schema": "tdn.roadmap-experiment/v1",
+        "experiment_id": "preparation-reuse/operator-invalidation",
+        "stage": "scaling",
+        "mechanism_ids": [
+          "M15",
+          "M22"
+        ],
+        "combination_ids": [],
+        "status": "COMPLETED",
+        "device": "cuda",
+        "profile": "full",
+        "protocol_sha256": "07d49ac515e8e312db4589c1b3ca28ec9527e89d789ad47b80bcec527095cfc8",
+        "effective_config": {
+          "changed_keys": [
+            "h",
+            "kappa",
+            "reaction_rate",
+            "physical_lengths",
+            "grid",
+            "dtype"
+          ],
+          "device_is_keyed": true,
+          "unobserved_device_migration": "NA; this run uses one actual device"
+        },
+        "metrics": {
+          "elapsed_seconds": 0.0793576860014582,
+          "median_seconds": 0.0793576860014582,
+          "total_seconds": 0.0793576860014582,
+          "min_seconds": 0.0793576860014582,
+          "max_seconds": 0.0793576860014582,
+          "p95_seconds": 0.0793576860014582,
+          "repeats": 1,
+          "warmup": 0,
+          "samples_seconds": [
+            0.0793576860014582
+          ],
+          "peak_allocated_bytes": 3510784,
+          "peak_reserved_bytes": 4194304,
+          "memory_scope": "CUDA allocator whole-process peak during measured call",
+          "coefficient_preparations": 7,
+          "cache_hits": 1,
+          "cached_tensor_bytes": 199808,
+          "state_dependent_cache": false,
+          "cache_entries": 7,
+          "parity_max": 0.0,
+          "parameters": 0,
+          "wall_seconds": 0.08213558100396767
+        },
+        "checks": [
+          {
+            "check_id": "fresh-parity-after-each-key-change",
+            "category": "math",
+            "measured": 0.0,
+            "target": 1e-12,
+            "relation": "le",
+            "units": "",
+            "required": true,
+            "applicable": true,
+            "verdict": "GOOD",
+            "score_1_100": 100,
+            "weight": 2,
+            "reason": "",
+            "evidence_kind": "numerical_test",
+            "nonfinite": false,
+            "proof_status": "NOT_A_PROOF"
+          },
+          {
+            "check_id": "distinct-physical-cache-entries",
+            "category": "correctness",
+            "measured": 7,
+            "target": 7,
+            "relation": "eq",
+            "units": "",
+            "required": true,
+            "applicable": true,
+            "verdict": "GOOD",
+            "score_1_100": 100,
+            "weight": 2,
+            "reason": "",
+            "evidence_kind": "numerical_test",
+            "nonfinite": false,
+            "proof_status": "NOT_A_PROOF"
+          },
+          {
+            "check_id": "unchanged-key-reused",
+            "category": "gap",
+            "measured": 1,
+            "target": 1,
+            "relation": "eq",
+            "units": "",
+            "required": true,
+            "applicable": true,
+            "verdict": "GOOD",
+            "score_1_100": 100,
+            "weight": 3,
+            "reason": "",
+            "evidence_kind": "numerical_test",
+            "nonfinite": false,
+            "proof_status": "NOT_A_PROOF"
+          }
+        ],
+        "required_check_ids": [
+          "fresh-parity-after-each-key-change",
+          "distinct-physical-cache-entries",
+          "unchanged-key-reused"
+        ],
+        "evidence": [],
+        "assessment": {
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "evidence_coverage": 1.0,
+          "required_checks": 3,
+          "passed_checks": 3,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+          "proof_status": "NOT_A_PROOF"
+        },
+        "gap_assessment": {
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "evidence_coverage": 1.0,
+          "required_checks": 1,
+          "passed_checks": 1,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+          "proof_status": "NOT_A_PROOF"
+        },
+        "math_assessment": {
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "evidence_coverage": 1.0,
+          "required_checks": 1,
+          "passed_checks": 1,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "score_meaning": "fraction of predeclared required check weight met, mapped to 1..100; NA earns no credit",
+          "proof_status": "NOT_A_PROOF"
+        },
+        "scope": "finite declared experiment; numerical support is not a general proof",
+        "row_sha256": "8c2f15fa08b928464a7a0ee72d6ef5bf14066364dd183417577776fced7a0138"
+      }
+    ],
+    "families": [
+      {
+        "family": "source",
+        "parameters": 12996,
+        "known_accuracy_rows": 6,
+        "joint_accuracy_passed": 6,
+        "speedup_over_bare_df": {
+          "min": 0.08572112154853395,
+          "median": 0.3275236527636288,
+          "max": 0.3459124309153023
+        },
+        "max_peak_allocated_bytes": 5504225280
+      },
+      {
+        "family": "rank1",
+        "parameters": 43,
+        "known_accuracy_rows": 6,
+        "joint_accuracy_passed": 6,
+        "speedup_over_bare_df": {
+          "min": 0.17510734475307282,
+          "median": 0.18154252738884497,
+          "max": 0.18787659734207468
+        },
+        "max_peak_allocated_bytes": 1590887424
+      },
+      {
+        "family": "rank2",
+        "parameters": 54,
+        "known_accuracy_rows": 6,
+        "joint_accuracy_passed": 6,
+        "speedup_over_bare_df": {
+          "min": 0.12653035896813053,
+          "median": 0.13478473949199882,
+          "max": 0.13930030568487722
+        },
+        "max_peak_allocated_bytes": 1590888448
+      },
+      {
+        "family": "cheap_fno",
+        "parameters": 13140,
+        "known_accuracy_rows": 6,
+        "joint_accuracy_passed": 6,
+        "speedup_over_bare_df": {
+          "min": 0.06426879990907942,
+          "median": 0.3216080862134827,
+          "max": 0.33924496816922206
+        },
+        "max_peak_allocated_bytes": 5554556928
+      },
+      {
+        "family": "deep_fno",
+        "parameters": 13122,
+        "known_accuracy_rows": 6,
+        "joint_accuracy_passed": 6,
+        "speedup_over_bare_df": {
+          "min": 0.038125032326081366,
+          "median": 0.1750795735902538,
+          "max": 0.18343391445750193
+        },
+        "max_peak_allocated_bytes": 3537057792
+      },
+      {
+        "family": "direct_fno",
+        "parameters": 52489,
+        "known_accuracy_rows": 6,
+        "joint_accuracy_passed": 0,
+        "speedup_over_bare_df": {
+          "min": 0.022870552949781058,
+          "median": 0.22894908410265874,
+          "max": 0.24485639504969392
+        },
+        "max_peak_allocated_bytes": 6494081024
+      },
+      {
+        "family": "c1_rank2",
+        "parameters": 13050,
+        "known_accuracy_rows": 6,
+        "joint_accuracy_passed": 6,
+        "speedup_over_bare_df": {
+          "min": 0.0463917448181643,
+          "median": 0.08147643564155996,
+          "max": 0.08558316309170011
+        },
+        "max_peak_allocated_bytes": 5554556928
+      },
+      {
+        "family": "c2_rank2",
+        "parameters": 13050,
+        "known_accuracy_rows": 6,
+        "joint_accuracy_passed": 6,
+        "speedup_over_bare_df": {
+          "min": 0.044545240110431934,
+          "median": 0.07653330557026825,
+          "max": 0.07997922514987256
+        },
+        "max_peak_allocated_bytes": 5554556928
+      }
+    ],
+    "selected_workloads": [
+      {
+        "grid": 32,
+        "batch": 1,
+        "teacher_available": true,
+        "source_speedup_over_cheap_fno": 1.0230932367204695,
+        "rank1_speedup_over_cheap_fno": 0.55262296972693,
+        "source_ms_per_field": 2.7550929953576997,
+        "rank1_ms_per_field": 5.100615002447739,
+        "max_peak_allocated_gib": 0.03446245193481445
+      },
+      {
+        "grid": 32,
+        "batch": 4,
+        "teacher_available": true,
+        "source_speedup_over_cheap_fno": 1.0273436751559708,
+        "rank1_speedup_over_cheap_fno": 0.5490033906639706,
+        "source_ms_per_field": 0.6862007503514178,
+        "rank1_ms_per_field": 1.2840795025113039,
+        "max_peak_allocated_gib": 0.03657197952270508
+      },
+      {
+        "grid": 32,
+        "batch": 16,
+        "teacher_available": true,
+        "source_speedup_over_cheap_fno": 1.0253767241010403,
+        "rank1_speedup_over_cheap_fno": 0.5492139026775439,
+        "source_ms_per_field": 0.1728527504383237,
+        "rank1_ms_per_field": 0.3227143124604481,
+        "max_peak_allocated_gib": 0.04110383987426758
+      },
+      {
+        "grid": 64,
+        "batch": 1,
+        "teacher_available": true,
+        "source_speedup_over_cheap_fno": 1.0360264589866883,
+        "rank1_speedup_over_cheap_fno": 0.5609279950395606,
+        "source_ms_per_field": 2.7203619974898174,
+        "rank1_ms_per_field": 5.024472004151903,
+        "max_peak_allocated_gib": 0.03656435012817383
+      },
+      {
+        "grid": 64,
+        "batch": 4,
+        "teacher_available": true,
+        "source_speedup_over_cheap_fno": 1.0108518325726952,
+        "rank1_speedup_over_cheap_fno": 0.5456507455279213,
+        "source_ms_per_field": 0.7100644979800563,
+        "rank1_ms_per_field": 1.3154385014786385,
+        "max_peak_allocated_gib": 0.04102754592895508
+      },
+      {
+        "grid": 64,
+        "batch": 16,
+        "teacher_available": true,
+        "source_speedup_over_cheap_fno": 1.0196538294497397,
+        "rank1_speedup_over_cheap_fno": 0.5501790004367646,
+        "source_ms_per_field": 0.176311062205059,
+        "rank1_ms_per_field": 0.32675956299499376,
+        "max_peak_allocated_gib": 0.05906343460083008
+      },
+      {
+        "grid": 128,
+        "batch": 1,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.0118381012593398,
+        "rank1_speedup_over_cheap_fno": 0.5547449289181136,
+        "source_ms_per_field": 2.7952959935646504,
+        "rank1_ms_per_field": 5.098535999422893,
+        "max_peak_allocated_gib": 0.04104328155517578
+      },
+      {
+        "grid": 128,
+        "batch": 4,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.0175464067154911,
+        "rank1_speedup_over_cheap_fno": 0.5488774906875069,
+        "source_ms_per_field": 0.7015967494226061,
+        "rank1_ms_per_field": 1.3006677509110887,
+        "max_peak_allocated_gib": 0.05885028839111328
+      },
+      {
+        "grid": 128,
+        "batch": 16,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.0204798372605661,
+        "rank1_speedup_over_cheap_fno": 0.5535091421523354,
+        "source_ms_per_field": 0.1758253747539129,
+        "rank1_ms_per_field": 0.32416131216450594,
+        "max_peak_allocated_gib": 0.12962055206298828
+      },
+      {
+        "grid": 256,
+        "batch": 1,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.027037412239032,
+        "rank1_speedup_over_cheap_fno": 0.5596671046589506,
+        "source_ms_per_field": 2.7922049921471626,
+        "rank1_ms_per_field": 5.123937007738277,
+        "max_peak_allocated_gib": 0.05891227722167969
+      },
+      {
+        "grid": 256,
+        "batch": 4,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.0171280104855045,
+        "rank1_speedup_over_cheap_fno": 0.5517067870356092,
+        "source_ms_per_field": 0.7076567490003072,
+        "rank1_ms_per_field": 1.3046377498540096,
+        "max_peak_allocated_gib": 0.1294994354248047
+      },
+      {
+        "grid": 256,
+        "batch": 16,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.274088319537431,
+        "rank1_speedup_over_cheap_fno": 0.9231837180361095,
+        "source_ms_per_field": 0.23848243745305808,
+        "rank1_ms_per_field": 0.32913025006564567,
+        "max_peak_allocated_gib": 0.4118480682373047
+      },
+      {
+        "grid": 512,
+        "batch": 1,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.0329842783538776,
+        "rank1_speedup_over_cheap_fno": 0.5563793041303091,
+        "source_ms_per_field": 2.777504996629432,
+        "rank1_ms_per_field": 5.156768005690537,
+        "max_peak_allocated_gib": 0.1302947998046875
+      },
+      {
+        "grid": 512,
+        "batch": 4,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.346288361794945,
+        "rank1_speedup_over_cheap_fno": 1.1822972331059531,
+        "source_ms_per_field": 1.1627404965111054,
+        "rank1_ms_per_field": 1.3240189982752781,
+        "max_peak_allocated_gib": 0.4120941162109375
+      },
+      {
+        "grid": 512,
+        "batch": 16,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.2801804010166462,
+        "rank1_speedup_over_cheap_fno": 2.2497648187979826,
+        "source_ms_per_field": 1.0422911873320118,
+        "rank1_ms_per_field": 0.5930934376010555,
+        "max_peak_allocated_gib": 1.5392913818359375
+      },
+      {
+        "grid": 1024,
+        "batch": 1,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.2648575919744012,
+        "rank1_speedup_over_cheap_fno": 0.9174407590536674,
+        "source_ms_per_field": 3.757876009331085,
+        "rank1_ms_per_field": 5.180909996852279,
+        "max_peak_allocated_gib": 0.4156379699707031
+      },
+      {
+        "grid": 1024,
+        "batch": 4,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.3337906055473723,
+        "rank1_speedup_over_cheap_fno": 2.741917454407177,
+        "source_ms_per_field": 5.064449000201421,
+        "rank1_ms_per_field": 2.4635732515889686,
+        "max_peak_allocated_gib": 1.5417366027832031
+      },
+      {
+        "grid": 1024,
+        "batch": 16,
+        "teacher_available": false,
+        "source_speedup_over_cheap_fno": 1.1934137273097845,
+        "rank1_speedup_over_cheap_fno": 1.3846518310942653,
+        "source_ms_per_field": 5.887660562621022,
+        "rank1_ms_per_field": 5.074499436886981,
+        "max_peak_allocated_gib": 6.048084259033203
+      }
+    ],
+    "accuracy_scope": "One repeated independent engineering field, first training seed, schedule [.03,.07,.17], grids32/64 teacher-backed; grids128..1024 throughput only. Batches repeat the same field. No accuracy claim at larger grids."
+  }
+}

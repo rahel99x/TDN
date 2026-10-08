@@ -1,0 +1,2190 @@
+{
+  "status": "VERIFIED",
+  "independent_streaming_recomputation": true,
+  "scientific_rows": 74149,
+  "unique_logged_checks": 619694,
+  "stage_rows": {
+    "audit": 52,
+    "headroom": 1273,
+    "prepare": 60,
+    "train": 115,
+    "confirm_prepare": 48,
+    "confirm": 70748,
+    "policy": 1111,
+    "transfer": 595,
+    "scaling": 147
+  },
+  "mechanisms_and_combinations": [
+    {
+      "id": "M00",
+      "name": "Headroom map and fused classical reference",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 61,
+      "evidence_coverage": 0.9656661226682092,
+      "experiment_count": 4685,
+      "required_checks": 35372,
+      "passed_checks": 22350,
+      "failed_checks": 11722,
+      "na_checks": 1300,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 4609
+        },
+        "math": {
+          "GOOD": 3605,
+          "BAD": 512,
+          "NA": 576
+        },
+        "gap": {
+          "GOOD": 14052,
+          "BAD": 9061,
+          "NA": 4
+        },
+        "utility": {
+          "GOOD": 84,
+          "BAD": 2149,
+          "NA": 720
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          2128
+        ],
+        [
+          "target_max_2e-06",
+          2124
+        ],
+        [
+          "target_rms_2e-06",
+          1961
+        ],
+        [
+          "target_max_2e-05",
+          1525
+        ],
+        [
+          "target_rms_2e-05",
+          1332
+        ],
+        [
+          "target_max_0.0002",
+          668
+        ]
+      ],
+      "frequent_na": [
+        [
+          "same_schedule_cheaper_than_df",
+          720
+        ],
+        [
+          "unmeasured-math",
+          576
+        ],
+        [
+          "unmeasured-gap",
+          4
+        ]
+      ]
+    },
+    {
+      "id": "M01",
+      "name": "Consistent spatial target and two-resolution discrepancy",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 68,
+      "evidence_coverage": 0.8156967151642418,
+      "experiment_count": 1115,
+      "required_checks": 10644,
+      "passed_checks": 6973,
+      "failed_checks": 1322,
+      "na_checks": 2349,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 2017
+        },
+        "math": {
+          "GOOD": 865,
+          "BAD": 250,
+          "NA": 2132
+        },
+        "gap": {
+          "GOOD": 3917,
+          "NA": 12,
+          "BAD": 220
+        },
+        "utility": {
+          "GOOD": 174,
+          "BAD": 852,
+          "NA": 205
+        }
+      },
+      "frequent_failures": [
+        [
+          "full_work_faster_than_accurate_classical",
+          734
+        ],
+        [
+          "separate_spatial_target",
+          240
+        ],
+        [
+          "audited_joint_accuracy",
+          84
+        ],
+        [
+          "false_acceptance",
+          84
+        ],
+        [
+          "total_cost_beats_classical",
+          61
+        ],
+        [
+          "p95_cost_beats_classical",
+          57
+        ]
+      ],
+      "frequent_na": [
+        [
+          "conformal_exchangeability_scope",
+          984
+        ],
+        [
+          "finite_conformal_function_rank",
+          984
+        ],
+        [
+          "full_work_faster_than_accurate_classical",
+          84
+        ],
+        [
+          "independent_cluster_risk_bound",
+          82
+        ],
+        [
+          "three_paired_training_seed_policy_replication",
+          82
+        ],
+        [
+          "finite_measured_break_even",
+          81
+        ]
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "Exact finite-step quadratic DF defect",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 61,
+      "evidence_coverage": 0.9243273704213354,
+      "experiment_count": 16473,
+      "required_checks": 139358,
+      "passed_checks": 88787,
+      "failed_checks": 40323,
+      "na_checks": 10248,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "math": {
+          "GOOD": 14472,
+          "NA": 1873,
+          "BAD": 216
+        },
+        "correctness": {
+          "GOOD": 19988
+        },
+        "gap": {
+          "GOOD": 53634,
+          "NA": 23,
+          "BAD": 19056
+        },
+        "utility": {
+          "BAD": 21051,
+          "NA": 8352,
+          "GOOD": 693
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          9360
+        ],
+        [
+          "target_max_2e-06",
+          5481
+        ],
+        [
+          "target_rms_2e-06",
+          4850
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          4512
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          3818
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          3361
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          5184
+        ],
+        [
+          "unmeasured-math",
+          1873
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          1248
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          1248
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          672
+        ],
+        [
+          "unmeasured-gap",
+          14
+        ]
+      ]
+    },
+    {
+      "id": "M03",
+      "name": "Physical factors plus learned rank-1/rank-2 remainder",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 60,
+      "evidence_coverage": 0.9192519763502291,
+      "experiment_count": 23532,
+      "required_checks": 198162,
+      "passed_checks": 124608,
+      "failed_checks": 58040,
+      "na_checks": 15514,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 28782
+        },
+        "gap": {
+          "GOOD": 73020,
+          "NA": 129,
+          "BAD": 28227
+        },
+        "math": {
+          "GOOD": 20784,
+          "BAD": 228,
+          "NA": 2784
+        },
+        "utility": {
+          "BAD": 29585,
+          "GOOD": 2022,
+          "NA": 12601
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          12960
+        ],
+        [
+          "target_max_2e-06",
+          8207
+        ],
+        [
+          "target_rms_2e-06",
+          7424
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          6671
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          5706
+        ],
+        [
+          "target_max_2e-05",
+          4507
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          7776
+        ],
+        [
+          "unmeasured-math",
+          2592
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          1860
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          1860
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          1105
+        ],
+        [
+          "accuracy-matched-rollout-latency-improvement",
+          102
+        ]
+      ]
+    },
+    {
+      "id": "M04",
+      "name": "Signed nonlinear sources before output compression",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 60,
+      "evidence_coverage": 0.9195058467037023,
+      "experiment_count": 23419,
+      "required_checks": 197596,
+      "passed_checks": 123312,
+      "failed_checks": 58913,
+      "na_checks": 15371,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "gap": {
+          "GOOD": 70614,
+          "BAD": 30662,
+          "NA": 29
+        },
+        "math": {
+          "GOOD": 20404,
+          "NA": 2601,
+          "BAD": 535
+        },
+        "correctness": {
+          "GOOD": 28687
+        },
+        "utility": {
+          "BAD": 27716,
+          "GOOD": 3607,
+          "NA": 12741
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          12960
+        ],
+        [
+          "target_max_2e-06",
+          8459
+        ],
+        [
+          "target_rms_2e-06",
+          7586
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          6506
+        ],
+        [
+          "target_max_2e-05",
+          5204
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          4881
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          7776
+        ],
+        [
+          "unmeasured-math",
+          2601
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          1848
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          1848
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          1269
+        ],
+        [
+          "unmeasured-gap",
+          18
+        ]
+      ]
+    },
+    {
+      "id": "M05",
+      "name": "Product-consistent anti-aliasing and grid-scaled filters",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 82,
+      "evidence_coverage": 0.9370366804659671,
+      "experiment_count": 640,
+      "required_checks": 4285,
+      "passed_checks": 3649,
+      "failed_checks": 414,
+      "na_checks": 222,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "math": {
+          "GOOD": 1218,
+          "BAD": 10,
+          "NA": 12
+        },
+        "gap": {
+          "GOOD": 1106,
+          "NA": 110,
+          "BAD": 12
+        },
+        "correctness": {
+          "GOOD": 1228
+        },
+        "utility": {
+          "GOOD": 97,
+          "NA": 100,
+          "BAD": 392
+        }
+      },
+      "frequent_failures": [
+        [
+          "complete_same_step_cost",
+          392
+        ],
+        [
+          "spatial-budget-at-2N",
+          12
+        ],
+        [
+          "observed-second-order-regime",
+          10
+        ]
+      ],
+      "frequent_na": [
+        [
+          "complete_same_step_cost",
+          100
+        ],
+        [
+          "same_step_max_no_harm",
+          96
+        ],
+        [
+          "spatial-budget-at-2N",
+          10
+        ],
+        [
+          "mean_conservation",
+          6
+        ],
+        [
+          "energy_dissipation",
+          6
+        ],
+        [
+          "same_step_no_harm",
+          4
+        ]
+      ]
+    },
+    {
+      "id": "M06",
+      "name": "Stiffness-aware trust envelope for the correction",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 59,
+      "evidence_coverage": 0.9058590380944075,
+      "experiment_count": 8862,
+      "required_checks": 76310,
+      "passed_checks": 46826,
+      "failed_checks": 22009,
+      "na_checks": 7475,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 11514
+        },
+        "gap": {
+          "GOOD": 26522,
+          "NA": 8,
+          "BAD": 11314
+        },
+        "math": {
+          "GOOD": 7570,
+          "BAD": 468,
+          "NA": 2996
+        },
+        "utility": {
+          "BAD": 10227,
+          "GOOD": 1220,
+          "NA": 4471
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          4320
+        ],
+        [
+          "target_max_2e-06",
+          2960
+        ],
+        [
+          "target_rms_2e-06",
+          2725
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          2130
+        ],
+        [
+          "target_max_2e-05",
+          1993
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          1979
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          2592
+        ],
+        [
+          "conformal_exchangeability_scope",
+          984
+        ],
+        [
+          "finite_conformal_function_rank",
+          984
+        ],
+        [
+          "unmeasured-math",
+          864
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          606
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          606
+        ]
+      ]
+    },
+    {
+      "id": "M07",
+      "name": "Conditional solver bank with a classical safe path",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 68,
+      "evidence_coverage": 0.8137787844469612,
+      "experiment_count": 1090,
+      "required_checks": 10568,
+      "passed_checks": 6905,
+      "failed_checks": 1300,
+      "na_checks": 2363,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "gap": {
+          "GOOD": 3914,
+          "BAD": 208,
+          "NA": 2
+        },
+        "correctness": {
+          "GOOD": 1992
+        },
+        "math": {
+          "NA": 2156,
+          "GOOD": 826,
+          "BAD": 240
+        },
+        "utility": {
+          "BAD": 852,
+          "GOOD": 173,
+          "NA": 205
+        }
+      },
+      "frequent_failures": [
+        [
+          "full_work_faster_than_accurate_classical",
+          734
+        ],
+        [
+          "separate_spatial_target",
+          240
+        ],
+        [
+          "audited_joint_accuracy",
+          84
+        ],
+        [
+          "false_acceptance",
+          84
+        ],
+        [
+          "total_cost_beats_classical",
+          61
+        ],
+        [
+          "p95_cost_beats_classical",
+          57
+        ]
+      ],
+      "frequent_na": [
+        [
+          "conformal_exchangeability_scope",
+          984
+        ],
+        [
+          "finite_conformal_function_rank",
+          984
+        ],
+        [
+          "full_work_faster_than_accurate_classical",
+          84
+        ],
+        [
+          "independent_cluster_risk_bound",
+          82
+        ],
+        [
+          "three_paired_training_seed_policy_replication",
+          82
+        ],
+        [
+          "finite_measured_break_even",
+          81
+        ]
+      ]
+    },
+    {
+      "id": "M08",
+      "name": "Cheap embedded estimator and stability-weighted residual",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 68,
+      "evidence_coverage": 0.812504693954187,
+      "experiment_count": 1110,
+      "required_checks": 10628,
+      "passed_checks": 6945,
+      "failed_checks": 1300,
+      "na_checks": 2383,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "math": {
+          "GOOD": 846,
+          "NA": 2156,
+          "BAD": 240
+        },
+        "gap": {
+          "NA": 22,
+          "GOOD": 3914,
+          "BAD": 208
+        },
+        "correctness": {
+          "GOOD": 2012
+        },
+        "utility": {
+          "BAD": 852,
+          "GOOD": 173,
+          "NA": 205
+        }
+      },
+      "frequent_failures": [
+        [
+          "full_work_faster_than_accurate_classical",
+          734
+        ],
+        [
+          "separate_spatial_target",
+          240
+        ],
+        [
+          "audited_joint_accuracy",
+          84
+        ],
+        [
+          "false_acceptance",
+          84
+        ],
+        [
+          "total_cost_beats_classical",
+          61
+        ],
+        [
+          "p95_cost_beats_classical",
+          57
+        ]
+      ],
+      "frequent_na": [
+        [
+          "conformal_exchangeability_scope",
+          984
+        ],
+        [
+          "finite_conformal_function_rank",
+          984
+        ],
+        [
+          "full_work_faster_than_accurate_classical",
+          84
+        ],
+        [
+          "independent_cluster_risk_bound",
+          82
+        ],
+        [
+          "three_paired_training_seed_policy_replication",
+          82
+        ],
+        [
+          "finite_measured_break_even",
+          81
+        ]
+      ]
+    },
+    {
+      "id": "M09",
+      "name": "Function-level calibrated total-error and selective risk",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 68,
+      "evidence_coverage": 0.8130029088436402,
+      "experiment_count": 1087,
+      "required_checks": 10560,
+      "passed_checks": 6899,
+      "failed_checks": 1300,
+      "na_checks": 2361,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "math": {
+          "GOOD": 846,
+          "NA": 2133,
+          "BAD": 240
+        },
+        "gap": {
+          "NA": 23,
+          "GOOD": 3890,
+          "BAD": 208
+        },
+        "correctness": {
+          "GOOD": 1990
+        },
+        "utility": {
+          "BAD": 852,
+          "GOOD": 173,
+          "NA": 205
+        }
+      },
+      "frequent_failures": [
+        [
+          "full_work_faster_than_accurate_classical",
+          734
+        ],
+        [
+          "separate_spatial_target",
+          240
+        ],
+        [
+          "audited_joint_accuracy",
+          84
+        ],
+        [
+          "false_acceptance",
+          84
+        ],
+        [
+          "total_cost_beats_classical",
+          61
+        ],
+        [
+          "p95_cost_beats_classical",
+          57
+        ]
+      ],
+      "frequent_na": [
+        [
+          "conformal_exchangeability_scope",
+          984
+        ],
+        [
+          "finite_conformal_function_rank",
+          984
+        ],
+        [
+          "full_work_faster_than_accurate_classical",
+          84
+        ],
+        [
+          "independent_cluster_risk_bound",
+          82
+        ],
+        [
+          "three_paired_training_seed_policy_replication",
+          82
+        ],
+        [
+          "finite_measured_break_even",
+          81
+        ]
+      ]
+    },
+    {
+      "id": "M10",
+      "name": "Unequal-step generator consistency and intermediate supervision",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 61,
+      "evidence_coverage": 0.9058299657915904,
+      "experiment_count": 8862,
+      "required_checks": 76310,
+      "passed_checks": 47866,
+      "failed_checks": 20967,
+      "na_checks": 7477,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 11514
+        },
+        "gap": {
+          "GOOD": 26654,
+          "NA": 10,
+          "BAD": 11180
+        },
+        "math": {
+          "GOOD": 7550,
+          "BAD": 488,
+          "NA": 2996
+        },
+        "utility": {
+          "BAD": 9299,
+          "GOOD": 2148,
+          "NA": 4471
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          4320
+        ],
+        [
+          "target_max_2e-06",
+          2956
+        ],
+        [
+          "target_rms_2e-06",
+          2698
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          2130
+        ],
+        [
+          "target_max_2e-05",
+          1973
+        ],
+        [
+          "target_rms_2e-05",
+          1598
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          2592
+        ],
+        [
+          "conformal_exchangeability_scope",
+          984
+        ],
+        [
+          "finite_conformal_function_rank",
+          984
+        ],
+        [
+          "unmeasured-math",
+          864
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          606
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          606
+        ]
+      ]
+    },
+    {
+      "id": "M11",
+      "name": "DF-tuned defect loss with regime and maximum-error control",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 60,
+      "evidence_coverage": 0.9196476182012087,
+      "experiment_count": 23384,
+      "required_checks": 197406,
+      "passed_checks": 124030,
+      "failed_checks": 58046,
+      "na_checks": 15330,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 28626
+        },
+        "gap": {
+          "GOOD": 70602,
+          "NA": 30,
+          "BAD": 30588
+        },
+        "math": {
+          "GOOD": 20296,
+          "BAD": 608,
+          "NA": 2592
+        },
+        "utility": {
+          "BAD": 26850,
+          "GOOD": 4506,
+          "NA": 12708
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          12960
+        ],
+        [
+          "target_max_2e-06",
+          8460
+        ],
+        [
+          "target_rms_2e-06",
+          7556
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          6516
+        ],
+        [
+          "target_max_2e-05",
+          5197
+        ],
+        [
+          "target_rms_2e-05",
+          4152
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          7776
+        ],
+        [
+          "unmeasured-math",
+          2592
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          1836
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          1836
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          1260
+        ],
+        [
+          "unmeasured-gap",
+          18
+        ]
+      ]
+    },
+    {
+      "id": "M12",
+      "name": "Dynamic feasible mean\u2013variance closure",
+      "kind": "mechanism",
+      "verdict": "NA",
+      "score_1_100": 93,
+      "evidence_coverage": 0.9330143540669856,
+      "experiment_count": 17,
+      "required_checks": 87,
+      "passed_checks": 80,
+      "failed_checks": 0,
+      "na_checks": 7,
+      "missing_stages": [],
+      "gap_verdict": "GOOD",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "math": {
+          "GOOD": 12,
+          "NA": 7
+        },
+        "gap": {
+          "GOOD": 35
+        },
+        "correctness": {
+          "GOOD": 33
+        }
+      },
+      "frequent_failures": [],
+      "frequent_na": [
+        [
+          "unmeasured-math",
+          6
+        ],
+        [
+          "future_moment_law_exact",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "M13",
+      "name": "Dimensionally consistent multi-band/fractional features",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 59,
+      "evidence_coverage": 0.91964767211936,
+      "experiment_count": 4490,
+      "required_checks": 37071,
+      "passed_checks": 23025,
+      "failed_checks": 11216,
+      "na_checks": 2830,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 5953
+        },
+        "gap": {
+          "GOOD": 11485,
+          "NA": 109,
+          "BAD": 6462
+        },
+        "math": {
+          "GOOD": 4507,
+          "BAD": 175,
+          "NA": 444
+        },
+        "utility": {
+          "BAD": 4579,
+          "GOOD": 1080,
+          "NA": 2277
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          2160
+        ],
+        [
+          "target_max_2e-06",
+          1698
+        ],
+        [
+          "target_rms_2e-06",
+          1536
+        ],
+        [
+          "target_max_2e-05",
+          1219
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          1005
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          1001
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          1296
+        ],
+        [
+          "unmeasured-math",
+          432
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          294
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          294
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          291
+        ],
+        [
+          "complete_same_step_cost",
+          102
+        ]
+      ]
+    },
+    {
+      "id": "M14",
+      "name": "Geometry-aware and anisotropic transport",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 82,
+      "evidence_coverage": 0.9400404448938322,
+      "experiment_count": 582,
+      "required_checks": 4074,
+      "passed_checks": 3490,
+      "failed_checks": 386,
+      "na_checks": 198,
+      "missing_stages": [],
+      "gap_verdict": "NA",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 1156
+        },
+        "math": {
+          "GOOD": 1175,
+          "NA": 1
+        },
+        "gap": {
+          "NA": 99,
+          "GOOD": 1063
+        },
+        "utility": {
+          "NA": 98,
+          "GOOD": 96,
+          "BAD": 386
+        }
+      },
+      "frequent_failures": [
+        [
+          "complete_same_step_cost",
+          386
+        ]
+      ],
+      "frequent_na": [
+        [
+          "complete_same_step_cost",
+          98
+        ],
+        [
+          "same_step_max_no_harm",
+          96
+        ],
+        [
+          "same_step_no_harm",
+          2
+        ],
+        [
+          "global_stability_proof",
+          1
+        ],
+        [
+          "unmeasured-gap",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "M15",
+      "name": "Cost-aware algebraic reuse, fusion and batching",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 67,
+      "evidence_coverage": 0.8054033299591609,
+      "experiment_count": 1285,
+      "required_checks": 11441,
+      "passed_checks": 7433,
+      "failed_checks": 1375,
+      "na_checks": 2633,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "math": {
+          "GOOD": 985,
+          "NA": 2324,
+          "BAD": 252
+        },
+        "gap": {
+          "GOOD": 3965,
+          "BAD": 250,
+          "NA": 104
+        },
+        "utility": {
+          "GOOD": 370,
+          "BAD": 873,
+          "NA": 205
+        },
+        "correctness": {
+          "GOOD": 2113
+        }
+      },
+      "frequent_failures": [
+        [
+          "full_work_faster_than_accurate_classical",
+          734
+        ],
+        [
+          "separate_spatial_target",
+          240
+        ],
+        [
+          "audited_joint_accuracy",
+          84
+        ],
+        [
+          "false_acceptance",
+          84
+        ],
+        [
+          "total_cost_beats_classical",
+          61
+        ],
+        [
+          "p95_cost_beats_classical",
+          57
+        ]
+      ],
+      "frequent_na": [
+        [
+          "conformal_exchangeability_scope",
+          984
+        ],
+        [
+          "finite_conformal_function_rank",
+          984
+        ],
+        [
+          "accuracy-matched-rollout-latency-improvement",
+          102
+        ],
+        [
+          "teacher-backed-rms",
+          96
+        ],
+        [
+          "teacher-backed-max",
+          96
+        ],
+        [
+          "full_work_faster_than_accurate_classical",
+          84
+        ]
+      ]
+    },
+    {
+      "id": "M16",
+      "name": "Faithful neural comparison and strongest classical utility",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 44,
+      "evidence_coverage": 0.8121044908549784,
+      "experiment_count": 35736,
+      "required_checks": 251925,
+      "passed_checks": 118745,
+      "failed_checks": 88604,
+      "na_checks": 44576,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 19936
+        },
+        "math": {
+          "GOOD": 30742,
+          "NA": 2222,
+          "BAD": 2986
+        },
+        "gap": {
+          "GOOD": 54131,
+          "BAD": 43156,
+          "NA": 123
+        },
+        "utility": {
+          "GOOD": 13936,
+          "BAD": 42462,
+          "NA": 42231
+        }
+      },
+      "frequent_failures": [
+        [
+          "matched_cost_vs_best_classical",
+          16810
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          11022
+        ],
+        [
+          "same_schedule_cheaper_than_df",
+          9328
+        ],
+        [
+          "target_max_2e-06",
+          8110
+        ],
+        [
+          "target_rms_2e-06",
+          7559
+        ],
+        [
+          "target_max_2e-05",
+          6304
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          22032
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          7128
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          7128
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          5221
+        ],
+        [
+          "unmeasured-math",
+          2016
+        ],
+        [
+          "same_schedule_cheaper_than_df",
+          720
+        ]
+      ]
+    },
+    {
+      "id": "M17",
+      "name": "Factor-isolated stress and coefficient-transfer bank",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 84,
+      "evidence_coverage": 0.9435592762624899,
+      "experiment_count": 697,
+      "required_checks": 4564,
+      "passed_checks": 3959,
+      "failed_checks": 392,
+      "na_checks": 213,
+      "missing_stages": [],
+      "gap_verdict": "NA",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "math": {
+          "GOOD": 1285,
+          "NA": 12
+        },
+        "correctness": {
+          "GOOD": 1286
+        },
+        "gap": {
+          "GOOD": 1292,
+          "NA": 101
+        },
+        "utility": {
+          "NA": 100,
+          "GOOD": 96,
+          "BAD": 392
+        }
+      },
+      "frequent_failures": [
+        [
+          "complete_same_step_cost",
+          392
+        ]
+      ],
+      "frequent_na": [
+        [
+          "complete_same_step_cost",
+          100
+        ],
+        [
+          "same_step_max_no_harm",
+          96
+        ],
+        [
+          "mean_conservation",
+          6
+        ],
+        [
+          "energy_dissipation",
+          6
+        ],
+        [
+          "same_step_no_harm",
+          4
+        ],
+        [
+          "unmeasured-gap",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "M18",
+      "name": "Fresh independent fields and hierarchical inference",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 69,
+      "evidence_coverage": 0.8335180892875138,
+      "experiment_count": 1472,
+      "required_checks": 11824,
+      "passed_checks": 7957,
+      "failed_checks": 1504,
+      "na_checks": 2363,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 2099
+        },
+        "math": {
+          "GOOD": 1231,
+          "NA": 2133,
+          "BAD": 240
+        },
+        "gap": {
+          "GOOD": 4383,
+          "NA": 23,
+          "BAD": 208
+        },
+        "utility": {
+          "GOOD": 244,
+          "BAD": 1056,
+          "NA": 207
+        }
+      },
+      "frequent_failures": [
+        [
+          "full_work_faster_than_accurate_classical",
+          734
+        ],
+        [
+          "separate_spatial_target",
+          240
+        ],
+        [
+          "positive_paired_log_speed_lower_bound",
+          204
+        ],
+        [
+          "audited_joint_accuracy",
+          84
+        ],
+        [
+          "false_acceptance",
+          84
+        ],
+        [
+          "total_cost_beats_classical",
+          61
+        ]
+      ],
+      "frequent_na": [
+        [
+          "conformal_exchangeability_scope",
+          984
+        ],
+        [
+          "finite_conformal_function_rank",
+          984
+        ],
+        [
+          "full_work_faster_than_accurate_classical",
+          84
+        ],
+        [
+          "independent_cluster_risk_bound",
+          82
+        ],
+        [
+          "three_paired_training_seed_policy_replication",
+          82
+        ],
+        [
+          "finite_measured_break_even",
+          81
+        ]
+      ]
+    },
+    {
+      "id": "M19",
+      "name": "PDE and boundary portability ladder",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 82,
+      "evidence_coverage": 0.9370857651597586,
+      "experiment_count": 593,
+      "required_checks": 4166,
+      "passed_checks": 3556,
+      "failed_checks": 394,
+      "na_checks": 216,
+      "missing_stages": [],
+      "gap_verdict": "NA",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 1180
+        },
+        "math": {
+          "GOOD": 1197,
+          "NA": 12
+        },
+        "gap": {
+          "NA": 102,
+          "GOOD": 1083
+        },
+        "utility": {
+          "NA": 102,
+          "GOOD": 96,
+          "BAD": 394
+        }
+      },
+      "frequent_failures": [
+        [
+          "complete_same_step_cost",
+          394
+        ]
+      ],
+      "frequent_na": [
+        [
+          "complete_same_step_cost",
+          102
+        ],
+        [
+          "same_step_max_no_harm",
+          96
+        ],
+        [
+          "same_step_no_harm",
+          6
+        ],
+        [
+          "mean_conservation",
+          6
+        ],
+        [
+          "energy_dissipation",
+          6
+        ]
+      ]
+    },
+    {
+      "id": "M20",
+      "name": "Order-constrained learned embedded stages",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 65,
+      "evidence_coverage": 0.9204771371769384,
+      "experiment_count": 3899,
+      "required_checks": 32910,
+      "passed_checks": 22145,
+      "failed_checks": 8234,
+      "na_checks": 2531,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "math": {
+          "GOOD": 3487,
+          "NA": 433
+        },
+        "gap": {
+          "GOOD": 13685,
+          "NA": 10,
+          "BAD": 3178
+        },
+        "correctness": {
+          "GOOD": 4773
+        },
+        "utility": {
+          "BAD": 5056,
+          "GOOD": 200,
+          "NA": 2088
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          2160
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          1128
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          972
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          796
+        ],
+        [
+          "target_max_2e-06",
+          768
+        ],
+        [
+          "target_rms_2e-06",
+          678
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          1296
+        ],
+        [
+          "unmeasured-math",
+          432
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          312
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          312
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          168
+        ],
+        [
+          "trained_parameter_change",
+          7
+        ]
+      ]
+    },
+    {
+      "id": "M21",
+      "name": "Physical monotonicity and growth-envelope diagnostics",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 81,
+      "evidence_coverage": 0.923062558356676,
+      "experiment_count": 658,
+      "required_checks": 4434,
+      "passed_checks": 3757,
+      "failed_checks": 397,
+      "na_checks": 280,
+      "missing_stages": [],
+      "gap_verdict": "NA",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "math": {
+          "GOOD": 1393,
+          "NA": 16,
+          "BAD": 3
+        },
+        "gap": {
+          "NA": 162,
+          "GOOD": 1088
+        },
+        "correctness": {
+          "GOOD": 1180
+        },
+        "utility": {
+          "NA": 102,
+          "GOOD": 96,
+          "BAD": 394
+        }
+      },
+      "frequent_failures": [
+        [
+          "complete_same_step_cost",
+          394
+        ],
+        [
+          "positive_input_order",
+          3
+        ]
+      ],
+      "frequent_na": [
+        [
+          "complete_same_step_cost",
+          102
+        ],
+        [
+          "same_step_max_no_harm",
+          96
+        ],
+        [
+          "unmeasured-gap",
+          60
+        ],
+        [
+          "same_step_no_harm",
+          6
+        ],
+        [
+          "mean_conservation",
+          6
+        ],
+        [
+          "energy_dissipation",
+          6
+        ]
+      ]
+    },
+    {
+      "id": "M22",
+      "name": "Effective configuration, provenance and reproducible measurement",
+      "kind": "mechanism",
+      "verdict": "NA",
+      "score_1_100": 93,
+      "evidence_coverage": 0.9259259259259259,
+      "experiment_count": 3,
+      "required_checks": 11,
+      "passed_checks": 10,
+      "failed_checks": 0,
+      "na_checks": 1,
+      "missing_stages": [],
+      "gap_verdict": "GOOD",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "gap": {
+          "GOOD": 4
+        },
+        "correctness": {
+          "GOOD": 3
+        },
+        "math": {
+          "NA": 1,
+          "GOOD": 2
+        },
+        "utility": {
+          "GOOD": 1
+        }
+      },
+      "frequent_failures": [],
+      "frequent_na": [
+        [
+          "unmeasured-math",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "M23",
+      "name": "Dedicated cubic Volterra remainder",
+      "kind": "mechanism",
+      "verdict": "BAD",
+      "score_1_100": 87,
+      "evidence_coverage": 0.8898305084745762,
+      "experiment_count": 20,
+      "required_checks": 99,
+      "passed_checks": 85,
+      "failed_checks": 2,
+      "na_checks": 12,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 41
+        },
+        "math": {
+          "NA": 10,
+          "GOOD": 10
+        },
+        "gap": {
+          "NA": 2,
+          "GOOD": 34,
+          "BAD": 2
+        }
+      },
+      "frequent_failures": [
+        [
+          "spatial_not_worse_than_DF",
+          2
+        ]
+      ],
+      "frequent_na": [
+        [
+          "unmeasured-math",
+          10
+        ],
+        [
+          "unmeasured-gap",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "C0",
+      "name": "Prerequisite screen",
+      "kind": "combination",
+      "verdict": "NA",
+      "score_1_100": 74,
+      "evidence_coverage": 0.7368421052631579,
+      "experiment_count": 2,
+      "required_checks": 8,
+      "passed_checks": 6,
+      "failed_checks": 0,
+      "na_checks": 2,
+      "missing_stages": [],
+      "gap_verdict": "NA",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 3
+        },
+        "math": {
+          "GOOD": 1,
+          "NA": 1
+        },
+        "gap": {
+          "GOOD": 1,
+          "NA": 1
+        },
+        "utility": {
+          "GOOD": 1
+        }
+      },
+      "frequent_failures": [],
+      "frequent_na": [
+        [
+          "finite_function_conformal_quantile",
+          1
+        ],
+        [
+          "unmeasured-gap",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "C1",
+      "name": "Primary compact finite-step residual",
+      "kind": "combination",
+      "verdict": "BAD",
+      "score_1_100": 61,
+      "evidence_coverage": 0.9206514495168278,
+      "experiment_count": 15592,
+      "required_checks": 131628,
+      "passed_checks": 83289,
+      "failed_checks": 38238,
+      "na_checks": 10101,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 19092
+        },
+        "gap": {
+          "GOOD": 49776,
+          "NA": 21,
+          "BAD": 17691
+        },
+        "math": {
+          "GOOD": 13728,
+          "BAD": 216,
+          "NA": 1728
+        },
+        "utility": {
+          "BAD": 20331,
+          "NA": 8352,
+          "GOOD": 693
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          8640
+        ],
+        [
+          "target_max_2e-06",
+          5058
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          4512
+        ],
+        [
+          "target_rms_2e-06",
+          4484
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          3818
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          3361
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          5184
+        ],
+        [
+          "unmeasured-math",
+          1728
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          1248
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          1248
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          672
+        ],
+        [
+          "unmeasured-gap",
+          12
+        ]
+      ]
+    },
+    {
+      "id": "C2",
+      "name": "Operational error/cost-controlled hybrid",
+      "kind": "combination",
+      "verdict": "BAD",
+      "score_1_100": 62,
+      "evidence_coverage": 0.8959877945298237,
+      "experiment_count": 5009,
+      "required_checks": 43539,
+      "passed_checks": 27509,
+      "failed_checks": 11122,
+      "na_checks": 4908,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "BAD",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 6787
+        },
+        "gap": {
+          "GOOD": 16209,
+          "NA": 26,
+          "BAD": 4782
+        },
+        "math": {
+          "GOOD": 4278,
+          "BAD": 294,
+          "NA": 2589
+        },
+        "utility": {
+          "BAD": 6046,
+          "NA": 2293,
+          "GOOD": 235
+        }
+      },
+      "frequent_failures": [
+        [
+          "same_schedule_cheaper_than_df",
+          2160
+        ],
+        [
+          "target_max_2e-06",
+          1256
+        ],
+        [
+          "target_rms_2e-06",
+          1162
+        ],
+        [
+          "matched_cost_vs_best_classical",
+          1128
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          984
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          922
+        ]
+      ],
+      "frequent_na": [
+        [
+          "matched_cost_vs_direct_fno",
+          1296
+        ],
+        [
+          "conformal_exchangeability_scope",
+          984
+        ],
+        [
+          "finite_conformal_function_rank",
+          984
+        ],
+        [
+          "unmeasured-math",
+          456
+        ],
+        [
+          "matched_cost_vs_cheap_fno",
+          312
+        ],
+        [
+          "matched_cost_vs_deep_fno",
+          312
+        ]
+      ]
+    },
+    {
+      "id": "C3",
+      "name": "Finite-amplitude side branch",
+      "kind": "combination",
+      "verdict": "BAD",
+      "score_1_100": 94,
+      "evidence_coverage": 0.9516129032258065,
+      "experiment_count": 30,
+      "required_checks": 150,
+      "passed_checks": 139,
+      "failed_checks": 2,
+      "na_checks": 9,
+      "missing_stages": [],
+      "gap_verdict": "BAD",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 48
+        },
+        "gap": {
+          "GOOD": 70,
+          "BAD": 2
+        },
+        "math": {
+          "GOOD": 21,
+          "NA": 9
+        }
+      },
+      "frequent_failures": [
+        [
+          "spatial_not_worse_than_DF",
+          2
+        ]
+      ],
+      "frequent_na": [
+        [
+          "unmeasured-math",
+          9
+        ]
+      ]
+    },
+    {
+      "id": "C4",
+      "name": "Later transfer/geometry branch",
+      "kind": "combination",
+      "verdict": "BAD",
+      "score_1_100": 82,
+      "evidence_coverage": 0.992609437180216,
+      "experiment_count": 103,
+      "required_checks": 726,
+      "passed_checks": 618,
+      "failed_checks": 102,
+      "na_checks": 6,
+      "missing_stages": [],
+      "gap_verdict": "NA",
+      "math_verdict": "NA",
+      "checks_by_category": {
+        "correctness": {
+          "GOOD": 202
+        },
+        "math": {
+          "GOOD": 212,
+          "NA": 5
+        },
+        "gap": {
+          "GOOD": 204,
+          "NA": 1
+        },
+        "utility": {
+          "BAD": 102
+        }
+      },
+      "frequent_failures": [
+        [
+          "complete_same_step_cost",
+          102
+        ]
+      ],
+      "frequent_na": [
+        [
+          "mean_conservation",
+          2
+        ],
+        [
+          "energy_dissipation",
+          2
+        ],
+        [
+          "global_stability_proof",
+          1
+        ],
+        [
+          "unmeasured-gap",
+          1
+        ]
+      ]
+    }
+  ]
+}
