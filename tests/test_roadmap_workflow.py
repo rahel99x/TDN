@@ -191,6 +191,57 @@ def test_frozen_protocol_and_source_are_checked_before_execution(controller):
     assert controller.load(base / controller.MANIFEST, verify=False) == workflow
 
 
+@pytest.mark.parametrize("command", ["status", "validate", "run", "plan", "logs", "paths", "collect"])
+def test_shell_uses_project_venv_without_activation(tmp_path, monkeypatch, command):
+    root = tmp_path / "project with spaces"
+    scripts = root / "scripts"
+    scripts.mkdir(parents=True)
+    wrapper = scripts / "fedora_roadmap.sh"
+    wrapper.write_bytes((ROOT / "scripts/fedora_roadmap.sh").read_bytes())
+    # Real Bash execution distinguishes the project interpreter from PATH's
+    # system Python and records argument boundaries, including spaces.
+    interpreter = root / ".venv/bin/python"
+    interpreter.parent.mkdir(parents=True)
+    interpreter.write_text('#!/bin/bash\nprintf "venv\\n"\nprintf "%s\\n" "$@"\nexit 7\n')
+    interpreter.chmod(0o755)
+    system = root / "system-bin/python3"
+    system.parent.mkdir()
+    system.write_text('#!/bin/bash\necho "wrong system Python" >&2\nexit 99\n')
+    system.chmod(0o755)
+    monkeypatch.delenv("TDN_PYTHON", raising=False)
+    monkeypatch.setenv("PATH", str(system.parent) + os.pathsep + os.environ["PATH"])
+    result = subprocess.run(["bash", str(wrapper), command, "argument with spaces"],
+                            text=True, capture_output=True, cwd=tmp_path)
+    assert result.returncode == 7
+    assert result.stderr == ""
+    assert result.stdout.splitlines() == ["venv", str(scripts / "roadmap_workflow.py"), command, "argument with spaces"]
+
+
+@pytest.mark.parametrize("override", [False, True])
+def test_shell_keeps_explicit_python_override_and_pre_setup_planning(tmp_path, monkeypatch, override):
+    root = tmp_path / "project with spaces"
+    scripts = root / "scripts"
+    scripts.mkdir(parents=True)
+    wrapper = scripts / "fedora_roadmap.sh"
+    wrapper.write_bytes((ROOT / "scripts/fedora_roadmap.sh").read_bytes())
+    interpreter = root / "custom interpreter/python3"
+    interpreter.parent.mkdir()
+    interpreter.write_text('#!/bin/bash\nprintf "%s\\n" "$@"\n')
+    interpreter.chmod(0o755)
+    monkeypatch.delenv("TDN_PYTHON", raising=False)
+    if override:
+        monkeypatch.setenv("TDN_PYTHON", str(interpreter))
+        project_python = root / ".venv/bin/python"
+        project_python.parent.mkdir(parents=True)
+        project_python.write_text('#!/bin/bash\nexit 99\n')
+        project_python.chmod(0o755)
+    else:
+        monkeypatch.setenv("PATH", str(interpreter.parent) + os.pathsep + os.environ["PATH"])
+    result = subprocess.run(["bash", str(wrapper)], text=True, capture_output=True)
+    assert result.returncode == 0, result.stderr
+    assert result.stdout.splitlines() == [str(scripts / "roadmap_workflow.py"), "plan"]
+
+
 @pytest.mark.parametrize("field,value", [("Partition", "wrong"), ("WorkDir", "/elsewhere"), ("JobName", "other"),
     ("TimeLimit", "00:45:00"), ("AllocTRES", "cpu=4,mem=32G"), ("UserId", "nobody(1)")])
 def test_actual_allocation_must_match_frozen_resources_and_identity(controller, monkeypatch, field, value):

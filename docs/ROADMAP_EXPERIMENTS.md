@@ -44,6 +44,19 @@ bash scripts/fedora_roadmap.sh paths latest
 bash scripts/fedora_roadmap.sh collect latest
 ```
 
+The wrapper selects this checkout's `.venv/bin/python` automatically; shell
+activation is unnecessary. An explicit `TDN_PYTHON` still overrides it, and
+planning/bootstrap can use system Python before the venv exists. Status and
+validation import the scientific dependencies to verify sealed results.
+
+On an older wrapper, `ModuleNotFoundError: No module named 'torch'` during
+status/validation can mean the shell selected system Python. Use
+`export TDN_PYTHON="$PWD/.venv/bin/python"` from the project root and repeat those
+commands. This does not require installing system packages or rerunning a
+completed smoke. Wait for queued/running jobs to finish before pulling source
+changes. This interpreter-only fix preserves verification of completed runs
+against their stored source fingerprints.
+
 Once the smoke's runtime and artifact checks pass, submit the full bounded
 program. Scientific BAD/NA outcomes do not invalidate an otherwise sound smoke.
 
