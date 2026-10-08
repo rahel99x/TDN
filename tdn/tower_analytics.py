@@ -1104,16 +1104,24 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             roots.append(_safe_directory(root))
         except (OSError, ValueError) as exc:
             budget.omit(_relative(root, report_dir), f"source unavailable: {exc}")
+    # Frontier uses complete nested value groups to avoid duplicating millions
+    # of scalar leaves while preserving exact canonical source pointers.
+    frontier, frontier_sources, frontier_roots = None, {}, []
+    if (Path(__file__).parent / "frontier_reporting.py").is_file():
+        from tdn.frontier_reporting import is_frontier_root, publish_frontier_outputs
+        frontier_roots = [root for root in roots if is_frontier_root(root)]
+        if frontier_roots:
+            frontier = publish_frontier_outputs(report_dir, frontier_roots, delegated_sources=frontier_sources)
     # Roadmap science has independently bounded paged projections. Recognize
     # it before older programs whose generic rows.json filenames overlap.
     roadmap, roadmap_sources, roadmap_roots = None, {}, []
     # Keep legacy isolated fixtures usable without importing later adapters.
     if (Path(__file__).parent / "roadmap_reporting.py").is_file():
         from tdn.roadmap_reporting import is_roadmap_root, publish_roadmap_outputs
-        roadmap_roots = [root for root in roots if is_roadmap_root(root)]
+        roadmap_roots = [root for root in roots if root not in frontier_roots and is_roadmap_root(root)]
         if roadmap_roots:
             roadmap = publish_roadmap_outputs(report_dir, roadmap_roots, delegated_sources=roadmap_sources)
-    legacy_roots = [root for root in roots if root not in roadmap_roots]
+    legacy_roots = [root for root in roots if root not in roadmap_roots and root not in frontier_roots]
     # Exact premix schemas have a dedicated bounded parser. Preserve its
     # verified provenance without reading those files through ordinary limits
     # or interpreting the same training observations a second time.
@@ -1133,7 +1141,7 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             for stage in agenda_stages) for root in legacy_roots):
         from tdn.agenda_reporting import publish_agenda_outputs
         agenda = publish_agenda_outputs(report_dir, legacy_roots, delegated_sources=agenda_sources)
-    delegated_sources = {**premix_sources, **consistency_sources, **agenda_sources, **roadmap_sources}
+    delegated_sources = {**premix_sources, **consistency_sources, **agenda_sources, **roadmap_sources, **frontier_sources}
     # The premix parser has its own explicit time budget.
     budget.deadline = time.monotonic() + MAX_SECONDS
     files, inventory, documents, xml_documents, used_paths = [], [], {}, {}, set()
@@ -1151,7 +1159,7 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
             raw = None
             if path in delegated_sources:
                 delegated = delegated_sources[path]
-                suite = "roadmap" if path in roadmap_sources else "agenda" if path in agenda_sources else "consistency" if path in consistency_sources else "premix"
+                suite = "frontier" if path in frontier_sources else "roadmap" if path in roadmap_sources else "agenda" if path in agenda_sources else "consistency" if path in consistency_sources else "premix"
                 signature = (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns)
                 if signature == delegated["signature"]:
                     entry.update(sha256=delegated["sha256"], hash_status="computed_" + suite + "_projection",
@@ -1523,5 +1531,14 @@ def publish_outputs(report_dir: Path, source_dirs: list[Path]) -> dict:
         if not roadmap["reporting_complete"]:
             results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) |
                                                     {"ROADMAP_REPORTING_INCOMPLETE"})
+    if frontier is not None:
+        results["frontier"] = frontier
+        results["reporting_omission_count"] += frontier["reporting_omission_count"]
+        results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) | {
+            source["scientific_outcome"] for source in frontier["sources"]
+            if isinstance(source.get("scientific_outcome"), str)})
+        if not frontier["reporting_complete"]:
+            results["scientific_outcomes"] = sorted(set(results["scientific_outcomes"]) |
+                                                    {"FRONTIER_REPORTING_INCOMPLETE"})
     atomic_json(outputs / "results.json", results)
     return results

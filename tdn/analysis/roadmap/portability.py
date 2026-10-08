@@ -240,13 +240,17 @@ def _numpy_product(*fields):
 
 
 def independent_reference(initial, horizon, rhs, *, tolerance=2e-9, budget=None):
-    """Two independent adaptive coupled solves, with finer time tolerance.
+    """Actual step refinement plus an independent integrator cross-check.
 
-    Return the tight solution and a conservative observed difference estimate.
+    Return the tight DOP853 solution and an observed difference estimate.
     The reference solves are independent of the split implementation but share
     the deliberately specified spatial generator.  This is no spatial bound.
     """
     initial = np.asarray(initial, dtype=np.float64)
+    if not np.isfinite(initial).all() or not np.isfinite(horizon) or horizon <= 0:
+        raise ValueError("Reference requires finite initial data and a positive horizon")
+    if not np.isfinite(tolerance) or not 0 < tolerance < 1:
+        raise ValueError("Reference tolerance must lie strictly between zero and one")
     shape = initial.shape
     calls = 0
     def fun(t, flat):
@@ -255,21 +259,33 @@ def independent_reference(initial, horizon, rhs, *, tolerance=2e-9, budget=None)
         if budget is not None and calls % 32 == 0:
             budget.check()
         return np.asarray(rhs(flat.reshape(shape))).ravel()
-    outputs, evaluations = [], []
-    for factor in (1.0, 0.1):
-        solve = solve_ivp(fun, (0, horizon), initial.ravel(), method="DOP853",
+    outputs, evaluations, step_counts, max_steps, methods = [], [], [], [], []
+    for method, factor, divisor in (("DOP853", 1., 8), ("DOP853", .1, 16), ("RK45", .05, 32)):
+        if budget is not None:
+            budget.check()
+        max_step = horizon / divisor
+        solve = solve_ivp(fun, (0, horizon), initial.ravel(), method=method,
                          rtol=tolerance * factor, atol=tolerance * factor * 0.05,
-                         max_step=max(horizon / 8, 1e-12))
+                         max_step=max_step)
         if not solve.success or not np.isfinite(solve.y[:, -1]).all():
             raise RuntimeError(f"Portability teacher failed: {solve.message}")
         outputs.append(solve.y[:, -1].reshape(shape))
         evaluations.append(solve.nfev)
-    discrepancy = outputs[1] - outputs[0]
+        step_counts.append(len(solve.t) - 1)
+        max_steps.append(max_step)
+        methods.append(method)
+    refinement = outputs[1] - outputs[0]
+    crosscheck = outputs[1] - outputs[2]
+    floor = 64 * np.finfo(np.float64).eps * max(1., float(np.max(np.abs(outputs[1]))))
     return outputs[1], {
-        "uncertainty_rms": float(2 * np.sqrt(np.mean(discrepancy ** 2))),
-        "uncertainty_max": float(2 * np.max(np.abs(discrepancy))),
-        "rhs_evaluations": sum(evaluations), "method": "independent_numpy_DOP853",
-        "uncertainty_kind": "observed_time_refinement_estimate_not_certificate",
+        "uncertainty_rms": max(floor, float(2 * np.sqrt(np.mean(refinement ** 2))), float(2 * np.sqrt(np.mean(crosscheck ** 2)))),
+        "uncertainty_max": max(floor, float(2 * np.max(np.abs(refinement))), float(2 * np.max(np.abs(crosscheck)))),
+        "refinement_difference_max": float(np.max(np.abs(refinement))),
+        "crosscheck_difference_max": float(np.max(np.abs(crosscheck))),
+        "roundoff_floor": floor, "max_steps": max_steps, "methods": methods,
+        "accepted_time_steps": step_counts, "rhs_evaluations_per_solve": evaluations,
+        "rhs_evaluations": sum(evaluations), "method": "numpy_DOP853_refined_and_RK45_crosschecked",
+        "uncertainty_kind": "step_and_method_refinement_with_roundoff_floor_not_certificate",
         "spatial_target": "same_generator_semidiscrete",
     }
 

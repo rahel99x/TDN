@@ -157,18 +157,22 @@ def native_validation_command(root, report):
               or str(manifest.get("name", "")).startswith("TDN/agenda/"))
     roadmap = (isinstance(parameters, dict) and parameters.get("benchmark_suite") == "roadmap"
                or str(manifest.get("name", "")).startswith("TDN/roadmap/"))
+    frontier = (isinstance(parameters, dict) and parameters.get("benchmark_suite") == "frontier"
+                or str(manifest.get("name", "")).startswith("TDN/frontier/"))
     _, config = tower_profile(root, report)
     ordinary = ["tower", "--no-state", "--no-plugins", "--config", str(config),
                 "run", "validate", str(root / ".tower/contracts/outputs.v1.json"), str(report)]
-    if not consistency and not agenda and not roadmap:
+    if not consistency and not agenda and not roadmap and not frontier:
         return ordinary, {}
     executable = shutil.which("tower")
     if executable is None:
         raise ValueError("Native validation requires your existing Tower executable on PATH")
     interpreter, source_root = tower_interpreter(executable)
     command = [interpreter, str(root / "scripts/tower_native_validate.py"),
-               str(root / ".tower/contracts/outputs.v1.json"), str(report), "--max-bytes", str((64 if agenda or roadmap else 32) << 20)]
-    if roadmap:
+               str(root / ".tower/contracts/outputs.v1.json"), str(report), "--max-bytes", str((64 if agenda or roadmap or frontier else 32) << 20)]
+    if frontier:
+        command.extend(["--suite", "frontier"])
+    elif roadmap:
         command.extend(["--suite", "roadmap"])
     elif agenda:
         command.extend(["--suite", "agenda"])

@@ -146,3 +146,47 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
   numerical time from scheduler accounting, and keep unverified large-grid
   accuracy and unsupported statistical guarantees NA. Modify project Tower
   exports only; do not modify the Tower application.
+
+## Five-gate physical interaction program
+
+- Read `docs/FRONTIER_RESEARCH.md` and `docs/FRONTIER_RUNBOOK.md` before
+  modifying `tdn/analysis/frontier`. Use `scripts/fedora_frontier.sh`; preserve
+  historical roadmap runs and their original scores. The separate nine-stage
+  program implements evaluation repair, spatial/headroom screening, focused
+  neural comparison, accuracy-backed scaling and conditional deployment.
+- Preserve the distinct neural-architecture and practical-solver claims. An
+  inadequate trained FNO baseline remains unresolved; local adapted FNO
+  controls do not establish reproduction or defeat of a published benchmark.
+  Easy and stress cases, failed trials, initialized selections and missing
+  references must remain visible. A priori stress labels are not universal
+  worst-case claims.
+- Match spatial operator, continuous field, physical final time, grid, RMS and
+  maximum tolerance. Keep discrete FD/nodal and spatially refined Galerkin
+  targets separate. Teachers must actually refine time and space; agreement
+  is an uncertainty estimate, not an error certificate. Every prescribed
+  intermediate confirmation time needs its own independently accepted teacher.
+- Freeze all family/track/seed/data-fraction checkpoints before confirmation,
+  scaling and policy banks are generated. Policy calibration and policy tests
+  use distinct fields. Never choose a competitor seed, schedule or model using
+  policy truth. Preserve explicit initialized and analytic attribution controls.
+- Maintain the existing desktop allocation envelope: at most eight CPU cores,
+  48 GiB host memory, four CPUs and one RTX 4090 for GPU stages, and at most
+  45 minutes per job. Keep the 18 GiB/75% soft and 90% hard VRAM policy. Full
+  execution requires actual desktop Slurm; local CPU smoke is separate. There
+  is no pending-job cap or automatic resource expansion.
+- All four GPU stages require the complete 45-case native suite, including
+  operational policy sampling/resampling/fallback and different-field batching.
+  Mocked scheduler tests and CPU-skipped CUDA cases are not GPU validation.
+- Interleave repeated randomized timing, keep first invocation/warmup separate,
+  count rejected and estimator work, and do not turn all-classical fallback into
+  neural amortization. Block deployment by track when measured development
+  headroom or confirmation cost margin is absent; preserve that scientific NA
+  outcome while allowing the final `afterany` report to finish.
+- Classical endpoint frontiers include uniform 1/2/4/8-step controls at each
+  final time; duplicate workloads reuse their original measurement. Primary
+  shared schedules retain separate intermediate-state teacher audits. G4 must
+  score measured throughput utility as well as accuracy: accurate but slow is
+  BAD utility, and unresolved references/timing remain NA.
+- Publish complete loss, error, compute, timing and memory chart data with the
+  graphs and Tower sidecars. Monetary cost remains unavailable without a rate.
+  Do not silently replace original observations with revised comparisons.

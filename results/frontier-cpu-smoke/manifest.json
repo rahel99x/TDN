@@ -1,0 +1,376 @@
+{
+  "schema": "tdn.frontier-figures/v1",
+  "profile": "smoke",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Stage compute and frozen budgets",
+      "path": "01-stage-compute-and-frozen-budgets.png",
+      "note": "Terminal allocation rows only, never summed with batch/step rows. Running report job is partial and excluded. Exact accounting snapshot sealed; queue time and tariffs remain NA.",
+      "sha256": "e8dbc2532bd35ca12d0409276b1654b0924f1c77e94f04e574ddac3b580a3199"
+    },
+    {
+      "id": 2,
+      "title": "Complete experiment verdicts",
+      "path": "02-complete-experiment-verdicts.png",
+      "note": "A required cost failure can make an otherwise accurate experiment BAD. Scores measure evidence attainment, not model quality.",
+      "sha256": "522c25acb1358d8b9ad24aebde21678a38668284125dda3682e4c30a01a1eefc"
+    },
+    {
+      "id": 3,
+      "title": "Correctness math gap and utility checks",
+      "path": "03-correctness-math-gap-and-utility-checks.png",
+      "note": "Numerical agreement is finite evidence, never a general proof. Missing evidence is retained as NA.",
+      "sha256": "b3d8fcfd8b791210bbf428ffce8bcaba22dc3e79411d5a444b551a53bd34a2e3"
+    },
+    {
+      "id": 4,
+      "title": "Every individual check",
+      "path": "04-every-individual-check.png",
+      "note": "4246 cells; no downsampling. Teal GOOD, coral BAD, gray NA, white padding. Exact identities and values in check-cell-index.json.gz.",
+      "sha256": "0753453bd4fb218a1c6746e724b93f44409b6f284676c4d3702270bdedbd9f28"
+    },
+    {
+      "id": 5,
+      "title": "Training loss by update",
+      "path": "05-training-loss-by-update.png",
+      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz.",
+      "sha256": "dbbd5ed450863e0ba0bb83df92aaacb9b12f2b9ec953ceb709c11cb5a676aa54"
+    },
+    {
+      "id": 6,
+      "title": "Validation loss by update",
+      "path": "06-validation-loss-by-update.png",
+      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz.",
+      "sha256": "8beae9431e49f8caf38a4ff27efe78379a3a3767a04d851f3273845f458e49f4"
+    },
+    {
+      "id": 7,
+      "title": "Validation error versus training time",
+      "path": "07-validation-error-versus-training-time.png",
+      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz.",
+      "sha256": "b8a560ab07de87eb9f815783c1fd89a6ca5578e3bfb3b72e70d9b4fe2f947f5d"
+    },
+    {
+      "id": 8,
+      "title": "Validation error versus examples seen",
+      "path": "08-validation-error-versus-examples-seen.png",
+      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz.",
+      "sha256": "c52cd57dd3e7aee8ffde2adae6b100ad683b2881d67a2f710d16ffc0abccbe7e"
+    },
+    {
+      "id": 9,
+      "title": "Model parameter counts",
+      "path": "09-model-parameter-counts.png",
+      "note": "Identical parameter counts collapse only for display by family/track; every model ID is retained in chart data. Parameter count is not FLOPs or runtime.",
+      "sha256": "b6bb86dc9b6f3fcea39ddbf62c8a54fe811c04865dba7382f3a3eff7695ba8ec"
+    },
+    {
+      "id": 10,
+      "title": "Baseline adequacy and checkpoint selections",
+      "path": "10-baseline-adequacy-and-checkpoint-selections.png",
+      "note": "Initialization selection is not evidence of learned improvement. A weak trained control does not establish superiority over a published method.",
+      "sha256": "1bb56c25567c6666232abedc31c7ff9c63c2e8f2b63ee0062a9172c524e0aad5"
+    },
+    {
+      "id": 11,
+      "title": "Data efficiency validation observations",
+      "path": "11-data-efficiency-validation-observations.png",
+      "note": "All observed updates shown; this is descriptive, not an independent sample count. Training and confirmation remain disjoint.",
+      "sha256": "3269c96620c2307de7b4cd73b75e85a754d1591aa6991000a0e50bed99b8eeae"
+    },
+    {
+      "id": 12,
+      "title": "Work precision rms error with reference uncertainty",
+      "path": "12-work-precision-rms-error-with-reference-uncertainty.png",
+      "note": "All endpoint schedules retained; each panel has one spatial target and final time. Reference-informed frontier selection is post hoc, not a deployable policy.",
+      "sha256": "ab231b1b6d0df84b9efca010c0d728e72438d62d22fe999299d91079e7eec3b8"
+    },
+    {
+      "id": 13,
+      "title": "Work precision max error with reference uncertainty",
+      "path": "13-work-precision-max-error-with-reference-uncertainty.png",
+      "note": "All endpoint schedules retained; each panel has one spatial target and final time. Reference-informed frontier selection is post hoc, not a deployable policy.",
+      "sha256": "ed841d0e87ecf1f710f2655bbcf1cf8cb8f1d28cb6d7a2b500e2bc4e642ddb33"
+    },
+    {
+      "id": 14,
+      "title": "Matched target paired speed distributions",
+      "path": "14-matched-target-paired-speed-distributions.png",
+      "note": "Different final times and tolerances are never pooled. Repeated schedules/grids/seeds are paired evidence; use field-clustered inference in comparisons.json.",
+      "sha256": "867c2957631b4bfae93919cabb23428e093144389811a61b791189e9897390cc"
+    },
+    {
+      "id": 15,
+      "title": "Stress regime and tolerance coverage",
+      "path": "15-stress-regime-and-tolerance-coverage.png",
+      "note": "Normal, best and worst cases use frozen field regimes, not retrospective exclusion. Cells with no target evidence remain NA.",
+      "sha256": "4da6b993da4d3c6d68e2e10f59f49b425c270fb015bc6c175aabf510af54acfb"
+    },
+    {
+      "id": 16,
+      "title": "Mean error across spatial resolution",
+      "path": "16-mean-error-across-spatial-resolution.png",
+      "note": "Each point retains field, grid, schedule and seed. Spatial and temporal targets are separate; zeros/nonfinite values are counted as unavailable on log axes.",
+      "sha256": "cdffe34508ac97a0c53b998f4c9e65f7df20f1c919fc31801e08ef9e7ecba358"
+    },
+    {
+      "id": 17,
+      "title": "Centered error across spatial resolution",
+      "path": "17-centered-error-across-spatial-resolution.png",
+      "note": "Each point retains field, grid, schedule and seed. Spatial and temporal targets are separate; zeros/nonfinite values are counted as unavailable on log axes.",
+      "sha256": "bd9e86285c8d6fc1c8972e46def9e085da3d25c0f2a0b2be0b828b3f218b2f11"
+    },
+    {
+      "id": 18,
+      "title": "High frequency error across spatial resolution",
+      "path": "18-high-frequency-error-across-spatial-resolution.png",
+      "note": "Each point retains field, grid, schedule and seed. Spatial and temporal targets are separate; zeros/nonfinite values are counted as unavailable on log axes.",
+      "sha256": "e069ff389f3fef9658379d328f0c73379640a190d4cb03e9b071c3ba387dc691"
+    },
+    {
+      "id": 19,
+      "title": "Scaling latency and throughput",
+      "path": "19-scaling-latency-and-throughput.png",
+      "note": "Accuracy is the worst accepted-reference field in each distinct batch; missing references are NA. GPU memory is a shared paired-workload peak, not attributable to a family or shared host RAM.",
+      "sha256": "fa45e3048b2e2e5366774309ecf3e3bdc2b9ec5aa217650a0765d8d1ce2d551e"
+    },
+    {
+      "id": 20,
+      "title": "Scaling peak GPU memory",
+      "path": "20-scaling-peak-gpu-memory.png",
+      "note": "Accuracy is the worst accepted-reference field in each distinct batch; missing references are NA. GPU memory is a shared paired-workload peak, not attributable to a family or shared host RAM.",
+      "sha256": "2b6919817893bb08ebb5a06f931239f4290af9705f335c3fd2e15f76b9296421"
+    },
+    {
+      "id": 21,
+      "title": "Scaling accepted reference accuracy",
+      "path": "21-scaling-accepted-reference-accuracy.png",
+      "note": "Accuracy is the worst accepted-reference field in each distinct batch; missing references are NA. GPU memory is a shared paired-workload peak, not attributable to a family or shared host RAM.",
+      "sha256": "9042a0d12acee29f5239ca6d9e2d09f540e098e468f6f7c7b9d64b8b2340777d"
+    },
+    {
+      "id": 22,
+      "title": "Deployment complete cost components",
+      "path": "22-deployment-complete-cost-components.png",
+      "note": "First three components sum to attributed_seconds for a representative run; cost_seconds is independent complete warmed median. Do not sum these totals together. Missing or blocked deployment remains NA.",
+      "sha256": "e9ef7503eeaf4319d8c078a2d108edeaf385a0dd6b25737cc33f3b8c1bfe82cf"
+    },
+    {
+      "id": 23,
+      "title": "Policy coverage and false acceptance",
+      "path": "23-policy-coverage-and-false-acceptance.png",
+      "note": "Decisions use calibration and deployable features only. Confirmation truth audits decisions afterward; finite empirical coverage is not a distribution-free guarantee.",
+      "sha256": "af35e4f78ff9c38459552034338d2b519df32d47585047f1ebc48c38e7a1ca25"
+    },
+    {
+      "id": 24,
+      "title": "Reference uncertainty and unresolved evidence",
+      "path": "24-reference-uncertainty-and-unresolved-evidence.png",
+      "note": "A tighter solver error beneath reference uncertainty is unresolved. Spatial and time refinement are not interchangeable.",
+      "sha256": "81f9ff4000b40c366e437f12f0d21ba66623c684a0a4058014132b98abe58d30"
+    },
+    {
+      "id": 25,
+      "title": "First invocation versus randomized warmed timing",
+      "path": "25-first-invocation-versus-randomized-warmed-timing.png",
+      "note": "First observed invocation is not guaranteed process-cold startup. Speed comparisons use randomized warmed measurements; first-call savings do not establish amortization.",
+      "sha256": "699d0f6e7e27488803e1a0833acc8121455437837bf0685823229cd1f7dec6ac"
+    },
+    {
+      "id": 26,
+      "title": "Independent field intervals error_ratio",
+      "path": "26-independent-field-intervals-error-ratio.png",
+      "note": "Descriptive field-cluster bootstrap; repeated seeds and physics do not increase independent field count. Missing intervals remain absent, never zero width.",
+      "sha256": "bc774e88c7544959618fce7b43feb2654d05ec43f22102f910771b2825a67098"
+    },
+    {
+      "id": 27,
+      "title": "Independent field intervals speed_ratio",
+      "path": "27-independent-field-intervals-speed-ratio.png",
+      "note": "Descriptive field-cluster bootstrap; repeated seeds and physics do not increase independent field count. Missing intervals remain absent, never zero width.",
+      "sha256": "eccfe7866edb2a2b98d026601106dfde0790538aad8d49c7d8157ee7aec8d74b"
+    },
+    {
+      "id": 28,
+      "title": "Five gate evidence and missing coverage",
+      "path": "28-five-gate-evidence-and-missing-coverage.png",
+      "note": "Teal GOOD, coral BAD, gray NA. Scores are predeclared check-weight attainment, never scientific quality, effect size, or a proof.",
+      "sha256": "aa393b3866e9347c163ead345cb3889063c00ff66ca2579dfdf28bd929b940b6"
+    },
+    {
+      "id": 29,
+      "title": "Independent function risk and available evidence",
+      "path": "29-independent-function-risk-and-available-evidence.png",
+      "note": "Binomial upper bound is conditional on iid comparable fields and a frozen policy. No accepted functions means NA; repeated query rows are not independent trials.",
+      "sha256": "fe9a6a5094cd86c08f1fe3bd3d0d2922d868c1e7d150e69ff78d4d87c8d26688"
+    },
+    {
+      "id": 30,
+      "title": "Supported amortization including offline costs",
+      "path": "30-supported-amortization-including-offline-costs.png",
+      "note": "Requires matched accuracy, accepted learned queries and positive saving uncertainty bound. All-classical routing or startup timing differences cannot earn neural amortization.",
+      "sha256": "61d32516b358aea47be9d7589bf315a568eae38dbedb8a1af1b93241f0cbc77a"
+    },
+    {
+      "id": 31,
+      "title": "Every native software test execution",
+      "path": "31-every-native-software-test-execution.png",
+      "note": "Repeated cases in different allocations remain separate executions. Skipped tests never count as passed GPU readiness; software correctness is not scientific superiority.",
+      "sha256": "baf6bb2e672ccd14af1de08ad9af38b27b8e01169e3cdee2a0ed466077795517"
+    }
+  ],
+  "pdf": "frontier-atlas.pdf",
+  "chart_data": "chart-data.json.gz",
+  "check_index": "check-cell-index.json.gz",
+  "experiment_count": 751,
+  "check_count": 4246,
+  "loss_observations": 60,
+  "confirmation_endpoints": 496,
+  "comparisons": 288,
+  "downsampled": false,
+  "software_test_executions": 0,
+  "unavailable_panels_are_na": true,
+  "sources": [
+    {
+      "stage": "audit",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/audit/rows.json",
+      "sha256": "664137348f4b5d1bb993226163b5342c915e97fd6450adad46bd977bb6427710",
+      "rows": 4
+    },
+    {
+      "stage": "screen",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/screen/rows.json",
+      "sha256": "a57b918a0b4b989f870eb9c45d02e77a19592c4a15399ca216140a45e6058de8",
+      "rows": 71
+    },
+    {
+      "stage": "prepare",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/prepare/rows.json",
+      "sha256": "4a3072d53a481a53409b84d27f3d1efda52e7ea05e07784ea5a02a3d68025651",
+      "rows": 28
+    },
+    {
+      "stage": "train",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/train/learning_curves.jsonl",
+      "sha256": "6d7f8e19fb004b2c07d5f482cd3d81ab4753f33a22cfb5b8957f98d27b6b1ffc",
+      "rows": 60
+    },
+    {
+      "stage": "train",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/train/catalog.json",
+      "sha256": "f3d16c46bad6d1de536f81f845d61f3de71bf989a345729f3644dff55b4f158a",
+      "rows": 30
+    },
+    {
+      "stage": "train",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/train/rows.json",
+      "sha256": "b79e7e2a3a05bc7a5ef4ef2d26874d65d18a7448f928eef2b09f04441d631af4",
+      "rows": 30
+    },
+    {
+      "stage": "confirm_prepare",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/confirm_prepare/rows.json",
+      "sha256": "5d9efe4d64d626c341dac6dfa2686890257ea4b369b800a412b8bafb37c28f8b",
+      "rows": 48
+    },
+    {
+      "stage": "confirm",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/confirm/confirmation_rows.json",
+      "sha256": "95e783ff6c0df60550bc9ae7ee9988379b9d4526697bbe3979b1e9baaf21c672",
+      "rows": 496
+    },
+    {
+      "stage": "confirm",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/confirm/comparisons.json",
+      "sha256": "f2771da3ceab60d63bb8aa3aa8314f41c85464bdbc7179a828067ee287ed7abf",
+      "rows": 288
+    },
+    {
+      "stage": "confirm",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/confirm/rows.json",
+      "sha256": "536129ce7cc08249397750dabd8c7dc37d25290acec166ea20277074de477c4b",
+      "rows": 496
+    },
+    {
+      "stage": "scaling",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/scaling/scaling_rows.json",
+      "sha256": "9b2c69accc01b10a587310586c22494da235ba4a87225fcf90ccb2776a6c7b02",
+      "rows": 40
+    },
+    {
+      "stage": "scaling",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/scaling/scaling_comparisons.json",
+      "sha256": "dfd7551fee121225338659238d68b921d30193f0a2bbbcbad640a7a10863e103",
+      "rows": 32
+    },
+    {
+      "stage": "scaling",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/scaling/rows.json",
+      "sha256": "2c0bc2d5d481e4c27cc78d4465237de13bb7bb48b156ead0aaccba4bcd018709",
+      "rows": 72
+    },
+    {
+      "stage": "policy",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/policy/policy_rows.json",
+      "sha256": "fb2989323b717f2e869a06272d8ee4b35b4e516d6a555f4ce3d19f9ee3606ff0",
+      "rows": 0
+    },
+    {
+      "stage": "policy",
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/policy/rows.json",
+      "sha256": "e5511fade6cb6d664dcc8f65e55f3bca5c9ad4feb268176a2c87f5a8be0efeca",
+      "rows": 2
+    }
+  ],
+  "stage_status": {
+    "audit": {
+      "status": "VERIFIED",
+      "experiments": 4,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "manifest_sha256": "d52f3af7441405a19844ae4152964611c3a96126d443e6e91d7458cafc20fd75"
+    },
+    "screen": {
+      "status": "VERIFIED",
+      "experiments": 71,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "manifest_sha256": "9bf4adeb61cff957b84e14ed9f5426f3c3f5b8ab1d24a7bd3aed77391c880547"
+    },
+    "prepare": {
+      "status": "VERIFIED",
+      "experiments": 28,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "manifest_sha256": "72dd734e3b4c51ca5a3e444b441d357bf8ef2e6c17c688ee0d7af17b32c4d084"
+    },
+    "train": {
+      "status": "VERIFIED",
+      "experiments": 30,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "manifest_sha256": "a734234979c79da4d18f2aab43e3e17f3c3ecd02947674e47634155b50301b48"
+    },
+    "confirm_prepare": {
+      "status": "VERIFIED",
+      "experiments": 48,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "manifest_sha256": "b26c15971b7ee33ef3191a65d3d902058c1e75d9b394a1f87b3d7d1552e0a050"
+    },
+    "confirm": {
+      "status": "VERIFIED",
+      "experiments": 496,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "manifest_sha256": "eda70a53e793b6dda8727bc66888ab62d01b6f06f11a3ff17e710cd19ef90dff"
+    },
+    "scaling": {
+      "status": "VERIFIED",
+      "experiments": 72,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "manifest_sha256": "f995e25eac7b696fdd63a38a158d37ab2cd8efa5ac8c3547fb72e4de012d70e2"
+    },
+    "policy": {
+      "status": "VERIFIED",
+      "experiments": 2,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "manifest_sha256": "037f892bec18d07b8d1ec79c754be82a8fbb4eb37f00d6224cd30c04cf7a3088"
+    }
+  }
+}

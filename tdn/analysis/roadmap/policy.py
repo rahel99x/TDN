@@ -23,7 +23,7 @@ from tdn.analysis.agenda.physics import diffusion_first_step
 from tdn.research.experiment import horizon_key
 from tdn.runtime.metadata import write_json
 
-from .statistics import (amortization_summary, assert_disjoint_cohorts, conformal_quantile, cost_distribution,
+from .statistics import (assert_disjoint_cohorts, conformal_quantile, cost_distribution,
                          independent_function_scores, paired_cluster_bootstrap,
                          selective_risk_summary)
 
@@ -46,6 +46,38 @@ def _timed(function, device):
     value = function()
     _sync(device)
     return value, time.perf_counter() - started
+
+
+def _paired_deployment_measure(policy_call, classical_call, *, device, budget=None, repeats=3, seed=0):
+    """Warm, interleaved complete policy/control calls with raw paired timing.
+
+    Components come from the actual median policy sample, not from a cold call
+    or the sum of independent medians. Cold/warmup work is retained separately.
+    Every repetition executes and charges all real proposal and fallback work.
+    """
+    from tdn.analysis.frontier.measurement import measure_paired
+    if type(repeats) is not int or repeats < 3 or repeats % 2 != 1:
+        raise ValueError("Policy paired timing requires an odd repeat count >= 3")
+    captured = {"policy": [], "classical": []}
+    def call(name, function):
+        value = function()
+        captured[name].append(value)
+        return value
+    _, timing = measure_paired({"policy": lambda: call("policy", policy_call),
+        "classical": lambda: call("classical", classical_call)}, device=device,
+        repeats=repeats, warmup=1, seed=seed, budget=budget)
+    representatives = {}
+    for name in captured:
+        values = timing["methods"][name]["samples_seconds"]
+        index = sorted(range(len(values)), key=lambda i: values[i])[len(values) // 2]
+        representatives[name] = captured[name][2 + index]  # first call + one warmup
+    value, outcome = representatives["policy"]
+    outcome = dict(outcome)
+    outcome["component_sample_internal_seconds"] = outcome["standalone_seconds"]
+    outcome["standalone_seconds"] = timing["methods"]["policy"]["median_seconds"]
+    outcome["paired_timing"] = timing
+    outcome["cost_scope"] = "warm median complete policy invocation; components from the identical median sample; cold and warmup separate"
+    return (value, outcome), representatives["classical"], timing
 
 
 def _check(budget):
@@ -683,14 +715,37 @@ def run(ctx):
                                                     "conformal": {**joint_quantile, "quantile": None}}
                             own_envelopes = {identifier: envelopes.get(f"{identifier}|{variant['estimator']}|spatial={int(variant['spatial_guard'])}", unavailable_envelope)
                                              for identifier in variant["order"]}
-                            value, outcome = deploy_policy(models, variant["order"], initial, horizon, equation, geometry,
-                                own_envelopes, targets, estimator=variant["estimator"], spatial_guard=variant["spatial_guard"],
-                                routing=variant["routing"], calibration_mode=variant["calibration_mode"],
-                                step_sizes=step_sizes, max_attempts=max_attempts, max_refinements=max_refinements,
-                                track=track, sampler=sampler, budget=ctx.budget)
+                            policy_call = lambda: deploy_policy(models, variant["order"], initial, horizon, equation, geometry,
+                                    own_envelopes, targets, estimator=variant["estimator"], spatial_guard=variant["spatial_guard"],
+                                    routing=variant["routing"], calibration_mode=variant["calibration_mode"],
+                                    step_sizes=step_sizes, max_attempts=max_attempts, max_refinements=max_refinements,
+                                    track=track, sampler=sampler, budget=ctx.budget)
+                            classical_call = lambda: adaptive_classical(initial, horizon, equation, geometry, targets,
+                                    track=track, sampler=sampler, max_refinements=max_refinements, budget=ctx.budget)
+                            paired_repeats = int(opts.get("paired_timing_repeats", 0))
+                            if paired_repeats:
+                                (value, outcome), (paired_control, paired_control_info), paired_timing = _paired_deployment_measure(
+                                    policy_call, classical_call, device=ctx.device, budget=ctx.budget,
+                                    repeats=paired_repeats, seed=740991 + sequence)
+                            else:
+                                # Retain the broad legacy experiment's bounded
+                                # single-pass cost observations, but withdraw
+                                # any speed/amortization inference. The narrow
+                                # frontier program always measures paired rounds.
+                                value, outcome = policy_call()
+                                paired_control, paired_control_info = control, control_info
+                                paired_timing = {"repeats": 1, "warmup": 0, "methods": {
+                                    "policy": {"median_seconds": outcome["standalone_seconds"],
+                                        "cold_seconds": outcome["standalone_seconds"]},
+                                    "classical": {"median_seconds": control_seconds, "cold_seconds": control_seconds}},
+                                    "timing_scope": "legacy single pass; cold/warm and order effects unresolved; utility inference NA"}
+                            paired_timing["utility_verified"] = paired_repeats >= 3
                             # This is the first access to truth for this policy
                             # invocation; its route/accept/reject decisions have ended.
                             audit = _upper_error(value, parent["references"][key])
+                            paired_control_audit = _upper_error(paired_control, parent["references"][key])
+                            paired_control_good = all(paired_control_audit["upper"][norm] <= targets[norm] for norm in NORMS)
+                            paired_control_seconds = paired_timing["methods"]["classical"]["median_seconds"]
                             good = all(audit["upper"][norm] <= targets[norm] for norm in NORMS)
                             variant_id = f"{variant['group']}|{variant['estimator']}|spatial={int(variant['spatial_guard'])}|route={int(variant['routing'])}|{variant['calibration_mode']}"
                             selected_model = outcome["selected_model"]
@@ -710,10 +765,12 @@ def run(ctx):
                                    "audit": audit, "calibration_sha256": calibration_sha, "parameters": parameters,
                                    "requested_candidate_available": candidate_available, "prior_training_failures": training_failures,
                                    "fully_requested_solver_bank_available": not missing_slots,
+                                   "timing_utility_verified": paired_timing["utility_verified"],
                                    "selected_parameters": selected_parameters, "attempted_model_ids": sorted(attempted_model_ids),
                                    "parameter_count_scope": "unique modules actually proposed; includes rejected proposals; bank residency is separate",
-                                   "classical_seconds": control_seconds, "classical_joint_accuracy": control_good,
-                                   "cost_over_classical": outcome["standalone_seconds"] / max(control_seconds, 1e-12),
+                                   "classical_seconds": paired_control_seconds, "classical_joint_accuracy": paired_control_good,
+                                   "classical_audit": paired_control_audit, "classical_controller": paired_control_info,
+                                   "cost_over_classical": outcome["standalone_seconds"] / max(paired_control_seconds, 1e-12),
                                    "seed": str(variant["group"]).split("seed-")[-1] if "seed-" in variant["group"] else "frozen_bank"}
                             endpoints.append(row)
                             log.write(json.dumps(row, allow_nan=False, sort_keys=True) + "\n")
@@ -735,7 +792,8 @@ def run(ctx):
                                 check("false_acceptance", row["false_accept"], False, relation="eq", category="gap"),
                                 check("separate_spatial_target", scope_valid, True, relation="eq", category="math"),
                                 check("full_work_faster_than_accurate_classical", row["cost_over_classical"], 1., category="utility",
-                                      applicable=bool(control_good and good), reason="Cost comparison requires both outputs to pass the same target"),
+                                      applicable=bool(paired_control_good and good and paired_timing["utility_verified"]),
+                                      reason="Cost inference requires matched accuracy and warm randomized paired timings; legacy single-pass observations are NA"),
                                 check("component_times_fit_standalone_total", outcome["accounted_component_seconds"], outcome["standalone_seconds"] * 1.001,
                                       category="correctness"),
                                 check("finite_conformal_function_rank", finite if finite else None, True, relation="eq", category="math",
@@ -747,6 +805,9 @@ def run(ctx):
                                     "requested_candidate_available": candidate_available, "prior_training_failures": training_failures,
                                     "selected_parameters": selected_parameters, "attempted_model_ids": sorted(attempted_model_ids),
                                     "standalone_seconds": outcome["standalone_seconds"], "cost_over_classical": row["cost_over_classical"],
+                                    "cold_policy_seconds": paired_timing["methods"]["policy"]["cold_seconds"],
+                                    "cold_classical_seconds": paired_timing["methods"]["classical"]["cold_seconds"],
+                                    "timing_repeats": paired_timing["repeats"], "paired_timing": paired_timing,
                                     "peak_allocated_bytes": outcome["peak_allocated_bytes"], "peak_reserved_bytes": outcome["peak_reserved_bytes"],
                                     "unattributed_loop_overhead_seconds": outcome["unattributed_loop_overhead_seconds"],
                                     "bank_parameters": sum(p.numel() for m in models.values() for p in m.parameters()),
@@ -778,6 +839,7 @@ def run(ctx):
         base_cost = cost_distribution([r["classical_seconds"] for r in rows])
         paired = paired_cluster_bootstrap([{**r, "difference": r["standalone_seconds"] - r["classical_seconds"]} for r in rows],
             repeats=int(opts.get("bootstrap_repeats", 400)))
+        from tdn.analysis.frontier.measurement import supported_amortization
         summary = {"variant_id": variant_id, "track": track, "risk": risks, "cost": cost, "classical_cost": base_cost,
             "paired_cost_difference_bootstrap": paired, "joint_accuracy_rows": sum(r["joint_accuracy"] for r in rows),
             "total_rows": len(rows), "false_accepts": sum(r["false_accept"] for r in rows),
@@ -786,8 +848,10 @@ def run(ctx):
             "false_accept_meaning": "conservative possible failures against estimated reference upper errors; resolved/unresolved counts are separate",
             "total_cost_over_classical": cost["total_seconds"] / max(base_cost["total_seconds"], 1e-12),
             "p95_cost_over_classical": cost["p95_seconds"] / max(base_cost["p95_seconds"], 1e-12),
-            "training_teacher_amortization": amortization_summary(offline_components, cost["mean_seconds"], base_cost["mean_seconds"],
-                matched_accuracy=all(r["joint_accuracy"] and r["classical_joint_accuracy"] for r in rows)),
+            "training_teacher_amortization": supported_amortization(offline_components, cost["mean_seconds"], base_cost["mean_seconds"],
+                matched_accuracy=all(r["joint_accuracy"] and r["classical_joint_accuracy"] for r in rows),
+                accepted_neural_queries=sum(bool(r["accepted"] and r.get("selected_model") not in (None, "df_base")) for r in rows),
+                saving_lower=-paired["upper"] if paired.get("upper") is not None and all(r["timing_utility_verified"] for r in rows) else None),
             "offline_source_summaries": offline_source_files}
         summaries.append(summary)
         all_good = all(r["joint_accuracy"] and r["classical_joint_accuracy"] for r in rows)
@@ -797,8 +861,10 @@ def run(ctx):
                       relation="ge", category="utility", applicable=summary["training_teacher_amortization"]["status"] == "FINITE_BREAK_EVEN",
                       reason="Break-even is NA without matched accuracy, complete offline costs and strictly positive per-query savings"),
                 check("all_audited_queries_accurate", summary["joint_accuracy_rows"], len(rows), relation="eq", category="gap"),
-                check("total_cost_beats_classical", summary["total_cost_over_classical"], 1., category="utility", applicable=all_good),
-                check("p95_cost_beats_classical", summary["p95_cost_over_classical"], 1., category="utility", applicable=all_good),
+                check("total_cost_beats_classical", summary["total_cost_over_classical"], 1., category="utility",
+                      applicable=all_good and all(r["timing_utility_verified"] for r in rows)),
+                check("p95_cost_beats_classical", summary["p95_cost_over_classical"], 1., category="utility",
+                      applicable=all_good and all(r["timing_utility_verified"] for r in rows)),
                 check("observed_bad_accepted_functions", risks["bad_accepted_functions"], 0, category="gap",
                       applicable=risks["accepted_independent_functions"] > 0),
                 check("independent_cluster_risk_bound", risks["one_sided_binomial_upper"], risks["target_risk"], category="math",

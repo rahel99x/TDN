@@ -13,8 +13,19 @@ import sys
 
 def validate_roadmap_pages(root, load_contract, validate_contract):
     """Validate every indexed project page through the unchanged Tower API."""
+    return validate_indexed_pages(root, load_contract, validate_contract, suite="roadmap")
+
+
+def validate_frontier_pages(root, load_contract, validate_contract):
+    """Validate all frontier rows/checks/value groups with unchanged Tower."""
+    return validate_indexed_pages(root, load_contract, validate_contract, suite="frontier")
+
+
+def validate_indexed_pages(root, load_contract, validate_contract, *, suite):
+    if suite not in ("roadmap", "frontier"):
+        raise ValueError("Unsupported indexed project suite")
     root = Path(root).resolve()
-    result = {"validation": "all_indexed_roadmap_pages", "valid": False, "page_count": 0, "contracts": []}
+    result = {"validation": f"all_indexed_{suite}_pages", "valid": False, "page_count": 0, "contracts": []}
     try:
         def confined(name, max_bytes=1 << 20):
             relative = Path(name)
@@ -29,8 +40,8 @@ def validate_roadmap_pages(root, load_contract, validate_contract):
             if not path.is_file() or path.stat().st_size > max_bytes:
                 raise ValueError("Roadmap output is missing or exceeds its read budget")
             return path
-        index = json.loads(confined("outputs/roadmap-tables.json").read_text())
-        if index.get("schema") != "tdn.roadmap.tower-tables/v1" or index.get("reporting_complete") is not True:
+        index = json.loads(confined(f"outputs/{suite}-tables.json").read_text())
+        if index.get("schema") != f"tdn.{suite}.tower-tables/v1" or index.get("reporting_complete") is not True:
             raise ValueError("Roadmap reporting is incomplete or its index schema is unsupported")
         pages, counts = {}, Counter()
         for catalog in index["page_catalogs"]:
@@ -99,10 +110,10 @@ def main(argv=None):
     parser.add_argument("contract")
     parser.add_argument("root")
     parser.add_argument("--max-bytes", type=int, choices=(8 << 20, 32 << 20, 64 << 20), default=8 << 20)
-    parser.add_argument("--suite", choices=("agenda", "roadmap"))
+    parser.add_argument("--suite", choices=("agenda", "roadmap", "frontier"))
     args = parser.parse_args(argv)
-    if args.max_bytes == 64 << 20 and args.suite not in ("agenda", "roadmap"):
-        parser.error("The 64 MiB allowance requires the named --suite agenda or roadmap budget")
+    if args.max_bytes == 64 << 20 and args.suite not in ("agenda", "roadmap", "frontier"):
+        parser.error("The 64 MiB allowance requires the named --suite agenda, roadmap or frontier budget")
     os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
     sys.dont_write_bytecode = True
     # This project also has scripts/tower.py. Remove its import directory so
@@ -115,13 +126,13 @@ def main(argv=None):
         print("TDN: This interpreter cannot import your existing Tower installation. Set TDN_TOWER_PYTHON to its absolute Python path.", file=sys.stderr)
         return 2
     result = validate_contract(load_contract(args.contract), args.root, max_bytes=args.max_bytes)
-    result["project_validation_scope"] = ("Unmodified Tower API; complete indexed roadmap page contracts"
-        if args.suite == "roadmap" else "Unmodified Tower API; explicit bounded agenda report allowance"
+    result["project_validation_scope"] = (f"Unmodified Tower API; complete indexed {args.suite} page contracts"
+        if args.suite in ("roadmap", "frontier") else "Unmodified Tower API; explicit bounded agenda report allowance"
         if args.max_bytes == 64 << 20 else "Unmodified Tower API; explicit bounded consistency report allowance"
         if args.max_bytes == 32 << 20 else "Unmodified Tower API; ordinary bounded allowance")
-    if args.suite == "roadmap":
-        result["roadmap"] = validate_roadmap_pages(args.root, load_contract, validate_contract)
-        result["valid"] = bool(result.get("valid") and result["roadmap"]["valid"])
+    if args.suite in ("roadmap", "frontier"):
+        result[args.suite] = validate_indexed_pages(args.root, load_contract, validate_contract, suite=args.suite)
+        result["valid"] = bool(result.get("valid") and result[args.suite]["valid"])
     print(json.dumps(result, indent=2))
     return 0 if result.get("valid") else 1
 

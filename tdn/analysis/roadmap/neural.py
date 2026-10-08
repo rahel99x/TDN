@@ -625,18 +625,16 @@ def _matched_comparisons(ctx, rows, models, target_pairs):
     """
     from .core import check
     from .statistics import paired_cluster_bootstrap
+    from tdn.analysis.frontier.measurement import final_time, endpoint_eligibility
     cells = {}
     for row in rows:
-        cells.setdefault((row["parent_id"], row["grid"], row["track"]), []).append(row)
+        cells.setdefault((row["parent_id"], row["grid"], row["track"], final_time(row)), []).append(row)
     summaries, paired = [], {}
     classical = {"df_base", "rf_base", "etdrk4", "gl3_fused"}
-    for (parent_id, n, track), members in cells.items():
+    for (parent_id, n, track, horizon), members in cells.items():
         for rms_target, max_target in target_pairs:
             def feasible(item):
-                return (not item.get("numerical_failure") and item["reference_accepted"] and
-                        item["upper_rms"] is not None and item["upper_max"] is not None and
-                        item["cost_seconds"] is not None and
-                        item["upper_rms"] <= rms_target and item["upper_max"] <= max_target)
+                return endpoint_eligibility(item, rms_target, max_target) == "ELIGIBLE"
             physical = [r for r in members if r["family"] in classical and feasible(r)]
             best_physical = min(physical, key=lambda r: r["cost_seconds"]) if physical else None
             for model_id, model in models.items():
@@ -652,7 +650,7 @@ def _matched_comparisons(ctx, rows, models, target_pairs):
                 ratios = {key: control["cost_seconds"] / best["cost_seconds"] if control is not None and best is not None else None
                           for key, control in controls.items()}
                 entry = {"model_id": model_id, "family": model.family, "parent_id": parent_id, "grid": n,
-                    "track": track, "seed": seed, "rms_target": rms_target, "max_target": max_target,
+                    "track": track, "final_time": horizon, "seed": seed, "rms_target": rms_target, "max_target": max_target,
                     "candidate_feasible": best is not None, "candidate_schedule": best["schedule_id"] if best else None,
                     "candidate_cost_seconds": best["cost_seconds"] if best else None,
                     "control_feasible": {key: value is not None for key, value in controls.items()},
@@ -668,25 +666,25 @@ def _matched_comparisons(ctx, rows, models, target_pairs):
                         applicable=model.family != control_id and best is not None and controls[control_id] is not None,
                         reason="Unavailable if either method has no feasible schedule; self-comparisons are NA"))
                     if ratio is not None and model.family != control_id:
-                        key = (model.family, control_id, track, rms_target, max_target)
+                        key = (model.family, control_id, track, horizon, rms_target, max_target)
                         paired.setdefault(key, []).append({"field_cluster": members[0]["field_cluster"],
                                                            "seed": seed, "difference": math.log(ratio)})
-                ctx.record(f"matched/{model_id}/{parent_id}/N{n}/{track}/{rms_target:g}-{max_target:g}",
+                ctx.record(f"matched/{model_id}/{parent_id}/N{n}/{track}/T{horizon:g}/{rms_target:g}-{max_target:g}",
                     ["M16", *[m for m in MECHANISMS[model.family] if m != "M16"]],
                     combination_ids=model.architecture_metadata()["combination_ids"], metrics=entry,
                     checks=checks, config={"model_id": model_id, "track": track,
-                        "target_rms": rms_target, "target_max": max_target, "paired_seed": seed},
+                        "final_time": horizon, "target_rms": rms_target, "target_max": max_target, "paired_seed": seed},
                     evidence={"published_paper_reproduction": False, "candidate_track": model.architecture_metadata().get("track"),
                               "classical_controls": sorted(classical)})
     inference = []
-    for (family, control, track, rms_target, max_target), values in paired.items():
+    for (family, control, track, horizon, rms_target, max_target), values in paired.items():
         result = paired_cluster_bootstrap(values, repeats=200 if ctx.protocol["profile"] == "smoke" else 1000)
         record = {"family": family, "comparator": control, "track": track, "rms_target": rms_target,
-                  "max_target": max_target, "log_speed_ratio": result,
+                  "max_target": max_target, "final_time": horizon, "log_speed_ratio": result,
                   "eligibility": "both methods accurately feasible; coverage reported independently in every matched row"}
         inference.append(record)
-        ctx.record(f"paired-inference/{family}/{control}/{track}/{rms_target:g}-{max_target:g}", ["M16", "M18"],
-            metrics=record, config={"family": family, "comparator": control, "track": track},
+        ctx.record(f"paired-inference/{family}/{control}/{track}/T{horizon:g}/{rms_target:g}-{max_target:g}", ["M16", "M18"],
+            metrics=record, config={"family": family, "comparator": control, "track": track, "final_time": horizon},
             checks=[check("three_paired_training_seeds", result["training_seeds"], 3, "ge", category="gap"),
                     check("independent_field_count", result["independent_fields"], 2, "ge", category="math"),
                     check("positive_paired_log_speed_lower_bound", result.get("lower"), 0., "gt", category="utility",
@@ -709,6 +707,7 @@ def _failed_confirmation(ctx, rows, model_id, model, parent, n, schedule_id, sch
         targets = {f"rms-{rt:g}_max-{mt:g}": False for rt, mt in target_pairs}
         entry = {"model_id": model_id, "family": model.family, "parent_id": parent["parent_id"],
             "field_cluster": parent["field_cluster"], "grid": n, "track": track, "schedule_id": schedule_id,
+            "final_time": math.fsum(schedule),
             "passed_both": False, "target_results": targets, **errors,
             "reference_accepted": bool(reference.get("accepted")), "seed": selection.get("seed"),
             "cost_seconds": None, "numerical_failure": failure.code,
@@ -858,6 +857,7 @@ def confirm(ctx):
                                           "claim_scope": "project-adapted controls; prescribed schedules; no paper reproduction"})
                             rows.append({"model_id": model_id, "family": model.family, "parent_id": parent["parent_id"],
                                 "field_cluster": parent["field_cluster"], "grid": n, "track": track, "schedule_id": schedule_id,
+                                "final_time": math.fsum(schedule),
                                 "passed_both": passed, "target_results": metrics["target_results"], **errors,
                                 "seed": selection.get("seed"), "cost_seconds": cost["median_seconds"]})
     groups = {}
