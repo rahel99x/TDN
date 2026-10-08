@@ -1,0 +1,197 @@
+{
+  "schema": "tdn.roadmap-policy-device-fix-validation/v1",
+  "created_at": "2026-10-08T02:16:23.905469+00:00",
+  "scope": "Cloud CPU regression and integration validation; native CUDA regressions require the allocated Fedora run",
+  "parent_commit": "bb574a42ac7d1cb5cd9e26849ba56cd8233ebcae",
+  "tested_source_tree_sha256": "298fe6eda6aa2a17084203da1771da4a8752a59f5b467271c8d28c66a7f71cd4",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "bb574a42ac7d1cb5cd9e26849ba56cd8233ebcae",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "298fe6eda6aa2a17084203da1771da4a8752a59f5b467271c8d28c66a7f71cd4",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "reported_native_failure": {
+    "provenance": "User-supplied log, not locally rerun",
+    "job_id": "183",
+    "error": "ValueError: Fourier teacher resampling requires a matching CPU field",
+    "completed_calibration_rows": 20,
+    "prior_cuda_readiness_cases_passed": 40,
+    "elapsed_allocation_seconds": 14
+  },
+  "cpu_tests": [
+    {
+      "suites": [
+        "tests/test_roadmap_policy.py"
+      ],
+      "passed": 58,
+      "seconds": 11.41
+    },
+    {
+      "suites": [
+        "tests/test_roadmap_protocol.py",
+        "tests/test_roadmap_workflow.py"
+      ],
+      "passed": 62,
+      "seconds": 1.29
+    }
+  ],
+  "native_cuda": {
+    "status": "NOT_RUN_IN_CLOUD",
+    "collected_cases": 48,
+    "prior_cases_preserved": 40,
+    "new_controller_and_fallback_cases": 8
+  },
+  "local_smoke": {
+    "command": "bash scripts/roadmap_local.sh --smoke --run-dir runs/roadmap-policy-device-smoke-01",
+    "execution_device": "cpu",
+    "stages": [
+      {
+        "stage": "audit",
+        "status": "COMPLETED",
+        "rows": 32,
+        "elapsed_seconds": 1.1460307190136518,
+        "verdict_counts": {
+          "GOOD": 16,
+          "NA": 14,
+          "BAD": 2
+        },
+        "sealed_artifacts": 8,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      },
+      {
+        "stage": "headroom",
+        "status": "COMPLETED",
+        "rows": 59,
+        "elapsed_seconds": 3.326592929981416,
+        "verdict_counts": {
+          "GOOD": 56,
+          "BAD": 3
+        },
+        "sealed_artifacts": 8,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      },
+      {
+        "stage": "prepare",
+        "status": "COMPLETED",
+        "rows": 6,
+        "elapsed_seconds": 1.7697605589928571,
+        "verdict_counts": {
+          "GOOD": 6
+        },
+        "sealed_artifacts": 13,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      },
+      {
+        "stage": "train",
+        "status": "COMPLETED",
+        "rows": 33,
+        "elapsed_seconds": 3.918074376997538,
+        "verdict_counts": {
+          "BAD": 29,
+          "NA": 4
+        },
+        "sealed_artifacts": 77,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      },
+      {
+        "stage": "confirm_prepare",
+        "status": "COMPLETED",
+        "rows": 2,
+        "elapsed_seconds": 1.6161686919804197,
+        "verdict_counts": {
+          "GOOD": 2
+        },
+        "sealed_artifacts": 12,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      },
+      {
+        "stage": "confirm",
+        "status": "COMPLETED",
+        "rows": 1188,
+        "elapsed_seconds": 4.72907285799738,
+        "verdict_counts": {
+          "NA": 177,
+          "BAD": 1004,
+          "GOOD": 7
+        },
+        "sealed_artifacts": 11,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      },
+      {
+        "stage": "policy",
+        "status": "COMPLETED",
+        "rows": 146,
+        "elapsed_seconds": 11.145419995998964,
+        "verdict_counts": {
+          "NA": 35,
+          "BAD": 111
+        },
+        "sealed_artifacts": 13,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      },
+      {
+        "stage": "transfer",
+        "status": "COMPLETED",
+        "rows": 211,
+        "elapsed_seconds": 13.670294784998987,
+        "verdict_counts": {
+          "NA": 40,
+          "GOOD": 44,
+          "BAD": 127
+        },
+        "sealed_artifacts": 46,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      },
+      {
+        "stage": "scaling",
+        "status": "COMPLETED",
+        "rows": 35,
+        "elapsed_seconds": 1.97088403700036,
+        "verdict_counts": {
+          "GOOD": 3,
+          "BAD": 32
+        },
+        "sealed_artifacts": 8,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      },
+      {
+        "stage": "report",
+        "status": "COMPLETED",
+        "rows": 1,
+        "elapsed_seconds": 1.7742330229957588,
+        "verdict_counts": {
+          "NA": 1
+        },
+        "sealed_artifacts": 11,
+        "tower_structural_validation": "tdn_structural_checks_only"
+      }
+    ],
+    "total_rows": 1713,
+    "total_sealed_artifacts": 207,
+    "policy_verification": {
+      "status": "VERIFIED",
+      "endpoints": 82,
+      "policy_groups": 41,
+      "calibration_independent_functions": 2,
+      "scored_experiment_rows_bound_to_observations": 82,
+      "calibration_sha256": "4d0f501a30fd1a57d14beb542e65f3f042087d8049aa1cf1c4edb7849a24dc99",
+      "verification_scope": "logged arithmetic, frozen decisions, joint function counts and cost inclusion; not a PDE proof"
+    }
+  },
+  "limitations": [
+    "CPU smoke completion does not establish CUDA execution or a scientific solver advantage.",
+    "Scientific BAD and NA outcomes are preserved.",
+    "Full fresh confirmation and native Slurm execution were not run here.",
+    "Tower checks in this fix validation are project structural checks; Tower application is unchanged."
+  ]
+}

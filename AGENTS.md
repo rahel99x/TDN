@@ -113,9 +113,11 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
   RTX 4090. Preserve 18 GiB/75% soft VRAM and 90% device-use hard limits,
   project-contained files, a Python venv, FP64 teachers, FP32 models and TF32
   off. No stage exceeds 45 minutes; no pending cap or automatic expansion.
-- Every GPU stage must run all 40 declared CUDA cases from the protocol:
+- Every GPU stage must run all 48 declared CUDA cases from the protocol:
   limits and gradients for all 17 families, four numerical parity cases,
-  fractional physical scale and actual visible-allocation verification.
+  fractional physical scale, actual visible-allocation verification, and eight
+  classical-controller/policy-fallback cases across discrete/continuum targets,
+  FP32/FP64 controller precision and empirical/conformal decisions.
   The JUnit checker rejects missing, duplicated, skipped or failed cases.
   CPU tests or a filtered GPU suite cannot establish native readiness.
 - Full training declares 64 tuning trials and 51 final trials across three

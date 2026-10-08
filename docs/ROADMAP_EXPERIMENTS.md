@@ -60,6 +60,20 @@ checkout, venv and profile unchanged while jobs are queued or running: their
 fingerprints are prerequisites. Existing runs are preserved; these scripts do
 not resume a changed experiment or silently expand an exhausted budget.
 
+If a policy run fails with `Fourier teacher resampling requires a matching CPU
+field`, update the checkout and start a fresh `run --smoke`. That failure came
+from the continuum classical fallback invoking the CPU-only reference solver
+with CUDA states. The deployment fallback now uses device-native Torch Fourier
+products and Lawson RK4, checked against the independent CPU reference. Its
+work stays on the requested device and remains included in policy costs. The
+independent FP64 teacher is unchanged. Preserve the old run; changing source
+invalidates its prerequisite fingerprints, so do not rerun individual workers
+against its existing stage directories. After the new smoke finishes and
+validates, use `run --full` as above.
+The [device-fix validation record](../results/roadmap-policy-device-fix-validation.json)
+records CPU regression checks and the complete smoke; the new CUDA cases still
+require execution in your native allocation.
+
 If this Fedora checkout has not been configured, use the same wrapper's setup
 commands first. Existing working profiles need no replacement:
 
@@ -127,11 +141,13 @@ FP32 models, TF32 off, and FP64 teachers remain explicit. CPU teachers use at
 most eight worker processes, bounded by the actual allocation; numerical
 kernels use single-thread settings for reproducible measurement.
 
-Each of the four GPU jobs runs the **40 mandatory CUDA cases**: limits and
+Each of the four GPU jobs runs the **48 mandatory CUDA cases**: limits and
 gradient checks for each of 17 families, four numerical parity cases, physical
-fractional scaling, and visible-allocation verification. JUnit validation
+fractional scaling, visible-allocation verification, four FP32/FP64 discrete and
+continuum classical-controller cases, and four empirical-rejection/conformal-NA
+policy fallback cases across both targets. JUnit validation
 requires every exact case once, with no skipped, filtered, failed or duplicate
-cases. Repeating these readiness tests in four jobs is not 160 independent
+cases. Repeating these readiness tests in four jobs is not 192 independent
 scientific demonstrations. There is no pending-job cap or automatic requeue.
 
 ## Cohorts, training and comparisons

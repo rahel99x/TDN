@@ -220,6 +220,53 @@ def acceptance_decision(value, indicator, envelope, targets, *, calibration_mode
                             "calibration_mode": calibration_mode, "deterministic_certificate": False}
 
 
+def continuum_fallback_solve(initial, horizon, equation, geometry, substeps, *, budget=None):
+    """Device-native Lawson RK4 for the deployed dealiased continuum control.
+
+    The independent reference uses SciPy resampling on CPU. Deployment instead
+    uses the tested Torch Fourier interpolation, including even-grid Nyquist
+    splitting, so a CUDA decision keeps its fallback work on the same device.
+    Both discretizations use >3/2-padded quadratic products and the same RK
+    stages. This operational solve is not an independent reference or a bound.
+    """
+    from tdn.numerics.operators import check_shape
+    from .numerics import dealiased_product
+
+    check_shape(initial, geometry)
+    if type(substeps) is not int or substeps < 1:
+        raise ValueError("Continuum fallback requires a positive integer substep count")
+    if not math.isfinite(float(horizon)) or horizon < 0:
+        raise ValueError("Continuum fallback requires a finite nonnegative horizon")
+    dt = float(horizon) / substeps
+    eigenvalues = torch.zeros(geometry.grid, dtype=initial.dtype, device=initial.device)
+    for axis, (n, dx) in enumerate(zip(geometry.grid, geometry.dx)):
+        frequency = 2 * torch.pi * torch.fft.fftfreq(n, d=dx, dtype=initial.dtype, device=initial.device)
+        shape = [1] * geometry.ndim
+        shape[axis] = n
+        eigenvalues = eigenvalues - equation.kappa * frequency.square().reshape(shape)
+    full, half = torch.exp(dt * eigenvalues), torch.exp(dt * eigenvalues / 2)
+    axes = tuple(range(2, initial.ndim))
+
+    def flow(value, multiplier):
+        return torch.fft.ifftn(torch.fft.fftn(value, dim=axes) * multiplier, dim=axes).real
+
+    def nonlinear(value):
+        return equation.reaction_rate * (value - dealiased_product(value, value))
+
+    value = initial
+    with torch.no_grad():
+        for index in range(substeps):
+            if index % 8 == 0:
+                _check(budget)
+            k1 = nonlinear(value)
+            k2 = nonlinear(flow(value + dt * k1 / 2, half))
+            k3 = nonlinear(flow(value, half) + dt * k2 / 2)
+            k4 = nonlinear(flow(value, full) + dt * flow(k3, half))
+            value = flow(value, full) + dt / 6 * (flow(k1, full) + 2 * flow(k2 + k3, half) + k4)
+        _check(budget)
+    return value
+
+
 def adaptive_classical(initial, horizon, equation, geometry, targets, *, track="discrete", sampler=None,
                        max_refinements=5, budget=None):
     """A bounded operational refinement controller, independent of truth.
@@ -231,7 +278,6 @@ def adaptive_classical(initial, horizon, equation, geometry, targets, *, track="
     """
     if type(max_refinements) is not int or max_refinements < 1:
         raise ValueError("Classical refinement cap must be a positive integer")
-    from tdn.analysis.agenda.data import continuum_ifrk4
     all_attempts = []
     started = time.perf_counter()
     last = initial
@@ -251,9 +297,11 @@ def adaptive_classical(initial, horizon, equation, geometry, targets, *, track="
             fine_initial = sampler(fine_grid).to(device=initial.device, dtype=initial.dtype)
             high_grid = tuple(4 * n for n in geometry.grid)
             high_initial = sampler(high_grid).to(device=initial.device, dtype=initial.dtype)
-            coarse = continuum_ifrk4(fine_initial, horizon, equation, count, check=lambda: _check(budget))
-            fine = continuum_ifrk4(fine_initial, horizon, equation, 2 * count, check=lambda: _check(budget))
-            high = continuum_ifrk4(high_initial, horizon, equation, 2 * count, check=lambda: _check(budget))
+            fine_geometry = Geometry(fine_grid, geometry.lengths)
+            high_geometry = Geometry(high_grid, geometry.lengths)
+            coarse = continuum_fallback_solve(fine_initial, horizon, equation, fine_geometry, count, budget=budget)
+            fine = continuum_fallback_solve(fine_initial, horizon, equation, fine_geometry, 2 * count, budget=budget)
+            high = continuum_fallback_solve(high_initial, horizon, equation, high_geometry, 2 * count, budget=budget)
             r2 = (slice(None), slice(None)) + (slice(None, None, 2),) * geometry.ndim
             r4 = (slice(None), slice(None)) + (slice(None, None, 4),) * geometry.ndim
             last = high[r4]
@@ -271,6 +319,8 @@ def adaptive_classical(initial, horizon, equation, geometry, targets, *, track="
     return last, {"controller_status": "INDICATOR_ACCEPTED" if accepted else "REFINEMENT_CAP_EXHAUSTED",
                   "controller_accepted": bool(accepted), "refinements": len(all_attempts), "attempts": all_attempts,
                   "elapsed_seconds": time.perf_counter() - started, "track": track,
+                  "solver": "torch_dealiased_lawson_rk4" if track == "continuum" else "diffusion_first_strang",
+                  "compute_device": str(initial.device), "compute_dtype": str(initial.dtype),
                   "deterministic_certificate": False, "truth_used_in_decision": False}
 
 

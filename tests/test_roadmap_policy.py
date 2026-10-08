@@ -11,7 +11,7 @@ from tdn.numerics import Equation, Geometry
 from tdn.numerics.subflows import reaction_step
 from tdn.analysis.roadmap.policy import (
     BareDiffusionFirst, acceptance_decision, adaptive_classical, calibrate_envelope,
-    deploy_policy, estimate_attempt, interior_residual_indicator, spatial_discrepancy,
+    continuum_fallback_solve, deploy_policy, estimate_attempt, interior_residual_indicator, spatial_discrepancy,
 )
 from tdn.analysis.roadmap.statistics import (
     assert_disjoint_cohorts, conformal_quantile, cost_distribution,
@@ -258,6 +258,81 @@ def test_classical_controller_refines_to_a_target_and_exposes_exhaustion():
     assert info["attempts"][1]["fine_steps"] == 4
     assert not info["truth_used_in_decision"]
     assert torch.isfinite(value).all()
+
+
+@pytest.mark.parametrize("grid", [(8, 8), (7, 9), (8, 9)])
+@pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+def test_continuum_fallback_matches_independent_cpu_teacher_with_nyquist(grid, dtype):
+    from tdn.analysis.agenda.data import continuum_ifrk4
+
+    x, y = torch.meshgrid(*(torch.arange(n, dtype=torch.float64) / n for n in grid), indexing="ij")
+    initial = (.45 + .06 * torch.cos(2 * torch.pi * (grid[0] // 2) * x)
+               + .025 * torch.cos(2 * torch.pi * (grid[1] // 2) * y)
+               + .015 * torch.cos(2 * torch.pi * (x + y) + .31))[None, None].to(dtype)
+    equation, geometry = Equation(.01, 2.), Geometry(grid, (1., 1.))
+    expected = continuum_ifrk4(initial, .06, equation, 3)
+    actual = continuum_fallback_solve(initial, .06, equation, geometry, 3)
+    assert actual.dtype == dtype and actual.device == initial.device
+    tolerance = 5e-7 if dtype == torch.float32 else 2e-13
+    torch.testing.assert_close(actual, expected, rtol=0., atol=tolerance)
+
+
+def test_continuum_fallback_uses_physical_domain_lengths():
+    grid, lengths = (8, 9), (2., .5)
+    x, y = torch.meshgrid(*(torch.arange(n, dtype=torch.float64) / n for n in grid), indexing="ij")
+    wave_x, wave_y = .06 * torch.cos(2 * torch.pi * x), .03 * torch.sin(4 * torch.pi * y)
+    initial = (.45 + wave_x + wave_y)[None, None]
+    equation, geometry, horizon = Equation(.01, 0.), Geometry(grid, lengths), .07
+    expected = (.45 + math.exp(-equation.kappa * horizon * (2 * math.pi / lengths[0])**2) * wave_x
+                + math.exp(-equation.kappa * horizon * (4 * math.pi / lengths[1])**2) * wave_y)[None, None]
+    actual = continuum_fallback_solve(initial, horizon, equation, geometry, 3)
+    torch.testing.assert_close(actual, expected, rtol=0., atol=2e-14)
+
+
+def test_continuum_fallback_reaction_matches_analytic_constant_flow():
+    initial = torch.full((1, 1, 7, 9), .2, dtype=torch.float64)
+    equation, geometry = Equation(0., 2.), Geometry((7, 9), (1., 1.))
+    expected = reaction_step(initial, .06, equation)
+    actual = continuum_fallback_solve(initial, .06, equation, geometry, 16)
+    torch.testing.assert_close(actual, expected, rtol=0., atol=2e-12)
+
+
+def test_continuum_controller_does_not_use_cpu_only_teacher(monkeypatch):
+    from tdn.analysis.agenda import data, physics
+
+    def forbid_teacher(*args, **kwargs):
+        raise AssertionError("A deployment fallback must not invoke the CPU-only independent teacher")
+
+    monkeypatch.setattr(data, "continuum_ifrk4", forbid_teacher)
+    monkeypatch.setattr(physics, "fourier_resample", forbid_teacher)
+    initial = _field((8, 8)).float()
+    value, info = adaptive_classical(initial, .06, Equation(.01, 2.), Geometry((8, 8), (1., 1.)),
+        {"rms": 1e-20, "max": 1e-20}, max_refinements=2, track="continuum", sampler=_field)
+    assert value.device == initial.device and value.dtype == initial.dtype
+    assert torch.isfinite(value).all()
+    assert info["controller_status"] == "REFINEMENT_CAP_EXHAUSTED"
+    assert info["refinements"] == 2
+    assert info["solver"] == "torch_dealiased_lawson_rk4"
+    assert info["compute_device"] == "cpu" and info["compute_dtype"] == "torch.float32"
+    assert info["elapsed_seconds"] > 0
+    assert not info["truth_used_in_decision"] and not info["deterministic_certificate"]
+    assert any(row["spatial"]["max"] > 0 for row in info["attempts"])
+
+
+def test_continuum_fallback_retains_budget_interruptions():
+    class Budget:
+        calls = 0
+
+        def check(self):
+            self.calls += 1
+            if self.calls == 2:
+                raise TimeoutError("bounded continuum fallback")
+
+    budget = Budget()
+    with pytest.raises(TimeoutError, match="bounded continuum fallback"):
+        continuum_fallback_solve(_field((8, 8)), .06, Equation(.01, 2.), Geometry((8, 8), (1., 1.)),
+                                16, budget=budget)
+    assert budget.calls == 2
 
 
 def test_finite_conformal_quantile_cannot_approve_distribution_shift():

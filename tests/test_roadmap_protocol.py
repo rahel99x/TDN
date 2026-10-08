@@ -69,11 +69,16 @@ def test_jobs_fit_actual_110000_mib_cpu_and_4090_caps(profile):
 def test_gpu_readiness_registry_covers_every_model_without_skipping():
     p = build_protocol("full")
     assert p["gpu_test_cases"] == list(GPU_TEST_CASES)
-    assert len(GPU_TEST_CASES) == 2 * len(MODEL_IDS) + 6
+    assert len(GPU_TEST_CASES) == 2 * len(MODEL_IDS) + 14
     for model in MODEL_IDS:
         assert f"test_roadmap_cuda_model_limits[{model}]" in GPU_TEST_CASES
         assert f"test_roadmap_cuda_model_gradient[{model}]" in GPU_TEST_CASES
     assert "test_roadmap_cuda_allocation_visible" in GPU_TEST_CASES
+    for track in ("discrete", "continuum"):
+        for precision in ("fp32", "fp64"):
+            assert f"test_roadmap_cuda_classical_controller[{precision}-{track}]" in GPU_TEST_CASES
+        for mode in ("empirical", "conformal"):
+            assert f"test_roadmap_cuda_policy_fallback[{mode}-{track}]" in GPU_TEST_CASES
 
 
 @pytest.mark.parametrize("mutation", ["omit_mechanism", "raise_memory", "change_parent", "alter_target", "omit_model", "alter_score"])

@@ -15,7 +15,11 @@ MODEL_IDS = ("source", "rank1", "rank2", "source_postcompression", "source_trust
 GPU_TEST_CASES = tuple(f"test_roadmap_cuda_model_{kind}[{family}]" for kind in ("limits", "gradient") for family in MODEL_IDS) + (
     "test_roadmap_cuda_numerical_parity[quadratic]", "test_roadmap_cuda_numerical_parity[cubic]",
     "test_roadmap_cuda_numerical_parity[dealias]", "test_roadmap_cuda_numerical_parity[moments]",
-    "test_roadmap_cuda_fractional_physical_scale", "test_roadmap_cuda_allocation_visible")
+    "test_roadmap_cuda_fractional_physical_scale", "test_roadmap_cuda_allocation_visible") + tuple(
+    f"test_roadmap_cuda_classical_controller[{precision}-{track}]"
+    for precision in ("fp32", "fp64") for track in ("discrete", "continuum")) + tuple(
+    f"test_roadmap_cuda_policy_fallback[{mode}-{track}]"
+    for mode in ("empirical", "conformal") for track in ("discrete", "continuum"))
 MECHANISM_STAGES = {
     "M00": ["headroom", "confirm"], "M01": ["headroom", "policy"], "M02": ["audit", "confirm"],
     "M03": ["train", "confirm"], "M04": ["audit", "train", "confirm"], "M05": ["audit", "headroom", "transfer"],
