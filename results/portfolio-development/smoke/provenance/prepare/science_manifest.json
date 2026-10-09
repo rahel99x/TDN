@@ -1,0 +1,45 @@
+{
+  "schema": "tdn.portfolio-science/v1",
+  "stage": "prepare",
+  "kind": "prepare",
+  "device": "cpu",
+  "protocol_sha256": "a334aa226f0981961372fb65075f6eee4d089550329e798876cd3604b22e0555",
+  "unit_sha256": "9fac518cf34099460541c06ea7f19e33164a32b3694d42ec18c054ea3ae79a46",
+  "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861",
+  "prerequisites": {
+    "audit": "311f7951e2d41f2b3723e98ebb12523799e830ceb11a6c08604239558ab3ece6"
+  },
+  "lineage": {
+    "audit": "311f7951e2d41f2b3723e98ebb12523799e830ceb11a6c08604239558ab3ece6"
+  },
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "4b6b5ec1e3055bb53b6507ae4775c7bed1dc91b6",
+    "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861"
+  },
+  "artifacts": {
+    "data_manifest.json": "be62931bc2d61ae4f8bf53f76b54ddd17895cb92c20084b9db47b92a3a3a368a",
+    "parent-00000/attempt-000/parent-00000.json": "5431093687bd3be270c775307a6280327605b02de89ad394907ed62671a40cd1",
+    "parent-00000/attempt-000/parent-00000.npz": "a0ddbcdbe856dfb6594b5a1e5a861dd68a50159acec7ce1cfe42abdfe94aa6d6",
+    "parent-00001/attempt-000/parent-00001.json": "140fa2fbf5fd888c8d46a89abf55115e246915056ace0e1c7d0544adb3ccad16",
+    "parent-00001/attempt-000/parent-00001.npz": "312602a5707922346f5dfac79545340e6cf3ef9aecec78fd793bbfe2bbf1f9f4",
+    "parent-00002/attempt-000/parent-00002.json": "8c71a565db32df264e36c1861250dd62724537cd0e4159899ef1a0bcd9036c75",
+    "parent-00002/attempt-000/parent-00002.npz": "2778d6b70e021ca8732121ab2e2f5db92eb9f49cd354910cd93b891639063c8a",
+    "parent-00003/attempt-000/parent-00003.json": "e6661a12029237025689112fba03a2c455e4b189daa63bb92a35668e34ac6c5d",
+    "parent-00003/attempt-000/parent-00003.npz": "3a07252202143c4b8b0d3439f41d3ede686d055af24ce7ce78f5e8be5e315935",
+    "prepare-journal.json": "d7004d0c73edad06dd42bfc6406332cfac100a4bfce81e65b20d4bff49d3e25d",
+    "protocol.json": "171ce5cd3bcf9643e631d9e481a87666784356efe51dfe76098d8ab87c8e9e7d",
+    "review.csv": "4243428f3f512f6aa56443df8ce2b832c84a5eeabdf356198ecd153d67eca544",
+    "review.md": "b1b5c5278b279f4ad47b9364faf4a0a2b3547f9fa2dafa783754fd8d99eb746c",
+    "rows.json": "f40e47d67b6f9be5e12be1d594fd36df0b14024577d8f4a780b0263636d22238",
+    "rows.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "summary.json": "ed7cfdb7bf9f873d77ef6f1c0bf682a0ec02cd0d109908649e3ad97e3360a183",
+    "summary.txt": "b04c0ce75893813689f193b32167592c5ea9d0f0bf56d2e5bd8952df442dc1d2"
+  }
+}

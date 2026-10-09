@@ -1,0 +1,412 @@
+{
+  "rows": [
+    {
+      "method": "compact_temporal_encoding",
+      "query_count": 1,
+      "total_seconds": 0.0007718020060565323,
+      "existing_operator_basis_total_seconds": 0.00014272100816015154,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "exact_cached_pairs",
+      "query_count": 1,
+      "total_seconds": 2.79620144283399e-05,
+      "existing_operator_basis_total_seconds": 2.79620144283399e-05,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "classical_dense_output",
+      "query_count": 1,
+      "total_seconds": 0.001539449003757909,
+      "existing_operator_basis_total_seconds": 0.001539449003757909,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "uncached_pairs",
+      "query_count": 1,
+      "total_seconds": 2.780099748633802e-05,
+      "existing_operator_basis_total_seconds": 2.780099748633802e-05,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_two",
+      "query_count": 1,
+      "total_seconds": 0.0003362079878570512,
+      "existing_operator_basis_total_seconds": 0.0003362079878570512,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_four",
+      "query_count": 1,
+      "total_seconds": 0.0001553799957036972,
+      "existing_operator_basis_total_seconds": 0.0001553799957036972,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "fft_gauss_four",
+      "query_count": 1,
+      "total_seconds": 0.0001802260085241869,
+      "existing_operator_basis_total_seconds": 0.0001802260085241869,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "compact_temporal_encoding",
+      "query_count": 2,
+      "total_seconds": 0.0007967290148371831,
+      "existing_operator_basis_total_seconds": 0.00016764801694080234,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "exact_cached_pairs",
+      "query_count": 2,
+      "total_seconds": 5.325002712197602e-05,
+      "existing_operator_basis_total_seconds": 5.325002712197602e-05,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "classical_dense_output",
+      "query_count": 2,
+      "total_seconds": 0.0015579870087094605,
+      "existing_operator_basis_total_seconds": 0.0015579870087094605,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "uncached_pairs",
+      "query_count": 2,
+      "total_seconds": 5.560199497267604e-05,
+      "existing_operator_basis_total_seconds": 5.560199497267604e-05,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_two",
+      "query_count": 2,
+      "total_seconds": 0.0003589719854062423,
+      "existing_operator_basis_total_seconds": 0.0003589719854062423,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_four",
+      "query_count": 2,
+      "total_seconds": 0.00018032698426395655,
+      "existing_operator_basis_total_seconds": 0.00018032698426395655,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "fft_gauss_four",
+      "query_count": 2,
+      "total_seconds": 0.00023001900990493596,
+      "existing_operator_basis_total_seconds": 0.00023001900990493596,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "compact_temporal_encoding",
+      "query_count": 4,
+      "total_seconds": 0.0008465830323984846,
+      "existing_operator_basis_total_seconds": 0.00021750203450210392,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "exact_cached_pairs",
+      "query_count": 4,
+      "total_seconds": 0.00010382605250924826,
+      "existing_operator_basis_total_seconds": 0.00010382605250924826,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "classical_dense_output",
+      "query_count": 4,
+      "total_seconds": 0.0015950630186125636,
+      "existing_operator_basis_total_seconds": 0.0015950630186125636,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "uncached_pairs",
+      "query_count": 4,
+      "total_seconds": 0.00011120398994535208,
+      "existing_operator_basis_total_seconds": 0.00011120398994535208,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_two",
+      "query_count": 4,
+      "total_seconds": 0.00040449998050462455,
+      "existing_operator_basis_total_seconds": 0.00040449998050462455,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_four",
+      "query_count": 4,
+      "total_seconds": 0.00023022096138447523,
+      "existing_operator_basis_total_seconds": 0.00023022096138447523,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "fft_gauss_four",
+      "query_count": 4,
+      "total_seconds": 0.00032960501266643405,
+      "existing_operator_basis_total_seconds": 0.00032960501266643405,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "compact_temporal_encoding",
+      "query_count": 8,
+      "total_seconds": 0.0009462910675210878,
+      "existing_operator_basis_total_seconds": 0.0003172100696247071,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "exact_cached_pairs",
+      "query_count": 8,
+      "total_seconds": 0.00020497810328379273,
+      "existing_operator_basis_total_seconds": 0.00020497810328379273,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "classical_dense_output",
+      "query_count": 8,
+      "total_seconds": 0.0016692150384187698,
+      "existing_operator_basis_total_seconds": 0.0016692150384187698,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "uncached_pairs",
+      "query_count": 8,
+      "total_seconds": 0.00022240797989070415,
+      "existing_operator_basis_total_seconds": 0.00022240797989070415,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_two",
+      "query_count": 8,
+      "total_seconds": 0.000495555970701389,
+      "existing_operator_basis_total_seconds": 0.000495555970701389,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_four",
+      "query_count": 8,
+      "total_seconds": 0.0003300089156255126,
+      "existing_operator_basis_total_seconds": 0.0003300089156255126,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "fft_gauss_four",
+      "query_count": 8,
+      "total_seconds": 0.0005287770181894302,
+      "existing_operator_basis_total_seconds": 0.0005287770181894302,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "compact_temporal_encoding",
+      "query_count": 16,
+      "total_seconds": 0.0011457071377662942,
+      "existing_operator_basis_total_seconds": 0.0005166261398699135,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "exact_cached_pairs",
+      "query_count": 16,
+      "total_seconds": 0.0004072822048328817,
+      "existing_operator_basis_total_seconds": 0.0004072822048328817,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "classical_dense_output",
+      "query_count": 16,
+      "total_seconds": 0.0018175190780311823,
+      "existing_operator_basis_total_seconds": 0.0018175190780311823,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "uncached_pairs",
+      "query_count": 16,
+      "total_seconds": 0.0004448159597814083,
+      "existing_operator_basis_total_seconds": 0.0004448159597814083,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_two",
+      "query_count": 16,
+      "total_seconds": 0.000677667951094918,
+      "existing_operator_basis_total_seconds": 0.000677667951094918,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_four",
+      "query_count": 16,
+      "total_seconds": 0.0005295848241075873,
+      "existing_operator_basis_total_seconds": 0.0005295848241075873,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "fft_gauss_four",
+      "query_count": 16,
+      "total_seconds": 0.0009271210292354226,
+      "existing_operator_basis_total_seconds": 0.0009271210292354226,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "compact_temporal_encoding",
+      "query_count": 32,
+      "total_seconds": 0.001544539278256707,
+      "existing_operator_basis_total_seconds": 0.0009154582803603262,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "exact_cached_pairs",
+      "query_count": 32,
+      "total_seconds": 0.0008118904079310596,
+      "existing_operator_basis_total_seconds": 0.0008118904079310596,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "classical_dense_output",
+      "query_count": 32,
+      "total_seconds": 0.002114127157256007,
+      "existing_operator_basis_total_seconds": 0.002114127157256007,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "uncached_pairs",
+      "query_count": 32,
+      "total_seconds": 0.0008896319195628166,
+      "existing_operator_basis_total_seconds": 0.0008896319195628166,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_two",
+      "query_count": 32,
+      "total_seconds": 0.0010418919118819758,
+      "existing_operator_basis_total_seconds": 0.0010418919118819758,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_four",
+      "query_count": 32,
+      "total_seconds": 0.0009287366410717368,
+      "existing_operator_basis_total_seconds": 0.0009287366410717368,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "fft_gauss_four",
+      "query_count": 32,
+      "total_seconds": 0.0017238090513274074,
+      "existing_operator_basis_total_seconds": 0.0017238090513274074,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "compact_temporal_encoding",
+      "query_count": 64,
+      "total_seconds": 0.0023422035592375323,
+      "existing_operator_basis_total_seconds": 0.0017131225613411516,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "exact_cached_pairs",
+      "query_count": 64,
+      "total_seconds": 0.0016211068141274154,
+      "existing_operator_basis_total_seconds": 0.0016211068141274154,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "classical_dense_output",
+      "query_count": 64,
+      "total_seconds": 0.002707343315705657,
+      "existing_operator_basis_total_seconds": 0.002707343315705657,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "uncached_pairs",
+      "query_count": 64,
+      "total_seconds": 0.0017792638391256332,
+      "existing_operator_basis_total_seconds": 0.0017792638391256332,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_two",
+      "query_count": 64,
+      "total_seconds": 0.0017703398334560916,
+      "existing_operator_basis_total_seconds": 0.0017703398334560916,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_four",
+      "query_count": 64,
+      "total_seconds": 0.0017270402750000358,
+      "existing_operator_basis_total_seconds": 0.0017270402750000358,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "fft_gauss_four",
+      "query_count": 64,
+      "total_seconds": 0.003317185095511377,
+      "existing_operator_basis_total_seconds": 0.003317185095511377,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "compact_temporal_encoding",
+      "query_count": 128,
+      "total_seconds": 0.003937532121199183,
+      "existing_operator_basis_total_seconds": 0.0033084511233028024,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "exact_cached_pairs",
+      "query_count": 128,
+      "total_seconds": 0.003239539626520127,
+      "existing_operator_basis_total_seconds": 0.003239539626520127,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "classical_dense_output",
+      "query_count": 128,
+      "total_seconds": 0.0038937756326049566,
+      "existing_operator_basis_total_seconds": 0.0038937756326049566,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "uncached_pairs",
+      "query_count": 128,
+      "total_seconds": 0.0035585276782512665,
+      "existing_operator_basis_total_seconds": 0.0035585276782512665,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_two",
+      "query_count": 128,
+      "total_seconds": 0.003227235676604323,
+      "existing_operator_basis_total_seconds": 0.003227235676604323,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "gauss_four",
+      "query_count": 128,
+      "total_seconds": 0.0033236475428566337,
+      "existing_operator_basis_total_seconds": 0.0033236475428566337,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    },
+    {
+      "method": "fft_gauss_four",
+      "query_count": 128,
+      "total_seconds": 0.006503937183879316,
+      "existing_operator_basis_total_seconds": 0.006503937183879316,
+      "cost_basis": "measured build plus count times median measured query, not a batch benchmark"
+    }
+  ],
+  "build_seconds": {
+    "compact_temporal_encoding": 0.0007468749972758815,
+    "exact_cached_pairs": 2.6740017347037792e-06,
+    "classical_dense_output": 0.0015209109988063574,
+    "uncached_pairs": 0.0,
+    "gauss_two": 0.0003134439903078601,
+    "gauss_four": 0.00013043300714343786,
+    "fft_gauss_four": 0.00013043300714343786
+  },
+  "basis_seconds": 0.0006290809978963807,
+  "state_refresh_seconds": 0.00011779399937950075,
+  "exact_cache_build_seconds": 2.6740017347037792e-06,
+  "classical_dense_nfev": 47,
+  "assumptions": "Fixed state, physical parameters, grid, and [0,H]. New state refreshes encoding; changed operator/H rebuilds basis.",
+  "independent_horizons": false,
+  "statistical_unit": "one synthetic development field"
+}

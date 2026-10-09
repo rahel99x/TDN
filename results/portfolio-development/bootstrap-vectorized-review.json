@@ -1,0 +1,38 @@
+{
+  "exact_legacy_cases": 112,
+  "additional_cases": [
+    "missing-cell rejection",
+    "repeated-query invariance",
+    "optional >=5 independent fields"
+  ],
+  "timings": [
+    {
+      "fields": 3,
+      "seeds": 3,
+      "replicates": 1000,
+      "calls": 100,
+      "legacy_seconds": 1.5946027829922969,
+      "vectorized_seconds": 0.034007121008471586,
+      "speed_ratio": 46.89026108958362
+    },
+    {
+      "fields": 24,
+      "seeds": 3,
+      "replicates": 1000,
+      "calls": 100,
+      "legacy_seconds": 1.65566531199147,
+      "vectorized_seconds": 0.15288601099746302,
+      "speed_ratio": 10.829410102268572
+    },
+    {
+      "fields": 100,
+      "seeds": 5,
+      "replicates": 1000,
+      "calls": 100,
+      "legacy_seconds": 2.042680755999754,
+      "vectorized_seconds": 0.5902280629961751,
+      "speed_ratio": 3.460832996707226
+    }
+  ],
+  "scope": "cloud CPU implementation benchmark; not desktop GPU science"
+}

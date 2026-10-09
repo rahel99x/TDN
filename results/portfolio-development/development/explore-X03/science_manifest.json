@@ -1,0 +1,42 @@
+{
+  "schema": "tdn.portfolio-science/v1",
+  "stage": "explore-X03",
+  "kind": "explore",
+  "device": "cpu",
+  "protocol_sha256": "70c1bb2dbf778adad6342364ea919de667770da9fde4b6e9d9f3b337eeebd465",
+  "unit_sha256": "d1cebf605a90d642ea871a90bbdee1d9d5d1ab89e5d6201a52d3ca2c22064a05",
+  "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861",
+  "prerequisites": {
+    "audit": "c19cd0a8e500f0f4969bf8b3b1b54b8240e1b3cc6efd6202bc4df100957fc3b3"
+  },
+  "lineage": {
+    "audit": "c19cd0a8e500f0f4969bf8b3b1b54b8240e1b3cc6efd6202bc4df100957fc3b3"
+  },
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "4b6b5ec1e3055bb53b6507ae4775c7bed1dc91b6",
+    "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861"
+  },
+  "artifacts": {
+    "protocol.json": "f50f20408404a7e764d62babcadf6741226d6237858814d3a2e33dd6b4e83bb7",
+    "prototype_registration.json": "366f2dbfc75c444dc7c8046ad3633d641ac33d3c274edae8c3535806108e1f59",
+    "prototype_rows.json": "23a41d46db7095c28dded5c43d8f16aec0f844d950753ef3738f1d022a6a9d8e",
+    "prototype_summary.json": "4fb2d7b1d1f9f9bc29dac3e991aa4521405abe68ba29d1b7364b2f7c62fa662b",
+    "review.csv": "c05fd2ab05c55ca0ce781f358a9866cbae8edb158142a5c3691ea749081803c4",
+    "review.md": "752bbcab56d8e015d35698ee08c2181d611d6fe80dad8ae721a30b77be68ed97",
+    "rows.json": "92f1c3e981a59fce3f15b9b70594f67256318e871b34db56c0467e63f5b59ed1",
+    "rows.jsonl": "fd0ceebd666c452a7eddcbaa6127eb3210ae14e2ec90a9560046b23c4697e927",
+    "selection_fit.json": "d1337ef49215bef2a7d5fa733dc103828b336522eeb8d2bcb476dca67ff44c90",
+    "selection_phase_audit.json": "9f7578a174973c811229d87b00ece496120ce60160df6505074d2a910f2017c1",
+    "selection_rows.json": "903cc35dd5f50c37139f25ff788f53d5eaf0a7a755fba521952267eb54cb4d7f",
+    "selection_states.json": "603ae05f268f7beefc41496b5c1160ed344480baca77d5dbcecc939e31eca265",
+    "summary.json": "c33bb3234fad74a5bab049c18b78814a6e3b0174aeac3dc333b15670a2a997ec",
+    "summary.txt": "3ebc8d43dd94cc8ac7c1a0476fb4a4f3d3d1d8447165f0d75827bfd34ab7804d"
+  }
+}

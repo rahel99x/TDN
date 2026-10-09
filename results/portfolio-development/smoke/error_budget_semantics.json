@@ -1,0 +1,21 @@
+{
+  "additive_bound": false,
+  "error_terms": [
+    "spatial",
+    "temporal",
+    "quadrature",
+    "compression",
+    "optimization",
+    "reference",
+    "implementation",
+    "deployment"
+  ],
+  "unmeasured": [
+    "optimization until training",
+    "deployment until underlying cost margin"
+  ],
+  "target_tracks_separate": true,
+  "reference_uncertainty_certificate": false,
+  "cpu_profile_does_not_predict_gpu": true,
+  "protocol_sha256": "a334aa226f0981961372fb65075f6eee4d089550329e798876cd3604b22e0555"
+}

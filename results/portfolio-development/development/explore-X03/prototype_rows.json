@@ -1,0 +1,315 @@
+[
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X03",
+    "experiment_id": "X03/full_pairs",
+    "method": "full_pairs",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "max_heldout_relative_error": 0.0,
+      "geometric_mean_speedup": 1.0,
+      "violations": 0,
+      "heldout_parents": 24,
+      "mean_pair_fraction": 1.0,
+      "warm_query_seconds": 4.972850001649931e-05
+    },
+    "checks": [
+      {
+        "check_id": "real_conjugate_selection",
+        "category": "math",
+        "measured": 4.637692555978556e-39,
+        "target": 1e-12,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "heldout_relative_error",
+        "category": "gap",
+        "measured": 0.0,
+        "target": 0.01,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete_selection_speedup",
+        "category": "utility",
+        "measured": 1.0,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": false,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "CPU only; all selection work charged, no matched-accuracy full solver claim",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900300,
+      "max_mode": 63,
+      "output_cutoff": 8,
+      "horizon": 0.03,
+      "relative_tolerance": 0.01,
+      "fit_parents": 24
+    },
+    "interpretation": "Work is selected before complex pair products and transport kernels. Selection overhead and cancellation can eliminate gains; failures are retained.",
+    "evidence": [
+      "selection_rows.json",
+      "selection_fit.json",
+      "selection_states.json"
+    ]
+  },
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X03",
+    "experiment_id": "X03/deterministic_l1_tail",
+    "method": "deterministic_l1_tail",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "max_heldout_relative_error": 0.0046989165094820495,
+      "geometric_mean_speedup": 0.6911750606015118,
+      "violations": 0,
+      "heldout_parents": 24,
+      "mean_pair_fraction": 0.345831336847149,
+      "warm_query_seconds": 6.945749919395894e-05
+    },
+    "checks": [
+      {
+        "check_id": "real_conjugate_selection",
+        "category": "math",
+        "measured": 4.637692555978556e-39,
+        "target": 1e-12,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "heldout_relative_error",
+        "category": "gap",
+        "measured": 0.0046989165094820495,
+        "target": 0.01,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete_selection_speedup",
+        "category": "utility",
+        "measured": 0.6911750606015118,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "CPU only; all selection work charged, no matched-accuracy full solver claim",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900300,
+      "max_mode": 63,
+      "output_cutoff": 8,
+      "horizon": 0.03,
+      "relative_tolerance": 0.01,
+      "fit_parents": 24
+    },
+    "interpretation": "Work is selected before complex pair products and transport kernels. Selection overhead and cancellation can eliminate gains; failures are retained.",
+    "evidence": [
+      "selection_rows.json",
+      "selection_fit.json",
+      "selection_states.json"
+    ]
+  },
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X03",
+    "experiment_id": "X03/fitted_rank_rule",
+    "method": "fitted_rank_rule",
+    "role": "Ours",
+    "status": "COMPLETED",
+    "metrics": {
+      "max_heldout_relative_error": 0.00631486286494898,
+      "geometric_mean_speedup": 0.6145328516910562,
+      "violations": 0,
+      "heldout_parents": 24,
+      "mean_pair_fraction": 0.39945695575786616,
+      "warm_query_seconds": 7.973799802130088e-05
+    },
+    "checks": [
+      {
+        "check_id": "real_conjugate_selection",
+        "category": "math",
+        "measured": 4.637692555978556e-39,
+        "target": 1e-12,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "heldout_relative_error",
+        "category": "gap",
+        "measured": 0.00631486286494898,
+        "target": 0.01,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete_selection_speedup",
+        "category": "utility",
+        "measured": 0.6145328516910562,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "CPU only; all selection work charged, no matched-accuracy full solver claim",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900300,
+      "max_mode": 63,
+      "output_cutoff": 8,
+      "horizon": 0.03,
+      "relative_tolerance": 0.01,
+      "fit_parents": 24
+    },
+    "interpretation": "Work is selected before complex pair products and transport kernels. Selection overhead and cancellation can eliminate gains; failures are retained.",
+    "evidence": [
+      "selection_rows.json",
+      "selection_fit.json",
+      "selection_states.json"
+    ]
+  },
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X03",
+    "experiment_id": "X03/phase_information_audit",
+    "method": "phase_information_audit",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "feature_difference": 2.7755575615628914e-17,
+      "phase_error_ranges": {
+        "deterministic_l1_tail": {
+          "min_error": 0.0028876065570642147,
+          "max_error": 0.003481475978983653
+        },
+        "fitted_rank_rule": {
+          "min_error": 0.0,
+          "max_error": 0.0
+        }
+      },
+      "independent_amplitude_parents": 1,
+      "paired_phase_variants": 8
+    },
+    "checks": [
+      {
+        "check_id": "phase_blind_features",
+        "category": "math",
+        "measured": 2.7755575615628914e-17,
+        "target": 1e-12,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "phase_invariance_is_not_accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Diagnostic observation without a predeclared gap-success threshold; not pooled with independent fields",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {},
+    "interpretation": "Same magnitude features across phase variants do not encode cancellation. Inspect per-phase errors; no universal predictor-impossibility claim follows from this one amplitude parent.",
+    "evidence": [
+      "selection_phase_audit.json"
+    ]
+  }
+]

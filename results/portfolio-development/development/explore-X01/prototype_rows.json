@@ -1,0 +1,502 @@
+[
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X01",
+    "experiment_id": "X01/exact_cached_pairs",
+    "method": "exact_cached_pairs",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "maximum_relative_rms": 0.0,
+      "warm_query_seconds": 2.528801269363612e-05,
+      "build_seconds": 2.6740017347037792e-06,
+      "break_even_queries": null,
+      "operator_basis_reused_break_even_queries": null,
+      "pair_count": 361,
+      "degree": 12,
+      "query_count": 20
+    },
+    "checks": [
+      {
+        "check_id": "same_quadratic_task",
+        "category": "math",
+        "measured": 4.543635057563099e-19,
+        "target": 1e-10,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "relative_query_error",
+        "category": "gap",
+        "measured": 0.0,
+        "target": 0.001,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900100,
+      "max_mode": 15,
+      "cutoff": 6,
+      "horizon": 0.2,
+      "degree": 12,
+      "track": "quadratic_Galerkin_response_only",
+      "device": "cpu"
+    },
+    "interpretation": "Encoding is a fixed approximation of a known kernel, not a trained neural PDE solver. Query timings do not establish full-solver advantage.",
+    "evidence": [
+      "temporal_query_rows.json",
+      "temporal_amortization.json",
+      "temporal_encoding.json"
+    ]
+  },
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X01",
+    "experiment_id": "X01/uncached_pairs",
+    "method": "uncached_pairs",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "maximum_relative_rms": 0.0,
+      "warm_query_seconds": 2.780099748633802e-05,
+      "build_seconds": 0.0,
+      "break_even_queries": null,
+      "operator_basis_reused_break_even_queries": null,
+      "pair_count": 361,
+      "degree": 12,
+      "query_count": 20
+    },
+    "checks": [
+      {
+        "check_id": "same_quadratic_task",
+        "category": "math",
+        "measured": 4.543635057563099e-19,
+        "target": 1e-10,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "relative_query_error",
+        "category": "gap",
+        "measured": 0.0,
+        "target": 0.001,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900100,
+      "max_mode": 15,
+      "cutoff": 6,
+      "horizon": 0.2,
+      "degree": 12,
+      "track": "quadratic_Galerkin_response_only",
+      "device": "cpu"
+    },
+    "interpretation": "Encoding is a fixed approximation of a known kernel, not a trained neural PDE solver. Query timings do not establish full-solver advantage.",
+    "evidence": [
+      "temporal_query_rows.json",
+      "temporal_amortization.json",
+      "temporal_encoding.json"
+    ]
+  },
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X01",
+    "experiment_id": "X01/compact_temporal_encoding",
+    "method": "compact_temporal_encoding",
+    "role": "Ours",
+    "status": "COMPLETED",
+    "metrics": {
+      "maximum_relative_rms": 5.076965676376531e-16,
+      "warm_query_seconds": 2.4927008780650795e-05,
+      "build_seconds": 0.0007468749972758815,
+      "break_even_queries": 2062,
+      "operator_basis_reused_break_even_queries": 319,
+      "pair_count": 361,
+      "degree": 12,
+      "query_count": 20
+    },
+    "checks": [
+      {
+        "check_id": "same_quadratic_task",
+        "category": "math",
+        "measured": 4.543635057563099e-19,
+        "target": 1e-10,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "relative_query_error",
+        "category": "gap",
+        "measured": 5.076965676376531e-16,
+        "target": 0.001,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "break_even_32_queries",
+        "category": "utility",
+        "measured": 2062,
+        "target": 32,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "NA if cached exact pairs are not slower per query; single-state CPU development diagnostic",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900100,
+      "max_mode": 15,
+      "cutoff": 6,
+      "horizon": 0.2,
+      "degree": 12,
+      "track": "quadratic_Galerkin_response_only",
+      "device": "cpu"
+    },
+    "interpretation": "Encoding is a fixed approximation of a known kernel, not a trained neural PDE solver. Query timings do not establish full-solver advantage.",
+    "evidence": [
+      "temporal_query_rows.json",
+      "temporal_amortization.json",
+      "temporal_encoding.json"
+    ]
+  },
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X01",
+    "experiment_id": "X01/classical_dense_output",
+    "method": "classical_dense_output",
+    "role": "Theirs",
+    "status": "COMPLETED",
+    "metrics": {
+      "maximum_relative_rms": 1.096196561076044e-11,
+      "warm_query_seconds": 1.8538004951551557e-05,
+      "build_seconds": 0.0015209109988063574,
+      "break_even_queries": null,
+      "operator_basis_reused_break_even_queries": null,
+      "pair_count": 361,
+      "degree": 12,
+      "query_count": 20
+    },
+    "checks": [
+      {
+        "check_id": "same_quadratic_task",
+        "category": "math",
+        "measured": 4.543635057563099e-19,
+        "target": 1e-10,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "relative_query_error",
+        "category": "gap",
+        "measured": 1.096196561076044e-11,
+        "target": 0.001,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900100,
+      "max_mode": 15,
+      "cutoff": 6,
+      "horizon": 0.2,
+      "degree": 12,
+      "track": "quadratic_Galerkin_response_only",
+      "device": "cpu"
+    },
+    "interpretation": "Encoding is a fixed approximation of a known kernel, not a trained neural PDE solver. Query timings do not establish full-solver advantage.",
+    "evidence": [
+      "temporal_query_rows.json",
+      "temporal_amortization.json",
+      "temporal_encoding.json"
+    ]
+  },
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X01",
+    "experiment_id": "X01/gauss_two",
+    "method": "gauss_two",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "maximum_relative_rms": 2.6897345601330505e-06,
+      "warm_query_seconds": 2.2763997549191117e-05,
+      "build_seconds": 0.0003134439903078601,
+      "break_even_queries": null,
+      "operator_basis_reused_break_even_queries": null,
+      "pair_count": 361,
+      "degree": 12,
+      "query_count": 20
+    },
+    "checks": [
+      {
+        "check_id": "same_quadratic_task",
+        "category": "math",
+        "measured": 4.543635057563099e-19,
+        "target": 1e-10,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "relative_query_error",
+        "category": "gap",
+        "measured": 2.6897345601330505e-06,
+        "target": 0.001,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900100,
+      "max_mode": 15,
+      "cutoff": 6,
+      "horizon": 0.2,
+      "degree": 12,
+      "track": "quadratic_Galerkin_response_only",
+      "device": "cpu"
+    },
+    "interpretation": "Encoding is a fixed approximation of a known kernel, not a trained neural PDE solver. Query timings do not establish full-solver advantage.",
+    "evidence": [
+      "temporal_query_rows.json",
+      "temporal_amortization.json",
+      "temporal_encoding.json"
+    ]
+  },
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X01",
+    "experiment_id": "X01/gauss_four",
+    "method": "gauss_four",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "maximum_relative_rms": 1.1548847067590149e-12,
+      "warm_query_seconds": 2.4946988560259342e-05,
+      "build_seconds": 0.00013043300714343786,
+      "break_even_queries": null,
+      "operator_basis_reused_break_even_queries": null,
+      "pair_count": 361,
+      "degree": 12,
+      "query_count": 20
+    },
+    "checks": [
+      {
+        "check_id": "same_quadratic_task",
+        "category": "math",
+        "measured": 4.543635057563099e-19,
+        "target": 1e-10,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "relative_query_error",
+        "category": "gap",
+        "measured": 1.1548847067590149e-12,
+        "target": 0.001,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900100,
+      "max_mode": 15,
+      "cutoff": 6,
+      "horizon": 0.2,
+      "degree": 12,
+      "track": "quadratic_Galerkin_response_only",
+      "device": "cpu"
+    },
+    "interpretation": "Encoding is a fixed approximation of a known kernel, not a trained neural PDE solver. Query timings do not establish full-solver advantage.",
+    "evidence": [
+      "temporal_query_rows.json",
+      "temporal_amortization.json",
+      "temporal_encoding.json"
+    ]
+  },
+  {
+    "schema": "tdn.portfolio-prototype/v1",
+    "prototype_id": "X01",
+    "experiment_id": "X01/fft_gauss_four",
+    "method": "fft_gauss_four",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "maximum_relative_rms": 1.154880524480679e-12,
+      "warm_query_seconds": 4.979300138074905e-05,
+      "build_seconds": 0.00013043300714343786,
+      "break_even_queries": null,
+      "operator_basis_reused_break_even_queries": null,
+      "pair_count": 361,
+      "degree": 12,
+      "query_count": 20
+    },
+    "checks": [
+      {
+        "check_id": "same_quadratic_task",
+        "category": "math",
+        "measured": 4.543635057563099e-19,
+        "target": 1e-10,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "relative_query_error",
+        "category": "gap",
+        "measured": 1.154880524480679e-12,
+        "target": 0.001,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "seed": 52900100,
+      "max_mode": 15,
+      "cutoff": 6,
+      "horizon": 0.2,
+      "degree": 12,
+      "track": "quadratic_Galerkin_response_only",
+      "device": "cpu"
+    },
+    "interpretation": "Encoding is a fixed approximation of a known kernel, not a trained neural PDE solver. Query timings do not establish full-solver advantage.",
+    "evidence": [
+      "temporal_query_rows.json",
+      "temporal_amortization.json",
+      "temporal_encoding.json"
+    ]
+  }
+]

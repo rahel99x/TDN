@@ -1,0 +1,87 @@
+{
+  "stage": "aggregate",
+  "profile": "smoke",
+  "device": "cpu",
+  "execution_mode": "local-cpu",
+  "command": [
+    "/workspace/TDN/.venv/bin/python",
+    "/workspace/TDN/scripts/portfolio.py",
+    "--stage",
+    "aggregate",
+    "--profile",
+    "smoke",
+    "--run-dir",
+    "/workspace/TDN/runs/portfolio-local-review-v1/aggregate",
+    "--device",
+    "cpu",
+    "--local-root",
+    "/workspace/TDN",
+    "--prerequisite-dir",
+    "audit=/workspace/TDN/runs/portfolio-local-review-v1/audit",
+    "--prerequisite-dir",
+    "prepare=/workspace/TDN/runs/portfolio-local-review-v1/prepare",
+    "--prerequisite-dir",
+    "train-A-000=/workspace/TDN/runs/portfolio-local-review-v1/train-A-000",
+    "--prerequisite-dir",
+    "train-B-000=/workspace/TDN/runs/portfolio-local-review-v1/train-B-000",
+    "--prerequisite-dir",
+    "freeze=/workspace/TDN/runs/portfolio-local-review-v1/freeze",
+    "--prerequisite-dir",
+    "confirm-prepare-000=/workspace/TDN/runs/portfolio-local-review-v1/confirm-prepare-000",
+    "--prerequisite-dir",
+    "confirm-000=/workspace/TDN/runs/portfolio-local-review-v1/confirm-000"
+  ],
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "508248e290d339d8a6e0c474306a3ba801808d14",
+    "git_available": true,
+    "tracked_or_untracked_changes": false,
+    "source_tree_sha256": "1fa85b6fc1f7f398b25544275f4f1a646d1e9c93fc6ee85e59233072905d6c5a",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "protocol_sha256": "4c6ef04332bf46348bc1c9a6c9fb9afab460aa025391e419c9cc3b7a7f4c1ced",
+  "prerequisites": {
+    "audit": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v1/audit",
+      "workflow_seal_sha256": "24b21b5f8759c09a74844796e0195c99ff031b02610994c8388fcfa1448c2b23"
+    },
+    "prepare": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v1/prepare",
+      "workflow_seal_sha256": "2c5a9f2d44080bed73fce85b2e0329c7c2751076113e727147b3fefcc793ba2a"
+    },
+    "train-A-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v1/train-A-000",
+      "workflow_seal_sha256": "8c408841ff495099606335306d1ca433ed95c4a9681929b98bc4ca57e042f4fb"
+    },
+    "train-B-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v1/train-B-000",
+      "workflow_seal_sha256": "6633bb176cc63fabce94b2e9e07a0be37f419fdbffefee18360502ba8b0b78af"
+    },
+    "freeze": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v1/freeze",
+      "workflow_seal_sha256": "99eb91e1591fad7c43a1b612562f6e14cf25157b5142ea11ecd848fa9bab7b89"
+    },
+    "confirm-prepare-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v1/confirm-prepare-000",
+      "workflow_seal_sha256": "c95ec8ab1e121f00ffe5f68e472dcbdf8ea247b7ec70290ed71e060eef1abec2"
+    },
+    "confirm-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v1/confirm-000",
+      "workflow_seal_sha256": "671e8d464e85acd93cfa0cec983be8812d623b85d44df5cb7d4c81106c088072"
+    }
+  },
+  "slurm_job_id": null,
+  "slurm_step_id": null,
+  "status": "COMPLETED",
+  "actually_ran": true,
+  "benchmark_suite": "portfolio",
+  "elapsed_seconds": 3.2237877330044284
+}

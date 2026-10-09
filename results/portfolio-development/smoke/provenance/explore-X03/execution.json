@@ -1,0 +1,47 @@
+{
+  "stage": "explore-X03",
+  "profile": "smoke",
+  "device": "cpu",
+  "execution_mode": "local-cpu",
+  "command": [
+    "/workspace/TDN/.venv/bin/python",
+    "/workspace/TDN/scripts/portfolio.py",
+    "--stage",
+    "explore-X03",
+    "--profile",
+    "smoke",
+    "--run-dir",
+    "/workspace/TDN/runs/portfolio-local-review-v2/explore-X03",
+    "--device",
+    "cpu",
+    "--local-root",
+    "/workspace/TDN",
+    "--prerequisite-dir",
+    "audit=/workspace/TDN/runs/portfolio-local-review-v2/audit"
+  ],
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "4b6b5ec1e3055bb53b6507ae4775c7bed1dc91b6",
+    "git_available": true,
+    "tracked_or_untracked_changes": false,
+    "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "protocol_sha256": "a334aa226f0981961372fb65075f6eee4d089550329e798876cd3604b22e0555",
+  "prerequisites": {
+    "audit": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/audit",
+      "workflow_seal_sha256": "8d46451bab0ae29a8be721d0a3b6e15f0c3c3eb2b43157224a1217dab1d967f4"
+    }
+  },
+  "slurm_job_id": null,
+  "slurm_step_id": null
+}

@@ -11,6 +11,10 @@ analytical atlas. Start with the [portfolio runbook](docs/PORTFOLIO_RUNBOOK.md):
 `bash scripts/fedora_portfolio.sh plan --smoke`, then
 `bash scripts/fedora_portfolio.sh run --smoke`. Full confirmation is a separately
 declared 40-job campaign; every allocation is at most 45 minutes.
+The [initial portfolio review](docs/PORTFOLIO_INITIAL_REVIEW.md) reports the
+completed CPU diagnostics and integration run, including negative prototype
+outcomes. The [52-page CPU atlas](results/portfolio-development/smoke/portfolio-atlas.pdf)
+preserves missing evidence; native GPU confirmation remains outstanding.
 
 The [tabbed research roadmap](docs/RESEARCH_ROADMAP_20261007.html) reviews ten
 recent experiment groups, 62 supported work items, 24 proposed mechanisms and

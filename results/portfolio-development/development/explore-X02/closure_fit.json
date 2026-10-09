@@ -1,0 +1,347 @@
+{
+  "instantaneous_weights": [
+    [
+      7.294304958077901e-19,
+      6.64260620564082e-19
+    ],
+    [
+      -3.0755392142761443e-18,
+      -2.797029921892837e-18
+    ],
+    [
+      3.0721003591834467e-18,
+      2.803165226223792e-18
+    ],
+    [
+      -1.1702476288944328e-17,
+      -1.0759137739755199e-17
+    ],
+    [
+      2.5669059806402015e-17,
+      2.3262585449551823e-17
+    ]
+  ],
+  "memory_weights": [
+    0.009980538756552098,
+    -0.00017815173977427573
+  ],
+  "fit_seconds": 0.0010136000055354089,
+  "reference_generation_seconds": 0.04010224294324871,
+  "history_acquisition_seconds": 0.02958052598114591,
+  "history_acquisition_per_state_seconds": 0.00036975657476432386,
+  "timings": {
+    "instantaneous_fit": {
+      "cold_seconds": 1.5442987205460668e-05,
+      "median_seconds": 1.7130078049376607e-06,
+      "raw": [
+        {
+          "round": 0,
+          "order": 1,
+          "seconds": 2.964006853289902e-06
+        },
+        {
+          "round": 1,
+          "order": 1,
+          "seconds": 2.1230080164968967e-06
+        },
+        {
+          "round": 2,
+          "order": 2,
+          "seconds": 1.7619895515963435e-06
+        },
+        {
+          "round": 3,
+          "order": 2,
+          "seconds": 1.8230057321488857e-06
+        },
+        {
+          "round": 4,
+          "order": 0,
+          "seconds": 1.691994839347899e-06
+        },
+        {
+          "round": 5,
+          "order": 0,
+          "seconds": 1.7830025171861053e-06
+        },
+        {
+          "round": 6,
+          "order": 0,
+          "seconds": 1.6730045899748802e-06
+        },
+        {
+          "round": 7,
+          "order": 2,
+          "seconds": 1.7630081856623292e-06
+        },
+        {
+          "round": 8,
+          "order": 1,
+          "seconds": 1.7130078049376607e-06
+        },
+        {
+          "round": 9,
+          "order": 0,
+          "seconds": 1.6120029613375664e-06
+        },
+        {
+          "round": 10,
+          "order": 2,
+          "seconds": 1.7220008885487914e-06
+        },
+        {
+          "round": 11,
+          "order": 0,
+          "seconds": 1.6420090105384588e-06
+        },
+        {
+          "round": 12,
+          "order": 0,
+          "seconds": 1.6429985407739878e-06
+        },
+        {
+          "round": 13,
+          "order": 2,
+          "seconds": 1.6319972928613424e-06
+        },
+        {
+          "round": 14,
+          "order": 1,
+          "seconds": 1.681997673586011e-06
+        }
+      ],
+      "device": "cpu",
+      "scope": "wall clock, no profiler, first invocation excluded from warm"
+    },
+    "memory_persistence": {
+      "cold_seconds": 1.781998435035348e-06,
+      "median_seconds": 1.091990270651877e-06,
+      "raw": [
+        {
+          "round": 0,
+          "order": 0,
+          "seconds": 1.7330021364614367e-06
+        },
+        {
+          "round": 1,
+          "order": 0,
+          "seconds": 1.391992554999888e-06
+        },
+        {
+          "round": 2,
+          "order": 1,
+          "seconds": 1.0719959391281009e-06
+        },
+        {
+          "round": 3,
+          "order": 1,
+          "seconds": 1.1719967005774379e-06
+        },
+        {
+          "round": 4,
+          "order": 1,
+          "seconds": 1.091000740416348e-06
+        },
+        {
+          "round": 5,
+          "order": 2,
+          "seconds": 1.0920048225671053e-06
+        },
+        {
+          "round": 6,
+          "order": 1,
+          "seconds": 1.061009243130684e-06
+        },
+        {
+          "round": 7,
+          "order": 0,
+          "seconds": 1.0609946912154555e-06
+        },
+        {
+          "round": 8,
+          "order": 0,
+          "seconds": 1.2310047168284655e-06
+        },
+        {
+          "round": 9,
+          "order": 2,
+          "seconds": 1.0720104910433292e-06
+        },
+        {
+          "round": 10,
+          "order": 0,
+          "seconds": 1.120992237702012e-06
+        },
+        {
+          "round": 11,
+          "order": 1,
+          "seconds": 1.0720104910433292e-06
+        },
+        {
+          "round": 12,
+          "order": 1,
+          "seconds": 1.08100357465446e-06
+        },
+        {
+          "round": 13,
+          "order": 0,
+          "seconds": 1.1319934856146574e-06
+        },
+        {
+          "round": 14,
+          "order": 2,
+          "seconds": 1.091990270651877e-06
+        }
+      ],
+      "device": "cpu",
+      "scope": "wall clock, no profiler, first invocation excluded from warm"
+    },
+    "memory_fitted": {
+      "cold_seconds": 3.8059952203184366e-06,
+      "median_seconds": 1.3719982234761119e-06,
+      "raw": [
+        {
+          "round": 0,
+          "order": 2,
+          "seconds": 2.043001586571336e-06
+        },
+        {
+          "round": 1,
+          "order": 2,
+          "seconds": 1.581996912136674e-06
+        },
+        {
+          "round": 2,
+          "order": 0,
+          "seconds": 1.4020042726770043e-06
+        },
+        {
+          "round": 3,
+          "order": 0,
+          "seconds": 1.7120037227869034e-06
+        },
+        {
+          "round": 4,
+          "order": 2,
+          "seconds": 1.4020042726770043e-06
+        },
+        {
+          "round": 5,
+          "order": 1,
+          "seconds": 1.4319957699626684e-06
+        },
+        {
+          "round": 6,
+          "order": 2,
+          "seconds": 1.3520038919523358e-06
+        },
+        {
+          "round": 7,
+          "order": 1,
+          "seconds": 1.3219978427514434e-06
+        },
+        {
+          "round": 8,
+          "order": 2,
+          "seconds": 1.3620010577142239e-06
+        },
+        {
+          "round": 9,
+          "order": 1,
+          "seconds": 1.3219978427514434e-06
+        },
+        {
+          "round": 10,
+          "order": 1,
+          "seconds": 1.4230026863515377e-06
+        },
+        {
+          "round": 11,
+          "order": 2,
+          "seconds": 1.2920063454657793e-06
+        },
+        {
+          "round": 12,
+          "order": 2,
+          "seconds": 1.2820091797038913e-06
+        },
+        {
+          "round": 13,
+          "order": 1,
+          "seconds": 1.2719974620267749e-06
+        },
+        {
+          "round": 14,
+          "order": 0,
+          "seconds": 1.3719982234761119e-06
+        }
+      ],
+      "device": "cpu",
+      "scope": "wall clock, no profiler, first invocation excluded from warm"
+    }
+  },
+  "horizon": 0.01,
+  "history_interval": 0.002,
+  "independent_fit_parents": 20,
+  "reference_crosschecks": [
+    {
+      "parent": 0,
+      "twin": -1,
+      "h": 0.01,
+      "rk4_refinement_max": 5.551115123125783e-17,
+      "dop853_vs_rk4_max": 1.1102230246251565e-16
+    },
+    {
+      "parent": 0,
+      "twin": -1,
+      "h": -0.002,
+      "rk4_refinement_max": 4.2207643840401616e-17,
+      "dop853_vs_rk4_max": 1.4304896245381992e-17
+    },
+    {
+      "parent": 0,
+      "twin": 1,
+      "h": 0.01,
+      "rk4_refinement_max": 5.551115123125783e-17,
+      "dop853_vs_rk4_max": 1.1102230246251565e-16
+    },
+    {
+      "parent": 0,
+      "twin": 1,
+      "h": -0.002,
+      "rk4_refinement_max": 4.2207643840401616e-17,
+      "dop853_vs_rk4_max": 1.4304896245381992e-17
+    },
+    {
+      "parent": 1,
+      "twin": -1,
+      "h": 0.01,
+      "rk4_refinement_max": 1.0408340855860843e-17,
+      "dop853_vs_rk4_max": 1.4304896245381992e-17
+    },
+    {
+      "parent": 1,
+      "twin": -1,
+      "h": -0.002,
+      "rk4_refinement_max": 1.1102230246251565e-16,
+      "dop853_vs_rk4_max": 5.551115123125783e-17
+    },
+    {
+      "parent": 1,
+      "twin": 1,
+      "h": 0.01,
+      "rk4_refinement_max": 1.0408340855860843e-17,
+      "dop853_vs_rk4_max": 1.4304896245381992e-17
+    },
+    {
+      "parent": 1,
+      "twin": 1,
+      "h": -0.002,
+      "rk4_refinement_max": 1.1102230246251565e-16,
+      "dop853_vs_rk4_max": 5.551115123125783e-17
+    }
+  ],
+  "independent_heldout_parents": 20,
+  "lower_bound_rms_any_deterministic_instantaneous_predictor": 3.233193861626973e-05,
+  "scope": "Synthetic twin states, short smooth backward histories; future task is discrete Galerkin, not continuum. Not a general memory closure."
+}

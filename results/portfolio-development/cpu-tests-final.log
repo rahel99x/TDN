@@ -1,0 +1,12 @@
+........................................................................ [ 24%]
+........................................................................ [ 49%]
+........................................................................ [ 74%]
+........................................................................ [ 98%]
+...                                                                      [100%]
+=============================== warnings summary ===============================
+tests/test_portfolio_diagnostics.py::test_bottleneck_contrasts_separate_targets_and_missing_terms
+  /workspace/TDN/.venv/lib/python3.12/site-packages/torch/profiler/profiler.py:217: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+    _warn_once(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+291 passed, 1 warning in 25.54s

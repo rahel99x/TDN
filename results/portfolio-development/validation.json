@@ -1,0 +1,857 @@
+{
+  "schema": "tdn.portfolio-local-validation/v1",
+  "code_commit": "4b6b5ec1e3055bb53b6507ae4775c7bed1dc91b6",
+  "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861",
+  "implementation": "23 families; A attribution and fairness, B three grounded variants, C three protected prototypes",
+  "cpu_tests": {
+    "passed": 291,
+    "warnings": 1,
+    "post_review_targeted_learning_tests_passed": 11,
+    "claim_semantics_regression_passed": 1
+  },
+  "native_gpu_tests": {
+    "declared_and_collected": 71,
+    "executed": false,
+    "reason": "No native desktop CUDA/Slurm allocation in cloud environment"
+  },
+  "completed_units": [
+    {
+      "profile": "smoke",
+      "unit": "audit",
+      "original_path": "runs/portfolio-local-review-v2/audit",
+      "science_elapsed_seconds": 0.7269132010114845,
+      "operational_elapsed_seconds": 2.1273514539934695,
+      "science_manifest_sha256": "311f7951e2d41f2b3723e98ebb12523799e830ceb11a6c08604239558ab3ece6",
+      "workflow_seal_sha256": "8d46451bab0ae29a8be721d0a3b6e15f0c3c3eb2b43157224a1217dab1d967f4"
+    },
+    {
+      "profile": "smoke",
+      "unit": "diagnose",
+      "original_path": "runs/portfolio-local-review-v2/diagnose",
+      "science_elapsed_seconds": 4.183746373993927,
+      "operational_elapsed_seconds": 5.758435355994152,
+      "science_manifest_sha256": "146a84c367654662de9d306516b41461ea22656a9f1a17affe4f17e730dafd11",
+      "workflow_seal_sha256": "94d4d2e45d964d3121fbd182ad3e1d1cb4b773c2571c19b3941e370aa962aca6"
+    },
+    {
+      "profile": "smoke",
+      "unit": "prepare",
+      "original_path": "runs/portfolio-local-review-v2/prepare",
+      "science_elapsed_seconds": 1.7569417470076587,
+      "operational_elapsed_seconds": 3.162188528003753,
+      "science_manifest_sha256": "27b3449cd985a605135b23b7948d8db6a1c3440134899a9f16a1b9dd58290db5",
+      "workflow_seal_sha256": "5118a983c44cc516a8002e47d084cc96c718d5fd78dd46d3fd0d05d1ebc1e267"
+    },
+    {
+      "profile": "smoke",
+      "unit": "explore-X01",
+      "original_path": "runs/portfolio-local-review-v2/explore-X01",
+      "science_elapsed_seconds": 0.13667860100395046,
+      "operational_elapsed_seconds": 1.6587805510062026,
+      "science_manifest_sha256": "619918d1cc8e4bfae2a8ff540dd2b0102b6660697775e865ff90a5011b3dfbf6",
+      "workflow_seal_sha256": "1d161bcd97f00c2c6c3fc4b33b0b7de1d5d6e3cbbb807c9ad5baa0c1626651ff"
+    },
+    {
+      "profile": "smoke",
+      "unit": "explore-X02",
+      "original_path": "runs/portfolio-local-review-v2/explore-X02",
+      "science_elapsed_seconds": 0.10886571899754927,
+      "operational_elapsed_seconds": 1.7362074589909753,
+      "science_manifest_sha256": "45df0c6ed033a9ace2f5027619b7164f0ce0c91ed00caa19c46935619aed2494",
+      "workflow_seal_sha256": "756708c6eca73fab0fca76b094f9041338a0ed0317c44bffeb5c5a3b9237e854"
+    },
+    {
+      "profile": "smoke",
+      "unit": "explore-X03",
+      "original_path": "runs/portfolio-local-review-v2/explore-X03",
+      "science_elapsed_seconds": 0.16494785899703857,
+      "operational_elapsed_seconds": 1.79362015100196,
+      "science_manifest_sha256": "78d070760673a7bc02ef6911c4041d83f9ec1d1d6af811c5679024ea8bdba7c1",
+      "workflow_seal_sha256": "fe7dbb4bf2e33939dd1215d2d53b23af78d71d47f73c774b257f80c677646665"
+    },
+    {
+      "profile": "smoke",
+      "unit": "train-A-000",
+      "original_path": "runs/portfolio-local-review-v2/train-A-000",
+      "science_elapsed_seconds": 33.15444263599056,
+      "operational_elapsed_seconds": 34.95965348399477,
+      "science_manifest_sha256": "d4fe16a42453933e33ce8c967865c7d65e24691797322c55706f290411386ee4",
+      "workflow_seal_sha256": "a70148ab4d2205a7bbb5f99c8446accf7d1abd632e0903e68093c5aa52696046"
+    },
+    {
+      "profile": "smoke",
+      "unit": "train-B-000",
+      "original_path": "runs/portfolio-local-review-v2/train-B-000",
+      "science_elapsed_seconds": 6.3848258439975325,
+      "operational_elapsed_seconds": 8.077254410993191,
+      "science_manifest_sha256": "fb6010ea3e7789da722f94e9ae551c5f9b5f32b5c88ea302ecf5489c339631e6",
+      "workflow_seal_sha256": "1b20c3d7a62bbcf4307075d0890ce2fa8c38e5f79ea90a7c9d26a471b467115e"
+    },
+    {
+      "profile": "smoke",
+      "unit": "freeze",
+      "original_path": "runs/portfolio-local-review-v2/freeze",
+      "science_elapsed_seconds": 0.6678640659956727,
+      "operational_elapsed_seconds": 3.007081782008754,
+      "science_manifest_sha256": "2fcfa73c8cefb6bb61b3200b63379eed4b1a02631fec3d5bfa25edd7ceb34cbc",
+      "workflow_seal_sha256": "e080cdab08ace5e16e09a32e5f498ff59d195b9fc5e5c60b822a6a5cbcb415aa"
+    },
+    {
+      "profile": "smoke",
+      "unit": "confirm-prepare-000",
+      "original_path": "runs/portfolio-local-review-v2/confirm-prepare-000",
+      "science_elapsed_seconds": 9.911761794995982,
+      "operational_elapsed_seconds": 11.84899163999944,
+      "science_manifest_sha256": "f9ea194d49f0d6218fbb96d8e35fb207667e1a4dfd6a9a1e07318637728ef1ed",
+      "workflow_seal_sha256": "fb4a06e0d589c08e740448d214a6437c90bb6340cffe08a4bc703f7d1cd1ecb8"
+    },
+    {
+      "profile": "smoke",
+      "unit": "confirm-000",
+      "original_path": "runs/portfolio-local-review-v2/confirm-000",
+      "science_elapsed_seconds": 106.3815038640023,
+      "operational_elapsed_seconds": 108.36295109300409,
+      "science_manifest_sha256": "a4293bd682f4e9a8d4c7595e2e955ce09e747e4afd40ee9ac136e8f706cb376f",
+      "workflow_seal_sha256": "475284d3546644025d4d010cdf87fccfc76a165e8e14d8cc814a8316bf90ffa3"
+    },
+    {
+      "profile": "smoke",
+      "unit": "aggregate",
+      "original_path": "runs/portfolio-local-review-v2/aggregate",
+      "science_elapsed_seconds": 1.0313611669989768,
+      "operational_elapsed_seconds": 2.991924996007583,
+      "science_manifest_sha256": "ea4dcae46b1db32be99f64d47f0c217114b8d39e3c5da503ffaa6759d1b32c9a",
+      "workflow_seal_sha256": "200cd71440c4b747e683f0d8ee68585b254d3e6c90a6e9cdcf0bc80e9ccb318f"
+    },
+    {
+      "profile": "smoke",
+      "unit": "scaling",
+      "original_path": "runs/portfolio-local-review-v2/scaling",
+      "science_elapsed_seconds": 1.3023289819975616,
+      "operational_elapsed_seconds": 3.4790454949979903,
+      "science_manifest_sha256": "d934992585a4be84f6cb67d970f816dedc4fb95cf174e87431667e6603e132b4",
+      "workflow_seal_sha256": "18cf2b6ff59262f3fc44f9704831f69f5b4a2f4f00229746aa8bb5668b2c99fc"
+    },
+    {
+      "profile": "smoke",
+      "unit": "report",
+      "original_path": "runs/portfolio-local-review-v2/report",
+      "science_elapsed_seconds": 76.51030208400334,
+      "operational_elapsed_seconds": 79.12713173701195,
+      "science_manifest_sha256": "3802df82ba6e13e6ffaae01cfa4f38dd9c6fce42965583491d3728cc8acdffdb",
+      "workflow_seal_sha256": "1626f8a0d74bac6f004d7d92e6d8a047532a860ba9a7388665f80c634d2df3af"
+    },
+    {
+      "profile": "development",
+      "unit": "audit",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit",
+      "science_elapsed_seconds": 0.7867447669996182,
+      "operational_elapsed_seconds": 2.351138518002699,
+      "science_manifest_sha256": "c19cd0a8e500f0f4969bf8b3b1b54b8240e1b3cc6efd6202bc4df100957fc3b3",
+      "workflow_seal_sha256": "dc6415b025f63fb5a699bf1430320e40b49dd94770cf64d4c81927c860fb25be"
+    },
+    {
+      "profile": "development",
+      "unit": "diagnose",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose",
+      "science_elapsed_seconds": 6.103511867011548,
+      "operational_elapsed_seconds": 7.850218318999396,
+      "science_manifest_sha256": "68c3268f0cd9b23ab425fc532178e2822da91d24c14ffbff12f322053da5db69",
+      "workflow_seal_sha256": "236cef15b8718a01fdf865a310bab44ac309f629f0c80816d36e80cc0a4e7daa"
+    },
+    {
+      "profile": "development",
+      "unit": "explore-X01",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01",
+      "science_elapsed_seconds": 0.16357562500343192,
+      "operational_elapsed_seconds": 1.8042312010074966,
+      "science_manifest_sha256": "1192170f80643df0dd718b80c7011a25a16cba8ba109e1960ce9b2ac7631b1b1",
+      "workflow_seal_sha256": "c365a0c95e32a8b866babb2691871990da52af8dfe3a265bdffa00ae342818dc"
+    },
+    {
+      "profile": "development",
+      "unit": "explore-X02",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02",
+      "science_elapsed_seconds": 0.19425856800808106,
+      "operational_elapsed_seconds": 1.9858347619883716,
+      "science_manifest_sha256": "06989cbdc8f23b738559f7d880b22e9778b46874c420ac21fb165a741ec3f03b",
+      "workflow_seal_sha256": "8d9350cda9f316a3aa13f4305bee8b891f629c9d5515a8b0f718b42cb7073b1e"
+    },
+    {
+      "profile": "development",
+      "unit": "explore-X03",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03",
+      "science_elapsed_seconds": 0.3463894800079288,
+      "operational_elapsed_seconds": 2.057558829008485,
+      "science_manifest_sha256": "f23e1965fbdc6d9104d662c1a92ba5d3845287ef8ff93b454deb883e1a16b418",
+      "workflow_seal_sha256": "7aee01f93ce602bd34253e89afb707fe1a586a50028a68f36985c07008c9b898"
+    }
+  ],
+  "smoke": {
+    "units_completed": 14,
+    "model_instances": 46,
+    "families": 23,
+    "independent_fields": 2,
+    "endpoint_rows": 2024,
+    "atlas_pages": 52,
+    "selection_status_counts": {
+      "FROZEN_CONTROL": 20,
+      "SELECTED_INITIALIZATION": 17,
+      "FITTED_CHECKPOINT": 9
+    },
+    "accuracy_claims": {
+      "NA": 28
+    },
+    "cost_claims": {
+      "NA": 20
+    }
+  },
+  "full_desktop": {
+    "submitted": false,
+    "planned_units": 40,
+    "planned_model_instances": 176,
+    "planned_endpoint_rows": 101376,
+    "maximum_job_seconds": 2400,
+    "summed_allocation_ceiling_seconds": 77880,
+    "summed_science_ceiling_seconds": 56400,
+    "discretionary_probe_seconds": {
+      "A": 3960,
+      "B": 1800,
+      "C": 1440
+    }
+  },
+  "scientific_confirmation": false,
+  "publication_scope": "Curated smoke evidence and complete five-unit numerical development evidence. Full original runs, checkpoints, teachers and exact source-linked rows remain in the preserved runs directories. Smoke chart-data includes raw plot measurements; curated smoke provenance alone is not a reusable checkpoint bank.",
+  "first_integration_attempt": {
+    "path": "runs/portfolio-local-review-v1",
+    "status": "completed and preserved",
+    "excluded_scaling_reason": "one step executed rather than declared two; repaired, regression-tested and rerun in v2",
+    "included_in_performance_claims": false,
+    "units": [
+      {
+        "unit": "audit",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 0.6624193789903075,
+        "operational_elapsed_seconds": 2.0723319170065224,
+        "summary_sha256": "3625a8b1c6d8820dc513745735af858f855e925399d09dbe3944a554c7b39cfb"
+      },
+      {
+        "unit": "diagnose",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 3.9270019340037834,
+        "operational_elapsed_seconds": 5.271683548009605,
+        "summary_sha256": "f74d88e321ef363dfffd093d23ef21955bafdc3c9760281611dc6ee5f237a4c5"
+      },
+      {
+        "unit": "prepare",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 1.766319022004609,
+        "operational_elapsed_seconds": 3.3073729060124606,
+        "summary_sha256": "9c985f5b71f8f8c6b6c4504a067977ad7c2209fbda4913b2fdbc20b2a75629f6"
+      },
+      {
+        "unit": "explore-X01",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 0.16584895900450647,
+        "operational_elapsed_seconds": 1.8419010460056597,
+        "summary_sha256": "c1a0ef84503b7b1e4478c8c1c58ebd509db8f675f93f4608c055bdd50b64df90"
+      },
+      {
+        "unit": "explore-X02",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 0.11694919900037348,
+        "operational_elapsed_seconds": 1.6468914459983353,
+        "summary_sha256": "fadcce94da16b614c3aca6c6c2a1fb278bec85b9ac105802d3f6f7f69c6cc77f"
+      },
+      {
+        "unit": "explore-X03",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 0.16737533299601637,
+        "operational_elapsed_seconds": 1.613840493009775,
+        "summary_sha256": "5d4f1884d8006d2ba602479454e8373c536c15eb9096c24625d62cd0d6ec9bb0"
+      },
+      {
+        "unit": "train-A-000",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 32.57541448400298,
+        "operational_elapsed_seconds": 34.424852088006446,
+        "summary_sha256": "f32ddb8161ccc55d5c3cdb71f168e92fdca42fac093d6e72b3b652b64225ca39"
+      },
+      {
+        "unit": "train-B-000",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 6.421624094000435,
+        "operational_elapsed_seconds": 8.083416780995321,
+        "summary_sha256": "8ec69822463ef5a8561a790071bfee0a557c631d9c9f0f5891bf02e71d119939"
+      },
+      {
+        "unit": "freeze",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 0.6577496079989942,
+        "operational_elapsed_seconds": 2.7827944419987034,
+        "summary_sha256": "051bf7809a111431b1763721ea0931fcbedcd720e2e6666a16692d309b834d8a"
+      },
+      {
+        "unit": "confirm-prepare-000",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 10.124327269004425,
+        "operational_elapsed_seconds": 12.063506492995657,
+        "summary_sha256": "9299764c58e368f90bf7ad94d617316338ae5b550efab1c959bea68c49590e69"
+      },
+      {
+        "unit": "confirm-000",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 108.10329785900831,
+        "operational_elapsed_seconds": 110.35825718000706,
+        "summary_sha256": "5dc1e4c0b9b9e94376dec66e5f33ad77a5e94dabaf996bc62db443811f4450b8"
+      },
+      {
+        "unit": "aggregate",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 1.0606252269935794,
+        "operational_elapsed_seconds": 3.2237877330044284,
+        "summary_sha256": "f51ccc9242f5d86ab294efc8fe434f27ff7031f7005502e70d160f3c62fb359a"
+      },
+      {
+        "unit": "scaling",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 1.0603179189929506,
+        "operational_elapsed_seconds": 3.21821370399266,
+        "summary_sha256": "7e57e569b6a431102299e372c3b59c89737a1acbed1bb3a6291a56f0204b0507"
+      },
+      {
+        "unit": "report",
+        "status": "COMPLETED",
+        "science_elapsed_seconds": 86.07415030100674,
+        "operational_elapsed_seconds": 88.59126431599725,
+        "summary_sha256": "05404e60c50044498eca99969ff6ed7e22d2544710858711e0d0eca17742dde9"
+      }
+    ]
+  },
+  "monetary_cost": null,
+  "cost_note": "No supplied power/service rate. Numerical stage elapsed is separate from operational elapsed; neither is a GPU inference claim or Slurm accounting.",
+  "published_smoke_files": [
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/figures/portfolio-atlas.pdf",
+      "published_path": "results/portfolio-development/smoke/portfolio-atlas.pdf",
+      "sha256": "2e1327041829e839e1f0a96e70ea7713ea1bd0306cd27bf23038d8a0da742907",
+      "bytes": 1329176
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/figures/chart-data.json.gz",
+      "published_path": "results/portfolio-development/smoke/chart-data.json.gz",
+      "sha256": "283bdd8fec937c43c09b6bb9ab9e9d67bca05662007e9140ee2a9fee1cd3cd57",
+      "bytes": 3339081
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/figures/learning-range-data.json.gz",
+      "published_path": "results/portfolio-development/smoke/learning-range-data.json.gz",
+      "sha256": "3845f6f4eff81f549f50b21486bd93bcb0472703f1490e13dcd7d992415bdb4e",
+      "bytes": 20982
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/figures/01-architecture-and-information-flow.png",
+      "published_path": "results/portfolio-development/smoke/architecture.png",
+      "sha256": "cd132485c2185fe686bd631999823213308829ad90ff8f1ba861e9652cc20498",
+      "bytes": 160797
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/aggregate/claims.json",
+      "published_path": "results/portfolio-development/smoke/aggregate-claims.json",
+      "sha256": "7bc864a22dec8b0b4199fcc857fe49ea8fec3b20a541698626651df576497717",
+      "bytes": 76509
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/aggregate/coverage.json",
+      "published_path": "results/portfolio-development/smoke/aggregate-coverage.json",
+      "sha256": "7db1119223e6dadfebdaa2c0a6e45f06fb6e581814b10e606de0266dbd4b0620",
+      "bytes": 8373
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/aggregate/summary.json",
+      "published_path": "results/portfolio-development/smoke/aggregate-summary.json",
+      "sha256": "b4c6b802f59de9644dd80fec1376623fc02912d2fab5241b9f3a2acc48912017",
+      "bytes": 1485
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/analysis.json",
+      "published_path": "results/portfolio-development/smoke/atlas-analysis.json",
+      "sha256": "c36bad7679cdef5f309d66b7b2db9b2d86359872ab0c62ff6e638bfb0a270690",
+      "bytes": 11252
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/local-state.json",
+      "published_path": "results/portfolio-development/smoke/local-state.json",
+      "sha256": "5e3f4082211059bb9fc6fdf00cb0d31db6976ae029ade0a43b184a63daee5411",
+      "bytes": 402
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/audit/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/audit/summary.json",
+      "sha256": "f4f56d040c980e0f7c4b32919949e2d122cc00ea8435d47f056c5e24f109aaf1",
+      "bytes": 1249
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/audit/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/audit/science_manifest.json",
+      "sha256": "311f7951e2d41f2b3723e98ebb12523799e830ceb11a6c08604239558ab3ece6",
+      "bytes": 1410
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/audit/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/audit/workflow-seal.json",
+      "sha256": "8d46451bab0ae29a8be721d0a3b6e15f0c3c3eb2b43157224a1217dab1d967f4",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/audit/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/audit/execution.json",
+      "sha256": "1d911e89a057848b363c461cd3bc3902fc684a68e8cd1f10c46d511d35ec626d",
+      "bytes": 1106
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/audit/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/audit/stage.json",
+      "sha256": "28eb868eb75bba383d3c9cf2182d91e003fb363a59fe5f915078f70f495584a5",
+      "bytes": 1230
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/diagnose/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/diagnose/summary.json",
+      "sha256": "27cb23c69b1303c540ee77eb56046fb15b96c2c40ee493e8690c2a3e93505d6b",
+      "bytes": 1351
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/diagnose/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/diagnose/science_manifest.json",
+      "sha256": "146a84c367654662de9d306516b41461ea22656a9f1a17affe4f17e730dafd11",
+      "bytes": 1874
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/diagnose/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/diagnose/workflow-seal.json",
+      "sha256": "94d4d2e45d964d3121fbd182ad3e1d1cb4b773c2571c19b3941e370aa962aca6",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/diagnose/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/diagnose/execution.json",
+      "sha256": "007310f7ac2468026bd6a0d95355e03f6e6db47937f02923ec5743091e58b51f",
+      "bytes": 1399
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/diagnose/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/diagnose/stage.json",
+      "sha256": "d2c2790414dd19484af72897271a383f20989efa37dc8e36fd5397e473cbc527",
+      "bytes": 1522
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/prepare/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/prepare/summary.json",
+      "sha256": "ed7cfdb7bf9f873d77ef6f1c0bf682a0ec02cd0d109908649e3ad97e3360a183",
+      "bytes": 1338
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/prepare/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/prepare/science_manifest.json",
+      "sha256": "27b3449cd985a605135b23b7948d8db6a1c3440134899a9f16a1b9dd58290db5",
+      "bytes": 2710
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/prepare/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/prepare/workflow-seal.json",
+      "sha256": "5118a983c44cc516a8002e47d084cc96c718d5fd78dd46d3fd0d05d1ebc1e267",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/prepare/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/prepare/execution.json",
+      "sha256": "0441982115a068f4c2b2da4710b6d8ff9e98716a7789784da1f06a7b1c468c5e",
+      "bytes": 1396
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/prepare/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/prepare/stage.json",
+      "sha256": "a0108c13e7d601addbbede2b73fbaf9d532dc5aba25cba21f9209f72adec6243",
+      "bytes": 1519
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X01/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X01/summary.json",
+      "sha256": "b38c14c1eeaa852bdb667b23b891f82bf94d8684c6eb57396805558a7ca3d72d",
+      "bytes": 1879
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X01/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X01/science_manifest.json",
+      "sha256": "619918d1cc8e4bfae2a8ff540dd2b0102b6660697775e865ff90a5011b3dfbf6",
+      "bytes": 2180
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X01/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X01/workflow-seal.json",
+      "sha256": "1d161bcd97f00c2c6c3fc4b33b0b7de1d5d6e3cbbb807c9ad5baa0c1626651ff",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X01/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X01/execution.json",
+      "sha256": "102c44ba1e35bd4012fdc98e90046d0226a9391be7f027c8de9a3c6f183432c5",
+      "bytes": 1408
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X01/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X01/stage.json",
+      "sha256": "8ca585f3195998d2feb01ec1c883db04541200aaaff2001b9b072d1604cbfb0c",
+      "bytes": 1532
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X02/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X02/summary.json",
+      "sha256": "ded5d4274a0dd525232039821f26db6ed41d4a242f1ec7ceb062381454cf0f7f",
+      "bytes": 1707
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X02/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X02/science_manifest.json",
+      "sha256": "45df0c6ed033a9ace2f5027619b7164f0ce0c91ed00caa19c46935619aed2494",
+      "bytes": 2065
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X02/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X02/workflow-seal.json",
+      "sha256": "756708c6eca73fab0fca76b094f9041338a0ed0317c44bffeb5c5a3b9237e854",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X02/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X02/execution.json",
+      "sha256": "27f3d0a712f2c95c0e053a8062c1344656bc5c48abec5fa808b84d7b01668c93",
+      "bytes": 1408
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X02/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X02/stage.json",
+      "sha256": "ac428377c2736a5bf8116618665fd1aedfed9e3c7511f9dd328c7c8159e4f77d",
+      "bytes": 1532
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X03/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X03/summary.json",
+      "sha256": "4e905ef55f5ae6b5c7a241943d66c7aa7a27d3825fe2b09e1d74dc93f20e901a",
+      "bytes": 1588
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X03/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X03/science_manifest.json",
+      "sha256": "78d070760673a7bc02ef6911c4041d83f9ec1d1d6af811c5679024ea8bdba7c1",
+      "bytes": 2268
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X03/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X03/workflow-seal.json",
+      "sha256": "fe7dbb4bf2e33939dd1215d2d53b23af78d71d47f73c774b257f80c677646665",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X03/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X03/execution.json",
+      "sha256": "36034055749c68f170011ae827ca2cfcfad8723b40954abe4a92fd255b8bf4c8",
+      "bytes": 1408
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/explore-X03/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/explore-X03/stage.json",
+      "sha256": "339bac91244fc9f11f6edbb95c59135c4d3ef6feff236df1c043c55e0a5914b2",
+      "bytes": 1530
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-A-000/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-A-000/summary.json",
+      "sha256": "870fdbe1f4370de4ebb8141f3de442d5f621fc2c39d761c2dece3c131e7d4a3b",
+      "bytes": 1391
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-A-000/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-A-000/science_manifest.json",
+      "sha256": "d4fe16a42453933e33ce8c967865c7d65e24691797322c55706f290411386ee4",
+      "bytes": 38301
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-A-000/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-A-000/workflow-seal.json",
+      "sha256": "a70148ab4d2205a7bbb5f99c8446accf7d1abd632e0903e68093c5aa52696046",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-A-000/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-A-000/execution.json",
+      "sha256": "9b273ced48acd087a52fa30564a5a6be9464481ca6a09152643f8f717a1b4003",
+      "bytes": 1698
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-A-000/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-A-000/stage.json",
+      "sha256": "232450ad8a0d2b03f1852a42451fa2d9fa9441a074f3551a0a0161d004789a54",
+      "bytes": 1821
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-B-000/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-B-000/summary.json",
+      "sha256": "04d5fb054bdf225580c3e51e7927aa8233c9d98353d1c0320ce0f4de6db1ec2c",
+      "bytes": 1387
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-B-000/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-B-000/science_manifest.json",
+      "sha256": "fb6010ea3e7789da722f94e9ae551c5f9b5f32b5c88ea302ecf5489c339631e6",
+      "bytes": 8843
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-B-000/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-B-000/workflow-seal.json",
+      "sha256": "1b20c3d7a62bbcf4307075d0890ce2fa8c38e5f79ea90a7c9d26a471b467115e",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-B-000/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-B-000/execution.json",
+      "sha256": "94a628f7cd9c30aaa961c15eaa4d03cfadc52a66f7568d4fb13575af79d288d6",
+      "bytes": 1698
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/train-B-000/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/train-B-000/stage.json",
+      "sha256": "0dfb9444b4ae6bc1cd1fb66113f1206e8b15cd7d6624269b834a8f7c8a5f6ab8",
+      "bytes": 1821
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/freeze/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/freeze/summary.json",
+      "sha256": "3c7973f25cc1b2e2555b42fcee33d6a144c3d5de9e85b49edb534631c2062b27",
+      "bytes": 1369
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/freeze/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/freeze/science_manifest.json",
+      "sha256": "2fcfa73c8cefb6bb61b3200b63379eed4b1a02631fec3d5bfa25edd7ceb34cbc",
+      "bytes": 9333
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/freeze/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/freeze/workflow-seal.json",
+      "sha256": "e080cdab08ace5e16e09a32e5f498ff59d195b9fc5e5c60b822a6a5cbcb415aa",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/freeze/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/freeze/execution.json",
+      "sha256": "24a420eae9fd180401c9638c15d41131b0cc8397695ba53fdbd8c5eaef7ebae9",
+      "bytes": 2295
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/freeze/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/freeze/stage.json",
+      "sha256": "e5f6040029fe5e4e278208de6a142f00bd1a0b2d4daa34aa1ebd3d9b65d90347",
+      "bytes": 2418
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-prepare-000/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-prepare-000/summary.json",
+      "sha256": "82fc8bcfd20255f8ec02a7962541362da50ac7eae70d3c7ed3cb04d763579bf5",
+      "bytes": 1358
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-prepare-000/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-prepare-000/science_manifest.json",
+      "sha256": "f9ea194d49f0d6218fbb96d8e35fb207667e1a4dfd6a9a1e07318637728ef1ed",
+      "bytes": 2600
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-prepare-000/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-prepare-000/workflow-seal.json",
+      "sha256": "fb4a06e0d589c08e740448d214a6437c90bb6340cffe08a4bc703f7d1cd1ecb8",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-prepare-000/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-prepare-000/execution.json",
+      "sha256": "ea91c67fc27de8d9b6b39cbeb74cbab707773b699a9df22df409ce452ce6f25e",
+      "bytes": 2620
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-prepare-000/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-prepare-000/stage.json",
+      "sha256": "deb65a2f671e1bfb671261228cb7bb9475e849196a213fb110ef9fcd1684d2f0",
+      "bytes": 2743
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-000/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-000/summary.json",
+      "sha256": "59aaf5af28f2c8092fb5f6eeb5b0c547d75bb76474008bee2e801cd174c94e9e",
+      "bytes": 1444
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-000/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-000/science_manifest.json",
+      "sha256": "a4293bd682f4e9a8d4c7595e2e955ce09e747e4afd40ee9ac136e8f706cb376f",
+      "bytes": 16748
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-000/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-000/workflow-seal.json",
+      "sha256": "475284d3546644025d4d010cdf87fccfc76a165e8e14d8cc814a8316bf90ffa3",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-000/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-000/execution.json",
+      "sha256": "e9126458dde6f68b292f8cdac47cd1fb123d17c1d04e60903a8a86a6edb9ed33",
+      "bytes": 2934
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/confirm-000/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/confirm-000/stage.json",
+      "sha256": "9143fd19846bd616193f2f90fb67c1022017289b1acc2a7aff08c8044714d96b",
+      "bytes": 3058
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/aggregate/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/aggregate/summary.json",
+      "sha256": "b4c6b802f59de9644dd80fec1376623fc02912d2fab5241b9f3a2acc48912017",
+      "bytes": 1485
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/aggregate/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/aggregate/science_manifest.json",
+      "sha256": "ea4dcae46b1db32be99f64d47f0c217114b8d39e3c5da503ffaa6759d1b32c9a",
+      "bytes": 2649
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/aggregate/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/aggregate/workflow-seal.json",
+      "sha256": "200cd71440c4b747e683f0d8ee68585b254d3e6c90a6e9cdcf0bc80e9ccb318f",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/aggregate/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/aggregate/execution.json",
+      "sha256": "ae888dc8379b3cf66c0571f4fe865d8fc748d91e90928ee15e23c20910975256",
+      "bytes": 3233
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/aggregate/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/aggregate/stage.json",
+      "sha256": "54e1310e3ba461c49613cd3c45b7d6a519cbfa9912c6b8dce4c8450059940fdd",
+      "bytes": 3356
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/scaling/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/scaling/summary.json",
+      "sha256": "54ca945a8c7cfb27f5beba3815c21d9e652693516f9d4975ae77692c2472cfcf",
+      "bytes": 1305
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/scaling/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/scaling/science_manifest.json",
+      "sha256": "d934992585a4be84f6cb67d970f816dedc4fb95cf174e87431667e6603e132b4",
+      "bytes": 2365
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/scaling/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/scaling/workflow-seal.json",
+      "sha256": "18cf2b6ff59262f3fc44f9704831f69f5b4a2f4f00229746aa8bb5668b2c99fc",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/scaling/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/scaling/execution.json",
+      "sha256": "2eb0dad2c8959018639333439d44fbec8e38917ab2a69640e870edaf6f7cc8a2",
+      "bytes": 3525
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/scaling/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/scaling/stage.json",
+      "sha256": "0c3b9d7257e4409d35d4a8d85f787eeaacaf78ecb0a92c4df49c35ad3e4845c7",
+      "bytes": 3649
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/summary.json",
+      "published_path": "results/portfolio-development/smoke/provenance/report/summary.json",
+      "sha256": "84fa60c188acb21aec264bfda573fe8032c57c345127b22877e04a9612cf5bdc",
+      "bytes": 14192
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/science_manifest.json",
+      "published_path": "results/portfolio-development/smoke/provenance/report/science_manifest.json",
+      "sha256": "3802df82ba6e13e6ffaae01cfa4f38dd9c6fce42965583491d3728cc8acdffdb",
+      "bytes": 13482
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/workflow-seal.json",
+      "published_path": "results/portfolio-development/smoke/provenance/report/workflow-seal.json",
+      "sha256": "1626f8a0d74bac6f004d7d92e6d8a047532a860ba9a7388665f80c634d2df3af",
+      "bytes": 503
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/execution.json",
+      "published_path": "results/portfolio-development/smoke/provenance/report/execution.json",
+      "sha256": "332ed76bbb251794065e5093c2a8ce65341e509f2d82f35befc8d72625af4959",
+      "bytes": 5024
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/report/stage.json",
+      "published_path": "results/portfolio-development/smoke/provenance/report/stage.json",
+      "sha256": "646aa26d1e08189f47d7bcc60dd6a9a78a5688b2c2e8352f8fb1e983509829a6",
+      "bytes": 5147
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/diagnose/diagnostic_rows.json",
+      "published_path": "results/portfolio-development/smoke/diagnostic_rows.json",
+      "sha256": "ef04fdf96c5767f0ab250a11bdc968306f2c4595949ead7a108dc1cb04d6328b",
+      "bytes": 50968
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/diagnose/profile_rows.json",
+      "published_path": "results/portfolio-development/smoke/profile_rows.json",
+      "sha256": "d4eadfbf34b5408566a2e95016bc5724784e78ab9d330329363d79deb12cfb02",
+      "bytes": 53325
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/diagnose/error_budget_semantics.json",
+      "published_path": "results/portfolio-development/smoke/error_budget_semantics.json",
+      "sha256": "e4e68e57b663b045bd4eaa4a5cfba105fd8273169972e683b2b2da03e885e98d",
+      "bytes": 515
+    },
+    {
+      "original_path": "runs/portfolio-local-review-v2/scaling/scaling_rows.json",
+      "published_path": "results/portfolio-development/smoke/scaling-rows.json",
+      "sha256": "63c08289838722775ad520bef0c38e211862d119ade2a6c210b7cf897c32740a",
+      "bytes": 137873
+    },
+    {
+      "original_path": ".runtime/portfolio-development/cpu-tests-final.log",
+      "published_path": "results/portfolio-development/cpu-tests-final.log",
+      "sha256": "0738bd3e87827ed8038cfadc26c5c33d345c052d818cf9a410d8eda6389426e1",
+      "bytes": 957
+    },
+    {
+      "original_path": ".runtime/portfolio-development/claims-tests.log",
+      "published_path": "results/portfolio-development/claims-tests.log",
+      "sha256": "6c7429c0591f360b58d33f4b5e36634f3068aeb073740e3f4115653ddc06d14f",
+      "bytes": 100
+    },
+    {
+      "original_path": ".runtime/portfolio-development/bootstrap-vectorized-review.json",
+      "published_path": "results/portfolio-development/bootstrap-vectorized-review.json",
+      "sha256": "58d089377cd9e02c175bcbb0fc7e698f234aacd03dc376a46c64111f1232efbc",
+      "bytes": 940
+    }
+  ],
+  "cost_totals": {
+    "final_verified_science_seconds": 250.01696424602414,
+    "first_integration_science_seconds": 252.883420587008,
+    "observed_operational_seconds_both_integration_attempts_and_development": 562.6397138590546,
+    "scope": "Sum of recorded stage operational elapsed; excludes unrecorded shell/import overhead, unit tests, earlier direct probes and engineering. Not a total hardware bill."
+  }
+}

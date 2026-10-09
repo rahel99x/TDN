@@ -1,0 +1,29 @@
+{
+  "weights": [
+    -40.054374343902715,
+    185.10005425019483,
+    -76.30617146718637,
+    -17.868888839511726
+  ],
+  "fit_seconds": 0.0008142150036292151,
+  "features": [
+    "bias",
+    "spectral_entropy",
+    "energy_weighted_frequency",
+    "l1_squared_over_l2_squared"
+  ],
+  "candidate_positive_mode_counts": [
+    2,
+    4,
+    8,
+    16,
+    32,
+    63
+  ],
+  "tolerance": 0.01,
+  "seed": 52900300,
+  "fit_parents": 24,
+  "heldout_parents": 24,
+  "target": "minimum candidate rank meeting development relative error; ground truth is never consulted by deployed selector",
+  "limitation": "Least squares is not a certified tolerance controller. Absolute L1-tail proxy is not a relative error guarantee under cancellation."
+}

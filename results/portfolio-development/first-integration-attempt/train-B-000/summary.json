@@ -1,0 +1,43 @@
+{
+  "schema": "tdn.portfolio/v1",
+  "stage": "train-B-000",
+  "kind": "train",
+  "profile": "smoke",
+  "status": "COMPLETED",
+  "device": "cpu",
+  "source_tree_sha256": "1fa85b6fc1f7f398b25544275f4f1a646d1e9c93fc6ee85e59233072905d6c5a",
+  "protocol_sha256": "4c6ef04332bf46348bc1c9a6c9fb9afab460aa025391e419c9cc3b7a7f4c1ced",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "508248e290d339d8a6e0c474306a3ba801808d14",
+    "source_tree_sha256": "1fa85b6fc1f7f398b25544275f4f1a646d1e9c93fc6ee85e59233072905d6c5a"
+  },
+  "prerequisites": {
+    "audit": "55faa46b0ea5e49bc4ff87be88bce3d40a26cf2d2eb2c89fe192fb2989a3252b",
+    "prepare": "87583a0c145e6a96c5056e76f272c85ad60fbf7826cc283033ad373b392f8aa1"
+  },
+  "elapsed_seconds": 6.421624094000435,
+  "experiment_count": 6,
+  "verdict_counts": {
+    "NA": 6
+  },
+  "correctness_failures": 0,
+  "memory": {
+    "enabled": false,
+    "observations": 0,
+    "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+  },
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "details": {
+    "models": 6,
+    "trials": 12,
+    "training_seconds": 2.8562382829986745,
+    "initialization_selections": 5
+  }
+}

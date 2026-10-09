@@ -1,0 +1,2767 @@
+{
+  "schema": "tdn.portfolio/v1",
+  "version": 1,
+  "profile": "development",
+  "stages": [
+    "audit",
+    "diagnose",
+    "prepare",
+    "explore-X01",
+    "explore-X02",
+    "explore-X03",
+    "train-A-000",
+    "train-B-000",
+    "freeze",
+    "confirm-prepare-000",
+    "confirm-000",
+    "confirm-prepare-001",
+    "confirm-001",
+    "confirm-prepare-002",
+    "confirm-002",
+    "confirm-prepare-003",
+    "confirm-003",
+    "aggregate",
+    "scaling",
+    "report"
+  ],
+  "gpu_stages": [
+    "train-A-000",
+    "train-B-000",
+    "confirm-000",
+    "confirm-001",
+    "confirm-002",
+    "confirm-003",
+    "scaling"
+  ],
+  "gpu_test_cases": [
+    "test_portfolio_cuda_limits[discrete-historical_half]",
+    "test_portfolio_cuda_limits[discrete-quad2_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad2_amplitude]",
+    "test_portfolio_cuda_limits[discrete-quad2_nodes]",
+    "test_portfolio_cuda_limits[discrete-quad2_joint]",
+    "test_portfolio_cuda_limits[discrete-quad2_linear]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_limits[discrete-quad2_input]",
+    "test_portfolio_cuda_limits[discrete-quad2_full]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad4_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_limits[discrete-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[discrete-df]",
+    "test_portfolio_cuda_limits[discrete-rf]",
+    "test_portfolio_cuda_limits[discrete-etdrk4]",
+    "test_portfolio_cuda_limits[discrete-fno_small]",
+    "test_portfolio_cuda_limits[discrete-fno_standard]",
+    "test_portfolio_cuda_limits[discrete-direct_fno]",
+    "test_portfolio_cuda_limits[discrete-residual_quad2]",
+    "test_portfolio_cuda_limits[discrete-conditioned_rich]",
+    "test_portfolio_cuda_limits[discrete-band_gain]",
+    "test_portfolio_cuda_limits[continuum-historical_half]",
+    "test_portfolio_cuda_limits[continuum-quad2_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad2_amplitude]",
+    "test_portfolio_cuda_limits[continuum-quad2_nodes]",
+    "test_portfolio_cuda_limits[continuum-quad2_joint]",
+    "test_portfolio_cuda_limits[continuum-quad2_linear]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_limits[continuum-quad2_input]",
+    "test_portfolio_cuda_limits[continuum-quad2_full]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad4_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_limits[continuum-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[continuum-df]",
+    "test_portfolio_cuda_limits[continuum-rf]",
+    "test_portfolio_cuda_limits[continuum-etdrk4]",
+    "test_portfolio_cuda_limits[continuum-fno_small]",
+    "test_portfolio_cuda_limits[continuum-fno_standard]",
+    "test_portfolio_cuda_limits[continuum-direct_fno]",
+    "test_portfolio_cuda_limits[continuum-residual_quad2]",
+    "test_portfolio_cuda_limits[continuum-conditioned_rich]",
+    "test_portfolio_cuda_limits[continuum-band_gain]",
+    "test_portfolio_cuda_gradients[discrete-quad2_nodes]",
+    "test_portfolio_cuda_gradients[discrete-quad2_joint]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-fno_small]",
+    "test_portfolio_cuda_gradients[discrete-fno_standard]",
+    "test_portfolio_cuda_gradients[discrete-direct_fno]",
+    "test_portfolio_cuda_gradients[discrete-residual_quad2]",
+    "test_portfolio_cuda_gradients[discrete-conditioned_rich]",
+    "test_portfolio_cuda_gradients[discrete-band_gain]",
+    "test_portfolio_cuda_gradients[continuum-quad2_nodes]",
+    "test_portfolio_cuda_gradients[continuum-quad2_joint]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-fno_small]",
+    "test_portfolio_cuda_gradients[continuum-fno_standard]",
+    "test_portfolio_cuda_gradients[continuum-direct_fno]",
+    "test_portfolio_cuda_gradients[continuum-residual_quad2]",
+    "test_portfolio_cuda_gradients[continuum-conditioned_rich]",
+    "test_portfolio_cuda_gradients[continuum-band_gain]",
+    "test_portfolio_cuda_fitted_control[quad2_amplitude]",
+    "test_portfolio_cuda_fitted_control[quad2_linear]",
+    "test_portfolio_cuda_visible_allocation"
+  ],
+  "mechanisms": {
+    "A1": {
+      "name": "Normalization against the preserved half-normalized control",
+      "stages": [],
+      "question": "Normalization against the preserved half-normalized control"
+    },
+    "A2": {
+      "name": "Amplitude, node, linear and neural conditioning attribution",
+      "stages": [],
+      "question": "Amplitude, node, linear and neural conditioning attribution"
+    },
+    "A3": {
+      "name": "Matched node counts and compression placement",
+      "stages": [],
+      "question": "Matched node counts and compression placement"
+    },
+    "A4": {
+      "name": "Equivalent endpoint menus and physical backbone controls",
+      "stages": [],
+      "question": "Equivalent endpoint menus and physical backbone controls"
+    },
+    "A5": {
+      "name": "Credible FNO optimization and distinct fairness objectives",
+      "stages": [],
+      "question": "Credible FNO optimization and distinct fairness objectives"
+    },
+    "A6": {
+      "name": "Effective learned parameters and correction identifiability",
+      "stages": [],
+      "question": "Effective learned parameters and correction identifiability"
+    },
+    "B1": {
+      "name": "Cheap enriched physical conditioning",
+      "stages": [],
+      "question": "Cheap enriched physical conditioning"
+    },
+    "B2": {
+      "name": "Learn only a residual of normalized analytic quadrature",
+      "stages": [],
+      "question": "Learn only a residual of normalized analytic quadrature"
+    },
+    "B3": {
+      "name": "Band-dependent correction and compression tradeoff",
+      "stages": [],
+      "question": "Band-dependent correction and compression tradeoff"
+    },
+    "B4": {
+      "name": "Measured overhead, reuse and accuracy-qualified complete cost",
+      "stages": [],
+      "question": "Measured overhead, reuse and accuracy-qualified complete cost"
+    },
+    "B5": {
+      "name": "Loss scaling, data efficiency and paired generalization",
+      "stages": [],
+      "question": "Loss scaling, data efficiency and paired generalization"
+    },
+    "X01": {
+      "name": "Reusable state encoding and continuous-time interaction kernels",
+      "stages": [],
+      "question": "Reusable state encoding and continuous-time interaction kernels"
+    },
+    "X02": {
+      "name": "Coarse-state indistinguishability and unresolved-scale memory",
+      "stages": [],
+      "question": "Coarse-state indistinguishability and unresolved-scale memory"
+    },
+    "X03": {
+      "name": "Select interactions before products and distill selection rules",
+      "stages": [],
+      "question": "Select interactions before products and distill selection rules"
+    }
+  },
+  "combinations": {},
+  "budgets": {
+    "audit": {
+      "seconds": 120,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:10:00"
+    },
+    "diagnose": {
+      "seconds": 600,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:18:00"
+    },
+    "prepare": {
+      "seconds": 900,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00"
+    },
+    "explore-X01": {
+      "seconds": 200,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:12:00"
+    },
+    "explore-X02": {
+      "seconds": 200,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:12:00"
+    },
+    "explore-X03": {
+      "seconds": 200,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:12:00"
+    },
+    "train-A-000": {
+      "seconds": 1650,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:38:00"
+    },
+    "train-B-000": {
+      "seconds": 750,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:23:00"
+    },
+    "freeze": {
+      "seconds": 120,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:10:00"
+    },
+    "confirm-prepare-000": {
+      "seconds": 900,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00"
+    },
+    "confirm-000": {
+      "seconds": 1200,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00"
+    },
+    "confirm-prepare-001": {
+      "seconds": 900,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00"
+    },
+    "confirm-001": {
+      "seconds": 1200,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00"
+    },
+    "confirm-prepare-002": {
+      "seconds": 900,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00"
+    },
+    "confirm-002": {
+      "seconds": 1200,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00"
+    },
+    "confirm-prepare-003": {
+      "seconds": 900,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00"
+    },
+    "confirm-003": {
+      "seconds": 1200,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00"
+    },
+    "aggregate": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:11:00"
+    },
+    "scaling": {
+      "seconds": 600,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:20:00"
+    },
+    "report": {
+      "seconds": 240,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:12:00"
+    }
+  },
+  "parents": [
+    {
+      "parent_id": "portfolio-development-52000000",
+      "seed": 52000000,
+      "field_seed": 52000000,
+      "split": "development",
+      "field_cluster": "portfolio-field-52000000",
+      "continuous_field_id": "portfolio-field-52000000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.190794474931055,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 1.243142010345441,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-52000001",
+      "seed": 52000001,
+      "field_seed": 52000001,
+      "split": "development",
+      "field_cluster": "portfolio-field-52000001",
+      "continuous_field_id": "portfolio-field-52000001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.2226474288516664,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.546644747125595,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 1.1935656888596975,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-52000002",
+      "seed": 52000002,
+      "field_seed": 52000002,
+      "split": "development",
+      "field_cluster": "portfolio-field-52000002",
+      "continuous_field_id": "portfolio-field-52000002",
+      "field_terms": [
+        {
+          "mode": [
+            5,
+            1
+          ],
+          "phase": 1.808923905681906,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            6,
+            1
+          ],
+          "phase": 4.715480792344548,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-52000003",
+      "seed": 52000003,
+      "field_seed": 52000003,
+      "split": "development",
+      "field_cluster": "portfolio-field-52000003",
+      "continuous_field_id": "portfolio-field-52000003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.8723345251066594,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.027978495768526,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            6,
+            -1
+          ],
+          "phase": 4.112275202647846,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-52000004",
+      "seed": 52000004,
+      "field_seed": 52000004,
+      "split": "development",
+      "field_cluster": "portfolio-field-52000004",
+      "continuous_field_id": "portfolio-field-52000004",
+      "field_terms": [
+        {
+          "mode": [
+            6,
+            0
+          ],
+          "phase": 5.589865320275139,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            6
+          ],
+          "phase": 0.14463100956712904,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-52000005",
+      "seed": 52000005,
+      "field_seed": 52000005,
+      "split": "development",
+      "field_cluster": "portfolio-field-52000005",
+      "continuous_field_id": "portfolio-field-52000005",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.6553119447368485,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 1.670617279067508,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-52010000",
+      "seed": 52010000,
+      "field_seed": 52010000,
+      "split": "train",
+      "field_cluster": "portfolio-field-52010000",
+      "continuous_field_id": "portfolio-field-52010000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.7740904167570234,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 0.8713494942312723,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-52010001",
+      "seed": 52010001,
+      "field_seed": 52010001,
+      "split": "train",
+      "field_cluster": "portfolio-field-52010001",
+      "continuous_field_id": "portfolio-field-52010001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.3639066775526176,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.9242111773568615,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 2.0804159900251133,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-52010002",
+      "seed": 52010002,
+      "field_seed": 52010002,
+      "split": "train",
+      "field_cluster": "portfolio-field-52010002",
+      "continuous_field_id": "portfolio-field-52010002",
+      "field_terms": [
+        {
+          "mode": [
+            5,
+            1
+          ],
+          "phase": 4.303751139769274,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            6,
+            1
+          ],
+          "phase": 1.7546564954399748,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-52010003",
+      "seed": 52010003,
+      "field_seed": 52010003,
+      "split": "train",
+      "field_cluster": "portfolio-field-52010003",
+      "continuous_field_id": "portfolio-field-52010003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.33256793684832,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.9532003978105017,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            6,
+            -1
+          ],
+          "phase": 3.0106629714502735,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-52010004",
+      "seed": 52010004,
+      "field_seed": 52010004,
+      "split": "train",
+      "field_cluster": "portfolio-field-52010004",
+      "continuous_field_id": "portfolio-field-52010004",
+      "field_terms": [
+        {
+          "mode": [
+            6,
+            0
+          ],
+          "phase": 3.9325337129433353,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            6
+          ],
+          "phase": 4.395753327009726,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-52010005",
+      "seed": 52010005,
+      "field_seed": 52010005,
+      "split": "train",
+      "field_cluster": "portfolio-field-52010005",
+      "continuous_field_id": "portfolio-field-52010005",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.391845294921007,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 0.9913199052010899,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-52010006",
+      "seed": 52010006,
+      "field_seed": 52010006,
+      "split": "train",
+      "field_cluster": "portfolio-field-52010006",
+      "continuous_field_id": "portfolio-field-52010006",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.5042070009420145,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.9278629430844676,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-52010007",
+      "seed": 52010007,
+      "field_seed": 52010007,
+      "split": "train",
+      "field_cluster": "portfolio-field-52010007",
+      "continuous_field_id": "portfolio-field-52010007",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.0898061421234289,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            6,
+            1
+          ],
+          "phase": 5.0151214883391955,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-52020000",
+      "seed": 52020000,
+      "field_seed": 52020000,
+      "split": "validation",
+      "field_cluster": "portfolio-field-52020000",
+      "continuous_field_id": "portfolio-field-52020000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.430711962186996,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 1.5423505454427164,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-52020001",
+      "seed": 52020001,
+      "field_seed": 52020001,
+      "split": "validation",
+      "field_cluster": "portfolio-field-52020001",
+      "continuous_field_id": "portfolio-field-52020001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.3451188943618675,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.8208382856336861,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 0.22949953004582418,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-52020002",
+      "seed": 52020002,
+      "field_seed": 52020002,
+      "split": "validation",
+      "field_cluster": "portfolio-field-52020002",
+      "continuous_field_id": "portfolio-field-52020002",
+      "field_terms": [
+        {
+          "mode": [
+            5,
+            1
+          ],
+          "phase": 4.423384306642734,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            6,
+            1
+          ],
+          "phase": 1.1646485819556305,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-52020003",
+      "seed": 52020003,
+      "field_seed": 52020003,
+      "split": "validation",
+      "field_cluster": "portfolio-field-52020003",
+      "continuous_field_id": "portfolio-field-52020003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.388925497290521,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 5.508523961662636,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            6,
+            -1
+          ],
+          "phase": 5.944436699744032,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-52030000",
+      "seed": 52030000,
+      "field_seed": 52030000,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-52030000",
+      "continuous_field_id": "portfolio-field-52030000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.579789863619424,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 5.468510593248408,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-52030001",
+      "seed": 52030001,
+      "field_seed": 52030001,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-52030001",
+      "continuous_field_id": "portfolio-field-52030001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.2170177823154654,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 3.477597964220275,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 5.2367300564154675,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-52030002",
+      "seed": 52030002,
+      "field_seed": 52030002,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-52030002",
+      "continuous_field_id": "portfolio-field-52030002",
+      "field_terms": [
+        {
+          "mode": [
+            5,
+            1
+          ],
+          "phase": 5.914256468188576,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            6,
+            1
+          ],
+          "phase": 2.8054333773106137,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-52030003",
+      "seed": 52030003,
+      "field_seed": 52030003,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-52030003",
+      "continuous_field_id": "portfolio-field-52030003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.22162133579036522,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.8518651877077988,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            6,
+            -1
+          ],
+          "phase": 1.8763342730274482,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-52040000",
+      "seed": 52040000,
+      "field_seed": 52040000,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-52040000",
+      "continuous_field_id": "portfolio-field-52040000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.3584710669751793,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 1.1135369694175503,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-52040001",
+      "seed": 52040001,
+      "field_seed": 52040001,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-52040001",
+      "continuous_field_id": "portfolio-field-52040001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.531239245423149,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 1.8860061921548592,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 3.768344918117828,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-52040002",
+      "seed": 52040002,
+      "field_seed": 52040002,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-52040002",
+      "continuous_field_id": "portfolio-field-52040002",
+      "field_terms": [
+        {
+          "mode": [
+            5,
+            1
+          ],
+          "phase": 1.4122293547314215,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            6,
+            1
+          ],
+          "phase": 6.128098209646743,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-52040003",
+      "seed": 52040003,
+      "field_seed": 52040003,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-52040003",
+      "continuous_field_id": "portfolio-field-52040003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.099302697486441,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.253828315116241,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            6,
+            -1
+          ],
+          "phase": 1.1438592916256944,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-52040004",
+      "seed": 52040004,
+      "field_seed": 52040004,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-52040004",
+      "continuous_field_id": "portfolio-field-52040004",
+      "field_terms": [
+        {
+          "mode": [
+            6,
+            0
+          ],
+          "phase": 5.8850019132354054,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            6
+          ],
+          "phase": 0.16423448899723983,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-52040005",
+      "seed": 52040005,
+      "field_seed": 52040005,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-52040005",
+      "continuous_field_id": "portfolio-field-52040005",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.822766634442418,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 1.7676179891591206,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-52040006",
+      "seed": 52040006,
+      "field_seed": 52040006,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-52040006",
+      "continuous_field_id": "portfolio-field-52040006",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.071284348088548,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 3.7126577854628127,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-52040007",
+      "seed": 52040007,
+      "field_seed": 52040007,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-52040007",
+      "continuous_field_id": "portfolio-field-52040007",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.5525062418316409,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            6,
+            1
+          ],
+          "phase": 3.9718146675634385,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-scaling-52050000",
+      "seed": 52050000,
+      "field_seed": 52050000,
+      "split": "scaling",
+      "field_cluster": "portfolio-field-52050000",
+      "continuous_field_id": "portfolio-field-52050000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.923374598629323,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 4.330052986320668,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-scaling-52050001",
+      "seed": 52050001,
+      "field_seed": 52050001,
+      "split": "scaling",
+      "field_cluster": "portfolio-field-52050001",
+      "continuous_field_id": "portfolio-field-52050001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.2985189412624487,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 5.575095837867932,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 4.003636076441601,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-52060000",
+      "seed": 52060000,
+      "field_seed": 52060000,
+      "split": "policy",
+      "field_cluster": "portfolio-field-52060000",
+      "continuous_field_id": "portfolio-field-52060000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.5025409480204084,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 0.25483574587290486,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-52060001",
+      "seed": 52060001,
+      "field_seed": 52060001,
+      "split": "policy",
+      "field_cluster": "portfolio-field-52060001",
+      "continuous_field_id": "portfolio-field-52060001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.445000514823399,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.058187366649661,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 5.153348014674252,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-52060002",
+      "seed": 52060002,
+      "field_seed": 52060002,
+      "split": "policy",
+      "field_cluster": "portfolio-field-52060002",
+      "continuous_field_id": "portfolio-field-52060002",
+      "field_terms": [
+        {
+          "mode": [
+            5,
+            1
+          ],
+          "phase": 0.16412093147152854,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            6,
+            1
+          ],
+          "phase": 1.6057677142947777,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-52060003",
+      "seed": 52060003,
+      "field_seed": 52060003,
+      "split": "policy",
+      "field_cluster": "portfolio-field-52060003",
+      "continuous_field_id": "portfolio-field-52060003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.990185130548486,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.15474295883642714,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            6,
+            -1
+          ],
+          "phase": 2.7597460928005426,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        16,
+        16
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "tracks": [
+    "discrete",
+    "continuum"
+  ],
+  "models": [
+    "historical_half",
+    "quad2_fixed",
+    "quad2_amplitude",
+    "quad2_nodes",
+    "quad2_joint",
+    "quad2_linear",
+    "quad2_conditioned",
+    "quad2_input",
+    "quad2_full",
+    "quad2_conditioned_full",
+    "quad4_fixed",
+    "quad4_full",
+    "quad4_conditioned",
+    "analytic_quad_cubic",
+    "df",
+    "rf",
+    "etdrk4",
+    "fno_small",
+    "fno_standard",
+    "direct_fno",
+    "residual_quad2",
+    "conditioned_rich",
+    "band_gain"
+  ],
+  "trainable_models": [
+    "quad2_amplitude",
+    "quad2_nodes",
+    "quad2_joint",
+    "quad2_linear",
+    "quad2_conditioned",
+    "quad2_conditioned_full",
+    "quad4_conditioned",
+    "fno_small",
+    "fno_standard",
+    "direct_fno",
+    "residual_quad2",
+    "conditioned_rich",
+    "band_gain"
+  ],
+  "train_grid": 16,
+  "grids": [
+    16,
+    32
+  ],
+  "seeds": [
+    6100011
+  ],
+  "train_horizons": [
+    0.02,
+    0.04,
+    0.08,
+    0.12
+  ],
+  "validation_horizons": [
+    0.03,
+    0.06,
+    0.1,
+    0.12,
+    0.24
+  ],
+  "confirm_schedules": [
+    [
+      0.12
+    ],
+    [
+      0.06,
+      0.06
+    ],
+    [
+      0.03,
+      0.03,
+      0.03,
+      0.03
+    ],
+    [
+      0.015,
+      0.015,
+      0.015,
+      0.015,
+      0.015,
+      0.015,
+      0.015,
+      0.015
+    ],
+    [
+      0.24
+    ],
+    [
+      0.12,
+      0.12
+    ],
+    [
+      0.06,
+      0.06,
+      0.06,
+      0.06
+    ],
+    [
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03
+    ],
+    [
+      0.02,
+      0.04,
+      0.06
+    ],
+    [
+      0.06,
+      0.04,
+      0.02
+    ],
+    [
+      0.04,
+      0.08,
+      0.12
+    ],
+    [
+      0.12,
+      0.08,
+      0.04
+    ]
+  ],
+  "evaluation_horizons": [
+    0.12,
+    0.24
+  ],
+  "classical_frontier_steps": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "reference_tolerance": 2e-06,
+  "reference_substeps": 8,
+  "reference_max_substeps": 16384,
+  "reference_spatial_factors": [
+    2,
+    4
+  ],
+  "reference_roundoff_floor": 1e-12,
+  "reference_attempts": 6,
+  "max_finest_substeps": 16384,
+  "model_config": {
+    "width": 8,
+    "modes": 2,
+    "depth": 2,
+    "t_ref": 0.2,
+    "reaction_substeps": 4
+  },
+  "model_configs": {
+    "fno_standard": {
+      "width": 16,
+      "depth": 4,
+      "modes": 4
+    },
+    "direct_fno": {
+      "width": 16,
+      "depth": 4,
+      "modes": 4
+    }
+  },
+  "training": {
+    "updates": 24,
+    "tuning_updates": 4,
+    "learning_rates": [
+      0.001,
+      0.0003
+    ],
+    "batch_size": 1,
+    "subset_sizes": [
+      4,
+      8
+    ],
+    "validation_every": 6,
+    "clip_grad_norm": 1.0,
+    "weight_decay": 0.0,
+    "loss_floor": 1e-06,
+    "peak_weight": 0.1,
+    "baseline_min_relative_improvement": 0.05,
+    "initialization_control": true,
+    "candidate_selection": "validation only; lowest joint normalized RMS/maximum error",
+    "optimizer": "AdamW",
+    "trial_seconds": 30,
+    "fit_iterations": 100,
+    "loss": "dimensionless defect-normalized mean-square plus squared maximum error",
+    "non_neural_fit": "training-only ridge least-squares initialization followed by bounded matched RMS-plus-peak objective; validation selects initialization",
+    "ridge_candidates": [
+      1e-08,
+      0.0001
+    ],
+    "reference_noise_floor": true,
+    "stopping": "bounded updates and per-unit walltime; retain selected initialization",
+    "optimizer_controls": [
+      {
+        "id": "default",
+        "clip_grad_norm": 1.0,
+        "loss_scale": 1.0
+      },
+      {
+        "id": "unclipped_scaled",
+        "clip_grad_norm": null,
+        "loss_scale": 0.01
+      }
+    ],
+    "fairness_views": [
+      "equal_data",
+      "measured_training_compute",
+      "equal_inference_cost",
+      "validation_selected_frontier"
+    ]
+  },
+  "targets": [
+    0.0002,
+    2e-05,
+    2e-06
+  ],
+  "primary_target": 2e-05,
+  "timing_repeats": 3,
+  "timing_warmup": 1,
+  "timing_seed": 3700011,
+  "bootstrap_replicates": 100,
+  "practical_speedup": 1.2,
+  "confidence_level": 0.95,
+  "screening": {
+    "grids": [
+      16,
+      32,
+      64
+    ],
+    "horizons": [
+      0.04
+    ],
+    "steps": [
+      1,
+      2
+    ],
+    "tracks": [
+      "discrete",
+      "continuum"
+    ],
+    "target": 2e-05
+  },
+  "scaling": {
+    "grids": [
+      32,
+      64
+    ],
+    "batches": [
+      1,
+      2
+    ],
+    "horizon": 0.06,
+    "steps": 2,
+    "repeats": 2,
+    "families": [
+      "quad2_conditioned",
+      "quad2_fixed",
+      "fno_small",
+      "fno_standard",
+      "df",
+      "etdrk4"
+    ],
+    "reference_required_for_speed_claim": true,
+    "maximum_cases": 2,
+    "case_order": "descending batch size, then ascending grid, then target track; omitted cells remain NA"
+  },
+  "policies": {
+    "alpha": 0.01,
+    "empirical_safety_factor": 2.0,
+    "target": 2e-05,
+    "model_family": "quad2_conditioned",
+    "horizon": 0.12,
+    "grid": 16,
+    "max_refinements": 3,
+    "estimated_cost_margin_required": true,
+    "selection": "fixed family; seed and largest training subset fixed before confirmation",
+    "modes": [
+      "temporal",
+      "temporal_spatial"
+    ],
+    "calibration_split": "calibration",
+    "automatic_deployment": false,
+    "reason": "No new learned deployment policy until an independently measured solver-cost margin exists"
+  },
+  "scoring": {
+    "mathematical_proof_claim": false,
+    "score_meaning": "required-check evidence attainment, not model quality"
+  },
+  "console_every": 100,
+  "state_precision": "float32",
+  "teacher_precision": "float64",
+  "tf32": false,
+  "independent_unit": "continuous_field_cluster",
+  "confirmation_after_checkpoint_freeze": true,
+  "frontier": "reference-informed fixed-time post-hoc schedule selection; not a deployable policy",
+  "claims": {
+    "representation": "retained signed nonlinear interactions before projection",
+    "learning": "improvement beyond matched normalized analytic and non-neural fitted controls",
+    "neural": "credible locally adapted FNO on equal data and measured compute, not a paper reproduction",
+    "generalization": "paired new fields/physics/grids/horizons within declared scope",
+    "solver": "complete accuracy-qualified cost with identical schedule opportunities",
+    "numerical": "a distilled analytic rule may be a successful result without neural inference",
+    "published_fno_reproduction": false,
+    "universal_worst_case": false
+  },
+  "scientific_failure_blocks_all_research": false,
+  "automatic_budget_expansion": false,
+  "endpoint_steps": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "primary_schedules": [
+    [
+      0.02,
+      0.04,
+      0.06
+    ],
+    [
+      0.06,
+      0.04,
+      0.02
+    ],
+    [
+      0.04,
+      0.08,
+      0.12
+    ],
+    [
+      0.12,
+      0.08,
+      0.04
+    ]
+  ],
+  "confirmation_part_size": 2,
+  "portfolio_budget": {
+    "scope": "discretionary training and exploratory prototypes only; shared audit/reference/confirmation separately bounded",
+    "fractions": {
+      "A": 0.55,
+      "B": 0.25,
+      "C": 0.2
+    },
+    "probe_seconds": {
+      "A": 1650,
+      "B": 750,
+      "C": 600
+    },
+    "exploration_protected": true,
+    "reallocation": "requires an explicitly recorded new development protocol; no automatic transfer"
+  },
+  "hypothesis_thresholds": {
+    "representation_error_ratio": 1.5,
+    "learned_error_ratio": 1.1,
+    "practical_speedup": 1.2,
+    "confidence_level": 0.95,
+    "maximum_coverage_regression": 0.05,
+    "required_feasible_fraction": 0.95,
+    "comparison_unit": "independent field; schedules/grids/seeds paired within field",
+    "frozen_control": "quad2_fixed",
+    "learned_comparators": [
+      "quad2_amplitude",
+      "quad2_nodes",
+      "quad2_joint",
+      "quad2_linear"
+    ],
+    "multiple_comparisons": "declared primary tests; exploratory subgroup estimates unadjusted and labeled",
+    "mathematical_proof": false,
+    "primary_interval_lower_bound": 1.0,
+    "minimum_fields": 5,
+    "benefit_requires": "declared effect threshold and field-cluster interval lower bound above one; coverage noninferiority checked separately"
+  },
+  "exploration": {
+    "seed": 52900000,
+    "prototype_ids": [
+      "X01",
+      "X02",
+      "X03"
+    ],
+    "X01": {
+      "parity_tolerance": 1e-10,
+      "relative_rmse": 0.001,
+      "break_even_queries": 32
+    },
+    "X02": {
+      "resolved_twin_tolerance": 1e-12,
+      "target_separation": 1e-08,
+      "memory_rmse_ratio": 0.5
+    },
+    "X03": {
+      "relative_error": 0.01,
+      "total_speedup": 1.1
+    },
+    "novelty": "new to this project; no publication-priority claim",
+    "confirmation_access": false
+  },
+  "diagnostics": {
+    "grid": 16,
+    "horizon": 0.12,
+    "regimes": [
+      "low",
+      "high_pair",
+      "rough",
+      "near_nyquist"
+    ],
+    "terms": [
+      "spatial",
+      "temporal",
+      "quadrature",
+      "compression",
+      "optimization",
+      "reference",
+      "implementation",
+      "deployment"
+    ],
+    "profile_families": [
+      "quad2_fixed",
+      "quad2_conditioned",
+      "quad4_full",
+      "df",
+      "etdrk4",
+      "fno_small"
+    ],
+    "repetitions": 5,
+    "profiling_separate_from_timing": true
+  },
+  "selection": {
+    "split": "validation",
+    "primary_family": "quad2_conditioned",
+    "frozen_before_confirmation": true,
+    "keep_all_declared_attribution_controls": true,
+    "selection_metric": "joint RMS and maximum error with reference uncertainty; measured validation cost",
+    "test_truth_selects_deployment": false
+  },
+  "units": {
+    "audit": {
+      "id": "audit",
+      "kind": "audit",
+      "path": "shared",
+      "dependencies": [],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:10:00",
+      "seconds": 120
+    },
+    "diagnose": {
+      "id": "diagnose",
+      "kind": "diagnose",
+      "path": "shared",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:18:00",
+      "seconds": 600
+    },
+    "prepare": {
+      "id": "prepare",
+      "kind": "prepare",
+      "path": "shared",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00",
+      "seconds": 900,
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    "explore-X01": {
+      "id": "explore-X01",
+      "kind": "explore",
+      "path": "C",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:12:00",
+      "seconds": 200,
+      "prototype_ids": [
+        "X01"
+      ]
+    },
+    "explore-X02": {
+      "id": "explore-X02",
+      "kind": "explore",
+      "path": "C",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:12:00",
+      "seconds": 200,
+      "prototype_ids": [
+        "X02"
+      ]
+    },
+    "explore-X03": {
+      "id": "explore-X03",
+      "kind": "explore",
+      "path": "C",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:12:00",
+      "seconds": 200,
+      "prototype_ids": [
+        "X03"
+      ]
+    },
+    "train-A-000": {
+      "id": "train-A-000",
+      "kind": "train",
+      "path": "A",
+      "dependencies": [
+        "audit",
+        "prepare"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:38:00",
+      "seconds": 1650,
+      "families": [
+        "historical_half",
+        "quad2_fixed",
+        "quad2_amplitude",
+        "quad2_nodes",
+        "quad2_joint",
+        "quad2_linear",
+        "quad2_conditioned",
+        "quad2_input",
+        "quad2_full",
+        "quad2_conditioned_full",
+        "quad4_fixed",
+        "quad4_full",
+        "quad4_conditioned",
+        "analytic_quad_cubic",
+        "df",
+        "rf",
+        "etdrk4",
+        "fno_small",
+        "fno_standard",
+        "direct_fno"
+      ],
+      "seeds": [
+        6100011
+      ],
+      "tracks": [
+        "discrete",
+        "continuum"
+      ],
+      "subset_sizes": [
+        4,
+        8
+      ]
+    },
+    "train-B-000": {
+      "id": "train-B-000",
+      "kind": "train",
+      "path": "B",
+      "dependencies": [
+        "audit",
+        "prepare"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:23:00",
+      "seconds": 750,
+      "families": [
+        "residual_quad2",
+        "conditioned_rich",
+        "band_gain"
+      ],
+      "seeds": [
+        6100011
+      ],
+      "tracks": [
+        "discrete",
+        "continuum"
+      ],
+      "subset_sizes": [
+        4,
+        8
+      ]
+    },
+    "freeze": {
+      "id": "freeze",
+      "kind": "freeze",
+      "path": "shared",
+      "dependencies": [
+        "train-A-000",
+        "train-B-000"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:10:00",
+      "seconds": 120
+    },
+    "confirm-prepare-000": {
+      "id": "confirm-prepare-000",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00",
+      "seconds": 900,
+      "parent_ids": [
+        "portfolio-confirmation-52040000",
+        "portfolio-confirmation-52040001"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-000": {
+      "id": "confirm-000",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-000"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00",
+      "seconds": 1200,
+      "parent_ids": [
+        "portfolio-confirmation-52040000",
+        "portfolio-confirmation-52040001"
+      ],
+      "prepared_unit": "confirm-prepare-000"
+    },
+    "confirm-prepare-001": {
+      "id": "confirm-prepare-001",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00",
+      "seconds": 900,
+      "parent_ids": [
+        "portfolio-confirmation-52040002",
+        "portfolio-confirmation-52040003"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-001": {
+      "id": "confirm-001",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-001"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00",
+      "seconds": 1200,
+      "parent_ids": [
+        "portfolio-confirmation-52040002",
+        "portfolio-confirmation-52040003"
+      ],
+      "prepared_unit": "confirm-prepare-001"
+    },
+    "confirm-prepare-002": {
+      "id": "confirm-prepare-002",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00",
+      "seconds": 900,
+      "parent_ids": [
+        "portfolio-confirmation-52040004",
+        "portfolio-confirmation-52040005"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-002": {
+      "id": "confirm-002",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-002"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00",
+      "seconds": 1200,
+      "parent_ids": [
+        "portfolio-confirmation-52040004",
+        "portfolio-confirmation-52040005"
+      ],
+      "prepared_unit": "confirm-prepare-002"
+    },
+    "confirm-prepare-003": {
+      "id": "confirm-prepare-003",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:23:00",
+      "seconds": 900,
+      "parent_ids": [
+        "portfolio-confirmation-52040006",
+        "portfolio-confirmation-52040007"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-003": {
+      "id": "confirm-003",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-003"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00",
+      "seconds": 1200,
+      "parent_ids": [
+        "portfolio-confirmation-52040006",
+        "portfolio-confirmation-52040007"
+      ],
+      "prepared_unit": "confirm-prepare-003"
+    },
+    "aggregate": {
+      "id": "aggregate",
+      "kind": "aggregate",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-000",
+        "confirm-001",
+        "confirm-002",
+        "confirm-003"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:11:00",
+      "seconds": 180
+    },
+    "scaling": {
+      "id": "scaling",
+      "kind": "scaling",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "aggregate"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:20:00",
+      "seconds": 600
+    },
+    "report": {
+      "id": "report",
+      "kind": "report",
+      "path": "shared",
+      "dependencies": [
+        "audit",
+        "diagnose",
+        "prepare",
+        "explore-X01",
+        "explore-X02",
+        "explore-X03",
+        "train-A-000",
+        "train-B-000",
+        "freeze",
+        "confirm-prepare-000",
+        "confirm-000",
+        "confirm-prepare-001",
+        "confirm-001",
+        "confirm-prepare-002",
+        "confirm-002",
+        "confirm-prepare-003",
+        "confirm-003",
+        "aggregate",
+        "scaling"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:12:00",
+      "seconds": 240
+    }
+  }
+}

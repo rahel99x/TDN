@@ -1,0 +1,364 @@
+{
+  "schema": "tdn.portfolio-analytics/v1",
+  "verified_experiments": 178,
+  "stage_status": [
+    {
+      "unit": "aggregate",
+      "kind": "aggregate",
+      "path": "shared",
+      "planned_seconds": 180,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 1.0313611669989768,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "audit",
+      "kind": "audit",
+      "path": "shared",
+      "planned_seconds": 120,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 0.7269132010114845,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "confirm-000",
+      "kind": "confirm",
+      "path": "shared",
+      "planned_seconds": 600,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 106.3815038640023,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "confirm-prepare-000",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "planned_seconds": 300,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 9.911761794995982,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "diagnose",
+      "kind": "diagnose",
+      "path": "shared",
+      "planned_seconds": 300,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 4.183746373993927,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "explore-X01",
+      "kind": "explore",
+      "path": "C",
+      "planned_seconds": 80,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 0.13667860100395046,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "explore-X02",
+      "kind": "explore",
+      "path": "C",
+      "planned_seconds": 80,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 0.10886571899754927,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "explore-X03",
+      "kind": "explore",
+      "path": "C",
+      "planned_seconds": 80,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 0.16494785899703857,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "freeze",
+      "kind": "freeze",
+      "path": "shared",
+      "planned_seconds": 120,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 0.6678640659956727,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "prepare",
+      "kind": "prepare",
+      "path": "shared",
+      "planned_seconds": 300,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 1.7569417470076587,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "scaling",
+      "kind": "scaling",
+      "path": "shared",
+      "planned_seconds": 300,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 1.3023289819975616,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "train-A-000",
+      "kind": "train",
+      "path": "A",
+      "planned_seconds": 660,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 33.15444263599056,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "train-B-000",
+      "kind": "train",
+      "path": "B",
+      "planned_seconds": 300,
+      "status": "VERIFIED",
+      "verified": true,
+      "error": null,
+      "elapsed_seconds": 6.3848258439975325,
+      "monetary_cost": null,
+      "operational_time_verified": false,
+      "operational_diagnostic": {},
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "computational_status": "COMPLETED"
+    }
+  ],
+  "panels": 52,
+  "tables": [
+    {
+      "name": "experiments",
+      "path": "experiments.csv",
+      "rows": 178,
+      "sha256": "4e6cbd3a46c5acb6d1305dd069db9499a837779a23e3fbfd6e3ca9d7648c52b0"
+    },
+    {
+      "name": "checks",
+      "path": "checks.csv",
+      "rows": 716,
+      "sha256": "e91a60cdb08ef4262df285cecbbcf21c11ec7a74931ad1fbfd86761ebce7cd31"
+    },
+    {
+      "name": "catalog",
+      "path": "catalog.csv",
+      "rows": 46,
+      "sha256": "433448845f7a52878cc19736fb535f4a99c4742e459f42882b7b1b363a9c7ca2"
+    },
+    {
+      "name": "learning_curves",
+      "path": "learning_curves.csv",
+      "rows": 150,
+      "sha256": "69d4a0a1161baf5c9fa1a5c5c574fd4acbe5172ee2e8e7a869c5d812441884eb"
+    },
+    {
+      "name": "validation",
+      "path": "validation.csv",
+      "rows": 1012,
+      "sha256": "d335a590ea656fb331e9c4621c87fd892a2e60b4fc047d93c0fa8c8599796c9b"
+    },
+    {
+      "name": "endpoints",
+      "path": "endpoints.csv",
+      "rows": 2024,
+      "sha256": "f013d5edc95cbc4a07301769c8cd5daddb39065302cfd1b2a30d502f519a8735"
+    },
+    {
+      "name": "partial_endpoints",
+      "path": "partial_endpoints.csv",
+      "rows": 0,
+      "sha256": "364476d03f5760c77282ca6ed6c774b2adb480b2c37e00ddf3e53f6dbb98fd98"
+    },
+    {
+      "name": "matched_configuration",
+      "path": "matched_configuration.csv",
+      "rows": 2024,
+      "sha256": "9ad1bed2e93a6224e944d215b11c5e7ed7da062e8deac9f3fe046fa382dcfd14"
+    },
+    {
+      "name": "posthoc_frontiers",
+      "path": "posthoc_frontiers.csv",
+      "rows": 1104,
+      "sha256": "34a102bcf504960d3288fe275e407c4a99c7411b4bda714da643948c27018d27"
+    },
+    {
+      "name": "locked_frontiers",
+      "path": "locked_frontiers.csv",
+      "rows": 1104,
+      "sha256": "eab7a928e4a834f66c70804596814740d4d49a2de9e6bbf2fecfca20a0fb80a6"
+    },
+    {
+      "name": "paired_field_summaries",
+      "path": "paired_field_summaries.csv",
+      "rows": 2024,
+      "sha256": "2d6f1f059a7593d6ffed35a19f544149b46e32918418dfe9249b42496b59b5fd"
+    },
+    {
+      "name": "scaling",
+      "path": "scaling.csv",
+      "rows": 18,
+      "sha256": "dc875078ed4c1e4a9d3f11ab6bef590f58f69166e26b4835f20f3062e805f352"
+    },
+    {
+      "name": "prototypes",
+      "path": "prototypes.csv",
+      "rows": 15,
+      "sha256": "bd510ada8fe55d258131458a404169e41582ef7fc4e063a9fcf880e581e421dc"
+    },
+    {
+      "name": "temporal_queries",
+      "path": "temporal_queries.csv",
+      "rows": 140,
+      "sha256": "bc99466cf236bc76b6655bad6de8cff86b37ad091a0b4dc5aaf18e7dd65b3477"
+    },
+    {
+      "name": "closure",
+      "path": "closure.csv",
+      "rows": 32,
+      "sha256": "47269c9b5307ac31ace9aa9e0fc25471a42b8b7a709cac1c424f709725208fb5"
+    },
+    {
+      "name": "selection",
+      "path": "selection.csv",
+      "rows": 54,
+      "sha256": "1a0caa4dc06a4e0958ffa12e1eaba5e73ca721fbe9450730facadee83b4bcad3"
+    },
+    {
+      "name": "diagnostics",
+      "path": "diagnostics.csv",
+      "rows": 116,
+      "sha256": "8a751e05512dd26584dfe4092c788770459eebd478d1c5f09c65bfeef4c8555f"
+    },
+    {
+      "name": "stage_status",
+      "path": "stage_status.csv",
+      "rows": 13,
+      "sha256": "55bcaa82d50e444fb724fdf3f311adaed2d28ec9e8665f6bd63c315dc7ab1451"
+    },
+    {
+      "name": "learned_parameters",
+      "path": "learned_parameters.csv",
+      "rows": 46,
+      "sha256": "5f89b01fee5fd82163bda483c91ff357067011658119a82d32d54bdf3908df6f"
+    },
+    {
+      "name": "amortization",
+      "path": "amortization.csv",
+      "rows": 1104,
+      "sha256": "a1f2c1af85a69cac7964f4c0fecae8d644edc250d8731021af6db2bd061597f3"
+    },
+    {
+      "name": "temporal_amortization",
+      "path": "temporal_amortization.csv",
+      "rows": 56,
+      "sha256": "04277d80ccd36a7fd33fd540561aa556706bf33bb2ed92b652947f5b20cc69eb"
+    },
+    {
+      "name": "timing_rounds",
+      "path": "timing_rounds.csv",
+      "rows": 176,
+      "sha256": "dd896e244550bebea75178a690288dfd5feaabb4cae81ab948ac73745293859f"
+    },
+    {
+      "name": "profiling",
+      "path": "profiling.csv",
+      "rows": 204,
+      "sha256": "0edbec83f8a5060f5747acca9dd8a2318abf95677b14aee66948c1d4ea79092e"
+    },
+    {
+      "name": "claims_accuracy",
+      "path": "claims_accuracy.csv",
+      "rows": 28,
+      "sha256": "6f4cfdd4bef04a1a2dda09521ce3d3a116f4c262c4614053ac8c97abcd9777e0"
+    },
+    {
+      "name": "claims_cost",
+      "path": "claims_cost.csv",
+      "rows": 20,
+      "sha256": "633433b0671cc8d5f318232977103e453ce794d371cd3555aff61c58e683893e"
+    },
+    {
+      "name": "response_probes",
+      "path": "response_probes.csv",
+      "rows": 276,
+      "sha256": "5f953884a48ae50b1e2a5c0488434794378db4aea26e5233df332fdc73058232"
+    }
+  ],
+  "complete_planned_evidence": true,
+  "scientific_outcome": "DESCRIPTIVE_VERIFIED_EVIDENCE",
+  "scope": "Only sealed prerequisites contribute science. Missing evidence is NA. Independent fields, not repeated schedules/grids/seeds, are statistical units. Observed learning ranges are not confidence intervals. No universal leaderboard.",
+  "monetary_cost": null
+}

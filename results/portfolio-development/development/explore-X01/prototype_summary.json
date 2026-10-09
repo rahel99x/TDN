@@ -1,0 +1,21 @@
+{
+  "status": "COMPLETED",
+  "outcomes": [
+    {
+      "prototype": "X01",
+      "break_even_queries": 2062,
+      "maximum_relative_rms": {
+        "exact_cached_pairs": 0.0,
+        "uncached_pairs": 0.0,
+        "compact_temporal_encoding": 5.076965676376531e-16,
+        "classical_dense_output": 1.096196561076044e-11,
+        "gauss_two": 2.6897345601330505e-06,
+        "gauss_four": 1.1548847067590149e-12,
+        "fft_gauss_four": 1.154880524480679e-12
+      },
+      "decision": "RETAIN_REPRESENTATION_RESULT; COST_GATE_NOT_MET"
+    }
+  ],
+  "rows": 7,
+  "scientific_scope": "CPU development diagnostics, not confirmation"
+}

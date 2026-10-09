@@ -1,0 +1,491 @@
+{
+  "scope": "Exact copies of five verified bounded CPU development stages; no learned-model confirmation or GPU claim",
+  "files": [
+    {
+      "published_path": "results/portfolio-development/development/audit/COMPLETED",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/COMPLETED",
+      "sha256": "d24a1b1e29202a63a086f1d372188b13e408edc215fc2aa864b37b5d0dc10c1d",
+      "bytes": 65
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/summary.txt",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/summary.txt",
+      "sha256": "4479bcf2aa819c85a59895e0bb9dee585e7c62ff4d491a6331d5f115e37733fc",
+      "bytes": 151
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/stage.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/stage.json",
+      "sha256": "5b1181d6d9c945654dd5bd65448d2387767f3bd45d8ce5cec631282d56ca140b",
+      "bytes": 1252
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/science_manifest.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/science_manifest.json",
+      "sha256": "c19cd0a8e500f0f4969bf8b3b1b54b8240e1b3cc6efd6202bc4df100957fc3b3",
+      "bytes": 1410
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/review.csv",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/review.csv",
+      "sha256": "70de4f43c06db7faf32a24d89cdf376a11f428b1cb1404394997080c42de33d1",
+      "bytes": 86234
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/rows.jsonl",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/rows.jsonl",
+      "sha256": "b1128fcbc883fb65afad82282e7bd470e0b2abbc61724932177ee731038b184a",
+      "bytes": 243129
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/summary.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/summary.json",
+      "sha256": "1c7f3177164186e2ec58aff56d7e1c09ae1be77fbbd650eb9895e6c414ff6be1",
+      "bytes": 1255
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/protocol.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/protocol.json",
+      "sha256": "f50f20408404a7e764d62babcadf6741226d6237858814d3a2e33dd6b4e83bb7",
+      "bytes": 63120
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/rows.json",
+      "sha256": "9e16b11b497b08e566f1fe705885640ee252f29a191de053a6f254ba31ecfec4",
+      "bytes": 243172
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/workflow-seal.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/workflow-seal.json",
+      "sha256": "dc6415b025f63fb5a699bf1430320e40b49dd94770cf64d4c81927c860fb25be",
+      "bytes": 503
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/execution.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/execution.json",
+      "sha256": "d2196fcd2276466c68c9eaa901654e5e851b07bb23131562a5882a43b78d7090",
+      "bytes": 1129
+    },
+    {
+      "published_path": "results/portfolio-development/development/audit/review.md",
+      "original_path": "runs/portfolio-development-diagnostics-v2/audit/review.md",
+      "sha256": "ced570d1b8a95c78adac6809614e56f05e28faa69555b088be5d4e45b0ce0e14",
+      "bytes": 402
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/diagnostic_rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/diagnostic_rows.json",
+      "sha256": "425bf456bfa1781697c23b7faf76f0537ab01d8fe728b6cf2fc91f28addfebc6",
+      "bytes": 51230
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/COMPLETED",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/COMPLETED",
+      "sha256": "80728081492bdc57b49ddcff591b6af9d0e5afce418adf93f4bb3f395f32c557",
+      "bytes": 65
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/error_budget_semantics.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/error_budget_semantics.json",
+      "sha256": "fbd2f53e1ebd5319db02fb979aac8893e1c8ae920053cd922e4b282417239ca0",
+      "bytes": 515
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/summary.txt",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/summary.txt",
+      "sha256": "8b5413ff8e2f907c3809291799e2f09a92ed8781ef0a3207cd2d22c4c9287fcf",
+      "bytes": 152
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/stage.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/stage.json",
+      "sha256": "b9e0f82a43bac8ea08ca0deeabe84969f3f62a79481a2678e4f4570224446760",
+      "bytes": 1567
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/science_manifest.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/science_manifest.json",
+      "sha256": "68c3268f0cd9b23ab425fc532178e2822da91d24c14ffbff12f322053da5db69",
+      "bytes": 1874
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/review.csv",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/review.csv",
+      "sha256": "44f981859db484dd67bc489aaa30e06d7f265148a9fe25452c2b333c84dd0e44",
+      "bytes": 3683
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/rows.jsonl",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/rows.jsonl",
+      "sha256": "54c9cecb40628060d38078c3c02ce068fd83154133c828bc5637b5c0b087ce87",
+      "bytes": 20982
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/summary.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/summary.json",
+      "sha256": "1b6243feaca7bc0f1f6a6a060f5999bf1010e0d1bb06d8437c5d9afb5db66672",
+      "bytes": 1357
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/protocol.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/protocol.json",
+      "sha256": "f50f20408404a7e764d62babcadf6741226d6237858814d3a2e33dd6b4e83bb7",
+      "bytes": 63120
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/rows.json",
+      "sha256": "d987d489b09f550bee2dbb187e65c42185a2f4849d010111d790a42b0909eb47",
+      "bytes": 21025
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/profile_rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/profile_rows.json",
+      "sha256": "fa3cec36857316979a85cdad4793f0b16420910edea64de35d96b1251fcd52f7",
+      "bytes": 56085
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/workflow-seal.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/workflow-seal.json",
+      "sha256": "236cef15b8718a01fdf865a310bab44ac309f629f0c80816d36e80cc0a4e7daa",
+      "bytes": 503
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/execution.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/execution.json",
+      "sha256": "f09961e3a6970dee56ea8ea0765e58e4b7fa8c850ac9a06a518f3b366bb6fbdf",
+      "bytes": 1444
+    },
+    {
+      "published_path": "results/portfolio-development/development/diagnose/review.md",
+      "original_path": "runs/portfolio-development-diagnostics-v2/diagnose/review.md",
+      "sha256": "bcf5b0c7f942ed577c9e2285515a6e4c81db2bac4c4b6267672dad9dbefa9b7c",
+      "bytes": 400
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/temporal_encoding.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/temporal_encoding.json",
+      "sha256": "b38462f2b262b15846f8edac53afa7999a72f079ed295ec3d3ceeab35992139c",
+      "bytes": 161874
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/temporal_query_rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/temporal_query_rows.json",
+      "sha256": "eda64b50ede516b34d13f15e18a425fe90f008773549fb778199aabec62bd5c7",
+      "bytes": 197804
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/COMPLETED",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/COMPLETED",
+      "sha256": "048c80035afdda0a9eb4e5626c77c8ef36a1232ea4dc218b04864362b9988f13",
+      "bytes": 65
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/summary.txt",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/summary.txt",
+      "sha256": "2e369a641fd66b54fba7981d8c6c4bb664b9db9361e86084a5f1835edd919503",
+      "bytes": 167
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/stage.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/stage.json",
+      "sha256": "23e5721ce9af3cc94348ed8cc700c8e406c80edda6d113ce66749ca48225ca64",
+      "bytes": 1577
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/science_manifest.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/science_manifest.json",
+      "sha256": "1192170f80643df0dd718b80c7011a25a16cba8ba109e1960ce9b2ac7631b1b1",
+      "bytes": 2180
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/prototype_rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/prototype_rows.json",
+      "sha256": "a153310c115b15a7682e0a23df1837f220451869d14a90150ef229269424b69f",
+      "bytes": 14395
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/review.csv",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/review.csv",
+      "sha256": "1c970ee78977660ce87d95da510c3dc0162ce0640df54d731cfcd53a01396ca9",
+      "bytes": 5647
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/rows.jsonl",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/rows.jsonl",
+      "sha256": "a54f76d83dd90c1284a6d7cdc3e19a7f01e1b6aa82cb939a56e9acd480c0ce9c",
+      "bytes": 18902
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/summary.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/summary.json",
+      "sha256": "19b715dbcfe0012bd5240ac087060797d0af6b77064f44cf89144b5be741da35",
+      "bytes": 1886
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/prototype_registration.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/prototype_registration.json",
+      "sha256": "2b7dda06a0d7c7203b8ea9b41c950a35a457c244a353bcd1c5f54cf79b389b17",
+      "bytes": 645
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/protocol.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/protocol.json",
+      "sha256": "f50f20408404a7e764d62babcadf6741226d6237858814d3a2e33dd6b4e83bb7",
+      "bytes": 63120
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/prototype_summary.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/prototype_summary.json",
+      "sha256": "84b53f6812f5875b246b745e1e37779a2f8ffb32626c1394995cd1f550b341aa",
+      "bytes": 636
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/rows.json",
+      "sha256": "024e31753e2212ba129b001b240d15d52a332af4625a517048ecc8ec57995813",
+      "bytes": 18945
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/workflow-seal.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/workflow-seal.json",
+      "sha256": "c365a0c95e32a8b866babb2691871990da52af8dfe3a265bdffa00ae342818dc",
+      "bytes": 503
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/execution.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/execution.json",
+      "sha256": "003f563ead87dcba48581a06f59b79c93536865629ae4657069d95bb30414fb0",
+      "bytes": 1453
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/temporal_amortization.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/temporal_amortization.json",
+      "sha256": "c5665ac690ec706440e7c5b98c26d6305afe2db17b9e7928a8ef7e9274b991d5",
+      "bytes": 16924
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X01/review.md",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X01/review.md",
+      "sha256": "a82c73bb725df7bfca00471c021e43d0e420ea5fdb2cc0d929fffb9ba3f33b31",
+      "bytes": 400
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/closure_fit.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/closure_fit.json",
+      "sha256": "1928d13595cb9f18def8d0fa6d6527f2ba7cb3b40f57339d87a33dfde41b2bc0",
+      "bytes": 8108
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/COMPLETED",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/COMPLETED",
+      "sha256": "67f0fd60728f92574655625ef8caf7928f3581d45a630fbacb4215de5a4ec3a5",
+      "bytes": 65
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/summary.txt",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/summary.txt",
+      "sha256": "f6c37245cf5ff58f9b6cc0a3e031ddc3f2f274b8c73cc810ffee545a372b936e",
+      "bytes": 166
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/stage.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/stage.json",
+      "sha256": "4b33c7437641ada25b544c02f2c6c137df70c910f7e026b18faebdd822c0619c",
+      "bytes": 1577
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/science_manifest.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/science_manifest.json",
+      "sha256": "06989cbdc8f23b738559f7d880b22e9778b46874c420ac21fb165a741ec3f03b",
+      "bytes": 2065
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/prototype_rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/prototype_rows.json",
+      "sha256": "96b66888cdaeeb3e971daeefcd51ae85e92b89e0d7edeebc6060c63ceb291f7a",
+      "bytes": 12994
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/review.csv",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/review.csv",
+      "sha256": "5a53df72f2ad899d47ea3070a03ff663bceb30716a27d8d2e1fb53cdf565fefe",
+      "bytes": 3876
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/rows.jsonl",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/rows.jsonl",
+      "sha256": "f9d4c7cd564b77a9268de44fcd4f3e99c5fae425e9e1e22c802c57c4f479bdc7",
+      "bytes": 14423
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/summary.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/summary.json",
+      "sha256": "2b27eea5b66d620fe8eb27702c782bd59a9f87c7bea9d7f027893600a5537758",
+      "bytes": 1713
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/prototype_registration.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/prototype_registration.json",
+      "sha256": "ca4e3563e2233eacce3196ae9690ec74fa194f78ffabbee95b478eb35d62b71c",
+      "bytes": 645
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/protocol.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/protocol.json",
+      "sha256": "f50f20408404a7e764d62babcadf6741226d6237858814d3a2e33dd6b4e83bb7",
+      "bytes": 63120
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/prototype_summary.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/prototype_summary.json",
+      "sha256": "2a59e6cfcaf8f232bdadf3ff414749b632b70d02e85b058f87401f49df9319dc",
+      "bytes": 472
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/rows.json",
+      "sha256": "907d797cdb17f0381036db4b7fbaa133c38a5fd4d66bb25f82aeb03b14f5b141",
+      "bytes": 14466
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/closure_rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/closure_rows.json",
+      "sha256": "a00a495bb71d63b40d33a8ff42cf42d3e7bcc22d00a376c9cfb056b7c10c71ff",
+      "bytes": 227501
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/workflow-seal.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/workflow-seal.json",
+      "sha256": "8d9350cda9f316a3aa13f4305bee8b891f629c9d5515a8b0f718b42cb7073b1e",
+      "bytes": 503
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/execution.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/execution.json",
+      "sha256": "c07406c789097f50d520df8ad85a17450b0faa0e3a583db1db7616fd93a170ea",
+      "bytes": 1453
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X02/review.md",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X02/review.md",
+      "sha256": "572e63ed2aed56427fc6f0c3e1e4eb6b4814b75fea9a63729a38596c6c1076f1",
+      "bytes": 400
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/COMPLETED",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/COMPLETED",
+      "sha256": "d994a1ec17e987bde9ccff911fb0c1fa293b116b95d58befbbe7b8255cc8693c",
+      "bytes": 65
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/summary.txt",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/summary.txt",
+      "sha256": "3ebc8d43dd94cc8ac7c1a0476fb4a4f3d3d1d8447165f0d75827bfd34ab7804d",
+      "bytes": 165
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/selection_rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/selection_rows.json",
+      "sha256": "903cc35dd5f50c37139f25ff788f53d5eaf0a7a755fba521952267eb54cb4d7f",
+      "bytes": 364549
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/selection_states.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/selection_states.json",
+      "sha256": "603ae05f268f7beefc41496b5c1160ed344480baca77d5dbcecc939e31eca265",
+      "bytes": 491441
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/stage.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/stage.json",
+      "sha256": "9070033db96aedd32a4ac6bdeb4fa001b2579c825002825bc8b165f32fb7e158",
+      "bytes": 1576
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/science_manifest.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/science_manifest.json",
+      "sha256": "f23e1965fbdc6d9104d662c1a92ba5d3845287ef8ff93b454deb883e1a16b418",
+      "bytes": 2268
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/prototype_rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/prototype_rows.json",
+      "sha256": "23a41d46db7095c28dded5c43d8f16aec0f844d950753ef3738f1d022a6a9d8e",
+      "bytes": 9269
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/review.csv",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/review.csv",
+      "sha256": "c05fd2ab05c55ca0ce781f358a9866cbae8edb158142a5c3691ea749081803c4",
+      "bytes": 3102
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/rows.jsonl",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/rows.jsonl",
+      "sha256": "fd0ceebd666c452a7eddcbaa6127eb3210ae14e2ec90a9560046b23c4697e927",
+      "bytes": 11552
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/selection_phase_audit.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/selection_phase_audit.json",
+      "sha256": "9f7578a174973c811229d87b00ece496120ce60160df6505074d2a910f2017c1",
+      "bytes": 79968
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/summary.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/summary.json",
+      "sha256": "c33bb3234fad74a5bab049c18b78814a6e3b0174aeac3dc333b15670a2a997ec",
+      "bytes": 1593
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/selection_fit.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/selection_fit.json",
+      "sha256": "d1337ef49215bef2a7d5fa733dc103828b336522eeb8d2bcb476dca67ff44c90",
+      "bytes": 735
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/prototype_registration.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/prototype_registration.json",
+      "sha256": "366f2dbfc75c444dc7c8046ad3633d641ac33d3c274edae8c3535806108e1f59",
+      "bytes": 645
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/protocol.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/protocol.json",
+      "sha256": "f50f20408404a7e764d62babcadf6741226d6237858814d3a2e33dd6b4e83bb7",
+      "bytes": 63120
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/prototype_summary.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/prototype_summary.json",
+      "sha256": "4fb2d7b1d1f9f9bc29dac3e991aa4521405abe68ba29d1b7364b2f7c62fa662b",
+      "bytes": 358
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/rows.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/rows.json",
+      "sha256": "92f1c3e981a59fce3f15b9b70594f67256318e871b34db56c0467e63f5b59ed1",
+      "bytes": 11595
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/workflow-seal.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/workflow-seal.json",
+      "sha256": "7aee01f93ce602bd34253e89afb707fe1a586a50028a68f36985c07008c9b898",
+      "bytes": 503
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/execution.json",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/execution.json",
+      "sha256": "97a61ec45547c2d135afab85950eea1fead4b8623cf1a27b08cebde0feb3d5d7",
+      "bytes": 1453
+    },
+    {
+      "published_path": "results/portfolio-development/development/explore-X03/review.md",
+      "original_path": "runs/portfolio-development-diagnostics-v2/explore-X03/review.md",
+      "sha256": "752bbcab56d8e015d35698ee08c2181d611d6fe80dad8ae721a30b77be68ed97",
+      "bytes": 400
+    }
+  ]
+}

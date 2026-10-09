@@ -1,0 +1,71 @@
+{
+  "stage": "confirm-prepare-000",
+  "profile": "smoke",
+  "device": "cpu",
+  "execution_mode": "local-cpu",
+  "command": [
+    "/workspace/TDN/.venv/bin/python",
+    "/workspace/TDN/scripts/portfolio.py",
+    "--stage",
+    "confirm-prepare-000",
+    "--profile",
+    "smoke",
+    "--run-dir",
+    "/workspace/TDN/runs/portfolio-local-review-v2/confirm-prepare-000",
+    "--device",
+    "cpu",
+    "--local-root",
+    "/workspace/TDN",
+    "--prerequisite-dir",
+    "audit=/workspace/TDN/runs/portfolio-local-review-v2/audit",
+    "--prerequisite-dir",
+    "prepare=/workspace/TDN/runs/portfolio-local-review-v2/prepare",
+    "--prerequisite-dir",
+    "train-A-000=/workspace/TDN/runs/portfolio-local-review-v2/train-A-000",
+    "--prerequisite-dir",
+    "train-B-000=/workspace/TDN/runs/portfolio-local-review-v2/train-B-000",
+    "--prerequisite-dir",
+    "freeze=/workspace/TDN/runs/portfolio-local-review-v2/freeze"
+  ],
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "4b6b5ec1e3055bb53b6507ae4775c7bed1dc91b6",
+    "git_available": true,
+    "tracked_or_untracked_changes": false,
+    "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "protocol_sha256": "a334aa226f0981961372fb65075f6eee4d089550329e798876cd3604b22e0555",
+  "prerequisites": {
+    "audit": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/audit",
+      "workflow_seal_sha256": "8d46451bab0ae29a8be721d0a3b6e15f0c3c3eb2b43157224a1217dab1d967f4"
+    },
+    "prepare": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/prepare",
+      "workflow_seal_sha256": "5118a983c44cc516a8002e47d084cc96c718d5fd78dd46d3fd0d05d1ebc1e267"
+    },
+    "train-A-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/train-A-000",
+      "workflow_seal_sha256": "a70148ab4d2205a7bbb5f99c8446accf7d1abd632e0903e68093c5aa52696046"
+    },
+    "train-B-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/train-B-000",
+      "workflow_seal_sha256": "1b20c3d7a62bbcf4307075d0890ce2fa8c38e5f79ea90a7c9d26a471b467115e"
+    },
+    "freeze": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/freeze",
+      "workflow_seal_sha256": "e080cdab08ace5e16e09a32e5f498ff59d195b9fc5e5c60b822a6a5cbcb415aa"
+    }
+  },
+  "slurm_job_id": null,
+  "slurm_step_id": null
+}

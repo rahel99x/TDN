@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED",
+  "outcomes": [
+    {
+      "prototype": "X02",
+      "heldout_rms": {
+        "instantaneous_fit": 3.2331938616269736e-05,
+        "memory_persistence": 3.388881865223219e-07,
+        "memory_fitted": 9.729614123593589e-11,
+        "full_state_instantaneous_oracle": 2.8210002126510685e-07
+      },
+      "decision": "ADVANCE_CAUSAL_HISTORY_PILOT"
+    }
+  ],
+  "rows": 4,
+  "scientific_scope": "CPU development diagnostics, not confirmation"
+}

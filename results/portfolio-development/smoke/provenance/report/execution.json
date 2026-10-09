@@ -1,0 +1,119 @@
+{
+  "stage": "report",
+  "profile": "smoke",
+  "device": "cpu",
+  "execution_mode": "local-cpu",
+  "command": [
+    "/workspace/TDN/.venv/bin/python",
+    "/workspace/TDN/scripts/portfolio.py",
+    "--stage",
+    "report",
+    "--profile",
+    "smoke",
+    "--run-dir",
+    "/workspace/TDN/runs/portfolio-local-review-v2/report",
+    "--device",
+    "cpu",
+    "--local-root",
+    "/workspace/TDN",
+    "--prerequisite-dir",
+    "audit=/workspace/TDN/runs/portfolio-local-review-v2/audit",
+    "--prerequisite-dir",
+    "diagnose=/workspace/TDN/runs/portfolio-local-review-v2/diagnose",
+    "--prerequisite-dir",
+    "prepare=/workspace/TDN/runs/portfolio-local-review-v2/prepare",
+    "--prerequisite-dir",
+    "explore-X01=/workspace/TDN/runs/portfolio-local-review-v2/explore-X01",
+    "--prerequisite-dir",
+    "explore-X02=/workspace/TDN/runs/portfolio-local-review-v2/explore-X02",
+    "--prerequisite-dir",
+    "explore-X03=/workspace/TDN/runs/portfolio-local-review-v2/explore-X03",
+    "--prerequisite-dir",
+    "train-A-000=/workspace/TDN/runs/portfolio-local-review-v2/train-A-000",
+    "--prerequisite-dir",
+    "train-B-000=/workspace/TDN/runs/portfolio-local-review-v2/train-B-000",
+    "--prerequisite-dir",
+    "freeze=/workspace/TDN/runs/portfolio-local-review-v2/freeze",
+    "--prerequisite-dir",
+    "confirm-prepare-000=/workspace/TDN/runs/portfolio-local-review-v2/confirm-prepare-000",
+    "--prerequisite-dir",
+    "confirm-000=/workspace/TDN/runs/portfolio-local-review-v2/confirm-000",
+    "--prerequisite-dir",
+    "aggregate=/workspace/TDN/runs/portfolio-local-review-v2/aggregate",
+    "--prerequisite-dir",
+    "scaling=/workspace/TDN/runs/portfolio-local-review-v2/scaling"
+  ],
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "4b6b5ec1e3055bb53b6507ae4775c7bed1dc91b6",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "protocol_sha256": "a334aa226f0981961372fb65075f6eee4d089550329e798876cd3604b22e0555",
+  "prerequisites": {
+    "audit": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/audit",
+      "workflow_seal_sha256": "8d46451bab0ae29a8be721d0a3b6e15f0c3c3eb2b43157224a1217dab1d967f4"
+    },
+    "diagnose": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/diagnose",
+      "workflow_seal_sha256": "94d4d2e45d964d3121fbd182ad3e1d1cb4b773c2571c19b3941e370aa962aca6"
+    },
+    "prepare": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/prepare",
+      "workflow_seal_sha256": "5118a983c44cc516a8002e47d084cc96c718d5fd78dd46d3fd0d05d1ebc1e267"
+    },
+    "explore-X01": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/explore-X01",
+      "workflow_seal_sha256": "1d161bcd97f00c2c6c3fc4b33b0b7de1d5d6e3cbbb807c9ad5baa0c1626651ff"
+    },
+    "explore-X02": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/explore-X02",
+      "workflow_seal_sha256": "756708c6eca73fab0fca76b094f9041338a0ed0317c44bffeb5c5a3b9237e854"
+    },
+    "explore-X03": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/explore-X03",
+      "workflow_seal_sha256": "fe7dbb4bf2e33939dd1215d2d53b23af78d71d47f73c774b257f80c677646665"
+    },
+    "train-A-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/train-A-000",
+      "workflow_seal_sha256": "a70148ab4d2205a7bbb5f99c8446accf7d1abd632e0903e68093c5aa52696046"
+    },
+    "train-B-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/train-B-000",
+      "workflow_seal_sha256": "1b20c3d7a62bbcf4307075d0890ce2fa8c38e5f79ea90a7c9d26a471b467115e"
+    },
+    "freeze": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/freeze",
+      "workflow_seal_sha256": "e080cdab08ace5e16e09a32e5f498ff59d195b9fc5e5c60b822a6a5cbcb415aa"
+    },
+    "confirm-prepare-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/confirm-prepare-000",
+      "workflow_seal_sha256": "fb4a06e0d589c08e740448d214a6437c90bb6340cffe08a4bc703f7d1cd1ecb8"
+    },
+    "confirm-000": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/confirm-000",
+      "workflow_seal_sha256": "475284d3546644025d4d010cdf87fccfc76a165e8e14d8cc814a8316bf90ffa3"
+    },
+    "aggregate": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/aggregate",
+      "workflow_seal_sha256": "200cd71440c4b747e683f0d8ee68585b254d3e6c90a6e9cdcf0bc80e9ccb318f"
+    },
+    "scaling": {
+      "run_dir": "/workspace/TDN/runs/portfolio-local-review-v2/scaling",
+      "workflow_seal_sha256": "18cf2b6ff59262f3fc44f9704831f69f5b4a2f4f00229746aa8bb5668b2c99fc"
+    }
+  },
+  "slurm_job_id": null,
+  "slurm_step_id": null
+}

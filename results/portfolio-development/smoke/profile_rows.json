@@ -1,0 +1,1558 @@
+[
+  {
+    "regime": "low",
+    "family": "quad2_fixed",
+    "component": "warm_end_to_end",
+    "seconds": 0.001074030005838722,
+    "samples_seconds": [
+      0.0011369630083208904,
+      0.0010110970033565536
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_fixed",
+    "component": "first_invocation",
+    "seconds": 0.0019166860001860186,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_fixed",
+    "component": "allocations",
+    "seconds": 6.725599999999968e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_fixed",
+    "component": "other_tensor_operations",
+    "seconds": 0.0006272680000000016,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_fixed",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00018621699999999883,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_fixed",
+    "component": "copies",
+    "seconds": 0.00012442300000000057,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_fixed",
+    "component": "transforms",
+    "seconds": 0.00020783599999999974,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_fixed",
+    "component": "nonlinear_functions",
+    "seconds": 4.587799999999993e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "warm_end_to_end",
+    "seconds": 0.0011280744947725907,
+    "samples_seconds": [
+      0.001145044996519573,
+      0.0011111039930256084
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "first_invocation",
+    "seconds": 0.0023716499999864027,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "allocations",
+    "seconds": 5.334399999999943e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "other_tensor_operations",
+    "seconds": 0.00045275800000000216,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00018835699999999976,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "copies",
+    "seconds": 9.264300000000127e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "transforms",
+    "seconds": 0.00019105799999999908,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "nonlinear_functions",
+    "seconds": 4.2913000000000014e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "learned_dense_or_convolution",
+    "seconds": 2.4429999999997562e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad4_full",
+    "component": "warm_end_to_end",
+    "seconds": 0.00109247650107136,
+    "samples_seconds": [
+      0.001081559996237047,
+      0.001103393005905673
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad4_full",
+    "component": "first_invocation",
+    "seconds": 0.001749770002788864,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "low",
+    "family": "quad4_full",
+    "component": "allocations",
+    "seconds": 5.722200000000078e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad4_full",
+    "component": "other_tensor_operations",
+    "seconds": 0.0004800410000000011,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad4_full",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00028636499999999963,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad4_full",
+    "component": "copies",
+    "seconds": 9.666899999999868e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad4_full",
+    "component": "transforms",
+    "seconds": 0.0001836130000000003,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad4_full",
+    "component": "nonlinear_functions",
+    "seconds": 3.640299999999974e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "df",
+    "component": "warm_end_to_end",
+    "seconds": 0.0002874804922612384,
+    "samples_seconds": [
+      0.00025620899396017194,
+      0.00031875199056230485
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "low",
+    "family": "df",
+    "component": "first_invocation",
+    "seconds": 0.0008444790000794455,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "low",
+    "family": "df",
+    "component": "allocations",
+    "seconds": 1.7594000000000106e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "df",
+    "component": "other_tensor_operations",
+    "seconds": 0.00016162500000000004,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "df",
+    "component": "pointwise_arithmetic",
+    "seconds": 2.9551999999999906e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "df",
+    "component": "copies",
+    "seconds": 3.0651999999999645e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "df",
+    "component": "transforms",
+    "seconds": 7.428600000000024e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "df",
+    "component": "nonlinear_functions",
+    "seconds": 3.215000000000032e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "etdrk4",
+    "component": "warm_end_to_end",
+    "seconds": 0.0002021590044023469,
+    "samples_seconds": [
+      0.00020406200201250613,
+      0.0002002560067921877
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "low",
+    "family": "etdrk4",
+    "component": "first_invocation",
+    "seconds": 0.0008459620003122836,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "low",
+    "family": "etdrk4",
+    "component": "allocations",
+    "seconds": 1.699599999999988e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "etdrk4",
+    "component": "other_tensor_operations",
+    "seconds": 9.4138e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "etdrk4",
+    "component": "pointwise_arithmetic",
+    "seconds": 4.6140999999999964e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "etdrk4",
+    "component": "copies",
+    "seconds": 2.957099999999994e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "etdrk4",
+    "component": "transforms",
+    "seconds": 5.108600000000018e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "fno_small",
+    "component": "warm_end_to_end",
+    "seconds": 0.0009372624990646727,
+    "samples_seconds": [
+      0.000977386996964924,
+      0.0008971380011644214
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "low",
+    "family": "fno_small",
+    "component": "first_invocation",
+    "seconds": 0.002165444995625876,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "low",
+    "family": "fno_small",
+    "component": "allocations",
+    "seconds": 3.4814999999999984e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "fno_small",
+    "component": "other_tensor_operations",
+    "seconds": 0.0004297839999999994,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "fno_small",
+    "component": "pointwise_arithmetic",
+    "seconds": 6.628699999999956e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "fno_small",
+    "component": "copies",
+    "seconds": 4.806700000000042e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "fno_small",
+    "component": "transforms",
+    "seconds": 0.00012056999999999968,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "fno_small",
+    "component": "nonlinear_functions",
+    "seconds": 2.7139999999999985e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "fno_small",
+    "component": "learned_dense_or_convolution",
+    "seconds": 4.531800000000033e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "low",
+    "family": "quad2_conditioned",
+    "component": "standalone_feature_extraction",
+    "seconds": 0.00012026249896734953,
+    "samples_seconds": [
+      0.0001267769985133782,
+      0.00011374799942132086
+    ],
+    "measurement_scope": "uninstrumented isolated feature call; overlaps end-to-end work"
+  },
+  {
+    "regime": "low",
+    "family": "conditioned_rich",
+    "component": "standalone_feature_extraction",
+    "seconds": 0.00032350849505746737,
+    "samples_seconds": [
+      0.0002596139966044575,
+      0.00038740299351047724
+    ],
+    "measurement_scope": "uninstrumented isolated feature call; overlaps end-to-end work"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_fixed",
+    "component": "warm_end_to_end",
+    "seconds": 0.000986590501270257,
+    "samples_seconds": [
+      0.0009302969992859289,
+      0.001042884003254585
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_fixed",
+    "component": "first_invocation",
+    "seconds": 0.0013026779924985021,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_fixed",
+    "component": "allocations",
+    "seconds": 0.00021398500000000033,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_fixed",
+    "component": "other_tensor_operations",
+    "seconds": 0.00043390699999999716,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_fixed",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00015246099999999998,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_fixed",
+    "component": "copies",
+    "seconds": 8.431000000000015e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_fixed",
+    "component": "transforms",
+    "seconds": 0.00022157899999999996,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_fixed",
+    "component": "nonlinear_functions",
+    "seconds": 2.624999999999977e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "warm_end_to_end",
+    "seconds": 0.0013908585024182685,
+    "samples_seconds": [
+      0.0015926670021144673,
+      0.0011890500027220696
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "first_invocation",
+    "seconds": 0.0018296179914614186,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "allocations",
+    "seconds": 5.842200000000047e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "other_tensor_operations",
+    "seconds": 0.0006286430000000023,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00025314099999999997,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "copies",
+    "seconds": 0.00016151599999999946,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "transforms",
+    "seconds": 0.0002419029999999989,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "nonlinear_functions",
+    "seconds": 3.953699999999992e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "learned_dense_or_convolution",
+    "seconds": 2.45299999999952e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad4_full",
+    "component": "warm_end_to_end",
+    "seconds": 0.0010902989961323328,
+    "samples_seconds": [
+      0.0010485620005056262,
+      0.0011320359917590395
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad4_full",
+    "component": "first_invocation",
+    "seconds": 0.0017516319931019098,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad4_full",
+    "component": "allocations",
+    "seconds": 6.326799999999986e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad4_full",
+    "component": "other_tensor_operations",
+    "seconds": 0.0008885790000000035,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad4_full",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00022708099999999741,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad4_full",
+    "component": "copies",
+    "seconds": 0.0001953800000000019,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad4_full",
+    "component": "transforms",
+    "seconds": 0.00039869099999999773,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad4_full",
+    "component": "nonlinear_functions",
+    "seconds": 4.9807000000001036e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "df",
+    "component": "warm_end_to_end",
+    "seconds": 0.00042790350562427193,
+    "samples_seconds": [
+      0.0002726740058278665,
+      0.0005831330054206774
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "df",
+    "component": "first_invocation",
+    "seconds": 0.0009228260023519397,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "high_pair",
+    "family": "df",
+    "component": "allocations",
+    "seconds": 1.549300000000001e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "df",
+    "component": "other_tensor_operations",
+    "seconds": 0.00015497399999999975,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "df",
+    "component": "pointwise_arithmetic",
+    "seconds": 2.5471000000000146e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "df",
+    "component": "copies",
+    "seconds": 2.7371000000000094e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "df",
+    "component": "transforms",
+    "seconds": 4.137999999999994e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "df",
+    "component": "nonlinear_functions",
+    "seconds": 2.783999999999992e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "etdrk4",
+    "component": "warm_end_to_end",
+    "seconds": 0.0003207144982297905,
+    "samples_seconds": [
+      0.0003135639999527484,
+      0.00032786499650683254
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "etdrk4",
+    "component": "first_invocation",
+    "seconds": 0.000808957003755495,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "high_pair",
+    "family": "etdrk4",
+    "component": "allocations",
+    "seconds": 1.662599999999999e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "etdrk4",
+    "component": "other_tensor_operations",
+    "seconds": 9.275900000000001e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "etdrk4",
+    "component": "pointwise_arithmetic",
+    "seconds": 4.474399999999989e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "etdrk4",
+    "component": "copies",
+    "seconds": 2.897300000000007e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "etdrk4",
+    "component": "transforms",
+    "seconds": 5.1603999999999894e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "fno_small",
+    "component": "warm_end_to_end",
+    "seconds": 0.0008693420022609644,
+    "samples_seconds": [
+      0.0008848199940985069,
+      0.0008538640104234219
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "fno_small",
+    "component": "first_invocation",
+    "seconds": 0.0017340360063826665,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "high_pair",
+    "family": "fno_small",
+    "component": "allocations",
+    "seconds": 3.9875000000000454e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "fno_small",
+    "component": "other_tensor_operations",
+    "seconds": 0.000534285999999999,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "fno_small",
+    "component": "pointwise_arithmetic",
+    "seconds": 6.795999999999936e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "fno_small",
+    "component": "copies",
+    "seconds": 4.992100000000039e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "fno_small",
+    "component": "transforms",
+    "seconds": 0.0001286540000000004,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "fno_small",
+    "component": "nonlinear_functions",
+    "seconds": 2.854000000000042e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "fno_small",
+    "component": "learned_dense_or_convolution",
+    "seconds": 3.8786999999999695e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "high_pair",
+    "family": "quad2_conditioned",
+    "component": "standalone_feature_extraction",
+    "seconds": 0.00013223549467511475,
+    "samples_seconds": [
+      0.00014874999760650098,
+      0.00011572099174372852
+    ],
+    "measurement_scope": "uninstrumented isolated feature call; overlaps end-to-end work"
+  },
+  {
+    "regime": "high_pair",
+    "family": "conditioned_rich",
+    "component": "standalone_feature_extraction",
+    "seconds": 0.00017900499369716272,
+    "samples_seconds": [
+      0.0001549689914099872,
+      0.00020304099598433822
+    ],
+    "measurement_scope": "uninstrumented isolated feature call; overlaps end-to-end work"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_fixed",
+    "component": "warm_end_to_end",
+    "seconds": 0.0009541774925310165,
+    "samples_seconds": [
+      0.0009111989929806441,
+      0.0009971559920813888
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_fixed",
+    "component": "first_invocation",
+    "seconds": 0.0013441689952742308,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_fixed",
+    "component": "allocations",
+    "seconds": 4.620400000000066e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_fixed",
+    "component": "other_tensor_operations",
+    "seconds": 0.00037993799999999747,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_fixed",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.000141903,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_fixed",
+    "component": "copies",
+    "seconds": 7.69200000000001e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_fixed",
+    "component": "transforms",
+    "seconds": 0.00014347399999999964,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_fixed",
+    "component": "nonlinear_functions",
+    "seconds": 4.992299999999989e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "warm_end_to_end",
+    "seconds": 0.0011649645020952448,
+    "samples_seconds": [
+      0.0011278699967078865,
+      0.0012020590074826032
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "first_invocation",
+    "seconds": 0.001809877998312004,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "allocations",
+    "seconds": 5.0300000000001094e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "other_tensor_operations",
+    "seconds": 0.00044576900000000157,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00018060899999999995,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "copies",
+    "seconds": 0.00016447399999999912,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "transforms",
+    "seconds": 0.0001825430000000003,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "nonlinear_functions",
+    "seconds": 3.395099999999991e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "learned_dense_or_convolution",
+    "seconds": 2.592000000000098e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad4_full",
+    "component": "warm_end_to_end",
+    "seconds": 0.0012668449999182485,
+    "samples_seconds": [
+      0.0014020149974385276,
+      0.0011316750023979694
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad4_full",
+    "component": "first_invocation",
+    "seconds": 0.001809267996577546,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "rough",
+    "family": "quad4_full",
+    "component": "allocations",
+    "seconds": 4.9019999999999385e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad4_full",
+    "component": "other_tensor_operations",
+    "seconds": 0.00048202299999999755,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad4_full",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00017973500000000026,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad4_full",
+    "component": "copies",
+    "seconds": 0.00011418300000000126,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad4_full",
+    "component": "transforms",
+    "seconds": 0.00016158900000000088,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad4_full",
+    "component": "nonlinear_functions",
+    "seconds": 3.278599999999995e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "df",
+    "component": "warm_end_to_end",
+    "seconds": 0.0002841809982783161,
+    "samples_seconds": [
+      0.0003008459898410365,
+      0.0002675160067155957
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "rough",
+    "family": "df",
+    "component": "first_invocation",
+    "seconds": 0.000862726999912411,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "rough",
+    "family": "df",
+    "component": "allocations",
+    "seconds": 1.6281000000000334e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "df",
+    "component": "other_tensor_operations",
+    "seconds": 0.00015759799999999992,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "df",
+    "component": "pointwise_arithmetic",
+    "seconds": 2.6799999999999855e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "df",
+    "component": "copies",
+    "seconds": 2.9121999999999848e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "df",
+    "component": "transforms",
+    "seconds": 6.976599999999979e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "df",
+    "component": "nonlinear_functions",
+    "seconds": 2.9139999999999873e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "etdrk4",
+    "component": "warm_end_to_end",
+    "seconds": 0.0002755130044533871,
+    "samples_seconds": [
+      0.00020378200861159712,
+      0.0003472440002951771
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "rough",
+    "family": "etdrk4",
+    "component": "first_invocation",
+    "seconds": 0.0010080009960802272,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "rough",
+    "family": "etdrk4",
+    "component": "allocations",
+    "seconds": 1.7828999999999836e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "etdrk4",
+    "component": "other_tensor_operations",
+    "seconds": 0.00010641299999999984,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "etdrk4",
+    "component": "pointwise_arithmetic",
+    "seconds": 9.80160000000004e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "etdrk4",
+    "component": "copies",
+    "seconds": 3.196700000000012e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "etdrk4",
+    "component": "transforms",
+    "seconds": 5.806799999999987e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "fno_small",
+    "component": "warm_end_to_end",
+    "seconds": 0.000853678495332133,
+    "samples_seconds": [
+      0.00087787899246905,
+      0.0008294779981952161
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "rough",
+    "family": "fno_small",
+    "component": "first_invocation",
+    "seconds": 0.0014812619920121506,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "rough",
+    "family": "fno_small",
+    "component": "allocations",
+    "seconds": 3.770300000000006e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "fno_small",
+    "component": "other_tensor_operations",
+    "seconds": 0.0005017410000000004,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "fno_small",
+    "component": "pointwise_arithmetic",
+    "seconds": 6.682700000000029e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "fno_small",
+    "component": "copies",
+    "seconds": 4.839099999999979e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "fno_small",
+    "component": "transforms",
+    "seconds": 9.787799999999942e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "fno_small",
+    "component": "nonlinear_functions",
+    "seconds": 2.7340000000000373e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "fno_small",
+    "component": "learned_dense_or_convolution",
+    "seconds": 3.711599999999998e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "rough",
+    "family": "quad2_conditioned",
+    "component": "standalone_feature_extraction",
+    "seconds": 0.00016088800475699827,
+    "samples_seconds": [
+      0.000189220008905977,
+      0.00013255600060801953
+    ],
+    "measurement_scope": "uninstrumented isolated feature call; overlaps end-to-end work"
+  },
+  {
+    "regime": "rough",
+    "family": "conditioned_rich",
+    "component": "standalone_feature_extraction",
+    "seconds": 0.00015339650417445228,
+    "samples_seconds": [
+      0.00015576000441797078,
+      0.00015103300393093377
+    ],
+    "measurement_scope": "uninstrumented isolated feature call; overlaps end-to-end work"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_fixed",
+    "component": "warm_end_to_end",
+    "seconds": 0.0009351039989269339,
+    "samples_seconds": [
+      0.0009173480066237971,
+      0.0009528599912300706
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_fixed",
+    "component": "first_invocation",
+    "seconds": 0.0014181489968905225,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_fixed",
+    "component": "allocations",
+    "seconds": 4.559100000000013e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_fixed",
+    "component": "other_tensor_operations",
+    "seconds": 0.00040448600000000115,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_fixed",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00014173099999999913,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_fixed",
+    "component": "copies",
+    "seconds": 7.868100000000023e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_fixed",
+    "component": "transforms",
+    "seconds": 0.00014597599999999913,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_fixed",
+    "component": "nonlinear_functions",
+    "seconds": 2.4647999999999687e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "warm_end_to_end",
+    "seconds": 0.0014160560021991841,
+    "samples_seconds": [
+      0.0014943420101189986,
+      0.0013377699942793697
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "first_invocation",
+    "seconds": 0.0016441839979961514,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "allocations",
+    "seconds": 4.968699999999951e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "other_tensor_operations",
+    "seconds": 0.00046195100000000075,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00017374299999999932,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "copies",
+    "seconds": 8.797499999999889e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "transforms",
+    "seconds": 0.0001575730000000003,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "nonlinear_functions",
+    "seconds": 3.204900000000015e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "learned_dense_or_convolution",
+    "seconds": 2.525000000000091e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad4_full",
+    "component": "warm_end_to_end",
+    "seconds": 0.0010636640072334558,
+    "samples_seconds": [
+      0.0010634440113790333,
+      0.0010638840030878782
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad4_full",
+    "component": "first_invocation",
+    "seconds": 0.0014809819986112416,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad4_full",
+    "component": "allocations",
+    "seconds": 4.888599999999902e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad4_full",
+    "component": "other_tensor_operations",
+    "seconds": 0.0004253440000000016,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad4_full",
+    "component": "pointwise_arithmetic",
+    "seconds": 0.00017942299999999914,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad4_full",
+    "component": "copies",
+    "seconds": 8.742899999999956e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad4_full",
+    "component": "transforms",
+    "seconds": 0.00018584300000000031,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad4_full",
+    "component": "nonlinear_functions",
+    "seconds": 3.3325000000000275e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "df",
+    "component": "warm_end_to_end",
+    "seconds": 0.00026230300863971934,
+    "samples_seconds": [
+      0.0002690780092962086,
+      0.00025552800798323005
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "df",
+    "component": "first_invocation",
+    "seconds": 0.0006550299876835197,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "df",
+    "component": "allocations",
+    "seconds": 1.649599999999988e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "df",
+    "component": "other_tensor_operations",
+    "seconds": 0.00015744199999999993,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "df",
+    "component": "pointwise_arithmetic",
+    "seconds": 2.6671000000000223e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "df",
+    "component": "copies",
+    "seconds": 2.7286000000000114e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "df",
+    "component": "transforms",
+    "seconds": 4.100399999999991e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "df",
+    "component": "nonlinear_functions",
+    "seconds": 2.8349999999999796e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "etdrk4",
+    "component": "warm_end_to_end",
+    "seconds": 0.00021965500491205603,
+    "samples_seconds": [
+      0.00020274000416975468,
+      0.00023657000565435737
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "etdrk4",
+    "component": "first_invocation",
+    "seconds": 0.000926551001612097,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "etdrk4",
+    "component": "allocations",
+    "seconds": 1.5540999999999884e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "etdrk4",
+    "component": "other_tensor_operations",
+    "seconds": 9.117600000000012e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "etdrk4",
+    "component": "pointwise_arithmetic",
+    "seconds": 4.574099999999991e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "etdrk4",
+    "component": "copies",
+    "seconds": 2.8524000000000156e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "etdrk4",
+    "component": "transforms",
+    "seconds": 5.085199999999989e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "fno_small",
+    "component": "warm_end_to_end",
+    "seconds": 0.0009304720006184652,
+    "samples_seconds": [
+      0.0010645860020304099,
+      0.0007963579992065206
+    ],
+    "measurement_scope": "uninstrumented CPU wall latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "fno_small",
+    "component": "first_invocation",
+    "seconds": 0.0012377520033624023,
+    "measurement_scope": "new model coefficients; warm process and libraries, not cold process"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "fno_small",
+    "component": "allocations",
+    "seconds": 3.5498000000000255e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "fno_small",
+    "component": "other_tensor_operations",
+    "seconds": 0.0004861099999999998,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "fno_small",
+    "component": "pointwise_arithmetic",
+    "seconds": 6.629199999999983e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "fno_small",
+    "component": "copies",
+    "seconds": 4.7555999999999726e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "fno_small",
+    "component": "transforms",
+    "seconds": 9.603199999999969e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "fno_small",
+    "component": "nonlinear_functions",
+    "seconds": 2.7339999999999805e-06,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "fno_small",
+    "component": "learned_dense_or_convolution",
+    "seconds": 3.7305000000000064e-05,
+    "measurement_scope": "instrumented self CPU operator time; Python/profiler overhead excluded; not deployment latency"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "quad2_conditioned",
+    "component": "standalone_feature_extraction",
+    "seconds": 0.0001383144990541041,
+    "samples_seconds": [
+      0.0001257859985344112,
+      0.000150842999573797
+    ],
+    "measurement_scope": "uninstrumented isolated feature call; overlaps end-to-end work"
+  },
+  {
+    "regime": "near_nyquist",
+    "family": "conditioned_rich",
+    "component": "standalone_feature_extraction",
+    "seconds": 0.00015247100236592814,
+    "samples_seconds": [
+      0.00015303700638469309,
+      0.0001519049983471632
+    ],
+    "measurement_scope": "uninstrumented isolated feature call; overlaps end-to-end work"
+  }
+]

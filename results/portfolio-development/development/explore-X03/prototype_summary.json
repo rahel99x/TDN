@@ -1,0 +1,15 @@
+{
+  "status": "COMPLETED",
+  "outcomes": [
+    {
+      "prototype": "X03",
+      "decision": {
+        "full_pairs": "ANALYTIC_REFERENCE_ONLY",
+        "deterministic_l1_tail": "STOP_CURRENT_SELECTOR",
+        "fitted_rank_rule": "STOP_CURRENT_SELECTOR"
+      }
+    }
+  ],
+  "rows": 4,
+  "scientific_scope": "CPU development diagnostics, not confirmation"
+}

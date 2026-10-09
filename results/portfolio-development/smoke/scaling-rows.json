@@ -1,0 +1,3557 @@
+{
+  "rows": [
+    {
+      "model_id": "discrete/quad2_fixed/n0/seedNone",
+      "family": "quad2_fixed",
+      "track": "discrete",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 5.8413032701479995e-08,
+          "error_max": 1.529288272128504e-07,
+          "centered_rms": 4.635816164414336e-08,
+          "mean_error": 3.553875684882135e-08,
+          "upper_rms": 5.8414032701479997e-08,
+          "upper_max": 1.529298272128504e-07,
+          "spectral_low_rms": 4.663425358530864e-08,
+          "spectral_high_rms": 3.5175684526748014e-08,
+          "minimum": 0.23841962218284607,
+          "maximum": 0.4872775673866272,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.228363908717619e-07,
+          "error_max": 3.2694115303932847e-07,
+          "centered_rms": 1.0956250632013885e-07,
+          "mean_error": 5.5541301130328236e-08,
+          "upper_rms": 1.228373908717619e-07,
+          "upper_max": 3.2694215303932844e-07,
+          "spectral_low_rms": 7.811742738492333e-08,
+          "spectral_high_rms": 9.479686946920503e-08,
+          "minimum": 0.38551703095436096,
+          "maximum": 0.6424874663352966,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.0022059650073060766,
+      "cold_seconds": 0.004102292004972696,
+      "samples_per_second": 906.6326951588408,
+      "raw_timing": {
+        "methods": {
+          "discrete/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.0022059650073060766,
+            "cold_seconds": 0.004102292004972696,
+            "samples_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "raw_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "min_seconds": 0.002036563993897289,
+            "max_seconds": 0.0022793740063207224,
+            "p95_seconds": 0.0022793740063207224,
+            "total_seconds": 0.006521903007524088,
+            "warmup_seconds": 0.0024703960079932585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.0031458760058740154,
+            "cold_seconds": 0.003972350008552894,
+            "samples_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "raw_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "min_seconds": 0.0029916479979874566,
+            "max_seconds": 0.003190792995155789,
+            "p95_seconds": 0.003190792995155789,
+            "total_seconds": 0.009328316999017261,
+            "warmup_seconds": 0.0029616340034408495,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/df/n0/seedNone": {
+            "median_seconds": 0.0006503129989141598,
+            "cold_seconds": 0.00046852300874888897,
+            "samples_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "raw_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "min_seconds": 0.0006194570014486089,
+            "max_seconds": 0.000657032011076808,
+            "p95_seconds": 0.000657032011076808,
+            "total_seconds": 0.0019268020114395767,
+            "warmup_seconds": 0.0006501219904748723,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0007416180014843121,
+            "cold_seconds": 0.0016101130022434518,
+            "samples_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "raw_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "min_seconds": 0.0004847080126637593,
+            "max_seconds": 0.0008491769985994324,
+            "p95_seconds": 0.0008491769985994324,
+            "total_seconds": 0.002075503012747504,
+            "warmup_seconds": 0.0008648800139781088,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_small/n2/seed6100011": {
+            "median_seconds": 0.0019901860068785027,
+            "cold_seconds": 0.0021001580025767908,
+            "samples_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "raw_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "min_seconds": 0.0017387139960192144,
+            "max_seconds": 0.002062422994640656,
+            "p95_seconds": 0.002062422994640656,
+            "total_seconds": 0.005791322997538373,
+            "warmup_seconds": 0.0023759470059303567,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.002770731007331051,
+            "cold_seconds": 0.004497998001170345,
+            "samples_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "raw_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "min_seconds": 0.002589422991150059,
+            "max_seconds": 0.0032916420022957027,
+            "p95_seconds": 0.0032916420022957027,
+            "total_seconds": 0.008651796000776812,
+            "warmup_seconds": 0.003122562004136853,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/df/n0/seedNone": 0.0006194570014486089,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022793740063207224,
+              "discrete/fno_small/n2/seed6100011": 0.002062422994640656,
+              "discrete/fno_standard/n2/seed6100011": 0.0032916420022957027,
+              "discrete/etdrk4/n0/seedNone": 0.0008491769985994324,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.003190792995155789
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "discrete/quad2_conditioned/n2/seed6100011",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029916479979874566,
+              "discrete/df/n0/seedNone": 0.0006503129989141598,
+              "discrete/fno_small/n2/seed6100011": 0.0019901860068785027,
+              "discrete/fno_standard/n2/seed6100011": 0.002589422991150059,
+              "discrete/etdrk4/n0/seedNone": 0.0004847080126637593,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022059650073060766
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/etdrk4/n0/seedNone": 0.0007416180014843121,
+              "discrete/fno_standard/n2/seed6100011": 0.002770731007331051,
+              "discrete/fno_small/n2/seed6100011": 0.0017387139960192144,
+              "discrete/quad2_fixed/n0/seedNone": 0.002036563993897289,
+              "discrete/df/n0/seedNone": 0.000657032011076808,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0031458760058740154
+            }
+          }
+        ],
+        "cold_order": [
+          "discrete/quad2_fixed/n0/seedNone",
+          "discrete/fno_standard/n2/seed6100011",
+          "discrete/df/n0/seedNone",
+          "discrete/fno_small/n2/seed6100011",
+          "discrete/etdrk4/n0/seedNone",
+          "discrete/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "discrete/quad2_fixed/n0/seedNone": 0.004102292004972696,
+          "discrete/fno_standard/n2/seed6100011": 0.004497998001170345,
+          "discrete/df/n0/seedNone": 0.00046852300874888897,
+          "discrete/fno_small/n2/seed6100011": 0.0021001580025767908,
+          "discrete/etdrk4/n0/seedNone": 0.0016101130022434518,
+          "discrete/quad2_conditioned/n2/seed6100011": 0.003972350008552894
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/fno_standard/n2/seed6100011": 0.003122562004136853,
+              "discrete/etdrk4/n0/seedNone": 0.0008648800139781088,
+              "discrete/quad2_fixed/n0/seedNone": 0.0024703960079932585,
+              "discrete/df/n0/seedNone": 0.0006501219904748723,
+              "discrete/fno_small/n2/seed6100011": 0.0023759470059303567,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029616340034408495
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.026517623991821893,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "discrete/quad2_conditioned/n2/seed6100011",
+      "family": "quad2_conditioned",
+      "track": "discrete",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 5.8413032701479995e-08,
+          "error_max": 1.529288272128504e-07,
+          "centered_rms": 4.635816164414336e-08,
+          "mean_error": 3.553875684882135e-08,
+          "upper_rms": 5.8414032701479997e-08,
+          "upper_max": 1.529298272128504e-07,
+          "spectral_low_rms": 4.663425358530864e-08,
+          "spectral_high_rms": 3.5175684526748014e-08,
+          "minimum": 0.23841962218284607,
+          "maximum": 0.4872775673866272,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.228363908717619e-07,
+          "error_max": 3.2694115303932847e-07,
+          "centered_rms": 1.0956250632013885e-07,
+          "mean_error": 5.5541301130328236e-08,
+          "upper_rms": 1.228373908717619e-07,
+          "upper_max": 3.2694215303932844e-07,
+          "spectral_low_rms": 7.811742738492333e-08,
+          "spectral_high_rms": 9.479686946920503e-08,
+          "minimum": 0.38551703095436096,
+          "maximum": 0.6424874663352966,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.0031458760058740154,
+      "cold_seconds": 0.003972350008552894,
+      "samples_per_second": 635.7529655541341,
+      "raw_timing": {
+        "methods": {
+          "discrete/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.0022059650073060766,
+            "cold_seconds": 0.004102292004972696,
+            "samples_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "raw_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "min_seconds": 0.002036563993897289,
+            "max_seconds": 0.0022793740063207224,
+            "p95_seconds": 0.0022793740063207224,
+            "total_seconds": 0.006521903007524088,
+            "warmup_seconds": 0.0024703960079932585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.0031458760058740154,
+            "cold_seconds": 0.003972350008552894,
+            "samples_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "raw_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "min_seconds": 0.0029916479979874566,
+            "max_seconds": 0.003190792995155789,
+            "p95_seconds": 0.003190792995155789,
+            "total_seconds": 0.009328316999017261,
+            "warmup_seconds": 0.0029616340034408495,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/df/n0/seedNone": {
+            "median_seconds": 0.0006503129989141598,
+            "cold_seconds": 0.00046852300874888897,
+            "samples_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "raw_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "min_seconds": 0.0006194570014486089,
+            "max_seconds": 0.000657032011076808,
+            "p95_seconds": 0.000657032011076808,
+            "total_seconds": 0.0019268020114395767,
+            "warmup_seconds": 0.0006501219904748723,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0007416180014843121,
+            "cold_seconds": 0.0016101130022434518,
+            "samples_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "raw_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "min_seconds": 0.0004847080126637593,
+            "max_seconds": 0.0008491769985994324,
+            "p95_seconds": 0.0008491769985994324,
+            "total_seconds": 0.002075503012747504,
+            "warmup_seconds": 0.0008648800139781088,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_small/n2/seed6100011": {
+            "median_seconds": 0.0019901860068785027,
+            "cold_seconds": 0.0021001580025767908,
+            "samples_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "raw_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "min_seconds": 0.0017387139960192144,
+            "max_seconds": 0.002062422994640656,
+            "p95_seconds": 0.002062422994640656,
+            "total_seconds": 0.005791322997538373,
+            "warmup_seconds": 0.0023759470059303567,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.002770731007331051,
+            "cold_seconds": 0.004497998001170345,
+            "samples_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "raw_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "min_seconds": 0.002589422991150059,
+            "max_seconds": 0.0032916420022957027,
+            "p95_seconds": 0.0032916420022957027,
+            "total_seconds": 0.008651796000776812,
+            "warmup_seconds": 0.003122562004136853,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/df/n0/seedNone": 0.0006194570014486089,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022793740063207224,
+              "discrete/fno_small/n2/seed6100011": 0.002062422994640656,
+              "discrete/fno_standard/n2/seed6100011": 0.0032916420022957027,
+              "discrete/etdrk4/n0/seedNone": 0.0008491769985994324,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.003190792995155789
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "discrete/quad2_conditioned/n2/seed6100011",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029916479979874566,
+              "discrete/df/n0/seedNone": 0.0006503129989141598,
+              "discrete/fno_small/n2/seed6100011": 0.0019901860068785027,
+              "discrete/fno_standard/n2/seed6100011": 0.002589422991150059,
+              "discrete/etdrk4/n0/seedNone": 0.0004847080126637593,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022059650073060766
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/etdrk4/n0/seedNone": 0.0007416180014843121,
+              "discrete/fno_standard/n2/seed6100011": 0.002770731007331051,
+              "discrete/fno_small/n2/seed6100011": 0.0017387139960192144,
+              "discrete/quad2_fixed/n0/seedNone": 0.002036563993897289,
+              "discrete/df/n0/seedNone": 0.000657032011076808,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0031458760058740154
+            }
+          }
+        ],
+        "cold_order": [
+          "discrete/quad2_fixed/n0/seedNone",
+          "discrete/fno_standard/n2/seed6100011",
+          "discrete/df/n0/seedNone",
+          "discrete/fno_small/n2/seed6100011",
+          "discrete/etdrk4/n0/seedNone",
+          "discrete/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "discrete/quad2_fixed/n0/seedNone": 0.004102292004972696,
+          "discrete/fno_standard/n2/seed6100011": 0.004497998001170345,
+          "discrete/df/n0/seedNone": 0.00046852300874888897,
+          "discrete/fno_small/n2/seed6100011": 0.0021001580025767908,
+          "discrete/etdrk4/n0/seedNone": 0.0016101130022434518,
+          "discrete/quad2_conditioned/n2/seed6100011": 0.003972350008552894
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/fno_standard/n2/seed6100011": 0.003122562004136853,
+              "discrete/etdrk4/n0/seedNone": 0.0008648800139781088,
+              "discrete/quad2_fixed/n0/seedNone": 0.0024703960079932585,
+              "discrete/df/n0/seedNone": 0.0006501219904748723,
+              "discrete/fno_small/n2/seed6100011": 0.0023759470059303567,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029616340034408495
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.026517623991821893,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "discrete/df/n0/seedNone",
+      "family": "df",
+      "track": "discrete",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 5.397939105603426e-08,
+          "error_max": 1.1853438375286629e-07,
+          "centered_rms": 4.083217155106424e-08,
+          "mean_error": 3.530592620516748e-08,
+          "upper_rms": 5.398039105603426e-08,
+          "upper_max": 1.1853538375286629e-07,
+          "spectral_low_rms": 4.420965148334703e-08,
+          "spectral_high_rms": 3.0972267829483586e-08,
+          "minimum": 0.2384195625782013,
+          "maximum": 0.4872775375843048,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.0734025314418671e-07,
+          "error_max": 3.2694115303932847e-07,
+          "centered_rms": 9.040485863666236e-08,
+          "mean_error": 5.786960756686693e-08,
+          "upper_rms": 1.0734125314418671e-07,
+          "upper_max": 3.2694215303932844e-07,
+          "spectral_low_rms": 7.275922382262118e-08,
+          "spectral_high_rms": 7.891783888188905e-08,
+          "minimum": 0.3855169713497162,
+          "maximum": 0.6424874663352966,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.0006503129989141598,
+      "cold_seconds": 0.00046852300874888897,
+      "samples_per_second": 3075.442138384806,
+      "raw_timing": {
+        "methods": {
+          "discrete/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.0022059650073060766,
+            "cold_seconds": 0.004102292004972696,
+            "samples_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "raw_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "min_seconds": 0.002036563993897289,
+            "max_seconds": 0.0022793740063207224,
+            "p95_seconds": 0.0022793740063207224,
+            "total_seconds": 0.006521903007524088,
+            "warmup_seconds": 0.0024703960079932585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.0031458760058740154,
+            "cold_seconds": 0.003972350008552894,
+            "samples_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "raw_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "min_seconds": 0.0029916479979874566,
+            "max_seconds": 0.003190792995155789,
+            "p95_seconds": 0.003190792995155789,
+            "total_seconds": 0.009328316999017261,
+            "warmup_seconds": 0.0029616340034408495,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/df/n0/seedNone": {
+            "median_seconds": 0.0006503129989141598,
+            "cold_seconds": 0.00046852300874888897,
+            "samples_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "raw_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "min_seconds": 0.0006194570014486089,
+            "max_seconds": 0.000657032011076808,
+            "p95_seconds": 0.000657032011076808,
+            "total_seconds": 0.0019268020114395767,
+            "warmup_seconds": 0.0006501219904748723,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0007416180014843121,
+            "cold_seconds": 0.0016101130022434518,
+            "samples_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "raw_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "min_seconds": 0.0004847080126637593,
+            "max_seconds": 0.0008491769985994324,
+            "p95_seconds": 0.0008491769985994324,
+            "total_seconds": 0.002075503012747504,
+            "warmup_seconds": 0.0008648800139781088,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_small/n2/seed6100011": {
+            "median_seconds": 0.0019901860068785027,
+            "cold_seconds": 0.0021001580025767908,
+            "samples_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "raw_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "min_seconds": 0.0017387139960192144,
+            "max_seconds": 0.002062422994640656,
+            "p95_seconds": 0.002062422994640656,
+            "total_seconds": 0.005791322997538373,
+            "warmup_seconds": 0.0023759470059303567,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.002770731007331051,
+            "cold_seconds": 0.004497998001170345,
+            "samples_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "raw_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "min_seconds": 0.002589422991150059,
+            "max_seconds": 0.0032916420022957027,
+            "p95_seconds": 0.0032916420022957027,
+            "total_seconds": 0.008651796000776812,
+            "warmup_seconds": 0.003122562004136853,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/df/n0/seedNone": 0.0006194570014486089,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022793740063207224,
+              "discrete/fno_small/n2/seed6100011": 0.002062422994640656,
+              "discrete/fno_standard/n2/seed6100011": 0.0032916420022957027,
+              "discrete/etdrk4/n0/seedNone": 0.0008491769985994324,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.003190792995155789
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "discrete/quad2_conditioned/n2/seed6100011",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029916479979874566,
+              "discrete/df/n0/seedNone": 0.0006503129989141598,
+              "discrete/fno_small/n2/seed6100011": 0.0019901860068785027,
+              "discrete/fno_standard/n2/seed6100011": 0.002589422991150059,
+              "discrete/etdrk4/n0/seedNone": 0.0004847080126637593,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022059650073060766
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/etdrk4/n0/seedNone": 0.0007416180014843121,
+              "discrete/fno_standard/n2/seed6100011": 0.002770731007331051,
+              "discrete/fno_small/n2/seed6100011": 0.0017387139960192144,
+              "discrete/quad2_fixed/n0/seedNone": 0.002036563993897289,
+              "discrete/df/n0/seedNone": 0.000657032011076808,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0031458760058740154
+            }
+          }
+        ],
+        "cold_order": [
+          "discrete/quad2_fixed/n0/seedNone",
+          "discrete/fno_standard/n2/seed6100011",
+          "discrete/df/n0/seedNone",
+          "discrete/fno_small/n2/seed6100011",
+          "discrete/etdrk4/n0/seedNone",
+          "discrete/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "discrete/quad2_fixed/n0/seedNone": 0.004102292004972696,
+          "discrete/fno_standard/n2/seed6100011": 0.004497998001170345,
+          "discrete/df/n0/seedNone": 0.00046852300874888897,
+          "discrete/fno_small/n2/seed6100011": 0.0021001580025767908,
+          "discrete/etdrk4/n0/seedNone": 0.0016101130022434518,
+          "discrete/quad2_conditioned/n2/seed6100011": 0.003972350008552894
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/fno_standard/n2/seed6100011": 0.003122562004136853,
+              "discrete/etdrk4/n0/seedNone": 0.0008648800139781088,
+              "discrete/quad2_fixed/n0/seedNone": 0.0024703960079932585,
+              "discrete/df/n0/seedNone": 0.0006501219904748723,
+              "discrete/fno_small/n2/seed6100011": 0.0023759470059303567,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029616340034408495
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.026517623991821893,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "discrete/etdrk4/n0/seedNone",
+      "family": "etdrk4",
+      "track": "discrete",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 4.831717730235892e-08,
+          "error_max": 1.407915943274496e-07,
+          "centered_rms": 3.27344831043342e-08,
+          "mean_error": 3.553875684882135e-08,
+          "upper_rms": 4.831817730235892e-08,
+          "upper_max": 1.407925943274496e-07,
+          "spectral_low_rms": 3.9170132149778224e-08,
+          "spectral_high_rms": 2.8288696856456604e-08,
+          "minimum": 0.2384195327758789,
+          "maximum": 0.4872775375843048,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 8.178433660971782e-08,
+          "error_max": 2.469869928578561e-07,
+          "centered_rms": 6.08804398541619e-08,
+          "mean_error": 5.460997855571276e-08,
+          "upper_rms": 8.178533660971782e-08,
+          "upper_max": 2.4698799285785605e-07,
+          "spectral_low_rms": 6.749780437583098e-08,
+          "spectral_high_rms": 4.6181426127109594e-08,
+          "minimum": 0.38551685214042664,
+          "maximum": 0.642487645149231,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.0007416180014843121,
+      "cold_seconds": 0.0016101130022434518,
+      "samples_per_second": 2696.806167052442,
+      "raw_timing": {
+        "methods": {
+          "discrete/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.0022059650073060766,
+            "cold_seconds": 0.004102292004972696,
+            "samples_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "raw_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "min_seconds": 0.002036563993897289,
+            "max_seconds": 0.0022793740063207224,
+            "p95_seconds": 0.0022793740063207224,
+            "total_seconds": 0.006521903007524088,
+            "warmup_seconds": 0.0024703960079932585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.0031458760058740154,
+            "cold_seconds": 0.003972350008552894,
+            "samples_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "raw_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "min_seconds": 0.0029916479979874566,
+            "max_seconds": 0.003190792995155789,
+            "p95_seconds": 0.003190792995155789,
+            "total_seconds": 0.009328316999017261,
+            "warmup_seconds": 0.0029616340034408495,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/df/n0/seedNone": {
+            "median_seconds": 0.0006503129989141598,
+            "cold_seconds": 0.00046852300874888897,
+            "samples_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "raw_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "min_seconds": 0.0006194570014486089,
+            "max_seconds": 0.000657032011076808,
+            "p95_seconds": 0.000657032011076808,
+            "total_seconds": 0.0019268020114395767,
+            "warmup_seconds": 0.0006501219904748723,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0007416180014843121,
+            "cold_seconds": 0.0016101130022434518,
+            "samples_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "raw_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "min_seconds": 0.0004847080126637593,
+            "max_seconds": 0.0008491769985994324,
+            "p95_seconds": 0.0008491769985994324,
+            "total_seconds": 0.002075503012747504,
+            "warmup_seconds": 0.0008648800139781088,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_small/n2/seed6100011": {
+            "median_seconds": 0.0019901860068785027,
+            "cold_seconds": 0.0021001580025767908,
+            "samples_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "raw_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "min_seconds": 0.0017387139960192144,
+            "max_seconds": 0.002062422994640656,
+            "p95_seconds": 0.002062422994640656,
+            "total_seconds": 0.005791322997538373,
+            "warmup_seconds": 0.0023759470059303567,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.002770731007331051,
+            "cold_seconds": 0.004497998001170345,
+            "samples_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "raw_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "min_seconds": 0.002589422991150059,
+            "max_seconds": 0.0032916420022957027,
+            "p95_seconds": 0.0032916420022957027,
+            "total_seconds": 0.008651796000776812,
+            "warmup_seconds": 0.003122562004136853,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/df/n0/seedNone": 0.0006194570014486089,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022793740063207224,
+              "discrete/fno_small/n2/seed6100011": 0.002062422994640656,
+              "discrete/fno_standard/n2/seed6100011": 0.0032916420022957027,
+              "discrete/etdrk4/n0/seedNone": 0.0008491769985994324,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.003190792995155789
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "discrete/quad2_conditioned/n2/seed6100011",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029916479979874566,
+              "discrete/df/n0/seedNone": 0.0006503129989141598,
+              "discrete/fno_small/n2/seed6100011": 0.0019901860068785027,
+              "discrete/fno_standard/n2/seed6100011": 0.002589422991150059,
+              "discrete/etdrk4/n0/seedNone": 0.0004847080126637593,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022059650073060766
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/etdrk4/n0/seedNone": 0.0007416180014843121,
+              "discrete/fno_standard/n2/seed6100011": 0.002770731007331051,
+              "discrete/fno_small/n2/seed6100011": 0.0017387139960192144,
+              "discrete/quad2_fixed/n0/seedNone": 0.002036563993897289,
+              "discrete/df/n0/seedNone": 0.000657032011076808,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0031458760058740154
+            }
+          }
+        ],
+        "cold_order": [
+          "discrete/quad2_fixed/n0/seedNone",
+          "discrete/fno_standard/n2/seed6100011",
+          "discrete/df/n0/seedNone",
+          "discrete/fno_small/n2/seed6100011",
+          "discrete/etdrk4/n0/seedNone",
+          "discrete/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "discrete/quad2_fixed/n0/seedNone": 0.004102292004972696,
+          "discrete/fno_standard/n2/seed6100011": 0.004497998001170345,
+          "discrete/df/n0/seedNone": 0.00046852300874888897,
+          "discrete/fno_small/n2/seed6100011": 0.0021001580025767908,
+          "discrete/etdrk4/n0/seedNone": 0.0016101130022434518,
+          "discrete/quad2_conditioned/n2/seed6100011": 0.003972350008552894
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/fno_standard/n2/seed6100011": 0.003122562004136853,
+              "discrete/etdrk4/n0/seedNone": 0.0008648800139781088,
+              "discrete/quad2_fixed/n0/seedNone": 0.0024703960079932585,
+              "discrete/df/n0/seedNone": 0.0006501219904748723,
+              "discrete/fno_small/n2/seed6100011": 0.0023759470059303567,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029616340034408495
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.026517623991821893,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "discrete/fno_small/n2/seed6100011",
+      "family": "fno_small",
+      "track": "discrete",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 1.5190779711866782e-05,
+          "error_max": 1.6514254941535356e-05,
+          "centered_rms": 6.542519762883841e-07,
+          "mean_error": 1.5176684176920405e-05,
+          "upper_rms": 1.5190780711866781e-05,
+          "upper_max": 1.6514255941535355e-05,
+          "spectral_low_rms": 1.5190708373614084e-05,
+          "spectral_high_rms": 4.6554938238314946e-08,
+          "minimum": 0.23840457201004028,
+          "maximum": 0.4872622489929199,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.517690496521492e-05,
+          "error_max": 1.6062567373742453e-05,
+          "centered_rms": 4.884129147795704e-07,
+          "mean_error": 1.5169044041990314e-05,
+          "upper_rms": 1.517690596521492e-05,
+          "upper_max": 1.6062568373742453e-05,
+          "spectral_low_rms": 1.5176162411460159e-05,
+          "spectral_high_rms": 1.50129224833531e-07,
+          "minimum": 0.3855023682117462,
+          "maximum": 0.6424717307090759,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.0019901860068785027,
+      "cold_seconds": 0.0021001580025767908,
+      "samples_per_second": 1004.9311939123168,
+      "raw_timing": {
+        "methods": {
+          "discrete/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.0022059650073060766,
+            "cold_seconds": 0.004102292004972696,
+            "samples_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "raw_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "min_seconds": 0.002036563993897289,
+            "max_seconds": 0.0022793740063207224,
+            "p95_seconds": 0.0022793740063207224,
+            "total_seconds": 0.006521903007524088,
+            "warmup_seconds": 0.0024703960079932585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.0031458760058740154,
+            "cold_seconds": 0.003972350008552894,
+            "samples_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "raw_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "min_seconds": 0.0029916479979874566,
+            "max_seconds": 0.003190792995155789,
+            "p95_seconds": 0.003190792995155789,
+            "total_seconds": 0.009328316999017261,
+            "warmup_seconds": 0.0029616340034408495,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/df/n0/seedNone": {
+            "median_seconds": 0.0006503129989141598,
+            "cold_seconds": 0.00046852300874888897,
+            "samples_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "raw_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "min_seconds": 0.0006194570014486089,
+            "max_seconds": 0.000657032011076808,
+            "p95_seconds": 0.000657032011076808,
+            "total_seconds": 0.0019268020114395767,
+            "warmup_seconds": 0.0006501219904748723,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0007416180014843121,
+            "cold_seconds": 0.0016101130022434518,
+            "samples_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "raw_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "min_seconds": 0.0004847080126637593,
+            "max_seconds": 0.0008491769985994324,
+            "p95_seconds": 0.0008491769985994324,
+            "total_seconds": 0.002075503012747504,
+            "warmup_seconds": 0.0008648800139781088,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_small/n2/seed6100011": {
+            "median_seconds": 0.0019901860068785027,
+            "cold_seconds": 0.0021001580025767908,
+            "samples_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "raw_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "min_seconds": 0.0017387139960192144,
+            "max_seconds": 0.002062422994640656,
+            "p95_seconds": 0.002062422994640656,
+            "total_seconds": 0.005791322997538373,
+            "warmup_seconds": 0.0023759470059303567,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.002770731007331051,
+            "cold_seconds": 0.004497998001170345,
+            "samples_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "raw_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "min_seconds": 0.002589422991150059,
+            "max_seconds": 0.0032916420022957027,
+            "p95_seconds": 0.0032916420022957027,
+            "total_seconds": 0.008651796000776812,
+            "warmup_seconds": 0.003122562004136853,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/df/n0/seedNone": 0.0006194570014486089,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022793740063207224,
+              "discrete/fno_small/n2/seed6100011": 0.002062422994640656,
+              "discrete/fno_standard/n2/seed6100011": 0.0032916420022957027,
+              "discrete/etdrk4/n0/seedNone": 0.0008491769985994324,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.003190792995155789
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "discrete/quad2_conditioned/n2/seed6100011",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029916479979874566,
+              "discrete/df/n0/seedNone": 0.0006503129989141598,
+              "discrete/fno_small/n2/seed6100011": 0.0019901860068785027,
+              "discrete/fno_standard/n2/seed6100011": 0.002589422991150059,
+              "discrete/etdrk4/n0/seedNone": 0.0004847080126637593,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022059650073060766
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/etdrk4/n0/seedNone": 0.0007416180014843121,
+              "discrete/fno_standard/n2/seed6100011": 0.002770731007331051,
+              "discrete/fno_small/n2/seed6100011": 0.0017387139960192144,
+              "discrete/quad2_fixed/n0/seedNone": 0.002036563993897289,
+              "discrete/df/n0/seedNone": 0.000657032011076808,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0031458760058740154
+            }
+          }
+        ],
+        "cold_order": [
+          "discrete/quad2_fixed/n0/seedNone",
+          "discrete/fno_standard/n2/seed6100011",
+          "discrete/df/n0/seedNone",
+          "discrete/fno_small/n2/seed6100011",
+          "discrete/etdrk4/n0/seedNone",
+          "discrete/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "discrete/quad2_fixed/n0/seedNone": 0.004102292004972696,
+          "discrete/fno_standard/n2/seed6100011": 0.004497998001170345,
+          "discrete/df/n0/seedNone": 0.00046852300874888897,
+          "discrete/fno_small/n2/seed6100011": 0.0021001580025767908,
+          "discrete/etdrk4/n0/seedNone": 0.0016101130022434518,
+          "discrete/quad2_conditioned/n2/seed6100011": 0.003972350008552894
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/fno_standard/n2/seed6100011": 0.003122562004136853,
+              "discrete/etdrk4/n0/seedNone": 0.0008648800139781088,
+              "discrete/quad2_fixed/n0/seedNone": 0.0024703960079932585,
+              "discrete/df/n0/seedNone": 0.0006501219904748723,
+              "discrete/fno_small/n2/seed6100011": 0.0023759470059303567,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029616340034408495
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.026517623991821893,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "discrete/fno_standard/n2/seed6100011",
+      "family": "fno_standard",
+      "track": "discrete",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 1.7924914570433535e-05,
+          "error_max": 1.862759779008849e-05,
+          "centered_rms": 3.106131797318675e-07,
+          "mean_error": 1.7922223126886835e-05,
+          "upper_rms": 1.7924915570433535e-05,
+          "upper_max": 1.862759879008849e-05,
+          "spectral_low_rms": 1.7924864983748385e-05,
+          "spectral_high_rms": 4.2162444562401356e-08,
+          "minimum": 0.23840180039405823,
+          "maximum": 0.4872594177722931,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.742502316901068e-05,
+          "error_max": 1.8758660882634004e-05,
+          "centered_rms": 5.355567772230172e-07,
+          "mean_error": 1.741679107582477e-05,
+          "upper_rms": 1.742502416901068e-05,
+          "upper_max": 1.8758661882634003e-05,
+          "spectral_low_rms": 1.7418436097885134e-05,
+          "spectral_high_rms": 4.79078641196886e-07,
+          "minimum": 0.3854988217353821,
+          "maximum": 0.6424708366394043,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.002770731007331051,
+      "cold_seconds": 0.004497998001170345,
+      "samples_per_second": 721.8311682758879,
+      "raw_timing": {
+        "methods": {
+          "discrete/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.0022059650073060766,
+            "cold_seconds": 0.004102292004972696,
+            "samples_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "raw_seconds": [
+              0.0022793740063207224,
+              0.0022059650073060766,
+              0.002036563993897289
+            ],
+            "min_seconds": 0.002036563993897289,
+            "max_seconds": 0.0022793740063207224,
+            "p95_seconds": 0.0022793740063207224,
+            "total_seconds": 0.006521903007524088,
+            "warmup_seconds": 0.0024703960079932585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.0031458760058740154,
+            "cold_seconds": 0.003972350008552894,
+            "samples_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "raw_seconds": [
+              0.003190792995155789,
+              0.0029916479979874566,
+              0.0031458760058740154
+            ],
+            "min_seconds": 0.0029916479979874566,
+            "max_seconds": 0.003190792995155789,
+            "p95_seconds": 0.003190792995155789,
+            "total_seconds": 0.009328316999017261,
+            "warmup_seconds": 0.0029616340034408495,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/df/n0/seedNone": {
+            "median_seconds": 0.0006503129989141598,
+            "cold_seconds": 0.00046852300874888897,
+            "samples_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "raw_seconds": [
+              0.0006194570014486089,
+              0.0006503129989141598,
+              0.000657032011076808
+            ],
+            "min_seconds": 0.0006194570014486089,
+            "max_seconds": 0.000657032011076808,
+            "p95_seconds": 0.000657032011076808,
+            "total_seconds": 0.0019268020114395767,
+            "warmup_seconds": 0.0006501219904748723,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0007416180014843121,
+            "cold_seconds": 0.0016101130022434518,
+            "samples_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "raw_seconds": [
+              0.0008491769985994324,
+              0.0004847080126637593,
+              0.0007416180014843121
+            ],
+            "min_seconds": 0.0004847080126637593,
+            "max_seconds": 0.0008491769985994324,
+            "p95_seconds": 0.0008491769985994324,
+            "total_seconds": 0.002075503012747504,
+            "warmup_seconds": 0.0008648800139781088,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_small/n2/seed6100011": {
+            "median_seconds": 0.0019901860068785027,
+            "cold_seconds": 0.0021001580025767908,
+            "samples_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "raw_seconds": [
+              0.002062422994640656,
+              0.0019901860068785027,
+              0.0017387139960192144
+            ],
+            "min_seconds": 0.0017387139960192144,
+            "max_seconds": 0.002062422994640656,
+            "p95_seconds": 0.002062422994640656,
+            "total_seconds": 0.005791322997538373,
+            "warmup_seconds": 0.0023759470059303567,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "discrete/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.002770731007331051,
+            "cold_seconds": 0.004497998001170345,
+            "samples_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "raw_seconds": [
+              0.0032916420022957027,
+              0.002589422991150059,
+              0.002770731007331051
+            ],
+            "min_seconds": 0.002589422991150059,
+            "max_seconds": 0.0032916420022957027,
+            "p95_seconds": 0.0032916420022957027,
+            "total_seconds": 0.008651796000776812,
+            "warmup_seconds": 0.003122562004136853,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/df/n0/seedNone": 0.0006194570014486089,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022793740063207224,
+              "discrete/fno_small/n2/seed6100011": 0.002062422994640656,
+              "discrete/fno_standard/n2/seed6100011": 0.0032916420022957027,
+              "discrete/etdrk4/n0/seedNone": 0.0008491769985994324,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.003190792995155789
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "discrete/quad2_conditioned/n2/seed6100011",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029916479979874566,
+              "discrete/df/n0/seedNone": 0.0006503129989141598,
+              "discrete/fno_small/n2/seed6100011": 0.0019901860068785027,
+              "discrete/fno_standard/n2/seed6100011": 0.002589422991150059,
+              "discrete/etdrk4/n0/seedNone": 0.0004847080126637593,
+              "discrete/quad2_fixed/n0/seedNone": 0.0022059650073060766
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/etdrk4/n0/seedNone": 0.0007416180014843121,
+              "discrete/fno_standard/n2/seed6100011": 0.002770731007331051,
+              "discrete/fno_small/n2/seed6100011": 0.0017387139960192144,
+              "discrete/quad2_fixed/n0/seedNone": 0.002036563993897289,
+              "discrete/df/n0/seedNone": 0.000657032011076808,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0031458760058740154
+            }
+          }
+        ],
+        "cold_order": [
+          "discrete/quad2_fixed/n0/seedNone",
+          "discrete/fno_standard/n2/seed6100011",
+          "discrete/df/n0/seedNone",
+          "discrete/fno_small/n2/seed6100011",
+          "discrete/etdrk4/n0/seedNone",
+          "discrete/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "discrete/quad2_fixed/n0/seedNone": 0.004102292004972696,
+          "discrete/fno_standard/n2/seed6100011": 0.004497998001170345,
+          "discrete/df/n0/seedNone": 0.00046852300874888897,
+          "discrete/fno_small/n2/seed6100011": 0.0021001580025767908,
+          "discrete/etdrk4/n0/seedNone": 0.0016101130022434518,
+          "discrete/quad2_conditioned/n2/seed6100011": 0.003972350008552894
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "discrete/fno_standard/n2/seed6100011",
+              "discrete/etdrk4/n0/seedNone",
+              "discrete/quad2_fixed/n0/seedNone",
+              "discrete/df/n0/seedNone",
+              "discrete/fno_small/n2/seed6100011",
+              "discrete/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "discrete/fno_standard/n2/seed6100011": 0.003122562004136853,
+              "discrete/etdrk4/n0/seedNone": 0.0008648800139781088,
+              "discrete/quad2_fixed/n0/seedNone": 0.0024703960079932585,
+              "discrete/df/n0/seedNone": 0.0006501219904748723,
+              "discrete/fno_small/n2/seed6100011": 0.0023759470059303567,
+              "discrete/quad2_conditioned/n2/seed6100011": 0.0029616340034408495
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.026517623991821893,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "continuum/quad2_fixed/n0/seedNone",
+      "family": "quad2_fixed",
+      "track": "continuum",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 5.742906612747925e-08,
+          "error_max": 1.213710387193423e-07,
+          "centered_rms": 5.709746495389183e-08,
+          "mean_error": 6.162558893307163e-09,
+          "upper_rms": 5.743106651570091e-08,
+          "upper_max": 1.2137303955200957e-07,
+          "spectral_low_rms": 3.585266051394644e-08,
+          "spectral_high_rms": 4.486295097679254e-08,
+          "minimum": 0.2384348213672638,
+          "maximum": 0.4872630834579468,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.2305390529924778e-07,
+          "error_max": 2.838150648942772e-07,
+          "centered_rms": 1.195149604447841e-07,
+          "mean_error": 2.9299109871767925e-08,
+          "upper_rms": 1.2305590591684833e-07,
+          "upper_max": 2.8381706655961175e-07,
+          "spectral_low_rms": 5.467737747060539e-08,
+          "spectral_high_rms": 1.1023904935336287e-07,
+          "minimum": 0.38568776845932007,
+          "maximum": 0.6423252820968628,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.013520983004127629,
+      "cold_seconds": 0.013603815998067148,
+      "samples_per_second": 147.91823933137468,
+      "raw_timing": {
+        "methods": {
+          "continuum/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.013520983004127629,
+            "cold_seconds": 0.013603815998067148,
+            "samples_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "raw_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "min_seconds": 0.013265025001601316,
+            "max_seconds": 0.014684014997328632,
+            "p95_seconds": 0.014684014997328632,
+            "total_seconds": 0.04147002300305758,
+            "warmup_seconds": 0.016413739998824894,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.01365191700460855,
+            "cold_seconds": 0.01779612099926453,
+            "samples_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "raw_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "min_seconds": 0.013323191000381485,
+            "max_seconds": 0.01368509599706158,
+            "p95_seconds": 0.01368509599706158,
+            "total_seconds": 0.040660204002051614,
+            "warmup_seconds": 0.01788349098933395,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/df/n0/seedNone": {
+            "median_seconds": 0.008215099995140918,
+            "cold_seconds": 0.012848337995819747,
+            "samples_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "raw_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "min_seconds": 0.007673437998164445,
+            "max_seconds": 0.009412311992491595,
+            "p95_seconds": 0.009412311992491595,
+            "total_seconds": 0.025300849985796958,
+            "warmup_seconds": 0.010617555992212147,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0027921730070374906,
+            "cold_seconds": 0.002979560013045557,
+            "samples_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "raw_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "min_seconds": 0.0024806419969536364,
+            "max_seconds": 0.0028244500135770068,
+            "p95_seconds": 0.0028244500135770068,
+            "total_seconds": 0.008097265017568134,
+            "warmup_seconds": 0.004388996996567585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_small/n2/seed6100011": {
+            "median_seconds": 0.010717393000959419,
+            "cold_seconds": 0.010126679000677541,
+            "samples_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "raw_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "min_seconds": 0.010281529001076706,
+            "max_seconds": 0.010739255012595095,
+            "p95_seconds": 0.010739255012595095,
+            "total_seconds": 0.03173817701463122,
+            "warmup_seconds": 0.012757472999510355,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.014038338995305821,
+            "cold_seconds": 0.011123314005089924,
+            "samples_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "raw_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "min_seconds": 0.012753457005601376,
+            "max_seconds": 0.019719328003702685,
+            "p95_seconds": 0.019719328003702685,
+            "total_seconds": 0.04651112400460988,
+            "warmup_seconds": 0.014336660999106243,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/df/n0/seedNone": 0.007673437998164445,
+              "continuum/quad2_fixed/n0/seedNone": 0.014684014997328632,
+              "continuum/fno_small/n2/seed6100011": 0.010717393000959419,
+              "continuum/fno_standard/n2/seed6100011": 0.014038338995305821,
+              "continuum/etdrk4/n0/seedNone": 0.0028244500135770068,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01368509599706158
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "continuum/quad2_conditioned/n2/seed6100011",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01365191700460855,
+              "continuum/df/n0/seedNone": 0.008215099995140918,
+              "continuum/fno_small/n2/seed6100011": 0.010739255012595095,
+              "continuum/fno_standard/n2/seed6100011": 0.019719328003702685,
+              "continuum/etdrk4/n0/seedNone": 0.0024806419969536364,
+              "continuum/quad2_fixed/n0/seedNone": 0.013265025001601316
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/etdrk4/n0/seedNone": 0.0027921730070374906,
+              "continuum/fno_standard/n2/seed6100011": 0.012753457005601376,
+              "continuum/fno_small/n2/seed6100011": 0.010281529001076706,
+              "continuum/quad2_fixed/n0/seedNone": 0.013520983004127629,
+              "continuum/df/n0/seedNone": 0.009412311992491595,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.013323191000381485
+            }
+          }
+        ],
+        "cold_order": [
+          "continuum/quad2_fixed/n0/seedNone",
+          "continuum/fno_standard/n2/seed6100011",
+          "continuum/df/n0/seedNone",
+          "continuum/fno_small/n2/seed6100011",
+          "continuum/etdrk4/n0/seedNone",
+          "continuum/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "continuum/quad2_fixed/n0/seedNone": 0.013603815998067148,
+          "continuum/fno_standard/n2/seed6100011": 0.011123314005089924,
+          "continuum/df/n0/seedNone": 0.012848337995819747,
+          "continuum/fno_small/n2/seed6100011": 0.010126679000677541,
+          "continuum/etdrk4/n0/seedNone": 0.002979560013045557,
+          "continuum/quad2_conditioned/n2/seed6100011": 0.01779612099926453
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/fno_standard/n2/seed6100011": 0.014336660999106243,
+              "continuum/etdrk4/n0/seedNone": 0.004388996996567585,
+              "continuum/quad2_fixed/n0/seedNone": 0.016413739998824894,
+              "continuum/df/n0/seedNone": 0.010617555992212147,
+              "continuum/fno_small/n2/seed6100011": 0.012757472999510355,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01788349098933395
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.2648834100109525,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "continuum/quad2_conditioned/n2/seed6100011",
+      "family": "quad2_conditioned",
+      "track": "continuum",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 5.742906612747925e-08,
+          "error_max": 1.213710387193423e-07,
+          "centered_rms": 5.709746495389183e-08,
+          "mean_error": 6.162558893307163e-09,
+          "upper_rms": 5.743106651570091e-08,
+          "upper_max": 1.2137303955200957e-07,
+          "spectral_low_rms": 3.585266051394644e-08,
+          "spectral_high_rms": 4.486295097679254e-08,
+          "minimum": 0.2384348213672638,
+          "maximum": 0.4872630834579468,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.2305390529924778e-07,
+          "error_max": 2.838150648942772e-07,
+          "centered_rms": 1.195149604447841e-07,
+          "mean_error": 2.9299109871767925e-08,
+          "upper_rms": 1.2305590591684833e-07,
+          "upper_max": 2.8381706655961175e-07,
+          "spectral_low_rms": 5.467737747060539e-08,
+          "spectral_high_rms": 1.1023904935336287e-07,
+          "minimum": 0.38568776845932007,
+          "maximum": 0.6423252820968628,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.01365191700460855,
+      "cold_seconds": 0.01779612099926453,
+      "samples_per_second": 146.4995721351697,
+      "raw_timing": {
+        "methods": {
+          "continuum/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.013520983004127629,
+            "cold_seconds": 0.013603815998067148,
+            "samples_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "raw_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "min_seconds": 0.013265025001601316,
+            "max_seconds": 0.014684014997328632,
+            "p95_seconds": 0.014684014997328632,
+            "total_seconds": 0.04147002300305758,
+            "warmup_seconds": 0.016413739998824894,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.01365191700460855,
+            "cold_seconds": 0.01779612099926453,
+            "samples_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "raw_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "min_seconds": 0.013323191000381485,
+            "max_seconds": 0.01368509599706158,
+            "p95_seconds": 0.01368509599706158,
+            "total_seconds": 0.040660204002051614,
+            "warmup_seconds": 0.01788349098933395,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/df/n0/seedNone": {
+            "median_seconds": 0.008215099995140918,
+            "cold_seconds": 0.012848337995819747,
+            "samples_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "raw_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "min_seconds": 0.007673437998164445,
+            "max_seconds": 0.009412311992491595,
+            "p95_seconds": 0.009412311992491595,
+            "total_seconds": 0.025300849985796958,
+            "warmup_seconds": 0.010617555992212147,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0027921730070374906,
+            "cold_seconds": 0.002979560013045557,
+            "samples_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "raw_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "min_seconds": 0.0024806419969536364,
+            "max_seconds": 0.0028244500135770068,
+            "p95_seconds": 0.0028244500135770068,
+            "total_seconds": 0.008097265017568134,
+            "warmup_seconds": 0.004388996996567585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_small/n2/seed6100011": {
+            "median_seconds": 0.010717393000959419,
+            "cold_seconds": 0.010126679000677541,
+            "samples_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "raw_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "min_seconds": 0.010281529001076706,
+            "max_seconds": 0.010739255012595095,
+            "p95_seconds": 0.010739255012595095,
+            "total_seconds": 0.03173817701463122,
+            "warmup_seconds": 0.012757472999510355,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.014038338995305821,
+            "cold_seconds": 0.011123314005089924,
+            "samples_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "raw_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "min_seconds": 0.012753457005601376,
+            "max_seconds": 0.019719328003702685,
+            "p95_seconds": 0.019719328003702685,
+            "total_seconds": 0.04651112400460988,
+            "warmup_seconds": 0.014336660999106243,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/df/n0/seedNone": 0.007673437998164445,
+              "continuum/quad2_fixed/n0/seedNone": 0.014684014997328632,
+              "continuum/fno_small/n2/seed6100011": 0.010717393000959419,
+              "continuum/fno_standard/n2/seed6100011": 0.014038338995305821,
+              "continuum/etdrk4/n0/seedNone": 0.0028244500135770068,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01368509599706158
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "continuum/quad2_conditioned/n2/seed6100011",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01365191700460855,
+              "continuum/df/n0/seedNone": 0.008215099995140918,
+              "continuum/fno_small/n2/seed6100011": 0.010739255012595095,
+              "continuum/fno_standard/n2/seed6100011": 0.019719328003702685,
+              "continuum/etdrk4/n0/seedNone": 0.0024806419969536364,
+              "continuum/quad2_fixed/n0/seedNone": 0.013265025001601316
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/etdrk4/n0/seedNone": 0.0027921730070374906,
+              "continuum/fno_standard/n2/seed6100011": 0.012753457005601376,
+              "continuum/fno_small/n2/seed6100011": 0.010281529001076706,
+              "continuum/quad2_fixed/n0/seedNone": 0.013520983004127629,
+              "continuum/df/n0/seedNone": 0.009412311992491595,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.013323191000381485
+            }
+          }
+        ],
+        "cold_order": [
+          "continuum/quad2_fixed/n0/seedNone",
+          "continuum/fno_standard/n2/seed6100011",
+          "continuum/df/n0/seedNone",
+          "continuum/fno_small/n2/seed6100011",
+          "continuum/etdrk4/n0/seedNone",
+          "continuum/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "continuum/quad2_fixed/n0/seedNone": 0.013603815998067148,
+          "continuum/fno_standard/n2/seed6100011": 0.011123314005089924,
+          "continuum/df/n0/seedNone": 0.012848337995819747,
+          "continuum/fno_small/n2/seed6100011": 0.010126679000677541,
+          "continuum/etdrk4/n0/seedNone": 0.002979560013045557,
+          "continuum/quad2_conditioned/n2/seed6100011": 0.01779612099926453
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/fno_standard/n2/seed6100011": 0.014336660999106243,
+              "continuum/etdrk4/n0/seedNone": 0.004388996996567585,
+              "continuum/quad2_fixed/n0/seedNone": 0.016413739998824894,
+              "continuum/df/n0/seedNone": 0.010617555992212147,
+              "continuum/fno_small/n2/seed6100011": 0.012757472999510355,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01788349098933395
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.2648834100109525,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "continuum/df/n0/seedNone",
+      "family": "df",
+      "track": "continuum",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 6.80843311978269e-08,
+          "error_max": 1.556048674355992e-07,
+          "centered_rms": 5.781006373546723e-08,
+          "mean_error": 3.5964881281002475e-08,
+          "upper_rms": 6.808633158604856e-08,
+          "upper_max": 1.5560686826826647e-07,
+          "spectral_low_rms": 4.1509726137029064e-08,
+          "spectral_high_rms": 5.396683046728085e-08,
+          "minimum": 0.2384348213672638,
+          "maximum": 0.4872630834579468,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.1423369657803782e-07,
+          "error_max": 2.606330302135085e-07,
+          "centered_rms": 1.1174577236439103e-07,
+          "mean_error": 2.3711174424075054e-08,
+          "upper_rms": 1.1423569719563836e-07,
+          "upper_max": 2.60635031878843e-07,
+          "spectral_low_rms": 5.5402900993201675e-08,
+          "spectral_high_rms": 9.989922920333621e-08,
+          "minimum": 0.3856877088546753,
+          "maximum": 0.6423253417015076,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.008215099995140918,
+      "cold_seconds": 0.012848337995819747,
+      "samples_per_second": 243.4541273000893,
+      "raw_timing": {
+        "methods": {
+          "continuum/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.013520983004127629,
+            "cold_seconds": 0.013603815998067148,
+            "samples_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "raw_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "min_seconds": 0.013265025001601316,
+            "max_seconds": 0.014684014997328632,
+            "p95_seconds": 0.014684014997328632,
+            "total_seconds": 0.04147002300305758,
+            "warmup_seconds": 0.016413739998824894,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.01365191700460855,
+            "cold_seconds": 0.01779612099926453,
+            "samples_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "raw_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "min_seconds": 0.013323191000381485,
+            "max_seconds": 0.01368509599706158,
+            "p95_seconds": 0.01368509599706158,
+            "total_seconds": 0.040660204002051614,
+            "warmup_seconds": 0.01788349098933395,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/df/n0/seedNone": {
+            "median_seconds": 0.008215099995140918,
+            "cold_seconds": 0.012848337995819747,
+            "samples_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "raw_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "min_seconds": 0.007673437998164445,
+            "max_seconds": 0.009412311992491595,
+            "p95_seconds": 0.009412311992491595,
+            "total_seconds": 0.025300849985796958,
+            "warmup_seconds": 0.010617555992212147,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0027921730070374906,
+            "cold_seconds": 0.002979560013045557,
+            "samples_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "raw_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "min_seconds": 0.0024806419969536364,
+            "max_seconds": 0.0028244500135770068,
+            "p95_seconds": 0.0028244500135770068,
+            "total_seconds": 0.008097265017568134,
+            "warmup_seconds": 0.004388996996567585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_small/n2/seed6100011": {
+            "median_seconds": 0.010717393000959419,
+            "cold_seconds": 0.010126679000677541,
+            "samples_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "raw_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "min_seconds": 0.010281529001076706,
+            "max_seconds": 0.010739255012595095,
+            "p95_seconds": 0.010739255012595095,
+            "total_seconds": 0.03173817701463122,
+            "warmup_seconds": 0.012757472999510355,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.014038338995305821,
+            "cold_seconds": 0.011123314005089924,
+            "samples_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "raw_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "min_seconds": 0.012753457005601376,
+            "max_seconds": 0.019719328003702685,
+            "p95_seconds": 0.019719328003702685,
+            "total_seconds": 0.04651112400460988,
+            "warmup_seconds": 0.014336660999106243,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/df/n0/seedNone": 0.007673437998164445,
+              "continuum/quad2_fixed/n0/seedNone": 0.014684014997328632,
+              "continuum/fno_small/n2/seed6100011": 0.010717393000959419,
+              "continuum/fno_standard/n2/seed6100011": 0.014038338995305821,
+              "continuum/etdrk4/n0/seedNone": 0.0028244500135770068,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01368509599706158
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "continuum/quad2_conditioned/n2/seed6100011",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01365191700460855,
+              "continuum/df/n0/seedNone": 0.008215099995140918,
+              "continuum/fno_small/n2/seed6100011": 0.010739255012595095,
+              "continuum/fno_standard/n2/seed6100011": 0.019719328003702685,
+              "continuum/etdrk4/n0/seedNone": 0.0024806419969536364,
+              "continuum/quad2_fixed/n0/seedNone": 0.013265025001601316
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/etdrk4/n0/seedNone": 0.0027921730070374906,
+              "continuum/fno_standard/n2/seed6100011": 0.012753457005601376,
+              "continuum/fno_small/n2/seed6100011": 0.010281529001076706,
+              "continuum/quad2_fixed/n0/seedNone": 0.013520983004127629,
+              "continuum/df/n0/seedNone": 0.009412311992491595,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.013323191000381485
+            }
+          }
+        ],
+        "cold_order": [
+          "continuum/quad2_fixed/n0/seedNone",
+          "continuum/fno_standard/n2/seed6100011",
+          "continuum/df/n0/seedNone",
+          "continuum/fno_small/n2/seed6100011",
+          "continuum/etdrk4/n0/seedNone",
+          "continuum/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "continuum/quad2_fixed/n0/seedNone": 0.013603815998067148,
+          "continuum/fno_standard/n2/seed6100011": 0.011123314005089924,
+          "continuum/df/n0/seedNone": 0.012848337995819747,
+          "continuum/fno_small/n2/seed6100011": 0.010126679000677541,
+          "continuum/etdrk4/n0/seedNone": 0.002979560013045557,
+          "continuum/quad2_conditioned/n2/seed6100011": 0.01779612099926453
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/fno_standard/n2/seed6100011": 0.014336660999106243,
+              "continuum/etdrk4/n0/seedNone": 0.004388996996567585,
+              "continuum/quad2_fixed/n0/seedNone": 0.016413739998824894,
+              "continuum/df/n0/seedNone": 0.010617555992212147,
+              "continuum/fno_small/n2/seed6100011": 0.012757472999510355,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01788349098933395
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.2648834100109525,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "continuum/etdrk4/n0/seedNone",
+      "family": "etdrk4",
+      "track": "continuum",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 3.063455014191226e-08,
+          "error_max": 7.77897916082182e-08,
+          "centered_rms": 3.00551823365389e-08,
+          "mean_error": 5.929728249653293e-09,
+          "upper_rms": 3.063655053013392e-08,
+          "upper_max": 7.779179244088547e-08,
+          "spectral_low_rms": 2.1833831743729442e-08,
+          "spectral_high_rms": 2.148858892025833e-08,
+          "minimum": 0.23843471705913544,
+          "maximum": 0.487263023853302,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.095285972308269e-07,
+          "error_max": 2.784265832334043e-07,
+          "centered_rms": 1.0742107134068388e-07,
+          "mean_error": 2.1382867987536358e-08,
+          "upper_rms": 1.0953059784842744e-07,
+          "upper_max": 2.7842858489873884e-07,
+          "spectral_low_rms": 5.279593459879736e-08,
+          "spectral_high_rms": 9.596407088693254e-08,
+          "minimum": 0.3856877088546753,
+          "maximum": 0.6423254013061523,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.0027921730070374906,
+      "cold_seconds": 0.002979560013045557,
+      "samples_per_second": 716.28799324366,
+      "raw_timing": {
+        "methods": {
+          "continuum/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.013520983004127629,
+            "cold_seconds": 0.013603815998067148,
+            "samples_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "raw_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "min_seconds": 0.013265025001601316,
+            "max_seconds": 0.014684014997328632,
+            "p95_seconds": 0.014684014997328632,
+            "total_seconds": 0.04147002300305758,
+            "warmup_seconds": 0.016413739998824894,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.01365191700460855,
+            "cold_seconds": 0.01779612099926453,
+            "samples_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "raw_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "min_seconds": 0.013323191000381485,
+            "max_seconds": 0.01368509599706158,
+            "p95_seconds": 0.01368509599706158,
+            "total_seconds": 0.040660204002051614,
+            "warmup_seconds": 0.01788349098933395,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/df/n0/seedNone": {
+            "median_seconds": 0.008215099995140918,
+            "cold_seconds": 0.012848337995819747,
+            "samples_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "raw_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "min_seconds": 0.007673437998164445,
+            "max_seconds": 0.009412311992491595,
+            "p95_seconds": 0.009412311992491595,
+            "total_seconds": 0.025300849985796958,
+            "warmup_seconds": 0.010617555992212147,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0027921730070374906,
+            "cold_seconds": 0.002979560013045557,
+            "samples_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "raw_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "min_seconds": 0.0024806419969536364,
+            "max_seconds": 0.0028244500135770068,
+            "p95_seconds": 0.0028244500135770068,
+            "total_seconds": 0.008097265017568134,
+            "warmup_seconds": 0.004388996996567585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_small/n2/seed6100011": {
+            "median_seconds": 0.010717393000959419,
+            "cold_seconds": 0.010126679000677541,
+            "samples_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "raw_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "min_seconds": 0.010281529001076706,
+            "max_seconds": 0.010739255012595095,
+            "p95_seconds": 0.010739255012595095,
+            "total_seconds": 0.03173817701463122,
+            "warmup_seconds": 0.012757472999510355,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.014038338995305821,
+            "cold_seconds": 0.011123314005089924,
+            "samples_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "raw_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "min_seconds": 0.012753457005601376,
+            "max_seconds": 0.019719328003702685,
+            "p95_seconds": 0.019719328003702685,
+            "total_seconds": 0.04651112400460988,
+            "warmup_seconds": 0.014336660999106243,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/df/n0/seedNone": 0.007673437998164445,
+              "continuum/quad2_fixed/n0/seedNone": 0.014684014997328632,
+              "continuum/fno_small/n2/seed6100011": 0.010717393000959419,
+              "continuum/fno_standard/n2/seed6100011": 0.014038338995305821,
+              "continuum/etdrk4/n0/seedNone": 0.0028244500135770068,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01368509599706158
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "continuum/quad2_conditioned/n2/seed6100011",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01365191700460855,
+              "continuum/df/n0/seedNone": 0.008215099995140918,
+              "continuum/fno_small/n2/seed6100011": 0.010739255012595095,
+              "continuum/fno_standard/n2/seed6100011": 0.019719328003702685,
+              "continuum/etdrk4/n0/seedNone": 0.0024806419969536364,
+              "continuum/quad2_fixed/n0/seedNone": 0.013265025001601316
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/etdrk4/n0/seedNone": 0.0027921730070374906,
+              "continuum/fno_standard/n2/seed6100011": 0.012753457005601376,
+              "continuum/fno_small/n2/seed6100011": 0.010281529001076706,
+              "continuum/quad2_fixed/n0/seedNone": 0.013520983004127629,
+              "continuum/df/n0/seedNone": 0.009412311992491595,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.013323191000381485
+            }
+          }
+        ],
+        "cold_order": [
+          "continuum/quad2_fixed/n0/seedNone",
+          "continuum/fno_standard/n2/seed6100011",
+          "continuum/df/n0/seedNone",
+          "continuum/fno_small/n2/seed6100011",
+          "continuum/etdrk4/n0/seedNone",
+          "continuum/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "continuum/quad2_fixed/n0/seedNone": 0.013603815998067148,
+          "continuum/fno_standard/n2/seed6100011": 0.011123314005089924,
+          "continuum/df/n0/seedNone": 0.012848337995819747,
+          "continuum/fno_small/n2/seed6100011": 0.010126679000677541,
+          "continuum/etdrk4/n0/seedNone": 0.002979560013045557,
+          "continuum/quad2_conditioned/n2/seed6100011": 0.01779612099926453
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/fno_standard/n2/seed6100011": 0.014336660999106243,
+              "continuum/etdrk4/n0/seedNone": 0.004388996996567585,
+              "continuum/quad2_fixed/n0/seedNone": 0.016413739998824894,
+              "continuum/df/n0/seedNone": 0.010617555992212147,
+              "continuum/fno_small/n2/seed6100011": 0.012757472999510355,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01788349098933395
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.2648834100109525,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "continuum/fno_small/n2/seed6100011",
+      "family": "fno_small",
+      "track": "continuum",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 1.521989278635858e-05,
+          "error_max": 1.650091336907744e-05,
+          "centered_rms": 6.806964038458743e-07,
+          "mean_error": 1.5204663391013996e-05,
+          "upper_rms": 1.52198947867468e-05,
+          "upper_max": 1.6500915369910107e-05,
+          "spectral_low_rms": 1.5219766759442888e-05,
+          "spectral_high_rms": 6.193719728301991e-08,
+          "minimum": 0.23841975629329681,
+          "maximum": 0.4872477054595947,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.5040263659668485e-05,
+          "error_max": 1.5872306631470323e-05,
+          "centered_rms": 4.970078201791321e-07,
+          "mean_error": 1.503204956680975e-05,
+          "upper_rms": 1.5040265660286086e-05,
+          "upper_max": 1.5872308633135656e-05,
+          "spectral_low_rms": 1.5039883980147487e-05,
+          "spectral_high_rms": 1.0686821813540872e-07,
+          "minimum": 0.38567325472831726,
+          "maximum": 0.6423096060752869,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.010717393000959419,
+      "cold_seconds": 0.010126679000677541,
+      "samples_per_second": 186.61254652329725,
+      "raw_timing": {
+        "methods": {
+          "continuum/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.013520983004127629,
+            "cold_seconds": 0.013603815998067148,
+            "samples_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "raw_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "min_seconds": 0.013265025001601316,
+            "max_seconds": 0.014684014997328632,
+            "p95_seconds": 0.014684014997328632,
+            "total_seconds": 0.04147002300305758,
+            "warmup_seconds": 0.016413739998824894,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.01365191700460855,
+            "cold_seconds": 0.01779612099926453,
+            "samples_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "raw_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "min_seconds": 0.013323191000381485,
+            "max_seconds": 0.01368509599706158,
+            "p95_seconds": 0.01368509599706158,
+            "total_seconds": 0.040660204002051614,
+            "warmup_seconds": 0.01788349098933395,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/df/n0/seedNone": {
+            "median_seconds": 0.008215099995140918,
+            "cold_seconds": 0.012848337995819747,
+            "samples_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "raw_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "min_seconds": 0.007673437998164445,
+            "max_seconds": 0.009412311992491595,
+            "p95_seconds": 0.009412311992491595,
+            "total_seconds": 0.025300849985796958,
+            "warmup_seconds": 0.010617555992212147,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0027921730070374906,
+            "cold_seconds": 0.002979560013045557,
+            "samples_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "raw_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "min_seconds": 0.0024806419969536364,
+            "max_seconds": 0.0028244500135770068,
+            "p95_seconds": 0.0028244500135770068,
+            "total_seconds": 0.008097265017568134,
+            "warmup_seconds": 0.004388996996567585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_small/n2/seed6100011": {
+            "median_seconds": 0.010717393000959419,
+            "cold_seconds": 0.010126679000677541,
+            "samples_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "raw_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "min_seconds": 0.010281529001076706,
+            "max_seconds": 0.010739255012595095,
+            "p95_seconds": 0.010739255012595095,
+            "total_seconds": 0.03173817701463122,
+            "warmup_seconds": 0.012757472999510355,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.014038338995305821,
+            "cold_seconds": 0.011123314005089924,
+            "samples_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "raw_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "min_seconds": 0.012753457005601376,
+            "max_seconds": 0.019719328003702685,
+            "p95_seconds": 0.019719328003702685,
+            "total_seconds": 0.04651112400460988,
+            "warmup_seconds": 0.014336660999106243,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/df/n0/seedNone": 0.007673437998164445,
+              "continuum/quad2_fixed/n0/seedNone": 0.014684014997328632,
+              "continuum/fno_small/n2/seed6100011": 0.010717393000959419,
+              "continuum/fno_standard/n2/seed6100011": 0.014038338995305821,
+              "continuum/etdrk4/n0/seedNone": 0.0028244500135770068,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01368509599706158
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "continuum/quad2_conditioned/n2/seed6100011",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01365191700460855,
+              "continuum/df/n0/seedNone": 0.008215099995140918,
+              "continuum/fno_small/n2/seed6100011": 0.010739255012595095,
+              "continuum/fno_standard/n2/seed6100011": 0.019719328003702685,
+              "continuum/etdrk4/n0/seedNone": 0.0024806419969536364,
+              "continuum/quad2_fixed/n0/seedNone": 0.013265025001601316
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/etdrk4/n0/seedNone": 0.0027921730070374906,
+              "continuum/fno_standard/n2/seed6100011": 0.012753457005601376,
+              "continuum/fno_small/n2/seed6100011": 0.010281529001076706,
+              "continuum/quad2_fixed/n0/seedNone": 0.013520983004127629,
+              "continuum/df/n0/seedNone": 0.009412311992491595,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.013323191000381485
+            }
+          }
+        ],
+        "cold_order": [
+          "continuum/quad2_fixed/n0/seedNone",
+          "continuum/fno_standard/n2/seed6100011",
+          "continuum/df/n0/seedNone",
+          "continuum/fno_small/n2/seed6100011",
+          "continuum/etdrk4/n0/seedNone",
+          "continuum/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "continuum/quad2_fixed/n0/seedNone": 0.013603815998067148,
+          "continuum/fno_standard/n2/seed6100011": 0.011123314005089924,
+          "continuum/df/n0/seedNone": 0.012848337995819747,
+          "continuum/fno_small/n2/seed6100011": 0.010126679000677541,
+          "continuum/etdrk4/n0/seedNone": 0.002979560013045557,
+          "continuum/quad2_conditioned/n2/seed6100011": 0.01779612099926453
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/fno_standard/n2/seed6100011": 0.014336660999106243,
+              "continuum/etdrk4/n0/seedNone": 0.004388996996567585,
+              "continuum/quad2_fixed/n0/seedNone": 0.016413739998824894,
+              "continuum/df/n0/seedNone": 0.010617555992212147,
+              "continuum/fno_small/n2/seed6100011": 0.012757472999510355,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01788349098933395
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.2648834100109525,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "model_id": "continuum/fno_standard/n2/seed6100011",
+      "family": "fno_standard",
+      "track": "continuum",
+      "grid": 8,
+      "batch_size": 2,
+      "status": "ACCURACY_QUALIFIED",
+      "errors": [
+        {
+          "error_rms": 1.7953998053383773e-05,
+          "error_max": 1.8589322381135087e-05,
+          "centered_rms": 3.0738752718476296e-07,
+          "mean_error": 1.7951366494198696e-05,
+          "upper_rms": 1.7954000053771994e-05,
+          "upper_max": 1.8589324381967753e-05,
+          "spectral_low_rms": 1.7953886109307812e-05,
+          "spectral_high_rms": 6.340090624164222e-08,
+          "minimum": 0.23841701447963715,
+          "maximum": 0.48724493384361267,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        },
+        {
+          "error_rms": 1.7346589879242667e-05,
+          "error_max": 1.8612107539617284e-05,
+          "centered_rms": 5.152603690903176e-07,
+          "mean_error": 1.733893558413229e-05,
+          "upper_rms": 1.7346591879860268e-05,
+          "upper_max": 1.8612109541282617e-05,
+          "spectral_low_rms": 1.734032923103209e-05,
+          "spectral_high_rms": 4.660070794077107e-07,
+          "minimum": 0.38566967844963074,
+          "maximum": 0.64230877161026,
+          "physical_interval_violations": 0,
+          "finite": true,
+          "reference_accepted": true
+        }
+      ],
+      "rms_target": 2e-05,
+      "max_target": 2e-05,
+      "cost_seconds": 0.014038338995305821,
+      "cold_seconds": 0.011123314005089924,
+      "samples_per_second": 142.46699703353548,
+      "raw_timing": {
+        "methods": {
+          "continuum/quad2_fixed/n0/seedNone": {
+            "median_seconds": 0.013520983004127629,
+            "cold_seconds": 0.013603815998067148,
+            "samples_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "raw_seconds": [
+              0.014684014997328632,
+              0.013265025001601316,
+              0.013520983004127629
+            ],
+            "min_seconds": 0.013265025001601316,
+            "max_seconds": 0.014684014997328632,
+            "p95_seconds": 0.014684014997328632,
+            "total_seconds": 0.04147002300305758,
+            "warmup_seconds": 0.016413739998824894,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/quad2_conditioned/n2/seed6100011": {
+            "median_seconds": 0.01365191700460855,
+            "cold_seconds": 0.01779612099926453,
+            "samples_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "raw_seconds": [
+              0.01368509599706158,
+              0.01365191700460855,
+              0.013323191000381485
+            ],
+            "min_seconds": 0.013323191000381485,
+            "max_seconds": 0.01368509599706158,
+            "p95_seconds": 0.01368509599706158,
+            "total_seconds": 0.040660204002051614,
+            "warmup_seconds": 0.01788349098933395,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/df/n0/seedNone": {
+            "median_seconds": 0.008215099995140918,
+            "cold_seconds": 0.012848337995819747,
+            "samples_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "raw_seconds": [
+              0.007673437998164445,
+              0.008215099995140918,
+              0.009412311992491595
+            ],
+            "min_seconds": 0.007673437998164445,
+            "max_seconds": 0.009412311992491595,
+            "p95_seconds": 0.009412311992491595,
+            "total_seconds": 0.025300849985796958,
+            "warmup_seconds": 0.010617555992212147,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/etdrk4/n0/seedNone": {
+            "median_seconds": 0.0027921730070374906,
+            "cold_seconds": 0.002979560013045557,
+            "samples_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "raw_seconds": [
+              0.0028244500135770068,
+              0.0024806419969536364,
+              0.0027921730070374906
+            ],
+            "min_seconds": 0.0024806419969536364,
+            "max_seconds": 0.0028244500135770068,
+            "p95_seconds": 0.0028244500135770068,
+            "total_seconds": 0.008097265017568134,
+            "warmup_seconds": 0.004388996996567585,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_small/n2/seed6100011": {
+            "median_seconds": 0.010717393000959419,
+            "cold_seconds": 0.010126679000677541,
+            "samples_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "raw_seconds": [
+              0.010717393000959419,
+              0.010739255012595095,
+              0.010281529001076706
+            ],
+            "min_seconds": 0.010281529001076706,
+            "max_seconds": 0.010739255012595095,
+            "p95_seconds": 0.010739255012595095,
+            "total_seconds": 0.03173817701463122,
+            "warmup_seconds": 0.012757472999510355,
+            "repeats": 3,
+            "warmup": 1
+          },
+          "continuum/fno_standard/n2/seed6100011": {
+            "median_seconds": 0.014038338995305821,
+            "cold_seconds": 0.011123314005089924,
+            "samples_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "raw_seconds": [
+              0.014038338995305821,
+              0.019719328003702685,
+              0.012753457005601376
+            ],
+            "min_seconds": 0.012753457005601376,
+            "max_seconds": 0.019719328003702685,
+            "p95_seconds": 0.019719328003702685,
+            "total_seconds": 0.04651112400460988,
+            "warmup_seconds": 0.014336660999106243,
+            "repeats": 3,
+            "warmup": 1
+          }
+        },
+        "rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/df/n0/seedNone": 0.007673437998164445,
+              "continuum/quad2_fixed/n0/seedNone": 0.014684014997328632,
+              "continuum/fno_small/n2/seed6100011": 0.010717393000959419,
+              "continuum/fno_standard/n2/seed6100011": 0.014038338995305821,
+              "continuum/etdrk4/n0/seedNone": 0.0028244500135770068,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01368509599706158
+            }
+          },
+          {
+            "round": 1,
+            "order": [
+              "continuum/quad2_conditioned/n2/seed6100011",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone"
+            ],
+            "samples_seconds": {
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01365191700460855,
+              "continuum/df/n0/seedNone": 0.008215099995140918,
+              "continuum/fno_small/n2/seed6100011": 0.010739255012595095,
+              "continuum/fno_standard/n2/seed6100011": 0.019719328003702685,
+              "continuum/etdrk4/n0/seedNone": 0.0024806419969536364,
+              "continuum/quad2_fixed/n0/seedNone": 0.013265025001601316
+            }
+          },
+          {
+            "round": 2,
+            "order": [
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/etdrk4/n0/seedNone": 0.0027921730070374906,
+              "continuum/fno_standard/n2/seed6100011": 0.012753457005601376,
+              "continuum/fno_small/n2/seed6100011": 0.010281529001076706,
+              "continuum/quad2_fixed/n0/seedNone": 0.013520983004127629,
+              "continuum/df/n0/seedNone": 0.009412311992491595,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.013323191000381485
+            }
+          }
+        ],
+        "cold_order": [
+          "continuum/quad2_fixed/n0/seedNone",
+          "continuum/fno_standard/n2/seed6100011",
+          "continuum/df/n0/seedNone",
+          "continuum/fno_small/n2/seed6100011",
+          "continuum/etdrk4/n0/seedNone",
+          "continuum/quad2_conditioned/n2/seed6100011"
+        ],
+        "cold_samples": {
+          "continuum/quad2_fixed/n0/seedNone": 0.013603815998067148,
+          "continuum/fno_standard/n2/seed6100011": 0.011123314005089924,
+          "continuum/df/n0/seedNone": 0.012848337995819747,
+          "continuum/fno_small/n2/seed6100011": 0.010126679000677541,
+          "continuum/etdrk4/n0/seedNone": 0.002979560013045557,
+          "continuum/quad2_conditioned/n2/seed6100011": 0.01779612099926453
+        },
+        "warmup_rounds": [
+          {
+            "round": 0,
+            "order": [
+              "continuum/fno_standard/n2/seed6100011",
+              "continuum/etdrk4/n0/seedNone",
+              "continuum/quad2_fixed/n0/seedNone",
+              "continuum/df/n0/seedNone",
+              "continuum/fno_small/n2/seed6100011",
+              "continuum/quad2_conditioned/n2/seed6100011"
+            ],
+            "samples_seconds": {
+              "continuum/fno_standard/n2/seed6100011": 0.014336660999106243,
+              "continuum/etdrk4/n0/seedNone": 0.004388996996567585,
+              "continuum/quad2_fixed/n0/seedNone": 0.016413739998824894,
+              "continuum/df/n0/seedNone": 0.010617555992212147,
+              "continuum/fno_small/n2/seed6100011": 0.012757472999510355,
+              "continuum/quad2_conditioned/n2/seed6100011": 0.01788349098933395
+            }
+          }
+        ],
+        "repeats": 3,
+        "warmup": 1,
+        "seed": 138,
+        "device": "cpu",
+        "peak_allocated_bytes": null,
+        "peak_reserved_bytes": null,
+        "memory_scope": "whole paired group, not per-model attribution",
+        "timing_scope": "warm randomized interleaved complete calls; first invocation and warmup charged separately",
+        "cold_scope": "first invocation in this timing group; no cold-process/cache guarantee"
+      },
+      "final_time": 0.06,
+      "schedule": [
+        0.03,
+        0.03
+      ],
+      "step_count": 2,
+      "parent_ids": [
+        "portfolio-scaling-51050000",
+        "portfolio-scaling-51050001"
+      ],
+      "teacher_seconds": 0.2648834100109525,
+      "precision": "FP32 models/FP64 references",
+      "device": "cpu"
+    },
+    {
+      "grid": 16,
+      "track": "discrete",
+      "batch_size": 2,
+      "status": "NA_DECLARED_CASE_CAP"
+    },
+    {
+      "grid": 16,
+      "track": "continuum",
+      "batch_size": 2,
+      "status": "NA_DECLARED_CASE_CAP"
+    },
+    {
+      "grid": 8,
+      "track": "discrete",
+      "batch_size": 1,
+      "status": "NA_DECLARED_CASE_CAP"
+    },
+    {
+      "grid": 8,
+      "track": "continuum",
+      "batch_size": 1,
+      "status": "NA_DECLARED_CASE_CAP"
+    },
+    {
+      "grid": 16,
+      "track": "discrete",
+      "batch_size": 1,
+      "status": "NA_DECLARED_CASE_CAP"
+    },
+    {
+      "grid": 16,
+      "track": "continuum",
+      "batch_size": 1,
+      "status": "NA_DECLARED_CASE_CAP"
+    }
+  ],
+  "scope": "measured workloads only; first declared seed not selected by confirmation"
+}

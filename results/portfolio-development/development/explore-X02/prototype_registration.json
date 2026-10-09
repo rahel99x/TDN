@@ -1,0 +1,28 @@
+{
+  "thresholds": {
+    "X01": {
+      "quadrature_absolute_error": 1e-10,
+      "decoder_relative_rms": 0.001,
+      "break_even_queries": 32
+    },
+    "X02": {
+      "resolved_twin_difference": 1e-12,
+      "target_separation": 1e-08,
+      "memory_to_instantaneous_rmse": 0.5
+    },
+    "X03": {
+      "relative_error": 0.01,
+      "speedup": 1.1
+    }
+  },
+  "prototype_ids": [
+    "X02"
+  ],
+  "seeds": {
+    "X02": 52900200
+  },
+  "device": "cpu",
+  "data_scope": "synthetic development only; no confirmation fields or prior diagnostic fields",
+  "novelty": "new to TDN prototypes; no literature novelty claim",
+  "protected_path": "C"
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "tdn.portfolio-science/v1",
+  "stage": "explore-X01",
+  "kind": "explore",
+  "device": "cpu",
+  "protocol_sha256": "a334aa226f0981961372fb65075f6eee4d089550329e798876cd3604b22e0555",
+  "unit_sha256": "00b164a9d558b2f04b0c305b72d8c1d827f6c3fbd80ad43ebac12a7a55e2eaff",
+  "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861",
+  "prerequisites": {
+    "audit": "311f7951e2d41f2b3723e98ebb12523799e830ceb11a6c08604239558ab3ece6"
+  },
+  "lineage": {
+    "audit": "311f7951e2d41f2b3723e98ebb12523799e830ceb11a6c08604239558ab3ece6"
+  },
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "4b6b5ec1e3055bb53b6507ae4775c7bed1dc91b6",
+    "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861"
+  },
+  "artifacts": {
+    "protocol.json": "171ce5cd3bcf9643e631d9e481a87666784356efe51dfe76098d8ab87c8e9e7d",
+    "prototype_registration.json": "fda5190e6c6ce01d40eef6c42a50e3dc3d7741411b72182c2a60d2fa92e8bb1f",
+    "prototype_rows.json": "86d1612124c1e72d7953364ea413123ba980dc786de61f0c4b78c718711c109a",
+    "prototype_summary.json": "3dbb94b1fe1ec80cbfa4014049c5fb3f239bd229bc30698d1a5f80ee372bb27c",
+    "review.csv": "29be9de1639fd17f95d506303c3ab8e0b150cf9844f4c7fb9ed3abdfce75b5e3",
+    "review.md": "a82c73bb725df7bfca00471c021e43d0e420ea5fdb2cc0d929fffb9ba3f33b31",
+    "rows.json": "00eff5d76f6d9ca18db3398396c85becda942c37167debdce97c72abda4258cc",
+    "rows.jsonl": "7facae547260394d552878d73639a36b13d66a3960e22ca4ed0acbf412e34535",
+    "summary.json": "b38c14c1eeaa852bdb667b23b891f82bf94d8684c6eb57396805558a7ca3d72d",
+    "summary.txt": "b59cc07461d0a4e17c548a8b89c7d7efe1f57d815055f2e250997db9a11bb6f8",
+    "temporal_amortization.json": "9605db9fcfb4eceaf2f429f445e951a73026f6726af527cb8d66a691056fd30b",
+    "temporal_encoding.json": "fd9be8674ccd2f30e22a9e72b70388fe9b04b3753ad3c83793267f15d0bf27ce",
+    "temporal_query_rows.json": "222a2ec6d123706696f83fb38fbd90a15abdc2a9ee8e4e8d9214f471663e72de"
+  }
+}

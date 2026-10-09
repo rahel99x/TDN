@@ -1,0 +1,6935 @@
+{
+  "schema": "tdn.portfolio/v1",
+  "version": 1,
+  "profile": "full",
+  "stages": [
+    "audit",
+    "diagnose",
+    "prepare",
+    "explore-X01",
+    "explore-X02",
+    "explore-X03",
+    "train-A-000",
+    "train-A-001",
+    "train-A-002",
+    "train-B-000",
+    "train-B-001",
+    "train-B-002",
+    "freeze",
+    "confirm-prepare-000",
+    "confirm-000",
+    "confirm-prepare-001",
+    "confirm-001",
+    "confirm-prepare-002",
+    "confirm-002",
+    "confirm-prepare-003",
+    "confirm-003",
+    "confirm-prepare-004",
+    "confirm-004",
+    "confirm-prepare-005",
+    "confirm-005",
+    "confirm-prepare-006",
+    "confirm-006",
+    "confirm-prepare-007",
+    "confirm-007",
+    "confirm-prepare-008",
+    "confirm-008",
+    "confirm-prepare-009",
+    "confirm-009",
+    "confirm-prepare-010",
+    "confirm-010",
+    "confirm-prepare-011",
+    "confirm-011",
+    "aggregate",
+    "scaling",
+    "report"
+  ],
+  "gpu_stages": [
+    "train-A-000",
+    "train-A-001",
+    "train-A-002",
+    "train-B-000",
+    "train-B-001",
+    "train-B-002",
+    "confirm-000",
+    "confirm-001",
+    "confirm-002",
+    "confirm-003",
+    "confirm-004",
+    "confirm-005",
+    "confirm-006",
+    "confirm-007",
+    "confirm-008",
+    "confirm-009",
+    "confirm-010",
+    "confirm-011",
+    "scaling"
+  ],
+  "gpu_test_cases": [
+    "test_portfolio_cuda_limits[discrete-historical_half]",
+    "test_portfolio_cuda_limits[discrete-quad2_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad2_amplitude]",
+    "test_portfolio_cuda_limits[discrete-quad2_nodes]",
+    "test_portfolio_cuda_limits[discrete-quad2_joint]",
+    "test_portfolio_cuda_limits[discrete-quad2_linear]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_limits[discrete-quad2_input]",
+    "test_portfolio_cuda_limits[discrete-quad2_full]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad4_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_limits[discrete-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[discrete-df]",
+    "test_portfolio_cuda_limits[discrete-rf]",
+    "test_portfolio_cuda_limits[discrete-etdrk4]",
+    "test_portfolio_cuda_limits[discrete-fno_small]",
+    "test_portfolio_cuda_limits[discrete-fno_standard]",
+    "test_portfolio_cuda_limits[discrete-direct_fno]",
+    "test_portfolio_cuda_limits[discrete-residual_quad2]",
+    "test_portfolio_cuda_limits[discrete-conditioned_rich]",
+    "test_portfolio_cuda_limits[discrete-band_gain]",
+    "test_portfolio_cuda_limits[continuum-historical_half]",
+    "test_portfolio_cuda_limits[continuum-quad2_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad2_amplitude]",
+    "test_portfolio_cuda_limits[continuum-quad2_nodes]",
+    "test_portfolio_cuda_limits[continuum-quad2_joint]",
+    "test_portfolio_cuda_limits[continuum-quad2_linear]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_limits[continuum-quad2_input]",
+    "test_portfolio_cuda_limits[continuum-quad2_full]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad4_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_limits[continuum-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[continuum-df]",
+    "test_portfolio_cuda_limits[continuum-rf]",
+    "test_portfolio_cuda_limits[continuum-etdrk4]",
+    "test_portfolio_cuda_limits[continuum-fno_small]",
+    "test_portfolio_cuda_limits[continuum-fno_standard]",
+    "test_portfolio_cuda_limits[continuum-direct_fno]",
+    "test_portfolio_cuda_limits[continuum-residual_quad2]",
+    "test_portfolio_cuda_limits[continuum-conditioned_rich]",
+    "test_portfolio_cuda_limits[continuum-band_gain]",
+    "test_portfolio_cuda_gradients[discrete-quad2_nodes]",
+    "test_portfolio_cuda_gradients[discrete-quad2_joint]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-fno_small]",
+    "test_portfolio_cuda_gradients[discrete-fno_standard]",
+    "test_portfolio_cuda_gradients[discrete-direct_fno]",
+    "test_portfolio_cuda_gradients[discrete-residual_quad2]",
+    "test_portfolio_cuda_gradients[discrete-conditioned_rich]",
+    "test_portfolio_cuda_gradients[discrete-band_gain]",
+    "test_portfolio_cuda_gradients[continuum-quad2_nodes]",
+    "test_portfolio_cuda_gradients[continuum-quad2_joint]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-fno_small]",
+    "test_portfolio_cuda_gradients[continuum-fno_standard]",
+    "test_portfolio_cuda_gradients[continuum-direct_fno]",
+    "test_portfolio_cuda_gradients[continuum-residual_quad2]",
+    "test_portfolio_cuda_gradients[continuum-conditioned_rich]",
+    "test_portfolio_cuda_gradients[continuum-band_gain]",
+    "test_portfolio_cuda_fitted_control[quad2_amplitude]",
+    "test_portfolio_cuda_fitted_control[quad2_linear]",
+    "test_portfolio_cuda_visible_allocation"
+  ],
+  "mechanisms": {
+    "A1": {
+      "name": "Normalization against the preserved half-normalized control",
+      "stages": [],
+      "question": "Normalization against the preserved half-normalized control"
+    },
+    "A2": {
+      "name": "Amplitude, node, linear and neural conditioning attribution",
+      "stages": [],
+      "question": "Amplitude, node, linear and neural conditioning attribution"
+    },
+    "A3": {
+      "name": "Matched node counts and compression placement",
+      "stages": [],
+      "question": "Matched node counts and compression placement"
+    },
+    "A4": {
+      "name": "Equivalent endpoint menus and physical backbone controls",
+      "stages": [],
+      "question": "Equivalent endpoint menus and physical backbone controls"
+    },
+    "A5": {
+      "name": "Credible FNO optimization and distinct fairness objectives",
+      "stages": [],
+      "question": "Credible FNO optimization and distinct fairness objectives"
+    },
+    "A6": {
+      "name": "Effective learned parameters and correction identifiability",
+      "stages": [],
+      "question": "Effective learned parameters and correction identifiability"
+    },
+    "B1": {
+      "name": "Cheap enriched physical conditioning",
+      "stages": [],
+      "question": "Cheap enriched physical conditioning"
+    },
+    "B2": {
+      "name": "Learn only a residual of normalized analytic quadrature",
+      "stages": [],
+      "question": "Learn only a residual of normalized analytic quadrature"
+    },
+    "B3": {
+      "name": "Band-dependent correction and compression tradeoff",
+      "stages": [],
+      "question": "Band-dependent correction and compression tradeoff"
+    },
+    "B4": {
+      "name": "Measured overhead, reuse and accuracy-qualified complete cost",
+      "stages": [],
+      "question": "Measured overhead, reuse and accuracy-qualified complete cost"
+    },
+    "B5": {
+      "name": "Loss scaling, data efficiency and paired generalization",
+      "stages": [],
+      "question": "Loss scaling, data efficiency and paired generalization"
+    },
+    "X01": {
+      "name": "Reusable state encoding and continuous-time interaction kernels",
+      "stages": [],
+      "question": "Reusable state encoding and continuous-time interaction kernels"
+    },
+    "X02": {
+      "name": "Coarse-state indistinguishability and unresolved-scale memory",
+      "stages": [],
+      "question": "Coarse-state indistinguishability and unresolved-scale memory"
+    },
+    "X03": {
+      "name": "Select interactions before products and distill selection rules",
+      "stages": [],
+      "question": "Select interactions before products and distill selection rules"
+    }
+  },
+  "combinations": {},
+  "budgets": {
+    "audit": {
+      "seconds": 300,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:13:00"
+    },
+    "diagnose": {
+      "seconds": 1200,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:28:00"
+    },
+    "prepare": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "explore-X01": {
+      "seconds": 480,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:16:00"
+    },
+    "explore-X02": {
+      "seconds": 480,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:16:00"
+    },
+    "explore-X03": {
+      "seconds": 480,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:16:00"
+    },
+    "train-A-000": {
+      "seconds": 1320,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:32:00"
+    },
+    "train-A-001": {
+      "seconds": 1320,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:32:00"
+    },
+    "train-A-002": {
+      "seconds": 1320,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:32:00"
+    },
+    "train-B-000": {
+      "seconds": 600,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:20:00"
+    },
+    "train-B-001": {
+      "seconds": 600,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:20:00"
+    },
+    "train-B-002": {
+      "seconds": 600,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:20:00"
+    },
+    "freeze": {
+      "seconds": 300,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:13:00"
+    },
+    "confirm-prepare-000": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-000": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-001": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-001": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-002": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-002": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-003": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-003": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-004": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-004": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-005": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-005": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-006": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-006": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-007": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-007": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-008": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-008": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-009": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-009": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-010": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-010": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "confirm-prepare-011": {
+      "seconds": 1800,
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00"
+    },
+    "confirm-011": {
+      "seconds": 1800,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00"
+    },
+    "aggregate": {
+      "seconds": 600,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:18:00"
+    },
+    "scaling": {
+      "seconds": 1200,
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00"
+    },
+    "report": {
+      "seconds": 600,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:18:00"
+    }
+  },
+  "parents": [
+    {
+      "parent_id": "portfolio-development-53000000",
+      "seed": 53000000,
+      "field_seed": 53000000,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000000",
+      "continuous_field_id": "portfolio-field-53000000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.8694226601600765,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 5.777337660502804,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000001",
+      "seed": 53000001,
+      "field_seed": 53000001,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000001",
+      "continuous_field_id": "portfolio-field-53000001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.5866069709425143,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.73099789681944,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 5.524588171515762,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000002",
+      "seed": 53000002,
+      "field_seed": 53000002,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000002",
+      "continuous_field_id": "portfolio-field-53000002",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 1.0006174339175904,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 4.254721845179127,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000003",
+      "seed": 53000003,
+      "field_seed": 53000003,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000003",
+      "continuous_field_id": "portfolio-field-53000003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.559607671504937,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.435730222407394,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 5.14590463840893,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000004",
+      "seed": 53000004,
+      "field_seed": 53000004,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000004",
+      "continuous_field_id": "portfolio-field-53000004",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 0.4330169688624959,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 5.187911678657952,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000005",
+      "seed": 53000005,
+      "field_seed": 53000005,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000005",
+      "continuous_field_id": "portfolio-field-53000005",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.14682020062206577,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 5.326892850283946,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000006",
+      "seed": 53000006,
+      "field_seed": 53000006,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000006",
+      "continuous_field_id": "portfolio-field-53000006",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.9430597438481634,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.989011242375229,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000007",
+      "seed": 53000007,
+      "field_seed": 53000007,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000007",
+      "continuous_field_id": "portfolio-field-53000007",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.8851192735685327,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 2.8317701009828564,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000008",
+      "seed": 53000008,
+      "field_seed": 53000008,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000008",
+      "continuous_field_id": "portfolio-field-53000008",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.020392447740424,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 0.901062398655235,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000009",
+      "seed": 53000009,
+      "field_seed": 53000009,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000009",
+      "continuous_field_id": "portfolio-field-53000009",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.9727363109475893,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 3.072601837808062,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 4.3428206536602225,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000010",
+      "seed": 53000010,
+      "field_seed": 53000010,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000010",
+      "continuous_field_id": "portfolio-field-53000010",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 4.76485028988934,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 6.282088383488539,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-development-53000011",
+      "seed": 53000011,
+      "field_seed": 53000011,
+      "split": "development",
+      "field_cluster": "portfolio-field-53000011",
+      "continuous_field_id": "portfolio-field-53000011",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.382246778278823,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 6.014902458289594,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 1.9804883219653215,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010000",
+      "seed": 53010000,
+      "field_seed": 53010000,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010000",
+      "continuous_field_id": "portfolio-field-53010000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.855616453748592,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 5.5562867136129395,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010001",
+      "seed": 53010001,
+      "field_seed": 53010001,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010001",
+      "continuous_field_id": "portfolio-field-53010001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.3819569113715566,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 6.22102832406755,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 1.1801336180339241,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010002",
+      "seed": 53010002,
+      "field_seed": 53010002,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010002",
+      "continuous_field_id": "portfolio-field-53010002",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 0.7995984479011737,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 3.779693936274303,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010003",
+      "seed": 53010003,
+      "field_seed": 53010003,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010003",
+      "continuous_field_id": "portfolio-field-53010003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.951310439081671,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 1.8919490837784245,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 2.5879861631869105,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010004",
+      "seed": 53010004,
+      "field_seed": 53010004,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010004",
+      "continuous_field_id": "portfolio-field-53010004",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 1.1571486563103979,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 2.3544207343191372,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010005",
+      "seed": 53010005,
+      "field_seed": 53010005,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010005",
+      "continuous_field_id": "portfolio-field-53010005",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.151593181180577,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 2.455355727502825,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010006",
+      "seed": 53010006,
+      "field_seed": 53010006,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010006",
+      "continuous_field_id": "portfolio-field-53010006",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.6820696933196587,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 5.571238660785351,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010007",
+      "seed": 53010007,
+      "field_seed": 53010007,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010007",
+      "continuous_field_id": "portfolio-field-53010007",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.6041615486119616,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 3.139835821498907,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010008",
+      "seed": 53010008,
+      "field_seed": 53010008,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010008",
+      "continuous_field_id": "portfolio-field-53010008",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.460652775089076,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 4.1490195686343085,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010009",
+      "seed": 53010009,
+      "field_seed": 53010009,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010009",
+      "continuous_field_id": "portfolio-field-53010009",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.065174129367869,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 3.8033905180057226,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 5.380432931581824,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010010",
+      "seed": 53010010,
+      "field_seed": 53010010,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010010",
+      "continuous_field_id": "portfolio-field-53010010",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 4.429451228530957,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 0.5541646031520193,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010011",
+      "seed": 53010011,
+      "field_seed": 53010011,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010011",
+      "continuous_field_id": "portfolio-field-53010011",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.789172286953073,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.111853681964209,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 1.9577247265101532,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010012",
+      "seed": 53010012,
+      "field_seed": 53010012,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010012",
+      "continuous_field_id": "portfolio-field-53010012",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 4.580331479704082,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 3.8672314160457475,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010013",
+      "seed": 53010013,
+      "field_seed": 53010013,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010013",
+      "continuous_field_id": "portfolio-field-53010013",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.7485024533505291,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 1.5078439556862577,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010014",
+      "seed": 53010014,
+      "field_seed": 53010014,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010014",
+      "continuous_field_id": "portfolio-field-53010014",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.636300807820334,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.22791143494903,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010015",
+      "seed": 53010015,
+      "field_seed": 53010015,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010015",
+      "continuous_field_id": "portfolio-field-53010015",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.44681582778928,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 0.7213266829372195,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010016",
+      "seed": 53010016,
+      "field_seed": 53010016,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010016",
+      "continuous_field_id": "portfolio-field-53010016",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.3613323072200338,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 2.6387286210841894,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.012,
+      "reaction_rate": 6.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010017",
+      "seed": 53010017,
+      "field_seed": 53010017,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010017",
+      "continuous_field_id": "portfolio-field-53010017",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.3813812434507806,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.9978866593266633,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 3.910104138749608,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.012,
+      "reaction_rate": 6.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010018",
+      "seed": 53010018,
+      "field_seed": 53010018,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010018",
+      "continuous_field_id": "portfolio-field-53010018",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 3.744750544355557,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 1.3042162537770847,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.012,
+      "reaction_rate": 6.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010019",
+      "seed": 53010019,
+      "field_seed": 53010019,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010019",
+      "continuous_field_id": "portfolio-field-53010019",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.0391109303997004,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.7878805265537303,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 5.46192553318548,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.012,
+      "reaction_rate": 6.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010020",
+      "seed": 53010020,
+      "field_seed": 53010020,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010020",
+      "continuous_field_id": "portfolio-field-53010020",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 4.734206961092243,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 6.19800429502026,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.012,
+      "reaction_rate": 6.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010021",
+      "seed": 53010021,
+      "field_seed": 53010021,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010021",
+      "continuous_field_id": "portfolio-field-53010021",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.306974665878775,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 1.5112289098666705,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.012,
+      "reaction_rate": 6.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010022",
+      "seed": 53010022,
+      "field_seed": 53010022,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010022",
+      "continuous_field_id": "portfolio-field-53010022",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.107239924104112,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.7495256263451775,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.012,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010023",
+      "seed": 53010023,
+      "field_seed": 53010023,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010023",
+      "continuous_field_id": "portfolio-field-53010023",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.250338155804873,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 4.36289338239116,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 6.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010024",
+      "seed": 53010024,
+      "field_seed": 53010024,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010024",
+      "continuous_field_id": "portfolio-field-53010024",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.4452938151118183,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 4.237821619618383,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010025",
+      "seed": 53010025,
+      "field_seed": 53010025,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010025",
+      "continuous_field_id": "portfolio-field-53010025",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.5920500583521147,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 3.630903695956282,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 4.181002725185245,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010026",
+      "seed": 53010026,
+      "field_seed": 53010026,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010026",
+      "continuous_field_id": "portfolio-field-53010026",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 1.7369746321935127,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 3.8728718666401947,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010027",
+      "seed": 53010027,
+      "field_seed": 53010027,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010027",
+      "continuous_field_id": "portfolio-field-53010027",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.7610361816335915,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 6.268175176614962,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 1.7970751193338086,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010028",
+      "seed": 53010028,
+      "field_seed": 53010028,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010028",
+      "continuous_field_id": "portfolio-field-53010028",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 3.552900184790751,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 2.7210364950966692,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010029",
+      "seed": 53010029,
+      "field_seed": 53010029,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010029",
+      "continuous_field_id": "portfolio-field-53010029",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.6659987270462295,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 3.1929816945261087,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010030",
+      "seed": 53010030,
+      "field_seed": 53010030,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010030",
+      "continuous_field_id": "portfolio-field-53010030",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.294137116127742,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.11864265461255068,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-train-53010031",
+      "seed": 53010031,
+      "field_seed": 53010031,
+      "split": "train",
+      "field_cluster": "portfolio-field-53010031",
+      "continuous_field_id": "portfolio-field-53010031",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.8110011831590833,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 3.8150132171437523,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020000",
+      "seed": 53020000,
+      "field_seed": 53020000,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020000",
+      "continuous_field_id": "portfolio-field-53020000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.6747868123827208,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 4.772498257863649,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020001",
+      "seed": 53020001,
+      "field_seed": 53020001,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020001",
+      "continuous_field_id": "portfolio-field-53020001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.968032821917648,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.827004632895404,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 2.687556302580812,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020002",
+      "seed": 53020002,
+      "field_seed": 53020002,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020002",
+      "continuous_field_id": "portfolio-field-53020002",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 0.21211895751863172,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 5.135179474660865,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020003",
+      "seed": 53020003,
+      "field_seed": 53020003,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020003",
+      "continuous_field_id": "portfolio-field-53020003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.068232610438917,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 5.679607812424022,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 3.6129152482362494,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020004",
+      "seed": 53020004,
+      "field_seed": 53020004,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020004",
+      "continuous_field_id": "portfolio-field-53020004",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 6.194670250455638,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 1.1021370693157808,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020005",
+      "seed": 53020005,
+      "field_seed": 53020005,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020005",
+      "continuous_field_id": "portfolio-field-53020005",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.3840183898065346,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 4.3144049519537635,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020006",
+      "seed": 53020006,
+      "field_seed": 53020006,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020006",
+      "continuous_field_id": "portfolio-field-53020006",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.3752355266249192,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 3.862748533567719,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020007",
+      "seed": 53020007,
+      "field_seed": 53020007,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020007",
+      "continuous_field_id": "portfolio-field-53020007",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.506333691833168,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 2.194322266894664,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020008",
+      "seed": 53020008,
+      "field_seed": 53020008,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020008",
+      "continuous_field_id": "portfolio-field-53020008",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.69916684536208,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 3.9904666793851233,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020009",
+      "seed": 53020009,
+      "field_seed": 53020009,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020009",
+      "continuous_field_id": "portfolio-field-53020009",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.731462804752827,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.6203878522434016,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 4.017964795107659,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020010",
+      "seed": 53020010,
+      "field_seed": 53020010,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020010",
+      "continuous_field_id": "portfolio-field-53020010",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 6.224288445232985,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 4.77790291019003,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020011",
+      "seed": 53020011,
+      "field_seed": 53020011,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020011",
+      "continuous_field_id": "portfolio-field-53020011",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.270465814046743,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.260326878185156,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 2.699884096964368,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020012",
+      "seed": 53020012,
+      "field_seed": 53020012,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020012",
+      "continuous_field_id": "portfolio-field-53020012",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 2.8442265401360007,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 0.08381713688969168,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020013",
+      "seed": 53020013,
+      "field_seed": 53020013,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020013",
+      "continuous_field_id": "portfolio-field-53020013",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.815806327458934,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 2.7647802036244884,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020014",
+      "seed": 53020014,
+      "field_seed": 53020014,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020014",
+      "continuous_field_id": "portfolio-field-53020014",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.8205088999816954,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.629188370333192,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-validation-53020015",
+      "seed": 53020015,
+      "field_seed": 53020015,
+      "split": "validation",
+      "field_cluster": "portfolio-field-53020015",
+      "continuous_field_id": "portfolio-field-53020015",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.6028567274957553,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 3.7499749369076687,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030000",
+      "seed": 53030000,
+      "field_seed": 53030000,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030000",
+      "continuous_field_id": "portfolio-field-53030000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.130771200264254,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 2.6849012128036907,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030001",
+      "seed": 53030001,
+      "field_seed": 53030001,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030001",
+      "continuous_field_id": "portfolio-field-53030001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.571585035134003,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.40592976436040545,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 0.5224273070661513,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030002",
+      "seed": 53030002,
+      "field_seed": 53030002,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030002",
+      "continuous_field_id": "portfolio-field-53030002",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 3.619290121908984,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 6.0005220094921725,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030003",
+      "seed": 53030003,
+      "field_seed": 53030003,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030003",
+      "continuous_field_id": "portfolio-field-53030003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.559011453269999,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.805042387767871,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 5.2984747583678224,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030004",
+      "seed": 53030004,
+      "field_seed": 53030004,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030004",
+      "continuous_field_id": "portfolio-field-53030004",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 0.7031602864995837,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 0.4517003783048485,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030005",
+      "seed": 53030005,
+      "field_seed": 53030005,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030005",
+      "continuous_field_id": "portfolio-field-53030005",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.003982013466682,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 3.607393779740064,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030006",
+      "seed": 53030006,
+      "field_seed": 53030006,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030006",
+      "continuous_field_id": "portfolio-field-53030006",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.3397348956758086,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 1.8331700465560956,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030007",
+      "seed": 53030007,
+      "field_seed": 53030007,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030007",
+      "continuous_field_id": "portfolio-field-53030007",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.883264459426238,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 0.24272604533475406,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030008",
+      "seed": 53030008,
+      "field_seed": 53030008,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030008",
+      "continuous_field_id": "portfolio-field-53030008",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.0768662076474176,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 4.332004757075261,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030009",
+      "seed": 53030009,
+      "field_seed": 53030009,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030009",
+      "continuous_field_id": "portfolio-field-53030009",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.0108418146283118,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 1.7616631250305688,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 3.1099850495904007,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030010",
+      "seed": 53030010,
+      "field_seed": 53030010,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030010",
+      "continuous_field_id": "portfolio-field-53030010",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 0.21252765362585233,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 1.3878040574671484,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030011",
+      "seed": 53030011,
+      "field_seed": 53030011,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030011",
+      "continuous_field_id": "portfolio-field-53030011",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.5190851503245321,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 3.5872519489489822,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 3.1883881315655684,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030012",
+      "seed": 53030012,
+      "field_seed": 53030012,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030012",
+      "continuous_field_id": "portfolio-field-53030012",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 2.6647702535568163,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 1.003450831705775,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030013",
+      "seed": 53030013,
+      "field_seed": 53030013,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030013",
+      "continuous_field_id": "portfolio-field-53030013",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.3569231252485454,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 5.968122581544724,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030014",
+      "seed": 53030014,
+      "field_seed": 53030014,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030014",
+      "continuous_field_id": "portfolio-field-53030014",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.667430909677492,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 5.205881189683031,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-calibration-53030015",
+      "seed": 53030015,
+      "field_seed": 53030015,
+      "split": "calibration",
+      "field_cluster": "portfolio-field-53030015",
+      "continuous_field_id": "portfolio-field-53030015",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.36986791417605985,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 2.493918483174941,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040000",
+      "seed": 53040000,
+      "field_seed": 53040000,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040000",
+      "continuous_field_id": "portfolio-field-53040000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.366055186037306,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 0.374683595312517,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040001",
+      "seed": 53040001,
+      "field_seed": 53040001,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040001",
+      "continuous_field_id": "portfolio-field-53040001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.8648824616177637,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 6.136255987578659,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 4.733055392104565,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040002",
+      "seed": 53040002,
+      "field_seed": 53040002,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040002",
+      "continuous_field_id": "portfolio-field-53040002",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 2.9496887044360283,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 3.228527179111366,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040003",
+      "seed": 53040003,
+      "field_seed": 53040003,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040003",
+      "continuous_field_id": "portfolio-field-53040003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.4222753120530984,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.306549544434044,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 0.758430432017758,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040004",
+      "seed": 53040004,
+      "field_seed": 53040004,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040004",
+      "continuous_field_id": "portfolio-field-53040004",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 6.275680940131417,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 2.080152010716505,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040005",
+      "seed": 53040005,
+      "field_seed": 53040005,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040005",
+      "continuous_field_id": "portfolio-field-53040005",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.680043898446604,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 5.073548229684751,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040006",
+      "seed": 53040006,
+      "field_seed": 53040006,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040006",
+      "continuous_field_id": "portfolio-field-53040006",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.27387054244539,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 5.591671884047382,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040007",
+      "seed": 53040007,
+      "field_seed": 53040007,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040007",
+      "continuous_field_id": "portfolio-field-53040007",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.4982042979255605,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 1.801535080311217,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040008",
+      "seed": 53040008,
+      "field_seed": 53040008,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040008",
+      "continuous_field_id": "portfolio-field-53040008",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.342484301547027,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 4.278645134687589,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040009",
+      "seed": 53040009,
+      "field_seed": 53040009,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040009",
+      "continuous_field_id": "portfolio-field-53040009",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.04599348945456957,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.187871460033016,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 4.1139806081627155,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040010",
+      "seed": 53040010,
+      "field_seed": 53040010,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040010",
+      "continuous_field_id": "portfolio-field-53040010",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 5.475372002889236,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 5.370653079997539,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040011",
+      "seed": 53040011,
+      "field_seed": 53040011,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040011",
+      "continuous_field_id": "portfolio-field-53040011",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.7983323600659594,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 4.054629216585635,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 5.255154641031565,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040012",
+      "seed": 53040012,
+      "field_seed": 53040012,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040012",
+      "continuous_field_id": "portfolio-field-53040012",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 1.6712605192697239,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 3.0539413355378286,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040013",
+      "seed": 53040013,
+      "field_seed": 53040013,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040013",
+      "continuous_field_id": "portfolio-field-53040013",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.440331512233218,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 2.232727332556415,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040014",
+      "seed": 53040014,
+      "field_seed": 53040014,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040014",
+      "continuous_field_id": "portfolio-field-53040014",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.648145387952983,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.7061294618564378,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040015",
+      "seed": 53040015,
+      "field_seed": 53040015,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040015",
+      "continuous_field_id": "portfolio-field-53040015",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.201789652306054,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 4.355871223935651,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040016",
+      "seed": 53040016,
+      "field_seed": 53040016,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040016",
+      "continuous_field_id": "portfolio-field-53040016",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.8995838157528055,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 4.905652279110224,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "coefficient_shift",
+      "kappa": 0.018000000000000002,
+      "reaction_rate": 9.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040017",
+      "seed": 53040017,
+      "field_seed": 53040017,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040017",
+      "continuous_field_id": "portfolio-field-53040017",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.522177786097617,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.4695518121966,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 3.1926862652564743,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "coefficient_shift",
+      "kappa": 0.018000000000000002,
+      "reaction_rate": 9.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040018",
+      "seed": 53040018,
+      "field_seed": 53040018,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040018",
+      "continuous_field_id": "portfolio-field-53040018",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 3.6130608634997636,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 0.6860242438714986,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "coefficient_shift",
+      "kappa": 0.018000000000000002,
+      "reaction_rate": 9.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040019",
+      "seed": 53040019,
+      "field_seed": 53040019,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040019",
+      "continuous_field_id": "portfolio-field-53040019",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 6.052176690516013,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.460361138803846,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 2.363877940323641,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "coefficient_shift",
+      "kappa": 0.018000000000000002,
+      "reaction_rate": 9.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040020",
+      "seed": 53040020,
+      "field_seed": 53040020,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040020",
+      "continuous_field_id": "portfolio-field-53040020",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 1.6650874062705983,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 0.12265642221674815,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "coefficient_shift",
+      "kappa": 0.018000000000000002,
+      "reaction_rate": 9.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040021",
+      "seed": 53040021,
+      "field_seed": 53040021,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040021",
+      "continuous_field_id": "portfolio-field-53040021",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.7773948408285056,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 0.39744157534903174,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "coefficient_shift",
+      "kappa": 0.018000000000000002,
+      "reaction_rate": 9.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040022",
+      "seed": 53040022,
+      "field_seed": 53040022,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040022",
+      "continuous_field_id": "portfolio-field-53040022",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.0705915944005713,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 3.7934534130342286,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "coefficient_shift",
+      "kappa": 0.018000000000000002,
+      "reaction_rate": 15.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040023",
+      "seed": 53040023,
+      "field_seed": 53040023,
+      "split": "confirmation",
+      "field_cluster": "portfolio-field-53040023",
+      "continuous_field_id": "portfolio-field-53040023",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.9031572241738695,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 2.8261368104955453,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "coefficient_shift",
+      "kappa": 0.06,
+      "reaction_rate": 9.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-scaling-53050000",
+      "seed": 53050000,
+      "field_seed": 53050000,
+      "split": "scaling",
+      "field_cluster": "portfolio-field-53050000",
+      "continuous_field_id": "portfolio-field-53050000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.823689245026343,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 0.5040695539700222,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-scaling-53050001",
+      "seed": 53050001,
+      "field_seed": 53050001,
+      "split": "scaling",
+      "field_cluster": "portfolio-field-53050001",
+      "continuous_field_id": "portfolio-field-53050001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 4.71217194448395,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.012875974662848946,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 5.257527562842627,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-scaling-53050002",
+      "seed": 53050002,
+      "field_seed": 53050002,
+      "split": "scaling",
+      "field_cluster": "portfolio-field-53050002",
+      "continuous_field_id": "portfolio-field-53050002",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 2.025185404673252,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 0.15800358925895736,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-scaling-53050003",
+      "seed": 53050003,
+      "field_seed": 53050003,
+      "split": "scaling",
+      "field_cluster": "portfolio-field-53050003",
+      "continuous_field_id": "portfolio-field-53050003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.4155077921609873,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 1.6711724923180131,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 3.94954993640602,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060000",
+      "seed": 53060000,
+      "field_seed": 53060000,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060000",
+      "continuous_field_id": "portfolio-field-53060000",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.6096310541964468,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 4.557976177246324,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060001",
+      "seed": 53060001,
+      "field_seed": 53060001,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060001",
+      "continuous_field_id": "portfolio-field-53060001",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 1.6600481464600725,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 5.7893511957507675,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 2.0423329325326387,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060002",
+      "seed": 53060002,
+      "field_seed": 53060002,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060002",
+      "continuous_field_id": "portfolio-field-53060002",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 5.739206058791486,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 0.8211387577924615,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060003",
+      "seed": 53060003,
+      "field_seed": 53060003,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060003",
+      "continuous_field_id": "portfolio-field-53060003",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.6841412214562661,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 3.590848750270917,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 5.904962712742939,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060004",
+      "seed": 53060004,
+      "field_seed": 53060004,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060004",
+      "continuous_field_id": "portfolio-field-53060004",
+      "field_terms": [
+        {
+          "mode": [
+            14,
+            0
+          ],
+          "phase": 0.09883793367440295,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            14
+          ],
+          "phase": 0.421933340500195,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "near_nyquist",
+      "regime": "near_nyquist",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060005",
+      "seed": 53060005,
+      "field_seed": 53060005,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060005",
+      "continuous_field_id": "portfolio-field-53060005",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 0.2298990922665166,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            2
+          ],
+          "phase": 2.903287760618766,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.12,
+      "variance": 0.0016,
+      "spectrum": "boundary_mean",
+      "regime": "boundary_mean",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060006",
+      "seed": 53060006,
+      "field_seed": 53060006,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060006",
+      "continuous_field_id": "portfolio-field-53060006",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.5899502388547733,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 0.1521611270229921,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "reaction_stiff",
+      "regime": "reaction_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.001,
+      "reaction_rate": 10.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060007",
+      "seed": 53060007,
+      "field_seed": 53060007,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060007",
+      "continuous_field_id": "portfolio-field-53060007",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 2.7850830058645566,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 3.8636506493762144,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "diffusion_stiff",
+      "regime": "diffusion_stiff",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.04,
+      "reaction_rate": 1.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060008",
+      "seed": 53060008,
+      "field_seed": 53060008,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060008",
+      "continuous_field_id": "portfolio-field-53060008",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 3.97534299762708,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            0,
+            1
+          ],
+          "phase": 2.4314400469117285,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "low",
+      "regime": "low",
+      "category": "favorable",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060009",
+      "seed": 53060009,
+      "field_seed": 53060009,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060009",
+      "continuous_field_id": "portfolio-field-53060009",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.919757389655812,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 1.3140214644837962,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            1,
+            -2
+          ],
+          "phase": 4.970264757791985,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.35,
+      "variance": 0.004,
+      "spectrum": "mixed",
+      "regime": "mixed",
+      "category": "typical",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060010",
+      "seed": 53060010,
+      "field_seed": 53060010,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060010",
+      "continuous_field_id": "portfolio-field-53060010",
+      "field_terms": [
+        {
+          "mode": [
+            13,
+            1
+          ],
+          "phase": 5.221543943047629,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            14,
+            1
+          ],
+          "phase": 0.81348358601871,
+          "weight": 0.7071067811865475
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.5,
+      "variance": 0.004,
+      "spectrum": "high_pair",
+      "regime": "high_pair",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "parent_id": "portfolio-policy-53060011",
+      "seed": 53060011,
+      "field_seed": 53060011,
+      "split": "policy",
+      "field_cluster": "portfolio-field-53060011",
+      "continuous_field_id": "portfolio-field-53060011",
+      "field_terms": [
+        {
+          "mode": [
+            1,
+            0
+          ],
+          "phase": 5.729738631025488,
+          "weight": 1.0
+        },
+        {
+          "mode": [
+            2,
+            1
+          ],
+          "phase": 2.684789596187568,
+          "weight": 0.7071067811865475
+        },
+        {
+          "mode": [
+            14,
+            -1
+          ],
+          "phase": 1.4610432423559108,
+          "weight": 0.5773502691896258
+        }
+      ],
+      "grid": [
+        32,
+        32
+      ],
+      "mean": 0.65,
+      "variance": 0.004,
+      "spectrum": "rough",
+      "regime": "rough",
+      "category": "stress",
+      "distribution": "declared_distribution",
+      "kappa": 0.004,
+      "reaction_rate": 3.0,
+      "lengths": [
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "tracks": [
+    "discrete",
+    "continuum"
+  ],
+  "models": [
+    "historical_half",
+    "quad2_fixed",
+    "quad2_amplitude",
+    "quad2_nodes",
+    "quad2_joint",
+    "quad2_linear",
+    "quad2_conditioned",
+    "quad2_input",
+    "quad2_full",
+    "quad2_conditioned_full",
+    "quad4_fixed",
+    "quad4_full",
+    "quad4_conditioned",
+    "analytic_quad_cubic",
+    "df",
+    "rf",
+    "etdrk4",
+    "fno_small",
+    "fno_standard",
+    "direct_fno",
+    "residual_quad2",
+    "conditioned_rich",
+    "band_gain"
+  ],
+  "trainable_models": [
+    "quad2_amplitude",
+    "quad2_nodes",
+    "quad2_joint",
+    "quad2_linear",
+    "quad2_conditioned",
+    "quad2_conditioned_full",
+    "quad4_conditioned",
+    "fno_small",
+    "fno_standard",
+    "direct_fno",
+    "residual_quad2",
+    "conditioned_rich",
+    "band_gain"
+  ],
+  "train_grid": 32,
+  "grids": [
+    32,
+    64
+  ],
+  "seeds": [
+    6100011,
+    6100021,
+    6100031
+  ],
+  "train_horizons": [
+    0.02,
+    0.04,
+    0.08,
+    0.12
+  ],
+  "validation_horizons": [
+    0.03,
+    0.06,
+    0.1,
+    0.12,
+    0.24
+  ],
+  "confirm_schedules": [
+    [
+      0.12
+    ],
+    [
+      0.06,
+      0.06
+    ],
+    [
+      0.03,
+      0.03,
+      0.03,
+      0.03
+    ],
+    [
+      0.015,
+      0.015,
+      0.015,
+      0.015,
+      0.015,
+      0.015,
+      0.015,
+      0.015
+    ],
+    [
+      0.24
+    ],
+    [
+      0.12,
+      0.12
+    ],
+    [
+      0.06,
+      0.06,
+      0.06,
+      0.06
+    ],
+    [
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03
+    ],
+    [
+      0.02,
+      0.04,
+      0.06
+    ],
+    [
+      0.06,
+      0.04,
+      0.02
+    ],
+    [
+      0.04,
+      0.08,
+      0.12
+    ],
+    [
+      0.12,
+      0.08,
+      0.04
+    ]
+  ],
+  "evaluation_horizons": [
+    0.12,
+    0.24
+  ],
+  "classical_frontier_steps": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "reference_tolerance": 2e-08,
+  "reference_substeps": 8,
+  "reference_max_substeps": 16384,
+  "reference_spatial_factors": [
+    2,
+    4
+  ],
+  "reference_roundoff_floor": 1e-12,
+  "reference_attempts": 6,
+  "max_finest_substeps": 16384,
+  "model_config": {
+    "width": 16,
+    "modes": 4,
+    "depth": 2,
+    "t_ref": 0.2,
+    "reaction_substeps": 4
+  },
+  "model_configs": {
+    "fno_standard": {
+      "width": 32,
+      "depth": 4,
+      "modes": 8
+    },
+    "direct_fno": {
+      "width": 32,
+      "depth": 4,
+      "modes": 8
+    }
+  },
+  "training": {
+    "updates": 200,
+    "tuning_updates": 40,
+    "learning_rates": [
+      0.001,
+      0.0003
+    ],
+    "batch_size": 4,
+    "subset_sizes": [
+      8,
+      32
+    ],
+    "validation_every": 25,
+    "clip_grad_norm": 1.0,
+    "weight_decay": 0.0,
+    "loss_floor": 1e-06,
+    "peak_weight": 0.1,
+    "baseline_min_relative_improvement": 0.05,
+    "initialization_control": true,
+    "candidate_selection": "validation only; lowest joint normalized RMS/maximum error",
+    "optimizer": "AdamW",
+    "trial_seconds": 120,
+    "fit_iterations": 100,
+    "loss": "dimensionless defect-normalized mean-square plus squared maximum error",
+    "non_neural_fit": "training-only ridge least-squares initialization followed by bounded matched RMS-plus-peak objective; validation selects initialization",
+    "ridge_candidates": [
+      1e-08,
+      0.0001
+    ],
+    "reference_noise_floor": true,
+    "stopping": "bounded updates and per-unit walltime; retain selected initialization",
+    "optimizer_controls": [
+      {
+        "id": "default",
+        "clip_grad_norm": 1.0,
+        "loss_scale": 1.0
+      },
+      {
+        "id": "unclipped_scaled",
+        "clip_grad_norm": null,
+        "loss_scale": 0.01
+      }
+    ],
+    "fairness_views": [
+      "equal_data",
+      "measured_training_compute",
+      "equal_inference_cost",
+      "validation_selected_frontier"
+    ]
+  },
+  "targets": [
+    0.0002,
+    2e-05,
+    2e-06
+  ],
+  "primary_target": 2e-05,
+  "timing_repeats": 5,
+  "timing_warmup": 2,
+  "timing_seed": 3700011,
+  "bootstrap_replicates": 1000,
+  "practical_speedup": 1.2,
+  "confidence_level": 0.95,
+  "screening": {
+    "grids": [
+      32,
+      64,
+      128
+    ],
+    "horizons": [
+      0.08,
+      0.24
+    ],
+    "steps": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "tracks": [
+      "discrete",
+      "continuum"
+    ],
+    "target": 2e-05
+  },
+  "scaling": {
+    "grids": [
+      64,
+      128,
+      256
+    ],
+    "batches": [
+      1,
+      4
+    ],
+    "horizon": 0.06,
+    "steps": 2,
+    "repeats": 5,
+    "families": [
+      "quad2_conditioned",
+      "quad2_fixed",
+      "fno_small",
+      "fno_standard",
+      "df",
+      "etdrk4"
+    ],
+    "reference_required_for_speed_claim": true,
+    "maximum_cases": 6,
+    "case_order": "descending batch size, then ascending grid, then target track; omitted cells remain NA"
+  },
+  "policies": {
+    "alpha": 0.01,
+    "empirical_safety_factor": 2.0,
+    "target": 2e-05,
+    "model_family": "quad2_conditioned",
+    "horizon": 0.12,
+    "grid": 32,
+    "max_refinements": 5,
+    "estimated_cost_margin_required": true,
+    "selection": "fixed family; seed and largest training subset fixed before confirmation",
+    "modes": [
+      "temporal",
+      "temporal_spatial"
+    ],
+    "calibration_split": "calibration",
+    "automatic_deployment": false,
+    "reason": "No new learned deployment policy until an independently measured solver-cost margin exists"
+  },
+  "scoring": {
+    "mathematical_proof_claim": false,
+    "score_meaning": "required-check evidence attainment, not model quality"
+  },
+  "console_every": 100,
+  "state_precision": "float32",
+  "teacher_precision": "float64",
+  "tf32": false,
+  "independent_unit": "continuous_field_cluster",
+  "confirmation_after_checkpoint_freeze": true,
+  "frontier": "reference-informed fixed-time post-hoc schedule selection; not a deployable policy",
+  "claims": {
+    "representation": "retained signed nonlinear interactions before projection",
+    "learning": "improvement beyond matched normalized analytic and non-neural fitted controls",
+    "neural": "credible locally adapted FNO on equal data and measured compute, not a paper reproduction",
+    "generalization": "paired new fields/physics/grids/horizons within declared scope",
+    "solver": "complete accuracy-qualified cost with identical schedule opportunities",
+    "numerical": "a distilled analytic rule may be a successful result without neural inference",
+    "published_fno_reproduction": false,
+    "universal_worst_case": false
+  },
+  "scientific_failure_blocks_all_research": false,
+  "automatic_budget_expansion": false,
+  "endpoint_steps": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "primary_schedules": [
+    [
+      0.02,
+      0.04,
+      0.06
+    ],
+    [
+      0.06,
+      0.04,
+      0.02
+    ],
+    [
+      0.04,
+      0.08,
+      0.12
+    ],
+    [
+      0.12,
+      0.08,
+      0.04
+    ]
+  ],
+  "confirmation_part_size": 2,
+  "portfolio_budget": {
+    "scope": "discretionary training and exploratory prototypes only; shared audit/reference/confirmation separately bounded",
+    "fractions": {
+      "A": 0.55,
+      "B": 0.25,
+      "C": 0.2
+    },
+    "probe_seconds": {
+      "A": 3960,
+      "B": 1800,
+      "C": 1440
+    },
+    "exploration_protected": true,
+    "reallocation": "requires an explicitly recorded new development protocol; no automatic transfer"
+  },
+  "hypothesis_thresholds": {
+    "representation_error_ratio": 1.5,
+    "learned_error_ratio": 1.1,
+    "practical_speedup": 1.2,
+    "confidence_level": 0.95,
+    "maximum_coverage_regression": 0.05,
+    "required_feasible_fraction": 0.95,
+    "comparison_unit": "independent field; schedules/grids/seeds paired within field",
+    "frozen_control": "quad2_fixed",
+    "learned_comparators": [
+      "quad2_amplitude",
+      "quad2_nodes",
+      "quad2_joint",
+      "quad2_linear"
+    ],
+    "multiple_comparisons": "declared primary tests; exploratory subgroup estimates unadjusted and labeled",
+    "mathematical_proof": false,
+    "primary_interval_lower_bound": 1.0,
+    "minimum_fields": 5,
+    "benefit_requires": "declared effect threshold and field-cluster interval lower bound above one; coverage noninferiority checked separately"
+  },
+  "exploration": {
+    "seed": 53900000,
+    "prototype_ids": [
+      "X01",
+      "X02",
+      "X03"
+    ],
+    "X01": {
+      "parity_tolerance": 1e-10,
+      "relative_rmse": 0.001,
+      "break_even_queries": 32
+    },
+    "X02": {
+      "resolved_twin_tolerance": 1e-12,
+      "target_separation": 1e-08,
+      "memory_rmse_ratio": 0.5
+    },
+    "X03": {
+      "relative_error": 0.01,
+      "total_speedup": 1.1
+    },
+    "novelty": "new to this project; no publication-priority claim",
+    "confirmation_access": false
+  },
+  "diagnostics": {
+    "grid": 16,
+    "horizon": 0.12,
+    "regimes": [
+      "low",
+      "high_pair",
+      "rough",
+      "near_nyquist"
+    ],
+    "terms": [
+      "spatial",
+      "temporal",
+      "quadrature",
+      "compression",
+      "optimization",
+      "reference",
+      "implementation",
+      "deployment"
+    ],
+    "profile_families": [
+      "quad2_fixed",
+      "quad2_conditioned",
+      "quad4_full",
+      "df",
+      "etdrk4",
+      "fno_small"
+    ],
+    "repetitions": 5,
+    "profiling_separate_from_timing": true
+  },
+  "selection": {
+    "split": "validation",
+    "primary_family": "quad2_conditioned",
+    "frozen_before_confirmation": true,
+    "keep_all_declared_attribution_controls": true,
+    "selection_metric": "joint RMS and maximum error with reference uncertainty; measured validation cost",
+    "test_truth_selects_deployment": false
+  },
+  "units": {
+    "audit": {
+      "id": "audit",
+      "kind": "audit",
+      "path": "shared",
+      "dependencies": [],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:13:00",
+      "seconds": 300
+    },
+    "diagnose": {
+      "id": "diagnose",
+      "kind": "diagnose",
+      "path": "shared",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:28:00",
+      "seconds": 1200
+    },
+    "prepare": {
+      "id": "prepare",
+      "kind": "prepare",
+      "path": "shared",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    "explore-X01": {
+      "id": "explore-X01",
+      "kind": "explore",
+      "path": "C",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:16:00",
+      "seconds": 480,
+      "prototype_ids": [
+        "X01"
+      ]
+    },
+    "explore-X02": {
+      "id": "explore-X02",
+      "kind": "explore",
+      "path": "C",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:16:00",
+      "seconds": 480,
+      "prototype_ids": [
+        "X02"
+      ]
+    },
+    "explore-X03": {
+      "id": "explore-X03",
+      "kind": "explore",
+      "path": "C",
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:16:00",
+      "seconds": 480,
+      "prototype_ids": [
+        "X03"
+      ]
+    },
+    "train-A-000": {
+      "id": "train-A-000",
+      "kind": "train",
+      "path": "A",
+      "dependencies": [
+        "audit",
+        "prepare"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:32:00",
+      "seconds": 1320,
+      "families": [
+        "historical_half",
+        "quad2_fixed",
+        "quad2_amplitude",
+        "quad2_nodes",
+        "quad2_joint",
+        "quad2_linear",
+        "quad2_conditioned",
+        "quad2_input",
+        "quad2_full",
+        "quad2_conditioned_full",
+        "quad4_fixed",
+        "quad4_full",
+        "quad4_conditioned",
+        "analytic_quad_cubic",
+        "df",
+        "rf",
+        "etdrk4",
+        "fno_small",
+        "fno_standard",
+        "direct_fno"
+      ],
+      "seeds": [
+        6100011
+      ],
+      "tracks": [
+        "discrete",
+        "continuum"
+      ],
+      "subset_sizes": [
+        8,
+        32
+      ]
+    },
+    "train-A-001": {
+      "id": "train-A-001",
+      "kind": "train",
+      "path": "A",
+      "dependencies": [
+        "audit",
+        "prepare"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:32:00",
+      "seconds": 1320,
+      "families": [
+        "historical_half",
+        "quad2_fixed",
+        "quad2_amplitude",
+        "quad2_nodes",
+        "quad2_joint",
+        "quad2_linear",
+        "quad2_conditioned",
+        "quad2_input",
+        "quad2_full",
+        "quad2_conditioned_full",
+        "quad4_fixed",
+        "quad4_full",
+        "quad4_conditioned",
+        "analytic_quad_cubic",
+        "df",
+        "rf",
+        "etdrk4",
+        "fno_small",
+        "fno_standard",
+        "direct_fno"
+      ],
+      "seeds": [
+        6100021
+      ],
+      "tracks": [
+        "discrete",
+        "continuum"
+      ],
+      "subset_sizes": [
+        8,
+        32
+      ]
+    },
+    "train-A-002": {
+      "id": "train-A-002",
+      "kind": "train",
+      "path": "A",
+      "dependencies": [
+        "audit",
+        "prepare"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:32:00",
+      "seconds": 1320,
+      "families": [
+        "historical_half",
+        "quad2_fixed",
+        "quad2_amplitude",
+        "quad2_nodes",
+        "quad2_joint",
+        "quad2_linear",
+        "quad2_conditioned",
+        "quad2_input",
+        "quad2_full",
+        "quad2_conditioned_full",
+        "quad4_fixed",
+        "quad4_full",
+        "quad4_conditioned",
+        "analytic_quad_cubic",
+        "df",
+        "rf",
+        "etdrk4",
+        "fno_small",
+        "fno_standard",
+        "direct_fno"
+      ],
+      "seeds": [
+        6100031
+      ],
+      "tracks": [
+        "discrete",
+        "continuum"
+      ],
+      "subset_sizes": [
+        8,
+        32
+      ]
+    },
+    "train-B-000": {
+      "id": "train-B-000",
+      "kind": "train",
+      "path": "B",
+      "dependencies": [
+        "audit",
+        "prepare"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:20:00",
+      "seconds": 600,
+      "families": [
+        "residual_quad2",
+        "conditioned_rich",
+        "band_gain"
+      ],
+      "seeds": [
+        6100011
+      ],
+      "tracks": [
+        "discrete",
+        "continuum"
+      ],
+      "subset_sizes": [
+        8,
+        32
+      ]
+    },
+    "train-B-001": {
+      "id": "train-B-001",
+      "kind": "train",
+      "path": "B",
+      "dependencies": [
+        "audit",
+        "prepare"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:20:00",
+      "seconds": 600,
+      "families": [
+        "residual_quad2",
+        "conditioned_rich",
+        "band_gain"
+      ],
+      "seeds": [
+        6100021
+      ],
+      "tracks": [
+        "discrete",
+        "continuum"
+      ],
+      "subset_sizes": [
+        8,
+        32
+      ]
+    },
+    "train-B-002": {
+      "id": "train-B-002",
+      "kind": "train",
+      "path": "B",
+      "dependencies": [
+        "audit",
+        "prepare"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:20:00",
+      "seconds": 600,
+      "families": [
+        "residual_quad2",
+        "conditioned_rich",
+        "band_gain"
+      ],
+      "seeds": [
+        6100031
+      ],
+      "tracks": [
+        "discrete",
+        "continuum"
+      ],
+      "subset_sizes": [
+        8,
+        32
+      ]
+    },
+    "freeze": {
+      "id": "freeze",
+      "kind": "freeze",
+      "path": "shared",
+      "dependencies": [
+        "train-A-000",
+        "train-A-001",
+        "train-A-002",
+        "train-B-000",
+        "train-B-001",
+        "train-B-002"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:13:00",
+      "seconds": 300
+    },
+    "confirm-prepare-000": {
+      "id": "confirm-prepare-000",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040000",
+        "portfolio-confirmation-53040001"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-000": {
+      "id": "confirm-000",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-000"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040000",
+        "portfolio-confirmation-53040001"
+      ],
+      "prepared_unit": "confirm-prepare-000"
+    },
+    "confirm-prepare-001": {
+      "id": "confirm-prepare-001",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040002",
+        "portfolio-confirmation-53040003"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-001": {
+      "id": "confirm-001",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-001"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040002",
+        "portfolio-confirmation-53040003"
+      ],
+      "prepared_unit": "confirm-prepare-001"
+    },
+    "confirm-prepare-002": {
+      "id": "confirm-prepare-002",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040004",
+        "portfolio-confirmation-53040005"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-002": {
+      "id": "confirm-002",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-002"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040004",
+        "portfolio-confirmation-53040005"
+      ],
+      "prepared_unit": "confirm-prepare-002"
+    },
+    "confirm-prepare-003": {
+      "id": "confirm-prepare-003",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040006",
+        "portfolio-confirmation-53040007"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-003": {
+      "id": "confirm-003",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-003"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040006",
+        "portfolio-confirmation-53040007"
+      ],
+      "prepared_unit": "confirm-prepare-003"
+    },
+    "confirm-prepare-004": {
+      "id": "confirm-prepare-004",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040008",
+        "portfolio-confirmation-53040009"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-004": {
+      "id": "confirm-004",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-004"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040008",
+        "portfolio-confirmation-53040009"
+      ],
+      "prepared_unit": "confirm-prepare-004"
+    },
+    "confirm-prepare-005": {
+      "id": "confirm-prepare-005",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040010",
+        "portfolio-confirmation-53040011"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-005": {
+      "id": "confirm-005",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-005"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040010",
+        "portfolio-confirmation-53040011"
+      ],
+      "prepared_unit": "confirm-prepare-005"
+    },
+    "confirm-prepare-006": {
+      "id": "confirm-prepare-006",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040012",
+        "portfolio-confirmation-53040013"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-006": {
+      "id": "confirm-006",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-006"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040012",
+        "portfolio-confirmation-53040013"
+      ],
+      "prepared_unit": "confirm-prepare-006"
+    },
+    "confirm-prepare-007": {
+      "id": "confirm-prepare-007",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040014",
+        "portfolio-confirmation-53040015"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-007": {
+      "id": "confirm-007",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-007"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040014",
+        "portfolio-confirmation-53040015"
+      ],
+      "prepared_unit": "confirm-prepare-007"
+    },
+    "confirm-prepare-008": {
+      "id": "confirm-prepare-008",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040016",
+        "portfolio-confirmation-53040017"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-008": {
+      "id": "confirm-008",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-008"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040016",
+        "portfolio-confirmation-53040017"
+      ],
+      "prepared_unit": "confirm-prepare-008"
+    },
+    "confirm-prepare-009": {
+      "id": "confirm-prepare-009",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040018",
+        "portfolio-confirmation-53040019"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-009": {
+      "id": "confirm-009",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-009"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040018",
+        "portfolio-confirmation-53040019"
+      ],
+      "prepared_unit": "confirm-prepare-009"
+    },
+    "confirm-prepare-010": {
+      "id": "confirm-prepare-010",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040020",
+        "portfolio-confirmation-53040021"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-010": {
+      "id": "confirm-010",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-010"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040020",
+        "portfolio-confirmation-53040021"
+      ],
+      "prepared_unit": "confirm-prepare-010"
+    },
+    "confirm-prepare-011": {
+      "id": "confirm-prepare-011",
+      "kind": "confirm_prepare",
+      "path": "shared",
+      "dependencies": [
+        "freeze"
+      ],
+      "device": "cpu",
+      "cpus": 8,
+      "mem_gib": 48,
+      "walltime": "00:38:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040022",
+        "portfolio-confirmation-53040023"
+      ],
+      "splits": [
+        "confirmation"
+      ]
+    },
+    "confirm-011": {
+      "id": "confirm-011",
+      "kind": "confirm",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-prepare-011"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:40:00",
+      "seconds": 1800,
+      "parent_ids": [
+        "portfolio-confirmation-53040022",
+        "portfolio-confirmation-53040023"
+      ],
+      "prepared_unit": "confirm-prepare-011"
+    },
+    "aggregate": {
+      "id": "aggregate",
+      "kind": "aggregate",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "confirm-000",
+        "confirm-001",
+        "confirm-002",
+        "confirm-003",
+        "confirm-004",
+        "confirm-005",
+        "confirm-006",
+        "confirm-007",
+        "confirm-008",
+        "confirm-009",
+        "confirm-010",
+        "confirm-011"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:18:00",
+      "seconds": 600
+    },
+    "scaling": {
+      "id": "scaling",
+      "kind": "scaling",
+      "path": "shared",
+      "dependencies": [
+        "freeze",
+        "aggregate"
+      ],
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 48,
+      "walltime": "00:30:00",
+      "seconds": 1200
+    },
+    "report": {
+      "id": "report",
+      "kind": "report",
+      "path": "shared",
+      "dependencies": [
+        "audit",
+        "diagnose",
+        "prepare",
+        "explore-X01",
+        "explore-X02",
+        "explore-X03",
+        "train-A-000",
+        "train-A-001",
+        "train-A-002",
+        "train-B-000",
+        "train-B-001",
+        "train-B-002",
+        "freeze",
+        "confirm-prepare-000",
+        "confirm-000",
+        "confirm-prepare-001",
+        "confirm-001",
+        "confirm-prepare-002",
+        "confirm-002",
+        "confirm-prepare-003",
+        "confirm-003",
+        "confirm-prepare-004",
+        "confirm-004",
+        "confirm-prepare-005",
+        "confirm-005",
+        "confirm-prepare-006",
+        "confirm-006",
+        "confirm-prepare-007",
+        "confirm-007",
+        "confirm-prepare-008",
+        "confirm-008",
+        "confirm-prepare-009",
+        "confirm-009",
+        "confirm-prepare-010",
+        "confirm-010",
+        "confirm-prepare-011",
+        "confirm-011",
+        "aggregate",
+        "scaling"
+      ],
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:18:00",
+      "seconds": 600
+    }
+  }
+}
