@@ -1,0 +1,94 @@
+{
+  "scope": "bounded CPU development diagnostics; sealed confirmatory parents remain unopened",
+  "device": "cpu",
+  "optimizer_steps_per_family": 12,
+  "families": [
+    "taylor",
+    "polynomial",
+    "rational",
+    "fixed_rate",
+    "generic_mlp",
+    "temporal_mlp"
+  ],
+  "accuracy_time_frontier": [
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0015072039999495246,
+      "diagnostic_worst_weighted_error": 0.0003607446962537165,
+      "family": "taylor",
+      "parameter_count": 1505,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.6279295780000211,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0016177910000578777,
+      "diagnostic_worst_weighted_error": 0.0006806558823332446,
+      "family": "polynomial",
+      "parameter_count": 1604,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.05689280999990842,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0016522170000143888,
+      "diagnostic_worst_weighted_error": 0.0006168141849519031,
+      "family": "rational",
+      "parameter_count": 1637,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.059673311000096874,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0017792685000586062,
+      "diagnostic_worst_weighted_error": 0.0007567240371190089,
+      "family": "fixed_rate",
+      "parameter_count": 1604,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.07297872699996333,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0015157514999373234,
+      "diagnostic_worst_weighted_error": 0.0006135509828621274,
+      "family": "generic_mlp",
+      "parameter_count": 1537,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.057749744000147984,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    },
+    {
+      "candidate_h": 0.32,
+      "claim_scope": "development diagnostics; single timing repeat per parent/sequence",
+      "diagnostic_failed_parents": 0,
+      "diagnostic_median_wall_seconds": 0.0018626390000235915,
+      "diagnostic_worst_weighted_error": 0.0007573270041512373,
+      "family": "temporal_mlp",
+      "parameter_count": 1736,
+      "status": "COMPLETE_FEASIBLE",
+      "training_wall_seconds": 0.07270005300006233,
+      "validation_checkpoint_feasible": true,
+      "validation_policy_feasible": true
+    }
+  ],
+  "claim": "Tiny CPU control training and measured development frontiers; no confirmed efficiency or GPU result"
+}

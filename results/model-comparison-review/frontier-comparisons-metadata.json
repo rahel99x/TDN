@@ -1,0 +1,32 @@
+{
+  "schema": "tdn.frontier-comparison-annex/v1",
+  "scope": "Existing full recovered frontier summaries, exact source records preserved; no training, evaluation, or new hypothesis tests.",
+  "counts": {
+    "paired_attribution": 36,
+    "regime_attribution": 288,
+    "grid_attribution": 72,
+    "frontier_by_comparator": 72,
+    "fixed_policy_cell_frontiers": 10,
+    "data_efficiency": 12,
+    "confirmation_gate": 2,
+    "scaling_comparisons": 48,
+    "native_paired_field_summaries": 144
+  },
+  "total_summary_records": 684,
+  "source_sha256": {
+    "results/frontier-full-review/learning-review.json": "8ed514131743cc8a4af170df34ca0f0c935021d8377ace1ef853603fa68c8b76",
+    ".runtime/frontier-full-review-20261009/extracted/fedora-frontier-20261009T005435342501Z/report/figures/chart-data.json.gz": "5183fdab4d65f3a5421d7d59b5eff95d1d4156d91982675d40cb1a73784b9814"
+  },
+  "metric_definitions": {
+    "error_ratio_cluster_geomean": "Competitor RMS / rank1 RMS: log-average schedules, grids and registered seeds within each independent field, then equally weight fields; >1 favors rank1 accuracy.",
+    "max_ratio_cluster_geomean": "Competitor maximum error / rank1 maximum error; same field averaging; >1 favors rank1.",
+    "speed_ratio_cluster_geomean": "Competitor latency / rank1 latency on same primary schedules; >1 favors rank1 speed, without accuracy qualification.",
+    "native_error_ratio_and_speed_ratio": "Existing field-cluster geometric means; descriptive 95% field-cluster bootstrap conditional on registered training seeds. No multiplicity correction/superiority test.",
+    "frontier_geomean_speed_ratio": "Competitor best measured feasible endpoint cost / candidate best measured feasible endpoint cost, only mutually feasible cells; all excluded cases retained by count. >1 favors candidate. Post-hoc reference-informed selection, not deployed policy.",
+    "error_n8_over_n32": "Same family, matched primary endpoints: RMS with 8 training fields / RMS with 32 fields. >1 favors larger subset. Fixed update budget, not a data-efficiency law.",
+    "scaling_speed_ratio": "Competitor resident-state complete rollout median / rank1 median, shared input transfer separately recorded. All endpoints in this cohort accuracy-qualified.",
+    "strongest_classical": "Best observed feasible endpoint among DF, ETDRK4, analytic quadratic and analytic quadratic+cubic; a derived oracle frontier, not another trained architecture.",
+    "non_independence": "Tables overlap: pooled, grid, regime, horizon, gate and scaling summaries must not be summed into independent evidence. Confirmation unit=continuous field (24), scaling unit=4 distinct fields.",
+    "primary_schedules": "Identical declared endpoint schedules for paired attribution; analytic/classical controls have 1/2/4/8-step extra endpoint choices for frontier only. Neural one/two-step alternatives at same full horizon were not measured."
+  }
+}
