@@ -9,8 +9,8 @@
   "rendered_chart_data_sha256": "e94c6876927deb257fdbc6ba349f10e32d59514b0c179e5efc523c8b067b6f98",
   "original_pdf_sha256": "887ace3cc257f317b105659e22d24b622a9e89186cc6eac3b72ccae58ea59504",
   "renderer": "tdn/analysis/frontier/report.py",
-  "renderer_sha256": "a669d7fadabaf6c6c6480e76b7c630a30870611e1d1ab5a172169f2a1f68e387",
-  "changes": "Display method labels, metric directions, marker shapes, line patterns and method emphasis only",
+  "renderer_sha256": "af2e2bef715c81bcf9e3f20dd73324fa22934e78760213399bdd36e621809f78",
+  "changes": "Continuous interpolated min/max learning bands, thinner remaining lines, method labels and plot reading guides; raw measurements unchanged",
   "scientific_data_unchanged": true,
   "panel_count": 33,
   "method_labels": {
@@ -27,75 +27,77 @@
     "strongest_classical": "Theirs: strongest classical"
   },
   "method_convention": "Ours = proposed rank-one family and its controls. Theirs = established-method comparators implemented here; local FNO variants are not published-paper reproductions. Analytic control = untrained attribution reference, not an external FNO result or an ownership/novelty claim.",
-  "marker_convention": "Blue solid line / up triangle = Ours, learned rank-one; light-blue dotted / down triangle = frozen; cyan dashed / left triangle = ablation. Other methods use thinner patterned lines / circles. Method colors are consistent; ratios use candidate styling. Hatched bars are controls. Heatmap colors show accuracy; partial-diagnostic colors show evidence status.",
+  "marker_convention": "Blue solid line / up triangle = Ours, learned rank-one; light-blue dotted / down triangle = frozen; cyan dashed / left triangle = ablation. Other methods use thin patterned lines / circles. Method colors are consistent; ratios use candidate styling. Hatched bars are controls. Learning bands show observed low/high ranges with faint fill and thin opaque borders. Heatmap colors show accuracy; partial-diagnostic colors show evidence status.",
   "method_styles": {
     "rank1": {
       "color": "#0072B2",
       "marker": "^",
       "linestyle": "-",
-      "linewidth": 1.8
+      "linewidth": 0.65
     },
     "rank1_frozen": {
       "color": "#56B4E9",
       "marker": "v",
       "linestyle": ":",
-      "linewidth": 1.1
+      "linewidth": 0.5
     },
     "rank1_postcompression": {
       "color": "#17BECF",
       "marker": "<",
       "linestyle": "--",
-      "linewidth": 1.1
+      "linewidth": 0.5
     },
     "fno_small": {
       "color": "#E69F00",
       "marker": "o",
       "linestyle": "--",
-      "linewidth": 0.9
+      "linewidth": 0.45
     },
     "fno_standard": {
       "color": "#D55E00",
       "marker": "o",
       "linestyle": "-.",
-      "linewidth": 0.9
+      "linewidth": 0.45
     },
     "direct_fno": {
       "color": "#CC79A7",
       "marker": "o",
       "linestyle": ":",
-      "linewidth": 0.9
+      "linewidth": 0.45
     },
     "analytic_quad": {
       "color": "#009E73",
       "marker": "o",
       "linestyle": "--",
-      "linewidth": 0.9
+      "linewidth": 0.45
     },
     "analytic_quad_cubic": {
       "color": "#8C6D31",
       "marker": "o",
       "linestyle": "-.",
-      "linewidth": 0.9
+      "linewidth": 0.45
     },
     "df": {
       "color": "#777777",
       "marker": "o",
       "linestyle": ":",
-      "linewidth": 0.9
+      "linewidth": 0.45
     },
     "etdrk4": {
       "color": "#222222",
       "marker": "o",
       "linestyle": "--",
-      "linewidth": 0.9
+      "linewidth": 0.45
     },
     "strongest_classical": {
       "color": "#222222",
       "marker": "o",
       "linestyle": "--",
-      "linewidth": 0.9
+      "linewidth": 0.45
     }
   },
+  "learning_curve_display": "continuous_interpolated_window_min_max",
+  "learning_range_sha256": "661b6d8cb87f73700a7e1d4807844a3b3573d85a42c4677a6f1bce39955ac975",
   "reading_guides": [
     {
       "id": 1,
@@ -137,25 +139,25 @@
       "id": 7,
       "title": "Training loss by update",
       "reading_guide": "Y: lower training loss means a closer fit to that training objective. X: farther right means more optimizer updates, not inherently better quality. Compare like objectives; training loss alone does not establish generalization.",
-      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz."
+      "note": "Observed min/max in up to 20 shared x-windows across available seeds/trials; tuning includes all settings. Continuous connections interpolate window summaries, not additional observations or confidence intervals. Phase/data budgets stay separate; empty windows and single-x checkpoints break bands. Exact bounds/counts: learning-range-data.json.gz."
     },
     {
       "id": 8,
       "title": "Validation loss by update",
       "reading_guide": "Y: lower validation loss is better on the same held-out objective. X: fewer updates to the same loss is preferable; more updates alone is not a win. Validation selection does not substitute for fresh confirmation.",
-      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz."
+      "note": "Observed min/max in up to 20 shared x-windows across available seeds/trials; tuning includes all settings. Continuous connections interpolate window summaries, not additional observations or confidence intervals. Phase/data budgets stay separate; empty windows and single-x checkpoints break bands. Exact bounds/counts: learning-range-data.json.gz."
     },
     {
       "id": 9,
       "title": "Validation error versus training time",
       "reading_guide": "Lower-left is favorable: X less training time, Y lower validation RMS error. Compare the same target and validation cohort; a longer run may reach lower error. These are training costs, not inference latency.",
-      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz."
+      "note": "Observed min/max in up to 20 shared x-windows across available seeds/trials; tuning includes all settings. Continuous connections interpolate window summaries, not additional observations or confidence intervals. Phase/data budgets stay separate; empty windows and single-x checkpoints break bands. Exact bounds/counts: learning-range-data.json.gz."
     },
     {
       "id": 10,
       "title": "Validation error versus examples seen",
       "reading_guide": "Lower-left is favorable: X fewer training-example presentations, Y lower validation RMS. Examples seen includes repeated exposure, not just independent fields. Compare like targets; this alone does not establish a sample-complexity law.",
-      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz."
+      "note": "Observed min/max in up to 20 shared x-windows across available seeds/trials; tuning includes all settings. Continuous connections interpolate window summaries, not additional observations or confidence intervals. Phase/data budgets stay separate; empty windows and single-x checkpoints break bands. Exact bounds/counts: learning-range-data.json.gz."
     },
     {
       "id": 11,
@@ -297,20 +299,27 @@
     }
   ],
   "files": {
-    "frontier-atlas.pdf": "c7ba3502373ff804507f27a1495f3ff6bfd1c060acfaa300f7d43a59a4fe3796",
-    "frontier-overview.png": "23c44a1d424ae1bad2379a55a481cb6b03c67341bb1f7c5dfe2d686843fa503c"
+    "frontier-atlas.pdf": "bb9e9fc9191e31af9e07579e532477e1918e816702491cd34f5d92a8ef5ff02b",
+    "frontier-overview.png": "8464207d98efddfc9a28d3b70a5834b4d7c5478dca46060631c19e5d07885410",
+    "07-training-loss-by-update.png": "752a70ab45f722073a605a26a7da6be74ca16ba35467bb23e1728fd390774b07",
+    "learning-range-data.json.gz": "661b6d8cb87f73700a7e1d4807844a3b3573d85a42c4677a6f1bce39955ac975"
   },
   "validation": {
     "pages_with_reading_and_method_guides": 33,
     "out_of_page_text_boxes": 0,
     "strict_tight_layout_warnings": 0,
-    "reporting_tests": "25 passed",
+    "reporting_tests": "30 passed, including continuous noncrossing borders, sine extrema, stratification, missing windows and sparse zero-valued checkpoints",
     "visually_inspected_panels": [
-      "Scaling latency and throughput",
       "Training loss by update",
-      "Model parameter counts",
-      "Stress regime and tolerance coverage"
+      "Validation loss by update"
     ],
-    "pages_with_style_key": 33
+    "pages_with_visual_method_key": 33,
+    "independently_verified_learning_windows": 1608,
+    "finite_observations_by_learning_panel": {
+      "Training loss by update": 12800,
+      "Validation loss by update": 360,
+      "Validation error versus training time": 360,
+      "Validation error versus examples seen": 360
+    }
   }
 }

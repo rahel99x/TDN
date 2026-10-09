@@ -517,3 +517,135 @@ def test_local_recovery_with_only_inherited_parts_retains_partition_coverage(tmp
     assert set(part_ids) <= set(graphs._physical_stages(ctx, base))
     # An unrelated historical monolithic coordinator must not gain fictitious parts.
     assert not set(part_ids) & set(graphs._physical_stages(ctx, tmp_path / 'historical'))
+
+
+def _learning_observation(update, value, *, family='rank1', seed=1,
+                          track='discrete', phase='final', train_count=8):
+    return {'family': family, 'model_id': f'{track}/{family}/{phase}/n{train_count}/seed{seed}',
+            'track': track, 'phase': phase, 'train_count': train_count,
+            'seed': seed, 'update': update, 'train_loss': value}
+
+
+def test_learning_range_preserves_sine_extrema_and_every_observation():
+    import math
+    curves = [_learning_observation(update, math.sin(update * math.pi / 2), seed=seed)
+              for seed in (1, 2) for update in range(80)]
+    original = json.loads(json.dumps(curves))
+    ranges = graphs._learning_ranges(curves, 'update', 'train_loss')
+    assert len(ranges) == 20
+    assert sum(row['observation_count'] for row in ranges) == len(curves)
+    assert curves == original
+    for row in ranges:
+        assert row['y_min'] == pytest.approx(-1)
+        assert row['y_max'] == pytest.approx(1)
+        assert row['observation_count'] == 8
+        assert row['distinct_x_count'] == 4
+        assert row['trial_count'] == len(row['trial_ids']) == 2
+    assert min(row['x_min'] for row in ranges) == 0
+    assert max(row['x_max'] for row in ranges) == 79
+
+
+def test_learning_ranges_never_pool_tracks_phases_or_training_budgets():
+    curves = []
+    expected = {}
+    for track in ('discrete', 'continuum'):
+        for phase in ('tuning', 'final'):
+            for count in (8, 32):
+                value = len(expected) + 1
+                expected[(track, phase, count)] = value
+                curves.extend(_learning_observation(update, value, track=track,
+                    phase=phase, train_count=count) for update in (0, 1))
+    ranges = graphs._learning_ranges(curves, 'update', 'train_loss', max_windows=1)
+    assert len(ranges) == len(expected)
+    for row in ranges:
+        value = expected[(row['track'], row['phase'], row['train_count'])]
+        assert row['y_min'] == row['y_max'] == value
+        assert row['observation_count'] == 2 and row['trial_count'] == 1
+
+
+def test_learning_ranges_share_windows_and_preserve_empty_gaps():
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    from matplotlib.collections import PolyCollection
+    curves = [_learning_observation(x, x + 1) for x in (0, 1, 2, 8, 9)]
+    curves += [_learning_observation(x, 2 * x, family='fno_small') for x in (3, 4, 5, 6, 7)]
+    ranges = graphs._learning_ranges(curves, 'update', 'train_loss', max_windows=5)
+    ours = sorted((r for r in ranges if r['family'] == 'rank1'), key=lambda r: r['window_index'])
+    theirs = sorted((r for r in ranges if r['family'] == 'fno_small'), key=lambda r: r['window_index'])
+    assert len(ours) == len(theirs) == 5
+    assert [(r['window_left'], r['window_right']) for r in ours] == [
+        (r['window_left'], r['window_right']) for r in theirs]
+    assert sum(r['observation_count'] for r in ranges) == len(curves)
+    gaps = [r for r in ours if r['observation_count'] == 0]
+    assert {r['window_index'] for r in gaps} == {2, 3}
+    assert all(r['x_min'] is r['x_max'] is r['y_min'] is r['y_max'] is None for r in gaps)
+    assert all(r['distinct_x_count'] == r['trial_count'] == 0 and r['trial_ids'] == [] for r in gaps)
+    fig, ax = plt.subplots()
+    try:
+        graphs._range_plot(ax, ours, 'update', 'train_loss')
+        polygons = [path.vertices for item in ax.collections if isinstance(item, PolyCollection)
+                    for path in item.get_paths()]
+        assert polygons
+        gap_left, gap_right = gaps[0]['window_left'], gaps[-1]['window_right']
+        assert all(vertices[:, 0].max() <= gap_left or vertices[:, 0].min() >= gap_right
+                   for vertices in polygons)
+    finally:
+        plt.close(fig)
+
+
+def test_sparse_learning_ranges_do_not_invent_fills_or_drop_zero_losses():
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    from matplotlib.collections import PolyCollection
+    curves = [_learning_observation(x, value, seed=seed)
+              for x in (2, 8) for seed, value in ((1, 0.), (2, float(x)))]
+    ranges = graphs._learning_ranges(curves, 'update', 'train_loss')
+    assert len(ranges) == 2  # Number of windows is capped by distinct observed x values.
+    assert sum(r['observation_count'] for r in ranges) == 4
+    assert all(r['distinct_x_count'] == 1 and r['y_min'] == 0 for r in ranges)
+    assert {(r['x_min'], r['x_max']) for r in ranges} == {(2, 2), (8, 8)}
+    fig, ax = plt.subplots()
+    try:
+        graphs._range_plot(ax, ranges, 'update', 'train_loss')
+        assert not any(isinstance(item, PolyCollection) for item in ax.collections)
+        assert ax.get_yscale() == 'linear'
+        assert ax.dataLim.ymin == 0 and ax.dataLim.ymax == 8
+        assert ax.dataLim.xmin == 2 and ax.dataLim.xmax == 8
+    finally:
+        plt.close(fig)
+
+
+def test_dense_learning_ranges_form_continuous_non_crossing_boundaries():
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from matplotlib.collections import PolyCollection
+    curves = [_learning_observation(x, value)
+              for x, value in enumerate((1, 3, 2, 4, 2, 5, 3, 6))]
+    ranges = graphs._learning_ranges(curves, 'update', 'train_loss', max_windows=4)
+    assert all(row['distinct_x_count'] == 2 for row in ranges)
+    fig, ax = plt.subplots()
+    try:
+        graphs._range_plot(ax, ranges, 'update', 'train_loss')
+        fills = [item for item in ax.collections if isinstance(item, PolyCollection)]
+        assert len(fills) == 1 and len(fills[0].get_paths()) == 1
+        boundaries = [line for line in ax.lines if len(line.get_xdata()) > 1]
+        assert len(boundaries) == 2
+        first_x, first_y = map(np.asarray, boundaries[0].get_data())
+        second_x, second_y = map(np.asarray, boundaries[1].get_data())
+        np.testing.assert_array_equal(first_x, second_x)
+        assert first_x[0] == 0 and first_x[-1] == 7
+        assert np.all(np.diff(first_x) > 0)  # No discontinuous vertical bin edges.
+        expected_centers = [(row['window_left'] + row['window_right']) / 2 for row in ranges]
+        np.testing.assert_allclose(first_x, [0, *expected_centers, 7])
+        lower, upper = sorted((first_y, second_y), key=lambda values: values[0])
+        np.testing.assert_array_equal(lower, [1, 1, 2, 2, 3, 3])
+        np.testing.assert_array_equal(upper, [3, 3, 4, 5, 6, 6])
+        assert np.all(lower <= upper)
+        vertices = fills[0].get_paths()[0].vertices
+        assert vertices[:, 0].min() == 0 and vertices[:, 0].max() == 7
+    finally:
+        plt.close(fig)

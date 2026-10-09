@@ -47,22 +47,23 @@ METHOD_CONVENTION = (
 )
 MARKER_CONVENTION = (
     "Blue solid line / up triangle = Ours, learned rank-one; light-blue dotted / down triangle = frozen; "
-    "cyan dashed / left triangle = ablation. Other methods use thinner patterned lines / circles. "
+    "cyan dashed / left triangle = ablation. Other methods use thin patterned lines / circles. "
     "Method colors are consistent; ratios use candidate styling. Hatched bars are controls. "
+    "Learning bands show observed low/high ranges with faint fill and thin opaque borders. "
     "Heatmap colors show accuracy; partial-diagnostic colors show evidence status."
 )
 METHOD_STYLES = {
-    'rank1': {'color': '#0072B2', 'marker': '^', 'linestyle': '-', 'linewidth': 1.8},
-    'rank1_frozen': {'color': '#56B4E9', 'marker': 'v', 'linestyle': ':', 'linewidth': 1.1},
-    'rank1_postcompression': {'color': '#17BECF', 'marker': '<', 'linestyle': '--', 'linewidth': 1.1},
-    'fno_small': {'color': '#E69F00', 'marker': 'o', 'linestyle': '--', 'linewidth': .9},
-    'fno_standard': {'color': '#D55E00', 'marker': 'o', 'linestyle': '-.', 'linewidth': .9},
-    'direct_fno': {'color': '#CC79A7', 'marker': 'o', 'linestyle': ':', 'linewidth': .9},
-    'analytic_quad': {'color': '#009E73', 'marker': 'o', 'linestyle': '--', 'linewidth': .9},
-    'analytic_quad_cubic': {'color': '#8C6D31', 'marker': 'o', 'linestyle': '-.', 'linewidth': .9},
-    'df': {'color': '#777777', 'marker': 'o', 'linestyle': ':', 'linewidth': .9},
-    'etdrk4': {'color': '#222222', 'marker': 'o', 'linestyle': '--', 'linewidth': .9},
-    'strongest_classical': {'color': '#222222', 'marker': 'o', 'linestyle': '--', 'linewidth': .9},
+    'rank1': {'color': '#0072B2', 'marker': '^', 'linestyle': '-', 'linewidth': .65},
+    'rank1_frozen': {'color': '#56B4E9', 'marker': 'v', 'linestyle': ':', 'linewidth': .5},
+    'rank1_postcompression': {'color': '#17BECF', 'marker': '<', 'linestyle': '--', 'linewidth': .5},
+    'fno_small': {'color': '#E69F00', 'marker': 'o', 'linestyle': '--', 'linewidth': .45},
+    'fno_standard': {'color': '#D55E00', 'marker': 'o', 'linestyle': '-.', 'linewidth': .45},
+    'direct_fno': {'color': '#CC79A7', 'marker': 'o', 'linestyle': ':', 'linewidth': .45},
+    'analytic_quad': {'color': '#009E73', 'marker': 'o', 'linestyle': '--', 'linewidth': .45},
+    'analytic_quad_cubic': {'color': '#8C6D31', 'marker': 'o', 'linestyle': '-.', 'linewidth': .45},
+    'df': {'color': '#777777', 'marker': 'o', 'linestyle': ':', 'linewidth': .45},
+    'etdrk4': {'color': '#222222', 'marker': 'o', 'linestyle': '--', 'linewidth': .45},
+    'strongest_classical': {'color': '#222222', 'marker': 'o', 'linestyle': '--', 'linewidth': .45},
 }
 
 
@@ -93,7 +94,7 @@ def _method_id(row):
 
 def _method_style(row):
     return METHOD_STYLES.get(_method_id(row),
-        {'color': '#777777', 'marker': 'o', 'linestyle': '--', 'linewidth': .9})
+        {'color': '#777777', 'marker': 'o', 'linestyle': '--', 'linewidth': .45})
 
 
 def _point_style(row):
@@ -693,23 +694,101 @@ def _label(ax, x, y):
     ax.set_xlabel(labels.get(x, x)); ax.set_ylabel(labels.get(y, y)); ax.grid(alpha=.16)
 
 
-def _lines(ax, curves, x, y):
-    groups = defaultdict(list)
+def _learning_ranges(curves, x, y, *, max_windows=20):
+    """Summarize all finite observations; never pool targets or training budgets."""
+    if not isinstance(max_windows, int) or isinstance(max_windows, bool) or max_windows < 1:
+        raise ValueError('max_windows must be a positive integer')
+    facets = defaultdict(list)
     for row in curves:
         if finite(row.get(x)) and finite(row.get(y)):
-            groups[_key(row, ('model_id', 'family', 'track', 'seed', 'train_count', 'phase'))].append(row)
-    for key, rows in sorted(groups.items()):
-        rows.sort(key=lambda r: r[x])
-        family = _family(rows[0]); label = f"{family}/{rows[0].get('track', '?')}"
+            facets[_key(row, ('track', 'phase', 'train_count'))].append(row)
+    result = []
+    for _, rows in sorted(facets.items()):
+        left, right = min(r[x] for r in rows), max(r[x] for r in rows)
+        count = min(max_windows, len({r[x] for r in rows}))
+        width = (right-left) / count
+        families = defaultdict(list)
+        for row in rows:
+            families[_method_id(row)].append(row)
+        for family, values in sorted(families.items()):
+            bins = [[] for _ in range(count)]
+            for row in values:
+                index = min(count-1, int((row[x]-left) / width)) if width else 0
+                bins[index].append(row)
+            support_min, support_max = min(r[x] for r in values), max(r[x] for r in values)
+            for index, members in enumerate(bins):
+                trial_ids = sorted({json.dumps({k: row.get(k) for k in
+                    ('model_id', 'family', 'track', 'seed', 'train_count', 'phase')}, sort_keys=True)
+                    for row in members})
+                result.append({
+                    **{k: values[0].get(k) for k in ('track', 'phase', 'train_count')},
+                    'family': family, 'x_metric': x, 'y_metric': y,
+                    'window_index': index, 'window_left': left + index*width,
+                    'window_right': right if index == count-1 else left + (index+1)*width,
+                    'family_x_min': support_min, 'family_x_max': support_max,
+                    'x_min': min((r[x] for r in members), default=None),
+                    'x_max': max((r[x] for r in members), default=None),
+                    'y_min': min((r[y] for r in members), default=None),
+                    'y_max': max((r[y] for r in members), default=None),
+                    'observation_count': len(members), 'distinct_x_count': len({r[x] for r in members}),
+                    'trial_count': len(trial_ids), 'trial_ids': trial_ids,
+                })
+    return result
+
+
+def _range_plot(ax, records, x, y):
+    """Continuous display envelopes; interpolation adds no measured evidence."""
+    groups = defaultdict(list)
+    for row in records:
+        groups[row['family']].append(row)
+    visible = []
+    for _, rows in sorted(groups.items()):
+        rows.sort(key=lambda row: row['window_index'])
+        measured = [row for row in rows if row['observation_count']]
+        if not measured:
+            continue
+        visible.extend(measured)
+        style = _method_style(rows[0]); color = style['color']
         ours = _method_id(rows[0]) == 'rank1'
-        ax.plot([r[x] for r in rows], [r[y] for r in rows], **_method_style(rows[0]),
-                alpha=.85 if ours else .5, zorder=4 if ours else 2,
-                markersize=4 if ours else 2.5, markevery=max(1, len(rows) // 8),
-                label=label if sum(1 for v in ax.lines if v.get_label() == label) == 0 else None)
-    if not groups:
+        zorder = 4 if ours else 2
+        def draw_run(run):
+            if not run:
+                return
+            bounds = [(max(row['window_left'], row['family_x_min']),
+                       min(row['window_right'], row['family_x_max'])) for row in run]
+            # Straight connections between centers are continuous and cannot
+            # overshoot extrema or cross the lower and upper boundaries.
+            # The outer half-windows hold the first/last observed range.
+            xs = [bounds[0][0], *[(lo+hi)/2 for lo, hi in bounds], bounds[-1][1]]
+            lower = [run[0]['y_min'], *[row['y_min'] for row in run], run[-1]['y_min']]
+            upper = [run[0]['y_max'], *[row['y_max'] for row in run], run[-1]['y_max']]
+            ax.fill_between(xs, lower, upper, color=color, alpha=.10, linewidth=0, zorder=zorder)
+            for values in (lower, upper):
+                ax.plot(xs, values, color=color, linestyle=style['linestyle'],
+                        linewidth=.6, alpha=.95, zorder=zorder+.1)
+        run = []
+        for row in rows:
+            if not row['observation_count']:
+                draw_run(run); run = []
+                continue
+            if row['distinct_x_count'] > 1:
+                if run and row['window_index'] != run[-1]['window_index'] + 1:
+                    draw_run(run); run = []
+                run.append(row)
+            else:
+                draw_run(run); run = []
+                low, high = row['y_min'], row['y_max']
+                # One observed x is a checkpoint range, not an interval of time.
+                ax.vlines(row['x_min'], low, high, color=color, linewidth=.6, alpha=.95, zorder=zorder)
+                ax.plot([row['x_min']]*2, [low, high], linestyle='None', marker=style['marker'],
+                        color=color, markersize=2.5, markeredgewidth=.35, alpha=.95, zorder=zorder+.1)
+        draw_run(run)
+        ax.plot([], [], color=color, linestyle=style['linestyle'], linewidth=.6,
+                marker=style['marker'], markersize=4, label=_family(rows[0]))
+    if not visible:
         _blank(ax)
     else:
-        if all(r.get(y, 0) > 0 for values in groups.values() for r in values):
+        if all(row['y_min'] > 0 for row in visible):
             ax.set_yscale('log')
         ax.legend(fontsize=6, ncol=2)
     _label(ax, x, y)
@@ -897,12 +976,22 @@ def build_figures(data, output, budget=None):
             _label(ax, f'row-major column (width {width})', 'row')
         single('Every individual check', check_map,
                f'{len(check_index)} cells; no downsampling. Teal GOOD, coral BAD, gray NA, white padding. Exact identities and values in check-cell-index.json.gz.')
+        learning_ranges = []
         for title, x, y in (('Training loss by update', 'update', 'train_loss'),
                              ('Validation loss by update', 'update', 'validation_loss'),
                              ('Validation error versus training time', 'elapsed_seconds', 'validation_rms'),
                              ('Validation error versus examples seen', 'examples_seen', 'validation_rms')):
-            figure = _facets(plt, curves, ('track',), lambda ax, vals: _lines(ax, vals, x, y), title)
-            save(title, figure, 'Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz.')
+            ranges = _learning_ranges(curves, x, y)
+            learning_ranges.extend({'panel': title, **row} for row in ranges)
+            figure = _facets(plt, ranges, ('track', 'phase', 'train_count'),
+                lambda ax, vals: _range_plot(ax, vals, x, y), title + ' — observed low–high range')
+            save(title, figure, 'Observed min/max in up to 20 shared x-windows across available seeds/trials; tuning includes all settings. Continuous connections interpolate window summaries, not additional observations or confidence intervals. Phase/data budgets stay separate; empty windows and single-x checkpoints break bands. Exact bounds/counts: learning-range-data.json.gz.')
+        _gzip_json(output / 'learning-range-data.json.gz', {
+            'schema': 'tdn.frontier-learning-ranges/v1', 'max_windows_per_facet': 20,
+            'scope': 'Observed min/max across x-window and available trials; not a confidence interval',
+            'display_interpolation': 'Piecewise-linear connections on displayed axes between contiguous dense window centers; no spline overshoot',
+            'gap_policy': 'Empty windows and single-x checkpoints break filled bands',
+            'records': learning_ranges})
         def parameter_draw(ax):
             records = {}; method_rows = {}
             for r in catalog + curves:
@@ -1040,7 +1129,7 @@ def build_figures(data, output, budget=None):
                     ax.plot(r[metric], i, '^', color=METHOD_STYLES['rank1']['color'])
                     ci = r.get(metric+'_ci95')
                     if isinstance(ci,list) and len(ci)==2 and all(finite(v) and v>0 for v in ci):
-                        ax.plot(ci, [i,i], color=METHOD_STYLES['rank1']['color'], linewidth=1.8)
+                        ax.plot(ci, [i,i], color=METHOD_STYLES['rank1']['color'], linewidth=.65)
                 labels = [f"{method_label(r.get('competitor'))} / n={r.get('train_count')} / fields={r.get('independent_fields')}" for r in usable]
                 ax.set_yticks(range(len(usable)), labels, fontsize=6); ax.set_xscale('log'); ax.axvline(1,color='black',ls='--',lw=.7)
                 quantity = 'RMS' if metric == 'error_ratio' else 'time'
@@ -1093,6 +1182,10 @@ def build_figures(data, output, budget=None):
         'pdf': 'frontier-atlas.pdf', 'chart_data': 'chart-data.json.gz', 'check_index': 'check-cell-index.json.gz',
         'experiment_count': len(rows), 'check_count': len(check_index), 'loss_observations': len(curves),
         'confirmation_endpoints': len(endpoints), 'comparisons': len(comparisons), 'downsampled': False,
+        'downsampled_scope': 'Raw chart source: no observations discarded; learning plots display aggregated ranges',
+        'learning_curve_display': 'continuous_interpolated_window_min_max',
+        'learning_range_data': 'learning-range-data.json.gz',
+        'learning_range_sha256': hashlib.sha256((output / 'learning-range-data.json.gz').read_bytes()).hexdigest(),
         'software_test_executions':len(data.get('software_tests',[])),
         'confirmation_partition_coverage':data.get('confirmation_partition_coverage'),
         'unavailable_panels_are_na': True, 'sources': data['sources'], 'stage_status': data['stage_status'],
@@ -1106,7 +1199,7 @@ def build_figures(data, output, budget=None):
     fig.tight_layout(); fig.savefig(output / 'frontier-overview.png',dpi=200); plt.close(fig)
     _write(output / 'manifest.json', manifest)
     body = ''.join(f'<section id="panel-{p["id"]}"><h2>{html.escape(p["title"])}</h2><p><strong>How to read:</strong> {html.escape(p["reading_guide"])}</p><p>{html.escape(p["note"])}</p><a href="{p["path"]}"><img loading="lazy" src="{p["path"]}" alt="{html.escape(p["title"])}"></a></section>' for p in panels)
-    (output / 'index.html').write_text('<!doctype html><meta charset="utf-8"><title>TDN frontier analytical atlas</title><style>body{font:16px system-ui;margin:2em;max-width:1600px;background:#f4f6f9;color:#172437}img{max-width:100%;height:auto}section{background:white;padding:1em;margin:2em 0}a{color:#175c8f}</style><h1>TDN five-gate analytical atlas</h1><p>Profile: '+html.escape(data['profile'])+'. Computational completion does not establish scientific superiority. All verified observations retained; unavailable evidence is NA.</p><p><a href="frontier-atlas.pdf">Complete PDF</a> · <a href="chart-data.json.gz">Every source observation</a> · <a href="check-cell-index.json.gz">Every check lookup</a> · <a href="manifest.json">Provenance and coverage</a></p>'+body)
+    (output / 'index.html').write_text('<!doctype html><meta charset="utf-8"><title>TDN frontier analytical atlas</title><style>body{font:16px system-ui;margin:2em;max-width:1600px;background:#f4f6f9;color:#172437}img{max-width:100%;height:auto}section{background:white;padding:1em;margin:2em 0}a{color:#175c8f}</style><h1>TDN five-gate analytical atlas</h1><p>Profile: '+html.escape(data['profile'])+'. Computational completion does not establish scientific superiority. All verified observations retained; unavailable evidence is NA.</p><p><a href="frontier-atlas.pdf">Complete PDF</a> · <a href="chart-data.json.gz">Every source observation</a> · <a href="learning-range-data.json.gz">Exact learning-band ranges</a> · <a href="check-cell-index.json.gz">Every check lookup</a> · <a href="manifest.json">Provenance and coverage</a></p>'+body)
     return manifest
 
 

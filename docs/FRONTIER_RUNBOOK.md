@@ -158,6 +158,7 @@ The printed run directory contains:
 - `report/figures/frontier-overview.png`: high-resolution overview.
 - `report/figures/index.html`: local graph browser.
 - `report/figures/chart-data.json.gz` and `manifest.json`: plotted data and figure inventory.
+- `report/figures/learning-range-data.json.gz`: exact learning-band windows, extrema and observation/trial counts.
 - `report/analysis.json`: machine-readable analytical summaries.
 - Stage `rows.jsonl`, `summary.json`, manifests and execution seals: underlying observations and provenance.
 - `reporter-tests/<stage>/tests.xml`: exact CPU/GPU test executions.
@@ -181,11 +182,22 @@ NA panels never mean zero error or free computation. The annotated version of
 the reviewed full native results is linked from
 [the full review](FRONTIER_FULL_REVIEW.md); it requires no experiment rerun.
 
-The proposed model uses blue upward triangles and a stronger solid line. Frozen
+The proposed model uses blue upward triangles and a thin solid line. Frozen
 and ablation controls use different triangle directions and patterned lines;
-other methods use circles and thinner patterned lines. Method colors carry
+other methods use circles and thin patterned lines. Method colors carry
 across panels and legends. Method bars and heatmap row labels also distinguish
 the proposed model; verdict and accuracy colors keep their original meaning.
+
+Dense learning plots use low-opacity min/max bands with continuous, thin,
+high-opacity upper/lower borders. Their up-to-20 common x-windows summarize all finite
+observations across available seeds/trials, with separate panels for spatial
+target, tuning/final phase and training-data budget. Tuning includes all trial
+settings. Consecutive dense-window centers are connected by straight visual
+interpolation, without block edges or spline overshoot. Interpolated heights
+are not additional measurements. Bands are observed ranges, not confidence intervals; empty windows
+remain blank and single-x validation checkpoints remain isolated ranges. Raw
+observations are preserved in chart data; the range sidecar records exact bins
+and counts so a narrow band cannot be mistaken for greater statistical certainty.
 
 The training stage's Tower report also contains bounded native metric pages for
 every observed loss/validation/compute update, with exact trial lineage. Missing
