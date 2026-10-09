@@ -1,0 +1,926 @@
+{
+  "schema": "tdn.portfolio-evidence-map/v1",
+  "reviewed_local_date": "2026-10-08",
+  "timezone": "America/Los_Angeles",
+  "scope": "Read-only reconstruction of retained historical sources; no new experiment or checkpoint execution by evidence extraction",
+  "source_sha256": {
+    "tdn/analysis/frontier/models.py": "6e4eb885538733099f9396aa24532be3234ec28f1fd9df825039e571b9c246c3",
+    "tdn/analysis/frontier/numerics.py": "0946769bb1b44fe89b2f96f49dae89ff5e6d0106e029c56e8721d172d4c7151c",
+    "tdn/analysis/frontier/data.py": "8a826133f7b386c88f89c026f87205de5f5ad4d21b82da23f6026697b33498ca",
+    "tdn/analysis/roadmap/numerics.py": "31f5d463be2d3088669282e7f1403d13bbcc04f8ad6c028bd2e426b46846aab4",
+    "tdn/research/premix_neural.py": "982b470e6f3995d8c4c152042daa824a469dfb99b76f16569b5445745809e600",
+    "results/frontier-full-review/learning-review.json": "8ed514131743cc8a4af170df34ca0f0c935021d8377ace1ef853603fa68c8b76",
+    "results/frontier-full-review/gates-review.json": "3cd4cb29f3fac18b7ecdd86aabbf468634e213f0b799b7a5aeb4ab7998fe5d0d",
+    "results/model-comparison-review/provenance.json": "999852cd764cab17a6e0efdceb19540cacb39182e22a17e9bf8a8e20f114a881"
+  },
+  "independent_confirmation_fields": 24,
+  "categories": [
+    "established",
+    "mechanistically_plausible",
+    "confounded",
+    "negative",
+    "implementation_or_measurement_defect",
+    "untested_opportunity"
+  ],
+  "entries": [
+    {
+      "id": "E01",
+      "category": "established",
+      "claim": "Frontier rank1 has 43 parameters: global node, amplitude, 3->8->1 scalar conditioner; physical branch sees full field.",
+      "sources": [
+        "tdn/analysis/frontier/models.py::PhaseRankOne"
+      ],
+      "measurement": {
+        "parameters": 43
+      },
+      "limits": "Small parameter count does not measure transforms/products/features.",
+      "next_hypothesis": "A2"
+    },
+    {
+      "id": "E02",
+      "category": "established",
+      "claim": "Latest matched primary-schedule accuracy exceeds the locally trained hybrid FNO controls.",
+      "sources": [
+        "results/frontier-full-review/learning-review.json#/feasibility"
+      ],
+      "measurement": [
+        {
+          "track": "discrete",
+          "family": "rank1",
+          "train_count": 32,
+          "endpoint_rows": 720,
+          "primary_target": 2e-05,
+          "passing_endpoint_rows": 668,
+          "finite_rows": 720,
+          "physical_violations": 0,
+          "error_rms_median": 6.297239659676728e-07,
+          "upper_max_median": 1.3623281445163116e-06,
+          "cost_milliseconds_median": 6.138983997516334
+        },
+        {
+          "track": "discrete",
+          "family": "fno_small",
+          "train_count": 32,
+          "endpoint_rows": 720,
+          "primary_target": 2e-05,
+          "passing_endpoint_rows": 313,
+          "finite_rows": 720,
+          "physical_violations": 0,
+          "error_rms_median": 2.0293937415538074e-05,
+          "upper_max_median": 2.9654841872617244e-05,
+          "cost_milliseconds_median": 3.8905974943190813
+        },
+        {
+          "track": "discrete",
+          "family": "fno_standard",
+          "train_count": 32,
+          "endpoint_rows": 720,
+          "primary_target": 2e-05,
+          "passing_endpoint_rows": 337,
+          "finite_rows": 720,
+          "physical_violations": 0,
+          "error_rms_median": 1.5479368371704165e-05,
+          "upper_max_median": 2.2886649588382824e-05,
+          "cost_milliseconds_median": 5.653083979268558
+        },
+        {
+          "track": "continuum",
+          "family": "rank1",
+          "train_count": 32,
+          "endpoint_rows": 720,
+          "primary_target": 2e-05,
+          "passing_endpoint_rows": 668,
+          "finite_rows": 720,
+          "physical_violations": 0,
+          "error_rms_median": 7.862378160957173e-07,
+          "upper_max_median": 1.8174442718793705e-06,
+          "cost_milliseconds_median": 30.68514149344992
+        },
+        {
+          "track": "continuum",
+          "family": "fno_small",
+          "train_count": 32,
+          "endpoint_rows": 720,
+          "primary_target": 2e-05,
+          "passing_endpoint_rows": 372,
+          "finite_rows": 720,
+          "physical_violations": 0,
+          "error_rms_median": 1.2641808747802346e-05,
+          "upper_max_median": 1.792362773428849e-05,
+          "cost_milliseconds_median": 22.43951300624758
+        },
+        {
+          "track": "continuum",
+          "family": "fno_standard",
+          "train_count": 32,
+          "endpoint_rows": 720,
+          "primary_target": 2e-05,
+          "passing_endpoint_rows": 367,
+          "finite_rows": 720,
+          "physical_violations": 0,
+          "error_rms_median": 1.2972266709077746e-05,
+          "upper_max_median": 1.9573703792627466e-05,
+          "cost_milliseconds_median": 24.212379998061806
+        }
+      ],
+      "limits": "720 repeated endpoints per neural track; only 24 independent fields. Local controls, not paper reproductions.",
+      "next_hypothesis": "A5"
+    },
+    {
+      "id": "E03",
+      "category": "mechanistically_plausible",
+      "claim": "Precompression erases high-high-to-low interactions; large ablation gains concentrate on high-pair/rough/near-Nyquist.",
+      "sources": [
+        "tdn/analysis/frontier/models.py::correction_components",
+        "results/frontier-full-review/learning-review.json#/regime_attribution"
+      ],
+      "measurement": [
+        {
+          "track": "discrete",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "low",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 0.8680642839087956,
+          "max_ratio_cluster_geomean": 0.8737886395176641,
+          "speed_ratio_cluster_geomean": 1.0578806871043036,
+          "error_better_rows": 14,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 90,
+          "both_pass_rows": 90,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 1.2946993662269846e-07,
+          "median_other_rms": 1.224163911730294e-07
+        },
+        {
+          "track": "continuum",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "low",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 0.9187968279422749,
+          "max_ratio_cluster_geomean": 0.9055228886221275,
+          "speed_ratio_cluster_geomean": 1.0144888965864423,
+          "error_better_rows": 22,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 90,
+          "both_pass_rows": 90,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 1.1621149402409327e-07,
+          "median_other_rms": 1.2593379263808899e-07
+        },
+        {
+          "track": "discrete",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "mixed",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 0.7978124544026124,
+          "max_ratio_cluster_geomean": 0.8474665921527239,
+          "speed_ratio_cluster_geomean": 1.0658581883219098,
+          "error_better_rows": 20,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 90,
+          "both_pass_rows": 90,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 1.8744956926863163e-07,
+          "median_other_rms": 1.8241254262307202e-07
+        },
+        {
+          "track": "continuum",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "mixed",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 0.7549629844092794,
+          "max_ratio_cluster_geomean": 0.8093506275888303,
+          "speed_ratio_cluster_geomean": 1.0161447405941073,
+          "error_better_rows": 15,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 90,
+          "both_pass_rows": 90,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 1.8150601286390214e-07,
+          "median_other_rms": 1.8318817684401017e-07
+        },
+        {
+          "track": "discrete",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "high_pair",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 6.728849870333611,
+          "max_ratio_cluster_geomean": 6.373450761885048,
+          "speed_ratio_cluster_geomean": 1.0627235851943655,
+          "error_better_rows": 90,
+          "ours_pass_rows": 62,
+          "other_pass_rows": 18,
+          "both_pass_rows": 18,
+          "ours_only_pass_rows": 44,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 5.148304179857076e-06,
+          "median_other_rms": 4.7034979447650586e-05
+        },
+        {
+          "track": "continuum",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "high_pair",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 8.533516066773513,
+          "max_ratio_cluster_geomean": 7.51387862843668,
+          "speed_ratio_cluster_geomean": 1.0120445893092058,
+          "error_better_rows": 90,
+          "ours_pass_rows": 64,
+          "other_pass_rows": 18,
+          "both_pass_rows": 18,
+          "ours_only_pass_rows": 46,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 2.334809329393034e-06,
+          "median_other_rms": 4.925732664713861e-05
+        },
+        {
+          "track": "discrete",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "rough",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 9.205633286132963,
+          "max_ratio_cluster_geomean": 5.460702111717179,
+          "speed_ratio_cluster_geomean": 1.0611709008361079,
+          "error_better_rows": 89,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 69,
+          "both_pass_rows": 69,
+          "ours_only_pass_rows": 21,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 3.126531869056589e-07,
+          "median_other_rms": 6.153207602593835e-06
+        },
+        {
+          "track": "continuum",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "rough",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 6.9556304018076265,
+          "max_ratio_cluster_geomean": 4.225753606860122,
+          "speed_ratio_cluster_geomean": 1.0094668094997086,
+          "error_better_rows": 90,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 78,
+          "both_pass_rows": 78,
+          "ours_only_pass_rows": 12,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 3.925308019593799e-07,
+          "median_other_rms": 6.466209045161021e-06
+        },
+        {
+          "track": "discrete",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "near_nyquist",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 12.305222147905214,
+          "max_ratio_cluster_geomean": 10.382727602888862,
+          "speed_ratio_cluster_geomean": 1.06492391797739,
+          "error_better_rows": 90,
+          "ours_pass_rows": 78,
+          "other_pass_rows": 24,
+          "both_pass_rows": 24,
+          "ours_only_pass_rows": 54,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 1.2934147744524073e-06,
+          "median_other_rms": 3.48445705147855e-05
+        },
+        {
+          "track": "continuum",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "near_nyquist",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 10.647503550584236,
+          "max_ratio_cluster_geomean": 8.375955311373081,
+          "speed_ratio_cluster_geomean": 1.0132723148694567,
+          "error_better_rows": 90,
+          "ours_pass_rows": 76,
+          "other_pass_rows": 24,
+          "both_pass_rows": 24,
+          "ours_only_pass_rows": 52,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 2.2617102191470955e-06,
+          "median_other_rms": 2.989812825185333e-05
+        },
+        {
+          "track": "discrete",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "boundary_mean",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 1.079532980193733,
+          "max_ratio_cluster_geomean": 1.1034568436687706,
+          "speed_ratio_cluster_geomean": 1.0583934882871187,
+          "error_better_rows": 66,
+          "ours_pass_rows": 78,
+          "other_pass_rows": 78,
+          "both_pass_rows": 78,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 7.994888279338252e-08,
+          "median_other_rms": 8.579167191410668e-08
+        },
+        {
+          "track": "continuum",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "boundary_mean",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 1.0473433889891723,
+          "max_ratio_cluster_geomean": 1.0836976342507756,
+          "speed_ratio_cluster_geomean": 1.0089290208930908,
+          "error_better_rows": 59,
+          "ours_pass_rows": 78,
+          "other_pass_rows": 78,
+          "both_pass_rows": 78,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 6.751216016232497e-08,
+          "median_other_rms": 6.751216016232497e-08
+        },
+        {
+          "track": "discrete",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "reaction_stiff",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 0.6973704684786268,
+          "max_ratio_cluster_geomean": 0.7236527297460001,
+          "speed_ratio_cluster_geomean": 1.0676004062516222,
+          "error_better_rows": 14,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 90,
+          "both_pass_rows": 90,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 4.344886974909611e-07,
+          "median_other_rms": 2.9280898099388e-07
+        },
+        {
+          "track": "continuum",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "reaction_stiff",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 0.7004686954485421,
+          "max_ratio_cluster_geomean": 0.7120644343438655,
+          "speed_ratio_cluster_geomean": 1.014892907280404,
+          "error_better_rows": 7,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 90,
+          "both_pass_rows": 90,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 1.1059410227712652e-06,
+          "median_other_rms": 6.87684868443557e-07
+        },
+        {
+          "track": "discrete",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "diffusion_stiff",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 1.9615602552293823,
+          "max_ratio_cluster_geomean": 1.8659642415916176,
+          "speed_ratio_cluster_geomean": 1.0694189868783477,
+          "error_better_rows": 90,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 90,
+          "both_pass_rows": 90,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 3.45439911320845e-06,
+          "median_other_rms": 7.901496995799585e-06
+        },
+        {
+          "track": "continuum",
+          "train_count": 32,
+          "competitor": "rank1_postcompression",
+          "regime": "diffusion_stiff",
+          "paired_rows": 90,
+          "independent_fields": 3,
+          "error_ratio_cluster_geomean": 1.3828287444862164,
+          "max_ratio_cluster_geomean": 1.3510082480289982,
+          "speed_ratio_cluster_geomean": 1.0108229920393397,
+          "error_better_rows": 89,
+          "ours_pass_rows": 90,
+          "other_pass_rows": 90,
+          "both_pass_rows": 90,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 0,
+          "median_ours_rms": 3.0430162395858546e-06,
+          "median_other_rms": 6.834002181074875e-06
+        }
+      ],
+      "limits": "Three independent historical fields per regime; ablation wins some smooth/reaction-stiff cases.",
+      "next_hypothesis": "A3"
+    },
+    {
+      "id": "E04",
+      "category": "confounded",
+      "claim": "Frozen historical quadrature weight sum is .5; normalized Gauss2 sum is 1; analytic comparator differs by four nodes/no output cutoff.",
+      "sources": [
+        "tdn/analysis/frontier/models.py::PhaseRankOne",
+        "tdn/analysis/roadmap/numerics.py::quadrature"
+      ],
+      "measurement": {
+        "historical_node_weights": [
+          0.25,
+          0.25
+        ],
+        "normalized_gauss2_weights": [
+          0.5,
+          0.5
+        ]
+      },
+      "limits": "Cannot attribute all gain to conditioner, nor conclude normalization explains all gain.",
+      "next_hypothesis": "A1"
+    },
+    {
+      "id": "E05",
+      "category": "negative",
+      "claim": "Normalized four-node analytic quadratic is more accurate than learned rank1 at matched primary schedules.",
+      "sources": [
+        "results/frontier-full-review/learning-review.json#/paired_attribution"
+      ],
+      "measurement": [
+        {
+          "track": "discrete",
+          "train_count": 32,
+          "competitor": "analytic_quad",
+          "paired_rows": 720,
+          "independent_fields": 24,
+          "error_ratio_cluster_geomean": 0.3557856696786839,
+          "max_ratio_cluster_geomean": 0.4264228766035594,
+          "speed_ratio_cluster_geomean": 1.0731348757433048,
+          "error_better_rows": 110,
+          "ours_pass_rows": 668,
+          "other_pass_rows": 705,
+          "both_pass_rows": 668,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 37,
+          "median_ours_rms": 6.297239659676728e-07,
+          "median_other_rms": 1.8433499375458972e-07
+        },
+        {
+          "track": "continuum",
+          "train_count": 32,
+          "competitor": "analytic_quad",
+          "paired_rows": 720,
+          "independent_fields": 24,
+          "error_ratio_cluster_geomean": 0.39118856000498425,
+          "max_ratio_cluster_geomean": 0.4494138152118416,
+          "speed_ratio_cluster_geomean": 1.1324862841015881,
+          "error_better_rows": 138,
+          "ours_pass_rows": 668,
+          "other_pass_rows": 702,
+          "both_pass_rows": 668,
+          "ours_only_pass_rows": 0,
+          "other_only_pass_rows": 34,
+          "median_ours_rms": 7.862378160957173e-07,
+          "median_other_rms": 2.5819873108459797e-07
+        }
+      ],
+      "limits": "Different node count and output support confound attribution, not the measured comparison.",
+      "next_hypothesis": "A3"
+    },
+    {
+      "id": "E06",
+      "category": "confounded",
+      "claim": "Classical methods received endpoint one/two/four/eight-step opportunities absent for neural families.",
+      "sources": [
+        "tdn/analysis/frontier/confirmation.py",
+        "results/frontier-full-review/learning-review.json#/fixed_policy_cell_frontiers"
+      ],
+      "measurement": null,
+      "limits": "Observed frontier valid only for declared menu.",
+      "next_hypothesis": "A4"
+    },
+    {
+      "id": "E07",
+      "category": "negative",
+      "claim": "Observed strongest-classical policy-cell frontier is faster than rank1.",
+      "sources": [
+        "results/frontier-full-review/learning-review.json#/fixed_policy_cell_frontiers"
+      ],
+      "measurement": [
+        {
+          "track": "discrete",
+          "competitor": "strongest_classical",
+          "grid": 32,
+          "final_time": 0.12,
+          "seed": 3600011,
+          "train_count": 32,
+          "target": 2e-05,
+          "all_cells": 24,
+          "eligible_cells": 24,
+          "eligible_gm_speed_ratio": 0.12081663020172806,
+          "median_speed_ratio": 0.09648273710208347,
+          "speed_ci95": [
+            0.09764976110643338,
+            0.15147336671909323
+          ],
+          "candidate_schedule_counts": {
+            "schedule-0": 18,
+            "schedule-1": 6
+          },
+          "competitor_schedule_counts": {
+            "classical-uniform-T0.12-steps1": 12,
+            "classical-uniform-T0.12-steps2": 3,
+            "schedule-0": 5,
+            "classical-uniform-T0.12-steps8": 1,
+            "schedule-2": 3
+          },
+          "candidate_median_ms": 5.925282996031456,
+          "control_median_ms": 0.5840405210619792,
+          "candidate_feasible": 24,
+          "control_feasible": 24
+        },
+        {
+          "track": "continuum",
+          "competitor": "strongest_classical",
+          "grid": 32,
+          "final_time": 0.12,
+          "seed": 3600011,
+          "train_count": 32,
+          "target": 2e-05,
+          "all_cells": 24,
+          "eligible_cells": 24,
+          "eligible_gm_speed_ratio": 0.14610548639771961,
+          "median_speed_ratio": 0.1294073131456802,
+          "speed_ci95": [
+            0.10934097757609929,
+            0.19789122820576047
+          ],
+          "candidate_schedule_counts": {
+            "schedule-0": 13,
+            "schedule-1": 11
+          },
+          "competitor_schedule_counts": {
+            "classical-uniform-T0.12-steps1": 9,
+            "schedule-2": 4,
+            "classical-uniform-T0.12-steps2": 5,
+            "schedule-0": 1,
+            "schedule-1": 2,
+            "classical-uniform-T0.12-steps8": 3
+          },
+          "candidate_median_ms": 29.82593201159034,
+          "control_median_ms": 3.945470991311595,
+          "candidate_feasible": 24,
+          "control_feasible": 24
+        }
+      ],
+      "limits": "Retrospective accuracy-qualified menu; not deployable selection; unequal menus noted.",
+      "next_hypothesis": "B4"
+    },
+    {
+      "id": "E08",
+      "category": "negative",
+      "claim": "Accuracy-backed rank1 scaling loses all small-FNO and classical comparisons; one standard-FNO crossover does not beat fastest solver.",
+      "sources": [
+        "results/frontier-full-review/gates-review.json#/scaling"
+      ],
+      "measurement": [
+        {
+          "comparator": "fno_small",
+          "track": "discrete",
+          "minimum": 0.599926379598179,
+          "median": 0.6259885099097982,
+          "maximum": 0.7039081689328119,
+          "wins_above_1": 0,
+          "practical_wins": 0,
+          "workloads": 6
+        },
+        {
+          "comparator": "fno_small",
+          "track": "continuum",
+          "minimum": 0.7164540089083091,
+          "median": 0.7333725351523429,
+          "maximum": 0.7701989247145329,
+          "wins_above_1": 0,
+          "practical_wins": 0,
+          "workloads": 6
+        },
+        {
+          "comparator": "fno_standard",
+          "track": "discrete",
+          "minimum": 0.9102279055405198,
+          "median": 0.9322858568806953,
+          "maximum": 1.5254816027551397,
+          "wins_above_1": 1,
+          "practical_wins": 1,
+          "workloads": 6
+        },
+        {
+          "comparator": "fno_standard",
+          "track": "continuum",
+          "minimum": 0.7679322601518445,
+          "median": 0.787526409594999,
+          "maximum": 0.8512728291707741,
+          "wins_above_1": 0,
+          "practical_wins": 0,
+          "workloads": 6
+        },
+        {
+          "comparator": "df",
+          "track": "discrete",
+          "minimum": 0.15699359140544888,
+          "median": 0.16590583704212847,
+          "maximum": 0.1844498619202558,
+          "wins_above_1": 0,
+          "practical_wins": 0,
+          "workloads": 6
+        },
+        {
+          "comparator": "df",
+          "track": "continuum",
+          "minimum": 0.5961490436365854,
+          "median": 0.6455458052283533,
+          "maximum": 0.6570921844064994,
+          "wins_above_1": 0,
+          "practical_wins": 0,
+          "workloads": 6
+        },
+        {
+          "comparator": "etdrk4",
+          "track": "discrete",
+          "minimum": 0.2198620467345538,
+          "median": 0.241668703436046,
+          "maximum": 0.2730296354152046,
+          "wins_above_1": 0,
+          "practical_wins": 0,
+          "workloads": 6
+        },
+        {
+          "comparator": "etdrk4",
+          "track": "continuum",
+          "minimum": 0.18453166811549337,
+          "median": 0.19650542311119495,
+          "maximum": 0.2034681770543244,
+          "wins_above_1": 0,
+          "practical_wins": 0,
+          "workloads": 6
+        }
+      ],
+      "limits": "Four fields, one seed, short horizons; measured native GPU only.",
+      "next_hypothesis": "B4"
+    },
+    {
+      "id": "E09",
+      "category": "implementation_or_measurement_defect",
+      "claim": "Historical roadmap endpoint tables mixed physical final times; corrected fixed-horizon analyses retained.",
+      "sources": [
+        "docs/MODEL_COMPARISON_REVIEW.md",
+        "results/roadmap-full-review/fixed-horizon-comparisons.json.gz"
+      ],
+      "measurement": null,
+      "limits": "Historical figures remain preserved; correction does not create new measurements.",
+      "next_hypothesis": "A4"
+    },
+    {
+      "id": "E10",
+      "category": "implementation_or_measurement_defect",
+      "claim": "A historical cold-first-call fallback-only comparison was misleading about amortization.",
+      "sources": [
+        "docs/MODEL_COMPARISON_REVIEW.md",
+        "results/roadmap-full-review/policy-review.md"
+      ],
+      "measurement": null,
+      "limits": "Later timing repairs do not retroactively validate original inference.",
+      "next_hypothesis": "B4"
+    },
+    {
+      "id": "E11",
+      "category": "mechanistically_plausible",
+      "claim": "Local FNO gradients clip at every recorded frontier update; poor loss/scale conditioning may limit baseline optimization.",
+      "sources": [
+        "results/frontier-full-review/learning-review.json#/gradient_clipping"
+      ],
+      "measurement": [
+        {
+          "track": "discrete",
+          "family": "rank1",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 0.235,
+          "median_unclipped_norm": 0.5874132215976715,
+          "maximum_unclipped_norm": 2.679743766784668
+        },
+        {
+          "track": "discrete",
+          "family": "rank1_postcompression",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 0.0275,
+          "median_unclipped_norm": 0.12002212554216385,
+          "maximum_unclipped_norm": 1.836166501045227
+        },
+        {
+          "track": "discrete",
+          "family": "fno_small",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 1.0,
+          "median_unclipped_norm": 634374.375,
+          "maximum_unclipped_norm": 331260704.0
+        },
+        {
+          "track": "discrete",
+          "family": "fno_standard",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 1.0,
+          "median_unclipped_norm": 647745.40625,
+          "maximum_unclipped_norm": 103073992.0
+        },
+        {
+          "track": "discrete",
+          "family": "direct_fno",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 1.0,
+          "median_unclipped_norm": 1443257152.0,
+          "maximum_unclipped_norm": 62709334016.0
+        },
+        {
+          "track": "continuum",
+          "family": "rank1",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 0.19916666666666666,
+          "median_unclipped_norm": 0.5424090623855591,
+          "maximum_unclipped_norm": 2.528148889541626
+        },
+        {
+          "track": "continuum",
+          "family": "rank1_postcompression",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 0.034166666666666665,
+          "median_unclipped_norm": 0.13732455670833588,
+          "maximum_unclipped_norm": 1.8915579319000244
+        },
+        {
+          "track": "continuum",
+          "family": "fno_small",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 1.0,
+          "median_unclipped_norm": 458237.34375,
+          "maximum_unclipped_norm": 323761536.0
+        },
+        {
+          "track": "continuum",
+          "family": "fno_standard",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 1.0,
+          "median_unclipped_norm": 469607.140625,
+          "maximum_unclipped_norm": 103353096.0
+        },
+        {
+          "track": "continuum",
+          "family": "direct_fno",
+          "updates": 1200,
+          "fraction_clipped_at_norm1": 1.0,
+          "median_unclipped_norm": 1323001280.0,
+          "maximum_unclipped_norm": 56353615872.0
+        }
+      ],
+      "limits": "Clipping frequency is observed, causal interpretation remains unproved.",
+      "next_hypothesis": "A5"
+    },
+    {
+      "id": "E12",
+      "category": "negative",
+      "claim": "Latest native gate outcomes are G1 GOOD, G2 BAD, G3 BAD, G4 BAD, G5 NA.",
+      "sources": [
+        "results/frontier-full-review/gates-review.json#/gate_scores"
+      ],
+      "measurement": [
+        {
+          "id": "G1",
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "passed_checks": 10,
+          "failed_checks": 0,
+          "na_checks": 0,
+          "experiment_count": 4
+        },
+        {
+          "id": "G2",
+          "verdict": "BAD",
+          "score_1_100": 95,
+          "passed_checks": 7488,
+          "failed_checks": 354,
+          "na_checks": 0,
+          "experiment_count": 2769
+        },
+        {
+          "id": "G3",
+          "verdict": "BAD",
+          "score_1_100": 75,
+          "passed_checks": 119691,
+          "failed_checks": 11101,
+          "na_checks": 22008,
+          "experiment_count": 22924
+        },
+        {
+          "id": "G4",
+          "verdict": "BAD",
+          "score_1_100": 86,
+          "passed_checks": 373,
+          "failed_checks": 47,
+          "na_checks": 0,
+          "experiment_count": 132
+        },
+        {
+          "id": "G5",
+          "verdict": "NA",
+          "score_1_100": 1,
+          "passed_checks": 0,
+          "failed_checks": 0,
+          "na_checks": 6,
+          "experiment_count": 2
+        }
+      ],
+      "limits": "Weighted check score is neither model quality percentage nor mathematical proof.",
+      "next_hypothesis": "B4"
+    },
+    {
+      "id": "E13",
+      "category": "established",
+      "claim": "Discrete FD/nodal and continuum-estimate Galerkin targets require different products/reaction flows and independently refined references.",
+      "sources": [
+        "tdn/analysis/frontier/numerics.py",
+        "tdn/analysis/frontier/data.py"
+      ],
+      "measurement": null,
+      "limits": "Finite Galerkin grid is not exact continuum solution; uncertainty estimate not certificate.",
+      "next_hypothesis": "B5"
+    },
+    {
+      "id": "E14",
+      "category": "untested_opportunity",
+      "claim": "Amplitude-only, node-only, joint, linear and full neural gains under identical normalized rules can isolate useful learning.",
+      "sources": [
+        "docs/PORTFOLIO_RESEARCH.md"
+      ],
+      "measurement": null,
+      "limits": "Implemented new protocol is not scientific confirmation.",
+      "next_hypothesis": "A2"
+    },
+    {
+      "id": "E15",
+      "category": "untested_opportunity",
+      "claim": "A reusable signed-pair/time-kernel representation may repay encoding for repeated queries.",
+      "sources": [
+        "docs/PORTFOLIO_RESEARCH.md"
+      ],
+      "measurement": null,
+      "limits": "Classical dense output/caching must get equivalent opportunities; state changes invalidate reuse.",
+      "next_hypothesis": "X01"
+    },
+    {
+      "id": "E16",
+      "category": "untested_opportunity",
+      "claim": "Coarse twins can disprove sufficiency of a coarse instantaneous state before training closure networks.",
+      "sources": [
+        "docs/PORTFOLIO_RESEARCH.md"
+      ],
+      "measurement": null,
+      "limits": "Collision on examples does not prove a proposed memory state is sufficient.",
+      "next_hypothesis": "X02"
+    },
+    {
+      "id": "E17",
+      "category": "untested_opportunity",
+      "claim": "Predicting useful interactions/orders from initial features might avoid costly products before executing them.",
+      "sources": [
+        "docs/PORTFOLIO_RESEARCH.md"
+      ],
+      "measurement": null,
+      "limits": "Oracle or post-computation selection is not deployable savings.",
+      "next_hypothesis": "X03"
+    }
+  ]
+}

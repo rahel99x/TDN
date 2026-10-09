@@ -1,0 +1,71 @@
+{
+  "schema": "tdn.portfolio-prior-art/v1",
+  "reviewed_local_date": "2026-10-08",
+  "timezone": "America/Los_Angeles",
+  "scope": "Targeted authoritative implementation and README audit; not a systematic review, paper reproduction or novelty determination.",
+  "sources": [
+    {
+      "id": "neuraloperator_readme",
+      "url": "https://raw.githubusercontent.com/neuraloperator/neuraloperator/main/README.rst",
+      "bytes": 6707,
+      "sha256": "b05da95483cb73cc965b2d3ee793d7d9de678cac8e1a086fa0c3fa6cea1012c4",
+      "status": "retrieved"
+    },
+    {
+      "id": "neuraloperator_fno",
+      "url": "https://raw.githubusercontent.com/neuraloperator/neuraloperator/main/neuralop/models/fno.py",
+      "bytes": 20219,
+      "sha256": "8b753f855ce6c08e16c949155b11a81e0ab6353cf4e54b07834edbf96db1f760",
+      "status": "retrieved"
+    },
+    {
+      "id": "neuraloperator_spectral",
+      "url": "https://raw.githubusercontent.com/neuraloperator/neuraloperator/main/neuralop/layers/spectral_convolution.py",
+      "bytes": 21954,
+      "sha256": "9f8987667cf6f1236ee23f1365a883c5916cacac82c1242f91dad84f020aeeaa",
+      "status": "retrieved"
+    },
+    {
+      "id": "deeponet",
+      "url": "https://raw.githubusercontent.com/lululxvi/deeponet/master/README.md",
+      "bytes": 7777,
+      "sha256": "db7972511014b7cd85307bc114c3dcc5816cbf9a147e8acdfa7379cfe4f471b5",
+      "status": "retrieved"
+    },
+    {
+      "id": "pdearena",
+      "url": "https://raw.githubusercontent.com/pdearena/pdearena/main/README.md",
+      "bytes": 3807,
+      "sha256": "505e4b0845951ec50a1adacedd34f5f7418f04b69107824b24e76783a9a941de",
+      "status": "retrieved"
+    },
+    {
+      "id": "diffrax",
+      "url": "https://raw.githubusercontent.com/patrick-kidger/diffrax/main/README.md",
+      "bytes": 3185,
+      "sha256": "fa1576a8143dff9263b6e45d49357ced0d48cdeff81bc556556b0ced46e4701c",
+      "status": "retrieved"
+    },
+    {
+      "id": "exponax",
+      "url": "https://raw.githubusercontent.com/Ceyron/exponax/main/README.md",
+      "bytes": 15034,
+      "sha256": "235742f3b6945f224c1c434583950297b6a7a8b912003b50608a8b3a997b5a40",
+      "status": "retrieved"
+    },
+    {
+      "id": "pysindy",
+      "url": "https://raw.githubusercontent.com/dynamicslab/pysindy/master/README.rst",
+      "bytes": 5263,
+      "sha256": "1dd26a42b52b417ea136d8bfe57b68f5d84e973cfd4ffd47c0434b59e77b47a6",
+      "status": "retrieved"
+    },
+    {
+      "id": "torchdiffeq",
+      "url": "https://raw.githubusercontent.com/rtqichen/torchdiffeq/master/README.md",
+      "bytes": 7712,
+      "sha256": "8f7702fdd454fdad124487a96ae3fa45d02af1d41adf3b5397fac6670ee1c370",
+      "status": "retrieved"
+    }
+  ]
+}

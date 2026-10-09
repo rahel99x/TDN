@@ -2,6 +2,16 @@
 
 A runnable research pipeline for learning the finite-time error of a symmetric split solver. It includes exact noncommuting linear controls, periodic logistic reaction–diffusion, refined FP64 coupled teachers, six local-input learned models, deterministic datasets/training, checkpoint resume, and complete-solver accuracy/cost reports.
 
+The current [three-path research portfolio](docs/PORTFOLIO_RESEARCH.md) resolves
+normalization and conditioning attribution, tests three grounded improvements,
+and protects 20% of its discretionary budget for three distinct exploratory
+prototypes. It includes 23 method families, matched endpoint schedules,
+independent discrete/continuum references, recoverable jobs and a source-linked
+analytical atlas. Start with the [portfolio runbook](docs/PORTFOLIO_RUNBOOK.md):
+`bash scripts/fedora_portfolio.sh plan --smoke`, then
+`bash scripts/fedora_portfolio.sh run --smoke`. Full confirmation is a separately
+declared 40-job campaign; every allocation is at most 45 minutes.
+
 The [tabbed research roadmap](docs/RESEARCH_ROADMAP_20261007.html) reviews ten
 recent experiment groups, 62 supported work items, 24 proposed mechanisms and
 14 related primary-source work records. It includes mathematical derivations,

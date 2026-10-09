@@ -1,0 +1,347 @@
+{
+  "schema": "tdn.portfolio-hypotheses/v1",
+  "design_date": "2026-10-08",
+  "timezone": "America/Los_Angeles",
+  "authoritative_protocol": "tdn/analysis/portfolio/protocol.py",
+  "status_notice": "Implemented means an executable bounded experiment exists, not scientific validation. Per-run outputs contain actual outcomes.",
+  "budget": {
+    "scope": "discretionary training/prototypes; shared references, confirmation, testing and reporting separately bounded",
+    "full_probe_seconds": {
+      "A": 3960,
+      "B": 1800,
+      "C": 1440
+    },
+    "fractions": {
+      "A": 0.55,
+      "B": 0.25,
+      "C": 0.2
+    },
+    "max_native_job_minutes": 45
+  },
+  "hypotheses": [
+    {
+      "id": "A1",
+      "path": "A",
+      "name": "Normalization",
+      "mechanism": "Replace half-normalized historical pair with normalized Gauss2 at equal operator/support.",
+      "controls": [
+        "historical_half",
+        "quad2_fixed"
+      ],
+      "primary_metric": "paired endpoint RMS/max/pass/cost",
+      "falsifiable_prediction": "Normalization recovers substantial gain if amplitude is the main explanation.",
+      "computational_consequence": "Same nodes and transforms; historical conditioner overhead stays explicitly labeled.",
+      "advance_if": "Establish attribution regardless of sign; retain half rule only as historical control.",
+      "stop_or_revise_if": "Do not claim conditioning benefit from this pair.",
+      "stage": "diagnose, train-A, confirm",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished"
+    },
+    {
+      "id": "A2",
+      "path": "A",
+      "name": "Fit only what is necessary",
+      "mechanism": "Fit amplitude, node, joint scalar, four-coefficient tanh-linked affine feature response and full conditioner separately, matching scalar gain bounds and objective.",
+      "controls": [
+        "quad2_fixed",
+        "quad2_amplitude",
+        "quad2_nodes",
+        "quad2_joint",
+        "quad2_linear",
+        "quad2_conditioned"
+      ],
+      "primary_metric": "field-cluster comparator/candidate RMS ratio",
+      "falsifiable_prediction": "State dependence matters only if full model beats strongest simple matched fitted rule.",
+      "computational_consequence": "Feature cost and fit/tuning cost retained.",
+      "advance_if": "Ratio >=1.1; CI95 lower>1; coverage regression<=.05; fresh cohort.",
+      "stop_or_revise_if": "Equivalent effective responses or no benefit beyond simple fit: prefer simpler rule.",
+      "stage": "train-A, freeze, confirm, aggregate",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished",
+      "implementation_scope": "Scalar and four-coefficient tanh-linked affine controls use least-squares initialization, then bounded deterministic fits of the same scaled MSE+0.1*maximum-square objective and gain interval (0.25,1.75) as the neural conditioner. Ridge affects initialization only; fit convergence and offline work remain explicit. A simple fitted control can legitimately explain the conditioner benefit."
+    },
+    {
+      "id": "A3",
+      "path": "A",
+      "name": "Quadrature and compression",
+      "mechanism": "Match physical core; cross two/four nodes and output/full support with pure input-compression ablation.",
+      "controls": [
+        "quad2_fixed",
+        "quad2_input",
+        "quad2_full",
+        "quad2_conditioned",
+        "quad2_conditioned_full",
+        "quad4_fixed",
+        "quad4_full",
+        "quad4_conditioned",
+        "analytic_quad_cubic"
+      ],
+      "primary_metric": "retained/full RMS, joint max/RMS pass, time",
+      "falsifiable_prediction": "Precompression loses useful signed interactions; more nodes help only if quadrature error dominates.",
+      "computational_consequence": "More nodes/retained modes can increase transforms/memory.",
+      "advance_if": "Representation ratio>=1.5 in declared pure comparison; CI95 lower>1; preserve easy-case harm reporting.",
+      "stop_or_revise_if": "Refinement has no useful effect or filtered variant harms strongest full component.",
+      "stage": "diagnose, train-A, confirm",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished"
+    },
+    {
+      "id": "A4",
+      "path": "A",
+      "name": "Equal endpoint opportunity and backbones",
+      "mechanism": "Identical final-time schedule menus and DF/RF/ETDRK4 controls.",
+      "controls": [
+        "df",
+        "rf",
+        "etdrk4",
+        "all applicable families"
+      ],
+      "primary_metric": "accuracy-qualified complete-time frontier",
+      "falsifiable_prediction": "Some old classical advantage may be menu-dependent; backbone gains are separately attributable.",
+      "computational_consequence": "Evaluate one/two/four/eight steps for all, retain setup and all failures.",
+      "advance_if": "Matched target/menu/reference; fixed validation selection separate from posthoc truth envelope.",
+      "stop_or_revise_if": "Time/target mismatch or unresolved teacher invalidates a comparison, not whole portfolio.",
+      "stage": "prepare, confirm, aggregate",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished",
+      "implementation_scope": "Validation schedule costs may be per-field batched while confirmation latency is single-field. Frozen transfer is valid but not proof of optimal schedule for every deployment batch."
+    },
+    {
+      "id": "A5",
+      "path": "A",
+      "name": "Credible neural control",
+      "mechanism": "Retain full-grid local FNO path; inspect initialization, feature/loss scaling, gradients and optimizer alternatives.",
+      "controls": [
+        "fno_small",
+        "fno_standard",
+        "direct_fno",
+        "quad2_conditioned"
+      ],
+      "primary_metric": "equal-data and measured-compute validation/confirmation curves",
+      "falsifiable_prediction": "An optimized local FNO may narrow prior gap; if it cannot fit tiny data baseline adequacy is unresolved.",
+      "computational_consequence": "Training/tuning time and capacity exposed; update count alone is not compute fairness.",
+      "advance_if": "Baseline learns and receives declared training opportunity; official reproduction required for paper claim.",
+      "stop_or_revise_if": "Saturation absent or zero coverage means unresolved competitive claim, not automatic TDN victory.",
+      "stage": "train-A, confirm, report",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished"
+    },
+    {
+      "id": "A6",
+      "path": "A",
+      "name": "Identifiability",
+      "mechanism": "Inspect effective gain/correction response and node-amplitude sensitivity, not only raw parameters.",
+      "controls": [
+        "quad2_amplitude",
+        "quad2_nodes",
+        "quad2_joint",
+        "quad2_linear",
+        "quad2_conditioned"
+      ],
+      "primary_metric": "effective response disagreement and sensitivity",
+      "falsifiable_prediction": "Several parameter vectors may encode the same amplitude correction.",
+      "computational_consequence": "Cheap fixed development probes and saved parameter reports.",
+      "advance_if": "Stable additional response structure predicts held-out errors beyond scalar fit.",
+      "stop_or_revise_if": "Redundant nonidentifiable parameters: normalize/reparameterize or distill.",
+      "stage": "train-A, report",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished"
+    },
+    {
+      "id": "B1",
+      "path": "B",
+      "name": "Richer global features",
+      "mechanism": "Add variance/gradient/spectral summaries only where old features alias useful decisions.",
+      "controls": [
+        "conditioned_rich",
+        "quad2_conditioned",
+        "quad2_linear"
+      ],
+      "primary_metric": "paired RMS/pass vs extraction cost",
+      "falsifiable_prediction": "Old-feature twins may require distinct gains that inexpensive new summaries distinguish.",
+      "computational_consequence": "Extra reductions/transforms charged.",
+      "advance_if": "Useful>=1.1 error ratio plus bounded harm beyond strongest scalar control.",
+      "stop_or_revise_if": "No useful conditional signal or extra cost exceeds benefit.",
+      "stage": "train-B, confirm",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished"
+    },
+    {
+      "id": "B2",
+      "path": "B",
+      "name": "Learn around normalized anchor",
+      "mechanism": "Explicit learned residual of strong normalized quadrature.",
+      "controls": [
+        "residual_quad2",
+        "quad2_fixed",
+        "quad2_conditioned"
+      ],
+      "primary_metric": "endpoint/max/rollout errors and selected departure",
+      "falsifiable_prediction": "Anchoring improves optimization/generalization and protects easy behavior.",
+      "computational_consequence": "Residual evaluation must be timed independently.",
+      "advance_if": "Beats strongest contained normalized rule with reference resolved.",
+      "stop_or_revise_if": "Only constant rescaling learned or worst-case/mean harm rises.",
+      "stage": "train-B, confirm",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished"
+    },
+    {
+      "id": "B3",
+      "path": "B",
+      "name": "Band-dependent adaptation",
+      "mechanism": "Form interactions before projection and allow distinct retained-band gains.",
+      "controls": [
+        "band_gain",
+        "quad2_conditioned",
+        "quad2_fixed",
+        "quad2_full"
+      ],
+      "primary_metric": "bandwise error, whole-field max/pass, full cost",
+      "falsifiable_prediction": "Different bands need distinct correction strengths in specific regimes.",
+      "computational_consequence": "Additional spectral processing/gains charged.",
+      "advance_if": "Improvement beyond strongest scalar and no destructive filtering interaction.",
+      "stop_or_revise_if": "No meaningful band heterogeneity or cost/rollout regressions.",
+      "stage": "train-B, confirm",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished"
+    },
+    {
+      "id": "B4",
+      "path": "B",
+      "name": "Complete cost and profiling",
+      "mechanism": "Profile frozen variants; evaluate fair caching/fusion/precision/batching only with parity.",
+      "controls": [
+        "df",
+        "etdrk4",
+        "quad2_fixed",
+        "quad2_conditioned",
+        "quad4_full",
+        "fno_small",
+        "fno_standard"
+      ],
+      "primary_metric": "accuracy-qualified paired speed; latency tails/memory/total costs",
+      "falsifiable_prediction": "Transforms/launches/features, rather than MLP parameter count, dominate workloads.",
+      "computational_consequence": "Charge warm/cold setup, ref/training, rejection and fallback when present.",
+      "advance_if": "Speed>=1.2; CI95 lower>1; feasible>=.95; coverage regression<=.05; matched workload.",
+      "stop_or_revise_if": "No margin: block policy stacks and retain negative cost result.",
+      "stage": "diagnose, scaling, report",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished"
+    },
+    {
+      "id": "B5",
+      "path": "B",
+      "name": "Learning distribution and error target",
+      "mechanism": "Dimensionless defect-scaled learning; teacher uncertainty floors; nested subsets; separate track and shift diagnostics.",
+      "controls": [
+        "all trained families",
+        "analytic and classical controls"
+      ],
+      "primary_metric": "data/exposure/compute curves and OOD RMS/max/mean/rollout",
+      "falsifiable_prediction": "Some apparent data failure is optimization or teacher/noise mismatch rather than insufficient capacity.",
+      "computational_consequence": "All teacher/preprocess/train costs retained.",
+      "advance_if": "Held-out advantage at frozen budgets; fresh fields/parameters/grids/horizons assessed separately.",
+      "stop_or_revise_if": "Training-only gains or reference floors dominate: revise objective/distribution in new development protocol.",
+      "stage": "prepare, train-A, train-B, confirm, report",
+      "status": "implemented_bounded_experiment",
+      "novelty_claim": "new project experiment only; literature priority unestablished"
+    },
+    {
+      "id": "X01",
+      "path": "C",
+      "name": "Amortized time kernel",
+      "mechanism": "Encode signed spectral pairs once; evaluate/interpolate physical kernel over repeated horizons.",
+      "controls": [
+        "direct normalized quadrature",
+        "same-representation cached evaluation",
+        "temporal surrogate",
+        "classical cached/dense outputs"
+      ],
+      "primary_metric": "kernel parity, PDE accuracy and query-count break-even",
+      "falsifiable_prediction": "Encoding can repay its cost for enough same-state horizons.",
+      "computational_consequence": "Encoding/storage/refresh/output reconstruction charged; pair enumeration may be quadratic.",
+      "advance_if": "Parity<=1e-10; surrogate relativeRMSE<=.001; break-even<=32 queries then full-PDE qualification.",
+      "stop_or_revise_if": "No positive asymptotic savings, bad h->0 behavior, invalid cache reuse or memory blowup.",
+      "stage": "explore-X01",
+      "status": "implemented_representation_prototype",
+      "novelty_claim": "new project experiment only; literature priority unestablished",
+      "implementation_scope": "One-dimensional constant-generator second-Picard quadratic response. Not the full logistic-background DF defect or complete PDE. One synthetic development field; classical DOP853 dense output solves the same lifted response task."
+    },
+    {
+      "id": "X02",
+      "path": "C",
+      "name": "Coarse twin information test",
+      "mechanism": "Construct same coarse state with distinct unresolved interactions; test added instantaneous statistics/history.",
+      "controls": [
+        "coarse Galerkin",
+        "energy/interaction augmentation",
+        "history control",
+        "fine reference"
+      ],
+      "primary_metric": "coarse-state mismatch and unresolved derivative/trajectory separation",
+      "falsifiable_prediction": "Memoryless coarse state alone cannot distinguish twin futures.",
+      "computational_consequence": "Cost-saving potential only if fine work can eventually be omitted; no current solver claim.",
+      "advance_if": "Twin mismatch<=1e-12, separation>1e-8, augmented/history RMSE ratio<=.5; fresh-twin followup.",
+      "stop_or_revise_if": "Added state still aliases response, history unavailable or unstable: reject closure representation.",
+      "stage": "explore-X02",
+      "status": "implemented_information_prototype",
+      "novelty_claim": "new project experiment only; literature priority unestablished",
+      "implementation_scope": "Finite 1D Galerkin twin states; prediction of first complex retained Fourier coefficient from synthetic short backward-generated history. History acquisition charged; independent RK4 reference crosscheck on declared subset. Not a deployable general closure."
+    },
+    {
+      "id": "X03",
+      "path": "C",
+      "name": "Select work before products",
+      "mechanism": "Initial-feature deterministic/fitted decisions choose interaction support/order; distill simple behavior.",
+      "controls": [
+        "fixed full",
+        "fixed cheap",
+        "deterministic threshold",
+        "development-fitted selector"
+      ],
+      "primary_metric": "relative correction error and complete selector+selected cost",
+      "falsifiable_prediction": "Cheap summaries predict unnecessary expensive products in some regimes.",
+      "computational_consequence": "Selection, failures and all selected work charged; oracle remains separate.",
+      "advance_if": "Relative error<=.01 and total speedup>=1.10, then full-PDE max/pass qualification.",
+      "stop_or_revise_if": "Phase twins fool selector or selection overhead erases savings.",
+      "stage": "explore-X03",
+      "status": "implemented_selection_prototype",
+      "novelty_claim": "new project experiment only; literature priority unestablished",
+      "implementation_scope": "Conjugate-mode selection before second-Picard pair products on smooth/sparse/rough development fields; not a full PDE accuracy-certified policy. Additional eight-phase equal-magnitude audit is correlated descriptive evidence with a separate NA gap verdict, not independent-field confirmation."
+    }
+  ],
+  "deferred_options": [
+    {
+      "direction": "spatially varying conditioner",
+      "trigger": "scalar/band capacity diagnostic demonstrates missing localized structure"
+    },
+    {
+      "direction": "learned decomposition",
+      "trigger": "backbone residual/cost diagnostic supports cheaper learnable remainder"
+    },
+    {
+      "direction": "long-memory closure",
+      "trigger": "X02 information/history pilot warrants memory and fresh rollout references"
+    },
+    {
+      "direction": "rational/exponential learned kernel",
+      "trigger": "X01 earns a realistic accuracy-qualified multiquery break-even"
+    },
+    {
+      "direction": "new PDE workload",
+      "trigger": "current result defines structure/headroom and new reference/benchmark is separately validated"
+    },
+    {
+      "direction": "large combination sweep",
+      "trigger": "components individually earn value; test strongest contained component first"
+    },
+    {
+      "direction": "learned deployment policy",
+      "trigger": "B4 establishes complete-cost margin beyond deterministic validation-selected control"
+    },
+    {
+      "direction": "official FNO paper reproduction",
+      "trigger": "necessary before paper-level claim; current audit/local comparison not sufficient"
+    }
+  ]
+}
