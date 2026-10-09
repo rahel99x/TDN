@@ -1,0 +1,244 @@
+{
+  "schema": "tdn.frontier-atlas-annotations/v1",
+  "source_run": "fedora-frontier-20261009T005435342501Z",
+  "source_archive_sha256": "494f0b089174495012f535163725729832e295b33f46c7a943bfc5c172ef06ee",
+  "source_chart_data_sha256": "5183fdab4d65f3a5421d7d59b5eff95d1d4156d91982675d40cb1a73784b9814",
+  "source_chart_json_sha256": "0314c9d27d4f35f3b283ff715afbe11b3d2589de19fa8d7c09ac1d0e9a653fec",
+  "rendered_chart_json_sha256": "0314c9d27d4f35f3b283ff715afbe11b3d2589de19fa8d7c09ac1d0e9a653fec",
+  "gzip_note": "Compressed bytes differ with zlib version; decompressed chart JSON is byte-identical.",
+  "rendered_chart_data_sha256": "e94c6876927deb257fdbc6ba349f10e32d59514b0c179e5efc523c8b067b6f98",
+  "original_pdf_sha256": "887ace3cc257f317b105659e22d24b622a9e89186cc6eac3b72ccae58ea59504",
+  "renderer": "tdn/analysis/frontier/report.py",
+  "renderer_sha256": "d1c5423dbffd9a6386260c276c3326c2cd43c0b65e29a0308d6047bbcb4132d8",
+  "changes": "Display method labels, axis meanings and per-panel interpretation only",
+  "scientific_data_unchanged": true,
+  "panel_count": 33,
+  "method_labels": {
+    "rank1": "Ours: learned rank-one",
+    "rank1_frozen": "Ours: frozen rank-one control",
+    "rank1_postcompression": "Ours: input-compression ablation",
+    "analytic_quad": "Analytic control: quadratic defect",
+    "analytic_quad_cubic": "Analytic control: quadratic + cubic defect",
+    "fno_small": "Theirs: small hybrid FNO (local)",
+    "fno_standard": "Theirs: standard hybrid FNO (local)",
+    "direct_fno": "Theirs: direct FNO (local)",
+    "df": "Theirs: diffusion-first Strang",
+    "etdrk4": "Theirs: ETDRK4",
+    "strongest_classical": "Theirs: strongest classical"
+  },
+  "method_convention": "Ours = proposed rank-one family and its controls. Theirs = established-method comparators implemented here; local FNO variants are not published-paper reproductions. Analytic control = untrained attribution reference, not an external FNO result or an ownership/novelty claim.",
+  "reading_guides": [
+    {
+      "id": 1,
+      "title": "Stage compute and frozen budgets",
+      "reading_guide": "Y: lower measured/allocation seconds means less time for the same completed work. A budget is a ceiling, not consumed time; a fast failed stage is not a win. X lists stages, not a quality ranking.",
+      "note": "Each physical allocation appears once; batch/step records are never added. Sunk/origin costs are separate from current work. Failed stage costs remain visible; running report allocation and tariffs remain NA."
+    },
+    {
+      "id": 2,
+      "title": "Physical confirmation coverage",
+      "reading_guide": "Y: more sealed endpoints means more of the planned coverage, not greater accuracy. Full planned coverage is the goal; teal is verified, gray is unavailable. Repeated endpoints are not independent fields.",
+      "note": "Partial partition observations are descriptive only. Missing or failed allocations remain NA; G3 requires the verified complete aggregate. Merged scientific rows count once."
+    },
+    {
+      "id": 3,
+      "title": "Unmerged partial confirmation diagnostics",
+      "reading_guide": "Y: lower RMS error is more accurate for matched cases. X groups physical parts. Blue is sealed partial evidence; gray is unsealed forensic evidence. Neither establishes a complete comparison; an empty panel is NA, not zero error.",
+      "note": "Blue: sealed partial coverage. Gray: unsealed forensic groups (no scientific credit or resumption). All observations remain in chart-data.json.gz. This is not a model ranking, speedup estimate, or complete gate comparison."
+    },
+    {
+      "id": 4,
+      "title": "Complete experiment verdicts",
+      "reading_guide": "Teal GOOD means declared checks attained; coral BAD means failed requirements; gray NA means unresolved or unavailable. Y counts records, so taller bars do not mean better methods. Compare verdicts within the declared experiment scope.",
+      "note": "A required cost failure can make an otherwise accurate experiment BAD. Scores measure evidence attainment, not model quality."
+    },
+    {
+      "id": 5,
+      "title": "Correctness math gap and utility checks",
+      "reading_guide": "Teal GOOD is favorable check evidence; coral BAD is unfavorable; gray NA is unresolved. Y counts checks, not effect size or independent replications. More checks or passing numerical examples do not prove a mathematical theorem.",
+      "note": "Numerical agreement is finite evidence, never a general proof. Missing evidence is retained as NA."
+    },
+    {
+      "id": 6,
+      "title": "Every individual check",
+      "reading_guide": "Color is the result: teal GOOD, coral BAD, gray NA; white is padding. X/Y locate checks in row-major order and have no better/worse direction. NA is not a pass; the lookup file identifies every cell.",
+      "note": "161846 cells; no downsampling. Teal GOOD, coral BAD, gray NA, white padding. Exact identities and values in check-cell-index.json.gz."
+    },
+    {
+      "id": 7,
+      "title": "Training loss by update",
+      "reading_guide": "Y: lower training loss means a closer fit to that training objective. X: farther right means more optimizer updates, not inherently better quality. Compare like objectives; training loss alone does not establish generalization.",
+      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz."
+    },
+    {
+      "id": 8,
+      "title": "Validation loss by update",
+      "reading_guide": "Y: lower validation loss is better on the same held-out objective. X: fewer updates to the same loss is preferable; more updates alone is not a win. Validation selection does not substitute for fresh confirmation.",
+      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz."
+    },
+    {
+      "id": 9,
+      "title": "Validation error versus training time",
+      "reading_guide": "Lower-left is favorable: X less training time, Y lower validation RMS error. Compare the same target and validation cohort; a longer run may reach lower error. These are training costs, not inference latency.",
+      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz."
+    },
+    {
+      "id": 10,
+      "title": "Validation error versus examples seen",
+      "reading_guide": "Lower-left is favorable: X fewer training-example presentations, Y lower validation RMS. Examples seen includes repeated exposure, not just independent fields. Compare like targets; this alone does not establish a sample-complexity law.",
+      "note": "Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz."
+    },
+    {
+      "id": 11,
+      "title": "Model parameter counts",
+      "reading_guide": "Y: lower counts mean a smaller stored model, not necessarily faster or more accurate. Capacity and accuracy can trade off; parameter count is not FLOPs or measured runtime. X lists methods/trials and has no favorable direction.",
+      "note": "Identical parameter counts collapse only for display by family/track; every model ID is retained in chart data. Parameter count is not FLOPs or runtime."
+    },
+    {
+      "id": 12,
+      "title": "Baseline adequacy and checkpoint selections",
+      "reading_guide": "Y counts selection outcomes, not method quality. A selected trained checkpoint can show improvement over its initialization, but does not establish convergence. An initialization selection is not evidence of successful learning.",
+      "note": "Initialization selection is not evidence of learned improvement. A weak trained control does not establish superiority over a published method."
+    },
+    {
+      "id": 13,
+      "title": "Data efficiency validation observations",
+      "reading_guide": "Lower-left is favorable: X fewer training fields, Y lower validation RMS error. Compare like targets and training budgets; updates from one run are repeated observations, not additional independent fields.",
+      "note": "All observed updates shown; this is descriptive, not an independent sample count. Training and confirmation remain disjoint."
+    },
+    {
+      "id": 14,
+      "title": "Work precision rms error with reference uncertainty",
+      "reading_guide": "Lower-left is favorable: X less warmed runtime, Y lower RMS error plus reference uncertainty. Both axes are logarithmic; compare within the same track, grid and final time. Speed is useful only when the required accuracy is met.",
+      "note": "All endpoint schedules retained; each panel has one spatial target and final time. Reference-informed frontier selection is post hoc, not a deployable policy."
+    },
+    {
+      "id": 15,
+      "title": "Work precision max error with reference uncertainty",
+      "reading_guide": "Lower-left is favorable: X less warmed runtime, Y lower maximum error plus reference uncertainty. Both axes are logarithmic; compare within the same track, grid and final time. Meeting RMS alone does not establish the maximum-error target.",
+      "note": "All endpoint schedules retained; each panel has one spatial target and final time. Reference-informed frontier selection is post hoc, not a deployable policy."
+    },
+    {
+      "id": 16,
+      "title": "Matched target paired speed distributions",
+      "reading_guide": "Y = control time / candidate time: above 1 favors the candidate, below 1 favors the control, and 1 is a tie. Higher is better for the named candidate. The axis is logarithmic; ineligible cases are not speed wins.",
+      "note": "Different final times and tolerances are never pooled. Repeated schedules/grids/seeds are paired evidence; use field-clustered inference in comparisons.json."
+    },
+    {
+      "id": 17,
+      "title": "Stress regime and tolerance coverage",
+      "reading_guide": "Color: higher joint pass fraction is better; yellow = 1, purple = 0. Gray is missing evidence, not a favorable result. X/Y identify regimes/targets and methods; their positions are not quality rankings.",
+      "note": "Normal, best and worst cases use frozen field regimes, not retrospective exclusion. Cells with no target evidence remain NA."
+    },
+    {
+      "id": 18,
+      "title": "Mean error across spatial resolution",
+      "reading_guide": "Y: lower absolute mean error is better. X: larger grid means finer spatial resolution, not automatically better efficiency. Compare methods at the same grid/target; both axes are logarithmic and exact zeros cannot appear.",
+      "note": "Each point retains field, grid, schedule and seed. Spatial and temporal targets are separate; zeros/nonfinite values are counted as unavailable on log axes."
+    },
+    {
+      "id": 19,
+      "title": "Centered error across spatial resolution",
+      "reading_guide": "Y: lower centered RMS error is better for spatial variation after removing the mean. X: larger grid means finer resolution, not automatically better efficiency. Both axes are logarithmic; this panel does not measure mean accuracy.",
+      "note": "Each point retains field, grid, schedule and seed. Spatial and temporal targets are separate; zeros/nonfinite values are counted as unavailable on log axes."
+    },
+    {
+      "id": 20,
+      "title": "High frequency error across spatial resolution",
+      "reading_guide": "Y: lower high-frequency RMS error is better on the declared spectral band. X: larger grid means finer resolution, not a quality score. Compare matched grids/targets; both axes are logarithmic.",
+      "note": "Each point retains field, grid, schedule and seed. Spatial and temporal targets are separate; zeros/nonfinite values are counted as unavailable on log axes."
+    },
+    {
+      "id": 21,
+      "title": "Scaling latency and throughput",
+      "reading_guide": "Y: lower seconds is faster; at fixed batch size this means higher throughput. X: more cells means a larger problem, not a worse result. Both axes are logarithmic. Compare matched accuracy, grid, batch size, target and final time.",
+      "note": "Accuracy is the worst accepted-reference field in each distinct batch; missing references are NA. GPU memory is a shared paired-workload peak, not attributable to a family or shared host RAM."
+    },
+    {
+      "id": 22,
+      "title": "Scaling peak GPU memory",
+      "reading_guide": "Y: lower reserved bytes is less GPU memory for the same workload. This is a shared paired-workload peak, not an isolated method footprint. X is problem size; both axes are logarithmic. Host RAM is not GPU VRAM.",
+      "note": "Accuracy is the worst accepted-reference field in each distinct batch; missing references are NA. GPU memory is a shared paired-workload peak, not attributable to a family or shared host RAM."
+    },
+    {
+      "id": 23,
+      "title": "Scaling accepted reference accuracy",
+      "reading_guide": "Y: lower worst-field RMS plus accepted-reference uncertainty is better. X: more cells means a larger problem; compare the same workload. Both axes are logarithmic. Missing accepted references remain NA, not accurate.",
+      "note": "Accuracy is the worst accepted-reference field in each distinct batch; missing references are NA. GPU memory is a shared paired-workload peak, not attributable to a family or shared host RAM."
+    },
+    {
+      "id": 24,
+      "title": "Deployment complete cost components",
+      "reading_guide": "Y: lower complete runtime is better at matched accuracy. X lists different cost scopes. Proposal/estimator/fallback components sum to attributed time; do not add that total to complete-call time. Blocked deployment is NA, not free computation.",
+      "note": "First three components sum to attributed_seconds for a representative run; cost_seconds is independent complete warmed median. Do not sum these totals together. Missing or blocked deployment remains NA."
+    },
+    {
+      "id": 25,
+      "title": "Policy coverage and false acceptance",
+      "reading_guide": "Fewer false acceptances is better. More accepted queries is useful only with verified accuracy and cost savings; fallback can be the correct decision. Y counts decisions, not independent fields or a risk guarantee.",
+      "note": "Decisions use calibration and deployable features only. Confirmation truth audits decisions afterward; finite empirical coverage is not a distribution-free guarantee."
+    },
+    {
+      "id": 26,
+      "title": "Reference uncertainty and unresolved evidence",
+      "reading_guide": "Y: lower uncertainty permits finer accuracy distinctions, but does not prove the reference is exact. X separates spatial targets, not a ranking. Differences beneath uncertainty are unresolved; missing evidence is not zero.",
+      "note": "A tighter solver error beneath reference uncertainty is unresolved. Spatial and time refinement are not interchangeable."
+    },
+    {
+      "id": 27,
+      "title": "First invocation versus randomized warmed timing",
+      "reading_guide": "Lower-left means lower time in both scopes: X warmed median, Y first invocation. Both axes are logarithmic; compare identical workloads and accuracy. First invocation is not guaranteed process-cold startup or an amortization result.",
+      "note": "First observed invocation is not guaranteed process-cold startup. Speed comparisons use randomized warmed measurements; first-call savings do not establish amortization."
+    },
+    {
+      "id": 28,
+      "title": "Independent field intervals error_ratio",
+      "reading_guide": "X = competitor RMS / Ours learned rank-one RMS: right of 1 favors Ours; left of 1 favors the named competitor. Higher is better for Ours; 1 is a tie. Logarithmic X; an interval crossing 1 leaves the error direction unresolved.",
+      "note": "Descriptive field-cluster bootstrap; repeated seeds and physics do not increase independent field count. Missing intervals remain absent, never zero width."
+    },
+    {
+      "id": 29,
+      "title": "Independent field intervals speed_ratio",
+      "reading_guide": "X = competitor time / Ours learned rank-one time: right of 1 favors Ours; left of 1 favors the named competitor. Higher is faster for Ours; 1 is a tie. Logarithmic X; a speed ratio alone does not establish matched-accuracy utility.",
+      "note": "Descriptive field-cluster bootstrap; repeated seeds and physics do not increase independent field count. Missing intervals remain absent, never zero width."
+    },
+    {
+      "id": 30,
+      "title": "Five gate evidence and missing coverage",
+      "reading_guide": "Y: higher scores mean more declared evidence attained, not better model quality. Teal GOOD, coral BAD and gray NA retain the gate verdict; a high NA score is not success. X lists research gates, not a performance ranking.",
+      "note": "Teal GOOD, coral BAD, gray NA. Scores are predeclared check-weight attainment, never scientific quality, effect size, or a proof."
+    },
+    {
+      "id": 31,
+      "title": "Independent function risk and available evidence",
+      "reading_guide": "Y: lower empirical risk and a lower valid upper bound are better. The target is a requirement, not an observed result; compare the bound with that target. NA or no accepted fields means unestablished risk, not zero risk.",
+      "note": "Binomial upper bound is conditional on iid comparable fields and a frozen policy. No accepted functions means NA; repeated query rows are not independent trials."
+    },
+    {
+      "id": 32,
+      "title": "Supported amortization including offline costs",
+      "reading_guide": "Y: fewer break-even queries is better when matched accuracy and positive savings are established. X lists policy modes. NA means amortization was not established; it must not be read as zero required queries.",
+      "note": "Requires matched accuracy, accepted learned queries and positive saving uncertainty bound. All-classical routing or startup timing differences cannot earn neural amortization."
+    },
+    {
+      "id": 33,
+      "title": "Every native software test execution",
+      "reading_guide": "Teal PASSED is favorable readiness evidence; coral FAILED needs attention; gray SKIPPED provides no pass evidence. Y counts executions, not model quality. Repeated passes across allocations do not add independent scientific evidence.",
+      "note": "Repeated cases in different allocations remain separate executions. Skipped tests never count as passed GPU readiness; software correctness is not scientific superiority."
+    }
+  ],
+  "files": {
+    "frontier-atlas.pdf": "757ac2061660f77c8a537a488a4cd6497b46a59ef542a85927166202e48760dc",
+    "frontier-overview.png": "12a5f2ad0cd89762f3bffefdcbd75852d75288ba0f329b6241163fc52c9ec30e"
+  },
+  "validation": {
+    "pages_with_reading_and_method_guides": 33,
+    "out_of_page_text_boxes": 0,
+    "strict_tight_layout_warnings": 0,
+    "reporting_and_recovery_tests": "73 passed; 25 reporting tests repeated after comparison-page layout change",
+    "visually_inspected_panels": [
+      "Scaling latency and throughput",
+      "Matched target paired speed distributions"
+    ]
+  }
+}

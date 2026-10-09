@@ -172,6 +172,15 @@ same physical final time and spatial target. Large-grid accuracy without an
 accepted reference remains NA. Public-paper superiority is not inferred from
 these in-repository FNO controls.
 
+Every atlas page includes a reading guide for favorable axis/color directions
+and any tradeoffs. Legends identify **Ours** (learned rank-one and its controls),
+**Theirs** (local FNO implementations and established classical methods), and
+untrained **Analytic control** references. Method IDs in scientific data stay
+unchanged. Higher evidence scores mean more checks attained, not better models;
+NA panels never mean zero error or free computation. The annotated version of
+the reviewed full native results is linked from
+[the full review](FRONTIER_FULL_REVIEW.md); it requires no experiment rerun.
+
 The training stage's Tower report also contains bounded native metric pages for
 every observed loss/validation/compute update, with exact trial lineage. Missing
 validation measurements remain absent. The final report links the complete HD

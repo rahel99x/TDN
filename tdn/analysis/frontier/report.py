@@ -16,11 +16,220 @@ import math
 import os
 from pathlib import Path
 import statistics
+import textwrap
 import xml.etree.ElementTree as ET
 
 STAGES = ('audit', 'screen', 'prepare', 'train', 'confirm_prepare', 'confirm', 'scaling', 'policy')
 VERDICTS = ('GOOD', 'BAD', 'NA')
 COLORS = {'GOOD': '#218c83', 'BAD': '#d56352', 'NA': '#9ba6b5'}
+
+
+# Display labels and reading directions never modify scientific family IDs.
+METHOD_LABELS = {
+    "rank1": "Ours: learned rank-one",
+    "rank1_frozen": "Ours: frozen rank-one control",
+    "rank1_postcompression": "Ours: input-compression ablation",
+    "analytic_quad": "Analytic control: quadratic defect",
+    "analytic_quad_cubic": "Analytic control: quadratic + cubic defect",
+    "fno_small": "Theirs: small hybrid FNO (local)",
+    "fno_standard": "Theirs: standard hybrid FNO (local)",
+    "direct_fno": "Theirs: direct FNO (local)",
+    "df": "Theirs: diffusion-first Strang",
+    "etdrk4": "Theirs: ETDRK4",
+    "strongest_classical": "Theirs: strongest classical",
+}
+
+METHOD_CONVENTION = (
+    "Ours = proposed rank-one family and its controls. Theirs = established-method "
+    "comparators implemented here; local FNO variants are not published-paper "
+    "reproductions. Analytic control = untrained attribution reference, not an "
+    "external FNO result or an ownership/novelty claim."
+)
+
+
+def method_label(family: str) -> str:
+    """Return a readable provenance label without modifying scientific IDs."""
+    name = str(family)
+    if name in METHOD_LABELS:
+        return METHOD_LABELS[name]
+    # Endpoint frontier candidates carry a full identity instead of a family.
+    # Retain track/data/seed rather than merging distinct measured candidates.
+    parts = name.split('/')
+    if (len(parts) == 4 and parts[0] in ('discrete', 'continuum')
+            and parts[1] in METHOD_LABELS and parts[2].startswith('n')
+            and parts[2][1:].isdigit() and parts[3].startswith('seed')
+            and parts[3][4:].isdigit()):
+        return f'{METHOD_LABELS[parts[1]]} / {parts[0]} / {parts[2]} / {parts[3]}'
+    return name
+
+
+PANEL_GUIDANCE = {
+    "Stage compute and frozen budgets": (
+        "Y: lower measured/allocation seconds means less time for the same completed work. "
+        "A budget is a ceiling, not consumed time; a fast failed stage is not a win. "
+        "X lists stages, not a quality ranking."
+    ),
+    "Physical confirmation coverage": (
+        "Y: more sealed endpoints means more of the planned coverage, not greater accuracy. "
+        "Full planned coverage is the goal; teal is verified, gray is unavailable. "
+        "Repeated endpoints are not independent fields."
+    ),
+    "Unmerged partial confirmation diagnostics": (
+        "Y: lower RMS error is more accurate for matched cases. X groups physical parts. "
+        "Blue is sealed partial evidence; gray is unsealed forensic evidence. "
+        "Neither establishes a complete comparison; an empty panel is NA, not zero error."
+    ),
+    "Complete experiment verdicts": (
+        "Teal GOOD means declared checks attained; coral BAD means failed requirements; "
+        "gray NA means unresolved or unavailable. Y counts records, so taller bars do not "
+        "mean better methods. Compare verdicts within the declared experiment scope."
+    ),
+    "Correctness math gap and utility checks": (
+        "Teal GOOD is favorable check evidence; coral BAD is unfavorable; gray NA is unresolved. "
+        "Y counts checks, not effect size or independent replications. "
+        "More checks or passing numerical examples do not prove a mathematical theorem."
+    ),
+    "Every individual check": (
+        "Color is the result: teal GOOD, coral BAD, gray NA; white is padding. "
+        "X/Y locate checks in row-major order and have no better/worse direction. "
+        "NA is not a pass; the lookup file identifies every cell."
+    ),
+    "Training loss by update": (
+        "Y: lower training loss means a closer fit to that training objective. "
+        "X: farther right means more optimizer updates, not inherently better quality. "
+        "Compare like objectives; training loss alone does not establish generalization."
+    ),
+    "Validation loss by update": (
+        "Y: lower validation loss is better on the same held-out objective. "
+        "X: fewer updates to the same loss is preferable; more updates alone is not a win. "
+        "Validation selection does not substitute for fresh confirmation."
+    ),
+    "Validation error versus training time": (
+        "Lower-left is favorable: X less training time, Y lower validation RMS error. "
+        "Compare the same target and validation cohort; a longer run may reach lower error. "
+        "These are training costs, not inference latency."
+    ),
+    "Validation error versus examples seen": (
+        "Lower-left is favorable: X fewer training-example presentations, Y lower validation RMS. "
+        "Examples seen includes repeated exposure, not just independent fields. "
+        "Compare like targets; this alone does not establish a sample-complexity law."
+    ),
+    "Model parameter counts": (
+        "Y: lower counts mean a smaller stored model, not necessarily faster or more accurate. "
+        "Capacity and accuracy can trade off; parameter count is not FLOPs or measured runtime. "
+        "X lists methods/trials and has no favorable direction."
+    ),
+    "Baseline adequacy and checkpoint selections": (
+        "Y counts selection outcomes, not method quality. A selected trained checkpoint can "
+        "show improvement over its initialization, but does not establish convergence. "
+        "An initialization selection is not evidence of successful learning."
+    ),
+    "Data efficiency validation observations": (
+        "Lower-left is favorable: X fewer training fields, Y lower validation RMS error. "
+        "Compare like targets and training budgets; updates from one run are repeated "
+        "observations, not additional independent fields."
+    ),
+    "Work precision rms error with reference uncertainty": (
+        "Lower-left is favorable: X less warmed runtime, Y lower RMS error plus reference uncertainty. "
+        "Both axes are logarithmic; compare within the same track, grid and final time. "
+        "Speed is useful only when the required accuracy is met."
+    ),
+    "Work precision max error with reference uncertainty": (
+        "Lower-left is favorable: X less warmed runtime, Y lower maximum error plus reference uncertainty. "
+        "Both axes are logarithmic; compare within the same track, grid and final time. "
+        "Meeting RMS alone does not establish the maximum-error target."
+    ),
+    "Matched target paired speed distributions": (
+        "Y = control time / candidate time: above 1 favors the candidate, below 1 favors "
+        "the control, and 1 is a tie. Higher is better for the named candidate. "
+        "The axis is logarithmic; ineligible cases are not speed wins."
+    ),
+    "Stress regime and tolerance coverage": (
+        "Color: higher joint pass fraction is better; yellow = 1, purple = 0. "
+        "Gray is missing evidence, not a favorable result. X/Y identify regimes/targets "
+        "and methods; their positions are not quality rankings."
+    ),
+    "Mean error across spatial resolution": (
+        "Y: lower absolute mean error is better. X: larger grid means finer spatial resolution, "
+        "not automatically better efficiency. Compare methods at the same grid/target; "
+        "both axes are logarithmic and exact zeros cannot appear."
+    ),
+    "Centered error across spatial resolution": (
+        "Y: lower centered RMS error is better for spatial variation after removing the mean. "
+        "X: larger grid means finer resolution, not automatically better efficiency. "
+        "Both axes are logarithmic; this panel does not measure mean accuracy."
+    ),
+    "High frequency error across spatial resolution": (
+        "Y: lower high-frequency RMS error is better on the declared spectral band. "
+        "X: larger grid means finer resolution, not a quality score. "
+        "Compare matched grids/targets; both axes are logarithmic."
+    ),
+    "Scaling latency and throughput": (
+        "Y: lower seconds is faster; at fixed batch size this means higher throughput. "
+        "X: more cells means a larger problem, not a worse result. Both axes are logarithmic. "
+        "Compare matched accuracy, grid, batch size, target and final time."
+    ),
+    "Scaling peak GPU memory": (
+        "Y: lower reserved bytes is less GPU memory for the same workload. "
+        "This is a shared paired-workload peak, not an isolated method footprint. "
+        "X is problem size; both axes are logarithmic. Host RAM is not GPU VRAM."
+    ),
+    "Scaling accepted reference accuracy": (
+        "Y: lower worst-field RMS plus accepted-reference uncertainty is better. "
+        "X: more cells means a larger problem; compare the same workload. "
+        "Both axes are logarithmic. Missing accepted references remain NA, not accurate."
+    ),
+    "Deployment complete cost components": (
+        "Y: lower complete runtime is better at matched accuracy. X lists different cost scopes. "
+        "Proposal/estimator/fallback components sum to attributed time; do not add that total "
+        "to complete-call time. Blocked deployment is NA, not free computation."
+    ),
+    "Policy coverage and false acceptance": (
+        "Fewer false acceptances is better. More accepted queries is useful only with "
+        "verified accuracy and cost savings; fallback can be the correct decision. "
+        "Y counts decisions, not independent fields or a risk guarantee."
+    ),
+    "Reference uncertainty and unresolved evidence": (
+        "Y: lower uncertainty permits finer accuracy distinctions, but does not prove the "
+        "reference is exact. X separates spatial targets, not a ranking. "
+        "Differences beneath uncertainty are unresolved; missing evidence is not zero."
+    ),
+    "First invocation versus randomized warmed timing": (
+        "Lower-left means lower time in both scopes: X warmed median, Y first invocation. "
+        "Both axes are logarithmic; compare identical workloads and accuracy. "
+        "First invocation is not guaranteed process-cold startup or an amortization result."
+    ),
+    "Independent field intervals error_ratio": (
+        "X = competitor RMS / Ours learned rank-one RMS: right of 1 favors Ours; left "
+        "of 1 favors the named competitor. Higher is better for Ours; 1 is a tie. "
+        "Logarithmic X; an interval crossing 1 leaves the error direction unresolved."
+    ),
+    "Independent field intervals speed_ratio": (
+        "X = competitor time / Ours learned rank-one time: right of 1 favors Ours; left "
+        "of 1 favors the named competitor. Higher is faster for Ours; 1 is a tie. "
+        "Logarithmic X; a speed ratio alone does not establish matched-accuracy utility."
+    ),
+    "Five gate evidence and missing coverage": (
+        "Y: higher scores mean more declared evidence attained, not better model quality. "
+        "Teal GOOD, coral BAD and gray NA retain the gate verdict; a high NA score is "
+        "not success. X lists research gates, not a performance ranking."
+    ),
+    "Independent function risk and available evidence": (
+        "Y: lower empirical risk and a lower valid upper bound are better. The target is "
+        "a requirement, not an observed result; compare the bound with that target. "
+        "NA or no accepted fields means unestablished risk, not zero risk."
+    ),
+    "Supported amortization including offline costs": (
+        "Y: fewer break-even queries is better when matched accuracy and positive savings "
+        "are established. X lists policy modes. NA means amortization was not established; "
+        "it must not be read as zero required queries."
+    ),
+    "Every native software test execution": (
+        "Teal PASSED is favorable readiness evidence; coral FAILED needs attention; gray "
+        "SKIPPED provides no pass evidence. Y counts executions, not model quality. "
+        "Repeated passes across allocations do not add independent scientific evidence."
+    ),
+}
 
 
 def finite(value):
@@ -412,7 +621,7 @@ def _key(row, names):
 
 
 def _family(row):
-    return str(row.get('family', row.get('candidate_family', row.get('model_id', 'unlabeled'))))
+    return method_label(row.get('family', row.get('candidate_family', row.get('model_id', 'unlabeled'))))
 
 
 def _blank(ax, reason='NA — no verified measurements for this panel'):
@@ -421,7 +630,26 @@ def _blank(ax, reason='NA — no verified measurements for this panel'):
 
 
 def _label(ax, x, y):
-    ax.set_xlabel(x); ax.set_ylabel(y); ax.grid(alpha=.16)
+    labels = {
+        'update': 'Optimizer updates (training work)',
+        'train_loss': 'Training objective (lower within a trial)',
+        'validation_loss': 'Validation objective (lower within a trial)',
+        'elapsed_seconds': 'Training seconds (left = less compute)',
+        'examples_seen': 'Examples processed (left = less training work)',
+        'train_count': 'Distinct training fields (left = less data)',
+        'validation_rms': 'Validation RMS error (lower is better)',
+        'median_seconds': 'Warm latency, seconds (lower is better)',
+        'cold_seconds': 'First invocation, seconds (lower is better)',
+        'upper_rms': 'RMS error + reference uncertainty (lower is better)',
+        'upper_max': 'Maximum error + reference uncertainty (lower is better)',
+        'mean_error': 'Mean error (lower is better)',
+        'centered_rms': 'Centered RMS error (lower is better)',
+        'spectral_high_rms': 'High-frequency RMS error (lower is better)',
+        'grid_size': 'Grid width (larger = finer resolution)',
+        'cells': 'Spatial cells per field (larger = bigger workload)',
+        'peak_reserved_bytes': 'Shared workload GPU bytes (lower footprint)',
+    }
+    ax.set_xlabel(labels.get(x, x)); ax.set_ylabel(labels.get(y, y)); ax.grid(alpha=.16)
 
 
 def _lines(ax, curves, x, y):
@@ -454,13 +682,13 @@ def _bars(ax, values, xlabel='', ylabel='', colors=None):
     _label(ax, xlabel, ylabel)
 
 
-def _facets(plt, rows, keys, draw, title, *, maximum_columns=3):
+def _facets(plt, rows, keys, draw, title, *, maximum_columns=3, row_height=4):
     groups = defaultdict(list)
     for row in rows:
         groups[_key(row, keys)].append(row)
     groups = groups or {tuple('NA' for _ in keys): []}
     columns = min(maximum_columns, len(groups)); count = math.ceil(len(groups) / columns)
-    fig, axes = plt.subplots(count, columns, figsize=(6 * columns, 4 * count + 1), squeeze=False)
+    fig, axes = plt.subplots(count, columns, figsize=(6 * columns, row_height * count + 1), squeeze=False)
     for ax, (key, values) in zip(axes.flat, sorted(groups.items())):
         draw(ax, values)
         ax.set_title(' | '.join(f'{name}={value}' for name, value in zip(keys, key)), fontsize=8)
@@ -526,11 +754,24 @@ def build_figures(data, output, budget=None):
             if budget: budget.check()
             ordinal = len(panels) + 1
             name = f'{ordinal:02d}-' + ''.join(c if c.isalnum() else '-' for c in title.lower()).strip('-') + '.png'
-            fig.text(.012, .006, note, ha='left', va='bottom', fontsize=6, wrap=True)
-            fig.tight_layout(rect=(0, .035, 1, .95))
+            guidance = PANEL_GUIDANCE[title]
+            # A fixed physical footer remains readable on both short and tall
+            # faceted pages. Expand the canvas instead of covering data/labels.
+            width, height = fig.get_size_inches()
+            wrap_width = max(70, int(width * 14))
+            footer = '\n'.join(textwrap.fill(prefix + value, width=wrap_width,
+                break_long_words=False, break_on_hyphens=False) for prefix, value in (
+                    ('HOW TO READ: ', guidance), ('METHODS: ', METHOD_CONVENTION), ('SCOPE: ', note)))
+            footer_height = (len(footer.splitlines()) * 11 + 24) / 72
+            fig.set_size_inches(width, height + footer_height)
+            fig.text(.025, .14 / (height + footer_height), footer,
+                     ha='left', va='bottom', fontsize=8, linespacing=1.35,
+                     color='#172437', family='DejaVu Sans')
+            fig.tight_layout(rect=(.01, footer_height / (height + footer_height), .99, .95))
             fig.savefig(output / name, dpi=170)
             pdf.savefig(fig, dpi=170)
             panels.append({'id': ordinal, 'title': title, 'path': name, 'note': note,
+                           'reading_guide': guidance,
                            'sha256': hashlib.sha256((output / name).read_bytes()).hexdigest()})
             plt.close(fig)
         def single(title, draw, note):
@@ -628,16 +869,16 @@ def build_figures(data, output, budget=None):
             for r in vals:
                 value = r.get('control_over_candidate_speed_ratio')
                 if r.get('eligibility') == 'ELIGIBLE' and finite(value) and value > 0:
-                    groups[str(r.get('candidate_family', r.get('family', r.get('model_id', '?')))) + ' vs ' + str(r.get('control_family', r.get('comparator', '?')))].append(value)
+                    groups[method_label(r.get('candidate_family', r.get('family', r.get('model_id', '?')))) + ' vs ' + method_label(r.get('control_family', r.get('comparator', '?')))].append(value)
                 else: ineligible[str(r.get('eligibility', 'NA'))] += 1
             for i, (name, values) in enumerate(sorted(groups.items())):
                 ax.scatter([i]*len(values), values, s=9, alpha=.4, label=name, rasterized=True)
             if groups:
-                ax.set_xticks(range(len(groups)), sorted(groups), rotation=60, ha='right', fontsize=6); ax.set_yscale('log'); ax.axhline(1, color='black', ls='--', lw=.7)
+                ax.set_xticks(range(len(groups)), sorted(groups), rotation=90, ha='center', fontsize=6); ax.set_yscale('log'); ax.axhline(1, color='black', ls='--', lw=.7)
             else: _blank(ax)
             ax.text(.01, .99, 'Ineligible retained: ' + str(dict(ineligible)), transform=ax.transAxes, va='top', fontsize=6)
             _label(ax, 'paired candidate / control', 'control / candidate time (>1 favors candidate)')
-        figure = _facets(plt, comparisons, ('track', 'final_time', 'rms_target', 'max_target'), comparison_draw, 'Matched target paired speed distributions')
+        figure = _facets(plt, comparisons, ('track', 'final_time', 'rms_target', 'max_target'), comparison_draw, 'Matched target paired speed distributions', row_height=8)
         save('Matched target paired speed distributions', figure,
              'Different final times and tolerances are never pooled. Repeated schedules/grids/seeds are paired evidence; use field-clustered inference in comparisons.json.')
         def stress(ax, vals):
@@ -722,9 +963,10 @@ def build_figures(data, output, budget=None):
                     ci = r.get(metric+'_ci95')
                     if isinstance(ci,list) and len(ci)==2 and all(finite(v) and v>0 for v in ci):
                         ax.plot(ci, [i,i], color='#407ba1')
-                labels = [f"{r.get('competitor')} / n={r.get('train_count')} / fields={r.get('independent_fields')}" for r in usable]
+                labels = [f"{method_label(r.get('competitor'))} / n={r.get('train_count')} / fields={r.get('independent_fields')}" for r in usable]
                 ax.set_yticks(range(len(usable)), labels, fontsize=6); ax.set_xscale('log'); ax.axvline(1,color='black',ls='--',lw=.7)
-                _label(ax, metric+' competitor / rank one', 'paired comparison')
+                quantity = 'RMS' if metric == 'error_ratio' else 'time'
+                _label(ax, f'Competitor / Ours {quantity} (>1 favors Ours)', 'paired comparison')
             figure = _facets(plt, summaries, ('track','final_time','grid'), intervals, 'Independent field intervals '+metric)
             save('Independent field intervals '+metric, figure,
                  'Descriptive field-cluster bootstrap; repeated seeds and physics do not increase independent field count. Missing intervals remain absent, never zero width.')
@@ -775,7 +1017,8 @@ def build_figures(data, output, budget=None):
         'confirmation_endpoints': len(endpoints), 'comparisons': len(comparisons), 'downsampled': False,
         'software_test_executions':len(data.get('software_tests',[])),
         'confirmation_partition_coverage':data.get('confirmation_partition_coverage'),
-        'unavailable_panels_are_na': True, 'sources': data['sources'], 'stage_status': data['stage_status']}
+        'unavailable_panels_are_na': True, 'sources': data['sources'], 'stage_status': data['stage_status'],
+        'method_convention': METHOD_CONVENTION, 'method_labels': METHOD_LABELS}
     # A compact overview is an entry point, not a replacement for complete pages.
     fig, axes = plt.subplots(2,3,figsize=(18,11))
     for ax, panel in zip(axes.flat, [panels[i] for i in (0,1,5,11,13,21)]):
@@ -783,7 +1026,7 @@ def build_figures(data, output, budget=None):
     fig.suptitle(f"TDN frontier / {data['profile']} / {len(rows)} experiments / {len(check_index)} checks",fontsize=16)
     fig.tight_layout(); fig.savefig(output / 'frontier-overview.png',dpi=200); plt.close(fig)
     _write(output / 'manifest.json', manifest)
-    body = ''.join(f'<section id="panel-{p["id"]}"><h2>{html.escape(p["title"])}</h2><p>{html.escape(p["note"])}</p><a href="{p["path"]}"><img loading="lazy" src="{p["path"]}" alt="{html.escape(p["title"])}"></a></section>' for p in panels)
+    body = ''.join(f'<section id="panel-{p["id"]}"><h2>{html.escape(p["title"])}</h2><p><strong>How to read:</strong> {html.escape(p["reading_guide"])}</p><p>{html.escape(p["note"])}</p><a href="{p["path"]}"><img loading="lazy" src="{p["path"]}" alt="{html.escape(p["title"])}"></a></section>' for p in panels)
     (output / 'index.html').write_text('<!doctype html><meta charset="utf-8"><title>TDN frontier analytical atlas</title><style>body{font:16px system-ui;margin:2em;max-width:1600px;background:#f4f6f9;color:#172437}img{max-width:100%;height:auto}section{background:white;padding:1em;margin:2em 0}a{color:#175c8f}</style><h1>TDN five-gate analytical atlas</h1><p>Profile: '+html.escape(data['profile'])+'. Computational completion does not establish scientific superiority. All verified observations retained; unavailable evidence is NA.</p><p><a href="frontier-atlas.pdf">Complete PDF</a> · <a href="chart-data.json.gz">Every source observation</a> · <a href="check-cell-index.json.gz">Every check lookup</a> · <a href="manifest.json">Provenance and coverage</a></p>'+body)
     return manifest
 

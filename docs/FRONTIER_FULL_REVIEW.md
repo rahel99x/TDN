@@ -6,7 +6,9 @@ Review date: **2026-10-08, America/Los_Angeles**. The archive and Slurm records 
 
 Origin: `fedora-frontier-20261008T092558622970Z`, jobs 447–455. Recovery: `fedora-frontier-20261009T005435342501Z`, jobs 456–465. This review reads the supplied data and trusted repository code. No uploaded code was executed, checkpoints deserialized, models retrained or new jobs submitted. Scientific observations and original scores are unchanged.
 
-The original [33-page native atlas](../results/frontier-full-review/frontier-atlas.pdf) and [HD overview](../results/frontier-full-review/frontier-overview.png) accompany this review. The [evidence directory](../results/frontier-full-review/) contains archive, seal, coverage, execution, learning and gate audits.
+The [annotated 33-page atlas](../results/frontier-full-review/annotated/frontier-atlas.pdf) and [annotated HD overview](../results/frontier-full-review/annotated/frontier-overview.png) add metric directions and method identities to these results. Every page explains its axes, favorable direction or color, and when no better/worse ranking applies. Ours identifies the proposed learned family and its frozen/ablation controls; Theirs identifies established-method comparators implemented here. FNO labels explicitly say local, and untrained analytic attribution controls have a separate label. These are method roles, not claims of ownership or published-paper reproduction.
+
+The original [33-page native atlas](../results/frontier-full-review/frontier-atlas.pdf) and [HD overview](../results/frontier-full-review/frontier-overview.png) remain unchanged. The annotated version uses byte-identical chart JSON observations; its [provenance and reading guides](../results/frontier-full-review/annotated/provenance.json) record the source and renderer hashes. The [evidence directory](../results/frontier-full-review/) contains archive, seal, coverage, execution, learning and gate audits.
 
 ## What completed
 
