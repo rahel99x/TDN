@@ -1,0 +1,2 @@
+# Sealed scientific CSVs retain the csv module's standard CRLF bytes.
+results/portfolio-development/development/**/review.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
