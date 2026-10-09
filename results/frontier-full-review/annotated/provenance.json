@@ -9,8 +9,8 @@
   "rendered_chart_data_sha256": "e94c6876927deb257fdbc6ba349f10e32d59514b0c179e5efc523c8b067b6f98",
   "original_pdf_sha256": "887ace3cc257f317b105659e22d24b622a9e89186cc6eac3b72ccae58ea59504",
   "renderer": "tdn/analysis/frontier/report.py",
-  "renderer_sha256": "d1c5423dbffd9a6386260c276c3326c2cd43c0b65e29a0308d6047bbcb4132d8",
-  "changes": "Display method labels, axis meanings and per-panel interpretation only",
+  "renderer_sha256": "a669d7fadabaf6c6c6480e76b7c630a30870611e1d1ab5a172169f2a1f68e387",
+  "changes": "Display method labels, metric directions, marker shapes, line patterns and method emphasis only",
   "scientific_data_unchanged": true,
   "panel_count": 33,
   "method_labels": {
@@ -27,6 +27,75 @@
     "strongest_classical": "Theirs: strongest classical"
   },
   "method_convention": "Ours = proposed rank-one family and its controls. Theirs = established-method comparators implemented here; local FNO variants are not published-paper reproductions. Analytic control = untrained attribution reference, not an external FNO result or an ownership/novelty claim.",
+  "marker_convention": "Blue solid line / up triangle = Ours, learned rank-one; light-blue dotted / down triangle = frozen; cyan dashed / left triangle = ablation. Other methods use thinner patterned lines / circles. Method colors are consistent; ratios use candidate styling. Hatched bars are controls. Heatmap colors show accuracy; partial-diagnostic colors show evidence status.",
+  "method_styles": {
+    "rank1": {
+      "color": "#0072B2",
+      "marker": "^",
+      "linestyle": "-",
+      "linewidth": 1.8
+    },
+    "rank1_frozen": {
+      "color": "#56B4E9",
+      "marker": "v",
+      "linestyle": ":",
+      "linewidth": 1.1
+    },
+    "rank1_postcompression": {
+      "color": "#17BECF",
+      "marker": "<",
+      "linestyle": "--",
+      "linewidth": 1.1
+    },
+    "fno_small": {
+      "color": "#E69F00",
+      "marker": "o",
+      "linestyle": "--",
+      "linewidth": 0.9
+    },
+    "fno_standard": {
+      "color": "#D55E00",
+      "marker": "o",
+      "linestyle": "-.",
+      "linewidth": 0.9
+    },
+    "direct_fno": {
+      "color": "#CC79A7",
+      "marker": "o",
+      "linestyle": ":",
+      "linewidth": 0.9
+    },
+    "analytic_quad": {
+      "color": "#009E73",
+      "marker": "o",
+      "linestyle": "--",
+      "linewidth": 0.9
+    },
+    "analytic_quad_cubic": {
+      "color": "#8C6D31",
+      "marker": "o",
+      "linestyle": "-.",
+      "linewidth": 0.9
+    },
+    "df": {
+      "color": "#777777",
+      "marker": "o",
+      "linestyle": ":",
+      "linewidth": 0.9
+    },
+    "etdrk4": {
+      "color": "#222222",
+      "marker": "o",
+      "linestyle": "--",
+      "linewidth": 0.9
+    },
+    "strongest_classical": {
+      "color": "#222222",
+      "marker": "o",
+      "linestyle": "--",
+      "linewidth": 0.9
+    }
+  },
   "reading_guides": [
     {
       "id": 1,
@@ -228,17 +297,20 @@
     }
   ],
   "files": {
-    "frontier-atlas.pdf": "757ac2061660f77c8a537a488a4cd6497b46a59ef542a85927166202e48760dc",
-    "frontier-overview.png": "12a5f2ad0cd89762f3bffefdcbd75852d75288ba0f329b6241163fc52c9ec30e"
+    "frontier-atlas.pdf": "c7ba3502373ff804507f27a1495f3ff6bfd1c060acfaa300f7d43a59a4fe3796",
+    "frontier-overview.png": "23c44a1d424ae1bad2379a55a481cb6b03c67341bb1f7c5dfe2d686843fa503c"
   },
   "validation": {
     "pages_with_reading_and_method_guides": 33,
     "out_of_page_text_boxes": 0,
     "strict_tight_layout_warnings": 0,
-    "reporting_and_recovery_tests": "73 passed; 25 reporting tests repeated after comparison-page layout change",
+    "reporting_tests": "25 passed",
     "visually_inspected_panels": [
       "Scaling latency and throughput",
-      "Matched target paired speed distributions"
-    ]
+      "Training loss by update",
+      "Model parameter counts",
+      "Stress regime and tolerance coverage"
+    ],
+    "pages_with_style_key": 33
   }
 }

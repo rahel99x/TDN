@@ -45,6 +45,25 @@ METHOD_CONVENTION = (
     "reproductions. Analytic control = untrained attribution reference, not an "
     "external FNO result or an ownership/novelty claim."
 )
+MARKER_CONVENTION = (
+    "Blue solid line / up triangle = Ours, learned rank-one; light-blue dotted / down triangle = frozen; "
+    "cyan dashed / left triangle = ablation. Other methods use thinner patterned lines / circles. "
+    "Method colors are consistent; ratios use candidate styling. Hatched bars are controls. "
+    "Heatmap colors show accuracy; partial-diagnostic colors show evidence status."
+)
+METHOD_STYLES = {
+    'rank1': {'color': '#0072B2', 'marker': '^', 'linestyle': '-', 'linewidth': 1.8},
+    'rank1_frozen': {'color': '#56B4E9', 'marker': 'v', 'linestyle': ':', 'linewidth': 1.1},
+    'rank1_postcompression': {'color': '#17BECF', 'marker': '<', 'linestyle': '--', 'linewidth': 1.1},
+    'fno_small': {'color': '#E69F00', 'marker': 'o', 'linestyle': '--', 'linewidth': .9},
+    'fno_standard': {'color': '#D55E00', 'marker': 'o', 'linestyle': '-.', 'linewidth': .9},
+    'direct_fno': {'color': '#CC79A7', 'marker': 'o', 'linestyle': ':', 'linewidth': .9},
+    'analytic_quad': {'color': '#009E73', 'marker': 'o', 'linestyle': '--', 'linewidth': .9},
+    'analytic_quad_cubic': {'color': '#8C6D31', 'marker': 'o', 'linestyle': '-.', 'linewidth': .9},
+    'df': {'color': '#777777', 'marker': 'o', 'linestyle': ':', 'linewidth': .9},
+    'etdrk4': {'color': '#222222', 'marker': 'o', 'linestyle': '--', 'linewidth': .9},
+    'strongest_classical': {'color': '#222222', 'marker': 'o', 'linestyle': '--', 'linewidth': .9},
+}
 
 
 def method_label(family: str) -> str:
@@ -61,6 +80,28 @@ def method_label(family: str) -> str:
             and parts[3][4:].isdigit()):
         return f'{METHOD_LABELS[parts[1]]} / {parts[0]} / {parts[2]} / {parts[3]}'
     return name
+
+
+def _method_id(row):
+    """Resolve raw family IDs, including final and tuning model identities."""
+    name = str(row.get('family', row.get('candidate_family', row.get('model_id', 'unlabeled'))))
+    parts = name.split('/')
+    if len(parts) >= 2 and parts[0] in ('discrete', 'continuum') and parts[1] in METHOD_STYLES:
+        return parts[1]
+    return name
+
+
+def _method_style(row):
+    return METHOD_STYLES.get(_method_id(row),
+        {'color': '#777777', 'marker': 'o', 'linestyle': '--', 'linewidth': .9})
+
+
+def _point_style(row):
+    style = _method_style(row)
+    ours = _method_id(row) == 'rank1'
+    return {'color': style['color'], 'marker': style['marker'],
+            's': 22 if ours else 18 if style['marker'] in ('v', '<') else 9,
+            'alpha': .8 if ours else .4, 'zorder': 4 if ours else 2}
 
 
 PANEL_GUIDANCE = {
@@ -657,13 +698,14 @@ def _lines(ax, curves, x, y):
     for row in curves:
         if finite(row.get(x)) and finite(row.get(y)):
             groups[_key(row, ('model_id', 'family', 'track', 'seed', 'train_count', 'phase'))].append(row)
-    colors = {}
     for key, rows in sorted(groups.items()):
         rows.sort(key=lambda r: r[x])
         family = _family(rows[0]); label = f"{family}/{rows[0].get('track', '?')}"
-        colors.setdefault(label, f'C{len(colors) % 10}')
-        ax.plot([r[x] for r in rows], [r[y] for r in rows], alpha=.45, lw=.7,
-                color=colors[label], label=label if sum(1 for v in ax.lines if v.get_label() == label) == 0 else None)
+        ours = _method_id(rows[0]) == 'rank1'
+        ax.plot([r[x] for r in rows], [r[y] for r in rows], **_method_style(rows[0]),
+                alpha=.85 if ours else .5, zorder=4 if ours else 2,
+                markersize=4 if ours else 2.5, markevery=max(1, len(rows) // 8),
+                label=label if sum(1 for v in ax.lines if v.get_label() == label) == 0 else None)
     if not groups:
         _blank(ax)
     else:
@@ -673,11 +715,19 @@ def _lines(ax, curves, x, y):
     _label(ax, x, y)
 
 
-def _bars(ax, values, xlabel='', ylabel='', colors=None):
+def _bars(ax, values, xlabel='', ylabel='', colors=None, method_rows=None):
     if not values:
         _blank(ax); return
     labels, heights = zip(*values)
-    ax.bar(range(len(labels)), heights, color=colors or '#407ba1')
+    if method_rows is not None:
+        colors = [_method_style(row)['color'] for row in method_rows]
+    bars = ax.bar(range(len(labels)), heights, color=colors or '#407ba1')
+    if method_rows is not None:
+        for bar, row in zip(bars, method_rows):
+            ours = _method_id(row) == 'rank1'
+            bar.set_hatch('' if ours else '//')
+            bar.set_edgecolor(_method_style(row)['color'] if ours else '#333333')
+            bar.set_linewidth(1.3 if ours else .4)
     ax.set_xticks(range(len(labels)), labels, rotation=70, ha='right', fontsize=6)
     _label(ax, xlabel, ylabel)
 
@@ -707,7 +757,8 @@ def _scatter(ax, rows, x, y, *, log=True):
         else:
             missing += 1
     for name, values in sorted(groups.items()):
-        ax.scatter([r[x] for r in values], [r[y] for r in values], s=9, alpha=.4, label=name, rasterized=True)
+        ax.scatter([r[x] for r in values], [r[y] for r in values],
+                   **_point_style(values[0]), label=name, rasterized=True)
     if not groups:
         _blank(ax)
     else:
@@ -761,7 +812,8 @@ def build_figures(data, output, budget=None):
             wrap_width = max(70, int(width * 14))
             footer = '\n'.join(textwrap.fill(prefix + value, width=wrap_width,
                 break_long_words=False, break_on_hyphens=False) for prefix, value in (
-                    ('HOW TO READ: ', guidance), ('METHODS: ', METHOD_CONVENTION), ('SCOPE: ', note)))
+                    ('HOW TO READ: ', guidance), ('METHODS: ', METHOD_CONVENTION),
+                    ('MARKERS: ', MARKER_CONVENTION), ('SCOPE: ', note)))
             footer_height = (len(footer.splitlines()) * 11 + 24) / 72
             fig.set_size_inches(width, height + footer_height)
             fig.text(.025, .14 / (height + footer_height), footer,
@@ -808,8 +860,13 @@ def build_figures(data, output, budget=None):
             groups = sorted({row.get('physical_stage') for row in usable})
             for i, group in enumerate(groups):
                 for scope, color in (('PARTIAL_COVERAGE_ONLY', '#407ba1'), ('UNSEALED_FORENSIC_ONLY', COLORS['NA'])):
-                    vals = [row['error_rms'] for row in usable if row.get('physical_stage') == group and row.get('evidence_scope') == scope]
-                    if vals: ax.scatter([i] * len(vals), vals, s=5, alpha=.3, color=color)
+                    by_method = defaultdict(list)
+                    for row in usable:
+                        if row.get('physical_stage') == group and row.get('evidence_scope') == scope:
+                            by_method[_family(row)].append(row)
+                    for vals in by_method.values():
+                        ax.scatter([i] * len(vals), [row['error_rms'] for row in vals],
+                                   **{**_point_style(vals[0]), 'color': color})
             ax.set_xticks(range(len(groups)), groups, rotation=30)
             _label(ax, 'physical part (all cases; descriptive only)', 'endpoint RMS error')
         single('Unmerged partial confirmation diagnostics', partial_errors,
@@ -847,15 +904,22 @@ def build_figures(data, output, budget=None):
             figure = _facets(plt, curves, ('track',), lambda ax, vals: _lines(ax, vals, x, y), title)
             save(title, figure, 'Every trial/phase/seed/sample count is a separate curve; gaps do not invent validation measurements. All points retained in chart-data.json.gz.')
         def parameter_draw(ax):
-            records = {}
+            records = {}; method_rows = {}
             for r in catalog + curves:
                 value = r.get('parameters', r.get('parameter_count'))
-                if finite(value): records[f"{_family(r)} / {r.get('track','?')} / p={value}"] = value
-            _bars(ax, sorted(records.items()), 'model/trial', 'stored model parameters')
+                if finite(value):
+                    label = f"{_family(r)} / {r.get('track','?')} / p={value}"
+                    records[label] = value; method_rows[label] = r
+            _bars(ax, sorted(records.items()), 'model/trial', 'stored model parameters',
+                  method_rows=[method_rows[label] for label in sorted(records)])
         single('Model parameter counts', parameter_draw, 'Identical parameter counts collapse only for display by family/track; every model ID is retained in chart data. Parameter count is not FLOPs or runtime.')
         def selections(ax):
-            counts = Counter(f"{_family(r)}/{r.get('selected_state', r.get('selection', r.get('outcome', r.get('status', 'NA'))))}" for r in catalog)
-            _bars(ax, sorted(counts.items()), 'family / selection outcome', 'trials')
+            counts = Counter(); method_rows = {}
+            for r in catalog:
+                label = f"{_family(r)}/{r.get('selected_state', r.get('selection', r.get('outcome', r.get('status', 'NA'))))}"
+                counts[label] += 1; method_rows[label] = r
+            _bars(ax, sorted(counts.items()), 'family / selection outcome', 'trials',
+                  method_rows=[method_rows[label] for label in sorted(counts)])
         single('Baseline adequacy and checkpoint selections', selections,
                'Initialization selection is not evidence of learned improvement. A weak trained control does not establish superiority over a published method.')
         figure = _facets(plt, curves, ('track',), lambda ax, vals: _scatter(ax, vals, 'train_count', 'validation_rms'), 'Data efficiency validation observations')
@@ -865,14 +929,17 @@ def build_figures(data, output, budget=None):
             save(f'Work precision {norm} error with reference uncertainty', figure,
                  'All endpoint schedules retained; each panel has one spatial target and final time. Reference-informed frontier selection is post hoc, not a deployable policy.')
         def comparison_draw(ax, vals):
-            groups = defaultdict(list); ineligible = Counter()
+            groups = defaultdict(list); styles = {}; ineligible = Counter()
             for r in vals:
                 value = r.get('control_over_candidate_speed_ratio')
                 if r.get('eligibility') == 'ELIGIBLE' and finite(value) and value > 0:
-                    groups[method_label(r.get('candidate_family', r.get('family', r.get('model_id', '?')))) + ' vs ' + method_label(r.get('control_family', r.get('comparator', '?')))].append(value)
+                    candidate = r.get('candidate_family', r.get('family', r.get('model_id', '?')))
+                    name = method_label(candidate) + ' vs ' + method_label(r.get('control_family', r.get('comparator', '?')))
+                    groups[name].append(value)
+                    styles[name] = _point_style({'candidate_family': candidate})
                 else: ineligible[str(r.get('eligibility', 'NA'))] += 1
             for i, (name, values) in enumerate(sorted(groups.items())):
-                ax.scatter([i]*len(values), values, s=9, alpha=.4, label=name, rasterized=True)
+                ax.scatter([i]*len(values), values, **styles[name], label=name, rasterized=True)
             if groups:
                 ax.set_xticks(range(len(groups)), sorted(groups), rotation=90, ha='center', fontsize=6); ax.set_yscale('log'); ax.axhline(1, color='black', ls='--', lw=.7)
             else: _blank(ax)
@@ -882,8 +949,9 @@ def build_figures(data, output, budget=None):
         save('Matched target paired speed distributions', figure,
              'Different final times and tolerances are never pooled. Repeated schedules/grids/seeds are paired evidence; use field-clustered inference in comparisons.json.')
         def stress(ax, vals):
-            expanded = []
+            expanded = []; method_rows = {}
             for r in vals:
+                method_rows[_family(r)] = r
                 targets = r.get('target_results', [])
                 if isinstance(targets, dict): targets = [dict(v, target=k) if isinstance(v, dict) else {'target': k, 'passed': v} for k,v in targets.items()]
                 for target in targets:
@@ -901,6 +969,14 @@ def build_figures(data, output, budget=None):
             palette=plt.get_cmap('viridis').copy(); palette.set_bad('#9ba6b5')
             ax.imshow(values,aspect='auto',cmap=palette,vmin=0,vmax=1,interpolation='nearest')
             ax.set_yticks(range(len(families)),families,fontsize=6)
+            from matplotlib.patches import Rectangle
+            for i, (family, tick) in enumerate(zip(families, ax.get_yticklabels())):
+                row = method_rows[family]
+                tick.set_color(_method_style(row)['color'])
+                if _method_id(row) == 'rank1':
+                    tick.set_fontweight('bold')
+                    ax.add_patch(Rectangle((-.5, i-.5), len(labels), 1, fill=False,
+                        edgecolor=METHOD_STYLES['rank1']['color'], linewidth=1.5))
             ax.set_xticks(range(len(labels)),labels,rotation=70,ha='right',fontsize=5)
             _label(ax,'regime / target; purple=0, yellow=1, gray=no cell','family (observed joint pass fraction)')
         figure = _facets(plt, endpoints, ('track', 'horizon', 'schedule_kind'), stress, 'Stress regime and tolerance coverage')
@@ -959,10 +1035,12 @@ def build_figures(data, output, budget=None):
                 usable = [r for r in vals if finite(r.get(metric))]
                 if not usable: _blank(ax); return
                 for i,r in enumerate(usable):
-                    ax.plot(r[metric], i, 'o', color='#407ba1')
+                    # These estimates always compare the named control with
+                    # the learned rank-one candidate, not standalone controls.
+                    ax.plot(r[metric], i, '^', color=METHOD_STYLES['rank1']['color'])
                     ci = r.get(metric+'_ci95')
                     if isinstance(ci,list) and len(ci)==2 and all(finite(v) and v>0 for v in ci):
-                        ax.plot(ci, [i,i], color='#407ba1')
+                        ax.plot(ci, [i,i], color=METHOD_STYLES['rank1']['color'], linewidth=1.8)
                 labels = [f"{method_label(r.get('competitor'))} / n={r.get('train_count')} / fields={r.get('independent_fields')}" for r in usable]
                 ax.set_yticks(range(len(usable)), labels, fontsize=6); ax.set_xscale('log'); ax.axvline(1,color='black',ls='--',lw=.7)
                 quantity = 'RMS' if metric == 'error_ratio' else 'time'
@@ -1018,7 +1096,8 @@ def build_figures(data, output, budget=None):
         'software_test_executions':len(data.get('software_tests',[])),
         'confirmation_partition_coverage':data.get('confirmation_partition_coverage'),
         'unavailable_panels_are_na': True, 'sources': data['sources'], 'stage_status': data['stage_status'],
-        'method_convention': METHOD_CONVENTION, 'method_labels': METHOD_LABELS}
+        'method_convention': METHOD_CONVENTION, 'method_labels': METHOD_LABELS,
+        'marker_convention': MARKER_CONVENTION, 'method_styles': METHOD_STYLES}
     # A compact overview is an entry point, not a replacement for complete pages.
     fig, axes = plt.subplots(2,3,figsize=(18,11))
     for ax, panel in zip(axes.flat, [panels[i] for i in (0,1,5,11,13,21)]):

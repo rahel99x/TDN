@@ -181,6 +181,12 @@ NA panels never mean zero error or free computation. The annotated version of
 the reviewed full native results is linked from
 [the full review](FRONTIER_FULL_REVIEW.md); it requires no experiment rerun.
 
+The proposed model uses blue upward triangles and a stronger solid line. Frozen
+and ablation controls use different triangle directions and patterned lines;
+other methods use circles and thinner patterned lines. Method colors carry
+across panels and legends. Method bars and heatmap row labels also distinguish
+the proposed model; verdict and accuracy colors keep their original meaning.
+
 The training stage's Tower report also contains bounded native metric pages for
 every observed loss/validation/compute update, with exact trial lineage. Missing
 validation measurements remain absent. The final report links the complete HD

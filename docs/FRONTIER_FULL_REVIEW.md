@@ -10,6 +10,8 @@ The [annotated 33-page atlas](../results/frontier-full-review/annotated/frontier
 
 The original [33-page native atlas](../results/frontier-full-review/frontier-atlas.pdf) and [HD overview](../results/frontier-full-review/frontier-overview.png) remain unchanged. The annotated version uses byte-identical chart JSON observations; its [provenance and reading guides](../results/frontier-full-review/annotated/provenance.json) record the source and renderer hashes. The [evidence directory](../results/frontier-full-review/) contains archive, seal, coverage, execution, learning and gate audits.
 
+The visual key is consistent across panels: our learned model uses blue upward triangles and a stronger solid line; our frozen control uses light-blue downward triangles and a dotted line; our input-compression ablation uses cyan leftward triangles and a dashed line. Other methods use circles and thinner patterned lines with fixed method colors. Model bars distinguish the main model's solid fill from hatched controls; accuracy heatmaps highlight its row without changing the accuracy colors. Paired comparisons use the candidate's shape, and partial-diagnostic colors retain their evidence-status meaning.
+
 ## What completed
 
 All 20 parts and their combined SHA-256 match the index: `494f0b089174495012f535163725729832e295b33f46c7a943bfc5c172ef06ee`. All 8,951 archive files were streamed and hashed. The review verified 16 science/execution seals, 1,963 listed scientific artifacts, all 80 checkpoint byte hashes and recorded predecessor links. These counts include the original partial-outcome report as well as the complete recovery.
