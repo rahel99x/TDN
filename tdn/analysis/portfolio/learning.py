@@ -20,11 +20,12 @@ from tdn.analysis.frontier.core import clean, check
 from tdn.analysis.frontier.data import _safe_file
 from tdn.analysis.frontier.neural import (nested_subset, eq_geom, reference, endpoint_errors,
     rollout, _samples, validation_metrics, TrialNumericalFailure, _sync)
-from tdn.analysis.frontier.measurement import measure_paired, endpoint_eligibility, field_cluster_interval
+from tdn.analysis.frontier.measurement import measure_paired, endpoint_eligibility
 from tdn.research.experiment import atomic_torch_save
 from tdn.research.protocol import digest, file_digest
 from tdn.runtime.metadata import write_json
 from .data import binding, unit, load_bank
+from .statistics import field_cluster_interval
 
 
 def _units(protocol):
@@ -524,6 +525,7 @@ def comparison_tables(rows, frozen_selection, protocol):
             geometric_control_over_candidate_cost=math.exp(speed["mean"]) if speed.get("mean") is not None else None,
             scope="same schedule/grid/field/target; repeated queries collapsed by field and paired training seed",
             interval_is_observed_range=False,paper_reproduction=False,
+            small_regime_sample=uncertainty["independent_fields"]<5,
             analysis_status="exploratory all-pair subgroup comparison; intervals unadjusted for multiplicity"))
     frontiers=[]; locked=[]; groups=defaultdict(list)
     for row in rows: groups[(row["model_id"],row["parent_id"],row["grid"],row["track"],row["final_time"])].append(row)
@@ -596,12 +598,15 @@ def aggregate(ctx):
         required=claim.get("required_speedup" if cost_claim else "required_ratio")
         no_harm=(claim.get("candidate_joint_field_coverage",0)-claim.get("control_joint_field_coverage",0)
                  if cost_claim and claim.get("candidate_joint_field_coverage") is not None else claim.get("coverage_difference"))
-        checks=[check("effect-size",effect,required,"ge",category="gap"),
-                check("paired-interval-excludes-no-gain",claim.get("lower_ratio"),1.,"gt",category="gap"),
-                check("joint-coverage-no-harm",no_harm,-float(ctx.protocol["hypothesis_thresholds"].get("maximum_coverage_regression",.05)),"ge",category="gap"),
-                check("independent-fields",claim["interval"]["independent_fields"],2,"ge",category="math"),
-                check("declared-complete-decision",None if claim["verdict"]=="NA" else claim["verdict"]=="GOOD",True,"eq",category="math")]
-        if cost_claim:checks.append(check("joint-field-feasibility",claim.get("candidate_joint_field_coverage"),claim["required_coverage"],"ge",category="gap"))
+        decidable=claim["verdict"]!="NA"
+        enough_fields=claim["interval"]["independent_fields"]>=int(ctx.protocol["hypothesis_thresholds"].get("minimum_fields",5))
+        checks=[check("effect-size",effect,required,"ge",category="gap",applicable=decidable),
+                check("paired-interval-excludes-no-gain",claim.get("lower_ratio"),1.,"gt",category="gap",applicable=decidable),
+                check("joint-coverage-no-harm",no_harm,-float(ctx.protocol["hypothesis_thresholds"].get("maximum_coverage_regression",.05)),"ge",category="gap",applicable=decidable),
+                check("field-cluster-inference-ready",True if enough_fields else None,True,"eq",category="math",
+                      reason="Insufficient independent fields means unavailable inference, not incorrect mathematics"),
+                check("declared-complete-decision",None if not decidable else claim["verdict"]=="GOOD",True,"eq",category="gap")]
+        if cost_claim:checks.append(check("joint-field-feasibility",claim.get("candidate_joint_field_coverage"),claim["required_coverage"],"ge",category="gap",applicable=decidable))
         if f"claim/{index:04d}" in getattr(ctx,"identities",set()): continue
         ctx.record(f"claim/{index:04d}",["B4" if cost_claim else "A5" if claim["claim"]=="bounded_neural_accuracy" else "A2"],metrics=clean(claim),checks=checks)
 
@@ -628,6 +633,12 @@ def scaling(ctx):
         return {"status":"NA","reason":"No scaling parents declared"}
     models={r["model_id"]:_load_model(ctx,r,ctx.prerequisites["freeze"]) for r in selected if r["checkpoint_validated"]}
     rows=[]; horizon=float(options.get("horizon",.12))
+    steps=options.get("steps",1)
+    if type(steps) is not int or steps<1: raise ValueError("Scaling requires a positive frozen integer step count")
+    schedule=[horizon/steps]*steps
+    target=ctx.protocol.get("primary_target",2e-5)
+    if isinstance(target,dict):rt=float(target.get("rms",target.get("rms_target")));mt=float(target.get("max",target.get("max_target")))
+    else:rt=mt=float(target)
     # Distinct continuous parents are batched, never copies of one field.
     planned=[(n,t,b) for b in sorted(options.get("batch_sizes",options.get("batches",[1])),reverse=True)
              for n,t in itertools.product(options.get("grids",ctx.protocol["grids"]),ctx.protocol["tracks"])]
@@ -645,7 +656,7 @@ def scaling(ctx):
         refs=[generate_reference(p,n,horizon,track,ctx.protocol,ctx.budget) for p in chunk]
         u=torch.cat([field_state(p,n) for p in chunk]).to(ctx.device,dtype=torch.float32)
         eq=Equation(chunk[0]["kappa"],chunk[0]["reaction_rate"]);geom=geometry(chunk[0],n)
-        calls={r["model_id"]:(lambda m=models[r["model_id"]]:m(u,horizon,eq,geom)) for r in selected if r["track"]==track and r["model_id"] in models}
+        calls={r["model_id"]:(lambda m=models[r["model_id"]]:rollout(m,u,schedule,eq,geom,ctx.budget)[0]) for r in selected if r["track"]==track and r["model_id"] in models}
         with torch.no_grad():
             answers,timing=measure_paired(calls,device=ctx.device,repeats=int(ctx.protocol.get("timing",{}).get("repeats",3)),
                                          warmup=1,budget=ctx.budget,seed=n*17+batch)
@@ -653,12 +664,11 @@ def scaling(ctx):
             if r["track"]!=track or r["model_id"] not in answers:continue
             answer=answers[r["model_id"]];cost=timing["methods"][r["model_id"]]
             errors=[endpoint_errors(answer[i:i+1],ref) for i,ref in enumerate(refs)]
-            rt,mt=_targets(ctx.protocol)[0]
             qualified=all(endpoint_eligibility({**e,"cost_seconds":cost["median_seconds"]},rt,mt)=="ELIGIBLE" for e in errors)
             rows.append({"model_id":r["model_id"],"family":r["family"],"track":track,"grid":n,"batch_size":batch,
                 "status":"ACCURACY_QUALIFIED" if qualified else "ACCURACY_UNQUALIFIED","errors":errors,
                 "rms_target":rt,"max_target":mt,"cost_seconds":cost["median_seconds"],"cold_seconds":cost["cold_seconds"],
-                "samples_per_second":batch/cost["median_seconds"],"raw_timing":timing,"final_time":horizon,
+                "samples_per_second":batch/cost["median_seconds"],"raw_timing":timing,"final_time":horizon,"schedule":schedule,"step_count":steps,
                 "parent_ids":[p["parent_id"] for p in chunk],"teacher_seconds":sum(ref["teacher_seconds"] for ref in refs),
                 "precision":"FP32 models/FP64 references","device":str(ctx.device)})
     write_json(ctx.path/"scaling_rows.json",{"rows":clean(rows),"scope":"measured workloads only; first declared seed not selected by confirmation"})
@@ -701,7 +711,8 @@ def primary_claims(rows,tables,protocol):
                     unresolved+=1;continue
                 observed.append({"field_cluster":left["field_cluster"],"seed":left["seed"],
                     "difference":math.log(right["error_rms"]/left["error_rms"])})
-            interval=field_cluster_interval(observed,repeats=int(protocol.get("bootstrap_replicates",100)))
+            interval=field_cluster_interval(observed,repeats=int(protocol.get("bootstrap_replicates",100)),
+                minimum_fields=int(thresholds.get("minimum_fields",5)))
             ratio=math.exp(interval["mean"]) if interval.get("mean") is not None else None
             lower=math.exp(interval["lower"]) if interval.get("lower") is not None else None
             coverage=(left_pass-right_pass)/len(candidates) if candidates else None
@@ -724,27 +735,31 @@ def primary_claims(rows,tables,protocol):
     for track,count,final in scopes:
         candidates=[r for r in locked if r["family"]==primary and r["track"]==track and r["train_count"]==count and r["final_time"]==final and r["rms_target"]==rt and r["max_target"]==mt]
         for control in ["quad2_fixed","df","etdrk4","fno_small","fno_standard"]:
-            observations=[];field_left=defaultdict(list);field_right=defaultdict(list)
+            observations=[];field_left=defaultdict(list);field_right=defaultdict(list);unresolved_pairs=0
             for left in candidates:
                 shared=(left["parent_id"],left["grid"],final,rt,mt)
                 right=lookup.get((control,track,count,left["seed"],*shared)) or lookup.get((control,track,0,None,*shared))
+                unknown={"REFERENCE_UNACCEPTED","MISSING_METRIC","UNAVAILABLE_CHECKPOINT"}
+                unresolved_pairs+=left["status"] in unknown or bool(right and right["status"] in unknown)
                 lp=left["status"]=="ELIGIBLE";rp=bool(right and right["status"]=="ELIGIBLE")
                 field_left[left["field_cluster"]].append(lp);field_right[left["field_cluster"]].append(rp)
                 if lp and rp:
                     observations.append({"field_cluster":left["field_cluster"],"seed":left["seed"],
                         "difference":math.log(right["cost_seconds"]/left["cost_seconds"])})
-            interval=field_cluster_interval(observations,repeats=int(protocol.get("bootstrap_replicates",100)))
+            interval=field_cluster_interval(observations,repeats=int(protocol.get("bootstrap_replicates",100)),
+                minimum_fields=int(thresholds.get("minimum_fields",5)))
             coverage=statistics.mean(all(v) for v in field_left.values()) if field_left else None
             control_coverage=statistics.mean(all(v) for v in field_right.values()) if field_right else None
             ratio=math.exp(interval["mean"]) if interval.get("mean") is not None else None
             lower=math.exp(interval["lower"]) if interval.get("lower") is not None else None
-            if coverage is not None and (coverage<float(thresholds.get("required_feasible_fraction",.95)) or coverage<control_coverage-float(thresholds.get("maximum_coverage_regression",.05))):verdict="BAD"
+            if unresolved_pairs:verdict="NA"
+            elif coverage is not None and (coverage<float(thresholds.get("required_feasible_fraction",.95)) or coverage<control_coverage-float(thresholds.get("maximum_coverage_regression",.05))):verdict="BAD"
             elif lower is None or coverage is None:verdict="NA"
             else:verdict="GOOD" if ratio>=float(thresholds.get("practical_speedup",1.2)) and lower>1 else "BAD"
             cost.append(dict(claim="validation_locked_solver_cost",candidate_family=primary,control_family=control,track=track,
                 train_count=count,final_time=final,verdict=verdict,geometric_control_over_candidate_cost=ratio,lower_ratio=lower,
                 interval=interval,candidate_joint_field_coverage=coverage,control_joint_field_coverage=control_coverage,
-                independent_fields=len(field_left),eligible_paired_rows=len(observations),denominator=len(candidates),
+                independent_fields=len(field_left),eligible_paired_rows=len(observations),denominator=len(candidates),unresolved_pairs=unresolved_pairs,
                 rms_target=rt,max_target=mt,required_speedup=float(thresholds.get("practical_speedup",1.2)),
                 required_coverage=float(thresholds.get("required_feasible_fraction",.95)),
                 metric="single-field complete-call warm latency at frozen validation schedules",

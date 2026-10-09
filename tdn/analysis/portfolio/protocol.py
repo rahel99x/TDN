@@ -159,7 +159,7 @@ def build_protocol(profile="smoke"):
         comparison_unit="independent field; schedules/grids/seeds paired within field",
         frozen_control="quad2_fixed", learned_comparators=["quad2_amplitude", "quad2_nodes", "quad2_joint", "quad2_linear"],
         multiple_comparisons="declared primary tests; exploratory subgroup estimates unadjusted and labeled",
-        mathematical_proof=False, primary_interval_lower_bound=1.,
+        mathematical_proof=False, primary_interval_lower_bound=1., minimum_fields=5,
         benefit_requires="declared effect threshold and field-cluster interval lower bound above one; coverage noninferiority checked separately")
     p["exploration"] = dict(seed=offset+900000, prototype_ids=["X01", "X02", "X03"],
         X01=dict(parity_tolerance=1e-10, relative_rmse=.001, break_even_queries=32),

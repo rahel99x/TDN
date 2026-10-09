@@ -390,6 +390,47 @@ def _scatter(ax, rows, x, y):
             ha='right', va='top', fontsize=5, transform=ax.transAxes)
 
 
+def _layout_figure(fig, title, guide, scope):
+    """One external legend per page; reserve physical space for every footer."""
+    handles = {}
+    for ax in fig.axes:
+        for handle, name in zip(*ax.get_legend_handles_labels()):
+            handles.setdefault(name, handle)
+        if ax.get_legend() is not None:
+            ax.get_legend().remove()
+    width, height = fig.get_size_inches()
+    wrap = max(80, int(width * 14))
+    footer = '\n'.join(textwrap.fill(prefix + text, wrap, break_long_words=False,
+        break_on_hyphens=False) for prefix, text in (
+            ('HOW TO READ: ', guide), ('METHODS: ', METHOD_NOTES), ('SCOPE: ', scope)))
+    footer_inches = (len(footer.splitlines()) * 10 + 22) / 72
+    columns = min(4, max(1, int(width // 4)))
+    legend_inches = (math.ceil(len(handles) / columns) * 14 + 22) / 72 if handles else 0.
+    total = height + footer_inches + legend_inches
+    fig.set_size_inches(width, total)
+    fig.text(.025, .12 / total, footer, ha='left', fontsize=7, va='bottom', linespacing=1.3)
+    if handles:
+        fig.legend(list(handles.values()), list(handles), loc='lower center',
+                   bbox_to_anchor=(.5, (footer_inches + .04) / total), ncol=columns,
+                   fontsize=7, frameon=False, handletextpad=.6, columnspacing=1.8)
+    fig.suptitle(title, fontsize=12)
+    fig.tight_layout(rect=(.025, (footer_inches + legend_inches) / total, .985, .94))
+
+
+def prototype_assessments(rows):
+    """Computational completion never replaces individual scientific checks."""
+    result = []
+    for row in rows:
+        verdicts = {}
+        for category in ('math', 'gap', 'utility'):
+            relevant = [c.get('verdict', 'NA') for c in row.get('checks', [])
+                        if c.get('category') == category and c.get('required', True)]
+            verdicts[category] = ('BAD' if 'BAD' in relevant else
+                                 'NA' if not relevant or 'NA' in relevant else 'GOOD')
+        result.append({**row, 'display_science': verdicts})
+    return result
+
+
 def build_figures(data, output, budget=None):
     project = Path(__file__).resolve().parents[3]
     for name, suffix in (('MPLCONFIGDIR', 'matplotlib'), ('XDG_CACHE_HOME', 'xdg')):
@@ -410,13 +451,7 @@ def build_figures(data, output, budget=None):
             if budget: budget.check()
             index = len(panels)+1
             name = f'{index:02d}-' + ''.join(c if c.isalnum() else '-' for c in title.lower()).strip('-') + '.png'
-            footer = '\n'.join(textwrap.fill(prefix+text, 145) for prefix, text in (
-                ('HOW TO READ: ', guide), ('METHODS: ', METHOD_NOTES), ('SCOPE: ', scope)))
-            width, height = fig.get_size_inches(); extra = .22*len(footer.splitlines())+.35
-            fig.set_size_inches(width, height+extra)
-            fig.text(.025, .1/(height+extra), footer, fontsize=7, va='bottom', linespacing=1.3)
-            fig.suptitle(title, fontsize=12)
-            fig.tight_layout(rect=(.015, extra/(height+extra), .99, .94))
+            _layout_figure(fig, title, guide, scope)
             fig.savefig(output/name, dpi=170); pdf.savefig(fig, dpi=170); plt.close(fig)
             panels.append({'id': index, 'title': title, 'path': name, 'reading_guide': guide, 'scope': scope,
                            'sha256': hashlib.sha256((output/name).read_bytes()).hexdigest()})
@@ -563,7 +598,10 @@ def build_figures(data, output, budget=None):
                 ax.scatter([point],[i],marker=sty['marker'],color=sty['color'],s=20)
                 if finite(lo) and finite(hi): ax.hlines(i,lo,hi,color=sty['color'],linewidth=.6)
             ax.axvline(1,color='#777777',linewidth=.5);ax.set_yticks(range(len(values)),[str(v[0].get('comparison',v[0].get('model_id','pair'))) for v in values],fontsize=5)
-            ax.set_xlabel('Declared ratio and independent-field interval (see ratio definition)')
+            ax.set_xlabel('Control / candidate RMS', fontsize=8)
+            available=sum(finite(v[2]) and finite(v[3]) for v in values)
+            ax.text(.99, -.19, f'{available}/{len(values)} intervals available; missing intervals are NA',
+                    transform=ax.transAxes, fontsize=5, ha='right', va='top')
         primary = data['protocol'].get('selection', {}).get('primary_family', 'quad2_conditioned')
         displayed_controls = set(data['protocol'].get('hypothesis_thresholds', {}).get('learned_comparators', [])) | {'quad2_fixed', 'quad4_full', 'analytic_quad_cubic', 'df', 'etdrk4', 'fno_small', 'fno_standard'}
         primary_intervals = [r for r in data['paired_field_summaries'] if
@@ -619,16 +657,31 @@ def build_figures(data, output, budget=None):
         single('Learned parameters and identifiability evidence',parameters,
                'Parameters are not inherently better when larger or smaller. Compare effective responses and matched ablations.',
                'Exact learned node/weight/feature responses are retained. Several parameterizations can realize the same effective correction; no identifiability proof follows from a successful fit.')
-        def prototypes(ax):
-            rows=data['prototypes']
-            if not rows:_blank(ax);return
-            counts=Counter((r.get('prototype_id','unknown'),r.get('status','NA')) for r in rows)
-            labels=[f'{a}: {b}' for a,b in sorted(counts)]
-            ax.barh(labels,[counts[k] for k in sorted(counts)],color=['#9ba6b5' if 'NA' in k else '#407ba1' for k in labels])
-            ax.set_xlabel('Prototype records (not independent scientific successes)')
-        single('Protected high risk exploration including negative outcomes',prototypes,
-               'Counts show coverage; larger counts do not mean greater promise. Every status and invalidation check remains visible.',
-               'New to TDN is not novelty in the literature. Numerical prototypes are development diagnostics, not neural/FNO or GPU superiority claims.')
+        def prototype_table(ax, rows):
+            if not rows:
+                _blank(ax); return
+            ax.axis('off'); cells=[]
+            for row in prototype_assessments(rows):
+                gates=row['display_science']; metrics=row.get('metrics', {})
+                detail=''
+                if 'break_even_queries' in metrics:
+                    value=metrics['break_even_queries']
+                    detail=f"queries={value:,}" if isinstance(value,int) else 'queries=NA'
+                elif 'max_heldout_relative_error' in metrics:
+                    detail=f"error={metrics['max_heldout_relative_error']:.3g}"
+                elif 'heldout_rmse' in metrics:
+                    detail=f"RMSE={metrics['heldout_rmse']:.3g}"
+                cells.append([textwrap.fill(row.get('method','unknown'),24),row.get('status','NA'),
+                              gates['math'],gates['gap'],gates['utility'],detail])
+            table=ax.table(cellText=cells,colLabels=['Method','Job','Math','Gap','Utility','Measured'],
+                colWidths=[.32,.16,.1,.1,.1,.2],cellLoc='left',loc='center')
+            table.auto_set_font_size(False);table.set_fontsize(6);table.scale(1,1.9)
+            for i,row in enumerate(prototype_assessments(rows),1):
+                for column,category in ((2,'math'),(3,'gap'),(4,'utility')):
+                    table[i,column].set_facecolor({'GOOD':'#b5ded5','BAD':'#efc7be','NA':'#e0e4eb'}[row['display_science'][category]])
+        facets('Protected high risk computational and scientific outcomes',data['prototypes'],('prototype_id',),prototype_table,
+               'Job COMPLETED means execution finished. Math/gap/utility GOOD means applicable checks met; BAD means a failed requirement; NA means unmeasured or inapplicable. A representation can pass while cost fails.',
+               'Every prototype and negative check remains in raw data. Break-even queries are measured build/query scenarios, not a demonstrated deployment benefit. New to TDN is not novelty in the literature; CPU diagnostics establish no GPU or full-solver superiority.')
         closure_display = []
         for row in data['closure']:
             for method, error in row.get('errors', {}).items():

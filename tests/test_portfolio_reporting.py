@@ -206,3 +206,29 @@ def test_primary_claims_preserve_exact_gates_and_trace_each_claim(tmp_path):
     assert data['claims_metadata'][0]['no_published_fno_superiority_claim'] is True
     assert next(r for r in data['stage_status'] if r['unit']=='train-A-000')['elapsed_seconds']==123.
     assert claims['accuracy'][0]=={k:v for k,v in data['claims_accuracy'][0].items() if k!='_source'}
+
+
+def test_shared_legend_is_external_and_prototype_cost_failure_stays_visible():
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    fig,axes=plt.subplots(1,2,figsize=(13,5))
+    for ax in axes:
+        for i in range(23):ax.plot([0,1],[i,i+1],label=f'Ours: model-{i}',linewidth=.5)
+        ax.legend()
+    report._layout_figure(fig,'Title','Lower is better.','Test scope.')
+    assert all(ax.get_legend() is None for ax in axes)
+    assert len(fig.legends)==1 and len(fig.legends[0].get_texts())==23
+    fig.canvas.draw();renderer=fig.canvas.get_renderer();bounds=fig.bbox
+    for text in fig.texts:
+        box=text.get_window_extent(renderer)
+        assert bounds.x0<=box.x0 and box.x1<=bounds.x1
+        assert bounds.y0<=box.y0 and box.y1<=bounds.y1
+    legend=fig.legends[0].get_window_extent(renderer)
+    assert all(legend.y1<ax.get_window_extent(renderer).y0 for ax in axes)
+    plt.close(fig)
+    rows=report.prototype_assessments([{'status':'COMPLETED','method':'compact_temporal_encoding','checks':[
+        {'category':'math','verdict':'GOOD'},{'category':'gap','verdict':'GOOD'},
+        {'category':'utility','verdict':'BAD'}]}])
+    assert rows[0]['status']=='COMPLETED'
+    assert rows[0]['display_science']=={'math':'GOOD','gap':'GOOD','utility':'BAD'}

@@ -103,6 +103,10 @@ def test_numeric_bank_training_freeze_and_exact_confirmation(tmp_path,small_camp
     tables=json.loads((ctx.path/"comparisons.json").read_text())
     assert tables["locked_frontiers"] and tables["posthoc_frontiers"]
     assert all("final_time" in r and "regime" in r for r in tables["matched_configuration"])
+    claim_rows=[r for r in ctx.rows if r["experiment_id"].startswith("claim/")]
+    assert claim_rows
+    assert not any(r["math_assessment"]["verdict"]=="BAD" for r in claim_rows)
+    assert all(r["assessment"]["verdict"]=="NA" for r in claim_rows if r["metrics"]["verdict"]=="NA")
 
 
 def test_recovery_reuses_completed_trials_and_groups_without_retiming(tmp_path,small_campaign,monkeypatch):
@@ -170,3 +174,32 @@ def test_primary_claims_charge_joint_field_failures_and_reference_uncertainty():
     rows[0]["reference_uncertainty_rms"]=1e-5
     result=primary_claims(rows,{"locked_frontiers":locked},p)
     assert next(r for r in result["accuracy"] if r["control_family"]=="quad2_fixed")["verdict"]=="NA"
+    locked[0]["status"]="REFERENCE_UNACCEPTED"
+    result=primary_claims(rows,{"locked_frontiers":locked},p)
+    assert next(r for r in result["cost"] if r["control_family"]=="quad2_fixed")["verdict"]=="NA"
+
+
+def test_scaling_respects_frozen_step_count_and_primary_tolerance(tmp_path,monkeypatch):
+    from tdn.analysis.portfolio import learning
+    from tdn.analysis.frontier import data as teacher
+    p=tiny_protocol();parent=copy.deepcopy(p['parents'][0]);parent.update(split='scaling',parent_id='scaling-only',field_cluster='scaling-only')
+    p['parents'].append(parent);p['scaling'].update(grids=[4],batches=[1],maximum_cases=1,steps=2,horizon=.06,families=['quad2_conditioned'])
+    p['primary_target']=2e-5;p['targets']=[2e-4,2e-5]
+    p['units']['scaling']={'id':'scaling','kind':'scaling'}
+    ctx=context(tmp_path,p,'scaling',{'freeze':tmp_path/'freeze'})
+    record=dict(model_id='m',family='quad2_conditioned',seed=p['seeds'][0],track='discrete',train_count=2,checkpoint_validated=True)
+    monkeypatch.setattr(learning,'verify_frozen',lambda ctx:({'records':[record]},{}))
+    calls=[]
+    class Model:
+        family='quad2_conditioned'
+        def __call__(self,u,h,eq,geom):calls.append(float(h));return u+5e-5
+    monkeypatch.setattr(learning,'_load_model',lambda *a:Model())
+    monkeypatch.setattr(teacher,'generate_reference',lambda parent,n,h,track,protocol,budget:dict(
+        state=teacher.field_state(parent,n),accepted=True,uncertainty_rms=0.,uncertainty_max_bound=0.,teacher_seconds=0.))
+    learning.scaling(ctx)
+    result=json.loads((ctx.path/'scaling_rows.json').read_text())['rows'][0]
+    assert result['schedule']==[.03,.03] and result['step_count']==2
+    assert calls and all(x==.03 for x in calls)
+    assert result['rms_target']==result['max_target']==2e-5
+    assert result['status']=='ACCURACY_UNQUALIFIED'
+    assert all(2e-5<r['upper_rms']<2e-4 for r in result['errors'])
