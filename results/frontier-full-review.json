@@ -1,0 +1,68 @@
+{
+  "schema": "tdn.native-frontier-full-review/v1",
+  "review_date": "2026-10-08",
+  "review_timezone": "America/Los_Angeles",
+  "origin_run": "fedora-frontier-20261008T092558622970Z",
+  "recovery_run": "fedora-frontier-20261009T005435342501Z",
+  "archive_sha256": "494f0b089174495012f535163725729832e295b33f46c7a943bfc5c172ef06ee",
+  "archive_parts": 20,
+  "archive_files": 8951,
+  "verified_scientific_artifacts": 1963,
+  "verified_checkpoint_byte_hashes": 80,
+  "canonical_scientific_rows": 24871,
+  "canonical_scientific_checks": 161846,
+  "complete_confirmation": {
+    "fields": 24,
+    "model_records": 80,
+    "endpoints": 21888,
+    "paired_timing_groups": 1152,
+    "parts": 6
+  },
+  "native_tests": {
+    "new_gpu_allocations": 9,
+    "required_cuda_cases_per_allocation": 45,
+    "new_cuda_pass_executions": 405,
+    "original_cuda_pass_executions": 90,
+    "cpu_audit_passes": 520,
+    "cpu_audit_skips": 1,
+    "cpu_skip_reason": "Optional unchanged Tower checkout unavailable"
+  },
+  "current_jobs_completed": 10,
+  "allocation_cost_seconds": {
+    "recovery_all": 5081,
+    "recovery_gpu": 4937,
+    "origin_prerequisites": 1542,
+    "origin_failed_confirmation": 1827,
+    "known_gpu_both_runs": 7203,
+    "known_all_both_runs_excluding_origin_report": 8450
+  },
+  "cost_limitations": [
+    "Allocation time is not active GPU compute or queue turnaround.",
+    "Origin report455 terminal accounting missing in archived snapshot.",
+    "No supplied monetary tariff."
+  ],
+  "gate_verdicts": {
+    "G1": "GOOD",
+    "G2": "BAD",
+    "G3": "BAD",
+    "G4": "BAD",
+    "G5": "NA"
+  },
+  "conclusions": [
+    "Precompression improves paired errors in the tested high-pair/rough/near-Nyquist regimes.",
+    "Learned rank1 improves its half-amplitude frozen control, but normalized same-cost quadrature attribution remains unresolved.",
+    "Analytic controls are more accurate, and the declared strongest classical frontier is substantially cheaper.",
+    "Only one scaling workload beats standard FNO by at least 1.2x; small FNO and classical controls remain faster there.",
+    "Neural endpoint schedule inventory and baseline optimization/convergence need stronger controls.",
+    "No published-FNO superiority, deployment reliability or amortization claim is established."
+  ],
+  "review_operations": {
+    "uploaded_code_executed": false,
+    "uploaded_checkpoint_tensors_deserialized": false,
+    "new_solver_or_training_runs": false,
+    "production_source_changed": false,
+    "repository_source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168"
+  },
+  "report": "docs/FRONTIER_FULL_REVIEW.md",
+  "details_directory": "results/frontier-full-review"
+}

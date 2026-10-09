@@ -1,0 +1,106 @@
+[
+  {
+    "stage": "confirm-part-000",
+    "endpoint_rows": 3648,
+    "timing_groups": 192,
+    "parents": 4,
+    "mode": "partition",
+    "partition": {
+      "shard_id": "confirm-part-000",
+      "parent_ids": [
+        "confirmation-3540000",
+        "confirmation-3540001",
+        "confirmation-3540002",
+        "confirmation-3540003"
+      ]
+    }
+  },
+  {
+    "stage": "confirm-part-001",
+    "endpoint_rows": 3648,
+    "timing_groups": 192,
+    "parents": 4,
+    "mode": "partition",
+    "partition": {
+      "shard_id": "confirm-part-001",
+      "parent_ids": [
+        "confirmation-3540004",
+        "confirmation-3540005",
+        "confirmation-3540006",
+        "confirmation-3540007"
+      ]
+    }
+  },
+  {
+    "stage": "confirm-part-002",
+    "endpoint_rows": 3648,
+    "timing_groups": 192,
+    "parents": 4,
+    "mode": "partition",
+    "partition": {
+      "shard_id": "confirm-part-002",
+      "parent_ids": [
+        "confirmation-3540008",
+        "confirmation-3540009",
+        "confirmation-3540010",
+        "confirmation-3540011"
+      ]
+    }
+  },
+  {
+    "stage": "confirm-part-003",
+    "endpoint_rows": 3648,
+    "timing_groups": 192,
+    "parents": 4,
+    "mode": "partition",
+    "partition": {
+      "shard_id": "confirm-part-003",
+      "parent_ids": [
+        "confirmation-3540012",
+        "confirmation-3540013",
+        "confirmation-3540014",
+        "confirmation-3540015"
+      ]
+    }
+  },
+  {
+    "stage": "confirm-part-004",
+    "endpoint_rows": 3648,
+    "timing_groups": 192,
+    "parents": 4,
+    "mode": "partition",
+    "partition": {
+      "shard_id": "confirm-part-004",
+      "parent_ids": [
+        "confirmation-3540016",
+        "confirmation-3540017",
+        "confirmation-3540018",
+        "confirmation-3540019"
+      ]
+    }
+  },
+  {
+    "stage": "confirm-part-005",
+    "endpoint_rows": 3648,
+    "timing_groups": 192,
+    "parents": 4,
+    "mode": "partition",
+    "partition": {
+      "shard_id": "confirm-part-005",
+      "parent_ids": [
+        "confirmation-3540020",
+        "confirmation-3540021",
+        "confirmation-3540022",
+        "confirmation-3540023"
+      ]
+    }
+  },
+  {
+    "stage": "confirm",
+    "endpoint_rows": 21888,
+    "timing_groups": 1152,
+    "parents": 24,
+    "mode": "merged",
+    "partition": null
+  }
+]

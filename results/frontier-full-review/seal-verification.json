@@ -1,0 +1,142 @@
+{
+  "schema": "tdn.native-frontier-review-seals/v1",
+  "archive_sha256": "494f0b089174495012f535163725729832e295b33f46c7a943bfc5c172ef06ee",
+  "stages": {
+    "fedora-frontier-20261008T092558622970Z/audit": {
+      "stage": "audit",
+      "sealed_files": 9,
+      "rows": 4,
+      "checks": 10,
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261008T092558622970Z/confirm_prepare": {
+      "stage": "confirm_prepare",
+      "sealed_files": 89,
+      "rows": 936,
+      "checks": 1872,
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261008T092558622970Z/prepare": {
+      "stage": "prepare",
+      "sealed_files": 137,
+      "rows": 416,
+      "checks": 832,
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261008T092558622970Z/report": {
+      "stage": "report",
+      "sealed_files": 50,
+      "rows": 1,
+      "checks": 4,
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261008T092558622970Z/screen": {
+      "stage": "screen",
+      "sealed_files": 35,
+      "rows": 1417,
+      "checks": 5138,
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261008T092558622970Z/train": {
+      "stage": "train",
+      "sealed_files": 312,
+      "rows": 100,
+      "checks": 400,
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/confirm": {
+      "stage": "confirm",
+      "sealed_files": 15,
+      "rows": 21888,
+      "checks": 153216,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/confirm-part-000": {
+      "stage": "confirm",
+      "sealed_files": 207,
+      "rows": 3648,
+      "checks": 25536,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/confirm-part-001": {
+      "stage": "confirm",
+      "sealed_files": 207,
+      "rows": 3648,
+      "checks": 25536,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/confirm-part-002": {
+      "stage": "confirm",
+      "sealed_files": 207,
+      "rows": 3648,
+      "checks": 25536,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/confirm-part-003": {
+      "stage": "confirm",
+      "sealed_files": 207,
+      "rows": 3648,
+      "checks": 25536,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/confirm-part-004": {
+      "stage": "confirm",
+      "sealed_files": 207,
+      "rows": 3648,
+      "checks": 25536,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/confirm-part-005": {
+      "stage": "confirm",
+      "sealed_files": 207,
+      "rows": 3648,
+      "checks": 25536,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/policy": {
+      "stage": "policy",
+      "sealed_files": 11,
+      "rows": 2,
+      "checks": 6,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/report": {
+      "stage": "report",
+      "sealed_files": 52,
+      "rows": 1,
+      "checks": 4,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    },
+    "fedora-frontier-20261009T005435342501Z/scaling": {
+      "stage": "scaling",
+      "sealed_files": 11,
+      "rows": 108,
+      "checks": 372,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "status": "VERIFIED"
+    }
+  },
+  "verified_sealed_stages": 16,
+  "verified_scientific_artifacts": 1963,
+  "canonical_rows_including_current_report": 24872,
+  "canonical_checks_including_current_report": 161850,
+  "verified_checkpoint_files": 80,
+  "uploaded_code_executed": false,
+  "uploaded_checkpoints_deserialized": false,
+  "verification": "Every included scientific/execution hash and recorded prerequisite link verified against streamed archive contents; every retained canonical row/check validated with repository schema."
+}

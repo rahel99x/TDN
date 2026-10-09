@@ -1,0 +1,2459 @@
+{
+  "archive_roots": [
+    "fedora-frontier-20261008T092558622970Z",
+    "fedora-frontier-20261009T005435342501Z"
+  ],
+  "workflows": [
+    {
+      "run_id": "fedora-frontier-20261008T092558622970Z",
+      "workflow_profile": "full",
+      "execution_version": null,
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "jobs": [
+        {
+          "dependency": null,
+          "job_id": "447",
+          "stage": "audit",
+          "submitted_at": "2026-10-08T09:25:58.777185+00:00"
+        },
+        {
+          "dependency": "afterok:447",
+          "job_id": "448",
+          "stage": "screen",
+          "submitted_at": "2026-10-08T09:25:58.812925+00:00"
+        },
+        {
+          "dependency": "afterok:447:448",
+          "job_id": "449",
+          "stage": "prepare",
+          "submitted_at": "2026-10-08T09:25:58.846764+00:00"
+        },
+        {
+          "dependency": "afterok:447:448:449",
+          "job_id": "450",
+          "stage": "train",
+          "submitted_at": "2026-10-08T09:25:58.881307+00:00"
+        },
+        {
+          "dependency": "afterok:447:448:449:450",
+          "job_id": "451",
+          "stage": "confirm_prepare",
+          "submitted_at": "2026-10-08T09:25:58.916464+00:00"
+        },
+        {
+          "dependency": "afterok:447:448:449:450:451",
+          "job_id": "452",
+          "stage": "confirm",
+          "submitted_at": "2026-10-08T09:25:58.949677+00:00"
+        },
+        {
+          "dependency": "afterok:447:448:449:450:451:452",
+          "job_id": "453",
+          "stage": "scaling",
+          "submitted_at": "2026-10-08T09:25:58.982808+00:00"
+        },
+        {
+          "dependency": "afterok:447:448:449:450:451:452:453",
+          "job_id": "454",
+          "stage": "policy",
+          "submitted_at": "2026-10-08T09:25:59.017313+00:00"
+        },
+        {
+          "dependency": "afterany:447:448:449:450:451:452:453:454",
+          "job_id": "455",
+          "stage": "report",
+          "submitted_at": "2026-10-08T09:25:59.054175+00:00"
+        }
+      ],
+      "stages": [
+        {
+          "stage": "audit",
+          "status": "COMPLETED",
+          "elapsed_seconds": 0.04079182900022715,
+          "experiment_count": 4,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "audit",
+          "device": "cpu",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "aa5760cd7f0ecc0a734c1d3f9090e48d2f22cb51",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "447",
+            "cuda_available": false
+          },
+          "execution_mode": "desktop-slurm"
+        },
+        {
+          "stage": "confirm",
+          "status": "INTERRUPTED",
+          "elapsed_seconds": 1802.6154906169977,
+          "experiment_count": 11376,
+          "scientific_outcome": "PARTIAL_EVIDENCE_RETAINED",
+          "directory": "confirm",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "aa5760cd7f0ecc0a734c1d3f9090e48d2f22cb51",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "452",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm"
+        },
+        {
+          "stage": "confirm_prepare",
+          "status": "COMPLETED",
+          "elapsed_seconds": 463.5691585970053,
+          "experiment_count": 936,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "confirm_prepare",
+          "device": "cpu",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "aa5760cd7f0ecc0a734c1d3f9090e48d2f22cb51",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "451",
+            "cuda_available": false
+          },
+          "execution_mode": "desktop-slurm"
+        },
+        {
+          "stage": "prepare",
+          "status": "COMPLETED",
+          "elapsed_seconds": 85.58786660399346,
+          "experiment_count": 416,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "prepare",
+          "device": "cpu",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "aa5760cd7f0ecc0a734c1d3f9090e48d2f22cb51",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "449",
+            "cuda_available": false
+          },
+          "execution_mode": "desktop-slurm"
+        },
+        {
+          "stage": "report",
+          "status": "COMPLETED",
+          "elapsed_seconds": 9.623093570990022,
+          "experiment_count": 1,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "report",
+          "device": "cpu",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "aa5760cd7f0ecc0a734c1d3f9090e48d2f22cb51",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "455",
+            "cuda_available": false
+          },
+          "execution_mode": "desktop-slurm"
+        },
+        {
+          "stage": "screen",
+          "status": "COMPLETED",
+          "elapsed_seconds": 492.65531352799735,
+          "experiment_count": 1417,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "screen",
+          "device": "cpu",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "aa5760cd7f0ecc0a734c1d3f9090e48d2f22cb51",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "448",
+            "cuda_available": false
+          },
+          "execution_mode": "desktop-slurm"
+        },
+        {
+          "stage": "train",
+          "status": "COMPLETED",
+          "elapsed_seconds": 419.43809781901655,
+          "experiment_count": 100,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "train",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "aa5760cd7f0ecc0a734c1d3f9090e48d2f22cb51",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "450",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm"
+        }
+      ],
+      "junit": [
+        {
+          "stage": "audit",
+          "count": 521,
+          "statuses": {
+            "passed": 520,
+            "skipped": 1
+          },
+          "sha256": "1de390c61be86525865b7fd9c42a40a873fd8da52498ae0cd2ff0fa645ea1c4f",
+          "duplicate_cases": 0
+        },
+        {
+          "stage": "confirm",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "95eff2dde709d216e669b48170501df0ee05b822df3c1596cbbbd3fae661c79d",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        },
+        {
+          "stage": "train",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "e6d33ea235a62194cdfc55de1e1fe13fecfd5551616fcb45437976e9fb38ac51",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        }
+      ],
+      "accounting": {
+        "status": "RECORDED",
+        "all_allocations_terminal": false,
+        "allocation_count": 9,
+        "step_count_excluded_from_totals": 14,
+        "total_allocation_seconds": 3370,
+        "allocated_cpu_seconds": 17780,
+        "gpu_allocation_seconds": 2266,
+        "allocations": [
+          {
+            "AllocTRES": "billing=4,cpu=4,mem=32G,node=1",
+            "CPUTimeRAW": "112",
+            "ElapsedRaw": "28",
+            "ExitCode": "0:0",
+            "JobIDRaw": "447",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "00:33.991",
+            "allocated_cpu_seconds": 112,
+            "allocation_job_id": "447",
+            "elapsed_seconds": 28,
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "audit"
+          },
+          {
+            "AllocTRES": "billing=8,cpu=8,mem=48G,node=1",
+            "CPUTimeRAW": "4000",
+            "ElapsedRaw": "500",
+            "ExitCode": "0:0",
+            "JobIDRaw": "448",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "19:20.974",
+            "allocated_cpu_seconds": 4000,
+            "allocation_job_id": "448",
+            "elapsed_seconds": 500,
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "screen"
+          },
+          {
+            "AllocTRES": "billing=8,cpu=8,mem=48G,node=1",
+            "CPUTimeRAW": "776",
+            "ElapsedRaw": "97",
+            "ExitCode": "0:0",
+            "JobIDRaw": "449",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "10:04.111",
+            "allocated_cpu_seconds": 776,
+            "allocation_job_id": "449",
+            "elapsed_seconds": 97,
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "prepare"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=32G,node=1",
+            "CPUTimeRAW": "1756",
+            "ElapsedRaw": "439",
+            "ExitCode": "0:0",
+            "JobIDRaw": "450",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "07:16.032",
+            "allocated_cpu_seconds": 1756,
+            "allocation_job_id": "450",
+            "elapsed_seconds": 439,
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "train"
+          },
+          {
+            "AllocTRES": "billing=8,cpu=8,mem=48G,node=1",
+            "CPUTimeRAW": "3824",
+            "ElapsedRaw": "478",
+            "ExitCode": "0:0",
+            "JobIDRaw": "451",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "41:20.893",
+            "allocated_cpu_seconds": 3824,
+            "allocation_job_id": "451",
+            "elapsed_seconds": 478,
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "confirm_prepare"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "7308",
+            "ElapsedRaw": "1827",
+            "ExitCode": "75:0",
+            "JobIDRaw": "452",
+            "MaxRSS": "",
+            "State": "FAILED",
+            "TotalCPU": "30:16.785",
+            "allocated_cpu_seconds": 7308,
+            "allocation_job_id": "452",
+            "elapsed_seconds": 1827,
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "confirm"
+          },
+          {
+            "AllocTRES": "",
+            "CPUTimeRAW": "0",
+            "ElapsedRaw": "0",
+            "ExitCode": "0:0",
+            "JobIDRaw": "453",
+            "MaxRSS": "",
+            "State": "CANCELLED",
+            "TotalCPU": "00:00:00",
+            "allocated_cpu_seconds": 0,
+            "allocation_job_id": "453",
+            "elapsed_seconds": 0,
+            "missing_fields": [
+              "AllocTRES",
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "scaling"
+          },
+          {
+            "AllocTRES": "",
+            "CPUTimeRAW": "0",
+            "ElapsedRaw": "0",
+            "ExitCode": "0:0",
+            "JobIDRaw": "454",
+            "MaxRSS": "",
+            "State": "CANCELLED",
+            "TotalCPU": "00:00:00",
+            "allocated_cpu_seconds": 0,
+            "allocation_job_id": "454",
+            "elapsed_seconds": 0,
+            "missing_fields": [
+              "AllocTRES",
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "policy"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,mem=32G,node=1",
+            "CPUTimeRAW": "4",
+            "ElapsedRaw": "1",
+            "ExitCode": "0:0",
+            "JobIDRaw": "455",
+            "MaxRSS": "",
+            "State": "RUNNING",
+            "TotalCPU": "00:00:00",
+            "allocated_cpu_seconds": 4,
+            "allocation_job_id": "455",
+            "elapsed_seconds": 1,
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": false,
+            "workflow_stage": "report"
+          }
+        ],
+        "steps": [
+          {
+            "AllocTRES": "cpu=4,mem=32G,node=1",
+            "CPUTimeRAW": "112",
+            "ElapsedRaw": "28",
+            "ExitCode": "0:0",
+            "JobIDRaw": "447.batch",
+            "MaxRSS": "4628K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.096",
+            "allocated_cpu_seconds": 112,
+            "allocation_job_id": "447",
+            "elapsed_seconds": 28,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "audit"
+          },
+          {
+            "AllocTRES": "cpu=4,mem=32G,node=1",
+            "CPUTimeRAW": "108",
+            "ElapsedRaw": "27",
+            "ExitCode": "0:0",
+            "JobIDRaw": "447.0",
+            "MaxRSS": "1180620K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:33.894",
+            "allocated_cpu_seconds": 108,
+            "allocation_job_id": "447",
+            "elapsed_seconds": 27,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "audit"
+          },
+          {
+            "AllocTRES": "cpu=8,mem=48G,node=1",
+            "CPUTimeRAW": "4000",
+            "ElapsedRaw": "500",
+            "ExitCode": "0:0",
+            "JobIDRaw": "448.batch",
+            "MaxRSS": "4204K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.085",
+            "allocated_cpu_seconds": 4000,
+            "allocation_job_id": "448",
+            "elapsed_seconds": 500,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "screen"
+          },
+          {
+            "AllocTRES": "cpu=8,mem=48G,node=1",
+            "CPUTimeRAW": "3992",
+            "ElapsedRaw": "499",
+            "ExitCode": "0:0",
+            "JobIDRaw": "448.0",
+            "MaxRSS": "3447720K",
+            "State": "COMPLETED",
+            "TotalCPU": "19:20.888",
+            "allocated_cpu_seconds": 3992,
+            "allocation_job_id": "448",
+            "elapsed_seconds": 499,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "screen"
+          },
+          {
+            "AllocTRES": "cpu=8,mem=48G,node=1",
+            "CPUTimeRAW": "776",
+            "ElapsedRaw": "97",
+            "ExitCode": "0:0",
+            "JobIDRaw": "449.batch",
+            "MaxRSS": "4192K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.082",
+            "allocated_cpu_seconds": 776,
+            "allocation_job_id": "449",
+            "elapsed_seconds": 97,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "prepare"
+          },
+          {
+            "AllocTRES": "cpu=8,mem=48G,node=1",
+            "CPUTimeRAW": "768",
+            "ElapsedRaw": "96",
+            "ExitCode": "0:0",
+            "JobIDRaw": "449.0",
+            "MaxRSS": "2985800K",
+            "State": "COMPLETED",
+            "TotalCPU": "10:04.029",
+            "allocated_cpu_seconds": 768,
+            "allocation_job_id": "449",
+            "elapsed_seconds": 96,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "prepare"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=32G,node=1",
+            "CPUTimeRAW": "1756",
+            "ElapsedRaw": "439",
+            "ExitCode": "0:0",
+            "JobIDRaw": "450.batch",
+            "MaxRSS": "4448K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.077",
+            "allocated_cpu_seconds": 1756,
+            "allocation_job_id": "450",
+            "elapsed_seconds": 439,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "train"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=32G,node=1",
+            "CPUTimeRAW": "1756",
+            "ElapsedRaw": "439",
+            "ExitCode": "0:0",
+            "JobIDRaw": "450.0",
+            "MaxRSS": "1810280K",
+            "State": "COMPLETED",
+            "TotalCPU": "07:15.954",
+            "allocated_cpu_seconds": 1756,
+            "allocation_job_id": "450",
+            "elapsed_seconds": 439,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "train"
+          },
+          {
+            "AllocTRES": "cpu=8,mem=48G,node=1",
+            "CPUTimeRAW": "3824",
+            "ElapsedRaw": "478",
+            "ExitCode": "0:0",
+            "JobIDRaw": "451.batch",
+            "MaxRSS": "4688K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.077",
+            "allocated_cpu_seconds": 3824,
+            "allocation_job_id": "451",
+            "elapsed_seconds": 478,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm_prepare"
+          },
+          {
+            "AllocTRES": "cpu=8,mem=48G,node=1",
+            "CPUTimeRAW": "3816",
+            "ElapsedRaw": "477",
+            "ExitCode": "0:0",
+            "JobIDRaw": "451.0",
+            "MaxRSS": "3877452K",
+            "State": "COMPLETED",
+            "TotalCPU": "41:20.815",
+            "allocated_cpu_seconds": 3816,
+            "allocation_job_id": "451",
+            "elapsed_seconds": 477,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm_prepare"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "7308",
+            "ElapsedRaw": "1827",
+            "ExitCode": "75:0",
+            "JobIDRaw": "452.batch",
+            "MaxRSS": "4588K",
+            "State": "FAILED",
+            "TotalCPU": "00:00.082",
+            "allocated_cpu_seconds": 7308,
+            "allocation_job_id": "452",
+            "elapsed_seconds": 1827,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "7308",
+            "ElapsedRaw": "1827",
+            "ExitCode": "75:0",
+            "JobIDRaw": "452.0",
+            "MaxRSS": "1428816K",
+            "State": "FAILED",
+            "TotalCPU": "30:16.703",
+            "allocated_cpu_seconds": 7308,
+            "allocation_job_id": "452",
+            "elapsed_seconds": 1827,
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm"
+          },
+          {
+            "AllocTRES": "cpu=4,mem=32G,node=1",
+            "CPUTimeRAW": "4",
+            "ElapsedRaw": "1",
+            "ExitCode": "0:0",
+            "JobIDRaw": "455.batch",
+            "MaxRSS": "",
+            "State": "RUNNING",
+            "TotalCPU": "00:00:00",
+            "allocated_cpu_seconds": 4,
+            "allocation_job_id": "455",
+            "elapsed_seconds": 1,
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "step",
+            "terminal_state": false,
+            "workflow_stage": "report"
+          },
+          {
+            "AllocTRES": "cpu=4,mem=32G,node=1",
+            "CPUTimeRAW": "0",
+            "ElapsedRaw": "0",
+            "ExitCode": "0:0",
+            "JobIDRaw": "455.0",
+            "MaxRSS": "",
+            "State": "RUNNING",
+            "TotalCPU": "00:00:00",
+            "allocated_cpu_seconds": 0,
+            "allocation_job_id": "455",
+            "elapsed_seconds": 0,
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "step",
+            "terminal_state": false,
+            "workflow_stage": "report"
+          }
+        ]
+      },
+      "report_accounting_snapshots": []
+    },
+    {
+      "run_id": "fedora-frontier-20261009T005435342501Z",
+      "workflow_profile": "full",
+      "execution_version": 2,
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "jobs": [
+        {
+          "dependency": null,
+          "job_id": "456",
+          "stage": "confirm-part-000",
+          "submitted_at": "2026-10-09T00:54:41.499901+00:00"
+        },
+        {
+          "dependency": "afterok:456",
+          "job_id": "457",
+          "stage": "confirm-part-001",
+          "submitted_at": "2026-10-09T00:54:41.541421+00:00"
+        },
+        {
+          "dependency": "afterok:456:457",
+          "job_id": "458",
+          "stage": "confirm-part-002",
+          "submitted_at": "2026-10-09T00:54:41.582487+00:00"
+        },
+        {
+          "dependency": "afterok:456:457:458",
+          "job_id": "459",
+          "stage": "confirm-part-003",
+          "submitted_at": "2026-10-09T00:54:41.623161+00:00"
+        },
+        {
+          "dependency": "afterok:456:457:458:459",
+          "job_id": "460",
+          "stage": "confirm-part-004",
+          "submitted_at": "2026-10-09T00:54:41.667083+00:00"
+        },
+        {
+          "dependency": "afterok:456:457:458:459:460",
+          "job_id": "461",
+          "stage": "confirm-part-005",
+          "submitted_at": "2026-10-09T00:54:41.708795+00:00"
+        },
+        {
+          "dependency": "afterok:456:457:458:459:460:461",
+          "job_id": "462",
+          "stage": "confirm",
+          "submitted_at": "2026-10-09T00:54:41.749713+00:00"
+        },
+        {
+          "dependency": "afterok:456:457:458:459:460:461:462",
+          "job_id": "463",
+          "stage": "scaling",
+          "submitted_at": "2026-10-09T00:54:41.791715+00:00"
+        },
+        {
+          "dependency": "afterok:456:457:458:459:460:461:462:463",
+          "job_id": "464",
+          "stage": "policy",
+          "submitted_at": "2026-10-09T00:54:41.833734+00:00"
+        },
+        {
+          "dependency": "afterany:456:457:458:459:460:461:462:463:464",
+          "job_id": "465",
+          "stage": "report",
+          "submitted_at": "2026-10-09T00:54:41.873307+00:00"
+        }
+      ],
+      "stages": [
+        {
+          "stage": "confirm",
+          "status": "COMPLETED",
+          "elapsed_seconds": 65.76533703200403,
+          "experiment_count": 21888,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "confirm",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "462",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm",
+          "confirmation_scope": {
+            "schema": "tdn.frontier-confirmation-scope/v1",
+            "status": "COMPLETED",
+            "mode": "merged",
+            "partition": null,
+            "protocol_sha256": "3d3f1d0f90aadc2cedb1b068724be61a5bcd5a1fed469927dba048a5bdcf2051",
+            "parent_ids": [
+              "confirmation-3540000",
+              "confirmation-3540001",
+              "confirmation-3540002",
+              "confirmation-3540003",
+              "confirmation-3540004",
+              "confirmation-3540005",
+              "confirmation-3540006",
+              "confirmation-3540007",
+              "confirmation-3540008",
+              "confirmation-3540009",
+              "confirmation-3540010",
+              "confirmation-3540011",
+              "confirmation-3540012",
+              "confirmation-3540013",
+              "confirmation-3540014",
+              "confirmation-3540015",
+              "confirmation-3540016",
+              "confirmation-3540017",
+              "confirmation-3540018",
+              "confirmation-3540019",
+              "confirmation-3540020",
+              "confirmation-3540021",
+              "confirmation-3540022",
+              "confirmation-3540023"
+            ],
+            "measurement_device": "cuda",
+            "timing_scope": "all validated model/seed/data-fraction arms remain in each randomized paired group",
+            "selection": "execution partition only; no scientific setting or confirmation parent removed",
+            "partitions": [
+              {
+                "shard_id": "confirm-part-000",
+                "parent_ids": [
+                  "confirmation-3540000",
+                  "confirmation-3540001",
+                  "confirmation-3540002",
+                  "confirmation-3540003"
+                ],
+                "science_manifest_sha256": "41a77878e8ded0bde5008d208b5b085224cf17d6a982b46f6955f546060d0cbc",
+                "confirmation_scope_sha256": "50934a3e4dd28287a8d17f6860bdc48eee9d25951f45c2e223d6571e7c187e27",
+                "measurement_device": "cuda"
+              },
+              {
+                "shard_id": "confirm-part-001",
+                "parent_ids": [
+                  "confirmation-3540004",
+                  "confirmation-3540005",
+                  "confirmation-3540006",
+                  "confirmation-3540007"
+                ],
+                "science_manifest_sha256": "1b9d916d5c51836823ef9025d342af4ed2bbb3f134f9b6e98bfa200124e63736",
+                "confirmation_scope_sha256": "55e5110af1aa055d4aba398ddcacc37a55f2467b2028c7572db61b1bb28dbbaf",
+                "measurement_device": "cuda"
+              },
+              {
+                "shard_id": "confirm-part-002",
+                "parent_ids": [
+                  "confirmation-3540008",
+                  "confirmation-3540009",
+                  "confirmation-3540010",
+                  "confirmation-3540011"
+                ],
+                "science_manifest_sha256": "2c5242b6f40cb17e0857637643984a2ee577fd6daf46ba92afd90aa795748a9f",
+                "confirmation_scope_sha256": "1d5278e84fe8d6de18c52109c9520d9b1f10885261d26484da3407e88e0e3d69",
+                "measurement_device": "cuda"
+              },
+              {
+                "shard_id": "confirm-part-003",
+                "parent_ids": [
+                  "confirmation-3540012",
+                  "confirmation-3540013",
+                  "confirmation-3540014",
+                  "confirmation-3540015"
+                ],
+                "science_manifest_sha256": "e7440c0d130c1388be91cf2765d4fea0c07fbe92cd4341369346640e4596ace0",
+                "confirmation_scope_sha256": "989ca1ab0de5f946426ef46867f9d0f4f56b6ac39a0db412bc22ef9fff3178e3",
+                "measurement_device": "cuda"
+              },
+              {
+                "shard_id": "confirm-part-004",
+                "parent_ids": [
+                  "confirmation-3540016",
+                  "confirmation-3540017",
+                  "confirmation-3540018",
+                  "confirmation-3540019"
+                ],
+                "science_manifest_sha256": "f0b022406f4c09c9be63d6e6506a1e3d52c07ece92360b66d0c84a27a1631754",
+                "confirmation_scope_sha256": "ff86658b84a5df2e7800133834a1a8c744f159830054869306ba70646647879b",
+                "measurement_device": "cuda"
+              },
+              {
+                "shard_id": "confirm-part-005",
+                "parent_ids": [
+                  "confirmation-3540020",
+                  "confirmation-3540021",
+                  "confirmation-3540022",
+                  "confirmation-3540023"
+                ],
+                "science_manifest_sha256": "7ea2e9f65221fc09f02a0a6fae86689f66bef4f43f6d2a1034f0a9741030923b",
+                "confirmation_scope_sha256": "7a32e2a37a7b41a93b2cdd627ffcfef946018451ce806dc3181970a6ad81e9e6",
+                "measurement_device": "cuda"
+              }
+            ],
+            "aggregation_scope": "No model calls; recomputed whole-cohort comparisons from unchanged paired endpoint and timing observations",
+            "endpoint_rows": 21888,
+            "timing_groups": 1152
+          }
+        },
+        {
+          "stage": "confirm",
+          "status": "COMPLETED",
+          "elapsed_seconds": 592.7454031149973,
+          "experiment_count": 3648,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "confirm-part-000",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "456",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm",
+          "confirmation_scope": {
+            "schema": "tdn.frontier-confirmation-scope/v1",
+            "status": "COMPLETED",
+            "mode": "partition",
+            "partition": {
+              "shard_id": "confirm-part-000",
+              "parent_ids": [
+                "confirmation-3540000",
+                "confirmation-3540001",
+                "confirmation-3540002",
+                "confirmation-3540003"
+              ]
+            },
+            "protocol_sha256": "3d3f1d0f90aadc2cedb1b068724be61a5bcd5a1fed469927dba048a5bdcf2051",
+            "parent_ids": [
+              "confirmation-3540000",
+              "confirmation-3540001",
+              "confirmation-3540002",
+              "confirmation-3540003"
+            ],
+            "measurement_device": "cuda",
+            "timing_scope": "all validated model/seed/data-fraction arms remain in each randomized paired group",
+            "selection": "execution partition only; no scientific setting or confirmation parent removed",
+            "endpoint_rows": 3648,
+            "timing_groups": 192
+          }
+        },
+        {
+          "stage": "confirm",
+          "status": "COMPLETED",
+          "elapsed_seconds": 615.922600321006,
+          "experiment_count": 3648,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "confirm-part-001",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "457",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm",
+          "confirmation_scope": {
+            "schema": "tdn.frontier-confirmation-scope/v1",
+            "status": "COMPLETED",
+            "mode": "partition",
+            "partition": {
+              "shard_id": "confirm-part-001",
+              "parent_ids": [
+                "confirmation-3540004",
+                "confirmation-3540005",
+                "confirmation-3540006",
+                "confirmation-3540007"
+              ]
+            },
+            "protocol_sha256": "3d3f1d0f90aadc2cedb1b068724be61a5bcd5a1fed469927dba048a5bdcf2051",
+            "parent_ids": [
+              "confirmation-3540004",
+              "confirmation-3540005",
+              "confirmation-3540006",
+              "confirmation-3540007"
+            ],
+            "measurement_device": "cuda",
+            "timing_scope": "all validated model/seed/data-fraction arms remain in each randomized paired group",
+            "selection": "execution partition only; no scientific setting or confirmation parent removed",
+            "endpoint_rows": 3648,
+            "timing_groups": 192
+          }
+        },
+        {
+          "stage": "confirm",
+          "status": "COMPLETED",
+          "elapsed_seconds": 624.372348044999,
+          "experiment_count": 3648,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "confirm-part-002",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "458",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm",
+          "confirmation_scope": {
+            "schema": "tdn.frontier-confirmation-scope/v1",
+            "status": "COMPLETED",
+            "mode": "partition",
+            "partition": {
+              "shard_id": "confirm-part-002",
+              "parent_ids": [
+                "confirmation-3540008",
+                "confirmation-3540009",
+                "confirmation-3540010",
+                "confirmation-3540011"
+              ]
+            },
+            "protocol_sha256": "3d3f1d0f90aadc2cedb1b068724be61a5bcd5a1fed469927dba048a5bdcf2051",
+            "parent_ids": [
+              "confirmation-3540008",
+              "confirmation-3540009",
+              "confirmation-3540010",
+              "confirmation-3540011"
+            ],
+            "measurement_device": "cuda",
+            "timing_scope": "all validated model/seed/data-fraction arms remain in each randomized paired group",
+            "selection": "execution partition only; no scientific setting or confirmation parent removed",
+            "endpoint_rows": 3648,
+            "timing_groups": 192
+          }
+        },
+        {
+          "stage": "confirm",
+          "status": "COMPLETED",
+          "elapsed_seconds": 630.0917109879956,
+          "experiment_count": 3648,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "confirm-part-003",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "459",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm",
+          "confirmation_scope": {
+            "schema": "tdn.frontier-confirmation-scope/v1",
+            "status": "COMPLETED",
+            "mode": "partition",
+            "partition": {
+              "shard_id": "confirm-part-003",
+              "parent_ids": [
+                "confirmation-3540012",
+                "confirmation-3540013",
+                "confirmation-3540014",
+                "confirmation-3540015"
+              ]
+            },
+            "protocol_sha256": "3d3f1d0f90aadc2cedb1b068724be61a5bcd5a1fed469927dba048a5bdcf2051",
+            "parent_ids": [
+              "confirmation-3540012",
+              "confirmation-3540013",
+              "confirmation-3540014",
+              "confirmation-3540015"
+            ],
+            "measurement_device": "cuda",
+            "timing_scope": "all validated model/seed/data-fraction arms remain in each randomized paired group",
+            "selection": "execution partition only; no scientific setting or confirmation parent removed",
+            "endpoint_rows": 3648,
+            "timing_groups": 192
+          }
+        },
+        {
+          "stage": "confirm",
+          "status": "COMPLETED",
+          "elapsed_seconds": 627.1070763099997,
+          "experiment_count": 3648,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "confirm-part-004",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "460",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm",
+          "confirmation_scope": {
+            "schema": "tdn.frontier-confirmation-scope/v1",
+            "status": "COMPLETED",
+            "mode": "partition",
+            "partition": {
+              "shard_id": "confirm-part-004",
+              "parent_ids": [
+                "confirmation-3540016",
+                "confirmation-3540017",
+                "confirmation-3540018",
+                "confirmation-3540019"
+              ]
+            },
+            "protocol_sha256": "3d3f1d0f90aadc2cedb1b068724be61a5bcd5a1fed469927dba048a5bdcf2051",
+            "parent_ids": [
+              "confirmation-3540016",
+              "confirmation-3540017",
+              "confirmation-3540018",
+              "confirmation-3540019"
+            ],
+            "measurement_device": "cuda",
+            "timing_scope": "all validated model/seed/data-fraction arms remain in each randomized paired group",
+            "selection": "execution partition only; no scientific setting or confirmation parent removed",
+            "endpoint_rows": 3648,
+            "timing_groups": 192
+          }
+        },
+        {
+          "stage": "confirm",
+          "status": "COMPLETED",
+          "elapsed_seconds": 631.1619557689992,
+          "experiment_count": 3648,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "confirm-part-005",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "461",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm",
+          "confirmation_scope": {
+            "schema": "tdn.frontier-confirmation-scope/v1",
+            "status": "COMPLETED",
+            "mode": "partition",
+            "partition": {
+              "shard_id": "confirm-part-005",
+              "parent_ids": [
+                "confirmation-3540020",
+                "confirmation-3540021",
+                "confirmation-3540022",
+                "confirmation-3540023"
+              ]
+            },
+            "protocol_sha256": "3d3f1d0f90aadc2cedb1b068724be61a5bcd5a1fed469927dba048a5bdcf2051",
+            "parent_ids": [
+              "confirmation-3540020",
+              "confirmation-3540021",
+              "confirmation-3540022",
+              "confirmation-3540023"
+            ],
+            "measurement_device": "cuda",
+            "timing_scope": "all validated model/seed/data-fraction arms remain in each randomized paired group",
+            "selection": "execution partition only; no scientific setting or confirmation parent removed",
+            "endpoint_rows": 3648,
+            "timing_groups": 192
+          }
+        },
+        {
+          "stage": "policy",
+          "status": "COMPLETED",
+          "elapsed_seconds": 26.187450174998958,
+          "experiment_count": 2,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "policy",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "464",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm"
+        },
+        {
+          "stage": "report",
+          "status": "COMPLETED",
+          "elapsed_seconds": 103.97529807899264,
+          "experiment_count": 1,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "report",
+          "device": "cpu",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "465",
+            "cuda_available": false
+          },
+          "execution_mode": "desktop-slurm"
+        },
+        {
+          "stage": "scaling",
+          "status": "COMPLETED",
+          "elapsed_seconds": 32.69486311200308,
+          "experiment_count": 108,
+          "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+          "directory": "scaling",
+          "device": "cuda",
+          "software": {
+            "python": "3.13.13",
+            "executable": "/home/rahel/TDN/.venv/bin/python",
+            "venv": true,
+            "torch": "2.10.0+cu126",
+            "numpy": "2.2.6",
+            "scipy": "1.15.3",
+            "torch_cuda_runtime": "12.6",
+            "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+            "git_available": true,
+            "tracked_or_untracked_changes": false,
+            "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+            "execution_mode": "desktop-slurm",
+            "slurm_job_id": "463",
+            "cuda_available": true
+          },
+          "execution_mode": "desktop-slurm"
+        }
+      ],
+      "junit": [
+        {
+          "stage": "confirm",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "a21ce438bd11df585727d6e782c122f3dd2b82503faf9e3c6fcb9c037e6e3630",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        },
+        {
+          "stage": "confirm-part-000",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "95caecc604892f2afb0d1a246a0368ec89b865d4c5c2e7d4b721fd87881fac26",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        },
+        {
+          "stage": "confirm-part-001",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "6cced18efd90bb7de7e8112c1caec55fdac3ca440c395fef4e4d3bb823b983b7",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        },
+        {
+          "stage": "confirm-part-002",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "ab24cfcf254f760730b00068d2548c534113b59ade5154c1506210df1da9b602",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        },
+        {
+          "stage": "confirm-part-003",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "96c659898df0e5c016a5eb8166d577bb72a1f9e250aa2499927590a0f41cbb53",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        },
+        {
+          "stage": "confirm-part-004",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "68e6a3035367f04b4b9700df07e208ae78ba710e14577c196de5ac593dab32d2",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        },
+        {
+          "stage": "confirm-part-005",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "1fd1ec026920d219798e5cd25babc4c64f5c804bbcfb93d5d188b22ac2cdfb0d",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        },
+        {
+          "stage": "policy",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "0e0d9b28a83d035d1790a5e650b2bb46c02ba07d402017fbe19f4d6226281586",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        },
+        {
+          "stage": "scaling",
+          "count": 45,
+          "statuses": {
+            "passed": 45
+          },
+          "sha256": "ac45d86ff2a7eba4988ccd6e1e0e64feceeb6d109cb766348c6b45ea0a9752ee",
+          "duplicate_cases": 0,
+          "complete_45_native_suite": true
+        }
+      ],
+      "accounting": {
+        "status": "RECORDED",
+        "all_allocations_terminal": true,
+        "allocation_count": 10,
+        "step_count_excluded_from_totals": 20,
+        "total_allocation_seconds": 5081,
+        "allocated_cpu_seconds": 20324,
+        "gpu_allocation_seconds": 4937,
+        "allocations": [
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2712",
+            "ElapsedRaw": "678",
+            "ExitCode": "0:0",
+            "JobIDRaw": "456",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "11:14.062",
+            "allocated_cpu_seconds": 2712,
+            "allocation_job_id": "456",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 678,
+            "logical_stage": "confirm",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-000"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2808",
+            "ElapsedRaw": "702",
+            "ExitCode": "0:0",
+            "JobIDRaw": "457",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "11:38.309",
+            "allocated_cpu_seconds": 2808,
+            "allocation_job_id": "457",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 702,
+            "logical_stage": "confirm",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-001"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2840",
+            "ElapsedRaw": "710",
+            "ExitCode": "0:0",
+            "JobIDRaw": "458",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "11:47.947",
+            "allocated_cpu_seconds": 2840,
+            "allocation_job_id": "458",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 710,
+            "logical_stage": "confirm",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-002"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2868",
+            "ElapsedRaw": "717",
+            "ExitCode": "0:0",
+            "JobIDRaw": "459",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "11:53.926",
+            "allocated_cpu_seconds": 2868,
+            "allocation_job_id": "459",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 717,
+            "logical_stage": "confirm",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-003"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2852",
+            "ElapsedRaw": "713",
+            "ExitCode": "0:0",
+            "JobIDRaw": "460",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "11:50.053",
+            "allocated_cpu_seconds": 2852,
+            "allocation_job_id": "460",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 713,
+            "logical_stage": "confirm",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-004"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2868",
+            "ElapsedRaw": "717",
+            "ExitCode": "0:0",
+            "JobIDRaw": "461",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "11:53.434",
+            "allocated_cpu_seconds": 2868,
+            "allocation_job_id": "461",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 717,
+            "logical_stage": "confirm",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-005"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "1136",
+            "ElapsedRaw": "284",
+            "ExitCode": "0:0",
+            "JobIDRaw": "462",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "04:41.757",
+            "allocated_cpu_seconds": 1136,
+            "allocation_job_id": "462",
+            "allocation_role": "confirmation_aggregate",
+            "elapsed_seconds": 284,
+            "logical_stage": "confirm",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "confirm"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "848",
+            "ElapsedRaw": "212",
+            "ExitCode": "0:0",
+            "JobIDRaw": "463",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "03:30.978",
+            "allocated_cpu_seconds": 848,
+            "allocation_job_id": "463",
+            "allocation_role": "stage",
+            "elapsed_seconds": 212,
+            "logical_stage": "scaling",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "scaling"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,gres/gpu=1,mem=32G,node=1",
+            "CPUTimeRAW": "816",
+            "ElapsedRaw": "204",
+            "ExitCode": "0:0",
+            "JobIDRaw": "464",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "03:22.798",
+            "allocated_cpu_seconds": 816,
+            "allocation_job_id": "464",
+            "allocation_role": "stage",
+            "elapsed_seconds": 204,
+            "logical_stage": "policy",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "policy"
+          },
+          {
+            "AllocTRES": "billing=4,cpu=4,mem=32G,node=1",
+            "CPUTimeRAW": "576",
+            "ElapsedRaw": "144",
+            "ExitCode": "0:0",
+            "JobIDRaw": "465",
+            "MaxRSS": "",
+            "State": "COMPLETED",
+            "TotalCPU": "02:23.553",
+            "allocated_cpu_seconds": 576,
+            "allocation_job_id": "465",
+            "allocation_role": "stage",
+            "elapsed_seconds": 144,
+            "logical_stage": "report",
+            "missing_fields": [
+              "MaxRSS"
+            ],
+            "record_kind": "allocation",
+            "terminal_state": true,
+            "workflow_stage": "report"
+          }
+        ],
+        "steps": [
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2712",
+            "ElapsedRaw": "678",
+            "ExitCode": "0:0",
+            "JobIDRaw": "456.batch",
+            "MaxRSS": "4596K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.084",
+            "allocated_cpu_seconds": 2712,
+            "allocation_job_id": "456",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 678,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-000"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2708",
+            "ElapsedRaw": "677",
+            "ExitCode": "0:0",
+            "JobIDRaw": "456.0",
+            "MaxRSS": "1472912K",
+            "State": "COMPLETED",
+            "TotalCPU": "11:13.977",
+            "allocated_cpu_seconds": 2708,
+            "allocation_job_id": "456",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 677,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-000"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2808",
+            "ElapsedRaw": "702",
+            "ExitCode": "0:0",
+            "JobIDRaw": "457.batch",
+            "MaxRSS": "4492K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.081",
+            "allocated_cpu_seconds": 2808,
+            "allocation_job_id": "457",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 702,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-001"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2804",
+            "ElapsedRaw": "701",
+            "ExitCode": "0:0",
+            "JobIDRaw": "457.0",
+            "MaxRSS": "1447416K",
+            "State": "COMPLETED",
+            "TotalCPU": "11:38.228",
+            "allocated_cpu_seconds": 2804,
+            "allocation_job_id": "457",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 701,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-001"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2840",
+            "ElapsedRaw": "710",
+            "ExitCode": "0:0",
+            "JobIDRaw": "458.batch",
+            "MaxRSS": "4440K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.081",
+            "allocated_cpu_seconds": 2840,
+            "allocation_job_id": "458",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 710,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-002"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2840",
+            "ElapsedRaw": "710",
+            "ExitCode": "0:0",
+            "JobIDRaw": "458.0",
+            "MaxRSS": "1439980K",
+            "State": "COMPLETED",
+            "TotalCPU": "11:47.866",
+            "allocated_cpu_seconds": 2840,
+            "allocation_job_id": "458",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 710,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-002"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2868",
+            "ElapsedRaw": "717",
+            "ExitCode": "0:0",
+            "JobIDRaw": "459.batch",
+            "MaxRSS": "4224K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.084",
+            "allocated_cpu_seconds": 2868,
+            "allocation_job_id": "459",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 717,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-003"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2868",
+            "ElapsedRaw": "717",
+            "ExitCode": "0:0",
+            "JobIDRaw": "459.0",
+            "MaxRSS": "1471736K",
+            "State": "COMPLETED",
+            "TotalCPU": "11:53.842",
+            "allocated_cpu_seconds": 2868,
+            "allocation_job_id": "459",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 717,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-003"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2852",
+            "ElapsedRaw": "713",
+            "ExitCode": "0:0",
+            "JobIDRaw": "460.batch",
+            "MaxRSS": "4384K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.085",
+            "allocated_cpu_seconds": 2852,
+            "allocation_job_id": "460",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 713,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-004"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2848",
+            "ElapsedRaw": "712",
+            "ExitCode": "0:0",
+            "JobIDRaw": "460.0",
+            "MaxRSS": "1433056K",
+            "State": "COMPLETED",
+            "TotalCPU": "11:49.968",
+            "allocated_cpu_seconds": 2848,
+            "allocation_job_id": "460",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 712,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-004"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2868",
+            "ElapsedRaw": "717",
+            "ExitCode": "0:0",
+            "JobIDRaw": "461.batch",
+            "MaxRSS": "4212K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.080",
+            "allocated_cpu_seconds": 2868,
+            "allocation_job_id": "461",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 717,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-005"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "2864",
+            "ElapsedRaw": "716",
+            "ExitCode": "0:0",
+            "JobIDRaw": "461.0",
+            "MaxRSS": "1431192K",
+            "State": "COMPLETED",
+            "TotalCPU": "11:53.354",
+            "allocated_cpu_seconds": 2864,
+            "allocation_job_id": "461",
+            "allocation_role": "confirmation_part",
+            "elapsed_seconds": 716,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm-part-005"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "1136",
+            "ElapsedRaw": "284",
+            "ExitCode": "0:0",
+            "JobIDRaw": "462.batch",
+            "MaxRSS": "4468K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.080",
+            "allocated_cpu_seconds": 1136,
+            "allocation_job_id": "462",
+            "allocation_role": "confirmation_aggregate",
+            "elapsed_seconds": 284,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "1136",
+            "ElapsedRaw": "284",
+            "ExitCode": "0:0",
+            "JobIDRaw": "462.0",
+            "MaxRSS": "2359796K",
+            "State": "COMPLETED",
+            "TotalCPU": "04:41.676",
+            "allocated_cpu_seconds": 1136,
+            "allocation_job_id": "462",
+            "allocation_role": "confirmation_aggregate",
+            "elapsed_seconds": 284,
+            "logical_stage": "confirm",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "confirm"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "848",
+            "ElapsedRaw": "212",
+            "ExitCode": "0:0",
+            "JobIDRaw": "463.batch",
+            "MaxRSS": "4340K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.080",
+            "allocated_cpu_seconds": 848,
+            "allocation_job_id": "463",
+            "allocation_role": "stage",
+            "elapsed_seconds": 212,
+            "logical_stage": "scaling",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "scaling"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=48G,node=1",
+            "CPUTimeRAW": "848",
+            "ElapsedRaw": "212",
+            "ExitCode": "0:0",
+            "JobIDRaw": "463.0",
+            "MaxRSS": "2618292K",
+            "State": "COMPLETED",
+            "TotalCPU": "03:30.897",
+            "allocated_cpu_seconds": 848,
+            "allocation_job_id": "463",
+            "allocation_role": "stage",
+            "elapsed_seconds": 212,
+            "logical_stage": "scaling",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "scaling"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=32G,node=1",
+            "CPUTimeRAW": "816",
+            "ElapsedRaw": "204",
+            "ExitCode": "0:0",
+            "JobIDRaw": "464.batch",
+            "MaxRSS": "4488K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.080",
+            "allocated_cpu_seconds": 816,
+            "allocation_job_id": "464",
+            "allocation_role": "stage",
+            "elapsed_seconds": 204,
+            "logical_stage": "policy",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "policy"
+          },
+          {
+            "AllocTRES": "cpu=4,gres/gpu=1,mem=32G,node=1",
+            "CPUTimeRAW": "816",
+            "ElapsedRaw": "204",
+            "ExitCode": "0:0",
+            "JobIDRaw": "464.0",
+            "MaxRSS": "1906472K",
+            "State": "COMPLETED",
+            "TotalCPU": "03:22.718",
+            "allocated_cpu_seconds": 816,
+            "allocation_job_id": "464",
+            "allocation_role": "stage",
+            "elapsed_seconds": 204,
+            "logical_stage": "policy",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "policy"
+          },
+          {
+            "AllocTRES": "cpu=4,mem=32G,node=1",
+            "CPUTimeRAW": "576",
+            "ElapsedRaw": "144",
+            "ExitCode": "0:0",
+            "JobIDRaw": "465.batch",
+            "MaxRSS": "4196K",
+            "State": "COMPLETED",
+            "TotalCPU": "00:00.081",
+            "allocated_cpu_seconds": 576,
+            "allocation_job_id": "465",
+            "allocation_role": "stage",
+            "elapsed_seconds": 144,
+            "logical_stage": "report",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "report"
+          },
+          {
+            "AllocTRES": "cpu=4,mem=32G,node=1",
+            "CPUTimeRAW": "576",
+            "ElapsedRaw": "144",
+            "ExitCode": "0:0",
+            "JobIDRaw": "465.0",
+            "MaxRSS": "3206396K",
+            "State": "COMPLETED",
+            "TotalCPU": "02:23.472",
+            "allocated_cpu_seconds": 576,
+            "allocation_job_id": "465",
+            "allocation_role": "stage",
+            "elapsed_seconds": 144,
+            "logical_stage": "report",
+            "missing_fields": [],
+            "record_kind": "step",
+            "terminal_state": true,
+            "workflow_stage": "report"
+          }
+        ]
+      },
+      "report_accounting_snapshots": [
+        {
+          "status": "RECORDED",
+          "source_run_dir": "/home/rahel/TDN/runs/fedora-frontier-20261009T005435342501Z",
+          "cost_scope": "current_workflow",
+          "records": 30,
+          "all_allocations_terminal": false
+        },
+        {
+          "status": "RECORDED",
+          "source_run_dir": "/home/rahel/TDN/runs/fedora-frontier-20261008T092558622970Z",
+          "cost_scope": "inherited_sunk",
+          "records": 23,
+          "all_allocations_terminal": false
+        }
+      ],
+      "recovery": {
+        "ancestry_workflows": [
+          {
+            "path": "/home/rahel/TDN/runs/fedora-frontier-20261008T092558622970Z/frontier-workflow.json",
+            "sha256": "c24a02b4d072fe2eca96dc8d6e92ed3041d0ddef57b6c386f567ce6e617be210"
+          }
+        ],
+        "execution_mode": "desktop-slurm",
+        "origin_declaration_sha256": "8abde66bd9e652232c22f7cb560b4e10ba88fbddb3c6beccaa90132a4e84b4dc",
+        "origin_root": "/home/rahel/TDN",
+        "origin_run_dir": "/home/rahel/TDN/runs/fedora-frontier-20261008T092558622970Z",
+        "origin_software": {
+          "executable": "/home/rahel/TDN/.venv/bin/python",
+          "git_commit": "aa5760cd7f0ecc0a734c1d3f9090e48d2f22cb51",
+          "numpy": "2.2.6",
+          "python": "3.13.13",
+          "scipy": "1.15.3",
+          "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+          "torch": "2.10.0+cu126",
+          "torch_cuda_runtime": "12.6",
+          "venv": true
+        },
+        "origin_source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+        "origin_workflow_path": "/home/rahel/TDN/runs/fedora-frontier-20261008T092558622970Z/frontier-workflow.json",
+        "origin_workflow_sha256": "c24a02b4d072fe2eca96dc8d6e92ed3041d0ddef57b6c386f567ce6e617be210",
+        "profile": "full",
+        "protocol_sha256": "3d3f1d0f90aadc2cedb1b068724be61a5bcd5a1fed469927dba048a5bdcf2051",
+        "schema": "tdn.frontier-recovery/v1",
+        "scope": "immutable first-five-stage reuse and exact-current-source completed partitions; original partial confirmation excluded",
+        "slurm_profile_sha256": "0b97641be43e45be1abf4517a76feed439a16eabfe95833214ae91c66fe159bd",
+        "stage_paths": {
+          "audit": "/home/rahel/TDN/runs/fedora-frontier-20261008T092558622970Z/audit",
+          "confirm_prepare": "/home/rahel/TDN/runs/fedora-frontier-20261008T092558622970Z/confirm_prepare",
+          "prepare": "/home/rahel/TDN/runs/fedora-frontier-20261008T092558622970Z/prepare",
+          "screen": "/home/rahel/TDN/runs/fedora-frontier-20261008T092558622970Z/screen",
+          "train": "/home/rahel/TDN/runs/fedora-frontier-20261008T092558622970Z/train"
+        },
+        "target_software": {
+          "executable": "/home/rahel/TDN/.venv/bin/python",
+          "git_commit": "0bb5c3eeb979e386f3a9009536f85f9acaf5d876",
+          "numpy": "2.2.6",
+          "python": "3.13.13",
+          "scipy": "1.15.3",
+          "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+          "torch": "2.10.0+cu126",
+          "torch_cuda_runtime": "12.6",
+          "venv": true
+        },
+        "validated_banks": {
+          "banks": {
+            "calibration": {
+              "accepted_references": 64,
+              "parents": 16,
+              "unresolved_references": 0
+            },
+            "confirmation": {
+              "accepted_references": 864,
+              "parents": 24,
+              "unresolved_references": 0
+            },
+            "policy": {
+              "accepted_references": 48,
+              "parents": 12,
+              "unresolved_references": 0
+            },
+            "scaling": {
+              "accepted_references": 24,
+              "parents": 4,
+              "unresolved_references": 0
+            },
+            "train": {
+              "accepted_references": 256,
+              "parents": 32,
+              "unresolved_references": 0
+            },
+            "validation": {
+              "accepted_references": 96,
+              "parents": 16,
+              "unresolved_references": 0
+            }
+          },
+          "checkpoint_deserialization": false,
+          "frozen_training": {
+            "catalog_sha256": "a6cae82b38829be27c8d5ddda1b6ec07f31f8641bb639603dc0498facb9379f7",
+            "checkpoint_hashes": {
+              "continuum/analytic_quad/n0/seedNone": "820bb88078a67e14e52092479bae7a61691f75128d03ac3c1ab3dfe82aad0cf1",
+              "continuum/analytic_quad_cubic/n0/seedNone": "32106c16c968d8bcc55f1e9ba9fd0e207b7512e5fe00067ca16c5af4a2547534",
+              "continuum/df/n0/seedNone": "81866b885af64357d1ddd776c5dc48e016a0eef8e47bd4418508172fffb3fc18",
+              "continuum/direct_fno/n32/seed3600011": "b578058dfeaa996ad661b5484addc93b2a850eb14645cab9365044799c7ee904",
+              "continuum/direct_fno/n32/seed3600021": "d096300550a187a62aa23c7b40f382f90c5f6064c14b56a9c372a318da6a9008",
+              "continuum/direct_fno/n32/seed3600031": "929742ed0131b9e33cbc854f938d2d9acd08eb009b1e006b21d1d751507116f2",
+              "continuum/direct_fno/n8/seed3600011": "88660153c89552f5509c4e8107f535acce576fac0b81897b4e1056a0b7d8275a",
+              "continuum/direct_fno/n8/seed3600021": "0c0d7cb8a4f716a4ed985e41ffec23309b9b7908a506bffcd58e39af03ce30d3",
+              "continuum/direct_fno/n8/seed3600031": "8bf1304d3d0b0e66777b63897ddc828ab81ebb5538302cd2380d820460028f34",
+              "continuum/etdrk4/n0/seedNone": "e1186260cfe07f4ab188f427b4373707d434a445cf44148b9559b107eeb5e55c",
+              "continuum/fno_small/n32/seed3600011": "c0c7aee187f9b89bf85d3e1a4aef5c045a654ea9e69832fb89d2efbbb4da81a2",
+              "continuum/fno_small/n32/seed3600021": "15523775d9a573af25c45362e8906a0223410d30f7ecf62a7f2a973e685ef214",
+              "continuum/fno_small/n32/seed3600031": "da749fab4ef02894228fa8490e5163b2043186bb950b554a91b348e9bfd738ab",
+              "continuum/fno_small/n8/seed3600011": "66bea0bd701c6eb0bfbd4509bf702ad1c2b804f87378c383cbc3869ae09db105",
+              "continuum/fno_small/n8/seed3600021": "16593eac45c69c4b825fe90a746c63e8ed2ee1d073545a7386c4ae576173aaaf",
+              "continuum/fno_small/n8/seed3600031": "0ade77feffa020c1b59b38e59858d4ae6cf0eb52a4d3ca253979e577c194f0f4",
+              "continuum/fno_standard/n32/seed3600011": "6b35ef92963aeba79d9e188a9fb60ef8ac2bf558c7c915866052b9eb8e7cdc96",
+              "continuum/fno_standard/n32/seed3600021": "43d12a730348a0647fe73fa7c9a8666f8b01614322564f5f4572dc8a03e44216",
+              "continuum/fno_standard/n32/seed3600031": "443f8027d0372be8c7505ec45c4c9b16c642b90f33d4c8556dcf2760381b8823",
+              "continuum/fno_standard/n8/seed3600011": "a8c38341b30417e266d712e1af7641dfd45fcc49020d73c4cf6b55822378de2e",
+              "continuum/fno_standard/n8/seed3600021": "fb2fc2e5a63b71dbb13bafa16b30d74c5fe4e681abb04839fa41ec173ba117e9",
+              "continuum/fno_standard/n8/seed3600031": "85503951c597118503134b695ce59858e6d7f0bd134fa53c8ad02e00e7d1b400",
+              "continuum/rank1/n32/seed3600011": "bd82179facc7b5e970d1b9b8fa2b545483dbec2ee046343c453a857defb506af",
+              "continuum/rank1/n32/seed3600021": "633155fd6febe6d2cb0cafa9ec5eb5c4ad57f1bd8b080a55cded7532962007b9",
+              "continuum/rank1/n32/seed3600031": "96acdde08d93c1941b65d3e91339e358fec7548f61f066eac47c0f67b63437fc",
+              "continuum/rank1/n8/seed3600011": "7df6749764fa07546c1409ebb72f3ee1eebec1e7b97f8518b73e450373ce621b",
+              "continuum/rank1/n8/seed3600021": "41962941af580567071dabeb031e06b9b7dd9c04f1f5ed6a7a7ea5db7f204cb4",
+              "continuum/rank1/n8/seed3600031": "c7ae4d568024eebe24a98b2c3acb2e19aff4a6e41d01f9a2ae748b9a1c028aa8",
+              "continuum/rank1_frozen/n32/seed3600011": "3bbe0a6158fa83956779689f3ce53465fac754bb38779cabee3c3be7140960a7",
+              "continuum/rank1_frozen/n32/seed3600021": "6a2121ec5f960948f1e87eb7c850a9df0b6422699ac22cb7d050e4079139edff",
+              "continuum/rank1_frozen/n32/seed3600031": "2b57ea42b68122781e667fe46d6a8bfa2d09afb9130fa771f19cb1e31dc7ac77",
+              "continuum/rank1_frozen/n8/seed3600011": "5e1624cd1ad9ce16cd65279e6f47fab8ff020c19f64b90818e2d1a4c4675a59d",
+              "continuum/rank1_frozen/n8/seed3600021": "466e0d7b3af37739e64ab6a27f4b858a405b94b5e1d2140d50130d06b6318ff9",
+              "continuum/rank1_frozen/n8/seed3600031": "1180737cf1379bb83fa6729243db3ae60fc3e77130e994feff5bd034050527c3",
+              "continuum/rank1_postcompression/n32/seed3600011": "8712bba45530550ec2090a8ba3eb508ceead5a94ef9748e8cfc37ae0fee12dbc",
+              "continuum/rank1_postcompression/n32/seed3600021": "952276bf66ef1c2e6991cf1331d2a448826197f5e5854588e03a4ca0da5901f2",
+              "continuum/rank1_postcompression/n32/seed3600031": "4cc02f95d60ffffb52b0091b0804389a78c6b4dad360bc239f3880a40c611e0a",
+              "continuum/rank1_postcompression/n8/seed3600011": "efa15f10a0dbec3c43dcd9d25a6cec283ad7d279b68c206aa335b6cfb7d5a650",
+              "continuum/rank1_postcompression/n8/seed3600021": "949230ec47268ae6495cbe999e603b405118f500eb32b3fa12ac11b47834090c",
+              "continuum/rank1_postcompression/n8/seed3600031": "62b2f7f8cfb9179fb960bba8e4476b3052d5653098687751857b517729bfcd40",
+              "discrete/analytic_quad/n0/seedNone": "5c41ee1279ae2a891af413a9103dfe60f3642dd2ab53d1a777c5c68fac1cd4a0",
+              "discrete/analytic_quad_cubic/n0/seedNone": "148adec5d2ba05017de6eb5b3b09d53bc13c1dca32555e46adb604b39305fc70",
+              "discrete/df/n0/seedNone": "72c3f19ccfaf2104b0b3d6658fd924083cd2ec5c54b292082f9cba6938219696",
+              "discrete/direct_fno/n32/seed3600011": "5474a3032f5d443b5146b8623452ff0552b81fcaee8f149d8411a2ffa5d0c206",
+              "discrete/direct_fno/n32/seed3600021": "5062ab5c17f875f4dbb521438b7e523971fbee8790b342b4fa91d9fe86c9e9db",
+              "discrete/direct_fno/n32/seed3600031": "b3473d120bfcece22ac5ca5979eefda5e85d8cc8c9b0503e3277786c3a331cc4",
+              "discrete/direct_fno/n8/seed3600011": "0a18b578c28e6244723784574e7d50af65d272ede29a00a2632a5e793ae9168c",
+              "discrete/direct_fno/n8/seed3600021": "c32f448ee6cbd131aebe7d583f57a09a149c4d6c6747873eb1b1a694fc4332f9",
+              "discrete/direct_fno/n8/seed3600031": "c684c21bd6ad89f813c7b525231836ccfb9d9f4f78260df6f09bfc7468e77bf0",
+              "discrete/etdrk4/n0/seedNone": "4939b9184c763dece3c3d135db1c55ca06c8b1cf4a1eacb47f04d4e42961ef1a",
+              "discrete/fno_small/n32/seed3600011": "75f44098261e277e0dde57bacc8abd7df66e5bc966e5d9aa872db024009c1daf",
+              "discrete/fno_small/n32/seed3600021": "438e7d0f0fe3471975bac0b6a1e0641d600c3dab68bd5e055c2947589751906f",
+              "discrete/fno_small/n32/seed3600031": "368eed25603ba5a1e6936f6c8f4e8c998169fef6e862a0725a051d98bc1f3fd0",
+              "discrete/fno_small/n8/seed3600011": "1d57338cbb03955205f7387b5fc8c0cad2fac71351c7dc43ee74f8d02a969409",
+              "discrete/fno_small/n8/seed3600021": "b7f140a2a67c13eb66a1d6471fd48c8db519b0cdd6dd5e2dd359243efc516d01",
+              "discrete/fno_small/n8/seed3600031": "59714f6dfde985f67e46f9850126fe2499f7f08ba5e1249f0f711ac95197013f",
+              "discrete/fno_standard/n32/seed3600011": "4c64e5af8e9755a49f0f9b97909de98bc10af70640f4800479dfef7563136167",
+              "discrete/fno_standard/n32/seed3600021": "8e368ca776760791219d7a15fc94197af7429ef4024a06cc655c0fb6dad1a198",
+              "discrete/fno_standard/n32/seed3600031": "ea60cee5b46306785535a709d08fc23eb69ca9d8fccf26314f06c46a51dfc801",
+              "discrete/fno_standard/n8/seed3600011": "61ccd4a5c08317aa483ff800d1b8b8052a4affab2dfe99ef28250baecf799b52",
+              "discrete/fno_standard/n8/seed3600021": "03aa0d8f5e03fe8e9d11558aa412c7e0786ebf24c3ac375ba73ee94fc8ebdecf",
+              "discrete/fno_standard/n8/seed3600031": "c3b046119fafd6843998df4eadf3bc766812b8911834e3699b2c467ea932de84",
+              "discrete/rank1/n32/seed3600011": "66434bf761c07318b16c2f3c20e8d6552046007633516f348ebbdd4014f73b31",
+              "discrete/rank1/n32/seed3600021": "b96434c33848a9491045e18640db5118a0482a7e21b2b643d344928058703efb",
+              "discrete/rank1/n32/seed3600031": "aaf305a9b92e3fe81d2e6b36e8db1c55715371f414da865486a46d64fd16f5bc",
+              "discrete/rank1/n8/seed3600011": "842fed328540ab98f3c670e25f391fbf86f80f563df8410a1a621ac4a8995b85",
+              "discrete/rank1/n8/seed3600021": "0e118901a0299e18f493f20fcf6fc7e28c0e31edb0f8b48d2c38da156fdd335d",
+              "discrete/rank1/n8/seed3600031": "a545f82c91274a50505bf4f62d0ea98e3aca061b44bc100271db19fe86c71ae0",
+              "discrete/rank1_frozen/n32/seed3600011": "21741a7d4bc3f29957db822499535cb26d90bb594f30d3002a2fd8ae4ee9c5d0",
+              "discrete/rank1_frozen/n32/seed3600021": "9e518f4ad065a1d0b7d81ea3334cb6826fc3116e66fca1fec08e20ea62ec2b32",
+              "discrete/rank1_frozen/n32/seed3600031": "07e73cae0752f09575bae817d37e2478de6a93863ce42a31c36448015febcb5d",
+              "discrete/rank1_frozen/n8/seed3600011": "596318c776cb22917d46dcf49b290867a9a9b12bd4d476cce9e67433ecfad552",
+              "discrete/rank1_frozen/n8/seed3600021": "a5e186e02184a0ed6e2758e919ba7d091965152a117f2051079a0d8bc1b9d9a6",
+              "discrete/rank1_frozen/n8/seed3600031": "852fe365ecd4025ea59f8d437c55b1bbbf2235e6fe73ffb1f5f656932e4bd791",
+              "discrete/rank1_postcompression/n32/seed3600011": "cad88401c7880c38f7a27382ae466b423c8d58947bc02c253f6af043615bef8e",
+              "discrete/rank1_postcompression/n32/seed3600021": "2230ad149f46b1661c5bf6b42f17ed3b99eb9133017ac11b00cdcf9482f173ec",
+              "discrete/rank1_postcompression/n32/seed3600031": "6fb3774963ceef612da39859b05f236f26fa76f947a94bb868cc2a2376799d0e",
+              "discrete/rank1_postcompression/n8/seed3600011": "597b0c6b8af2845268a85f60141c26542423855cc2a5c9e832b2aa190dbaf02b",
+              "discrete/rank1_postcompression/n8/seed3600021": "6aa640bab2895c2088e44c49be48bc046c41f2a3d5c80469bf02a6e45e53d092",
+              "discrete/rank1_postcompression/n8/seed3600031": "fcd9cf3ba241839fcdfa5ace682fd0370cce471a14a31a810837bd7313ca6e8c"
+            },
+            "freeze_sha256": "2679e7a03b2dfc94f29a447d15b29f138d473757103dc4cc8c5354920031fcbf",
+            "selection_split": "validation"
+          }
+        }
+      },
+      "coverage": {
+        "parts": 6,
+        "independent_fields": 24,
+        "endpoint_rows": 21888,
+        "models": 80,
+        "timing_groups": 1152,
+        "per_part_rows": [
+          3648,
+          3648,
+          3648,
+          3648,
+          3648,
+          3648
+        ]
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "fedora-frontier-20261008T092558622970Z/confirm/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261008T092558622970Z/train/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261008T092558622970Z/accounting_unique_allocation_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261008T092558622970Z/accounting_exact_job_inventory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-000/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-001/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-002/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-003/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-004/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-005/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/policy/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/scaling/native45",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/accounting_unique_allocation_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/accounting_exact_job_inventory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/bridge_bound_by_workflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/origin_workflow_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/audit/reused_science_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/audit/reused_execution_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm_prepare/reused_science_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm_prepare/reused_execution_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/prepare/reused_science_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/prepare/reused_execution_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/screen/reused_science_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/screen/reused_execution_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/train/reused_science_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/train/reused_execution_seal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/recovery_software_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/recovery_first_five_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/six_part_dirs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-000/four_parents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-000/cuda",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-001/four_parents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-001/cuda",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-002/four_parents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-002/cuda",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-003/four_parents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-003/cuda",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-004/four_parents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-004/cuda",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-005/four_parents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/confirm-part-005/cuda",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/distinct_24_parents",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/all_part_bindings_identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/21888_exact_distinct_endpoints",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/merged_rows_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/merge_binding_same",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/exact_frozen80_models",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fedora-frontier-20261009T005435342501Z/merge_partition_seals_match",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "failed_checks": []
+}

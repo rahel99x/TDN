@@ -1,0 +1,114 @@
+{
+  "archive": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz",
+  "bytes": 586126391,
+  "included_workflow_directories": [
+    "fedora-frontier-20261008T092558622970Z",
+    "fedora-frontier-20261009T005435342501Z"
+  ],
+  "member_count": 8951,
+  "parts": [
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part001",
+      "sha256": "1096f34e78feb836916b64d154decc0a69d29df202dd6124ee6bdf238e9ad73e"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part002",
+      "sha256": "3dd3892a9c772aa48092764363a92f5789019c4a8e83ee87ef05f38d09778677"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part003",
+      "sha256": "2dd335c878e08dd0a1d8367306d9a9f3dcf7d8ad482bc7e9e853e1135ecf3a43"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part004",
+      "sha256": "e776a65715e7e595045f90edccf0bb3f06177531475a50c3e2974061ad18a6a3"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part005",
+      "sha256": "5a69154d236247c90df1842ced5e02ae990082695271b3a755505cc6b0cc6ab2"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part006",
+      "sha256": "e1744acf13ebcaa2d6c4c8cea6b279524bd3580c07ee6fdc462e9fc4da7e1a72"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part007",
+      "sha256": "e91a73c72ec0fd84eb2374109669d01089f687be2ab489718e7d3f55bce3be32"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part008",
+      "sha256": "3b98654ca18ea63f39d1ec82d67332dc0beeb09479b98e10b5c2f67068eada00"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part009",
+      "sha256": "1af4fbe73624f5e1a100f7a6cd347af05d8ab7135a99e6489746f8539b740de7"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part010",
+      "sha256": "98790bc2e0ddaabd5667ea7851809ede949e048e3188c201c3139ea989dc83d5"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part011",
+      "sha256": "fd15c6c1daeb6cf85eba9eaef919328791ae8fbb2c89ae63e1cde60757b64487"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part012",
+      "sha256": "5b4db5a7189fea9ce5799be574af08042d8cd67cb618e65c29b4fcb4497c843e"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part013",
+      "sha256": "4bf833914d7c51f5c3f0a63004a1cbf4ffdba2171045e87f5a3efa2138b7f0e9"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part014",
+      "sha256": "356ec902832599482f118672fc4b883c0d41638c4cc0e2cc9f906d6c059e24cf"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part015",
+      "sha256": "bf6858000ecf38499bbae9006b30c08cf5657e949acb1153176a4acded04f0b0"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part016",
+      "sha256": "c8bee457b05e93d4aadd095e9a85816f4fe916480fb7cbd2e89ec9bfae5bd1a2"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part017",
+      "sha256": "2847c1371cf5295b4a101bcfe19dc143f43bbec6ddbb7c6fc52ab8613a076a0f"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part018",
+      "sha256": "17abdd0008e050823751c9f62e62987bec3cc8680b7efa3463d343e031372520"
+    },
+    {
+      "bytes": 29360128,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part019",
+      "sha256": "453b33cd928a99ec4a516827d9cc2baab7d4ec7b66f2ea29b17a4ed9797ab768"
+    },
+    {
+      "bytes": 28283959,
+      "path": "fedora-frontier-20261009T005435342501Z-review-20261009T023622651621Z.tar.gz.part020",
+      "sha256": "1c1f70352b5540e6017c63edd88647c155a7372be7d497cfa364a8b07cf76d8f"
+    }
+  ],
+  "reassemble": "Concatenate parts in their listed order; verify the complete SHA-256 before extracting.",
+  "schema_version": 1,
+  "sha256": "494f0b089174495012f535163725729832e295b33f46c7a943bfc5c172ef06ee"
+}

@@ -1,0 +1,617 @@
+{
+  "readonly_validation": "recomputed G2 classifications and G4 error/latency/ratio checks from JSON only; no checkpoint deserialization",
+  "headroom": {
+    "primary_target": 2e-05,
+    "conditions": 144,
+    "headroom": 56,
+    "independent_development_fields": 12,
+    "headroom_fields": 7,
+    "strata": {
+      "low": {
+        "conditions": 24,
+        "easy": 24,
+        "headroom": 0,
+        "unresolved": 0,
+        "infeasible": 0
+      },
+      "mixed": {
+        "conditions": 24,
+        "easy": 19,
+        "headroom": 5,
+        "unresolved": 0,
+        "infeasible": 0
+      },
+      "high_pair": {
+        "conditions": 24,
+        "easy": 2,
+        "headroom": 22,
+        "unresolved": 0,
+        "infeasible": 0
+      },
+      "rough": {
+        "conditions": 24,
+        "easy": 7,
+        "headroom": 17,
+        "unresolved": 0,
+        "infeasible": 0
+      },
+      "near_nyquist": {
+        "conditions": 12,
+        "easy": 6,
+        "headroom": 6,
+        "unresolved": 0,
+        "infeasible": 0
+      },
+      "boundary_mean": {
+        "conditions": 12,
+        "easy": 12,
+        "headroom": 0,
+        "unresolved": 0,
+        "infeasible": 0
+      },
+      "reaction_stiff": {
+        "conditions": 12,
+        "easy": 6,
+        "headroom": 6,
+        "unresolved": 0,
+        "infeasible": 0
+      },
+      "diffusion_stiff": {
+        "conditions": 12,
+        "easy": 12,
+        "headroom": 0,
+        "unresolved": 0,
+        "infeasible": 0
+      }
+    },
+    "all_targets": [
+      {
+        "target": 0.0002,
+        "conditions": 144,
+        "counts": {
+          "easy": 132,
+          "headroom": 12
+        },
+        "tracks": {
+          "discrete": {
+            "easy": 66,
+            "headroom": 6
+          },
+          "continuum": {
+            "easy": 66,
+            "headroom": 6
+          }
+        }
+      },
+      {
+        "target": 2e-05,
+        "conditions": 144,
+        "counts": {
+          "easy": 88,
+          "headroom": 56
+        },
+        "tracks": {
+          "discrete": {
+            "easy": 46,
+            "headroom": 26
+          },
+          "continuum": {
+            "easy": 42,
+            "headroom": 30
+          }
+        }
+      },
+      {
+        "target": 2e-06,
+        "conditions": 144,
+        "counts": {
+          "easy": 50,
+          "headroom": 88,
+          "infeasible": 6
+        },
+        "tracks": {
+          "discrete": {
+            "easy": 26,
+            "headroom": 43,
+            "infeasible": 3
+          },
+          "continuum": {
+            "easy": 24,
+            "headroom": 45,
+            "infeasible": 3
+          }
+        }
+      }
+    ]
+  },
+  "spatial": {
+    "cells": 72,
+    "failures": 34,
+    "max_rms": 0.014490167000355143,
+    "by_grid": {
+      "32": {
+        "cells": 24,
+        "failures": 14,
+        "max_rms": 0.014490167000355143
+      },
+      "64": {
+        "cells": 24,
+        "failures": 11,
+        "max_rms": 0.003258897989568182
+      },
+      "128": {
+        "cells": 24,
+        "failures": 9,
+        "max_rms": 0.0008253731480754823
+      }
+    }
+  },
+  "scaling": {
+    "gate": {
+      "gate": "G4",
+      "workload_rows": 60,
+      "accuracy_passes": 60,
+      "accuracy_na": 0,
+      "comparison_rows": 48,
+      "observed_crossovers": 1,
+      "crossover_na": 0,
+      "practical_speedup_threshold": 1.2,
+      "throughput_claim_scope": "observed median threshold only; no robust confidence-interval or universal superiority claim",
+      "scope": "One declared seed/data subset; independent fields within each batch; workloads remain paired",
+      "scientific_outcome": "MEASURED_ACCURACY_AND_THROUGHPUT; SEE INDIVIDUAL WORKLOADS"
+    },
+    "ratios": [
+      {
+        "comparator": "fno_small",
+        "track": "discrete",
+        "minimum": 0.599926379598179,
+        "median": 0.6259885099097982,
+        "maximum": 0.7039081689328119,
+        "wins_above_1": 0,
+        "practical_wins": 0,
+        "workloads": 6
+      },
+      {
+        "comparator": "fno_small",
+        "track": "continuum",
+        "minimum": 0.7164540089083091,
+        "median": 0.7333725351523429,
+        "maximum": 0.7701989247145329,
+        "wins_above_1": 0,
+        "practical_wins": 0,
+        "workloads": 6
+      },
+      {
+        "comparator": "fno_standard",
+        "track": "discrete",
+        "minimum": 0.9102279055405198,
+        "median": 0.9322858568806953,
+        "maximum": 1.5254816027551397,
+        "wins_above_1": 1,
+        "practical_wins": 1,
+        "workloads": 6
+      },
+      {
+        "comparator": "fno_standard",
+        "track": "continuum",
+        "minimum": 0.7679322601518445,
+        "median": 0.787526409594999,
+        "maximum": 0.8512728291707741,
+        "wins_above_1": 0,
+        "practical_wins": 0,
+        "workloads": 6
+      },
+      {
+        "comparator": "df",
+        "track": "discrete",
+        "minimum": 0.15699359140544888,
+        "median": 0.16590583704212847,
+        "maximum": 0.1844498619202558,
+        "wins_above_1": 0,
+        "practical_wins": 0,
+        "workloads": 6
+      },
+      {
+        "comparator": "df",
+        "track": "continuum",
+        "minimum": 0.5961490436365854,
+        "median": 0.6455458052283533,
+        "maximum": 0.6570921844064994,
+        "wins_above_1": 0,
+        "practical_wins": 0,
+        "workloads": 6
+      },
+      {
+        "comparator": "etdrk4",
+        "track": "discrete",
+        "minimum": 0.2198620467345538,
+        "median": 0.241668703436046,
+        "maximum": 0.2730296354152046,
+        "wins_above_1": 0,
+        "practical_wins": 0,
+        "workloads": 6
+      },
+      {
+        "comparator": "etdrk4",
+        "track": "continuum",
+        "minimum": 0.18453166811549337,
+        "median": 0.19650542311119495,
+        "maximum": 0.2034681770543244,
+        "wins_above_1": 0,
+        "practical_wins": 0,
+        "workloads": 6
+      }
+    ],
+    "latencies": [
+      {
+        "track": "discrete",
+        "grid": 64,
+        "batch_size": 1,
+        "latencies_ms": {
+          "rank1": 3.9930579951032996,
+          "fno_small": 2.542072004871443,
+          "fno_standard": 3.7512849958147854,
+          "df": 0.7365189958363771,
+          "etdrk4": 1.0162529943045229
+        },
+        "peak_allocated_bytes": 49502720,
+        "peak_reserved_bytes": 190840832
+      },
+      {
+        "track": "discrete",
+        "grid": 64,
+        "batch_size": 4,
+        "latencies_ms": {
+          "rank1": 4.1777470032684505,
+          "fno_small": 2.5707939930725843,
+          "fno_standard": 3.863551013637334,
+          "df": 0.6739850214216858,
+          "etdrk4": 0.9185280068777502
+        },
+        "peak_allocated_bytes": 62724608,
+        "peak_reserved_bytes": 190840832
+      },
+      {
+        "track": "discrete",
+        "grid": 128,
+        "batch_size": 1,
+        "latencies_ms": {
+          "rank1": 3.9322139928117394,
+          "fno_small": 2.5391819945070893,
+          "fno_standard": 3.637769987108186,
+          "df": 0.6690750014968216,
+          "etdrk4": 0.9294879855588078
+        },
+        "peak_allocated_bytes": 63446016,
+        "peak_reserved_bytes": 190840832
+      },
+      {
+        "track": "discrete",
+        "grid": 128,
+        "batch_size": 4,
+        "latencies_ms": {
+          "rank1": 4.406268999446183,
+          "fno_small": 2.6434370083734393,
+          "fno_standard": 4.010709002614021,
+          "df": 0.6917559949215502,
+          "etdrk4": 1.2030420184601098
+        },
+        "peak_allocated_bytes": 111418368,
+        "peak_reserved_bytes": 253755392
+      },
+      {
+        "track": "discrete",
+        "grid": 256,
+        "batch_size": 1,
+        "latencies_ms": {
+          "rank1": 4.217668989440426,
+          "fno_small": 2.5687939778435975,
+          "fno_standard": 4.031999997096136,
+          "df": 0.6818260008003563,
+          "etdrk4": 1.0415939905215055
+        },
+        "peak_allocated_bytes": 114565120,
+        "peak_reserved_bytes": 253755392
+      },
+      {
+        "track": "discrete",
+        "grid": 256,
+        "batch_size": 4,
+        "latencies_ms": {
+          "rank1": 3.9469850016757846,
+          "fno_small": 2.778314985334873,
+          "fno_standard": 6.0210530064068735,
+          "df": 0.6800449918955564,
+          "etdrk4": 0.9170680132228881
+        },
+        "peak_allocated_bytes": 306511872,
+        "peak_reserved_bytes": 572522496
+      },
+      {
+        "track": "continuum",
+        "grid": 64,
+        "batch_size": 1,
+        "latencies_ms": {
+          "rank1": 20.939929003361613,
+          "fno_small": 15.168799989623949,
+          "fno_standard": 16.080447006970644,
+          "df": 12.836668000090867,
+          "etdrk4": 3.8743220211472362
+        },
+        "peak_allocated_bytes": 59005440,
+        "peak_reserved_bytes": 572522496
+      },
+      {
+        "track": "continuum",
+        "grid": 64,
+        "batch_size": 4,
+        "latencies_ms": {
+          "rank1": 22.302219993434846,
+          "fno_small": 16.290267987642437,
+          "fno_standard": 17.601436004042625,
+          "df": 14.33295599417761,
+          "etdrk4": 4.3620670039672405
+        },
+        "peak_allocated_bytes": 66648576,
+        "peak_reserved_bytes": 572522496
+      },
+      {
+        "track": "continuum",
+        "grid": 128,
+        "batch_size": 1,
+        "latencies_ms": {
+          "rank1": 20.7785319944378,
+          "fno_small": 16.00360299926251,
+          "fno_standard": 17.26895899628289,
+          "df": 13.65341097698547,
+          "etdrk4": 4.227770026773214
+        },
+        "peak_allocated_bytes": 67369984,
+        "peak_reserved_bytes": 572522496
+      },
+      {
+        "track": "continuum",
+        "grid": 128,
+        "batch_size": 4,
+        "latencies_ms": {
+          "rank1": 22.494820994324982,
+          "fno_small": 16.77410301635973,
+          "fno_standard": 17.677089985227212,
+          "df": 14.71642599790357,
+          "etdrk4": 4.440971009898931
+        },
+        "peak_allocated_bytes": 114564096,
+        "peak_reserved_bytes": 572522496
+      },
+      {
+        "track": "continuum",
+        "grid": 256,
+        "batch_size": 1,
+        "latencies_ms": {
+          "rank1": 21.36565197724849,
+          "fno_small": 15.307507012039423,
+          "fno_standard": 16.63789598387666,
+          "df": 12.737112992908806,
+          "etdrk4": 4.263851995347068
+        },
+        "peak_allocated_bytes": 117448704,
+        "peak_reserved_bytes": 572522496
+      },
+      {
+        "track": "continuum",
+        "grid": 256,
+        "batch_size": 4,
+        "latencies_ms": {
+          "rank1": 22.458129009464756,
+          "fno_small": 16.536201001144946,
+          "fno_standard": 19.117995019769296,
+          "df": 14.562347991159186,
+          "etdrk4": 4.144236008869484
+        },
+        "peak_allocated_bytes": 309395456,
+        "peak_reserved_bytes": 572522496
+      }
+    ],
+    "crossovers": [
+      {
+        "track": "discrete",
+        "grid": 256,
+        "batch_size": 4,
+        "final_time": 0.06,
+        "target": 2e-05,
+        "independent_fields": [
+          "field-3550000",
+          "field-3550001",
+          "field-3550002",
+          "field-3550003"
+        ],
+        "candidate": "discrete/rank1/n32/seed3600011",
+        "comparator": "discrete/fno_standard/n32/seed3600011",
+        "candidate_accuracy": true,
+        "comparator_accuracy": true,
+        "speed_ratio": 1.5254816027551397,
+        "matched_accuracy": true,
+        "valid_timing": true,
+        "status": "ELIGIBLE",
+        "throughput_advantage_established": false,
+        "claim_scope": "descriptive paired workload; speed ratio alone is not a robust superiority claim",
+        "comparison_kind": "neural",
+        "candidate_family": "rank1",
+        "comparator_family": "fno_standard",
+        "candidate_seed": 3600011,
+        "comparator_seed": 3600011,
+        "candidate_train_count": 32,
+        "comparator_train_count": 32,
+        "candidate_parameters": 43,
+        "comparator_parameters": 1258977,
+        "candidate_cost_seconds": 0.003946985001675785,
+        "comparator_cost_seconds": 0.0060210530064068735,
+        "candidate_schedule": [
+          0.03,
+          0.03
+        ],
+        "comparator_schedule": [
+          0.03,
+          0.03
+        ],
+        "candidate_selected_state": "TRAINED_CHECKPOINT",
+        "comparator_selected_state": "TRAINED_CHECKPOINT",
+        "candidate_updates_selected": 200,
+        "comparator_updates_selected": 100,
+        "practical_speedup_threshold": 1.2,
+        "baseline_competitiveness_established": false,
+        "observed_threshold_passed": true,
+        "evidence_scope": "observed interleaved median ratio against frozen local controls on one paired workload; no confidence-interval, FNO-adequacy, paper-competitiveness or universal superiority claim"
+      }
+    ]
+  },
+  "policy": {
+    "gate": {
+      "gate": "G5",
+      "status": "BLOCKED",
+      "tracks": [
+        {
+          "track": "discrete",
+          "status": "BLOCKED",
+          "reason": "No preregistered matched-accuracy classical saving for the frozen candidate in this target track",
+          "deployment_executed": false
+        },
+        {
+          "track": "continuum",
+          "status": "BLOCKED",
+          "reason": "No preregistered matched-accuracy classical saving for the frozen candidate in this target track",
+          "deployment_executed": false
+        }
+      ],
+      "scientific_outcome": "NO_DEPLOYMENT_CLAIM; UTILITY_PREREQUISITE_NOT_MET"
+    },
+    "confirmation_gate": {
+      "schema": "tdn.frontier-confirmation-gate/v1",
+      "tracks": {
+        "discrete": {
+          "selected_policy_model_id": "discrete/rank1/n32/seed3600011",
+          "primary_target": 2e-05,
+          "matched_cells": 24,
+          "eligible_cells": 24,
+          "independent_fields": 24,
+          "classical_over_candidate_geometric_ratio": 0.12081663020172806,
+          "field_cluster_ci95": [
+            0.09788270919386541,
+            0.14843824877985926
+          ],
+          "speed_threshold": 1.2,
+          "solver_utility_eligible": false,
+          "neural_baseline_adequate": true,
+          "baseline_details": {
+            "fno_small": {
+              "trained_all_seeds": true,
+              "any_primary_accuracy": true,
+              "adequate_for_local_claim": true
+            },
+            "fno_standard": {
+              "trained_all_seeds": true,
+              "any_primary_accuracy": true,
+              "adequate_for_local_claim": true
+            },
+            "direct_fno": {
+              "trained_all_seeds": true,
+              "any_primary_accuracy": false,
+              "adequate_for_local_claim": false
+            }
+          }
+        },
+        "continuum": {
+          "selected_policy_model_id": "continuum/rank1/n32/seed3600011",
+          "primary_target": 2e-05,
+          "matched_cells": 24,
+          "eligible_cells": 24,
+          "independent_fields": 24,
+          "classical_over_candidate_geometric_ratio": 0.14610548639771961,
+          "field_cluster_ci95": [
+            0.1087337817272057,
+            0.195933033893054
+          ],
+          "speed_threshold": 1.2,
+          "solver_utility_eligible": false,
+          "neural_baseline_adequate": true,
+          "baseline_details": {
+            "fno_small": {
+              "trained_all_seeds": true,
+              "any_primary_accuracy": true,
+              "adequate_for_local_claim": true
+            },
+            "fno_standard": {
+              "trained_all_seeds": true,
+              "any_primary_accuracy": true,
+              "adequate_for_local_claim": true
+            },
+            "direct_fno": {
+              "trained_all_seeds": true,
+              "any_primary_accuracy": false,
+              "adequate_for_local_claim": false
+            }
+          }
+        }
+      },
+      "solver_utility_eligible": false,
+      "neural_baseline_adequate": true,
+      "selected_policy_models": {
+        "discrete": "discrete/rank1/n32/seed3600011",
+        "continuum": "continuum/rank1/n32/seed3600011"
+      },
+      "selection": "fixed before confirmation; gate can block deployment but cannot choose a new model",
+      "scope": "Local baseline adequacy diagnostic, not proof of literature competitiveness; posthoc schedule margins are necessary, not sufficient, for deployment"
+    },
+    "candidate_slowdown": {
+      "discrete": 8.277006222821276,
+      "continuum": 6.844369945683352
+    }
+  },
+  "gate_scores": [
+    {
+      "id": "G1",
+      "verdict": "GOOD",
+      "score_1_100": 100,
+      "passed_checks": 10,
+      "failed_checks": 0,
+      "na_checks": 0,
+      "experiment_count": 4
+    },
+    {
+      "id": "G2",
+      "verdict": "BAD",
+      "score_1_100": 95,
+      "passed_checks": 7488,
+      "failed_checks": 354,
+      "na_checks": 0,
+      "experiment_count": 2769
+    },
+    {
+      "id": "G3",
+      "verdict": "BAD",
+      "score_1_100": 75,
+      "passed_checks": 119691,
+      "failed_checks": 11101,
+      "na_checks": 22008,
+      "experiment_count": 22924
+    },
+    {
+      "id": "G4",
+      "verdict": "BAD",
+      "score_1_100": 86,
+      "passed_checks": 373,
+      "failed_checks": 47,
+      "na_checks": 0,
+      "experiment_count": 132
+    },
+    {
+      "id": "G5",
+      "verdict": "NA",
+      "score_1_100": 1,
+      "passed_checks": 0,
+      "failed_checks": 0,
+      "na_checks": 6,
+      "experiment_count": 2
+    }
+  ]
+}
