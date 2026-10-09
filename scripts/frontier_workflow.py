@@ -45,8 +45,8 @@ def stage_resources(profile):
     return {stage: {key: protocol["budgets"][stage][key] for key in ("cpus", "mem_gib", "walltime")} for stage in STAGES}
 
 
-def declaration(profile):
-    return {"version": 1, "benchmark_suite": "frontier", "profile": profile,
+def declaration(profile, version=2):
+    value = {"version": version, "benchmark_suite": "frontier", "profile": profile,
             "scientific_protocol": scientific_protocol(profile), "stages": list(STAGES),
             "execution_mode": "desktop-slurm",
             "dependencies": {stage: list(STAGES[:index]) for index, stage in enumerate(STAGES)},
@@ -56,6 +56,71 @@ def declaration(profile):
             "scope": "bounded preregistered frontier; no automatic expansion or pending-job cap",
             "report_dependencies": "afterany across all scientific stages",
             "scientific_bad_is_scheduler_failure": False}
+    if version == 2:
+        shards = confirmation_shards(profile)
+        value.update(confirmation_shards=shards,
+            physical_stages=list(STAGES[:5]) + [row["shard_id"] for row in shards] + list(STAGES[5:]),
+            confirmation_execution="Whole parent groups; fixed all-model paired rounds per shard; sealed exact-cohort aggregation",
+            physical_dependencies="Sequential afterok; final report afterany all newly submitted jobs")
+    elif version != 1:
+        raise ValueError("Unsupported frontier execution declaration")
+    return value
+
+
+def confirmation_shards(profile):
+    from tdn.analysis.frontier.partition import plan_shards
+    return plan_shards(scientific_protocol(profile))
+
+
+def execution_version(workflow):
+    return workflow.get("execution_version", 1)
+
+
+def physical_stages(workflow):
+    if execution_version(workflow) == 1:
+        return STAGES
+    return STAGES[:5] + tuple(row["shard_id"] for row in confirmation_shards(workflow["profile"])) + STAGES[5:]
+
+
+def logical_stage(stage):
+    return "confirm" if re.fullmatch(r"confirm-part-[0-9]{3}", stage) else stage
+
+
+def is_gpu_stage(stage):
+    return logical_stage(stage) in GPU_STAGES
+
+
+def resource_for(workflow, stage):
+    if stage not in physical_stages(workflow):
+        raise ValueError("Unknown frontier physical stage")
+    return workflow["resources"][logical_stage(stage)]
+
+
+def recovery_bridge(workflow):
+    recovery = workflow.get("recovery")
+    if recovery is None:
+        return None
+    path = cw.inside(recovery["manifest_path"])
+    if path != Path(workflow["run_dir"]) / "recovery.json" or cw.digest(path) != recovery["sha256"]:
+        raise ValueError("Frozen frontier recovery bridge changed")
+    bridge = cw.read_json(path)
+    if bridge.get("stage_paths") != recovery.get("stage_paths"):
+        raise ValueError("Recovery stage mapping differs from its frozen bridge")
+    return bridge
+
+
+def stage_path(workflow, stage):
+    if stage not in physical_stages(workflow):
+        raise ValueError("Unknown frontier stage path")
+    bridge = recovery_bridge(workflow)
+    if bridge and stage in bridge["stage_paths"]:
+        return cw.inside(bridge["stage_paths"][stage])
+    return cw.inside(Path(workflow["run_dir"]) / stage)
+
+
+def pending_stages(workflow):
+    inherited = set(workflow.get("recovery", {}).get("stage_paths", {}))
+    return tuple(stage for stage in physical_stages(workflow) if stage not in inherited)
 
 
 def wall_seconds(value):
@@ -97,8 +162,19 @@ def validate(workflow):
         raise ValueError("Unknown frontier profile or execution mode")
     if cw.inside(workflow["protocol_path"]) != base / "protocol.json":
         raise ValueError("Frozen protocol must remain within this workflow")
-    if workflow.get("protocol_sha256") != pw.canonical_hash(declaration(profile)):
+    if workflow.get("protocol_sha256") != pw.canonical_hash(declaration(profile, execution_version(workflow))):
         raise ValueError("Frontier protocol declaration changed")
+    if execution_version(workflow) not in (1, 2):
+        raise ValueError("Unsupported frontier execution version")
+    recovery = workflow.get("recovery")
+    if recovery is not None:
+        if execution_version(workflow) != 2 or set(recovery) != {"manifest_path", "sha256", "stage_paths"}:
+            raise ValueError("Invalid frontier recovery declaration")
+        if not pw.SHA.fullmatch(recovery.get("sha256", "")) or not isinstance(recovery["stage_paths"], dict):
+            raise ValueError("Invalid frontier recovery fingerprint or stage map")
+        allowed = set(STAGES[:5]) | {stage for stage in physical_stages(workflow) if stage.startswith("confirm-part-")}
+        if not set(STAGES[:5]) <= set(recovery["stage_paths"]) <= allowed:
+            raise ValueError("Recovery must reuse the five sealed prerequisites and only complete confirmation parts")
     site = validate_profile(workflow["slurm_profile"], root=ROOT)
     if workflow.get("slurm_profile_sha256") != pw.canonical_hash(site):
         raise ValueError("Frozen Slurm profile fingerprint differs")
@@ -131,7 +207,7 @@ def load(path, *, verify=True):
     if path != Path(workflow["run_dir"]) / MANIFEST:
         raise ValueError("Frontier manifest is outside its run directory")
     if verify:
-        if cw.read_json(workflow["protocol_path"]) != declaration(workflow["profile"]):
+        if cw.read_json(workflow["protocol_path"]) != declaration(workflow["profile"], execution_version(workflow)):
             raise ValueError("Frozen frontier declaration changed; submit a fresh workflow")
         if load_profile(workflow["slurm_profile_path"], root=ROOT) != workflow["slurm_profile"]:
             raise ValueError("Frozen Slurm profile changed; submit a fresh workflow")
@@ -148,7 +224,7 @@ def prepare(args):
         raise ValueError("Run directory exists; preserve it and choose a fresh --run-id")
     profile = "smoke" if args.smoke else "development" if args.development else "full"
     resources = validate_resources(stage_resources(profile))
-    return validate({"schema_version": 1, "kind": "desktop-slurm-frontier", "run_id": run_id,
+    return validate({"schema_version": 1, "execution_version": 2, "kind": "desktop-slurm-frontier", "run_id": run_id,
         "root": str(ROOT.resolve()), "run_dir": str(base), "created_at": cw.now(),
         "execution_mode": "desktop-slurm", "profile": profile,
         "protocol_path": str(base / "protocol.json"), "protocol_sha256": pw.canonical_hash(declaration(profile)),
@@ -164,20 +240,18 @@ def comment(workflow, stage):
 
 
 def scheduler_args(workflow, stage, dependency=None):
-    if stage not in STAGES:
-        raise ValueError("Unknown frontier stage")
-    base, site, resource = Path(workflow["run_dir"]), workflow["slurm_profile"], workflow["resources"][stage]
+    base, site, resource = Path(workflow["run_dir"]), workflow["slurm_profile"], resource_for(workflow, stage)
     args = ["sbatch", "--parsable", f"--partition={resource['partition']}", "--nodes=1", "--ntasks=1",
         f"--job-name=tdn-frontier-{stage}", f"--comment={comment(workflow, stage)}",
         f"--cpus-per-task={resource['cpus']}", f"--mem={resource['mem_gib']}G", f"--time={resource['walltime']}",
         "--signal=USR1@120", "--export=ALL", f"--chdir={ROOT}", "--open-mode=append", "--kill-on-invalid-dep=yes",
         f"--output={base / 'logs' / (stage + '-%j.out')}", f"--error={base / 'logs' / (stage + '-%j.err')}",
-        f"--gres={site['gpu_gres'] if stage in GPU_STAGES else 'none'}"]
+        f"--gres={site['gpu_gres'] if is_gpu_stage(stage) else 'none'}"]
     if site.get("account"):
         args.append(f"--account={site['account']}")
     if dependency is not None:
         ids = dependency.split(":")
-        count = STAGES.index(stage)
+        count = pending_stages(workflow).index(stage)
         valid_count = 1 <= len(ids) - 1 <= count if stage == "report" else len(ids) == count + 1
         if not count or ids[0] != ("afterany" if stage == "report" else "afterok") or not valid_count or any(
                 not pw.JOB.fullmatch(item) for item in ids[1:]) or len(set(ids[1:])) != len(ids) - 1:
@@ -230,39 +304,50 @@ def submission_environment(workflow, stage):
     env.update(TDN_EXECUTION_MODE="desktop-slurm", TDN_PROJECT_ROOT=str(ROOT), TDN_REPO_ROOT=str(ROOT),
         TDN_SLURM_CONFIG=workflow["slurm_profile_path"], TDN_FRONTIER_WORKFLOW=str(Path(workflow["run_dir"]) / MANIFEST),
         TDN_FRONTIER_STAGE=stage, TDN_FEDORA_GPU_GRES=workflow["slurm_profile"]["gpu_gres"],
-        TDN_FRONTIER_CPUS=str(workflow["resources"][stage]["cpus"]), TORCH_VERSION=workflow["torch_version"])
+        TDN_FRONTIER_CPUS=str(resource_for(workflow, stage)["cpus"]), TORCH_VERSION=workflow["torch_version"])
     return env
 
 
 def start(args):
     workflow = prepare(args)
+    return submit(workflow, plan_only=args.command == "plan")
+
+
+def submit(workflow, *, plan_only=False, bridge=None, software=None):
     print(f"Fedora frontier workflow: {workflow['run_id']} ({workflow['profile']})\nRun: {workflow['run_dir']}")
-    print("Stages run sequentially: " + " -> ".join(STAGES))
+    print("Stages run sequentially: " + " -> ".join(pending_stages(workflow)))
     print("One desktop GPU per learned stage; prior science is sealed. Final report runs after any scientific outcome. No pending-job cap or automatic resubmission.")
-    for stage in STAGES:
+    for stage in pending_stages(workflow):
         print(shlex.join(scheduler_args(workflow, stage)))
-    if args.command == "plan":
+    if plan_only:
         print("PLAN ONLY: no writes, scheduler calls or numerical work.")
         return workflow
     fw.controller_policy()
     policies = check_capacity(workflow)
     with rw.acquire_venv_lock():
-        software = rw.software_report(workflow)
+        actual_software = rw.software_report(workflow)
+        if software is not None and software != actual_software:
+            raise ValueError("Software changed while preparing recovery")
+        software = actual_software
     with cw.controller_lock():
         base = Path(workflow["run_dir"])
         base.mkdir(parents=True, exist_ok=False)
         (base / "logs").mkdir()
         path = base / MANIFEST
-        for output, data in ((path, workflow), (Path(workflow["protocol_path"]), declaration(workflow["profile"])),
+        for output, data in ((path, workflow), (Path(workflow["protocol_path"]), declaration(workflow["profile"], execution_version(workflow))),
                              (Path(workflow["slurm_profile_path"]), workflow["slurm_profile"])):
             cw.atomic_json(output, data)
             output.chmod(0o444)
+        if bridge is not None:
+            cw.atomic_json(base / "recovery.json", bridge)
+            (base / "recovery.json").chmod(0o444)
+            recovery_bridge(workflow)
         cw.atomic_json(base / "state" / "slurm-policy.json", policies)
         cw.atomic_json(base / "state" / "submission-software.json", software)
         jobs = []
         cw.atomic_json(base / "jobs.json", jobs)
         cw.atomic_json(ROOT / "runs" / POINTER, {"run_id": workflow["run_id"]})
-        for stage in STAGES:
+        for stage in pending_stages(workflow):
             dependency = (("afterany:" if stage == "report" else "afterok:") + ":".join(row["job_id"] for row in jobs)) if jobs else None
             try:
                 load(path)
@@ -273,7 +358,7 @@ def start(args):
                     raise ValueError("sbatch returned an ambiguous or duplicate ID; inspect Slurm before retrying")
                 jobs.append({"stage": stage, "job_id": match.group(1), "dependency": dependency, "submitted_at": cw.now()})
                 cw.atomic_json(base / "jobs.json", jobs)
-                print(f"TDN_FRONTIER_{stage.upper()}_JOB_ID={match.group(1)}", flush=True)
+                print(f"TDN_FRONTIER_{stage.upper().replace(chr(45), chr(95))}_JOB_ID={match.group(1)}", flush=True)
             except BaseException as exc:
                 failure = {"status": "FAILED", "stage": stage,
                     "error": str(exc), "submitted_jobs": jobs, "updated_at": cw.now(),
@@ -304,6 +389,55 @@ def start(args):
     return workflow
 
 
+def execution_software():
+    """Read execution metadata from this checkout's installed Python venv."""
+    python = str(cw.inside(ROOT / ".venv" / "bin") / "python")
+    return json.loads(cw.command([python, "-c",
+        "import json; from tdn.runtime.metadata import software_metadata; print(json.dumps(software_metadata()))"]).stdout)
+
+
+def require_terminal_origin(workflow):
+    """Recovery must not overlap a live or unverified scheduler attempt."""
+    jobs = cw.read_json(Path(workflow["run_dir"]) / "jobs.json")
+    if (not isinstance(jobs, list) or not jobs or any(not isinstance(row, dict)
+            or row.get("stage") not in physical_stages(workflow)
+            or not pw.JOB.fullmatch(row.get("job_id", "")) for row in jobs)
+            or len({row["job_id"] for row in jobs}) != len(jobs)
+            or len({row["stage"] for row in jobs}) != len(jobs)):
+        raise ValueError("Recovery requires unique recorded origin scheduler jobs")
+    states = {}
+    for row in jobs:
+        state = cw.scheduler_state(row["job_id"])
+        if state not in TERMINAL_JOB_STATES:
+            raise ValueError(f"Recovery origin {row['stage']} job {row['job_id']} is {state}; "
+                             "all origin jobs must have verified terminal states before recovery")
+        states[row["job_id"]] = state
+    return states
+
+
+def recover(args):
+    """Start a fresh, finite coordinator referencing verified immutable evidence."""
+    origin_path = workflow_path(args.run)
+    origin = load(origin_path, verify=False)
+    options = SimpleNamespace(run_id=args.run_id, smoke=origin["profile"] == "smoke",
+        development=origin["profile"] == "development")
+    workflow = prepare(options)
+    fw.controller_policy()
+    require_terminal_origin(origin)
+    from tdn.analysis.frontier.recovery import create_recovery
+    with rw.acquire_venv_lock():
+        software = rw.software_report(workflow)
+        bridge = create_recovery(origin_path, scientific_protocol(workflow["profile"]),
+            current_software=execution_software(), site=workflow["slurm_profile"], root=ROOT)
+    serialized = json.dumps(bridge, indent=2, sort_keys=True, allow_nan=False) + "\n"
+    workflow["recovery"] = {"manifest_path": str(Path(workflow["run_dir"]) / "recovery.json"),
+        "sha256": hashlib.sha256(serialized.encode()).hexdigest(), "stage_paths": bridge["stage_paths"]}
+    validate(workflow)
+    print(f"Recovery origin: {origin['run_id']}; frozen inputs/checkpoints reused without retraining.")
+    print("Unsealed or incomplete confirmation measurements are excluded; only complete compatible parts can be reused.")
+    return submit(workflow, plan_only=args.plan, bridge=bridge, software=software)
+
+
 def stage_cli():
     spec = importlib.util.spec_from_file_location("frontier_stage_cli", ROOT / "scripts" / "frontier.py")
     module = importlib.util.module_from_spec(spec)
@@ -311,38 +445,79 @@ def stage_cli():
     return module
 
 
+def verify_recovery_bridge(workflow, *, software=None):
+    bridge = recovery_bridge(workflow)
+    if bridge is None:
+        return {}
+    from tdn.analysis.frontier.recovery import verify_recovery
+    return verify_recovery(bridge, scientific_protocol(workflow["profile"]),
+        current_software=software or bridge["target_software"], site=workflow["slurm_profile"], root=ROOT)
+
+
 def verify_stage(workflow, stage):
-    base = cw.inside(Path(workflow["run_dir"]) / stage)
+    base = stage_path(workflow, stage)
+    inherited = stage in workflow.get("recovery", {}).get("stage_paths", {})
+    if inherited:
+        mapping = verify_recovery_bridge(workflow)
+        if Path(mapping[stage]) != base:
+            raise ValueError("Inherited stage differs from the verified recovery bridge")
+        execution = cw.read_json(base / "execution.json")
+        source_sha = execution["software"]["source_tree_sha256"]
+        workflow_sha = execution["workflow_protocol_sha256"]
+    else:
+        source_sha, workflow_sha = workflow["source_tree_sha256"], workflow["protocol_sha256"]
+    descriptor = (next(row for row in confirmation_shards(workflow["profile"]) if row["shard_id"] == stage)
+                  if logical_stage(stage) != stage else None)
     verified = stage_cli().verify_execution(base, scientific_protocol(workflow["profile"]),
-        source_tree_sha256=workflow["source_tree_sha256"])
+        source_tree_sha256=source_sha, confirmation_partition=descriptor)
     execution = verified["execution"]
-    expected = {"stage": stage, "profile": workflow["profile"], "execution_mode": "desktop-slurm",
-                "device": "cpu" if stage in CPU_STAGES else "cuda", "slurm_profile_sha256": workflow["slurm_profile_sha256"],
-                "workflow_protocol_sha256": workflow["protocol_sha256"]}
+    expected = {"stage": logical_stage(stage), "profile": workflow["profile"], "execution_mode": "desktop-slurm",
+                "device": "cuda" if is_gpu_stage(stage) else "cpu", "slurm_profile_sha256": workflow["slurm_profile_sha256"],
+                "workflow_protocol_sha256": workflow_sha}
     if any(execution.get(key) != value for key, value in expected.items()):
         raise ValueError(f"{stage}: execution provenance differs from the frozen workflow")
+    if logical_stage(stage) != stage:
+        if execution.get("confirmation_partition") != descriptor:
+            raise ValueError("Confirmation part execution differs from its exact frozen parent group")
+    elif stage == "confirm" and execution.get("confirmation_partition") is not None:
+        raise ValueError("A partial confirmation cannot stand in for a complete confirmation stage")
     summary = cw.read_json(base / "summary.json")
     if summary.get("status") != "COMPLETED":
         raise ValueError(f"{stage}: experiment did not complete")
     if stage == "audit" and summary.get("correctness_failures", 0) != 0:
         raise ValueError("Structural correctness failures forbid successor stages")
-    # A scientific BAD/NA is a completed outcome, not a scheduler failure.
     return verified
 
 
 def verify_prerequisites(workflow, software, stage):
     hashes = {}
-    for prerequisite in STAGES[:STAGES.index(stage)]:
-        record = cw.read_json(pw.state_path(workflow, prerequisite))
-        expected = {"status": "COMPLETED", "exit_code": 0, "source_sha256": workflow["source_sha256"],
-                    "protocol_sha256": workflow["protocol_sha256"]}
-        if any(record.get(key) != value for key, value in expected.items()):
-            raise ValueError(f"{prerequisite}: worker prerequisite did not complete")
-        software_path = Path(workflow["run_dir"]) / "state" / f"{prerequisite}-software.json"
-        if record.get("software_sha256") != cw.digest(software_path) or cw.read_json(software_path) != software:
-            raise ValueError(f"{prerequisite}: prerequisite software differs")
+    inherited = verify_recovery_bridge(workflow, software=execution_software()) if workflow.get("recovery") else {}
+    for prerequisite in STAGES[:STAGES.index(logical_stage(stage))]:
+        if prerequisite not in inherited:
+            record = cw.read_json(pw.state_path(workflow, prerequisite))
+            expected = {"status": "COMPLETED", "exit_code": 0, "source_sha256": workflow["source_sha256"],
+                        "protocol_sha256": workflow["protocol_sha256"]}
+            if any(record.get(key) != value for key, value in expected.items()):
+                raise ValueError(f"{prerequisite}: worker prerequisite did not complete")
+            software_path = Path(workflow["run_dir"]) / "state" / f"{prerequisite}-software.json"
+            if record.get("software_sha256") != cw.digest(software_path) or cw.read_json(software_path) != software:
+                raise ValueError(f"{prerequisite}: prerequisite software differs")
         verify_stage(workflow, prerequisite)
-        hashes[prerequisite] = cw.digest(Path(workflow["run_dir"]) / prerequisite / "workflow-seal.json")
+        hashes[prerequisite] = cw.digest(stage_path(workflow, prerequisite) / "workflow-seal.json")
+    if stage == "confirm" and execution_version(workflow) == 2:
+        for descriptor in confirmation_shards(workflow["profile"]):
+            part = descriptor["shard_id"]
+            verify_stage(workflow, part)
+            if part not in inherited:
+                record = cw.read_json(pw.state_path(workflow, part))
+                expected = {"status": "COMPLETED", "exit_code": 0, "source_sha256": workflow["source_sha256"],
+                            "protocol_sha256": workflow["protocol_sha256"]}
+                if any(record.get(key) != value for key, value in expected.items()):
+                    raise ValueError(f"{part}: confirmation worker did not complete under this workflow")
+                software_path = Path(workflow["run_dir"]) / "state" / f"{part}-software.json"
+                if record.get("software_sha256") != cw.digest(software_path) or cw.read_json(software_path) != software:
+                    raise ValueError(f"{part}: confirmation software differs")
+            hashes[part] = cw.digest(stage_path(workflow, part) / "workflow-seal.json")
     return hashes
 
 
@@ -360,12 +535,10 @@ def memory_mib(value):
 
 
 def verify_allocation(workflow, stage):
-    if stage not in STAGES:
-        raise ValueError("Unknown frontier stage")
-    site, resource = workflow["slurm_profile"], workflow["resources"][stage]
+    site, resource = workflow["slurm_profile"], resource_for(workflow, stage)
     if load_profile(root=ROOT) != site:
         raise ValueError("Active Slurm profile differs from this frozen workflow")
-    allocation = runtime_allocation("cpu" if stage in CPU_STAGES else "cuda", profile=site, root=ROOT)
+    allocation = runtime_allocation("cuda" if is_gpu_stage(stage) else "cpu", profile=site, root=ROOT)
     job, fields = allocation["job_id"], allocation["job"]
     expected = {"JobId": job, "JobName": f"tdn-frontier-{stage}", "Comment": comment(workflow, stage),
                 "JobState": "RUNNING", "Partition": resource["partition"], "WorkDir": str(ROOT)}
@@ -419,40 +592,48 @@ def worker_commands(workflow, stage):
     if stage == "report":
         commands.append(("accounting", [python, str(ROOT / "scripts" / "frontier_workflow.py"),
             "snapshot-accounting", "--workflow", str(base / MANIFEST)]))
-    if stage == "audit" or stage in GPU_STAGES:
-        tests = ([ROOT / "tests" / "test_frontier_gpu.py"] if stage in GPU_STAGES else
+    if stage == "audit" or is_gpu_stage(stage):
+        tests = ([ROOT / "tests" / "test_frontier_gpu.py"] if is_gpu_stage(stage) else
                  sorted((ROOT / "tests").glob("test_frontier*.py")) +
                  [ROOT / "tests" / "test_desktop_slurm_runtime.py", ROOT / "tests" / "test_fedora_workflow.py"])
         if not tests or any(not path.is_file() for path in tests):
             raise ValueError("Frontier correctness tests are missing")
-        if stage in GPU_STAGES:
+        if is_gpu_stage(stage):
             commands.append(("preflight", [python, str(ROOT / "scripts" / "fedora_gpu_preflight.py"),
                                            "--output", str(base / f"{stage}-gpu-preflight.json")]))
-        commands.append(("gpu-tests" if stage in GPU_STAGES else "tests",
-            [python, "-m", "pytest", "-q", "-m", "gpu" if stage in GPU_STAGES else "not gpu", *map(str, tests),
+        commands.append(("gpu-tests" if is_gpu_stage(stage) else "tests",
+            [python, "-m", "pytest", "-q", "-m", "gpu" if is_gpu_stage(stage) else "not gpu", *map(str, tests),
              "--basetemp", str(base / f"{stage}-pytest-work"), "-o", f"cache_dir={base / (stage + '-pytest-cache')}",
              "--junitxml", str(junit_path(workflow, stage))]))
-        if stage in GPU_STAGES:
+        if is_gpu_stage(stage):
             commands.append(("check-gpu-tests", [python, str(ROOT / "scripts" / "frontier_workflow.py"),
                 "check-gpu-tests", "--junit", str(junit_path(workflow, stage))]))
-    args = [python, str(ROOT / "scripts" / "frontier.py"), "--stage", stage,
+    args = [python, str(ROOT / "scripts" / "frontier.py"), "--stage", logical_stage(stage),
             "--profile", workflow["profile"], "--run-dir", str(base / stage),
-            "--device", "cpu" if stage in CPU_STAGES else "cuda"]
-    for prior in STAGES[:STAGES.index(stage)]:
-        args += ["--prerequisite-dir", f"{prior}={base / prior}"]
+            "--device", "cuda" if is_gpu_stage(stage) else "cpu"]
+    for prior in STAGES[:STAGES.index(logical_stage(stage))]:
+        args += ["--prerequisite-dir", f"{prior}={stage_path(workflow, prior)}"]
+    if logical_stage(stage) != stage:
+        args += ["--confirm-shard", stage]
+    elif stage == "confirm" and execution_version(workflow) == 2:
+        for descriptor in confirmation_shards(workflow["profile"]):
+            part = descriptor["shard_id"]
+            args += ["--confirm-shard-dir", f"{part}={stage_path(workflow, part)}"]
+    if workflow.get("recovery"):
+        args += ["--recovery-manifest", workflow["recovery"]["manifest_path"]]
     commands.append(("experiment", args))
     return commands
 
 
 def begin_report(workflow, stage):
-    base, site, resource = Path(workflow["run_dir"]), workflow["slurm_profile"], workflow["resources"][stage]
+    base, site, resource = Path(workflow["run_dir"]), workflow["slurm_profile"], resource_for(workflow, stage)
     job = os.environ["SLURM_JOB_ID"]
     resources = {"partition": resource["partition"], "nodes": 1, "cpus": resource["cpus"],
-                 "gpus": int(stage in GPU_STAGES), "mem_bytes": resource["mem_gib"] * 1024**3,
+                 "gpus": int(is_gpu_stage(stage)), "mem_bytes": resource["mem_gib"] * 1024**3,
                  "time_seconds": wall_seconds(resource["walltime"])}
     if site.get("account"):
         resources["account"] = site["account"]
-    if stage in GPU_STAGES:
+    if is_gpu_stage(stage):
         resources["gpu_type"] = site["expected_gpu_name"]
     return cw.reporting_api().begin_report(base / stage, name=f"TDN/frontier/{stage}", script="scripts/frontier_worker.sh",
         parameters={"source_sha256": workflow["source_sha256"], "protocol_sha256": workflow["protocol_sha256"],
@@ -483,7 +664,7 @@ def finish_report(workflow, stage, report, *, state, runtime_seconds, exit_code,
 def workflow_environment(workflow, stage):
     return {"TDN_FRONTIER_PROTOCOL_SHA256": workflow["protocol_sha256"],
             "TDN_FRONTIER_WORKFLOW": str(Path(workflow["run_dir"]) / MANIFEST), "TDN_FRONTIER_STAGE": stage,
-            "TDN_FRONTIER_CPUS": str(workflow["resources"][stage]["cpus"])}
+            "TDN_FRONTIER_CPUS": str(resource_for(workflow, stage)["cpus"])}
 
 
 def prepare_test_environment(env, name):
@@ -498,10 +679,12 @@ def prepare_test_environment(env, name):
 
 
 def worker(workflow, stage):
+    if stage not in pending_stages(workflow):
+        raise ValueError("Unknown or inherited frontier stage cannot run in a new allocation")
     backend = SimpleNamespace(**{name: globals()[name] for name in ("verify_allocation", "load", "begin_report",
         "worker_commands", "verify_stage", "prepare_test_environment", "workflow_environment", "finish_report", "verify_software")},
         gpu_junit_path=lambda workflow: junit_path(workflow, stage), workflow_filename=MANIFEST,
-        workflow_label="frontier", stage_variable="TDN_FRONTIER_STAGE", prerequisite_stages=STAGES[1:-1],
+        workflow_label="frontier", stage_variable="TDN_FRONTIER_STAGE", prerequisite_stages=physical_stages(workflow)[1:-1],
         verify_prerequisites=lambda workflow, software: verify_prerequisites(workflow, software, stage))
     try:
         return pw.worker(workflow, stage, backend=backend)
@@ -519,6 +702,10 @@ def worker(workflow, stage):
 
 def paths(workflow):
     base = Path(workflow["run_dir"])
+    if workflow.get("recovery"):
+        print(f"TDN_FRONTIER_RECOVERY_MANIFEST={workflow['recovery']['manifest_path']}")
+        for stage, path in workflow["recovery"]["stage_paths"].items():
+            print(f"TDN_FRONTIER_INHERITED_{stage.upper().replace('-', '_')}={path}")
     for filename in ("summary.txt", "mechanism_summary.json", "experiment_summary.csv", "experiment_index.json",
                      "review.csv", "review.md", "summary.json", "rows.jsonl", "analysis.json",
                      "figures/frontier-atlas.pdf", "figures/frontier-overview.png", "figures/index.html",
@@ -528,7 +715,7 @@ def paths(workflow):
             variable = re.sub(r"[^A-Z0-9_]", "_", filename.upper())
             print(f"TDN_FRONTIER_{variable}={path}")
     for row in cw.read_json(Path(workflow["run_dir"]) / "jobs.json"):
-        if row.get("stage") not in STAGES or not pw.JOB.fullmatch(row.get("job_id", "")):
+        if row.get("stage") not in physical_stages(workflow) or not pw.JOB.fullmatch(row.get("job_id", "")):
             raise ValueError("Invalid stored frontier scheduler job")
         for report in cw.tower_reports_for_job(workflow, row["job_id"]):
             print(f"{row['stage']} job {row['job_id']}\nTDN_TOWER_DIR={report}\nTDN_TOWER_METRICS={report / 'metrics.jsonl'}")
@@ -538,7 +725,15 @@ def status(workflow):
     base = Path(workflow["run_dir"])
     print(f"Fedora frontier workflow {workflow['run_id']} ({workflow['profile']})\nRun: {base}")
     jobs = {row["stage"]: row for row in cw.read_json(base / "jobs.json")}
-    for stage in STAGES:
+    for stage in physical_stages(workflow):
+        if stage in workflow.get("recovery", {}).get("stage_paths", {}):
+            print(f"{stage}: INHERITED (sealed origin {stage_path(workflow, stage)})")
+            try:
+                verify_stage(workflow, stage)
+                print("  sealed artifacts: VERIFIED; inherited cost is not charged as a new job")
+            except (OSError, ValueError, KeyError, TypeError) as error:
+                print(f"  sealed artifacts: INVALID ({error})")
+            continue
         if stage in jobs:
             job = jobs[stage]["job_id"]
             if not pw.JOB.fullmatch(job):
@@ -556,11 +751,14 @@ def status(workflow):
         if record.get("error"):
             print(f"  error: {record['error']}")
         if record.get("status") == "COMPLETED":
-            verify_stage(workflow, stage)
-            summary = cw.read_json(base / stage / "summary.json")
-            print("  sealed artifacts: VERIFIED")
-            if summary.get("scientific_outcome"):
-                print(f"  scientific outcome: {summary['scientific_outcome']}")
+            try:
+                verify_stage(workflow, stage)
+                summary = cw.read_json(base / stage / "summary.json")
+                print("  sealed artifacts: VERIFIED")
+                if summary.get("scientific_outcome"):
+                    print(f"  scientific outcome: {summary['scientific_outcome']}")
+            except (OSError, ValueError, KeyError, TypeError) as error:
+                print(f"  sealed artifacts: INVALID ({error})")
     submission_path = base / "state" / "submission.json"
     if submission_path.exists() and (submission := cw.read_json(submission_path)).get("status") == "FAILED":
         print(f"Submission failed at {submission['stage']}: {submission['error']}")
@@ -571,8 +769,8 @@ def validate_results(workflow):
     """Validate seals without mistaking a scientific BAD for artifact failure."""
     output = {"workflow": workflow["run_id"], "validation": "frontier_science_and_execution_seals", "stages": {}}
     invalid = False
-    for stage in STAGES:
-        directory = Path(workflow["run_dir"]) / stage
+    for stage in physical_stages(workflow):
+        directory = stage_path(workflow, stage)
         if not directory.exists():
             output["stages"][stage] = {"validation": "MISSING", "scientific_outcome": "NA"}
             invalid = True
@@ -599,7 +797,7 @@ def scheduler_accounting(workflow, *, enabled=True, runner=None):
     """Snapshot exact submitted jobs; unavailable accounting never invents cost."""
     base = cw.inside(workflow["run_dir"])
     jobs = cw.read_json(base / "jobs.json")
-    if (not isinstance(jobs, list) or any(not isinstance(row, dict) or row.get("stage") not in STAGES
+    if (not isinstance(jobs, list) or any(not isinstance(row, dict) or row.get("stage") not in physical_stages(workflow)
             or not pw.JOB.fullmatch(row.get("job_id", "")) for row in jobs)
             or len({row["job_id"] for row in jobs}) != len(jobs)
             or len({row["stage"] for row in jobs}) != len(jobs)):
@@ -613,6 +811,8 @@ def scheduler_accounting(workflow, *, enabled=True, runner=None):
         "scope": "Slurm accounting for recorded workflow allocations and their exact task steps; allocation and step rows are never summed",
         "cost_scope": "Reported resource/time usage, distinct from scientific experiment timers; no monetary rate is assumed",
         "monetary_cost": None, "all_allocations_terminal": None,
+        "inherited_stage_paths": workflow.get("recovery", {}).get("stage_paths", {}),
+        "inherited_cost_scope": "Origin allocation costs remain in the preserved origin workflow; never added to new recovery jobs",
         "snapshot_note": "Snapshot values may lag Slurm; a running reporting allocation is partial, never a completed cost.",
         "units": {"ElapsedRaw": "seconds", "CPUTimeRAW": "allocated CPU-seconds reported by Slurm",
             "TotalCPU": "Slurm CPU-time string", "MaxRSS": "Slurm memory string; an empty allocation value is unknown, not zero"}}
@@ -648,7 +848,10 @@ def scheduler_accounting(workflow, *, enabled=True, runner=None):
                 for key in ("ElapsedRaw", "CPUTimeRAW"):
                     if row[key] and not row[key].isdigit():
                         raise ValueError(f"Accounting returned an invalid {key} value")
-                row.update(workflow_stage=by_job[allocation], allocation_job_id=allocation,
+                row.update(workflow_stage=by_job[allocation], logical_stage=logical_stage(by_job[allocation]),
+                    allocation_role=("confirmation_part" if logical_stage(by_job[allocation]) != by_job[allocation]
+                        else "confirmation_aggregate" if by_job[allocation] == "confirm" and execution_version(workflow) == 2 else "stage"),
+                    allocation_job_id=allocation,
                     record_kind="allocation" if identity == allocation else "step",
                     terminal_state=row["State"].split(" ", 1)[0].rstrip("+") in TERMINAL_JOB_STATES,
                     elapsed_seconds=int(row["ElapsedRaw"]) if row["ElapsedRaw"] else None,
@@ -686,20 +889,31 @@ def collect(workflow, *, part_bytes=ARCHIVE_PART_BYTES, accounting=True):
     destination = cw.inside(ROOT / "runs" / (workflow["run_id"] + "-review-" +
         datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + ".tar.gz"))
     members = []
-    for path in sorted(base.rglob("*")):
-        relative = path.relative_to(base)
-        if any(part == "__pycache__" or part.endswith(("pytest-work", "pytest-cache")) for part in relative.parts):
-            continue
-        if path.is_symlink():
-            raise ValueError(f"Review archive refuses symlink: {path}")
-        if cw.inside(path).is_file():
-            members.append((path, str(Path(base.name) / relative)))
+    roots = {base}
+    bridge = recovery_bridge(workflow)
+    if bridge:
+        verify_recovery_bridge(workflow)
+        roots.update(cw.inside(path).parent for path in bridge["stage_paths"].values())
+        roots.add(cw.inside(bridge["origin_workflow_path"]).parent)
+        roots.update(cw.inside(record["path"]).parent for record in bridge.get("ancestry_workflows", []))
+    for source in sorted(roots):
+        if source.parent != ROOT / "runs":
+            raise ValueError("Review archive inherited evidence must remain in project run directories")
+        for path in sorted(source.rglob("*")):
+            relative = path.relative_to(source)
+            if any(part == "__pycache__" or part.endswith(("pytest-work", "pytest-cache")) for part in relative.parts):
+                continue
+            if path.is_symlink():
+                raise ValueError(f"Review archive refuses symlink: {path}")
+            if cw.inside(path).is_file():
+                members.append((path, str(Path(source.name) / relative)))
     with destination.open("xb") as stream:
         with tarfile.open(fileobj=stream, mode="w:gz", dereference=False) as archive:
             for path, relative in members:
                 archive.add(path, arcname=relative, recursive=False)
     index = {"schema_version": 1, "archive": destination.name, "bytes": destination.stat().st_size,
              "sha256": cw.digest(destination), "member_count": len(members), "parts": [],
+             "included_workflow_directories": sorted(path.name for path in roots),
              "reassemble": "Concatenate parts in their listed order; verify the complete SHA-256 before extracting."}
     if destination.stat().st_size > part_bytes:
         with destination.open("rb") as stream:
@@ -731,6 +945,10 @@ def parser():
         profile.add_argument("--smoke", action="store_true", help="Tiny integration profile; not scientific confirmation")
         profile.add_argument("--development", action="store_true", help="Bounded development cohort, no fresh confirmation")
         profile.add_argument("--full", action="store_true", help="Complete bounded native experiment (the default)")
+    item = commands.add_parser("recover", help="Reuse sealed prerequisites and complete parts in a fresh bounded workflow")
+    item.add_argument("run", nargs="?", default="latest")
+    item.add_argument("--run-id")
+    item.add_argument("--plan", action="store_true", help="Validate compatibility and show recovery jobs without submitting")
     for name in ("status", "logs", "collect", "paths", "validate"):
         item = commands.add_parser(name)
         item.add_argument("run", nargs="?", default="latest")
@@ -740,7 +958,7 @@ def parser():
             item.add_argument("--no-accounting", action="store_true", help="Skip optional exact-job sacct metadata collection")
     item = commands.add_parser("worker", help=argparse.SUPPRESS)
     item.add_argument("--workflow", type=Path, required=True)
-    item.add_argument("--stage", choices=STAGES, required=True)
+    item.add_argument("--stage", required=True)
     item = commands.add_parser("check-gpu-tests", help=argparse.SUPPRESS)
     item.add_argument("--junit", type=Path, required=True)
     item = commands.add_parser("snapshot-accounting", help=argparse.SUPPRESS)
@@ -753,6 +971,8 @@ def main(argv=None):
     try:
         if args.command in ("plan", "run"):
             start(args)
+        elif args.command == "recover":
+            recover(args)
         elif args.command == "worker":
             return worker(load(args.workflow, verify=False), args.stage)
         elif args.command == "check-gpu-tests":

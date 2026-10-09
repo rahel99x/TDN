@@ -1,0 +1,78 @@
+{
+  "run": "/workspace/TDN/runs/frontier-recovery-release-20261009",
+  "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+  "stages": {
+    "audit": {
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/audit",
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "sealed_files": 9
+    },
+    "screen": {
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/screen",
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "sealed_files": 15
+    },
+    "prepare": {
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/prepare",
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "sealed_files": 21
+    },
+    "train": {
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/train",
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "sealed_files": 102
+    },
+    "confirm_prepare": {
+      "path": "/workspace/TDN/runs/frontier-local-verified-20261008/confirm_prepare",
+      "source_tree_sha256": "7999ec430eebede273c14614359c08fa1a7e564c4a0ec9412e12d54337adfcb2",
+      "sealed_files": 21
+    },
+    "confirm-part-000": {
+      "path": "/workspace/TDN/runs/frontier-recovery-release-20261009/confirm-part-000",
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "sealed_files": 59
+    },
+    "confirm-part-001": {
+      "path": "/workspace/TDN/runs/frontier-recovery-release-20261009/confirm-part-001",
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "sealed_files": 59
+    },
+    "confirm": {
+      "path": "/workspace/TDN/runs/frontier-recovery-release-20261009/confirm",
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "sealed_files": 15
+    },
+    "scaling": {
+      "path": "/workspace/TDN/runs/frontier-recovery-release-20261009/scaling",
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "sealed_files": 11
+    },
+    "policy": {
+      "path": "/workspace/TDN/runs/frontier-recovery-release-20261009/policy",
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "sealed_files": 11
+    },
+    "report": {
+      "path": "/workspace/TDN/runs/frontier-recovery-release-20261009/report",
+      "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+      "sealed_files": 52
+    }
+  },
+  "raw_partition_rows_preserved_verbatim": 496,
+  "canonical_report_rows": 751,
+  "endpoint_rows": 496,
+  "panels": 33,
+  "partition_coverage": {
+    "expected_parts": 2,
+    "verified_parts": 2,
+    "aggregate_verified": true,
+    "partial_endpoints": 0,
+    "scientific_outcome": "MERGED_VERIFIED"
+  },
+  "predictions_match_original_monolithic": 496,
+  "inherited_first_five_unchanged": true,
+  "cost_scopes": {
+    "inherited_sunk": 9,
+    "current_workflow": 5
+  }
+}

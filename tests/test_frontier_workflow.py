@@ -47,7 +47,9 @@ def controller(tmp_path, monkeypatch):
     module.cw.atomic_json(root / ".tdn/fedora-slurm.json", profile)
     budgets = {stage: {"cpus": 4 if stage in GPU else 8, "mem_gib": 32 if stage in GPU else 48,
                       "walltime": "00:30:00", "seconds": 120} for stage in STAGES}
-    monkeypatch.setattr(module, "scientific_protocol", lambda profile: {"profile": profile, "budgets": budgets})
+    from tdn.analysis.frontier.protocol import build_protocol
+    monkeypatch.setattr(module, "scientific_protocol", lambda profile: {
+        **build_protocol(profile), "budgets": budgets})
     return module
 
 
@@ -88,8 +90,9 @@ def test_plan_is_read_only_and_contains_all_allocations(controller, monkeypatch,
     monkeypatch.setattr(controller.cw, "command", lambda *a, **kw: pytest.fail("plan accessed scheduler"))
     assert controller.main(["plan", *flags]) == 0
     output = capsys.readouterr().out
-    assert output.count("sbatch --parsable") == 9
-    assert output.count("--gres=none") == 5 and output.count("--gres=gpu:1") == 4
+    part_count = 2 if "--smoke" in flags else 4 if "--development" in flags else 6
+    assert output.count("sbatch --parsable") == 9 + part_count
+    assert output.count("--gres=none") == 5 and output.count("--gres=gpu:1") == 4 + part_count
     assert "anakano_81" not in output and "a100" not in output
     assert "pending-job cap" in output
     assert not (controller.ROOT / "runs").exists()
@@ -102,13 +105,14 @@ def test_entire_chain_is_queued_and_report_runs_after_failed_or_cancelled_stages
     assert controller.main(["run", "--run-id", "chain"]) == 0
     workflow = controller.load(controller.workflow_path("latest"))
     batches = [(args, kwargs) for args, kwargs in calls if args[0] == "sbatch"]
-    assert len(batches) == 9
+    tasks = controller.physical_stages(workflow)
+    assert len(batches) == 15
     for index, (args, kwargs) in enumerate(batches):
-        kind = "afterany" if index == 8 else "afterok"
+        kind = "afterany" if tasks[index] == "report" else "afterok"
         dependency = kind + ":" + ":".join(str(9001 + prior) for prior in range(index)) if index else None
         assert [x for x in args if x.startswith("--dependency=")] == (["--dependency=" + dependency] if dependency else [])
         assert "--kill-on-invalid-dep=yes" in args
-        assert kwargs["env"]["TDN_FRONTIER_STAGE"] == STAGES[index]
+        assert kwargs["env"]["TDN_FRONTIER_STAGE"] == tasks[index]
         assert "SBATCH_ACCOUNT" not in kwargs["env"] and "TDN_AGENDA_STAGE" not in kwargs["env"]
     assert workflow["kind"] == "desktop-slurm-frontier"
     assert not (controller.ROOT / "runs/.fedora-agenda-latest.json").exists()
@@ -194,7 +198,7 @@ def test_frozen_protocol_and_source_are_checked_before_execution(controller):
     assert controller.load(base / controller.MANIFEST, verify=False) == workflow
 
 
-@pytest.mark.parametrize("command", ["status", "validate", "run", "plan", "logs", "paths", "collect"])
+@pytest.mark.parametrize("command", ["status", "validate", "run", "plan", "logs", "paths", "collect", "recover"])
 def test_shell_uses_project_venv_without_activation(tmp_path, monkeypatch, command):
     root = tmp_path / "project with spaces"
     scripts = root / "scripts"
@@ -398,7 +402,7 @@ def test_validation_reports_all_missing_stages_without_claiming_success(controll
     with pytest.raises(ValueError, match="missing or invalid"):
         controller.validate_results(workflow)
     result = json.loads(capsys.readouterr().out)
-    assert set(result["stages"]) == set(STAGES)
+    assert set(result["stages"]) == set(controller.physical_stages(workflow))
     assert all(row == {"validation": "MISSING", "scientific_outcome": "NA"} for row in result["stages"].values())
 
 
@@ -456,3 +460,218 @@ def test_gpu_validator_never_accepts_skipped_failed_or_errored_evidence(controll
 def test_shell_syntax(filename):
     response = subprocess.run(["bash", "-n", str(ROOT / "scripts" / filename)], capture_output=True, text=True)
     assert response.returncode == 0, response.stderr
+
+
+@pytest.mark.parametrize("profile,count,parents_per_part", [("smoke", 2, 1), ("development", 4, 2), ("full", 6, 4)])
+def test_confirmation_partition_plan_preserves_exact_cohort_and_gpu_budget(controller, profile, count, parents_per_part):
+    workflow = plan(controller, "parts", "--" + profile)
+    protocol = controller.scientific_protocol(profile)
+    parts = controller.confirmation_shards(profile)
+    assert len(parts) == count
+    assert all(len(part["parent_ids"]) == parents_per_part for part in parts)
+    actual = [parent for part in parts for parent in part["parent_ids"]]
+    assert actual == [parent["parent_id"] for parent in protocol["parents"] if parent["split"] == "confirmation"]
+    assert len(actual) == len(set(actual))
+    for part in parts:
+        resource = controller.resource_for(workflow, part["shard_id"])
+        assert resource == workflow["resources"]["confirm"]
+        assert controller.wall_seconds(resource["walltime"]) <= 2700
+        commands = dict(controller.worker_commands(workflow, part["shard_id"]))
+        assert set(commands) == {"preflight", "gpu-tests", "check-gpu-tests", "experiment"}
+        command = commands["experiment"]
+        assert command[command.index("--stage") + 1] == "confirm"
+        assert command[command.index("--confirm-shard") + 1] == part["shard_id"]
+        assert command.count("--prerequisite-dir") == 5
+        assert "--confirm-shard-dir" not in command
+        assert command[command.index("--device") + 1] == "cuda"
+        assert "--gres=gpu:1" in controller.scheduler_args(workflow, part["shard_id"])
+    command = dict(controller.worker_commands(workflow, "confirm"))["experiment"]
+    assert command.count("--confirm-shard-dir") == count
+    assert "--confirm-shard" not in command
+    assert workflow["protocol_sha256"] == controller.pw.canonical_hash(controller.declaration(profile, 2))
+
+
+def test_unknown_confirmation_part_cannot_be_submitted_or_executed(controller):
+    workflow = plan(controller)
+    for method in (controller.scheduler_args, controller.resource_for, controller.stage_path):
+        with pytest.raises(ValueError, match="Unknown frontier"):
+            method(workflow, "confirm-part-999")
+
+
+def test_v1_manifest_remains_readable_without_rewriting_protocol(controller):
+    workflow = plan(controller)
+    workflow.pop("execution_version")
+    workflow["protocol_sha256"] = controller.pw.canonical_hash(controller.declaration(workflow["profile"], 1))
+    base = freeze(controller, workflow)
+    controller.cw.atomic_json(base / "protocol.json", controller.declaration(workflow["profile"], 1))
+    assert controller.load(base / controller.MANIFEST) == workflow
+    assert controller.physical_stages(workflow) == STAGES
+    command = dict(controller.worker_commands(workflow, "confirm"))["experiment"]
+    assert "--confirm-shard-dir" not in command and "--confirm-shard" not in command
+
+
+def test_part_submission_failure_still_queues_one_afterany_report(controller, monkeypatch):
+    calls = submission(controller, monkeypatch, fail_at=7)
+    assert controller.main(["run", "--run-id", "part-failure"]) == 2
+    base = controller.ROOT / "runs/part-failure"
+    jobs = json.loads((base / "jobs.json").read_text())
+    assert [job["stage"] for job in jobs] == list(STAGES[:5]) + ["confirm-part-000", "report"]
+    assert jobs[-1]["dependency"] == "afterany:9001:9002:9003:9004:9005:9006"
+    assert sum(command[0] == "sbatch" for command, _ in calls) == 8
+    assert not any(command[0] == "scancel" for command, _ in calls)
+
+
+def add_recovery_bridge(controller, workflow, stages):
+    base = Path(workflow["run_dir"])
+    bridge = {"stage_paths": {stage: str(base.parent / "origin" / stage) for stage in stages},
+        "target_software": {"fixture": True}, "origin_workflow_path": str(base.parent / "origin" / controller.MANIFEST)}
+    controller.cw.atomic_json(base / "recovery.json", bridge)
+    workflow["recovery"] = {"manifest_path": str(base / "recovery.json"),
+        "sha256": controller.cw.digest(base / "recovery.json"), "stage_paths": bridge["stage_paths"]}
+    return bridge
+
+
+def test_recovery_schedules_only_missing_parts_and_uses_origin_stage_paths(controller):
+    workflow = plan(controller)
+    freeze(controller, workflow)
+    inherited = list(STAGES[:5]) + ["confirm-part-000", "confirm-part-001"]
+    bridge = add_recovery_bridge(controller, workflow, inherited)
+    controller.validate(workflow)
+    pending = controller.pending_stages(workflow)
+    assert pending == ("confirm-part-002", "confirm-part-003", "confirm-part-004", "confirm-part-005", "confirm", "scaling", "policy", "report")
+    assert controller.stage_path(workflow, "train") == Path(bridge["stage_paths"]["train"])
+    command = dict(controller.worker_commands(workflow, "confirm-part-002"))["experiment"]
+    assert command[command.index("--recovery-manifest") + 1] == workflow["recovery"]["manifest_path"]
+    assert "train=" + bridge["stage_paths"]["train"] in command
+    aggregate = dict(controller.worker_commands(workflow, "confirm"))["experiment"]
+    assert "confirm-part-000=" + bridge["stage_paths"]["confirm-part-000"] in aggregate
+    assert not any(flag.startswith("--dependency") for flag in controller.scheduler_args(workflow, pending[0]))
+    assert "--dependency=afterok:123" in controller.scheduler_args(workflow, pending[1], "afterok:123")
+    (Path(workflow["run_dir"]) / "recovery.json").write_text("{}")
+    with pytest.raises(ValueError, match="bridge changed"):
+        controller.stage_path(workflow, "train")
+
+
+def test_recovery_mapping_cannot_inherit_unsealed_logical_confirmation(controller):
+    workflow = plan(controller)
+    freeze(controller, workflow)
+    add_recovery_bridge(controller, workflow, list(STAGES[:5]) + ["confirm"])
+    with pytest.raises(ValueError, match="five sealed prerequisites"):
+        controller.validate(workflow)
+
+
+def test_accounting_distinguishes_confirmation_parts_and_aggregate(controller):
+    workflow = plan(controller)
+    base = freeze(controller, workflow)
+    add_recovery_bridge(controller, workflow, STAGES[:5])
+    controller.cw.atomic_json(base / "jobs.json", [
+        {"stage": "confirm-part-000", "job_id": "101"}, {"stage": "confirm", "job_id": "102"}])
+    result = controller.scheduler_accounting(workflow, runner=lambda *args, **kwargs: SimpleNamespace(
+        returncode=0, stderr="", stdout="101|COMPLETED|0:0|60|00:00:40|cpu=4,mem=48G,gres/gpu=1||240\n"
+        "102|COMPLETED|0:0|2|00:00:01|cpu=4,mem=48G,gres/gpu=1||8\n"))
+    assert result["requested_job_ids"] == ["101", "102"]
+    assert [row["allocation_role"] for row in result["records"]] == ["confirmation_part", "confirmation_aggregate"]
+    assert [row["logical_stage"] for row in result["records"]] == ["confirm", "confirm"]
+    assert set(result["inherited_stage_paths"]) == set(STAGES[:5])
+
+
+def test_recover_command_submits_finite_remaining_dag_without_retraining(controller, monkeypatch):
+    import tdn.analysis.frontier.recovery as recovery
+    origin = plan(controller, "origin")
+    origin.pop("execution_version")
+    origin["protocol_sha256"] = controller.pw.canonical_hash(controller.declaration(origin["profile"], 1))
+    base = freeze(controller, origin)
+    controller.cw.atomic_json(base / "protocol.json", controller.declaration(origin["profile"], 1))
+    original_bytes = (base / controller.MANIFEST).read_bytes()
+    controller.cw.atomic_json(base / "jobs.json", [{"stage": "audit", "job_id": "100"}])
+    monkeypatch.setattr(controller.cw, "scheduler_state", lambda job: "COMPLETED")
+    bridge = {"stage_paths": {stage: str(base / stage) for stage in STAGES[:5]},
+        "target_software": {"fixture": True}, "origin_workflow_path": str(base / controller.MANIFEST)}
+    calls = submission(controller, monkeypatch)
+    monkeypatch.setattr(controller, "execution_software", lambda: {"fixture": True})
+    monkeypatch.setattr(recovery, "create_recovery", lambda *args, **kwargs: bridge)
+    assert controller.main(["recover", "origin", "--run-id", "fresh"]) == 0
+    fresh = controller.load(controller.workflow_path("fresh"))
+    assert controller.recovery_bridge(fresh) == bridge
+    jobs = controller.cw.read_json(Path(fresh["run_dir"]) / "jobs.json")
+    assert [row["stage"] for row in jobs] == [f"confirm-part-{index:03d}" for index in range(6)] + list(STAGES[5:])
+    assert len(jobs) == 10 and jobs[0]["dependency"] is None
+    assert jobs[-1]["dependency"] == "afterany:" + ":".join(row["job_id"] for row in jobs[:-1])
+    assert (base / controller.MANIFEST).read_bytes() == original_bytes
+    assert len([args for args, _ in calls if args[0] == "sbatch"]) == 10
+    assert not any((Path(fresh["run_dir"]) / stage).exists() for stage in STAGES[:5])
+
+
+def test_incompatible_recovery_does_not_write_or_submit(controller, monkeypatch):
+    import tdn.analysis.frontier.recovery as recovery
+    origin = plan(controller, "origin")
+    base = freeze(controller, origin)
+    controller.cw.atomic_json(base / "jobs.json", [{"stage": "audit", "job_id": "100"}])
+    monkeypatch.setattr(controller.cw, "scheduler_state", lambda job: "COMPLETED")
+    calls = submission(controller, monkeypatch)
+    monkeypatch.setattr(controller, "execution_software", lambda: {"fixture": True})
+    def incompatible(*args, **kwargs):
+        raise ValueError("checkpoint source differs")
+    monkeypatch.setattr(recovery, "create_recovery", incompatible)
+    assert controller.main(["recover", "origin", "--run-id", "blocked"]) == 2
+    assert not (controller.ROOT / "runs/blocked").exists()
+    assert not any(args[0] == "sbatch" for args, _ in calls)
+
+
+def test_recovery_collection_keeps_origin_evidence_and_failed_attempt(controller, monkeypatch):
+    workflow = plan(controller, "fresh")
+    base = freeze(controller, workflow)
+    bridge = add_recovery_bridge(controller, workflow, STAGES[:5])
+    origin = controller.ROOT / "runs/origin"
+    (origin / "confirm").mkdir(parents=True)
+    (origin / "confirm/summary.json").write_text('{"status":"INTERRUPTED"}\n')
+    (origin / controller.MANIFEST).write_text('{}\n')
+    (origin / "train").mkdir()
+    (origin / "train/checkpoint.pt").write_bytes(b"unchanged evidence")
+    monkeypatch.setattr(controller, "verify_recovery_bridge", lambda *args, **kwargs: bridge["stage_paths"])
+    archive = controller.collect(workflow, accounting=False)
+    with tarfile.open(archive) as stream:
+        names = stream.getnames()
+        assert "origin/confirm/summary.json" in names
+        assert "origin/train/checkpoint.pt" in names
+        assert "fresh/recovery.json" in names
+        assert not any(name.startswith("fresh/train/") for name in names)
+    index = json.loads(archive.with_name(archive.name + ".index.json").read_text())
+    assert index["included_workflow_directories"] == ["fresh", "origin"]
+
+
+@pytest.mark.parametrize("state", ["RUNNING", "PENDING", "CONFIGURING", "COMPLETING", "UNKNOWN"])
+def test_recovery_refuses_live_or_unverified_origin_jobs(controller, monkeypatch, state):
+    workflow = plan(controller, "origin")
+    base = freeze(controller, workflow)
+    controller.cw.atomic_json(base / "jobs.json", [{"stage": "confirm-part-000", "job_id": "100"}])
+    monkeypatch.setattr(controller.cw, "scheduler_state", lambda job: state)
+    calls = submission(controller, monkeypatch)
+    assert controller.main(["recover", "origin", "--run-id", "unsafe"]) == 2
+    assert not (controller.ROOT / "runs/unsafe").exists()
+    assert not any(args[0] == "sbatch" for args, _ in calls)
+
+
+def test_recovery_requires_every_origin_allocation_terminal(controller, monkeypatch):
+    workflow = plan(controller, "origin")
+    base = freeze(controller, workflow)
+    jobs = [{"stage": "confirm-part-000", "job_id": "100"}, {"stage": "report", "job_id": "101"}]
+    controller.cw.atomic_json(base / "jobs.json", jobs)
+    seen = []
+    def state(job):
+        seen.append(job)
+        return {"100": "FAILED", "101": "COMPLETED"}[job]
+    monkeypatch.setattr(controller.cw, "scheduler_state", state)
+    assert controller.require_terminal_origin(workflow) == {"100": "FAILED", "101": "COMPLETED"}
+    assert seen == ["100", "101"]
+
+
+
+def test_unknown_worker_identity_cannot_write_startup_state(controller, monkeypatch):
+    workflow = plan(controller)
+    base = freeze(controller, workflow)
+    monkeypatch.setattr(controller.pw, "worker", lambda *args, **kwargs: pytest.fail("unknown worker started"))
+    with pytest.raises(ValueError, match="Unknown or inherited"):
+        controller.worker(workflow, "../../elsewhere")
+    assert not (base / "state/startup.json").exists()
+    assert not (base.parent / "elsewhere.json").exists()

@@ -1,0 +1,110 @@
+{
+  "schema": "tdn.frontier-recovery-validation/v1",
+  "date_utc": "2026-10-09",
+  "category": "cloud_CPU_engineering_validation",
+  "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "aa5760cd7f0ecc0a734c1d3f9090e48d2f22cb51",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "d54f7f980da465c8828d8e3d7fca1b870334ff601b6cfda3112d558c1a5d7168",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "trigger": {
+    "stage": "confirm",
+    "native_job": "452",
+    "reported_exit_code": 75,
+    "reported_elapsed": "00:30:27",
+    "cause": "Internal 1800-second scientific compute budget exhausted; not Slurm OOM or allocation walltime"
+  },
+  "scientific_scope": {
+    "protocol_unchanged": true,
+    "training_and_model_math_unchanged": true,
+    "full_parent_count": 24,
+    "full_model_records": 80,
+    "full_endpoints": 21888,
+    "full_paired_timing_groups": 1152,
+    "full_part_count": 6,
+    "parents_per_part": 4,
+    "compute_seconds_per_full_part": 1800,
+    "allocation_minutes_per_part": 45,
+    "full_jobs": 15,
+    "initial_recovery_jobs": 10
+  },
+  "tests": {
+    "passed": 674,
+    "gpu_deselected": 45,
+    "failed": 0,
+    "skipped": 0,
+    "junit": "results/frontier-recovery-validation/cpu-tests.xml.gz",
+    "junit_sha256": "3ad9488028ccbbda4942be1b521261e266138af0cbbd87a50d1dab1ff4e53336",
+    "command": "TDN_LOCAL_TEST_ROOT=/workspace/TDN TMPDIR=/workspace/TDN/.runtime/tmp PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest tests/test_frontier*.py tests/test_tower_analytics.py tests/test_desktop_slurm_runtime.py tests/test_fedora_workflow.py -m 'not gpu' -q --basetemp=.runtime/pytest-frontier-recovery-release --junitxml=.runtime/frontier-recovery-release-tests.xml"
+  },
+  "recovery": {
+    "command": "bash scripts/frontier_local.sh --smoke --recover runs/frontier-local-verified-20261008 --run-dir runs/frontier-recovery-release-20261009",
+    "result": "COMPLETED",
+    "inherited_first_five_unchanged": true,
+    "predictions_match_original_monolithic": 496,
+    "raw_partition_rows_preserved_verbatim": 496,
+    "canonical_report_rows": 751,
+    "analytical_panels": 33,
+    "proof": "results/frontier-recovery-validation/recovery-integration.json"
+  },
+  "fresh_smoke": {
+    "run": "runs/frontier-partitioned-final-20261009",
+    "result": "COMPLETED",
+    "source_tree_sha256": "783b0046725e87fe987ba4843f7077322645ff1576c6a88e36b3a33ea3abbb53",
+    "scope": "Fresh eleven-task CPU smoke before the final inherited-only local report detection fix; final-source recovery integration separately verified"
+  },
+  "tower": {
+    "application_unchanged": true,
+    "upstream_commit": "356861e5b83cd9e162fb39727604e1bc52bcf5a9",
+    "reports": 6,
+    "native_pages": 128,
+    "all_reports_complete": true,
+    "proof": "results/frontier-recovery-validation/tower-validation.json"
+  },
+  "limitations": [
+    "No native Slurm submission or physical CUDA execution was performed in the cloud.",
+    "CPU smoke ran alongside correctness tests and does not measure isolated performance.",
+    "Smoke scientific negatives/NA remain preserved; this change establishes neither model superiority nor full-cohort outcomes.",
+    "Partitioning preserves scope and bounded work but cannot guarantee future hardware walltime."
+  ],
+  "repeat_recovery": {
+    "result": "COMPLETED",
+    "command": "bash scripts/frontier_local.sh --smoke --recover runs/frontier-recovery-release-20261009 --run-dir runs/frontier-recovery-repeat-release-20261009",
+    "inherited_stages": 7,
+    "retrained_models": 0,
+    "repeated_confirmation_parts": 0,
+    "new_stages": [
+      "confirm",
+      "scaling",
+      "policy",
+      "report"
+    ],
+    "original_confirmation_rows_preserved_verbatim": 496,
+    "coverage": {
+      "expected_parts": 2,
+      "verified_parts": 2,
+      "aggregate_verified": true,
+      "partial_endpoints": 0,
+      "scientific_outcome": "MERGED_VERIFIED"
+    },
+    "proof": "results/frontier-recovery-validation/repeat-recovery-integration.json"
+  },
+  "uploaded_native_origin_pin_checks": {
+    "run": "fedora-frontier-20261008T074825778188Z",
+    "scientific_source_matches": true,
+    "controller_source_matches": true,
+    "scope": "Read-only metadata check; not native validation of this change"
+  }
+}

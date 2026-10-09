@@ -59,10 +59,10 @@ def sealed_stage(tmp_path, monkeypatch):
     # Unit-isolate the wrapper's seal from the numerical engine's independent
     # artifact verifier. This fixture never supplies scientific success evidence.
     engine = ModuleType("tdn.analysis.frontier.engine")
-    engine.verify_science = lambda protocol, path: {"fixture": "science verifier isolated"}
+    engine.verify_science = lambda protocol, path, **kwargs: {"stage": "audit", "source_tree_sha256": "source"}
     monkeypatch.setitem(sys.modules, engine.__name__, engine)
     protocol = {"profile": "smoke", "fixture": "wrapper provenance only"}
-    execution = {"protocol_sha256": cli.digest(protocol), "software": {"source_tree_sha256": "source"}}
+    execution = {"stage": "audit", "protocol_sha256": cli.digest(protocol), "software": {"source_tree_sha256": "source"}}
     for name, payload in (("execution.json", execution), ("protocol.json", protocol),
                           ("stage.json", {"status": "COMPLETED"}), ("science_manifest.json", {"fixture": True})):
         (tmp_path / name).write_text(json.dumps(payload))
@@ -104,4 +104,16 @@ def test_execution_seal_is_not_interchangeable_with_earlier_programs(sealed_stag
     seal["schema"] = "tdn.roadmap/v1"
     (path / "workflow-seal.json").write_text(json.dumps(seal))
     with pytest.raises(ValueError, match="protocol differs"):
+        cli.verify_execution(path, protocol)
+
+
+@pytest.mark.parametrize("field,value", [("stage", "confirm"), ("confirmation_partition", {"shard_id": "confirm-part-000"}),
+                                      ("software", {"source_tree_sha256": "different"})])
+def test_resealed_wrapper_cannot_change_scientific_identity(sealed_stage, field, value):
+    path, protocol = sealed_stage
+    execution = json.loads((path / "execution.json").read_text())
+    execution[field] = value
+    (path / "execution.json").write_text(json.dumps(execution))
+    cli.seal_execution(path, protocol)
+    with pytest.raises(ValueError, match="scientific scope"):
         cli.verify_execution(path, protocol)

@@ -24,7 +24,7 @@ def handlers(monkeypatch):
     monkeypatch.setattr(engine, "software_metadata", lambda: {"source_tree_sha256": SOURCE})
     calls = []
 
-    def record(ctx, *, confirmation=None):
+    def record(ctx, *, confirmation=None, partition=None, shard_dirs=None):
         calls.append((ctx.stage, confirmation, tuple(ctx.prerequisites)))
         blocked = ctx.stage == "policy"
         ctx.record("unit-dispatch-" + ctx.stage, ["G5" if blocked else "G1"],

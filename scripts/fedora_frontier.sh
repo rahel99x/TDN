@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Nine bounded research stages on the explicit Fedora desktop Slurm profile.
+# Nine scientific stages with bounded confirmation parts and explicit recovery.
 set -euo pipefail
 root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 if [[ $# == 0 ]]; then set -- plan; fi

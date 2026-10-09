@@ -27,7 +27,7 @@ def _inside(value):
     return path.resolve()
 
 
-def _seal(protocol, path, stage, prerequisites, source):
+def _seal(protocol, path, stage, prerequisites, source, confirmation_partition=None):
     files = {}
     for file in sorted(path.rglob("*")):
         if file.is_symlink():
@@ -37,12 +37,14 @@ def _seal(protocol, path, stage, prerequisites, source):
     manifest = dict(schema="tdn.frontier-science-manifest/v1", stage=stage,
         protocol_sha256=digest(protocol), source_tree_sha256=source,
         prerequisites=prerequisites, artifacts=files)
+    if confirmation_partition is not None:
+        manifest["confirmation_partition"] = confirmation_partition
     write_json(path / MANIFEST, manifest)
     (path / "COMPLETED").write_text(digest(manifest) + "\n")
     return manifest
 
 
-def verify_science(protocol, path):
+def verify_science(protocol, path, *, confirmation_partition=None):
     validate_protocol(protocol)
     path = _inside(path)
     manifest = json.loads((path / MANIFEST).read_text())
@@ -50,6 +52,13 @@ def verify_science(protocol, path):
         raise ValueError("Frontier prerequisite protocol or manifest differs")
     if manifest.get("stage") not in STAGES:
         raise ValueError("Frontier manifest names an undeclared stage")
+    if manifest.get("confirmation_partition") != confirmation_partition:
+        raise ValueError("A confirmation partition cannot satisfy a full-stage prerequisite")
+    if confirmation_partition is not None:
+        from .partition import validate_partition
+        validate_partition(protocol, confirmation_partition)
+        if manifest["stage"] != "confirm":
+            raise ValueError("Only confirmation may declare an execution partition")
     if (path / "COMPLETED").read_text().strip() != digest(manifest):
         raise ValueError("Frontier completion marker differs from its science seal")
     for required in ("summary.json", "protocol.json", "rows.jsonl", "rows.json", "review.csv", "review.md", "summary.txt"):
@@ -90,7 +99,32 @@ def verify_science(protocol, path):
     if manifest["stage"] == "policy":
         from .policy import validate_policy_artifacts
         validate_policy_artifacts(path)
+    if manifest["stage"] == "confirm" and (confirmation_partition is not None or "confirmation_scope.json" in manifest["artifacts"]):
+        from .confirmation import validate_confirmation_coverage
+        validate_confirmation_coverage(path, protocol, confirmation_partition)
+        scope = json.loads((path / "confirmation_scope.json").read_text())
+        binding = scope.get("binding", {})
+        if (binding.get("source_tree_sha256") != manifest["source_tree_sha256"]
+                or binding.get("prerequisites") != manifest.get("prerequisites")
+                or scope.get("measurement_device") != summary.get("device")):
+            raise ValueError("Confirmation scope source, prerequisites or device differs from its scientific seal")
     return manifest
+
+
+def recovery_context_for_report(ctx):
+    """Return a freshly verified, narrowly authorized source transition."""
+    if not getattr(ctx, "recovery", None):
+        return {}
+    from .recovery import verify_recovery
+    site = None
+    if os.environ.get("TDN_EXECUTION_MODE") == "desktop-slurm":
+        from tdn.runtime.desktop_slurm import load_profile
+        site = load_profile()
+    paths = verify_recovery(ctx.recovery, ctx.protocol, software_metadata(), site)
+    for label, path in paths.items():
+        if label in ctx.prerequisites and Path(ctx.prerequisites[label]).resolve() != path.resolve():
+            raise ValueError("Recovery source authorization belongs to another prerequisite path")
+    return ctx.recovery
 
 
 def _aggregate(ctx):
@@ -98,10 +132,17 @@ def _aggregate(ctx):
     return run(ctx)
 
 
-def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=None):
+def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=None,
+              confirmation_partition=None, confirmation_shards=None, recovery=None):
     validate_protocol(protocol)
     if stage not in STAGES or device not in ("cpu", "cuda"):
         raise ValueError("Invalid frontier stage or device")
+    if confirmation_partition is not None or confirmation_shards is not None:
+        if stage != "confirm" or (confirmation_partition is not None and confirmation_shards is not None):
+            raise ValueError("Confirmation execution must be one partition or one complete merge")
+    if confirmation_partition is not None:
+        from .partition import validate_partition
+        confirmation_partition = validate_partition(protocol, confirmation_partition)
     if protocol["profile"] == "full":
         if os.environ.get("TDN_EXECUTION_MODE") != "desktop-slurm":
             raise ValueError("Full fresh confirmation requires the native allocated Fedora workflow")
@@ -128,13 +169,28 @@ def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=N
             raise ValueError("Stage and prerequisite science directories must be separate")
     software = software_metadata()
     source = software["source_tree_sha256"]
+    inherited = {}
+    if recovery is not None:
+        from .recovery import verify_recovery, allowed_stage_sources
+        site = None
+        if os.environ.get("TDN_EXECUTION_MODE") == "desktop-slurm":
+            from tdn.runtime.desktop_slurm import load_profile
+            site = load_profile()
+        inherited_paths = verify_recovery(recovery, protocol, software, site)
+        if stage in inherited_paths:
+            raise ValueError("Recovery must reuse completed stages, not rerun them")
+        for label, prior in inherited_paths.items():
+            if label in prerequisites and prerequisites[label] != prior.resolve():
+                raise ValueError("Recovery does not authorize this prerequisite path")
+        inherited = allowed_stage_sources(recovery)
     prior_hashes = {}
     if stage != "report":
         for label in STAGES[:STAGES.index(stage)]:
             if label not in prerequisites:
                 raise ValueError(f"Missing required stage {label}")
             manifest = verify_science(protocol, prerequisites[label])
-            if manifest["stage"] != label or manifest["source_tree_sha256"] != source:
+            expected_source = inherited.get(label, {}).get("source_tree_sha256", source)
+            if manifest["stage"] != label or manifest["source_tree_sha256"] != expected_source:
                 raise ValueError("Prerequisite stage/source differs")
             if manifest.get("prerequisites") != prior_hashes:
                 raise ValueError("Prerequisites belong to different frontier lineages")
@@ -142,6 +198,11 @@ def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=N
     start = time.monotonic()
     budget = _RunBudget(protocol["budgets"][stage]["seconds"], stop, device)
     ctx = Context(protocol, stage, path, prerequisites, device, budget)
+    ctx.recovery = recovery
+    ctx.recovery_stage_paths = {key: Path(value["path"]) for key, value in inherited.items()}
+    ctx.recovery_stage_sources = {key: value["source_tree_sha256"] for key, value in inherited.items()}
+    ctx.confirmation_partition = confirmation_partition
+    ctx.confirmation_shards = confirmation_shards
     try:
         if stage == "audit":
             from .measurement import run_audit
@@ -154,7 +215,8 @@ def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=N
             extras = prepare(ctx, confirmation=stage == "confirm_prepare")
         elif stage in ("train", "confirm"):
             from . import neural
-            extras = getattr(neural, stage)(ctx)
+            extras = (neural.confirm(ctx, partition=confirmation_partition, shard_dirs=confirmation_shards)
+                      if stage == "confirm" else neural.train(ctx))
         elif stage == "scaling":
             from .scaling import run
             extras = run(ctx)
@@ -172,6 +234,8 @@ def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=N
             raise ValueError("Executable source changed during the stage")
         if json.loads((path / "protocol.json").read_text()) != protocol:
             raise ValueError("Scientific protocol changed during the stage")
+        if recovery is not None:
+            recovery_context_for_report(ctx)
         for label, expected in prior_hashes.items():
             verify_science(protocol, prerequisites[label])
             if file_digest(prerequisites[label] / MANIFEST) != expected:
@@ -192,7 +256,7 @@ def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=N
         if stage == "report" and (path / "gate_summary.json").exists():
             text += "\nGate assessments: " + str(path / "gate_summary.json") + "\n"
         (path / "summary.txt").write_text(text)
-        _seal(protocol, path, stage, prior_hashes, source)
+        _seal(protocol, path, stage, prior_hashes, source, confirmation_partition)
         return summary
     except BaseException as error:
         verdicts = write_reviews(path, ctx.rows)

@@ -5,7 +5,7 @@ set -euo pipefail
 [[ "${TDN_EXECUTION_MODE:-}" == desktop-slurm ]] || { printf 'Expected explicit desktop-slurm mode\n' >&2; exit 2; }
 [[ "$TDN_REPO_ROOT" != /home1/aadaniel/projects/TDN ]] || { printf 'Use the separate CARC workflow\n' >&2; exit 2; }
 [[ -n "${SLURM_JOB_ID:-}" ]] || { printf 'Worker requires an actual Slurm allocation\n' >&2; exit 2; }
-case "$TDN_FRONTIER_STAGE" in audit|screen|prepare|train|confirm_prepare|confirm|scaling|policy|report) ;; *) exit 2 ;; esac
+case "$TDN_FRONTIER_STAGE" in audit|screen|prepare|train|confirm_prepare|confirm|confirm-part-[0-9][0-9][0-9]|scaling|policy|report) ;; *) exit 2 ;; esac
 [[ "$TDN_FRONTIER_CPUS" =~ ^[1-8]$ ]] || { printf 'Invalid stage CPU request\n' >&2; exit 2; }
 cd -- "$TDN_REPO_ROOT"
 export TDN_PROJECT_ROOT="$TDN_REPO_ROOT" PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1
@@ -21,7 +21,7 @@ export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMEXPR_NUM_TH
 "$TDN_REPO_ROOT/.venv/bin/python" -c 'from tdn.runtime.storage import configure_storage; configure_storage()'
 if [[ "${1:-}" != --task ]]; then
     gres=none
-    case "$TDN_FRONTIER_STAGE" in train|confirm|policy|scaling) gres="${TDN_FEDORA_GPU_GRES:?}" ;; esac
+    case "$TDN_FRONTIER_STAGE" in train|confirm|confirm-part-[0-9][0-9][0-9]|policy|scaling) gres="${TDN_FEDORA_GPU_GRES:?}" ;; esac
     exec srun --ntasks=1 --cpus-per-task="$TDN_FRONTIER_CPUS" --unbuffered --export=ALL --gres="$gres" \
         bash "$TDN_REPO_ROOT/scripts/frontier_worker.sh" --task
 fi

@@ -54,6 +54,229 @@ def _gzip_json(path, value):
             zipped.write(json.dumps(value, separators=(',', ':'), allow_nan=False).encode())
 
 
+def _verified_recovery(ctx):
+    """Engine validation is repeated before mixed-source evidence is credited."""
+    if not getattr(ctx, 'recovery', None):
+        return {}
+    from .engine import recovery_context_for_report
+    bridge = recovery_context_for_report(ctx)
+    return {**bridge, 'verified_stage_sources': dict(getattr(ctx, 'recovery_stage_sources', {}))}
+
+
+def _expected_source(stage, path, current_source, recovery):
+    inherited = recovery.get('stage_paths', {})
+    if stage not in inherited:
+        return current_source
+    if Path(inherited[stage]).resolve() != Path(path).resolve():
+        raise ValueError('Inherited stage differs from the verified recovery bridge')
+    return recovery.get('verified_stage_sources', {}).get(stage, recovery['origin_source_tree_sha256'])
+
+
+def _physical_stages(ctx, root):
+    from .partition import plan_shards
+    parts = [part['shard_id'] for part in plan_shards(ctx.protocol)]
+    # A historical unpartitioned workflow must not acquire imaginary allocations.
+    manifest = root / 'frontier-workflow.json'
+    workflow = _read(manifest) if manifest.is_file() else {}
+    inherited = (getattr(ctx, 'recovery', None) or {}).get('stage_paths', {})
+    inherited_here = root.resolve() == ctx.path.parent.resolve() and any(name in inherited for name in parts)
+    partitioned = workflow.get('execution_version') == 2 or inherited_here or any((root / name).is_dir() for name in parts)
+    return (*STAGES[:5], *(parts if partitioned else ()), *STAGES[5:], 'report')
+
+
+def _verify_part_wrapper(path, protocol, source, partition):
+    """An available native wrapper must bind the exact physical part."""
+    from tdn.research.protocol import digest
+    execution_path = path / 'execution.json'
+    if not execution_path.is_file():
+        if protocol['profile'] == 'full':
+            raise ValueError('Native full confirmation part has no execution wrapper')
+        return
+    execution = _read(execution_path); stage = _read(path / 'stage.json')
+    seal = _read(path / 'workflow-seal.json')
+    names = ('execution.json', 'protocol.json', 'stage.json', 'science_manifest.json')
+    if (seal.get('schema') != 'tdn.frontier/v1' or seal.get('schema_version') != 1
+            or seal.get('protocol_sha256') != digest(protocol) or set(seal.get('files', {})) != set(names)):
+        raise ValueError('Confirmation part wrapper seal differs')
+    for name in names:
+        if seal['files'][name] != hashlib.sha256((path / name).read_bytes()).hexdigest():
+            raise ValueError('Confirmation part wrapper was modified')
+    expected = {'stage': 'confirm', 'profile': protocol['profile'], 'protocol_sha256': digest(protocol)}
+    if (any(execution.get(key) != value or stage.get(key) != value for key, value in expected.items())
+            or stage.get('status') != 'COMPLETED'
+            or execution.get('confirmation_partition') != partition
+            or execution.get('physical_stage') != partition['shard_id']
+            or execution.get('software', {}).get('source_tree_sha256') != source):
+        raise ValueError('Confirmation part wrapper identity, partition or source differs')
+
+
+def _collect_parts(ctx, output, verifier, current_source, recovery=None):
+    """Parts are visible diagnostics, never a substitute for merged gate evidence."""
+    from .partition import plan_shards
+    from .core import validate_row
+    parts = plan_shards(ctx.protocol)
+    recovery = recovery or {}
+    if not any(name.startswith('confirm-part-') for name in _physical_stages(ctx, ctx.path.parent)):
+        return
+    merged = output['stage_status'].get('confirm', {}).get('status') == 'VERIFIED'
+    output['confirmation_parts'] = []
+    output['partial_confirmation'] = []
+    output['partial_rows'] = []
+    output['unsealed_confirmation'] = []
+    for part in parts:
+        name = part['shard_id']; path = Path(recovery.get('stage_paths', {}).get(name, ctx.path.parent / name))
+        record = {'physical_stage': name, 'logical_stage': 'confirm', 'parent_ids': part['parent_ids'],
+                  'status': 'MISSING_OR_INVALID', 'scientific_credit': False, 'rows': 0,
+                  'scope': 'Execution partition; complete confirmation requires the verified aggregate'}
+        try:
+            manifest = verifier(ctx.protocol, path, confirmation_partition=part)
+            scope = _read(path / 'confirmation_scope.json')
+            if (manifest.get('stage') != 'confirm' or manifest.get('source_tree_sha256') != current_source
+                    or scope.get('mode') != 'partition' or scope.get('partition') != part
+                    or scope.get('status') != 'COMPLETED'):
+                raise ValueError('Confirmation part identity, source or completion differs')
+            expected_prior = {stage: output['stage_status'][stage]['manifest_sha256'] for stage in STAGES[:5]}
+            if manifest.get('prerequisites') != expected_prior:
+                raise ValueError('Confirmation part lineage differs from the verified prerequisites')
+            _verify_part_wrapper(path, ctx.protocol, current_source, part)
+            rows = [validate_row(row) for row in _read(path / 'rows.json')['rows']]
+            values = _rows(_read(path / 'confirmation_rows.json'))
+            if any(row.get('parent_id') not in part['parent_ids'] for row in values):
+                raise ValueError('Confirmation endpoint falls outside its execution partition')
+            record.update(status='VERIFIED_PARTITION', rows=len(rows), endpoints=len(values),
+                          manifest_sha256=hashlib.sha256((path / 'science_manifest.json').read_bytes()).hexdigest(),
+                          represented_by_aggregate=merged)
+            if not merged:
+                output['partial_rows'].extend({'physical_stage': name, 'row': row,
+                    'scientific_credit': False} for row in rows)
+                output['partial_confirmation'].extend({**row, 'physical_stage': name,
+                    'evidence_scope': 'PARTIAL_COVERAGE_ONLY'} for row in values)
+            output['sources'].append({'stage': name, 'path': str(path / 'confirmation_rows.json'),
+                'sha256': hashlib.sha256((path / 'confirmation_rows.json').read_bytes()).hexdigest(),
+                'rows': len(values), 'scope': 'Partition source; canonical merged confirmation is counted once'})
+        except (OSError, KeyError, ValueError, TypeError) as error:
+            record['reason'] = str(error)
+            # Atomic complete groups survive a timeout. They are forensic
+            # diagnostics only and are never fed to gate scoring or a resume.
+            checkpoints = [] if path.is_symlink() or (path / 'complete-groups').is_symlink() else sorted((path / 'complete-groups').glob('*.json'))
+            for checkpoint in checkpoints:
+                try:
+                    if checkpoint.is_symlink() or checkpoint.stat().st_size > 64 << 20:
+                        raise ValueError('Forensic checkpoint must be a bounded regular file')
+                    group = _read(checkpoint)
+                    if group.get('schema') != 'tdn.frontier-confirmation-group/v1':
+                        raise ValueError('Unknown forensic group schema')
+                    values = group.get('rows', [])
+                    if not isinstance(values, list) or any(row.get('parent_id') not in part['parent_ids'] for row in values):
+                        raise ValueError('Forensic group parent differs from partition')
+                    output['unsealed_confirmation'].extend({**row, 'physical_stage': name,
+                        'evidence_scope': 'UNSEALED_FORENSIC_ONLY', 'scientific_credit': False} for row in values)
+                    output['sources'].append({'stage': name, 'path': str(checkpoint),
+                        'sha256': hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
+                        'rows': len(values), 'scope': 'Unsealed forensic checkpoint; no scientific credit or resumption'})
+                except (OSError, ValueError, TypeError, AttributeError) as partial_error:
+                    record.setdefault('forensic_errors', []).append(str(partial_error))
+        output['confirmation_parts'].append(record)
+    output['confirmation_partition_coverage'] = {
+        'expected_parts': len(parts),
+        'verified_parts': sum(row['status'] == 'VERIFIED_PARTITION' for row in output['confirmation_parts']),
+        'aggregate_verified': merged,
+        'partial_endpoints': len(output['partial_confirmation']),
+        'scientific_outcome': 'MERGED_VERIFIED' if merged else 'NA_INCOMPLETE_CONFIRMATION'}
+
+
+def _collect_execution_telemetry(ctx, output, recovery):
+    """Retain every allocation/test occurrence, separating inherited sunk costs."""
+    roots = [(ctx.path.parent, 'current_workflow')]
+    if recovery:
+        origin = Path(recovery['origin_run_dir'])
+        if origin.resolve() == ctx.path.parent.resolve():
+            raise ValueError('Recovery accounting requires a distinct origin coordinator')
+        inherited_roots = [origin, *(Path(path).parent for path in recovery.get('stage_paths', {}).values())]
+        seen_roots = {ctx.path.parent.resolve()}
+        for inherited in inherited_roots:
+            if inherited.resolve() not in seen_roots:
+                roots.append((inherited, 'inherited_sunk')); seen_roots.add(inherited.resolve())
+        output['recovery'] = {key: recovery[key] for key in
+            ('origin_run_dir', 'origin_source_tree_sha256', 'stage_paths')}
+    tests = []; test_sources = []; snapshots = []
+    costs = {(row['source_run_dir'], row['stage']): row for row in output['costs']}
+    for root, cost_scope in roots:
+        stage_names = _physical_stages(ctx, root)
+        accounting = root / 'state' / 'scheduler-accounting.json'
+        try:
+            snapshot = _read(accounting) if accounting.is_file() and not accounting.is_symlink() else {'records': [], 'status': 'UNAVAILABLE'}
+        except (OSError, ValueError, TypeError) as error:
+            snapshot = {'records': [], 'status': 'INVALID', 'reason': str(error)}
+        snapshot = {**snapshot, 'source_run_dir': str(root), 'cost_scope': cost_scope}
+        snapshots.append(snapshot)
+        allocations = defaultdict(list)
+        for row in snapshot.get('records', []):
+            if row.get('record_kind') == 'allocation':
+                allocations[row.get('workflow_stage')].append(row)
+        for stage in stage_names:
+            identity = (str(root), stage)
+            summary_path = root / stage / 'summary.json'
+            summary = {}
+            if summary_path.is_file() and not summary_path.is_symlink() and not summary_path.parent.is_symlink():
+                try:
+                    summary = _read(summary_path)
+                except (OSError, ValueError, TypeError):
+                    summary = {'status': 'UNREADABLE'}
+            records = allocations.get(stage, [])
+            if identity not in costs and not summary and not records:
+                continue
+            cost = costs.setdefault(identity, {'stage': stage, 'logical_stage': 'confirm' if stage.startswith('confirm-part-') else stage,
+                'source_run_dir': str(root), 'cost_scope': cost_scope,
+                'numerical_seconds': summary.get('elapsed_seconds'),
+                'numerical_status': summary.get('status', 'UNAVAILABLE'),
+                'budget_seconds': ctx.protocol.get('budgets', {}).get('confirm' if stage.startswith('confirm-part-') else stage, {}).get('seconds'),
+                'monetary_cost': None, 'allocation_seconds': None,
+                'scope': 'Descriptive execution cost only; failed or inherited runs do not add scientific evidence'})
+            terminal = records[0] if len(records) == 1 and records[0].get('terminal_state') is True else {}
+            cost.update(allocation_seconds=terminal.get('elapsed_seconds'),
+                allocated_cpu_seconds=terminal.get('allocated_cpu_seconds'),
+                allocation_job_id=terminal.get('allocation_job_id'),
+                accounting_collected_at=snapshot.get('collected_at'),
+                accounting_status='DUPLICATE_ALLOCATION_INVALID' if len(records) > 1 else 'TERMINAL' if terminal else 'UNAVAILABLE_OR_RUNNING')
+        for stage in stage_names:
+            path = root / 'reporter-tests' / stage / 'tests.xml'
+            if not path.is_file():
+                continue
+            try:
+                if path.is_symlink() or path.stat().st_size > 16 << 20:
+                    raise ValueError('Native JUnit must be a bounded regular file')
+                raw = path.read_bytes()
+                if b'<!DOCTYPE' in raw.upper():
+                    raise ValueError('JUnit document declarations are refused')
+                tree = ET.fromstring(raw)
+                occurrences = []
+                for index, case in enumerate(tree.iter('testcase')):
+                    result = 'FAILED' if case.find('failure') is not None or case.find('error') is not None else 'SKIPPED' if case.find('skipped') is not None else 'PASSED'
+                    seconds = case.get('time'); seconds = float(seconds) if seconds else None
+                    occurrences.append({'stage': stage, 'source_run_dir': str(root), 'cost_scope': cost_scope,
+                        'occurrence': index, 'name': case.get('name'), 'classname': case.get('classname'),
+                        'status': result, 'seconds': seconds if finite(seconds) else None})
+                tests.extend(occurrences)
+                test_sources.append({'path': str(path), 'sha256': hashlib.sha256(raw).hexdigest(),
+                    'stage': stage, 'cost_scope': cost_scope, 'status': 'READ_COMPLETE'})
+            except (OSError, ValueError, ET.ParseError) as error:
+                test_sources.append({'path': str(path), 'stage': stage, 'status': 'INVALID_OR_INCOMPLETE', 'reason': str(error)})
+    output['costs'] = list(costs.values())
+    output['scheduler_accounting'] = snapshots[0]
+    output['scheduler_accounting_sources'] = snapshots
+    output['software_tests'] = tests
+    output['software_test_sources'] = test_sources
+    _write(ctx.path / 'accounting-snapshot.json', {'sources': snapshots,
+        'scope': 'Allocation rows only contribute totals. Origin sunk costs are separate from current allocations; no monetary tariff is assumed.'})
+    _write(ctx.path / 'junit-snapshot.json', {'occurrences': tests, 'sources': test_sources,
+        'scope': 'Every native reporter-test occurrence, including inherited runs and physical confirmation parts; never independent scientific observations'})
+    for name in ('accounting-snapshot.json', 'junit-snapshot.json'):
+        output.setdefault('sources', []).append({'path': str(ctx.path / name),
+            'sha256': hashlib.sha256((ctx.path / name).read_bytes()).hexdigest(),
+            'scope': 'Exact report-creation telemetry snapshot; inherited and current costs remain separate'})
+
+
 def collect(ctx, verifier=None):
     """Only verified sources may contribute affirmative scientific analytics."""
     if verifier is None:
@@ -68,6 +291,7 @@ def collect(ctx, verifier=None):
               'policy_summaries': [], 'scaling_comparisons': [],
               'sources': [], 'costs': [], 'protocol': ctx.protocol}
     current_source = software_metadata()['source_tree_sha256']
+    recovery = _verified_recovery(ctx)
     execution_path = ctx.path / 'execution.json'
     lineage = _read(execution_path).get('prerequisites', {}) if execution_path.exists() else {}
     names = {'learning_curves.jsonl': 'learning_curves', 'catalog.json': 'catalog',
@@ -87,7 +311,8 @@ def collect(ctx, verifier=None):
             if lineage.get(stage, {}).get('verification') in ('INVALID', 'MISSING'):
                 raise ValueError('Worker rejected prerequisite lineage')
             manifest = verifier(ctx.protocol, path)
-            if manifest.get('stage') != stage or manifest.get('source_tree_sha256') != current_source:
+            expected_source = _expected_source(stage, path, current_source, recovery)
+            if manifest.get('stage') != stage or manifest.get('source_tree_sha256') != expected_source:
                 raise ValueError('Prerequisite stage or executable source differs')
             preceding = STAGES[:STAGES.index(stage)]
             if set(prior_hashes) != set(preceding) or manifest.get('prerequisites', {}) != prior_hashes:
@@ -109,7 +334,7 @@ def collect(ctx, verifier=None):
                 expected = {'stage': stage, 'profile': ctx.protocol['profile'], 'protocol_sha256': digest(ctx.protocol)}
                 if any(execution.get(k) != v or record.get(k) != v for k,v in expected.items()):
                     raise ValueError('Wrapper stage/profile/protocol differs from scientific identity')
-                if execution.get('software', {}).get('source_tree_sha256') != current_source:
+                if execution.get('software', {}).get('source_tree_sha256') != expected_source:
                     raise ValueError('Wrapper executable source differs')
             raw = _read(path / 'rows.json')
             rows = [validate_row(row) for row in raw['rows']]
@@ -121,6 +346,8 @@ def collect(ctx, verifier=None):
             output['costs'].append({'stage': stage, 'numerical_seconds': summary.get('elapsed_seconds'),
                 'budget_seconds': ctx.protocol.get('budgets', {}).get(stage, {}).get('seconds'),
                 'allocation_seconds': None, 'monetary_cost': None,
+                'cost_scope': 'inherited_sunk' if stage in recovery.get('stage_paths', {}) else 'current_workflow',
+                'source_run_dir': str(path.parent),
                 'scope': 'Numerical stage time; allocation accounting and tariffs not available here'})
             for name, key in names.items():
                 source = path / name
@@ -149,45 +376,8 @@ def collect(ctx, verifier=None):
             for key in set(output) - previous_keys:
                 del output[key]
             output['stage_status'][stage] = {'status': 'MISSING_OR_INVALID', 'experiments': 0, 'reason': str(error)}
-    accounting = ctx.path.parent / 'state' / 'scheduler-accounting.json'
-    if accounting.is_file():
-        snapshot = _read(accounting)
-        _write(ctx.path / 'accounting-snapshot.json', snapshot)
-        output['scheduler_accounting'] = snapshot
-        output['sources'].append({'path': str(ctx.path / 'accounting-snapshot.json'),
-            'sha256': hashlib.sha256((ctx.path / 'accounting-snapshot.json').read_bytes()).hexdigest(),
-            'scope': 'Sealed snapshot consumed at report creation; collect may later refresh workflow accounting'})
-        allocations = {r['workflow_stage']: r for r in snapshot.get('records', [])
-                       if r.get('record_kind') == 'allocation' and r.get('terminal_state') is True}
-        for row in output['costs']:
-            allocation = allocations.get(row['stage'], {})
-            row['allocation_seconds'] = allocation.get('elapsed_seconds')
-            row['allocated_cpu_seconds'] = allocation.get('allocated_cpu_seconds')
-            row['accounting_collected_at'] = snapshot.get('collected_at')
-    tests=[]; test_sources=[]
-    for stage in (*STAGES,'report'):
-        path=ctx.path.parent/'reporter-tests'/stage/'tests.xml'
-        if not path.is_file(): continue
-        try:
-            if path.is_symlink() or path.stat().st_size > 16 << 20:
-                raise ValueError('Native JUnit must be a bounded regular file')
-            raw=path.read_bytes()
-            if b'<!DOCTYPE' in raw.upper(): raise ValueError('JUnit document declarations are refused')
-            tree=ET.fromstring(raw)
-            occurrences=[]
-            for index,case in enumerate(tree.iter('testcase')):
-                result='FAILED' if case.find('failure') is not None or case.find('error') is not None else 'SKIPPED' if case.find('skipped') is not None else 'PASSED'
-                seconds=case.get('time'); seconds=float(seconds) if seconds else None
-                occurrences.append({'stage':stage,'occurrence':index,'name':case.get('name'),
-                    'classname':case.get('classname'),'status':result,'seconds':seconds if finite(seconds) else None})
-            tests.extend(occurrences)
-            test_sources.append({'path':str(path),'sha256':hashlib.sha256(raw).hexdigest(),'stage':stage,'status':'READ_COMPLETE'})
-        except (OSError, ValueError, ET.ParseError) as error:
-            test_sources.append({'path':str(path),'stage':stage,'status':'INVALID_OR_INCOMPLETE','reason':str(error)})
-    output['software_tests']=tests
-    output['software_test_sources']=test_sources
-    _write(ctx.path/'junit-snapshot.json',{'occurrences':tests,'sources':test_sources,
-        'scope':'Every native reporter-test occurrence; repeated GPU cases across allocations are separate executions, never independent scientific observations'})
+    _collect_parts(ctx, output, verifier, current_source, recovery)
+    _collect_execution_telemetry(ctx, output, recovery)
     return output
 
 
@@ -347,15 +537,42 @@ def build_figures(data, output, budget=None):
             fig, ax = plt.subplots(figsize=(12, 6)); ax.set_title(title); draw(ax); save(title, fig, note)
 
         def costs(ax):
-            v = [r for r in data['costs'] if finite(r.get('numerical_seconds'))]
+            v = [r for r in data['costs'] if finite(r.get('numerical_seconds')) or finite(r.get('allocation_seconds'))]
             if not v: _blank(ax); return
-            x = np.arange(len(v)); ax.bar(x-.24, [r['numerical_seconds'] for r in v], .24, label='measured stage seconds')
+            x = np.arange(len(v))
+            numerical = [(i, r['numerical_seconds']) for i, r in enumerate(v) if finite(r.get('numerical_seconds'))]
+            if numerical: ax.bar([i-.24 for i,_ in numerical], [value for _,value in numerical], .24, label='measured stage seconds')
             ax.bar(x, [r.get('budget_seconds') or 0 for r in v], .24, label='frozen compute ceiling')
             allocation = [(i,r['allocation_seconds']) for i,r in enumerate(v) if finite(r.get('allocation_seconds'))]
             if allocation: ax.bar([i+.24 for i,_ in allocation], [value for _,value in allocation], .24, label='terminal allocation seconds')
-            ax.set_xticks(x, [r['stage'] for r in v], rotation=30); ax.legend(); _label(ax, 'stage', 'seconds')
+            ax.set_xticks(x, [('sunk/' if r.get('cost_scope') == 'inherited_sunk' else '') + r['stage'] for r in v], rotation=60, ha='right'); ax.legend(); _label(ax, 'stage', 'seconds')
         single('Stage compute and frozen budgets', costs,
-               'Terminal allocation rows only, never summed with batch/step rows. Running report job is partial and excluded. Exact accounting snapshot sealed; queue time and tariffs remain NA.')
+               'Each physical allocation appears once; batch/step records are never added. Sunk/origin costs are separate from current work. Failed stage costs remain visible; running report allocation and tariffs remain NA.')
+        def partition_coverage(ax):
+            parts = data.get('confirmation_parts', [])
+            if not parts: _blank(ax, 'NA: no partitioned confirmation allocations in this run'); return
+            x = np.arange(len(parts))
+            ax.bar(x, [row.get('endpoints', 0) for row in parts], color=[
+                COLORS['GOOD'] if row['status'] == 'VERIFIED_PARTITION' else COLORS['NA'] for row in parts])
+            ax.set_xticks(x, [row['physical_stage'] for row in parts], rotation=30)
+            _label(ax, 'physical confirmation allocation', 'sealed endpoint observations')
+            for i, row in enumerate(parts):
+                if row['status'] != 'VERIFIED_PARTITION': ax.text(i, 0, 'NA', ha='center', va='bottom')
+        single('Physical confirmation coverage', partition_coverage,
+               'Partial partition observations are descriptive only. Missing or failed allocations remain NA; G3 requires the verified complete aggregate. Merged scientific rows count once.')
+        def partial_errors(ax):
+            values = data.get('partial_confirmation', []) + data.get('unsealed_confirmation', [])
+            usable = [row for row in values if finite(row.get('error_rms'))]
+            if not usable: _blank(ax, 'NA: no unmerged sealed partial endpoint errors'); return
+            groups = sorted({row.get('physical_stage') for row in usable})
+            for i, group in enumerate(groups):
+                for scope, color in (('PARTIAL_COVERAGE_ONLY', '#407ba1'), ('UNSEALED_FORENSIC_ONLY', COLORS['NA'])):
+                    vals = [row['error_rms'] for row in usable if row.get('physical_stage') == group and row.get('evidence_scope') == scope]
+                    if vals: ax.scatter([i] * len(vals), vals, s=5, alpha=.3, color=color)
+            ax.set_xticks(range(len(groups)), groups, rotation=30)
+            _label(ax, 'physical part (all cases; descriptive only)', 'endpoint RMS error')
+        single('Unmerged partial confirmation diagnostics', partial_errors,
+               'Blue: sealed partial coverage. Gray: unsealed forensic groups (no scientific credit or resumption). All observations remain in chart-data.json.gz. This is not a model ranking, speedup estimate, or complete gate comparison.')
         def verdicts(ax):
             groups = sorted({r['stage'] for r in rows}); bottom = np.zeros(len(groups))
             for verdict in VERDICTS:
@@ -543,11 +760,13 @@ def build_figures(data, output, budget=None):
         def software_tests(ax):
             values=data.get('software_tests',[])
             if not values: _blank(ax,'NA — no native per-stage JUnit artifacts were supplied'); return
-            groups=sorted({r['stage'] for r in values}); bottom=np.zeros(len(groups))
+            label = lambda r: ('sunk/' if r.get('cost_scope') == 'inherited_sunk' else '') + r['stage']
+            groups=sorted({label(r) for r in values}); bottom=np.zeros(len(groups))
             for status,color in (('PASSED',COLORS['GOOD']),('FAILED',COLORS['BAD']),('SKIPPED',COLORS['NA'])):
-                counts=[sum(r['stage']==stage and r['status']==status for r in values) for stage in groups]
+                counts=[sum(label(r)==stage and r['status']==status for r in values) for stage in groups]
                 ax.bar(groups,counts,bottom=bottom,label=status,color=color); bottom+=counts
-            ax.legend();_label(ax,'native allocation stage','software test executions')
+            ax.tick_params(axis='x', labelrotation=60)
+            ax.legend();_label(ax,'native allocation stage (sunk/origin shown separately)','software test executions')
         single('Every native software test execution',software_tests,
                'Repeated cases in different allocations remain separate executions. Skipped tests never count as passed GPU readiness; software correctness is not scientific superiority.')
     manifest = {'schema': 'tdn.frontier-figures/v1', 'profile': data['profile'], 'panels': panels,
@@ -555,6 +774,7 @@ def build_figures(data, output, budget=None):
         'experiment_count': len(rows), 'check_count': len(check_index), 'loss_observations': len(curves),
         'confirmation_endpoints': len(endpoints), 'comparisons': len(comparisons), 'downsampled': False,
         'software_test_executions':len(data.get('software_tests',[])),
+        'confirmation_partition_coverage':data.get('confirmation_partition_coverage'),
         'unavailable_panels_are_na': True, 'sources': data['sources'], 'stage_status': data['stage_status']}
     # A compact overview is an entry point, not a replacement for complete pages.
     fig, axes = plt.subplots(2,3,figsize=(18,11))

@@ -46,11 +46,11 @@ def compatible_software(value):
     return {key: value.get(key) for key in keys}
 
 
-def verify_execution(path, protocol, *, source_tree_sha256=None):
+def verify_execution(path, protocol, *, source_tree_sha256=None, confirmation_partition=None):
     """Bind root-engine science artifacts to immutable worker provenance."""
     from tdn.analysis.frontier.engine import verify_science
     path = Path(path)
-    science = verify_science(protocol, path)
+    science = verify_science(protocol, path, confirmation_partition=confirmation_partition)
     seal = json.loads((path / "workflow-seal.json").read_text())
     if (seal.get("schema") != "tdn.frontier/v1" or seal.get("schema_version") != 1
             or seal.get("protocol_sha256") != digest(protocol)):
@@ -66,6 +66,12 @@ def verify_execution(path, protocol, *, source_tree_sha256=None):
     record = json.loads((path / "stage.json").read_text())
     if record.get("status") != "COMPLETED" or execution.get("protocol_sha256") != digest(protocol):
         raise ValueError("Frontier stage did not complete under its declared protocol")
+    if (execution.get("stage") != science["stage"]
+            or execution.get("software", {}).get("source_tree_sha256") != science["source_tree_sha256"]
+            or execution.get("confirmation_partition") != confirmation_partition):
+        raise ValueError("Frontier execution identity differs from its scientific scope")
+    if confirmation_partition is not None and execution.get("physical_stage") != confirmation_partition["shard_id"]:
+        raise ValueError("Frontier confirmation partition execution identity differs")
     if source_tree_sha256 is not None and execution.get("software", {}).get("source_tree_sha256") != source_tree_sha256:
         raise ValueError("Frontier stage execution source differs")
     return {"science": science, "execution": execution, "seal": seal}
@@ -87,6 +93,9 @@ def main(argv=None):
     parser.add_argument("--prerequisite-dir", action="append", default=[], metavar="STAGE=PATH")
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
     parser.add_argument("--local-root", type=Path)
+    parser.add_argument("--confirm-shard", metavar="ID")
+    parser.add_argument("--confirm-shard-dir", action="append", default=[], metavar="ID=PATH")
+    parser.add_argument("--recovery-manifest", type=Path)
     args = parser.parse_args(argv)
     run_dir = report = record = None
     owned, exit_code = False, 1
@@ -129,21 +138,49 @@ def main(argv=None):
         if mode == "desktop-slurm":
             from tdn.runtime.desktop_slurm import load_profile
             site = load_profile()
+        from tdn.analysis.frontier.partition import get_partition, plan_shards
+        partition = get_partition(protocol, args.confirm_shard) if args.confirm_shard else None
+        shards = {}
+        for value in args.confirm_shard_dir:
+            label, separator, value_path = value.partition("=")
+            if not separator or not value_path or label in shards:
+                raise ValueError("Confirmation parts require unique ID=PATH declarations")
+            get_partition(protocol, label)
+            shards[label] = contained_path(value_path)
+        if (partition is not None or shards) and (args.stage != "confirm" or (partition is not None and shards)):
+            raise ValueError("Select one confirmation part or all parts for a complete merge")
+        if shards and set(shards) != {part["shard_id"] for part in plan_shards(protocol)}:
+            raise ValueError("Confirmation merge requires every declared part exactly once")
+        recovery, recovery_path, recovery_hash, inherited = None, None, None, {}
+        if args.recovery_manifest is not None:
+            from tdn.analysis.frontier.recovery import verify_recovery, allowed_stage_sources, software_identity
+            recovery_path = contained_path(args.recovery_manifest)
+            recovery = json.loads(recovery_path.read_text())
+            verify_recovery(recovery, protocol, software, site)
+            inherited = allowed_stage_sources(recovery)
+            recovery_hash = file_digest(recovery_path)
         paths = {key: contained_path(value) for key, value in parse_prerequisites(args.prerequisite_dir, args.stage).items()}
         candidate = contained_path(args.run_dir)
         if candidate.exists():
             raise ValueError("Preserve prior results; choose a fresh nonexistent stage directory")
+        for label, prior in inherited.items():
+            selected = paths.get(label, shards.get(label))
+            if selected is not None and selected != Path(prior["path"]).resolve():
+                raise ValueError("Recovery authorization does not match the selected prerequisite")
         lineage = {}
         for label in STAGES[:STAGES.index(args.stage)]:
             path = paths[label]
             if candidate == path or candidate.is_relative_to(path) or path.is_relative_to(candidate):
                 raise ValueError("Stage and prerequisite science directories must be separate")
             try:
-                verified = verify_execution(path, protocol, source_tree_sha256=software["source_tree_sha256"])
+                expected_source = inherited.get(label, {}).get("source_tree_sha256", software["source_tree_sha256"])
+                verified = verify_execution(path, protocol, source_tree_sha256=expected_source)
                 execution = verified["execution"]
                 if execution.get("stage") != label or execution.get("execution_mode") != mode:
                     raise ValueError("Prerequisite stage or execution mode differs")
-                if compatible_software(execution.get("software", {})) != compatible_software(software):
+                compatible = (software_identity(execution.get("software", {})) == software_identity(software)
+                              if label in inherited else compatible_software(execution.get("software", {})) == compatible_software(software))
+                if not compatible:
                     raise ValueError("Prerequisite software differs from this execution environment")
                 if site is not None and execution.get("slurm_profile_sha256") != digest(site):
                     raise ValueError("Prerequisite belongs to a different Fedora Slurm profile")
@@ -156,11 +193,28 @@ def main(argv=None):
                     raise
                 lineage[label] = {"run_dir": str(path), "verification": "INVALID" if path.exists() else "MISSING",
                                   "error": f"{type(error).__name__}: {error}"}
+        shard_lineage = {}
+        for label, path in shards.items():
+            if candidate == path or candidate.is_relative_to(path) or path.is_relative_to(candidate):
+                raise ValueError("Aggregate and partition science directories must be separate")
+            checked = verify_execution(path, protocol, source_tree_sha256=software["source_tree_sha256"],
+                                       confirmation_partition=get_partition(protocol, label))
+            part_execution = checked["execution"]
+            if (part_execution.get("execution_mode") != mode or part_execution.get("device") != args.device
+                    or part_execution.get("prerequisites") != lineage
+                    or compatible_software(part_execution.get("software", {})) != compatible_software(software)
+                    or (site is not None and part_execution.get("slurm_profile_sha256") != digest(site))):
+                raise ValueError("Confirmation parts belong to another execution environment or frozen lineage")
+            shard_lineage[label] = {"run_dir": str(path), "workflow_seal_sha256": file_digest(path / "workflow-seal.json")}
         candidate.mkdir(parents=True, exist_ok=False)
         run_dir = candidate
         execution = {"stage": args.stage, "profile": args.profile, "device": args.device, "execution_mode": mode,
             "command": [sys.executable, str(Path(__file__).resolve()), *(sys.argv[1:] if argv is None else argv)],
-            "software": software, "protocol_sha256": digest(protocol), "prerequisites": lineage}
+            "software": software, "protocol_sha256": digest(protocol), "prerequisites": lineage,
+            "confirmation_partition": partition, "physical_stage": args.confirm_shard or args.stage,
+            "confirmation_shards": shard_lineage}
+        if recovery is not None:
+            execution["recovery_manifest"] = {"path": str(recovery_path), "sha256": recovery_hash}
         if os.environ.get("TDN_FRONTIER_PROTOCOL_SHA256"):
             execution["workflow_protocol_sha256"] = os.environ["TDN_FRONTIER_PROTOCOL_SHA256"]
         if site is not None:
@@ -180,7 +234,8 @@ def main(argv=None):
         write_json(run_dir / "stage.json", record)
         emit({"stage_started": 1}, phase="frontier/" + args.stage)
         with StopRequest() as stop:
-            result = run_stage(protocol, args.stage, run_dir, prerequisites=paths, device=args.device, stop=stop)
+            result = run_stage(protocol, args.stage, run_dir, prerequisites=paths, device=args.device, stop=stop,
+                confirmation_partition=partition, confirmation_shards=shards or None, recovery=recovery)
             if stop.requested:
                 raise InterruptedError("Stop requested before sealing frontier evidence")
         if result.get("status") != "COMPLETED":
@@ -193,12 +248,21 @@ def main(argv=None):
             raise RuntimeError("Protocol changed during stage execution")
         if site is not None and digest(load_profile()) != digest(site):
             raise RuntimeError("Fedora Slurm profile changed during stage execution")
+        if recovery is not None:
+            if file_digest(recovery_path) != recovery_hash:
+                raise RuntimeError("Recovery authorization changed during execution")
+            verify_recovery(recovery, protocol, software, site)
         if args.stage != "report":
             for label, path in paths.items():
-                verify_execution(path, protocol, source_tree_sha256=software["source_tree_sha256"])
+                verify_execution(path, protocol, source_tree_sha256=inherited.get(label, {}).get("source_tree_sha256", software["source_tree_sha256"]))
                 if file_digest(path / "workflow-seal.json") != lineage[label]["workflow_seal_sha256"]:
                     raise RuntimeError("A prerequisite changed during execution")
-        verify_science(protocol, run_dir)
+        for label, path in shards.items():
+            verify_execution(path, protocol, source_tree_sha256=software["source_tree_sha256"],
+                             confirmation_partition=get_partition(protocol, label))
+            if file_digest(path / "workflow-seal.json") != shard_lineage[label]["workflow_seal_sha256"]:
+                raise RuntimeError("A confirmation partition changed during aggregation")
+        verify_science(protocol, run_dir, confirmation_partition=partition)
         record.update(status="COMPLETED", elapsed_seconds=time.monotonic() - started)
         write_json(run_dir / "stage.json", record)
         seal_execution(run_dir, protocol)

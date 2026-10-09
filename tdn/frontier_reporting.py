@@ -36,7 +36,7 @@ MAX_CELL_BYTES = 8192
 MAX_OMISSIONS = 128
 PREFIX = ["source_path", "source_record", "source_line", "source_sha256", "row_sha256", "evidence_status", "validation_error"]
 COLUMNS = {
-    "experiments": PREFIX + ["experiment_id", "stage", "mechanisms", "combinations", "status", "device", "profile",
+    "experiments": PREFIX + ["experiment_id", "stage", "physical_stage", "coverage", "mechanisms", "combinations", "status", "device", "profile",
         "verdict", "score_1_100", "raw_verdict", "raw_score_1_100", "gap_verdict", "gap_score_1_100",
         "math_verdict", "math_score_1_100", "evidence_coverage", "parameters", "median_seconds", "wall_seconds",
         "training_seconds", "peak_allocated_bytes", "peak_reserved_bytes", "family", "seed", "grid", "batch_size",
@@ -118,10 +118,18 @@ class Budget:
         return raw
 
 
+def _candidates(root):
+    """Logical stages plus bounded physical confirmation directories."""
+    root = Path(root)
+    parts = sorted(path for path in root.glob("confirm-part-*")
+                   if re.fullmatch(r"confirm-part-[0-9]{3}", path.name))
+    return (root, *(root / stage for stage in STAGES), *parts)
+
+
 def is_frontier_root(root):
     """Recognize only the declared family without importing numerical code."""
     root = Path(root)
-    for candidate in (root, *(root / stage for stage in STAGES)):
+    for candidate in _candidates(root):
         for name, token in (("rows.json", b'"tdn.frontier-rows/v1"'), ("protocol.json", b'"tdn.frontier/v1"'),
                             ("rows.jsonl", b'"tdn.frontier-experiment/v1"')):
             path = candidate / name
@@ -221,7 +229,7 @@ def _manifest_files(manifest):
 def _source(root, report, budget, delegated):
     documents, contents = {}, {}
     for name in ("rows.json", "rows.jsonl", "summary.json", "protocol.json", "science_manifest.json", "COMPLETED",
-                 "workflow-seal.json", "stage.json", "execution.json", "gate_summary.json"):
+                 "workflow-seal.json", "stage.json", "execution.json", "gate_summary.json", "confirmation_scope.json"):
         path = root / name
         if not path.exists() and not path.is_symlink():
             continue
@@ -268,7 +276,7 @@ def _source(root, report, budget, delegated):
             for required in ("rows.json", "summary.json", "protocol.json"):
                 if required not in contents or files.get(required) != hashlib.sha256(contents[required]).hexdigest():
                     raise ValueError(f"{required} differs from or is absent from the science seal")
-            for filename in ("rows.jsonl", "gate_summary.json"):
+            for filename in ("rows.jsonl", "gate_summary.json", "confirmation_scope.json"):
                 if filename in contents and files.get(filename) != hashlib.sha256(contents[filename]).hexdigest():
                     raise ValueError(f"{filename} differs from or is absent from the science seal")
             if "rows.jsonl" in contents and [_decode(line) for line in contents["rows.jsonl"].splitlines() if line] != [r for r, _, _ in rows]:
@@ -312,7 +320,23 @@ def _source(root, report, budget, delegated):
             or len(set(item for item in identities if isinstance(item, str))) != len(identities)):
         status, reason = "INVALID", "Canonical experiment identities are malformed or duplicated"
         budget.omit(source, reason)
-    return rows, {"source_dir": _relative(root, report), "source_path": source, "source_sha256": budget.hashes.get(root / name),
+    scope = documents.get("confirmation_scope.json", {})
+    partition = scope.get("mode") == "partition" or re.fullmatch(r"confirm-part-[0-9]{3}", root.name) is not None
+    if partition and status == "VERIFIED_CANONICAL":
+        from tdn.analysis.frontier.partition import get_partition
+        try:
+            expected = get_partition(documents["protocol.json"], root.name)
+            if (scope.get("schema") != "tdn.frontier-confirmation-scope/v1"
+                    or scope.get("mode") != "partition" or scope.get("partition") != expected
+                    or manifest.get("confirmation_partition") != expected
+                    or scope.get("status") != "COMPLETED" or stage != "confirm"):
+                raise ValueError("Confirmation partition identity differs from the frozen execution plan")
+            status, reason = "VERIFIED_PARTITION", "Sealed execution partition; full confirmation evidence requires a verified aggregate"
+        except (KeyError, ValueError, TypeError) as error:
+            status, reason = "INVALID", str(error)
+            budget.omit(root, reason)
+    return rows, {"physical_stage": root.name if partition else stage,
+        "coverage": "PARTITION_ONLY" if partition else "LOGICAL_STAGE", "source_dir": _relative(root, report), "source_path": source, "source_sha256": budget.hashes.get(root / name),
         "stage": stage, "seal_status": status, "reason": reason, "canonical_rows": len(rows),
         "protocol_sha256": canonical_digest(documents.get("protocol.json")),
         "scientific_outcome": documents.get("summary.json", {}).get("scientific_outcome")}, files, documents
@@ -340,6 +364,7 @@ def _projection(rows, source, budget, now):
         metrics = row.get("metrics") if isinstance(row.get("metrics"), dict) else {}
         config = row.get("effective_config") if isinstance(row.get("effective_config"), dict) else {}
         experiment = {**common, "experiment_id": row.get("experiment_id"), "stage": row.get("stage", source["stage"]),
+            "physical_stage": source.get("physical_stage", source["stage"]), "coverage": source.get("coverage", "LOGICAL_STAGE"),
             "mechanisms": row.get("mechanism_ids", []), "combinations": row.get("combination_ids", []),
             "status": row.get("status"), "device": row.get("device"), "profile": row.get("profile"),
             "raw_verdict": assessment.get("verdict"), "raw_score_1_100": assessment.get("score_1_100"),
@@ -360,6 +385,7 @@ def _projection(rows, source, budget, now):
             item = {**common, **{key: check.get(key) for key in COLUMNS["checks"] if key not in PREFIX},
                 "source_record": pointer + f"/checks/{number}", "experiment_record": pointer,
                 "experiment_id": row.get("experiment_id"), "stage": row.get("stage", source["stage"]),
+            "physical_stage": source.get("physical_stage", source["stage"]), "coverage": source.get("coverage", "LOGICAL_STAGE"),
                 "raw_verdict": check.get("verdict"), "verdict": check.get("verdict") if valid else "NA",
                 "score_1_100": check.get("score_1_100") if valid else 1,
                 "reason_record": pointer + f"/checks/{number}/reason", "proof_status": "NOT_A_PROOF"}
@@ -442,7 +468,7 @@ def publish_frontier_outputs(report_dir, source_dirs, *, delegated_sources=None)
         root = _directory(supplied)
         if root == report or report in root.parents:
             raise ValueError("Frontier science cannot be a report directory or its child")
-        for candidate in (root, *(root / stage for stage in STAGES)):
+        for candidate in _candidates(root):
             if candidate in seen or not candidate.is_dir():
                 continue
             seen.add(candidate)
@@ -453,10 +479,25 @@ def publish_frontier_outputs(report_dir, source_dirs, *, delegated_sources=None)
     budget, delegated = Budget(), delegated_sources if delegated_sources is not None else {}
     tables = {name: [] for name in COLUMNS}
     metric_rows, sources, pages, figures = [], [], [], []
-    for root in roots:
-        rows, source, declared, documents = _source(root, report, budget, delegated)
+    prepared = [(root, *_source(root, report, budget, delegated)) for root in roots]
+    aggregate_rows = {}
+    for root, rows, source, declared, documents in prepared:
+        if source["stage"] == "confirm" and source["seal_status"] == "VERIFIED_CANONICAL":
+            for row, _, _ in rows:
+                aggregate_rows[(source["protocol_sha256"], row.get("experiment_id"))] = row.get("row_sha256")
+    for root, rows, source, declared, documents in prepared:
         sources.append(source)
-        projected = _projection(rows, source, budget, time.time())
+        projected_rows = rows
+        if source["coverage"] == "PARTITION_ONLY" and aggregate_rows:
+            covered = [(source["protocol_sha256"], row.get("experiment_id")) for row, _, _ in rows]
+            if all(key in aggregate_rows and aggregate_rows[key] == row.get("row_sha256")
+                   for key, (row, _, _) in zip(covered, rows)):
+                source["represented_by_aggregate"] = True
+                source["projected_rows"] = 0
+                projected_rows = []
+            else:
+                budget.omit(root, "Partition rows differ from or are missing in the supplied aggregate")
+        projected = _projection(projected_rows, source, budget, time.time())
         for name, items in zip(("experiments", "checks", "values"), projected[:3]):
             tables[name].extend(items)
         metric_rows.extend(projected[3])
@@ -553,7 +594,8 @@ def publish_frontier_outputs(report_dir, source_dirs, *, delegated_sources=None)
         "publication_reserves": {"canonical_file_bytes": MAX_SOURCE_BYTES, "aggregate_source_bytes": MAX_READ_BYTES,
             "aggregate_page_bytes": MAX_OUTPUT_BYTES, "pages": MAX_PAGES,
             "scope": "Explicit full-profile reserves; complete record paging retains the unchanged native reader limits"},
-        "sources": sources, "figures": figures, "source_record": "RFC6901 JSON pointer in source_path; source_line is one-based only for incomplete JSONL sources",
+        "sources": sources, "figures": figures,
+        "confirmation_coverage": "Physical parts are descriptive PARTITION_ONLY (scores NA); verified merged rows supersede byte-identical part rows and are counted once.", "source_record": "RFC6901 JSON pointer in source_path; source_line is one-based only for incomplete JSONL sources",
         "metrics": "Strict Tower t/phase/step/metrics records; metric_lineage joins each zero-based point ordinal to the exact source record or JSONL line. Null validation measurements are absent, never zero or forward-filled.",
         "learning_metric_points": len(tables["learning_curves"]),
         "learning_identity": "phase includes model_id and trial phase; lineage retains family, spatial track, seed and training field count",

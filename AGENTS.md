@@ -190,3 +190,11 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
 - Publish complete loss, error, compute, timing and memory chart data with the
   graphs and Tower sidecars. Monetary cost remains unavailable without a rate.
   Do not silently replace original observations with revised comparisons.
+- Confirmation executes as deterministic whole-parent parts (six in full), then
+  a sealed whole-cohort aggregate. Preserve all models, schedules and paired raw
+  timing rounds; a partition cannot satisfy the complete confirmation prerequisite.
+  Use `fedora_frontier.sh recover` for an interrupted compatible run. Preserve
+  original artifacts and the explicit recovery bridge; never disable source or
+  software guards or mix unsealed partial measurements into new science. Reused
+  training/reference costs and new part/merge allocations must remain distinguishable.
+  Each native confirmation part and its aggregate require all 45 CUDA cases.

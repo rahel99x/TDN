@@ -1,0 +1,85 @@
+{
+  "upstream_commit": "356861e5b83cd9e162fb39727604e1bc52bcf5a9",
+  "reports": [
+    {
+      "path": "/workspace/TDN/runs/frontier-recovery-repeat-release-20261009/confirm-tower/tdn-20261009T004848039457Z-7953f47e98b9",
+      "table_rows": {
+        "artifacts": 19,
+        "checks": 3472,
+        "experiments": 496,
+        "learning_curves": 0,
+        "mechanisms": 0,
+        "metric_lineage": 496,
+        "metrics": 496,
+        "values": 1488
+      },
+      "reporting_complete": true,
+      "figures": 0,
+      "native_pages": 53,
+      "indexed_metrics": 496,
+      "logs": 26,
+      "live_metrics": 3,
+      "root_contract_outputs": 55
+    },
+    {
+      "path": "/workspace/TDN/runs/frontier-recovery-repeat-release-20261009/policy-tower/tdn-20261009T004904139213Z-722a7e2bb4a4",
+      "table_rows": {
+        "artifacts": 15,
+        "checks": 6,
+        "experiments": 2,
+        "learning_curves": 0,
+        "mechanisms": 0,
+        "metric_lineage": 2,
+        "metrics": 2,
+        "values": 6
+      },
+      "reporting_complete": true,
+      "figures": 0,
+      "native_pages": 6,
+      "indexed_metrics": 2,
+      "logs": 22,
+      "live_metrics": 5,
+      "root_contract_outputs": 55
+    },
+    {
+      "path": "/workspace/TDN/runs/frontier-recovery-repeat-release-20261009/report-tower/tdn-20261009T004911244141Z-49dbbdb90766",
+      "table_rows": {
+        "artifacts": 56,
+        "checks": 4,
+        "experiments": 1,
+        "learning_curves": 0,
+        "mechanisms": 5,
+        "metric_lineage": 1,
+        "metrics": 1,
+        "values": 3
+      },
+      "reporting_complete": true,
+      "figures": 36,
+      "native_pages": 7,
+      "indexed_metrics": 1,
+      "logs": 62,
+      "live_metrics": 4,
+      "root_contract_outputs": 55
+    },
+    {
+      "path": "/workspace/TDN/runs/frontier-recovery-repeat-release-20261009/scaling-tower/tdn-20261009T004855683095Z-ea3cc5d2cc3e",
+      "table_rows": {
+        "artifacts": 15,
+        "checks": 248,
+        "experiments": 72,
+        "learning_curves": 0,
+        "mechanisms": 0,
+        "metric_lineage": 72,
+        "metrics": 72,
+        "values": 216
+      },
+      "reporting_complete": true,
+      "figures": 0,
+      "native_pages": 8,
+      "indexed_metrics": 72,
+      "logs": 22,
+      "live_metrics": 6,
+      "root_contract_outputs": 55
+    }
+  ]
+}

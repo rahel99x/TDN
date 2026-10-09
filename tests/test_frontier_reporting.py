@@ -307,3 +307,213 @@ def test_every_loss_observation_has_strict_native_point_and_exact_lineage(tmp_pa
     assert selected['source_line']=='11' and selected['train_count']=='8' and selected['seed']=='1'
     assert selected['trial_phase']=='final' and selected['model_id']=='discrete/rank1/n8/seed1'
     assert points[int(selected['metric_ordinal'])]==learning[10]
+
+
+def _confirmation_source(tmp_path, *, part=True):
+    from tdn.analysis.frontier.partition import plan_shards
+    source, tower, protocol, rows = fixture(tmp_path)
+    partition = plan_shards(protocol)[0]
+    source = source.rename(tmp_path / (partition['shard_id'] if part else 'confirm'))
+    for row in rows:
+        row['stage'] = 'confirm'
+        row['row_sha256'] = digest({k: v for k, v in row.items() if k != 'row_sha256'})
+    write_reviews(source, rows)
+    (source / 'rows.jsonl').write_text(''.join(json.dumps(row)+'\n' for row in rows))
+    summary = json.loads((source / 'summary.json').read_text()); summary['stage'] = 'confirm'
+    write_json(source / 'summary.json', summary)
+    scope = {'schema': 'tdn.frontier-confirmation-scope/v1', 'mode': 'partition' if part else 'merged',
+             'status': 'COMPLETED', 'partition': partition}
+    write_json(source / 'confirmation_scope.json', scope)
+    write_json(source / 'confirmation_rows.json', {'rows': [{'parent_id': partition['parent_ids'][0], 'error_rms': .01}]})
+    manifest = json.loads((source / 'science_manifest.json').read_text()); manifest['stage'] = 'confirm'
+    if part: manifest['confirmation_partition'] = partition
+    manifest['artifacts'] = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir()
+                             if p.is_file() and p.name not in ('science_manifest.json', 'COMPLETED')}
+    write_json(source / 'science_manifest.json', manifest)
+    (source / 'COMPLETED').write_text(digest(manifest)+'\n')
+    return source, tower, protocol, rows
+
+
+def test_partition_tower_keeps_all_rows_as_partial_na(tmp_path):
+    source, tower, _, _ = _confirmation_source(tmp_path)
+    result = publish_outputs(tower, [source])
+    assert result['frontier']['reporting_complete'], result
+    rows = table(tower, 'experiments')
+    assert len(rows) == 3
+    assert all(row['coverage'] == 'PARTITION_ONLY' and row['verdict'] == 'NA' for row in rows)
+    assert all(row['evidence_status'] == 'VERIFIED_PARTITION' for row in rows)
+    assert all(row['physical_stage'] == 'confirm-part-000' for row in rows)
+
+
+def test_tower_merged_confirmation_supersedes_identical_part_rows(tmp_path):
+    import shutil
+    source, tower, _, _ = _confirmation_source(tmp_path)
+    merged = tmp_path / 'confirm'; shutil.copytree(source, merged)
+    scope = json.loads((merged / 'confirmation_scope.json').read_text()); scope['mode'] = 'merged'
+    write_json(merged / 'confirmation_scope.json', scope)
+    seal = json.loads((merged / 'science_manifest.json').read_text()); seal.pop('confirmation_partition', None)
+    seal['artifacts']['confirmation_scope.json'] = hashlib.sha256((merged / 'confirmation_scope.json').read_bytes()).hexdigest()
+    write_json(merged / 'science_manifest.json', seal); (merged / 'COMPLETED').write_text(digest(seal)+'\n')
+    result = publish_outputs(tower, [tmp_path])
+    assert result['frontier']['reporting_complete'], result
+    assert len(table(tower, 'experiments')) == 3
+    assert all(row['coverage'] == 'LOGICAL_STAGE' for row in table(tower, 'experiments'))
+    part_source = next(row for row in pages(tower)[0]['sources'] if row['coverage'] == 'PARTITION_ONLY')
+    assert part_source['represented_by_aggregate'] and part_source['projected_rows'] == 0
+
+
+def test_partial_parts_are_visible_without_counting_as_gate_evidence(tmp_path):
+    source, _, protocol, rows = _confirmation_source(tmp_path)
+    report = tmp_path / 'report'; report.mkdir()
+    ctx = SimpleNamespace(path=report, protocol=protocol)
+    prior = {name: {'manifest_sha256': str(i)*64} for i, name in enumerate(graphs.STAGES[:5])}
+    data = {'stage_status': {**prior, 'confirm': {'status': 'MISSING_OR_INVALID'}}, 'sources': [], 'rows': []}
+    verifier = lambda p, path, **kwargs: {'stage': 'confirm', 'source_tree_sha256': 'a'*64,
+        'prerequisites': {name: value['manifest_sha256'] for name, value in prior.items()}}
+    graphs._collect_parts(ctx, data, verifier, 'a'*64)
+    assert len(data['partial_rows']) == len(rows)
+    assert len(data['partial_confirmation']) == 1
+    assert data['rows'] == []
+    assert data['confirmation_partition_coverage']['scientific_outcome'] == 'NA_INCOMPLETE_CONFIRMATION'
+    assert data['confirmation_partition_coverage']['verified_parts'] == 1
+    assert data['confirmation_partition_coverage']['expected_parts'] == 2
+    data['stage_status']['confirm']['status'] = 'VERIFIED'
+    graphs._collect_parts(ctx, data, verifier, 'a'*64)
+    assert data['partial_confirmation'] == [] and data['partial_rows'] == []
+
+
+def test_mixed_source_requires_exact_recovery_stage_mapping(tmp_path):
+    path = tmp_path / 'old' / 'audit'
+    bridge = {'stage_paths': {'audit': str(path)}, 'origin_source_tree_sha256': 'old'}
+    assert graphs._expected_source('audit', path, 'new', bridge) == 'old'
+    assert graphs._expected_source('train', path, 'new', bridge) == 'new'
+    assert graphs._expected_source('audit', path, 'new', {}) == 'new'
+    with pytest.raises(ValueError, match='verified recovery bridge'):
+        graphs._expected_source('audit', tmp_path / 'different', 'new', bridge)
+
+
+def test_allocation_and_junit_costs_keep_physical_parts_and_origin_separate(tmp_path):
+    protocol = build_protocol('smoke')
+    current = tmp_path / 'current'; origin = tmp_path / 'origin'
+    report = current / 'report'; report.mkdir(parents=True)
+    for root in (current, origin):
+        (root / 'state').mkdir(parents=True, exist_ok=True)
+    part = 'confirm-part-000'; (current / part).mkdir()
+    write_json(current / part / 'summary.json', {'status': 'COMPLETED', 'elapsed_seconds': 12})
+    write_json(origin / 'state' / 'scheduler-accounting.json', {'records': [
+        {'workflow_stage': 'train', 'record_kind': 'allocation', 'terminal_state': True,
+         'elapsed_seconds': 30, 'allocated_cpu_seconds': 120, 'allocation_job_id': '1'}]})
+    write_json(current / 'state' / 'scheduler-accounting.json', {'records': [
+        {'workflow_stage': part, 'record_kind': 'allocation', 'terminal_state': True,
+         'elapsed_seconds': 15, 'allocated_cpu_seconds': 60, 'allocation_job_id': '2'},
+        {'workflow_stage': part, 'record_kind': 'step', 'terminal_state': True,
+         'elapsed_seconds': 14, 'allocated_cpu_seconds': 56, 'allocation_job_id': '2'},
+        {'workflow_stage': 'confirm', 'record_kind': 'allocation', 'terminal_state': True,
+         'elapsed_seconds': 2, 'allocated_cpu_seconds': 8, 'allocation_job_id': '3'}]})
+    for root, stage in ((current, part), (current, 'confirm'), (origin, 'train')):
+        tests = root / 'reporter-tests' / stage; tests.mkdir(parents=True)
+        (tests / 'tests.xml').write_text('<testsuite><testcase name="same" time=".1"/></testsuite>')
+    ctx = SimpleNamespace(path=report, protocol=protocol)
+    output = {'costs': []}
+    recovery = {'origin_run_dir': str(origin), 'origin_source_tree_sha256': 'a'*64,
+                'stage_paths': {'train': str(origin / 'train')}}
+    graphs._collect_execution_telemetry(ctx, output, recovery)
+    assert len(output['software_tests']) == 3
+    assert {row['stage'] for row in output['software_tests']} == {part, 'confirm', 'train'}
+    costs = {(row['cost_scope'], row['stage']): row for row in output['costs']}
+    assert costs[('current_workflow', part)]['allocation_seconds'] == 15
+    assert costs[('current_workflow', 'confirm')]['allocation_seconds'] == 2
+    assert costs[('inherited_sunk', 'train')]['allocation_seconds'] == 30
+    assert sum(row['allocation_seconds'] for row in costs.values()) == 47
+    assert len(json.loads((report / 'accounting-snapshot.json').read_text())['sources']) == 2
+
+
+def test_reused_partition_is_read_from_verified_recovery_path(tmp_path):
+    origin = tmp_path / 'origin'; origin.mkdir()
+    source, _, protocol, _ = _confirmation_source(origin)
+    current = tmp_path / 'current'; report = current / 'report'; report.mkdir(parents=True)
+    write_json(current / 'frontier-workflow.json', {'execution_version': 2})
+    prior = {name: {'manifest_sha256': str(i)*64} for i, name in enumerate(graphs.STAGES[:5])}
+    data = {'stage_status': {**prior, 'confirm': {'status': 'MISSING_OR_INVALID'}}, 'sources': [], 'rows': []}
+    ctx = SimpleNamespace(path=report, protocol=protocol)
+    observed = []
+    def verifier(protocol, path, **kwargs):
+        observed.append(path)
+        return {'stage': 'confirm', 'source_tree_sha256': 'a'*64,
+                'prerequisites': {name: value['manifest_sha256'] for name, value in prior.items()}}
+    graphs._collect_parts(ctx, data, verifier, 'a'*64,
+        recovery={'stage_paths': {'confirm-part-000': str(source)}})
+    assert observed[0] == source
+    assert data['confirmation_partition_coverage']['verified_parts'] == 1
+    assert len(data['partial_confirmation']) == 1
+
+
+def test_interrupted_part_retains_forensic_groups_without_scientific_credit(tmp_path):
+    source, _, protocol, _ = _confirmation_source(tmp_path)
+    group = source / 'complete-groups'; group.mkdir()
+    from tdn.analysis.frontier.partition import plan_shards
+    parent = plan_shards(protocol)[0]['parent_ids'][0]
+    write_json(group / 'one.json', {'schema': 'tdn.frontier-confirmation-group/v1',
+                                  'rows': [{'parent_id': parent, 'error_rms': .01}]})
+    report = tmp_path / 'report'; report.mkdir()
+    data = {'stage_status': {'confirm': {'status': 'MISSING_OR_INVALID'}}, 'sources': [], 'rows': []}
+    def rejected(*a, **kw): raise ValueError('Interrupted before seal')
+    graphs._collect_parts(SimpleNamespace(path=report, protocol=protocol), data, rejected, 'a'*64)
+    assert data['partial_confirmation'] == [] and data['rows'] == []
+    assert len(data['unsealed_confirmation']) == 1
+    assert data['unsealed_confirmation'][0]['scientific_credit'] is False
+    assert data['confirmation_partition_coverage']['verified_parts'] == 0
+
+
+def test_new_workflow_with_no_part_outputs_marks_every_part_missing(tmp_path):
+    protocol = build_protocol('full'); report = tmp_path / 'report'; report.mkdir()
+    write_json(tmp_path / 'frontier-workflow.json', {'execution_version': 2})
+    data = {'stage_status': {'confirm': {'status': 'MISSING_OR_INVALID'}}, 'sources': [], 'rows': []}
+    def missing(*args, **kwargs): raise FileNotFoundError('Not started')
+    graphs._collect_parts(SimpleNamespace(path=report, protocol=protocol), data, missing, 'a'*64)
+    assert data['confirmation_partition_coverage']['expected_parts'] == 6
+    assert data['confirmation_partition_coverage']['verified_parts'] == 0
+    assert len(data['confirmation_parts']) == 6
+
+
+def test_duplicate_allocation_rows_cannot_double_count_a_part(tmp_path):
+    protocol = build_protocol('smoke'); report = tmp_path / 'report'; report.mkdir()
+    (tmp_path / 'confirm-part-000').mkdir(); state = tmp_path / 'state'; state.mkdir()
+    allocation = {'workflow_stage': 'confirm-part-000', 'record_kind': 'allocation',
+                  'terminal_state': True, 'elapsed_seconds': 15, 'allocation_job_id': '2'}
+    write_json(state / 'scheduler-accounting.json', {'records': [allocation, allocation]})
+    output = {'costs': []}
+    graphs._collect_execution_telemetry(SimpleNamespace(path=report, protocol=protocol), output, {})
+    assert output['costs'][0]['allocation_seconds'] is None
+    assert output['costs'][0]['accounting_status'] == 'DUPLICATE_ALLOCATION_INVALID'
+
+
+def test_native_part_wrapper_must_bind_physical_partition(tmp_path):
+    from tdn.analysis.frontier.partition import plan_shards
+    source, _, protocol, _ = _confirmation_source(tmp_path)
+    expected = plan_shards(protocol)[0]
+    metadata = {'stage': 'confirm', 'profile': 'smoke', 'protocol_sha256': digest(protocol),
+                'confirmation_partition': expected, 'physical_stage': expected['shard_id'], 'software': {'source_tree_sha256': 'a'*64}}
+    write_json(source / 'execution.json', metadata)
+    write_json(source / 'stage.json', {**metadata, 'status': 'COMPLETED'})
+    def seal():
+        write_json(source / 'workflow-seal.json', {'schema': 'tdn.frontier/v1', 'schema_version': 1,
+            'protocol_sha256': digest(protocol), 'files': {name: hashlib.sha256((source / name).read_bytes()).hexdigest()
+            for name in ('execution.json', 'protocol.json', 'stage.json', 'science_manifest.json')}})
+    seal(); graphs._verify_part_wrapper(source, protocol, 'a'*64, expected)
+    metadata['confirmation_partition'] = plan_shards(protocol)[1]
+    write_json(source / 'execution.json', metadata); seal()
+    with pytest.raises(ValueError, match='wrapper identity, partition or source'):
+        graphs._verify_part_wrapper(source, protocol, 'a'*64, expected)
+
+
+def test_local_recovery_with_only_inherited_parts_retains_partition_coverage(tmp_path):
+    from tdn.analysis.frontier.partition import plan_shards
+    protocol = build_protocol('smoke')
+    base, origin = tmp_path / 'new', tmp_path / 'origin'
+    part_ids = [p['shard_id'] for p in plan_shards(protocol)]
+    ctx = SimpleNamespace(path=base / 'report', protocol=protocol,
+        recovery={'stage_paths': {key: str(origin / key) for key in part_ids}})
+    assert set(part_ids) <= set(graphs._physical_stages(ctx, base))
+    # An unrelated historical monolithic coordinator must not gain fictitious parts.
+    assert not set(part_ids) & set(graphs._physical_stages(ctx, tmp_path / 'historical'))

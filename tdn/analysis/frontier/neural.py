@@ -593,10 +593,17 @@ def confirmation_gate(catalog, rows, comparisons, protocol):
         "scope": "Local baseline adequacy diagnostic, not proof of literature competitiveness; posthoc schedule margins are necessary, not sufficient, for deployment"}
 
 
-def confirm(ctx):
+def confirm(ctx, *, partition=None, shard_dirs=None):
     from .core import check
     from .data import load_split
     from .measurement import measure_paired
+    from .confirmation import finish, merge, scope, write_completed_group
+    from .partition import validate_partition
+    if partition is not None and shard_dirs is not None:
+        raise ValueError("Select a confirmation partition or a merge, never both")
+    if shard_dirs is not None:
+        return merge(ctx, shard_dirs)
+    partition = validate_partition(ctx.protocol, partition) if partition is not None else None
     models = load_models(ctx)
     catalog = json.loads((Path(ctx.prerequisites["train"]) / "catalog.json").read_text())
     write_json(Path(ctx.path) / "frozen_model_ledger.json", {"models": catalog["records"],
@@ -605,6 +612,13 @@ def confirm(ctx):
     plan = confirmation_plan(ctx.protocol)
     write_json(Path(ctx.path) / "confirmation_plan.json", plan)
     parents = load_split(ctx, "confirmation")
+    if partition is not None:
+        by_id = {parent["parent_id"]: parent for parent in parents}
+        if len(by_id) != len(parents) or not set(partition["parent_ids"]) <= set(by_id):
+            raise ValueError("Confirmation partition parents are absent or duplicated in the sealed bank")
+        parents = [by_id[name] for name in partition["parent_ids"]]
+    identity = scope(ctx, catalog, parents, partition)
+    write_json(Path(ctx.path) / "confirmation_scope.json", identity)
     targets = [float(value) for value in ctx.protocol["targets"]]
     rows, timings = [], []
     timing = ctx.protocol.get("timing", {})
@@ -721,26 +735,15 @@ def confirm(ctx):
                                         check("mathematical_response", None, True, "eq", category="math")],
                                 evidence={"numerical_failure": metadata["numerical_failure"]},
                                 status="UNAVAILABLE_CHECKPOINT")
+                        write_completed_group(ctx.path, timings[-1], rows[group_start:])
                         with (Path(ctx.path) / "confirmation_rows.partial.jsonl").open("a") as handle:
                             for row in rows[group_start:]:
                                 handle.write(json.dumps(row, allow_nan=False) + "\n")
-    comparison = matched_comparisons(rows, ctx.protocol)
-    comparisons = {"scope": "reference-informed posthoc frontiers, not deployable adaptive decisions",
-        "horizon_matching": "parent/grid/track/final_time/RMS target/maximum target",
-        "frontiers": comparison, "paired_field_summaries": paired_field_summary(rows,
-            bootstrap=int(ctx.protocol.get("bootstrap_replicates", 1000))),
-        "paper_reproduction": False, "independence_unit": "field_cluster"}
-    write_json(Path(ctx.path) / "confirmation_rows.json", {"rows": rows,
-        "independence_unit": "field_cluster; seeds, grids, schedules and physics are paired"})
-    write_json(Path(ctx.path) / "timing_rounds.json", {"groups": timings,
-        "cold_definition": "first observed invocation, not guaranteed process-cold startup"})
-    write_json(Path(ctx.path) / "comparisons.json", comparisons)
-    gate = confirmation_gate(catalog, rows, comparison, ctx.protocol)
-    write_json(Path(ctx.path) / "gate.json", gate)
-    partial = Path(ctx.path) / "confirmation_rows.partial.jsonl"
-    if partial.exists():
-        partial.unlink()
-    return {"models": len(models), "declared_models": len(catalog["records"]), "endpoint_rows": len(rows),
-            "independent_fields": len({p["field_cluster"] for p in parents}),
-            "failed_or_missing_endpoints": sum(r["status"] != "COMPLETED" for r in rows),
-            "scope": "frozen project controls; descriptive cluster uncertainty; no FNO paper superiority claim"}
+    return finish(ctx, catalog, rows, timings, identity, model_count=len(models),
+                  parent_count=len({p["field_cluster"] for p in parents}))
+
+
+def validate_confirmation_coverage(path, protocol, partition=None):
+    """Public exact-coverage validator used by scientific and execution seals."""
+    from .confirmation import validate_confirmation_coverage as validate
+    return validate(path, protocol, partition)
