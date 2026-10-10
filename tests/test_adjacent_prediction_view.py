@@ -168,3 +168,267 @@ def test_prediction_view_near_bound_fitted_gains_clip_probes(example):
     assert info['sensitivity']['curves'][0]['clipped_to_admissible_range']
     assert info['sensitivity']['curves'][1]['clipped_to_admissible_range']
     assert not info['sensitivity']['curves'][2]['clipped_to_admissible_range']
+
+
+def test_prediction_view_smoothing_is_display_only(example, tmp_path, monkeypatch):
+    import matplotlib
+    matplotlib.use('Agg')
+    from matplotlib.axes import Axes
+    _, initial, truth, model, eq, geom = example
+    info, arrays = view.compute_prediction_data(model, initial, truth, .06, eq, geom)
+    info.update(selected_model={'family':'channel_neural','selection_status':'TEST_FIXTURE_ONLY',
+                'selected_update':0,'checkpoint_sha256':'0'*64}, parent_id='unit-test-field')
+    before_info = json.dumps(info, sort_keys=True)
+    before_arrays = {key: value.copy() for key,value in arrays.items()}
+    calls = []
+    original = Axes.imshow
+    def tracked(self, value, *args, **kwargs):
+        calls.append((np.asarray(value).shape, kwargs.get('interpolation')))
+        return original(self, value, *args, **kwargs)
+    monkeypatch.setattr(Axes, 'imshow', tracked)
+    paths = view._images(info, arrays, tmp_path, dpi=20, spatial_display='both')
+    assert len(paths) == 12 and len(set(paths)) == 12
+    assert all((tmp_path/p).is_file() for p in paths)
+    assert 'prediction-architecture.png' in paths
+    assert 'prediction-architecture-bicubic.png' in paths
+    spatial_styles = {style for shape,style in calls if shape == (8,8)}
+    assert spatial_styles == {'nearest', 'bicubic'}
+    assert json.dumps(info, sort_keys=True) == before_info
+    for key,value in arrays.items():
+        np.testing.assert_array_equal(value, before_arrays[key])
+    with pytest.raises(ValueError, match='Spatial display'):
+        view._images(info, arrays, tmp_path, dpi=20, spatial_display='fabricated')
+
+
+def test_prediction_view_native_declaration_and_recovery(tmp_path, monkeypatch):
+    monkeypatch.setattr(view, 'ROOT', tmp_path)
+    run = tmp_path/'run'; run.mkdir()
+    origin = tmp_path/'origin'; origin.mkdir()
+    (origin/'workflow-seal.json').write_text('original execution proof')
+    protocol = {'profile':'resolution-smoke', 'units':{'freeze':{}}}
+    declaration = {'scientific_protocol':protocol}
+    (run/'protocol.json').write_text(json.dumps(declaration))
+    bridge = {'stage_paths':{'freeze':str(origin)}, 'resume_paths':{},
+              'source_sha256':'scientific-source', 'protocol_sha256':view.digest(declaration),
+              'seals':{'freeze':view.file_digest(origin/'workflow-seal.json')}}
+    (run/'recovery.json').write_text(json.dumps(bridge))
+    workflow = {'profile':protocol['profile'], 'protocol_path':str(run/'protocol.json'),
+        'protocol_sha256':view.digest(declaration), 'source_sha256':'scientific-source',
+        'recovery':{'manifest_path':str(run/'recovery.json'),
+                    'sha256':view.file_digest(run/'recovery.json'),
+                    'stage_paths':bridge['stage_paths'], 'resume_paths':{}}}
+    (run/'adjacent-workflow.json').write_text(json.dumps(workflow))
+    recovered, paths, sources = view._coordinator(run)
+    assert recovered == protocol and paths['freeze'] == origin
+    assert set(path.name for path in sources) == {'protocol.json','adjacent-workflow.json','recovery.json'}
+    (origin/'workflow-seal.json').write_text('changed execution proof')
+    with pytest.raises(ValueError, match='seal changed'):
+        view._coordinator(run)
+
+
+@pytest.fixture
+def resolution_replay(tmp_path, monkeypatch):
+    """Synthetic sealed 64² fixture: validates artifact plumbing, never solver accuracy."""
+    from tdn.analysis.adjacent import engine
+    from tdn.analysis.adjacent.resolution_protocol import build_resolution_protocol
+    from tdn.analysis.adjacent.resolution_diagnostics import (
+        BANK_SCHEMA, resolution_parent, sample_resolution_parent)
+    from tdn.analysis.adjacent.resolution_learning import SCHEMA as LEARNING_SCHEMA
+    monkeypatch.setattr(view, 'ROOT', tmp_path)
+    monkeypatch.setattr(engine, 'ROOT', tmp_path)
+    # The synthetic fixture has no Git history; production still requires exact
+    # scientific-source hashes. All file seals/checkpoints/fields below are real.
+    monkeypatch.setattr(view, '_implementation_identity', lambda *args, **kwargs: {'fixture':'synthetic'})
+    protocol = build_resolution_protocol('resolution-smoke')
+    run = tmp_path/'resolution-run'; run.mkdir()
+    def write(path, value):
+        path.write_text(json.dumps(value))
+    write(run/'local-protocol.json', protocol)
+    train_name = next(name for name,unit in protocol['units'].items()
+        if unit['kind']=='resolution_train' and unit['grid']==64 and unit['track']=='discrete' and unit['group']=='ours')
+    eval_name = next(name for name,unit in protocol['units'].items()
+        if unit['kind']=='resolution_evaluate' and unit['grid']==64 and unit['track']=='discrete' and 0 in unit['field_indices'])
+    bank_name = protocol['units'][eval_name]['bank_units'][0]
+    for name in (train_name,'freeze',bank_name,eval_name):
+        (run/name).mkdir()
+    train, frozen, bank, evaluation = (run/name for name in (train_name,'freeze',bank_name,eval_name))
+    model = make_model('channel_neural','discrete',protocol['resolution']['model_config']).float().eval()
+    with torch.no_grad():
+        model.conditioner[-1].bias.copy_(torch.tensor([.03,-.02,.01]))
+    (frozen/'checkpoints').mkdir()
+    checkpoint = frozen/'checkpoints/selected.pt'
+    torch.save({'state_dict':model.state_dict()},checkpoint)
+    spec = dict(model_id='n64/discrete/channel_neural/seed871001',family='channel_neural',track='discrete',
+        train_grid=64,grid=64,seed=871001,config=protocol['resolution']['model_config'],
+        checkpoint='checkpoints/selected.pt',checkpoint_sha256=view.file_digest(checkpoint),
+        selection_status='FITTED_CHECKPOINT',updates_selected=2,source_unit=train_name)
+    write(frozen/'catalog.json',[spec]); write(train/'catalog.json',[spec])
+    freeze = dict(schema=LEARNING_SCHEMA,protocol_sha256=view.digest(protocol),
+        artifacts={'catalog.json':view.file_digest(frozen/'catalog.json'),spec['checkpoint']:spec['checkpoint_sha256']})
+    write(frozen/'freeze.json', dict(freeze,freeze_sha256=view.digest(freeze)))
+    parent = resolution_parent(protocol,'evaluation',0,64)
+    initial = sample_resolution_parent(parent,64)
+    h = protocol['resolution']['evaluation_horizons'][0]
+    eq,geom = Equation(parent['kappa'],parent['reaction_rate']),Geometry((64,64),tuple(parent['domain']))
+    with torch.no_grad():
+        prediction = model(initial.float(),h,eq,geom).double()
+    truth = prediction+1e-6
+    np.savez(bank/'initial.npz',initial=initial.numpy())
+    np.savez(bank/'reference.npz',reference=truth.numpy())
+    meta = dict(parent,parent=parent,grid=64,N=64,track='discrete',horizon=h,
+        initial_file='initial.npz',reference_file='reference.npz',
+        initial_sha256=view.file_digest(bank/'initial.npz'),reference_sha256=view.file_digest(bank/'reference.npz'),
+        accepted=True,uncertainty_rms=0.,uncertainty_max_bound=0.,scope='SYNTHETIC_TEST_FIXTURE')
+    write(bank/'reference_bank.json',dict(schema=BANK_SCHEMA,status='COMPLETED',entries=[meta]))
+    error = prediction-truth
+    row = dict(model_id=spec['model_id'],checkpoint_sha256=spec['checkpoint_sha256'],parent_id=parent['parent_id'],
+        track='discrete',grid=64,schedule=[h],final_time=h,error_rms=float(error.square().mean().sqrt()),
+        error_max=float(error.abs().max()))
+    # The full program also records each parent's batched throughput error.
+    # Single-field prediction replay must not silently select that endpoint.
+    write(evaluation/'evaluation-rows.json',[row,dict(row,batch_size=4,error_rms=123.,error_max=456.)])
+    def seal(name):
+        path=run/name; unit=protocol['units'][name]
+        software={'source_tree_sha256':'fixture-source','git_commit':'0'*40}
+        write(path/'protocol.json',protocol)
+        write(path/'summary.json',dict(schema=protocol['schema'],status='COMPLETED',stage=name,
+            protocol_sha256=view.digest(protocol),source_tree_sha256='fixture-source',device='cpu',experiment_count=0))
+        (path/'rows.jsonl').write_text(''); write(path/'rows.json',{'rows':[]})
+        for filename in ('review.csv','review.md','summary.txt'):
+            (path/filename).write_text('Synthetic fixture, not scientific evidence.\n')
+        prior={dependency:view.file_digest(run/dependency/'science_manifest.json')
+            if (run/dependency/'science_manifest.json').is_file() else '0'*64 for dependency in unit['dependencies']}
+        manifest=dict(schema='tdn.adjacent-science/v1',stage=name,kind=unit['kind'],
+            protocol_sha256=view.digest(protocol),unit_sha256=view.digest(unit),source_tree_sha256='fixture-source',
+            software=software,device='cpu',prerequisites=prior,artifacts=engine.inventory(path))
+        write(path/'science_manifest.json',manifest);(path/'COMPLETED').write_text(view.digest(manifest))
+        write(path/'stage.json',{'status':'COMPLETED'})
+        write(path/'execution.json',{'stage':name,'software':software})
+        write(path/'workflow-seal.json',dict(schema=protocol['schema'],protocol_sha256=view.digest(protocol),
+            files={file:view.file_digest(path/file) for file in ('execution.json','protocol.json','stage.json','science_manifest.json')}))
+    for name in (train_name,'freeze',bank_name,eval_name):
+        seal(name)
+    return run,initial.numpy(),truth.numpy(),frozen,bank
+
+
+def test_prediction_view_resolution_checkpoint_and_field_replay(resolution_replay):
+    run,initial,truth,_,_ = resolution_replay
+    bundle=view.load_bundle(run,grid=64,train_grid=64,seed=871001)
+    np.testing.assert_array_equal(bundle['initial'],initial)
+    np.testing.assert_array_equal(bundle['reference_state'],truth)
+    assert bundle['spec']['selected_update']==2 and bundle['geometry'].grid==(64,64)
+    before=dict(bundle['provenance']['source_artifacts'])
+    info,arrays=view.compute_prediction_data(bundle['model'],initial,truth,bundle['reference']['horizon'],
+        bundle['equation'],bundle['geometry'])
+    assert info['error_rms']==bundle['original_evaluation']['error_rms']
+    assert info['error_max']==bundle['original_evaluation']['error_max']
+    assert arrays['prediction'].shape==(1,1,64,64)
+    assert all(view.file_digest(view.ROOT/path)==sha for path,sha in before.items())
+
+
+def test_prediction_view_resolution_rejects_changed_checkpoint(resolution_replay):
+    run,_,_,frozen,_=resolution_replay
+    with (frozen/'checkpoints/selected.pt').open('ab') as output:
+        output.write(b'changed')
+    with pytest.raises(ValueError,match='inventory or bytes changed'):
+        view.load_bundle(run,grid=64)
+
+
+@pytest.fixture
+def gallery(monkeypatch, tmp_path):
+    import importlib.util
+    filename=Path(__file__).resolve().parents[1]/'scripts/adjacent_resolution_images.py'
+    spec=importlib.util.spec_from_file_location('tdn_test_resolution_images',filename)
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    monkeypatch.setattr(module,'ROOT',tmp_path)
+    monkeypatch.setattr(view,'ROOT',tmp_path)
+    return module
+
+
+def test_resolution_image_gallery_requires_completed_aggregate(resolution_replay, gallery):
+    run,*_=resolution_replay
+    with pytest.raises(FileNotFoundError):
+        gallery.build_gallery_plan(run)
+
+
+def test_resolution_image_gallery_declares_every_grid_track_before_errors(gallery, tmp_path, monkeypatch):
+    run=tmp_path/'run';run.mkdir()
+    protocol={'profile':'resolution-full','study':'adjacent-resolution','resolution':{
+        'grids':[64,128],'tracks':['discrete','continuum'],'seeds':[871001,871011],
+        'evaluation_horizons':[.04,.12]},'units':{'freeze':{'kind':'resolution_freeze','dependencies':[]}}}
+    paths={'freeze':run/'freeze'}
+    for grid in (64,128):
+        for track in ('discrete','continuum'):
+            name=f'evaluate-{grid}-{track}'
+            protocol['units'][name]={'kind':'resolution_evaluate','dependencies':['freeze'],
+                'grid':grid,'track':track,'field_indices':[5,0,1]}
+            paths[name]=run/name
+    protocol['units']['aggregate']={'kind':'resolution_aggregate','dependencies':list(protocol['units'])}
+    paths['aggregate']=run/'aggregate'
+    for name,path in paths.items():
+        path.mkdir()
+        for filename in ('science_manifest.json','workflow-seal.json','protocol.json'):
+            (path/filename).write_text(name+filename)
+    monkeypatch.setattr(view,'_coordinator',lambda _: (protocol,paths,[]))
+    visited=[]
+    def verify(_,path):
+        name=path.name;visited.append(name)
+        return {'source_tree_sha256':'fixture', 'prerequisites':{
+            item:view.file_digest(paths[item]/'science_manifest.json')
+            for item in protocol['units'][name]['dependencies']}}
+    monkeypatch.setattr(view,'_verify_unit',verify)
+    choices=[]
+    def bundle(_,**choice):
+        choices.append(choice)
+        return {'reference':{'parent_id':'field-0'},'spec':{'model_id':str(choice),
+            'checkpoint_sha256':'f'*64,'selection_status':'SELECTED_INITIALIZATION'},
+            'provenance':{'source_artifacts':{}}}
+    monkeypatch.setattr(view,'load_bundle',bundle)
+    plan=gallery.build_gallery_plan(run)
+    assert len(plan['selections'])==4 and set(visited)==set(paths)
+    assert {(row['grid'],row['track']) for row in choices}=={
+        (n,track) for n in (64,128) for track in ('discrete','continuum')}
+    assert all(row['seed']==871001 and row['parent_index']==0 and row['horizon']==.04
+        and row['family']=='channel_neural' and row['train_grid']==row['grid'] for row in choices)
+    assert all(row['selection_status']=='SELECTED_INITIALIZATION' for row in plan['selections'])
+
+
+def test_resolution_image_gallery_latest_uses_resolution_pointer(gallery, tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    called=[]
+    def resolve(value,**options):
+        called.append((value,options));return tmp_path/'runs/new/adjacent-workflow.json'
+    monkeypatch.setattr(gallery,'_workflow_api',lambda:SimpleNamespace(workflow_path=resolve,MANIFEST='adjacent-workflow.json'))
+    assert gallery.resolve_run()==tmp_path/'runs/new'
+    assert called==[('latest',{'resolution':True})]
+    with pytest.raises(ValueError,match='inside this project'):
+        gallery.resolve_run(str(tmp_path.parent/'external'))
+
+
+def test_resolution_image_gallery_new_output_and_failure_retention(gallery, tmp_path, monkeypatch):
+    run=tmp_path/'runs/scientific-run';run.mkdir(parents=True)
+    original=run/'source.json';original.write_text('preserve scientific source')
+    selection=dict(name='n64-discrete',family='channel_neural',track='discrete',grid=64,train_grid=64,
+        seed=871001,parent_index=0,horizon=.04)
+    plan=dict(run_dir=str(run),source_artifacts={str(original.relative_to(tmp_path)):view.file_digest(original)},
+              selections=[selection])
+    calls=[]
+    def render(source,output,**options):
+        calls.append((source,output,options));output.mkdir()
+        (output/'manifest.json').write_text('fixture-render-proof')
+        return dict(output_dir=str(output),images=[])
+    monkeypatch.setattr(view,'render_prediction_view',render)
+    first=gallery.export_gallery(plan);second=gallery.export_gallery(plan)
+    assert first['output_dir']!=second['output_dir']
+    assert first['status']=='COMPLETED' and all(call[2]['spatial_display']=='both' and call[2]['dpi']==400 for call in calls)
+    assert all(Path(result['output_dir']).is_relative_to(tmp_path/'outputs') for result in (first,second))
+    assert original.read_text()=='preserve scientific source'
+    def fail(*args,**kwargs):
+        raise RuntimeError('test fixture render interruption')
+    monkeypatch.setattr(view,'render_prediction_view',fail)
+    with pytest.raises(RuntimeError,match='render interruption'):
+        gallery.export_gallery(plan)
+    records=[json.loads(path.read_text()) for path in (tmp_path/'outputs').rglob('image-gallery.json')]
+    failed=[row for row in records if row['status']=='FAILED']
+    assert len(failed)==1 and failed[0]['partial_outputs_retained']
+    assert original.read_text()=='preserve scientific source'

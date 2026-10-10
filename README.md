@@ -9,6 +9,12 @@ alternatives, fitted/neural controls and a separate analytical atlas. Use the
 must remain separate from live portfolio jobs; it makes no automatic change
 to TDN's main architecture or research objective.
 
+The [paired 64²/128² follow-up](docs/ADJACENT_RESOLUTION.md) adds sealed reference
+banks, controlled attribution, fitted/neural comparisons, temporal-reuse pilots
+and raw-plus-smoothed high-resolution plots. Start with
+`bash scripts/fedora_adjacent_resolution.sh plan --smoke` in the isolated
+checkout. Full remains development evidence and every job is at most 23 minutes.
+
 The current [three-path research portfolio](docs/PORTFOLIO_RESEARCH.md) resolves
 normalization and conditioning attribution, tests three grounded improvements,
 and protects 20% of its discretionary budget for three distinct exploratory

@@ -100,8 +100,8 @@ def check_resume(path,*,stage,protocol,software,mode,device,lineage,site=None):
     record=json.loads((path/'stage.json').read_text());execution=json.loads((path/'execution.json').read_text())
     if record.get('status') not in ('FAILED','INTERRUPTED','INCOMPLETE'):
         raise ValueError('Resume requires an explicitly interrupted or failed terminal attempt')
-    if protocol['units'][stage]['kind'] not in ('train','confirm'):
-        raise ValueError('Only journaled train/confirm units may resume')
+    if not (protocol['units'][stage].get('resumable',False) or protocol['units'][stage]['kind'] in ('train','confirm')):
+        raise ValueError('Only explicitly journaled units may resume')
     expected={'stage':stage,'profile':protocol['profile'],'protocol_sha256':digest(protocol),'execution_mode':mode,'device':device,'prerequisites':lineage}
     if any(execution.get(key)!=value for key,value in expected.items()) or compatible_software(execution['software'])!=compatible_software(software):
         raise ValueError('Resume scope, software, or prerequisite lineage differs')
@@ -154,13 +154,14 @@ def verify_native_binding(stage, profile, device):
             state.get("slurm_step_id") != os.environ.get("SLURM_STEP_ID")):
         raise ValueError("Native CLI must execute inside its current recorded experiment task")
     if device == "cuda":
-        controller.check_gpu_tests(controller.junit_path(workflow, stage))
+        controller.check_gpu_tests(controller.junit_path(workflow, stage), profile=profile)
     return workflow
 
 
 def main(argv=None):
+    from tdn.analysis.adjacent.protocol import PROFILES, NATIVE_FULL_PROFILES
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--stage',required=True);parser.add_argument('--profile',choices=('smoke','development','full'),default='full')
+    parser.add_argument('--stage',required=True);parser.add_argument('--profile',choices=PROFILES,default='full')
     parser.add_argument('--run-dir',type=Path,required=True);parser.add_argument('--prerequisite-dir',action='append',default=[])
     parser.add_argument('--device',choices=('cpu','cuda'),default='cpu');parser.add_argument('--local-root',type=Path)
     parser.add_argument('--resume-from',type=Path)
@@ -172,10 +173,10 @@ def main(argv=None):
         if args.local_root is not None:
             if args.local_root.resolve()!=ROOT or ROOT==CARC_ROOT or any(os.environ.get(key) for key in ('SLURM_JOB_ID','SLURM_STEP_ID','TDN_EXECUTION_MODE')):
                 raise ValueError('Local adjacent requires this CPU checkout without scheduler overrides')
-            if args.device!='cpu' or args.profile=='full':
+            if args.device!='cpu' or args.profile in NATIVE_FULL_PROFILES:
                 raise ValueError('Local adjacent supports CPU smoke/development; full requires Fedora Slurm')
         mode=execution_mode()
-        if mode not in ('local-cpu','desktop-slurm') or (mode=='local-cpu' and (args.local_root is None or args.profile=='full' or args.device!='cpu')):
+        if mode not in ('local-cpu','desktop-slurm') or (mode=='local-cpu' and (args.local_root is None or args.profile in NATIVE_FULL_PROFILES or args.device!='cpu')):
             raise ValueError('Adjacent requires allocated Fedora or explicit local CPU development')
         from tdn.analysis.adjacent.protocol import build_protocol,validate_protocol
         protocol=build_protocol(args.profile);validate_protocol(protocol)

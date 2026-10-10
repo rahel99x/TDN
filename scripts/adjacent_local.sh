@@ -2,7 +2,7 @@
 # CPU smoke/development only; no scheduler identity or native-GPU claims.
 set -euo pipefail
 if [[ "${1:-}" == --help || "${1:-}" == -h ]]; then
-    printf 'Usage: bash scripts/adjacent_local.sh [--smoke|--development] [--run-dir PROJECT_PATH]\nRuns the finite research DAG on CPU; fresh full confirmation requires Fedora Slurm.\n'
+    printf 'Usage: bash scripts/adjacent_local.sh [--smoke|--development|--resolution-smoke] [--run-dir PROJECT_PATH]\nRuns the finite research DAG on CPU; fresh full confirmation requires Fedora Slurm.\n'
     exit 0
 fi
 source "$(dirname -- "${BASH_SOURCE[0]}")/common.sh"
@@ -14,7 +14,8 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
         --smoke) profile=smoke; shift ;;
         --development) profile=development; shift ;;
-        --full) tdn_die 'Fresh full confirmation requires allocated Fedora Slurm' ;;
+        --resolution-smoke) profile=resolution-smoke; shift ;;
+        --full|--resolution-full|--resolution64|--resolution128) tdn_die 'Fresh full confirmation requires allocated Fedora Slurm' ;;
         --run-dir) [[ $# -ge 2 ]] || tdn_die '--run-dir needs a path'; run_dir="$2"; shift 2 ;;
         *) tdn_die "Unknown option: $1" ;;
     esac
@@ -26,7 +27,11 @@ export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMEXPR_NUM_TH
 tdn_prepare_env
 python="$(tdn_python)"
 cd "$TDN_REPO_ROOT"
-if [[ -z "$run_dir" ]]; then run_dir="$TDN_REPO_ROOT/runs/adjacent-local-$(date -u +%Y%m%dT%H%M%S%N)"; fi
+if [[ -z "$run_dir" ]]; then
+    prefix=adjacent-local
+    [[ "$profile" != resolution-smoke ]] || prefix=adjacent-resolution-local
+    run_dir="$TDN_REPO_ROOT/runs/$prefix-$(date -u +%Y%m%dT%H%M%S%N)"
+fi
 [[ "$run_dir" == /* ]] || run_dir="$TDN_REPO_ROOT/$run_dir"
 run_dir="$(tdn_inside "$run_dir")"
 [[ ! -e "$run_dir" ]] || tdn_die 'Run path exists; preserve it and choose a fresh directory'

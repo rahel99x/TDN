@@ -58,11 +58,13 @@ def _array_digest(array):
                 sha256=hashlib.sha256(value.tobytes()).hexdigest())
 
 
-def _implementation_identity(revision):
+def _implementation_identity(revision, *, resolution=False):
     if not isinstance(revision, str) or not re.fullmatch("[0-9a-f]{40}", revision):
         raise ValueError("A complete frozen source commit is required for prediction replay")
     identity = {}
-    for relative in PROTECTED_IMPLEMENTATION:
+    protected = PROTECTED_IMPLEMENTATION + (("tdn/analysis/adjacent/resolution_learning.py",
+        "tdn/analysis/adjacent/resolution_diagnostics.py") if resolution else ())
+    for relative in protected:
         result = subprocess.run(["git", "show", f"{revision}:{relative}"], cwd=ROOT,
                                 check=False, capture_output=True)
         if result.returncode:
@@ -72,6 +74,46 @@ def _implementation_identity(revision):
             raise ValueError(f"Prediction implementation differs from the frozen experiment: {relative}")
         identity[relative] = original
     return identity
+
+
+def _coordinator(run):
+    """Read either local science or a native declaration, including sealed recovery paths."""
+    candidates = [path for path in (run / "local-protocol.json", run / "protocol.json") if path.is_file()]
+    if len(candidates) != 1:
+        raise ValueError("Run must contain exactly one recognized frozen coordinator protocol")
+    path = candidates[0]
+    declaration = _read(path)
+    protocol = declaration.get("scientific_protocol", declaration)
+    sources = [path]
+    stage_paths = {name: _contained(run / name) for name in protocol["units"]}
+    if "scientific_protocol" not in declaration:
+        return protocol, stage_paths, sources
+    workflow_path = _contained(run / "adjacent-workflow.json")
+    workflow = _read(workflow_path)
+    if (workflow.get("profile") != protocol.get("profile") or
+        workflow.get("protocol_sha256") != digest(declaration) or
+        _contained(workflow["protocol_path"]) != path):
+        raise ValueError("Native coordinator and scientific declaration disagree")
+    sources.append(workflow_path)
+    descriptor = workflow.get("recovery")
+    if descriptor:
+        bridge_path = _contained(descriptor["manifest_path"])
+        if bridge_path != run / "recovery.json" or file_digest(bridge_path) != descriptor["sha256"]:
+            raise ValueError("Recovery bridge changed")
+        bridge = _read(bridge_path)
+        if any(bridge.get(key) != descriptor.get(key) for key in ("stage_paths", "resume_paths")):
+            raise ValueError("Recovery paths differ from their sealed bridge")
+        if any(bridge.get(key) != workflow.get(key) for key in ("source_sha256", "protocol_sha256")):
+            raise ValueError("Recovery source or protocol changed")
+        if not set(bridge["stage_paths"]) <= set(stage_paths):
+            raise ValueError("Recovery names an undeclared scientific stage")
+        for name, directory in bridge["stage_paths"].items():
+            directory = _contained(directory)
+            if file_digest(directory / "workflow-seal.json") != bridge.get("seals", {}).get(name):
+                raise ValueError("Recovered stage execution seal changed")
+            stage_paths[name] = directory
+        sources.append(bridge_path)
+    return protocol, stage_paths, sources
 
 
 def _execution_protocol(protocol, pilot_unit):
@@ -121,22 +163,25 @@ def _validate_bank_arrays(bank, arrays, row):
 
 
 def load_bundle(run_dir, *, family="channel_neural", track="discrete", parent_index=0,
-                horizon=None, seed=None):
+                horizon=None, seed=None, grid=None, train_grid=None):
     """Read and verify source artifacts without modifying any historical file."""
     if family not in ("channel_neural", "channel_global", "channel_affine", "channel_fixed"):
         raise ValueError("Prediction view currently supports physical interaction-channel families")
     run = _contained(run_dir)
-    protocols = [p for p in (run / "local-protocol.json", run / "protocol.json") if p.is_file()]
-    if len(protocols) != 1:
-        raise ValueError("Run must contain exactly one recognized frozen coordinator protocol")
-    protocol = _read(protocols[0])
+    protocol, stage_paths, coordinator_sources = _coordinator(run)
+    if protocol.get("study") == "adjacent-resolution":
+        return load_resolution_bundle(run, family=family, track=track, parent_index=parent_index,
+            horizon=horizon, seed=seed, grid=grid, train_grid=train_grid,
+            coordinator=(protocol, stage_paths, coordinator_sources))
+    if grid is not None or train_grid is not None:
+        raise ValueError("Explicit grid selection applies only to a resolution-study run")
     candidates = [name for name, spec in protocol["units"].items()
                   if spec["kind"] == "train" and track in spec["tracks"]]
     if len(candidates) != 1:
         raise ValueError("Exactly one pilot unit must provide the requested target track")
     pilot_unit = candidates[0]
     execution, evaluation_unit = _execution_protocol(protocol, pilot_unit)
-    pilot, evaluation = run / pilot_unit, run / evaluation_unit
+    pilot, evaluation = stage_paths[pilot_unit], stage_paths[evaluation_unit]
     pilot_manifest = _verify_unit(protocol, pilot)
     evaluation_manifest = _verify_unit(protocol, evaluation)
     if evaluation_manifest["prerequisites"].get(pilot_unit) != file_digest(pilot / "science_manifest.json"):
@@ -178,7 +223,7 @@ def load_bundle(run_dir, *, family="channel_neural", track="discrete", parent_in
     if len(original) != 1:
         raise ValueError("Exactly one original one-step evaluation row is required for replay verification")
     sources = {str(path.relative_to(ROOT)): file_digest(path) for path in
-        (protocols[0], pilot / "science_manifest.json", pilot / "workflow-seal.json", pilot / "freeze.json",
+        (*coordinator_sources, pilot / "science_manifest.json", pilot / "workflow-seal.json", pilot / "freeze.json",
          pilot / "catalog.json", checkpoint, evaluation / "science_manifest.json", evaluation / "workflow-seal.json",
          evaluation / "reference-bank.json", data_path, evaluation / "evaluation-rows.json")}
     return dict(model=model, spec=spec, initial=initial, reference_state=truth, reference=reference,
@@ -191,6 +236,126 @@ def load_bundle(run_dir, *, family="channel_neural", track="discrete", parent_in
             initial_fp64=_array_digest(initial), reference_fp64=_array_digest(truth),
             parent_identity_sha256=parent.identity_sha256, parent=parent.to_dict(),
             selection_rule="explicit family/track/parent/seed; never selected by endpoint error"))
+
+
+def load_resolution_bundle(run_dir, *, family="channel_neural", track="discrete", parent_index=0,
+                           horizon=None, seed=None, grid=None, train_grid=None, coordinator=None):
+    """Replay a selected native/transfer model from sealed large-grid development evidence."""
+    from .resolution_diagnostics import iterate_bank_entries, load_bank_entry, sample_resolution_parent
+    from .resolution_learning import verify_freeze, _config
+    if family not in ("channel_neural", "channel_global", "channel_affine", "channel_fixed"):
+        raise ValueError("Prediction view supports physical interaction-channel families")
+    run = _contained(run_dir)
+    protocol, paths, coordinator_sources = _coordinator(run) if coordinator is None else coordinator
+    if protocol.get("study") != "adjacent-resolution":
+        raise ValueError("A sealed resolution-study run is required")
+    cfg = protocol["resolution"]
+    grid = min(cfg["grids"]) if grid is None else int(grid)
+    train_grid = grid if train_grid is None else int(train_grid)
+    horizon = min(cfg["evaluation_horizons"]) if horizon is None else float(horizon)
+    if grid not in cfg["grids"] or train_grid not in cfg["grids"] or parent_index < 0:
+        raise ValueError("Requested grid or parent is outside the declared resolution study")
+    candidates = [name for name, unit in protocol["units"].items()
+        if unit["kind"] == "resolution_evaluate" and unit["grid"] == grid and unit["track"] == track
+        and parent_index in unit["field_indices"]]
+    if len(candidates) != 1:
+        raise ValueError("Exactly one declared evaluation shard must contain the selected field")
+    evaluation_unit = candidates[0]
+    unit = protocol["units"][evaluation_unit]
+    freeze_unit = unit.get("freeze_unit", "freeze")
+    freeze, evaluation = paths[freeze_unit], paths[evaluation_unit]
+    frozen_manifest = _verify_unit(protocol, freeze)
+    evaluated_manifest = _verify_unit(protocol, evaluation)
+    if evaluated_manifest["prerequisites"].get(freeze_unit) != file_digest(freeze / "science_manifest.json"):
+        raise ValueError("Resolution evaluation does not descend from its selected frozen models")
+    frozen = verify_freeze(protocol, freeze)
+    selected = [row for row in _read(freeze / "catalog.json")
+        if row["family"] == family and row["track"] == track and row["train_grid"] == train_grid
+        and (seed is None or row["seed"] == seed)]
+    if family == "channel_fixed":
+        if family not in cfg.get("frozen_controls", cfg["frozen_families"]) or seed is not None or train_grid != grid:
+            raise ValueError("A fixed control has no training seed or cross-grid training origin")
+        spec = dict(model_id=f"analytic/n{grid}/{track}/{family}", family=family, track=track,
+            seed=None, config=_config(cfg, family), checkpoint_sha256=None,
+            selection_status="FROZEN_CONTROL", selected_update=0, train_grid=None)
+    else:
+        if len(selected) != 1:
+            raise ValueError("Choose an explicit seed when multiple frozen resolution models match")
+        spec = dict(selected[0], selected_update=selected[0]["updates_selected"])
+    bank_dirs = [paths[name] for name in unit["bank_units"]]
+    manifests = {freeze_unit: frozen_manifest, evaluation_unit: evaluated_manifest}
+    for name in unit["bank_units"]:
+        manifest = _verify_unit(protocol, paths[name])
+        if evaluated_manifest["prerequisites"].get(name) != file_digest(paths[name] / "science_manifest.json"):
+            raise ValueError("Evaluation reference bank lineage changed")
+        if manifest["prerequisites"].get(freeze_unit) != file_digest(freeze / "science_manifest.json"):
+            raise ValueError("Evaluation references were not generated after this model freeze")
+        manifests[name] = manifest
+    metadata = [row for directory in bank_dirs for row in iterate_bank_entries(directory)
+        if row["index"] == parent_index and row["track"] == track and int(row["grid"]) == grid
+        and math.isclose(row["horizon"], horizon, rel_tol=0, abs_tol=1e-12)]
+    if len(metadata) != 1:
+        raise ValueError("Exactly one frozen field/horizon reference is required")
+    reference = metadata[0]
+    initial_tensor, truth_tensor, verified_reference = load_bank_entry(bank_dirs,
+        reference["parent_id"], track, grid, horizon)
+    if verified_reference["parent_sha256"] != reference["parent_sha256"]:
+        raise ValueError("Resolution bank field identity changed while loading")
+    initial, truth = initial_tensor.cpu().numpy().copy(), truth_tensor.cpu().numpy().copy()
+    regenerated = sample_resolution_parent(reference["parent"], grid).cpu().numpy()
+    if (initial.dtype != np.float64 or truth.dtype != np.float64 or initial.shape != (1, 1, grid, grid)
+        or truth.shape != initial.shape or not np.isfinite(initial).all() or not np.isfinite(truth).all()
+        or not np.allclose(initial, regenerated, atol=2e-14, rtol=0)):
+        raise ValueError("Resolution input/reference arrays differ from their declared continuous parent")
+    model = make_model(family, track, spec["config"]).float().cpu().eval()
+    selected_sources = []
+    if family != "channel_fixed":
+        checkpoint = _contained(freeze / spec["checkpoint"])
+        if not checkpoint.is_relative_to(freeze) or file_digest(checkpoint) != spec["checkpoint_sha256"]:
+            raise ValueError("Frozen resolution checkpoint differs from its catalog")
+        model.load_state_dict(torch.load(checkpoint, map_location="cpu", weights_only=True)["state_dict"], strict=True)
+        source_unit = spec["source_unit"]
+        trained_manifest = _verify_unit(protocol, paths[source_unit])
+        if frozen_manifest["prerequisites"].get(source_unit) != file_digest(paths[source_unit] / "science_manifest.json"):
+            raise ValueError("Frozen model does not descend from the declared training shard")
+        manifests[source_unit] = trained_manifest
+        selected_sources += [checkpoint, paths[source_unit] / "catalog.json"]
+    if any(manifest["source_tree_sha256"] != frozen_manifest["source_tree_sha256"] for manifest in manifests.values()):
+        raise ValueError("Resolution replay sources disagree on scientific implementation")
+    source_files = _implementation_identity(frozen_manifest["software"]["git_commit"], resolution=True)
+    original = [row for row in _read(evaluation / "evaluation-rows.json")
+        if row["model_id"] == spec["model_id"] and row["parent_id"] == reference["parent_id"]
+        and row["grid"] == grid and row["track"] == track and len(row["schedule"]) == 1
+        and row.get("batch_size", 1) == 1
+        and math.isclose(row["final_time"], horizon, rel_tol=0, abs_tol=1e-12)]
+    if len(original) != 1 or original[0].get("checkpoint_sha256") != spec["checkpoint_sha256"]:
+        raise ValueError("Exactly one original endpoint row from the selected checkpoint is required")
+    bank = _contained(reference["bank_dir"])
+    for name in ("initial_file", "reference_file"):
+        item = _contained(bank / reference[name])
+        if not item.is_relative_to(bank):
+            raise ValueError("Unsafe resolution reference array path")
+        selected_sources.append(item)
+    files = [*coordinator_sources, freeze / "freeze.json", freeze / "catalog.json",
+             evaluation / "evaluation-rows.json", bank / "reference_bank.json", *selected_sources]
+    for name in manifests:
+        files += [paths[name] / filename for filename in
+                  ("science_manifest.json", "workflow-seal.json", "protocol.json")]
+    sources = {str(path.relative_to(ROOT)): file_digest(path) for path in files}
+    equation = Equation(float(reference["kappa"]), float(reference["reaction_rate"]))
+    geometry = Geometry((grid, grid), tuple(reference["domain"]))
+    return dict(model=model, spec=spec, initial=initial, reference_state=truth, reference=reference,
+        original_evaluation=original[0], original_device=evaluated_manifest["device"],
+        source_profile=protocol["profile"], equation=equation, geometry=geometry,
+        provenance=dict(source_run=str(run.relative_to(ROOT)), source_commit=frozen_manifest["software"]["git_commit"],
+            source_tree_sha256=frozen_manifest["source_tree_sha256"], freeze_sha256=frozen["freeze_sha256"],
+            pilot_manifest_sha256=file_digest(freeze / "science_manifest.json"),
+            evaluation_manifest_sha256=file_digest(evaluation / "science_manifest.json"),
+            verified_implementation_files=source_files, source_artifacts=sources,
+            initial_fp64=_array_digest(initial), reference_fp64=_array_digest(truth),
+            parent_identity_sha256=reference["parent_sha256"], parent=reference["parent"],
+            train_grid=spec["train_grid"], evaluation_grid=grid,
+            selection_rule="explicit family/track/parent/seed; default minimum declared grid/horizon; never chosen by endpoint error"))
 
 
 @torch.no_grad()
@@ -316,29 +481,37 @@ def compute_prediction_data(model, initial, truth, h, equation, geometry, *, gai
             analytic_gain_mixing_max_change=float(gain_change.abs().max()),
             unit_gain_error_rms=float((unit_prediction.double()-reference).square().mean().sqrt()),
             interpretation="Actual rounded FP32 endpoint change and FP64 gain-mixing response are distinct quantities"),
-        reference_used_for_inference=False, interpolation="none: nearest display of actual stored cells",
+        reference_used_for_inference=False, interpolation="No interpolation in prediction data or metrics; optional display smoothing is recorded separately",
         execution="CPU replay and visualization; no new training, native GPU validation, or deployment timing")
     return info, arrays
 
 
-def _images(info, arrays, output, *, dpi=400):
+def _images(info, arrays, output, *, dpi=400, spatial_display="raw"):
+    if spatial_display not in ("raw", "bicubic", "both"):
+        raise ValueError("Spatial display must be raw, bicubic, or both")
+    if spatial_display == "both":
+        return (_images(info, arrays, output, dpi=dpi, spatial_display="raw") +
+                _images(info, arrays, output, dpi=dpi, spatial_display="bicubic"))
+    name_suffix = "" if spatial_display == "raw" else "-bicubic"
+    display_label = ("Raw cell display" if spatial_display == "raw" else
+                     "Bicubic display interpolation only; raw cells determine every metric")
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    from matplotlib.colors import TwoSlopeNorm
+    from .resolution_plotting import spatial_image, smooth_curve, draw_curve
     plt.rcParams.update({"font.size": 9, "axes.titlesize": 10, "axes.labelsize": 9,
                          "lines.linewidth": .75, "pdf.fonttype": 42, "ps.fonttype": 42})
     def map_panel(fig, ax, values, title, *, symmetric=False, limit=None, units="state", value_range=None):
         values = np.asarray(values).squeeze()
-        options = dict(origin="lower", interpolation="nearest", extent=(0, 1, 0, 1), aspect="equal")
+        options = dict(display=spatial_display, domain=(1., 1.))
         if symmetric:
             cap = limit or max(float(np.abs(values).max()), 1e-30)
-            options.update(cmap="RdBu_r", norm=TwoSlopeNorm(vmin=-cap, vcenter=0, vmax=cap))
+            options.update(cmap="RdBu_r", vmin=-cap, vmax=cap)
         else:
             options.update(cmap="viridis")
             if value_range is not None:
                 options.update(vmin=value_range[0], vmax=value_range[1])
-        picture = ax.imshow(values.T, **options)
+        picture, _ = spatial_image(ax, values.T, **options)
         ax.set(title=title, xlabel="x / Lx", ylabel="y / Ly")
         ax.set_title(title, pad=16)
         ax.set_xticks([0, .5, 1]); ax.set_yticks([0, .5, 1])
@@ -348,20 +521,21 @@ def _images(info, arrays, output, *, dpi=400):
     physical = info["physical"]
     status = info["selected_model"]["selection_status"]
     update = info["selected_model"]["selected_update"]
-    title = f"TDN adjacent interaction prototype | Ours: {info['selected_model']['family']} | {physical['product']}"
-    footer = (f"Actual {physical['grid'][0]} × {physical['grid'][1]} stored grid; nearest-cell display, no invented spatial detail. "
+    model_role = "Analytic control" if info['selected_model']['family'] == "channel_fixed" else "Ours"
+    title = f"TDN adjacent interaction prototype | {model_role}: {info['selected_model']['family']} | {physical['product']}"
+    footer = (f"Actual {physical['grid'][0]} × {physical['grid'][1]} stored grid; {display_label}. "
               f"{status}, selected update {update}; {info.get('source_profile', 'unspecified')} source, single-field illustration, not a superiority claim.\n"
-              f"Checkpoint {info['selected_model']['checkpoint_sha256'][:16]} · Parent {info['parent_id']} · "
+              f"Checkpoint {(info['selected_model']['checkpoint_sha256'] or 'fixed analytic formula')[:22]} · Parent {info['parent_id']} · "
               "Reference appears only in evaluation panels. Red/blue means signed value; lower error is better.")
     paths = []
     def save(fig, name):
-        fig.savefig(output / f"{name}.png", dpi=dpi, facecolor="white")
-        fig.savefig(output / f"{name}.pdf", facecolor="white")
+        fig.savefig(output / f"{name}{name_suffix}.png", dpi=dpi, facecolor="white")
+        fig.savefig(output / f"{name}{name_suffix}.pdf", facecolor="white")
         plt.close(fig)
-        paths.extend([f"{name}.png", f"{name}.pdf"])
+        paths.extend([f"{name}{name_suffix}.png", f"{name}{name_suffix}.pdf"])
     fig, axes = plt.subplots(4, 4, figsize=(16, 17))
     fig.subplots_adjust(left=.055, right=.97, top=.91, bottom=.085, wspace=.43, hspace=.49)
-    fig.suptitle(title, fontsize=16, y=.975)
+    fig.suptitle(title + (" | bicubic display only" if spatial_display == "bicubic" else ""), fontsize=15, y=.975)
     fig.text(.5, .944, f"Physical inputs: h={physical['step']:g}, κ={physical['kappa']:g}, r={physical['reaction_rate']:g}, m={physical['mean']:.8f}  |  "
              f"Fixed cutoffs: input split {physical['input_split_modes']}, output {physical['output_modes']}; normalized GL{physical['quadrature_nodes']}", ha="center", fontsize=10)
     a = axes.ravel()
@@ -391,7 +565,7 @@ def _images(info, arrays, output, *, dpi=400):
         map_panel(fig, a[4+i], arrays["channels"][0, i], f"5.{i+1}. Projected signed {name}: P_K C{name}\nRMS {info['channel_rms'][i]:.3e}", symmetric=True, limit=channel_limit)
     gains = np.asarray(info["gains"])
     a[7].axhline(1, color="#777777", linestyle="--", linewidth=.7, label="Analytic control: gain 1")
-    a[7].plot(range(3), gains, "^", color="#0072B2", markersize=7, label="Ours: selected effective gain")
+    a[7].plot(range(3), gains, "s" if model_role == "Analytic control" else "^", color="#0072B2", markersize=7, label=f"{model_role}: effective gain")
     for i, value in enumerate(gains):
         a[7].annotate(f"{value:.8f}", (i, value), xytext=(0, 8), textcoords="offset points", ha="center", fontsize=8)
     pad = max(float(np.max(abs(gains-1))) * .8, .002)
@@ -403,7 +577,7 @@ def _images(info, arrays, output, *, dpi=400):
         map_panel(fig, a[8+i], arrays["weighted_channels"][0, i], f"7.{i+1}. Actual g{name} × P_K C{name}", symmetric=True, limit=weighted_limit)
     map_panel(fig, a[11], arrays["correction"], "8. Sum: physical mixed correction", symmetric=True)
     map_panel(fig, a[12], arrays["baseline"], "9. Physical DF backbone S_h(u)", value_range=state_range)
-    map_panel(fig, a[13], arrays["prediction"], "10. Ours: S_h(u) + correction", value_range=state_range)
+    map_panel(fig, a[13], arrays["prediction"], f"10. {model_role}: S_h(u) + correction", value_range=state_range)
     map_panel(fig, a[14], arrays["reference_fp64"], "11. Independent reference (evaluation)", value_range=state_range)
     map_panel(fig, a[15], arrays["error"], f"12. Endpoint error (lower |error| better)\nRMS {info['error_rms']:.3e}; max {info['error_max']:.3e}", symmetric=True)
     fig.text(.055, .032, footer, fontsize=8, va="bottom")
@@ -475,24 +649,37 @@ def _images(info, arrays, output, *, dpi=400):
         map_panel(fig, axes[i,1], changes[-1], f"{name}: output change for {actual_delta[-1]:+.5g}", symmetric=True, limit=channel_limit*info["sensitivity"]["perturbation_delta"])
         map_panel(fig, axes[i,2], changes[0], f"{name}: output change for {actual_delta[0]:+.5g}", symmetric=True, limit=channel_limit*info["sensitivity"]["perturbation_delta"])
         rows = info["sensitivity"]["curves"][i]["measurements"]
-        axes[i,3].plot([r["delta"] for r in rows], [r["error_rms"] for r in rows], "-^", color="#0072B2", markersize=4, linewidth=.75)
+        # A fixed analytic gain has nine identical zero probes. Show one
+        # identical point; do not invent a curve outside its allowed interval.
+        unique = {}
+        for row in rows:
+            if row["delta"] in unique and unique[row["delta"]] != row["error_rms"]:
+                raise ValueError("Repeated gain probes have inconsistent endpoint errors")
+            unique[row["delta"]] = row["error_rms"]
+        curve = smooth_curve(list(unique), list(unique.values()))
+        draw_curve(axes[i,3], curve, style=dict(color="#0072B2", marker="s" if model_role == "Analytic control" else "^",
+            linewidth=.75, linestyle="-"))
         axes[i,3].axvline(0, color="#777777", linewidth=.6, linestyle="--")
         axes[i,3].set(title=f"{name}: hypothetical gain perturbation", xlabel="change in effective gain", ylabel="endpoint RMS error ↓ better")
         axes[i,3].ticklabel_format(axis="y", style="sci", scilimits=(0,0))
         axes[i,3].grid(alpha=.18, linewidth=.4)
-    fig.text(.055, .035, footer + "\nPerturbation curves use FP64 arithmetic around the actual FP32 endpoint; they are explanatory response curves, not new selected checkpoints.", fontsize=8, va="bottom")
+    fig.text(.055, .035, footer + "\nGain probes use FP64 arithmetic around the actual FP32 endpoint. Markers are probes; PCHIP is display interpolation only, not new checkpoints.", fontsize=8, va="bottom")
     save(fig, "prediction-sensitivity")
     return paths
 
 
 def render_prediction_view(run_dir, output_dir, *, family="channel_neural", track="discrete",
-                           parent_index=0, horizon=None, seed=None, dpi=400):
+                           parent_index=0, horizon=None, seed=None, grid=None, train_grid=None,
+                           dpi=400, spatial_display="raw"):
+    if spatial_display not in ("raw", "bicubic", "both"):
+        raise ValueError("Spatial display must be raw, bicubic, or both")
     if type(dpi) is not int or dpi < 400 or dpi > 600:
         raise ValueError("Use 400–600 DPI for a legible high-resolution scientific view")
     run, output = _contained(run_dir), _contained(output_dir)
     if output.exists() or output.is_relative_to(run) or run.is_relative_to(output):
         raise ValueError("Use a new output directory outside the immutable source run")
-    bundle = load_bundle(run, family=family, track=track, parent_index=parent_index, horizon=horizon, seed=seed)
+    bundle = load_bundle(run, family=family, track=track, parent_index=parent_index,
+                         horizon=horizon, seed=seed, grid=grid, train_grid=train_grid)
     before = dict(bundle["provenance"]["source_artifacts"])
     previous = torch.get_num_threads()
     try:
@@ -511,6 +698,7 @@ def render_prediction_view(run_dir, output_dir, *, family="channel_neural", trac
     renderer_commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True,
                                      text=True, check=True).stdout.strip()
     renderer_files = {str(Path(__file__).relative_to(ROOT)): file_digest(Path(__file__)),
+                      "tdn/analysis/adjacent/resolution_plotting.py": file_digest(ROOT / "tdn/analysis/adjacent/resolution_plotting.py"),
                       "scripts/adjacent_prediction_view.py": file_digest(ROOT / "scripts/adjacent_prediction_view.py")}
     info.update(selected_model={k: bundle["spec"][k] for k in ("family", "track", "model_id", "seed", "selection_status", "selected_update", "checkpoint_sha256", "config")},
         parent_id=bundle["reference"]["parent"]["parent_id"], parent_index=parent_index, source_profile=bundle["source_profile"],
@@ -522,12 +710,16 @@ def render_prediction_view(run_dir, output_dir, *, family="channel_neural", trac
             tolerance=replay_tolerance, comparison_scope="Endpoint metric parity only; historical full prediction array was not stored",
             status="SAME_CPU_METRIC_REPLAY" if original_cpu else "ALTERNATE_DEVICE_ILLUSTRATION_NOT_GPU_PARITY",
             no_new_timing_claim=True), renderer=dict(commit=renderer_commit, files=renderer_files,
-                python=platform.python_version(), torch=str(torch.__version__), numpy=np.__version__), rendering=dict(dpi=dpi, interpolation="nearest", spatial_resolution_is_unchanged=True))
+                python=platform.python_version(), torch=str(torch.__version__), numpy=np.__version__), rendering=dict(dpi=dpi, spatial_display=spatial_display,
+                interpolation="nearest" if spatial_display == "raw" else "bicubic display only" if spatial_display == "bicubic" else ["nearest", "bicubic display only"],
+                sensitivity_curve_display="PCHIP through original gain-probe markers; no additional measurements",
+                spatial_resolution_is_unchanged=True, raw_arrays_and_metrics_unchanged=True,
+                smoothing_is_not_new_observation=True))
     output.mkdir(parents=True, exist_ok=False)
     (output / "prediction-data.json").write_text(json.dumps(info, indent=2, allow_nan=False) + "\n")
     with (output / "prediction-arrays.npz").open("wb") as stream:
         np.savez_compressed(stream, **arrays)
-    images = _images(info, arrays, output, dpi=dpi)
+    images = _images(info, arrays, output, dpi=dpi, spatial_display=spatial_display)
     for path, expected in before.items():
         if file_digest(ROOT / path) != expected:
             raise RuntimeError("Source artifact changed during prediction-view generation")

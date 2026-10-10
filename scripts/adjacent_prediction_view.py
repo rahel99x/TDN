@@ -26,6 +26,12 @@ def main(argv=None):
     parser.add_argument("--parent-index", type=int, default=0)
     parser.add_argument("--horizon", type=float)
     parser.add_argument("--seed", type=int)
+    parser.add_argument("--grid", type=int, choices=(64, 128),
+                        help="Resolution-study evaluation grid; defaults to the minimum declared grid")
+    parser.add_argument("--train-grid", type=int, choices=(64, 128),
+                        help="Resolution-study training grid; defaults to --grid; 64→128 shows transfer")
+    parser.add_argument("--spatial-display", choices=("raw", "bicubic", "both"), default="raw",
+                        help="Display only; raw arrays and metrics never change. Both retains raw and labeled smoothed companions.")
     parser.add_argument("--dpi", type=int, default=400, help="400–600 DPI; PDFs retain vector labels")
     args = parser.parse_args(argv)
     from tdn.analysis.adjacent.prediction_view import render_prediction_view

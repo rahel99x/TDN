@@ -9,7 +9,10 @@ import json
 import math
 
 SCHEMA = 'tdn.adjacent/v1'
-PROFILES = ('smoke', 'development', 'full')
+HISTORICAL_PROFILES = ('smoke', 'development', 'full')
+RESOLUTION_PROFILES = ('resolution-smoke', 'resolution-full', 'resolution64', 'resolution128')
+PROFILES = HISTORICAL_PROFILES + RESOLUTION_PROFILES
+NATIVE_FULL_PROFILES = frozenset(('full', 'resolution-full', 'resolution64', 'resolution128'))
 DIAGNOSTICS = ('D01', 'D05', 'D02', 'D04', 'D03', 'D06', 'D07', 'D08')
 HYPOTHESES = {
     'D01': 'Scalar, band, interaction-channel and cubic representation floors',
@@ -36,6 +39,9 @@ def _unit(name, kind, prior, seconds, *, device='cpu', **extra):
                 walltime=f'00:{minutes:02d}:00', **extra)
 
 def build_protocol(profile='smoke'):
+    if profile in RESOLUTION_PROFILES:
+        from .resolution_protocol import build_resolution_protocol
+        return build_resolution_protocol(profile)
     if profile not in PROFILES:
         raise ValueError('Adjacent profile must be smoke, development or full')
     full, smoke = profile == 'full', profile == 'smoke'

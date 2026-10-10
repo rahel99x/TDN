@@ -1,0 +1,1746 @@
+{
+  "adjacent_budget": {
+    "architecture_seconds": 3600,
+    "discretionary_seconds": 4500,
+    "energy_joules": null,
+    "exploration_fraction": 0.2,
+    "monetary_cost": null,
+    "protected_exploration_seconds": 900,
+    "shared_work_separately_enumerated": true,
+    "summed_science_ceiling_seconds": 29280,
+    "training_reference_generation": "Separate CPU parent shards; not hidden inside GPU training budgets",
+    "transfer_from_main_campaign": 0
+  },
+  "automatic_budget_expansion": false,
+  "budgets": {
+    "aggregate": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 300,
+      "walltime": "00:10:00"
+    },
+    "audit": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 180,
+      "walltime": "00:08:00"
+    },
+    "diagnostic-n128-continuum": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "diagnostic-n128-discrete": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "evaluate-n128-continuum-p000": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-continuum-p001": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-continuum-p002": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-discrete-p000": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-discrete-p001": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-discrete-p002": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    },
+    "explore-n128-continuum": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 450,
+      "walltime": "00:16:00"
+    },
+    "explore-n128-discrete": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 450,
+      "walltime": "00:16:00"
+    },
+    "freeze": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 300,
+      "walltime": "00:10:00"
+    },
+    "prepare-evaluation-n128-continuum-p000": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-continuum-p001": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-continuum-p002": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-discrete-p000": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-discrete-p001": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-discrete-p002": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-continuum-p000": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-continuum-p001": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-continuum-p002": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-continuum-p003": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-discrete-p000": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-discrete-p001": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-discrete-p002": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-discrete-p003": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-validation-n128-continuum-p000": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-validation-n128-continuum-p001": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-validation-n128-discrete-p000": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "prepare-validation-n128-discrete-p001": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:20:00"
+    },
+    "report": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "train-n128-continuum-ours": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    },
+    "train-n128-continuum-theirs": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    },
+    "train-n128-discrete-ours": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    },
+    "train-n128-discrete-theirs": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 900,
+      "walltime": "00:23:00"
+    }
+  },
+  "combinations": {},
+  "confirmation": {
+    "confidence_level": 0.95,
+    "coverage_regression": 0.05,
+    "desired_log_halfwidth": 0.13976194237515863,
+    "independent_unit": "parent field; grids, schedules, horizons and seeds remain paired",
+    "inspected_confirmation_becomes_development": true,
+    "insufficient_precision": "NA; never silently expand",
+    "maximum_parents": 12,
+    "multiple_comparisons": "Bonferroni across three contrasts, separate equation tracks and resolution claims; repeated fields remain paired",
+    "planning": "fixed bounded 12-parent evaluation; precision and missing-cell gates can leave all claims NA",
+    "practical_speedup": 1.2,
+    "primary_claims": [
+      "channel_neural vs channel_global",
+      "channel_neural vs quad2_conditioned",
+      "channel_neural vs band_gain"
+    ],
+    "primary_comparisons": 6,
+    "primary_effect_ratio": 1.1
+  },
+  "deployment": {
+    "automatic": false,
+    "reason": "Require complete-cost margin and independently adequate evidence"
+  },
+  "gpu_stages": [
+    "train-n128-discrete-ours",
+    "train-n128-discrete-theirs",
+    "explore-n128-discrete",
+    "train-n128-continuum-ours",
+    "train-n128-continuum-theirs",
+    "explore-n128-continuum",
+    "evaluate-n128-discrete-p000",
+    "evaluate-n128-discrete-p001",
+    "evaluate-n128-discrete-p002",
+    "evaluate-n128-continuum-p000",
+    "evaluate-n128-continuum-p001",
+    "evaluate-n128-continuum-p002"
+  ],
+  "gpu_test_cases": [
+    "test_adjacent_cuda_limits[discrete-channel_fixed]",
+    "test_adjacent_cuda_limits[discrete-channel_global]",
+    "test_adjacent_cuda_limits[discrete-channel_affine]",
+    "test_adjacent_cuda_limits[discrete-channel_neural]",
+    "test_adjacent_cuda_limits[discrete-feature_capacity]",
+    "test_adjacent_cuda_limits[continuum-channel_fixed]",
+    "test_adjacent_cuda_limits[continuum-channel_global]",
+    "test_adjacent_cuda_limits[continuum-channel_affine]",
+    "test_adjacent_cuda_limits[continuum-channel_neural]",
+    "test_adjacent_cuda_limits[continuum-feature_capacity]",
+    "test_adjacent_cuda_gradients[discrete-channel_neural]",
+    "test_adjacent_cuda_gradients[discrete-feature_capacity]",
+    "test_adjacent_cuda_gradients[continuum-channel_neural]",
+    "test_adjacent_cuda_gradients[continuum-feature_capacity]",
+    "test_adjacent_cuda_polarization[discrete-2]",
+    "test_adjacent_cuda_polarization[discrete-4]",
+    "test_adjacent_cuda_polarization[continuum-2]",
+    "test_adjacent_cuda_polarization[continuum-4]",
+    "test_adjacent_cuda_fitted_control[channel_global]",
+    "test_adjacent_cuda_fitted_control[channel_affine]",
+    "test_adjacent_cuda_visible_allocation",
+    "test_portfolio_cuda_limits[discrete-historical_half]",
+    "test_portfolio_cuda_limits[discrete-quad2_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad2_amplitude]",
+    "test_portfolio_cuda_limits[discrete-quad2_nodes]",
+    "test_portfolio_cuda_limits[discrete-quad2_joint]",
+    "test_portfolio_cuda_limits[discrete-quad2_linear]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_limits[discrete-quad2_input]",
+    "test_portfolio_cuda_limits[discrete-quad2_full]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad4_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_limits[discrete-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[discrete-df]",
+    "test_portfolio_cuda_limits[discrete-rf]",
+    "test_portfolio_cuda_limits[discrete-etdrk4]",
+    "test_portfolio_cuda_limits[discrete-fno_small]",
+    "test_portfolio_cuda_limits[discrete-fno_standard]",
+    "test_portfolio_cuda_limits[discrete-direct_fno]",
+    "test_portfolio_cuda_limits[discrete-residual_quad2]",
+    "test_portfolio_cuda_limits[discrete-conditioned_rich]",
+    "test_portfolio_cuda_limits[discrete-band_gain]",
+    "test_portfolio_cuda_limits[continuum-historical_half]",
+    "test_portfolio_cuda_limits[continuum-quad2_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad2_amplitude]",
+    "test_portfolio_cuda_limits[continuum-quad2_nodes]",
+    "test_portfolio_cuda_limits[continuum-quad2_joint]",
+    "test_portfolio_cuda_limits[continuum-quad2_linear]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_limits[continuum-quad2_input]",
+    "test_portfolio_cuda_limits[continuum-quad2_full]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad4_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_limits[continuum-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[continuum-df]",
+    "test_portfolio_cuda_limits[continuum-rf]",
+    "test_portfolio_cuda_limits[continuum-etdrk4]",
+    "test_portfolio_cuda_limits[continuum-fno_small]",
+    "test_portfolio_cuda_limits[continuum-fno_standard]",
+    "test_portfolio_cuda_limits[continuum-direct_fno]",
+    "test_portfolio_cuda_limits[continuum-residual_quad2]",
+    "test_portfolio_cuda_limits[continuum-conditioned_rich]",
+    "test_portfolio_cuda_limits[continuum-band_gain]",
+    "test_portfolio_cuda_gradients[discrete-quad2_nodes]",
+    "test_portfolio_cuda_gradients[discrete-quad2_joint]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-fno_small]",
+    "test_portfolio_cuda_gradients[discrete-fno_standard]",
+    "test_portfolio_cuda_gradients[discrete-direct_fno]",
+    "test_portfolio_cuda_gradients[discrete-residual_quad2]",
+    "test_portfolio_cuda_gradients[discrete-conditioned_rich]",
+    "test_portfolio_cuda_gradients[discrete-band_gain]",
+    "test_portfolio_cuda_gradients[continuum-quad2_nodes]",
+    "test_portfolio_cuda_gradients[continuum-quad2_joint]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-fno_small]",
+    "test_portfolio_cuda_gradients[continuum-fno_standard]",
+    "test_portfolio_cuda_gradients[continuum-direct_fno]",
+    "test_portfolio_cuda_gradients[continuum-residual_quad2]",
+    "test_portfolio_cuda_gradients[continuum-conditioned_rich]",
+    "test_portfolio_cuda_gradients[continuum-band_gain]",
+    "test_portfolio_cuda_fitted_control[quad2_amplitude]",
+    "test_portfolio_cuda_fitted_control[quad2_linear]",
+    "test_portfolio_cuda_visible_allocation",
+    "test_resolution_cuda_large_grid_contract[64-discrete]",
+    "test_resolution_cuda_large_grid_contract[64-continuum]",
+    "test_resolution_cuda_large_grid_contract[128-discrete]",
+    "test_resolution_cuda_large_grid_contract[128-continuum]",
+    "test_resolution_cuda_fno_local_path[64-discrete]",
+    "test_resolution_cuda_fno_local_path[64-continuum]",
+    "test_resolution_cuda_fno_local_path[128-discrete]",
+    "test_resolution_cuda_fno_local_path[128-continuum]",
+    "test_resolution_cuda_precision[64-discrete]",
+    "test_resolution_cuda_precision[64-continuum]",
+    "test_resolution_cuda_precision[128-discrete]",
+    "test_resolution_cuda_precision[128-continuum]",
+    "test_resolution_cuda_exploration[64-discrete]",
+    "test_resolution_cuda_exploration[64-continuum]",
+    "test_resolution_cuda_exploration[128-discrete]",
+    "test_resolution_cuda_exploration[128-continuum]"
+  ],
+  "main_campaign_unchanged": true,
+  "mechanisms": {
+    "C01": {
+      "name": "Origin-of-interaction channels versus fitted and learned controls",
+      "question": "Origin-of-interaction channels versus fitted and learned controls"
+    },
+    "D01": {
+      "name": "Scalar, band, interaction-channel and cubic representation floors",
+      "question": "Scalar, band, interaction-channel and cubic representation floors"
+    },
+    "D02": {
+      "name": "Feature collisions require materially different responses",
+      "question": "Feature collisions require materially different responses"
+    },
+    "D03": {
+      "name": "Grid, step, duration and complete accuracy-qualified cost",
+      "question": "Grid, step, duration and complete accuracy-qualified cost"
+    },
+    "D04": {
+      "name": "Signed high-to-low interactions and phase information",
+      "question": "Signed high-to-low interactions and phase information"
+    },
+    "D05": {
+      "name": "Quadrature versus missing interaction order",
+      "question": "Quadrature versus missing interaction order"
+    },
+    "D06": {
+      "name": "Autonomous transient fidelity and stability",
+      "question": "Autonomous transient fidelity and stability"
+    },
+    "D07": {
+      "name": "Accuracy-qualified temporal reuse and refresh economics",
+      "question": "Accuracy-qualified temporal reuse and refresh economics"
+    },
+    "D08": {
+      "name": "Competitor-favorable and assumption-breaking workloads",
+      "question": "Competitor-favorable and assumption-breaking workloads"
+    },
+    "E01": {
+      "name": "Select cubic work before computing the cubic term",
+      "question": "Select cubic work before computing the cubic term"
+    },
+    "E02": {
+      "name": "Signed modulation as a cheaper cubic spatial direction",
+      "question": "Signed modulation as a cheaper cubic spatial direction"
+    },
+    "HR-E01": {
+      "name": "selective cubic computation",
+      "question": "selective cubic computation"
+    },
+    "HR-E02": {
+      "name": "amortized temporal follow-up",
+      "question": "amortized temporal follow-up"
+    },
+    "R01": {
+      "name": "Controlled finite-resolution rough-surface benchmark",
+      "question": "Controlled finite-resolution rough-surface benchmark"
+    }
+  },
+  "original_objective": "Finite-time physical splitting correction at matched accuracy and complete cost",
+  "profile": "resolution128",
+  "purpose": "Controlled paired 64-square and 128-square complete-solver study",
+  "resolution": {
+    "additional_classical_steps": [
+      16,
+      32
+    ],
+    "alpha_levels": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "changed_bandwidth_regime": "resolution_relative_highpair; not fixed-field refinement",
+    "cross_grid_transfer": false,
+    "cutoff_semantics": "fixed physical integer mode cutoff across paired grids",
+    "diagnostics": {
+      "autonomous_horizons": [
+        0.04,
+        0.12,
+        0.24,
+        0.48
+      ],
+      "no_unobserved_case_imputation": true,
+      "physical_and_resolution_relative_cutoff_slices": true,
+      "programs": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08"
+      ],
+      "selected_parent_indices": [
+        0,
+        1,
+        5
+      ]
+    },
+    "endpoint_steps": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "evaluation_horizons": [
+      0.04,
+      0.12
+    ],
+    "exploration": {
+      "maximum_wall_fraction": 0.9,
+      "parent_limit": 4,
+      "prototypes": {
+        "HR-E01": "selective cubic computation",
+        "HR-E02": "amortized temporal follow-up"
+      },
+      "query_counts": [
+        1,
+        4,
+        8
+      ],
+      "relative_error_floor_multiple": 5.0,
+      "repeats": 2,
+      "required_speedup": 1.1,
+      "scope": "shared development parents; no held-out superiority claim",
+      "selector_budget_fraction": 0.1,
+      "selector_rms_ratio_limit": 1.05,
+      "temporal_atol": 1e-09,
+      "temporal_degree": 6,
+      "temporal_rtol": 1e-07
+    },
+    "families": [
+      "channel_global",
+      "channel_affine",
+      "channel_neural",
+      "quad2_conditioned",
+      "band_gain",
+      "fno_small",
+      "fno_standard"
+    ],
+    "family_groups": {
+      "ours": [
+        "channel_global",
+        "channel_affine",
+        "channel_neural",
+        "quad2_conditioned",
+        "band_gain"
+      ],
+      "theirs": [
+        "fno_small",
+        "fno_standard"
+      ]
+    },
+    "frozen_families": [
+      "quad2_fixed",
+      "quad4_fixed",
+      "quad2_full",
+      "quad4_full",
+      "channel_fixed",
+      "analytic_quad_cubic",
+      "df",
+      "etdrk4"
+    ],
+    "grids": [
+      128
+    ],
+    "horizons": [
+      0.04,
+      0.12
+    ],
+    "kappa": 0.004,
+    "max_target": 2e-05,
+    "mean": 0.43,
+    "model_config": {
+      "cubic_nodes": 4,
+      "hidden": 8,
+      "modes": 8,
+      "quad_nodes": 2,
+      "reaction_substeps": 4,
+      "split_modes": 4
+    },
+    "model_configs": {
+      "analytic_quad_cubic": {
+        "cubic_nodes": 4,
+        "quad_nodes": 4
+      }
+    },
+    "paired_grids": false,
+    "parent_identity_excludes_grid": true,
+    "parent_shard_size": 4,
+    "physical_cutoff": 8,
+    "primary_eligibility": "joint RMS and maximum upper errors at the declared targets",
+    "reaction_rate": 3.0,
+    "reference": {
+      "max_spatial_grid": 512,
+      "max_substeps": 256,
+      "precision": "float64",
+      "roundoff_floor": 1e-12,
+      "spatial_case_limit": 2,
+      "spatial_factors": [
+        2,
+        4
+      ],
+      "spatial_indices": [
+        0,
+        5
+      ],
+      "substeps": 8,
+      "target": "same_grid",
+      "tolerance": 1e-10,
+      "uncertainty": "actual time refinement; selected spatial refinement separately reported, neither is a certificate"
+    },
+    "regimes": [
+      "low",
+      "high_pair",
+      "mixed",
+      "localized",
+      "phase_cancellation",
+      "roughness",
+      "nearly_constant"
+    ],
+    "rms": 0.05,
+    "rms_target": 2e-05,
+    "seed": 87000000,
+    "seeds": [
+      871001,
+      871011
+    ],
+    "source_scope": "new resolution study; historical adjacent/portfolio outcomes and budgets unchanged",
+    "split_cutoff": 4,
+    "splits": {
+      "evaluation": 12,
+      "train": 16,
+      "validation": 8
+    },
+    "target_by_track": {
+      "continuum": "same-grid dealiased Fourier Galerkin; not continuum truth",
+      "discrete": "same-grid periodic FD diffusion and nodal logistic reaction"
+    },
+    "timing": {
+      "batches": [
+        1,
+        4
+      ],
+      "precision": "float32",
+      "random_seed": 873091,
+      "repeats": 7,
+      "tf32": false,
+      "warmup": 1
+    },
+    "tolerance_sweep_scope": "separate descriptive accuracy-cost frontiers; not additional primary claims",
+    "tolerances": [
+      0.0001,
+      2e-05,
+      1e-06
+    ],
+    "tracks": [
+      "discrete",
+      "continuum"
+    ],
+    "training": {
+      "fairness": "paired data and declared trial menus; actual measured training compute is reported, not asserted equal",
+      "fit_iterations": 60,
+      "learning_rates": [
+        0.001,
+        0.0003
+      ],
+      "optimizer_controls": [
+        {
+          "clip_grad_norm": 1.0,
+          "loss_scale": 1.0,
+          "name": "clipped"
+        },
+        {
+          "clip_grad_norm": null,
+          "loss_scale": 0.01,
+          "name": "scaled_unclipped"
+        }
+      ],
+      "peak_weight": 0.1,
+      "rates": [
+        0.001,
+        0.0003
+      ],
+      "seeds": [
+        871001,
+        871011
+      ],
+      "trial_seconds": 20,
+      "updates": 128,
+      "validation_every": 8
+    },
+    "training_horizons": [
+      0.04,
+      0.12
+    ],
+    "transfer_direction": null
+  },
+  "schema": "tdn.adjacent/v1",
+  "scientific_scope": "All resolution profiles are bounded development studies, including full/64/128. Twelve evaluation parents and 128-update ceilings do not authorize confirmatory superiority; fresh sealed fields support only explicitly bounded development evidence.",
+  "seed": 87000000,
+  "stages": [
+    "audit",
+    "prepare-train-n128-discrete-p000",
+    "prepare-train-n128-discrete-p001",
+    "prepare-train-n128-discrete-p002",
+    "prepare-train-n128-discrete-p003",
+    "prepare-train-n128-continuum-p000",
+    "prepare-train-n128-continuum-p001",
+    "prepare-train-n128-continuum-p002",
+    "prepare-train-n128-continuum-p003",
+    "prepare-validation-n128-discrete-p000",
+    "prepare-validation-n128-discrete-p001",
+    "prepare-validation-n128-continuum-p000",
+    "prepare-validation-n128-continuum-p001",
+    "diagnostic-n128-discrete",
+    "train-n128-discrete-ours",
+    "train-n128-discrete-theirs",
+    "explore-n128-discrete",
+    "diagnostic-n128-continuum",
+    "train-n128-continuum-ours",
+    "train-n128-continuum-theirs",
+    "explore-n128-continuum",
+    "freeze",
+    "prepare-evaluation-n128-discrete-p000",
+    "prepare-evaluation-n128-discrete-p001",
+    "prepare-evaluation-n128-discrete-p002",
+    "prepare-evaluation-n128-continuum-p000",
+    "prepare-evaluation-n128-continuum-p001",
+    "prepare-evaluation-n128-continuum-p002",
+    "evaluate-n128-discrete-p000",
+    "evaluate-n128-discrete-p001",
+    "evaluate-n128-discrete-p002",
+    "evaluate-n128-continuum-p000",
+    "evaluate-n128-continuum-p001",
+    "evaluate-n128-continuum-p002",
+    "aggregate",
+    "report"
+  ],
+  "study": "adjacent-resolution",
+  "timing_repeats": 7,
+  "tracks": [
+    "discrete",
+    "continuum"
+  ],
+  "units": {
+    "aggregate": {
+      "cpus": 4,
+      "dependencies": [
+        "freeze",
+        "evaluate-n128-discrete-p000",
+        "evaluate-n128-discrete-p001",
+        "evaluate-n128-discrete-p002",
+        "evaluate-n128-continuum-p000",
+        "evaluate-n128-continuum-p001",
+        "evaluate-n128-continuum-p002"
+      ],
+      "device": "cpu",
+      "evaluation_units": [
+        "evaluate-n128-discrete-p000",
+        "evaluate-n128-discrete-p001",
+        "evaluate-n128-discrete-p002",
+        "evaluate-n128-continuum-p000",
+        "evaluate-n128-continuum-p001",
+        "evaluate-n128-continuum-p002"
+      ],
+      "id": "aggregate",
+      "kind": "resolution_aggregate",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 300,
+      "walltime": "00:10:00"
+    },
+    "audit": {
+      "cpus": 4,
+      "dependencies": [],
+      "device": "cpu",
+      "id": "audit",
+      "kind": "audit",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 180,
+      "walltime": "00:08:00"
+    },
+    "diagnostic-n128-continuum": {
+      "bank_units": [
+        "prepare-train-n128-continuum-p000",
+        "prepare-train-n128-continuum-p001",
+        "prepare-train-n128-continuum-p002",
+        "prepare-train-n128-continuum-p003"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "prepare-train-n128-continuum-p000",
+        "prepare-train-n128-continuum-p001",
+        "prepare-train-n128-continuum-p002",
+        "prepare-train-n128-continuum-p003"
+      ],
+      "device": "cpu",
+      "diagnostic_ids": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08"
+      ],
+      "grid": 128,
+      "id": "diagnostic-n128-continuum",
+      "kind": "resolution_diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 900,
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "diagnostic-n128-discrete": {
+      "bank_units": [
+        "prepare-train-n128-discrete-p000",
+        "prepare-train-n128-discrete-p001",
+        "prepare-train-n128-discrete-p002",
+        "prepare-train-n128-discrete-p003"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "prepare-train-n128-discrete-p000",
+        "prepare-train-n128-discrete-p001",
+        "prepare-train-n128-discrete-p002",
+        "prepare-train-n128-discrete-p003"
+      ],
+      "device": "cpu",
+      "diagnostic_ids": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08"
+      ],
+      "grid": 128,
+      "id": "diagnostic-n128-discrete",
+      "kind": "resolution_diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 900,
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "evaluate-n128-continuum-p000": {
+      "bank_units": [
+        "prepare-evaluation-n128-continuum-p000"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "freeze",
+        "prepare-evaluation-n128-continuum-p000"
+      ],
+      "device": "cuda",
+      "field_indices": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "freeze_unit": "freeze",
+      "grid": 128,
+      "id": "evaluate-n128-continuum-p000",
+      "kind": "resolution_evaluate",
+      "mem_gib": 32,
+      "part": 0,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "continuum",
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-continuum-p001": {
+      "bank_units": [
+        "prepare-evaluation-n128-continuum-p001"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "freeze",
+        "prepare-evaluation-n128-continuum-p001"
+      ],
+      "device": "cuda",
+      "field_indices": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "freeze_unit": "freeze",
+      "grid": 128,
+      "id": "evaluate-n128-continuum-p001",
+      "kind": "resolution_evaluate",
+      "mem_gib": 32,
+      "part": 1,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "continuum",
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-continuum-p002": {
+      "bank_units": [
+        "prepare-evaluation-n128-continuum-p002"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "freeze",
+        "prepare-evaluation-n128-continuum-p002"
+      ],
+      "device": "cuda",
+      "field_indices": [
+        2,
+        5,
+        8,
+        11
+      ],
+      "freeze_unit": "freeze",
+      "grid": 128,
+      "id": "evaluate-n128-continuum-p002",
+      "kind": "resolution_evaluate",
+      "mem_gib": 32,
+      "part": 2,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "continuum",
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-discrete-p000": {
+      "bank_units": [
+        "prepare-evaluation-n128-discrete-p000"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "freeze",
+        "prepare-evaluation-n128-discrete-p000"
+      ],
+      "device": "cuda",
+      "field_indices": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "freeze_unit": "freeze",
+      "grid": 128,
+      "id": "evaluate-n128-discrete-p000",
+      "kind": "resolution_evaluate",
+      "mem_gib": 32,
+      "part": 0,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "discrete",
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-discrete-p001": {
+      "bank_units": [
+        "prepare-evaluation-n128-discrete-p001"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "freeze",
+        "prepare-evaluation-n128-discrete-p001"
+      ],
+      "device": "cuda",
+      "field_indices": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "freeze_unit": "freeze",
+      "grid": 128,
+      "id": "evaluate-n128-discrete-p001",
+      "kind": "resolution_evaluate",
+      "mem_gib": 32,
+      "part": 1,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "discrete",
+      "walltime": "00:23:00"
+    },
+    "evaluate-n128-discrete-p002": {
+      "bank_units": [
+        "prepare-evaluation-n128-discrete-p002"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "freeze",
+        "prepare-evaluation-n128-discrete-p002"
+      ],
+      "device": "cuda",
+      "field_indices": [
+        2,
+        5,
+        8,
+        11
+      ],
+      "freeze_unit": "freeze",
+      "grid": 128,
+      "id": "evaluate-n128-discrete-p002",
+      "kind": "resolution_evaluate",
+      "mem_gib": 32,
+      "part": 2,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "discrete",
+      "walltime": "00:23:00"
+    },
+    "explore-n128-continuum": {
+      "bank_units": [
+        "prepare-train-n128-continuum-p000",
+        "prepare-train-n128-continuum-p001",
+        "prepare-train-n128-continuum-p002",
+        "prepare-train-n128-continuum-p003"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "prepare-train-n128-continuum-p000",
+        "prepare-train-n128-continuum-p001",
+        "prepare-train-n128-continuum-p002",
+        "prepare-train-n128-continuum-p003"
+      ],
+      "device": "cuda",
+      "grid": 128,
+      "id": "explore-n128-continuum",
+      "kind": "resolution_explore",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "prototype_ids": [
+        "HR-E01",
+        "HR-E02"
+      ],
+      "seconds": 450,
+      "track": "continuum",
+      "walltime": "00:16:00"
+    },
+    "explore-n128-discrete": {
+      "bank_units": [
+        "prepare-train-n128-discrete-p000",
+        "prepare-train-n128-discrete-p001",
+        "prepare-train-n128-discrete-p002",
+        "prepare-train-n128-discrete-p003"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "prepare-train-n128-discrete-p000",
+        "prepare-train-n128-discrete-p001",
+        "prepare-train-n128-discrete-p002",
+        "prepare-train-n128-discrete-p003"
+      ],
+      "device": "cuda",
+      "grid": 128,
+      "id": "explore-n128-discrete",
+      "kind": "resolution_explore",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "prototype_ids": [
+        "HR-E01",
+        "HR-E02"
+      ],
+      "seconds": 450,
+      "track": "discrete",
+      "walltime": "00:16:00"
+    },
+    "freeze": {
+      "cpus": 4,
+      "dependencies": [
+        "train-n128-discrete-ours",
+        "train-n128-discrete-theirs",
+        "train-n128-continuum-ours",
+        "train-n128-continuum-theirs"
+      ],
+      "device": "cpu",
+      "id": "freeze",
+      "kind": "resolution_freeze",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 300,
+      "train_units": [
+        "train-n128-discrete-ours",
+        "train-n128-discrete-theirs",
+        "train-n128-continuum-ours",
+        "train-n128-continuum-theirs"
+      ],
+      "walltime": "00:10:00"
+    },
+    "prepare-evaluation-n128-continuum-p000": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "freeze"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "grid": 128,
+      "id": "prepare-evaluation-n128-continuum-p000",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 0,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-continuum-p001": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "freeze"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "grid": 128,
+      "id": "prepare-evaluation-n128-continuum-p001",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 1,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-continuum-p002": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "freeze"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        2,
+        5,
+        8,
+        11
+      ],
+      "grid": 128,
+      "id": "prepare-evaluation-n128-continuum-p002",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 2,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-discrete-p000": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "freeze"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "grid": 128,
+      "id": "prepare-evaluation-n128-discrete-p000",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 0,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-discrete-p001": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "freeze"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "grid": 128,
+      "id": "prepare-evaluation-n128-discrete-p001",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 1,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "prepare-evaluation-n128-discrete-p002": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "freeze"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        2,
+        5,
+        8,
+        11
+      ],
+      "grid": 128,
+      "id": "prepare-evaluation-n128-discrete-p002",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 2,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "evaluation",
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-continuum-p000": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "grid": 128,
+      "id": "prepare-train-n128-continuum-p000",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 0,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "train",
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-continuum-p001": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "grid": 128,
+      "id": "prepare-train-n128-continuum-p001",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 1,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "train",
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-continuum-p002": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "grid": 128,
+      "id": "prepare-train-n128-continuum-p002",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 2,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "train",
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-continuum-p003": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "grid": 128,
+      "id": "prepare-train-n128-continuum-p003",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 3,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "train",
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-discrete-p000": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "grid": 128,
+      "id": "prepare-train-n128-discrete-p000",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 0,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "train",
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-discrete-p001": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "grid": 128,
+      "id": "prepare-train-n128-discrete-p001",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 1,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "train",
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-discrete-p002": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "grid": 128,
+      "id": "prepare-train-n128-discrete-p002",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 2,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "train",
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "prepare-train-n128-discrete-p003": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "grid": 128,
+      "id": "prepare-train-n128-discrete-p003",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 3,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "train",
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "prepare-validation-n128-continuum-p000": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "grid": 128,
+      "id": "prepare-validation-n128-continuum-p000",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 0,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "validation",
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "prepare-validation-n128-continuum-p001": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "grid": 128,
+      "id": "prepare-validation-n128-continuum-p001",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 1,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "validation",
+      "track": "continuum",
+      "walltime": "00:20:00"
+    },
+    "prepare-validation-n128-discrete-p000": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "grid": 128,
+      "id": "prepare-validation-n128-discrete-p000",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 0,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "validation",
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "prepare-validation-n128-discrete-p001": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "field_indices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "grid": 128,
+      "id": "prepare-validation-n128-discrete-p001",
+      "kind": "resolution_prepare",
+      "mem_gib": 32,
+      "part": 1,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "split": "validation",
+      "track": "discrete",
+      "walltime": "00:20:00"
+    },
+    "report": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "prepare-train-n128-discrete-p000",
+        "prepare-train-n128-discrete-p001",
+        "prepare-train-n128-discrete-p002",
+        "prepare-train-n128-discrete-p003",
+        "prepare-train-n128-continuum-p000",
+        "prepare-train-n128-continuum-p001",
+        "prepare-train-n128-continuum-p002",
+        "prepare-train-n128-continuum-p003",
+        "prepare-validation-n128-discrete-p000",
+        "prepare-validation-n128-discrete-p001",
+        "prepare-validation-n128-continuum-p000",
+        "prepare-validation-n128-continuum-p001",
+        "diagnostic-n128-discrete",
+        "train-n128-discrete-ours",
+        "train-n128-discrete-theirs",
+        "explore-n128-discrete",
+        "diagnostic-n128-continuum",
+        "train-n128-continuum-ours",
+        "train-n128-continuum-theirs",
+        "explore-n128-continuum",
+        "freeze",
+        "prepare-evaluation-n128-discrete-p000",
+        "prepare-evaluation-n128-discrete-p001",
+        "prepare-evaluation-n128-discrete-p002",
+        "prepare-evaluation-n128-continuum-p000",
+        "prepare-evaluation-n128-continuum-p001",
+        "prepare-evaluation-n128-continuum-p002",
+        "evaluate-n128-discrete-p000",
+        "evaluate-n128-discrete-p001",
+        "evaluate-n128-discrete-p002",
+        "evaluate-n128-continuum-p000",
+        "evaluate-n128-continuum-p001",
+        "evaluate-n128-continuum-p002",
+        "aggregate"
+      ],
+      "device": "cpu",
+      "id": "report",
+      "kind": "report",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "train-n128-continuum-ours": {
+      "bank_units": [
+        "prepare-train-n128-continuum-p000",
+        "prepare-train-n128-continuum-p001",
+        "prepare-train-n128-continuum-p002",
+        "prepare-train-n128-continuum-p003",
+        "prepare-validation-n128-continuum-p000",
+        "prepare-validation-n128-continuum-p001"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "prepare-train-n128-continuum-p000",
+        "prepare-train-n128-continuum-p001",
+        "prepare-train-n128-continuum-p002",
+        "prepare-train-n128-continuum-p003",
+        "prepare-validation-n128-continuum-p000",
+        "prepare-validation-n128-continuum-p001"
+      ],
+      "device": "cuda",
+      "families": [
+        "channel_global",
+        "channel_affine",
+        "channel_neural",
+        "quad2_conditioned",
+        "band_gain"
+      ],
+      "grid": 128,
+      "group": "ours",
+      "id": "train-n128-continuum-ours",
+      "kind": "resolution_train",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "seeds": [
+        871001,
+        871011
+      ],
+      "track": "continuum",
+      "walltime": "00:23:00"
+    },
+    "train-n128-continuum-theirs": {
+      "bank_units": [
+        "prepare-train-n128-continuum-p000",
+        "prepare-train-n128-continuum-p001",
+        "prepare-train-n128-continuum-p002",
+        "prepare-train-n128-continuum-p003",
+        "prepare-validation-n128-continuum-p000",
+        "prepare-validation-n128-continuum-p001"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "prepare-train-n128-continuum-p000",
+        "prepare-train-n128-continuum-p001",
+        "prepare-train-n128-continuum-p002",
+        "prepare-train-n128-continuum-p003",
+        "prepare-validation-n128-continuum-p000",
+        "prepare-validation-n128-continuum-p001"
+      ],
+      "device": "cuda",
+      "families": [
+        "fno_small",
+        "fno_standard"
+      ],
+      "grid": 128,
+      "group": "theirs",
+      "id": "train-n128-continuum-theirs",
+      "kind": "resolution_train",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "seeds": [
+        871001,
+        871011
+      ],
+      "track": "continuum",
+      "walltime": "00:23:00"
+    },
+    "train-n128-discrete-ours": {
+      "bank_units": [
+        "prepare-train-n128-discrete-p000",
+        "prepare-train-n128-discrete-p001",
+        "prepare-train-n128-discrete-p002",
+        "prepare-train-n128-discrete-p003",
+        "prepare-validation-n128-discrete-p000",
+        "prepare-validation-n128-discrete-p001"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "prepare-train-n128-discrete-p000",
+        "prepare-train-n128-discrete-p001",
+        "prepare-train-n128-discrete-p002",
+        "prepare-train-n128-discrete-p003",
+        "prepare-validation-n128-discrete-p000",
+        "prepare-validation-n128-discrete-p001"
+      ],
+      "device": "cuda",
+      "families": [
+        "channel_global",
+        "channel_affine",
+        "channel_neural",
+        "quad2_conditioned",
+        "band_gain"
+      ],
+      "grid": 128,
+      "group": "ours",
+      "id": "train-n128-discrete-ours",
+      "kind": "resolution_train",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "seeds": [
+        871001,
+        871011
+      ],
+      "track": "discrete",
+      "walltime": "00:23:00"
+    },
+    "train-n128-discrete-theirs": {
+      "bank_units": [
+        "prepare-train-n128-discrete-p000",
+        "prepare-train-n128-discrete-p001",
+        "prepare-train-n128-discrete-p002",
+        "prepare-train-n128-discrete-p003",
+        "prepare-validation-n128-discrete-p000",
+        "prepare-validation-n128-discrete-p001"
+      ],
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "prepare-train-n128-discrete-p000",
+        "prepare-train-n128-discrete-p001",
+        "prepare-train-n128-discrete-p002",
+        "prepare-train-n128-discrete-p003",
+        "prepare-validation-n128-discrete-p000",
+        "prepare-validation-n128-discrete-p001"
+      ],
+      "device": "cuda",
+      "families": [
+        "fno_small",
+        "fno_standard"
+      ],
+      "grid": 128,
+      "group": "theirs",
+      "id": "train-n128-discrete-theirs",
+      "kind": "resolution_train",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "resumable": true,
+      "seconds": 900,
+      "seeds": [
+        871001,
+        871011
+      ],
+      "track": "discrete",
+      "walltime": "00:23:00"
+    }
+  },
+  "version": 1
+}

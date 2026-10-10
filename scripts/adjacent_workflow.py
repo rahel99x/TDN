@@ -26,7 +26,8 @@ from tdn.runtime.desktop_slurm import load_profile, validate_profile, verify_all
 
 MANIFEST = 'adjacent-workflow.json'
 POINTER = '.fedora-adjacent-latest.json'
-PROFILES = ('smoke', 'development', 'full')
+RESOLUTION_POINTER = '.fedora-adjacent-resolution-latest.json'
+from tdn.analysis.adjacent.protocol import PROFILES, HISTORICAL_PROFILES, RESOLUTION_PROFILES
 SCHEDULER_MEMORY_CAP_MIB = 110000
 ARCHIVE_PART_BYTES = 28 * 2**20
 ACCOUNTING_FIELDS = ('JobIDRaw', 'State', 'ExitCode', 'ElapsedRaw', 'TotalCPU', 'AllocTRES', 'MaxRSS', 'CPUTimeRAW')
@@ -136,9 +137,9 @@ def validate(workflow):
     return workflow
 
 
-def workflow_path(value):
+def workflow_path(value, *, resolution=False):
     if value == 'latest':
-        value = cw.read_json(ROOT/'runs'/POINTER)['run_id']
+        value = cw.read_json(ROOT/'runs'/(RESOLUTION_POINTER if resolution else POINTER))['run_id']
     return cw.inside(ROOT/'runs'/pw.identifier(value)/MANIFEST)
 
 
@@ -182,14 +183,23 @@ def load(path, *, verify=True):
 
 def prepare(args):
     site = load_profile(root=ROOT)
-    run_id = pw.identifier(args.run_id or 'fedora-adjacent-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
+    resolution = getattr(args, 'resolution', False)
+    selected_profile = getattr(args, 'selected_profile', None)
+    if resolution and getattr(args, 'development', False):
+        raise ValueError('Resolution studies use --smoke or --full; all profiles are development evidence')
+    grid = getattr(args, 'grid', None)
+    if grid is not None and (not resolution or args.smoke):
+        raise ValueError('--grid requires a full resolution study; resolution smoke covers both grids')
+    profile = selected_profile or (('resolution-smoke' if args.smoke else 'resolution'+str(grid) if grid else 'resolution-full') if resolution
+        else 'smoke' if args.smoke else 'development' if args.development else 'full')
+    prefix = 'fedora-adjacent-resolution-' if profile in RESOLUTION_PROFILES else 'fedora-adjacent-'
+    run_id = pw.identifier(args.run_id or prefix+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
     base = cw.inside(ROOT/'runs'/run_id)
     if base.exists():
         raise ValueError('Run directory exists; preserve it and select a fresh run ID')
     defer_jobs=getattr(args,'after_job',[])
     if any(not re.fullmatch(r'[1-9][0-9]*',v) for v in defer_jobs):
         raise ValueError('--after-job requires ordinary positive Slurm job IDs')
-    profile = 'smoke' if args.smoke else 'development' if args.development else 'full'
     resources = validate_resources(scientific_protocol(profile))
     return validate({'schema_version':1,'kind':'desktop-slurm-adjacent','profile':profile,'run_id':run_id,
         'root':str(ROOT.resolve()),'run_dir':str(base),'created_at':cw.now(),'execution_mode':'desktop-slurm','defer_job_ids':defer_jobs,
@@ -285,6 +295,11 @@ def submission_environment(workflow,stage):
 def submit(workflow, *, plan_only=False, bridge=None):
     print(f"Fedora adjacent: {workflow['run_id']} ({workflow['profile']})\nRun: {workflow['run_dir']}")
     print('Separate adjacent-study DAG; serial desktop resources, no pending-job cap. Final report afterany.')
+    if workflow['profile'] in RESOLUTION_PROFILES:
+        p = scientific_protocol(workflow['profile']); budget = p['adjacent_budget']
+        allocation_ceiling = sum(wall_seconds(u['walltime']) for u in p['units'].values())
+        print(f"Bounded development: grids={p['resolution']['grids']}; {len(p['units'])} jobs; summed science CEILING={budget['summed_science_ceiling_seconds']}s; summed allocation CEILING={allocation_ceiling}s; protected exploration={budget['protected_exploration_seconds']}s.")
+        print('Ceilings are safety bounds, not runtime predictions or billed cost.')
     for stage in pending_stages(workflow):
         print(shlex.join(scheduler_args(workflow,stage)))
     if plan_only:
@@ -297,7 +312,8 @@ def submit(workflow, *, plan_only=False, bridge=None):
     main_jobs=[]
     for line in queue.splitlines():
         job,sep,name=line.strip().partition('|')
-        if sep and name.startswith('tdn-portfolio-'):
+        if sep and (name.startswith('tdn-portfolio-') or
+                (workflow['profile'] in RESOLUTION_PROFILES and name.startswith('tdn-adjacent-'))):
             if not re.fullmatch(r'[1-9][0-9]*',job):
                 raise ValueError('Cannot resolve main-campaign allocation; use explicit ordinary job IDs')
             main_jobs.append(job)
@@ -317,7 +333,8 @@ def submit(workflow, *, plan_only=False, bridge=None):
         cw.atomic_json(base/'state/slurm-policy.json',policies)
         cw.atomic_json(base/'state/submission-software.json',software)
         jobs=[];cw.atomic_json(base/'jobs.json',jobs)
-        cw.atomic_json(ROOT/'runs'/POINTER,{'run_id':workflow['run_id']})
+        pointer = RESOLUTION_POINTER if workflow['profile'] in RESOLUTION_PROFILES else POINTER
+        cw.atomic_json(ROOT/'runs'/pointer,{'run_id':workflow['run_id']})
         def queue(stage):
             load(base/MANIFEST)
             dependency=job_dependency(workflow,stage,jobs)
@@ -410,6 +427,8 @@ def worker_commands(workflow,stage):
         commands.append(('accounting',[python,str(ROOT/'scripts/adjacent_workflow.py'),'snapshot-accounting','--workflow',str(base/MANIFEST)]))
     if stage=='audit' or gpu:
         tests=[ROOT/'tests/test_adjacent_gpu.py',ROOT/'tests/test_portfolio_gpu.py'] if gpu else sorted((ROOT/'tests').glob('test_adjacent*.py'))+[ROOT/'tests/test_desktop_slurm_runtime.py']
+        if gpu and workflow['profile'] in RESOLUTION_PROFILES:
+            tests.extend(ROOT/'tests'/name for name in ('test_adjacent_resolution_gpu.py', 'test_adjacent_resolution_exploration_gpu.py'))
         if not tests or any(not path.is_file() for path in tests):
             raise ValueError('Adjacent mandatory correctness tests are missing')
         if gpu:
@@ -417,7 +436,7 @@ def worker_commands(workflow,stage):
         commands.append(('gpu-tests' if gpu else 'tests',[python,'-m','pytest','-q','-m','gpu' if gpu else 'not gpu',*map(str,tests),
             '--basetemp',str(base/f'{stage}-pytest-work'),'-o',f"cache_dir={base/(stage+'-pytest-cache')}",'--junitxml',str(junit_path(workflow,stage))]))
         if gpu:
-            commands.append(('check-gpu-tests',[python,str(ROOT/'scripts/adjacent_workflow.py'),'check-gpu-tests','--junit',str(junit_path(workflow,stage))]))
+            commands.append(('check-gpu-tests',[python,str(ROOT/'scripts/adjacent_workflow.py'),'check-gpu-tests','--junit',str(junit_path(workflow,stage)),'--profile',workflow['profile']]))
     command=[python,str(ROOT/'scripts/adjacent.py'),'--stage',stage,'--profile',workflow['profile'],'--run-dir',str(base/stage),'--device','cuda' if gpu else 'cpu']
     for prior in ancestors(workflow,stage):
         command += ['--prerequisite-dir',f'{prior}={stage_path(workflow,prior)}']
@@ -486,8 +505,11 @@ def verify_recovery_bridge(workflow):
 
 
 def recover(args):
-    origin=load(workflow_path(args.run))
-    options=SimpleNamespace(run_id=args.run_id,after_job=[],smoke=origin['profile']=='smoke',development=origin['profile']=='development')
+    origin=load(workflow_path(args.run, resolution=getattr(args,'resolution',False)))
+    if (origin['profile'] in RESOLUTION_PROFILES) != getattr(args,'resolution',False):
+        raise ValueError('Use the matching adjacent or adjacent-resolution launcher to recover this workflow')
+    options=SimpleNamespace(run_id=args.run_id,after_job=[],smoke=origin['profile']=='smoke',development=origin['profile']=='development',
+        selected_profile=origin['profile'],resolution=origin['profile'] in RESOLUTION_PROFILES)
     workflow=prepare(options)
     fw.controller_policy();states=require_terminal_origin(origin)
     if any(workflow[key]!=origin[key] for key in ('source_sha256','source_tree_sha256','protocol_sha256','slurm_profile_sha256')):
@@ -503,7 +525,7 @@ def recover(args):
         if not path.exists(): continue
         if (path/'workflow-seal.json').exists():
             verify_stage(origin,stage);completed[stage]=str(path);seals[stage]=cw.digest(path/'workflow-seal.json')
-        elif (units(origin)[stage]['kind'] in ('train','confirm') and (path/'execution.json').is_file()
+        elif ((units(origin)[stage].get('resumable',False) or units(origin)[stage]['kind'] in ('train','confirm')) and (path/'execution.json').is_file()
                 and not any((path/name).exists() for name in ('COMPLETED','science_manifest.json'))):
             record=cw.read_json(path/'stage.json')
             if record.get('status') in ('FAILED','INTERRUPTED','INCOMPLETE') and set(ancestors(origin,stage))<=set(completed):
@@ -582,17 +604,18 @@ def validate_results(workflow):
 
 
 def parser():
-    result=argparse.ArgumentParser(description=__doc__);commands=result.add_subparsers(dest='command',required=True)
+    result=argparse.ArgumentParser(description=__doc__);result.add_argument('--resolution',action='store_true',help='Use the isolated 64/128 study and its own latest pointer');commands=result.add_subparsers(dest='command',required=True)
     for name in ('plan','run'):
         item=commands.add_parser(name);item.add_argument('--run-id');item.add_argument('--after-job',action='append',default=[]);group=item.add_mutually_exclusive_group()
-        for profile in PROFILES: group.add_argument('--'+profile,action='store_true')
+        for profile in HISTORICAL_PROFILES: group.add_argument('--'+profile,action='store_true')
+        item.add_argument('--grid',type=int,choices=(64,128),help='Resolution full only: run one grid')
     item=commands.add_parser('recover');item.add_argument('run',nargs='?',default='latest');item.add_argument('--run-id');item.add_argument('--plan',action='store_true')
     for name in ('status','logs','paths','validate','collect'):
         item=commands.add_parser(name);item.add_argument('run',nargs='?',default='latest')
         if name=='logs': item.add_argument('--lines',type=int,default=200)
         if name=='collect': item.add_argument('--no-accounting',action='store_true')
     item=commands.add_parser('worker');item.add_argument('--workflow',type=Path,required=True);item.add_argument('--stage',required=True)
-    item=commands.add_parser('check-gpu-tests');item.add_argument('--junit',type=Path,required=True)
+    item=commands.add_parser('check-gpu-tests');item.add_argument('--junit',type=Path,required=True);item.add_argument('--profile',choices=PROFILES,default='full')
     item=commands.add_parser('snapshot-accounting');item.add_argument('--workflow',type=Path,required=True)
     return result
 
@@ -603,10 +626,12 @@ def main(argv=None):
         if args.command in ('plan','run'): submit(prepare(args),plan_only=args.command=='plan')
         elif args.command=='recover': recover(args)
         elif args.command=='worker': return worker(load(args.workflow,verify=False),args.stage)
-        elif args.command=='check-gpu-tests': print(json.dumps(check_gpu_tests(args.junit),sort_keys=True))
+        elif args.command=='check-gpu-tests': print(json.dumps(check_gpu_tests(args.junit,profile=args.profile),sort_keys=True))
         elif args.command=='snapshot-accounting': scheduler_accounting(load(args.workflow,verify=False))
         else:
-            workflow=load(workflow_path(args.run),verify=False)
+            workflow=load(workflow_path(args.run,resolution=args.resolution),verify=False)
+            if (workflow['profile'] in RESOLUTION_PROFILES) != args.resolution:
+                raise ValueError('Use the matching adjacent or adjacent-resolution launcher for this workflow')
             if args.command=='logs': logs(workflow,args.lines)
             elif args.command=='collect': collect(workflow,accounting=not args.no_accounting)
             elif args.command=='validate': validate_results(workflow)
@@ -638,18 +663,18 @@ def memory_mib(value):
     amount = int(match.group(1))
     return amount * {"": 1, "K": 1 / 1024, "M": 1, "G": 1024, "T": 1024**2}[match.group(2)]
 
-def check_gpu_tests(path):
+def check_gpu_tests(path, *, profile="full"):
     """Require every declared adjacent CUDA case; no skips or filtered suites."""
     from collections import Counter
     from xml.etree import ElementTree
     from tdn.analysis.adjacent.protocol import build_protocol
-    GPU_TEST_CASES = build_protocol("full")["gpu_test_cases"]
+    GPU_TEST_CASES = build_protocol(profile)["gpu_test_cases"]
     path = cw.inside(path)
     pw.validate_gpu_junit(path)
     tree = ElementTree.parse(path).getroot()
     cases = tree.findall(".//testcase")
     identities = [(case.get("classname"), case.get("name")) for case in cases]
-    expected = [("tests.test_portfolio_gpu" if name.startswith('test_portfolio_') else "tests.test_adjacent_gpu", name) for name in GPU_TEST_CASES]
+    expected = [("tests.test_portfolio_gpu" if name.startswith('test_portfolio_') else "tests.test_adjacent_resolution_exploration_gpu" if name.startswith("test_resolution_cuda_exploration") else "tests.test_adjacent_resolution_gpu" if name.startswith("test_resolution_") else "tests.test_adjacent_gpu", name) for name in GPU_TEST_CASES]
     if not expected or Counter(identities) != Counter(expected) or len(set(identities)) != len(identities):
         raise ValueError("Adjacent GPU readiness requires every unique mandatory declared CUDA case; filtered suites are invalid")
     if any(case.find(tag) is not None for case in cases for tag in ("failure", "error", "skipped")):

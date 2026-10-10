@@ -95,6 +95,23 @@ def verify_science(protocol, path, *, source_tree_sha256=None):
 
 def _dispatch(ctx):
     kind = ctx.unit["kind"]
+    if ctx.protocol.get("study") == "adjacent-resolution":
+        if kind == "audit":
+            from .resolution_checks import run_audit
+            return dict(small_grid=_audit(ctx), requested_grids=run_audit(ctx))
+        if kind == "report":
+            from .resolution_report import run
+            return run(ctx)
+        if kind in ("resolution_prepare", "resolution_diagnostic"):
+            from . import resolution_diagnostics
+            return getattr(resolution_diagnostics, "run_" + kind.removeprefix("resolution_"))(ctx)
+        if kind in ("resolution_train", "resolution_freeze", "resolution_evaluate", "resolution_aggregate"):
+            from . import resolution_learning
+            return getattr(resolution_learning, "run_" + kind.removeprefix("resolution_"))(ctx)
+        if kind == "resolution_explore":
+            from .resolution_exploration import run
+            return run(ctx)
+        raise ValueError("Unknown resolution-study stage kind")
     if kind == 'audit':
         return _audit(ctx)
     if kind == 'roughness':
@@ -232,12 +249,14 @@ def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=N
     if stage not in protocol["units"] or device not in ("cpu", "cuda"):
         raise ValueError("Invalid adjacent stage or device")
     unit = protocol["units"][stage]
-    if protocol["profile"] == "full":
+    native_only = protocol["profile"] == "full" or (
+        protocol.get("study") == "adjacent-resolution" and protocol["profile"] != "resolution-smoke")
+    if native_only:
         if os.environ.get("TDN_EXECUTION_MODE") != "desktop-slurm" or device != unit["device"]:
             raise ValueError("Full adjacent requires its native allocated Fedora device")
         from tdn.runtime.preflight import verify_runtime
         verify_runtime(device, "adjacent-" + stage)
-    if resume and unit["kind"] not in ("train", "confirm"):
+    if resume and unit["kind"] not in ("train", "confirm") and not unit.get("resumable", False):
         raise ValueError("Only journaled train and confirm units support interrupted resumption")
     path = _inside(path); path.mkdir(parents=True, exist_ok=True)
     if (path / "COMPLETED").exists() or (path / MANIFEST).exists():

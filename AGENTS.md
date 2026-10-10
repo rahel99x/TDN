@@ -224,3 +224,24 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
 - Use exact-source recovery and the separate latest pointer. Preserve failed
   work and costs, reference/timing journals, source-bound charts and Tower
   sidecars. Mathematical checks, job completion and scientific success differ.
+
+## Paired adjacent resolution follow-up
+
+- Read `docs/ADJACENT_RESOLUTION.md` for the separate 64²/128² program. Use
+  `scripts/fedora_adjacent_resolution.sh`; preserve historical adjacent profiles,
+  latest pointers and evidence. Every new profile, including `--full`, is a
+  bounded development study, not a confirmatory superiority claim.
+- Pair the same continuous parent across grids with fixed physical cutoffs.
+  Resolution-relative bandwidth stress is a different, labeled workload.
+  Same-grid FD/nodal and dealiased Galerkin references are distinct finite
+  equations; selected spatial refinement must remain separately reported.
+- Keep FP64 refined/cross-checked teachers, FP32 models with TF32 off, frozen
+  validation selection before fresh evaluation, actual completed trial work,
+  strong GL4 quadratic+cubic controls and paired endpoint opportunities.
+- The new native protocol requires all 108 CUDA cases without skips. CPU
+  checks or engineering runs cannot satisfy that requirement. Jobs request
+  four CPUs/32 GiB and at most 23 minutes; retain the existing VRAM limits,
+  recovery/source guards and protected 20% exploration allocation.
+- Bicubic spatial views and PCHIP curves are display interpolation only.
+  Retain raw arrays, raw views/points, visible missing-data gaps, direction
+  guidance and source hashes. Observed-range bands are not confidence intervals.
