@@ -137,41 +137,58 @@ def _physics(parent,n):
 
 
 def converged_reference(initial,horizon,equation,geometry,track,options,check_budget=lambda:None,*,projection_grid=None):
-    """Lawson time refinement and an independently coded ETDRK4 crosscheck."""
-    started=time.perf_counter()
-    truth,meta=_temporal_teacher(initial,float(horizon),equation,geometry,track,options,SimpleNamespace(check=check_budget))
-    difference=meta.pop("_difference")
-    counts=meta["refinement_substeps"]
-    comparisons=[]
-    if counts:
-        for count in counts[-2:]:
-            value=initial.clone(); cache=numerics.CoefficientCache()
-            with torch.no_grad():
-                for j in range(count):
-                    if j%8==0: check_budget()
-                    value=numerics.etdrk4_step(value,horizon/count,equation,geometry,track,cache=cache)
-            comparisons.append(value)
-        cross=error_metrics(comparisons[-1]-truth)
-        refine=error_metrics(comparisons[-1]-comparisons[-2])
-        finite=bool(torch.isfinite(comparisons[-1]).all())
-        floor=float(options.get("roundoff_floor",1e-12))
-        rms=max(float(meta["uncertainty_rms"]),cross["error_rms"],refine["error_rms"],floor)
-        maximum=max(float(meta["uncertainty_max_bound"]),cross["error_max"],refine["error_max"],floor)
-        accepted=bool(meta["accepted"] and finite and max(rms,maximum)<=options["tolerance"])
-        meta.update(accepted=accepted,reference_accepted=accepted,uncertainty_rms=rms,uncertainty_max_bound=maximum,
-            independent_crosscheck=dict(method="Cox-Matthews ETDRK4",counts=counts[-2:],difference_from_lawson=cross,own_refinement=refine))
-        if projection_grid is not None:
-            # Actual projection is required: Nyquist folding is not generally
-            # an RMS contraction for the sampled real-field representation.
-            variations=(difference,comparisons[-1]-truth,comparisons[-1]-comparisons[-2])
-            projected=[error_metrics(fourier_resample(value,(projection_grid,projection_grid))) for value in variations]
-            meta["projected_temporal_uncertainty"]=dict(grid=projection_grid,
-                uncertainty_rms=max(floor,*(r["error_rms"] for r in projected)),
-                uncertainty_max_bound=max(floor,*(r["error_max"] for r in projected)),
-                differences=dict(zip(("lawson_refinement","independent_crosscheck","etdrk4_refinement"),projected)),
-                semantics="actual projected observed differences and rounding floor; not a certificate")
-    else: meta.update(reference_accepted=False,independent_crosscheck=None)
-    meta.update(reference_seconds=time.perf_counter()-started,reference_target="same-grid FD/nodal" if track=="discrete" else "same-grid Fourier Galerkin",
+    """Refine until Lawson *and* independent ETDRK4 meet the same criterion.
+
+    Lawson acceptance alone does not exhaust the declared reference work. If
+    its independent crosscheck is unresolved, retry at the next finer base
+    within the unchanged substep and walltime bounds. Every completed trial is
+    retained, and total time includes rejected reference work.
+    """
+    started=time.perf_counter(); trial_options=dict(options); attempts=[]; lawson_attempts=[]
+    while True:
+        check_budget(); trial_started=time.perf_counter()
+        truth,meta=_temporal_teacher(initial,float(horizon),equation,geometry,track,trial_options,SimpleNamespace(check=check_budget))
+        difference=meta.pop("_difference"); counts=meta["refinement_substeps"]
+        lawson_attempts.extend(meta["temporal_refinements"])
+        comparisons=[]; finite=True
+        if counts:
+            for count in counts[-2:]:
+                value=initial.clone(); cache=numerics.CoefficientCache()
+                with torch.no_grad():
+                    for j in range(count):
+                        if j%8==0: check_budget()
+                        value=numerics.etdrk4_step(value,horizon/count,equation,geometry,track,cache=cache)
+                comparisons.append(value)
+            cross=error_metrics(comparisons[-1]-truth)
+            refine=error_metrics(comparisons[-1]-comparisons[-2])
+            finite=bool(torch.isfinite(truth).all() and all(torch.isfinite(v).all() for v in comparisons))
+            floor=float(options.get("roundoff_floor",1e-12))
+            rms=max(float(meta["uncertainty_rms"]),cross["error_rms"],refine["error_rms"],floor)
+            maximum=max(float(meta["uncertainty_max_bound"]),cross["error_max"],refine["error_max"],floor)
+            accepted=bool(meta["accepted"] and finite and max(rms,maximum)<=options["tolerance"])
+            meta.update(accepted=accepted,reference_accepted=accepted,uncertainty_rms=rms,uncertainty_max_bound=maximum,
+                independent_crosscheck=dict(method="Cox-Matthews ETDRK4",counts=counts[-2:],difference_from_lawson=cross,own_refinement=refine))
+            if projection_grid is not None:
+                # Actual projection is required: Nyquist folding is not generally
+                # an RMS contraction for the sampled real-field representation.
+                variations=(difference,comparisons[-1]-truth,comparisons[-1]-comparisons[-2])
+                projected=[error_metrics(fourier_resample(value,(projection_grid,projection_grid))) for value in variations]
+                meta["projected_temporal_uncertainty"]=dict(grid=projection_grid,
+                    uncertainty_rms=max(floor,*(r["error_rms"] for r in projected)),
+                    uncertainty_max_bound=max(floor,*(r["error_max"] for r in projected)),
+                    differences=dict(zip(("lawson_refinement","independent_crosscheck","etdrk4_refinement"),projected)),
+                    semantics="actual projected observed differences and rounding floor; not a certificate")
+        else:
+            meta.update(reference_accepted=False,independent_crosscheck=None)
+        attempts.append(dict(meta,trial_elapsed_seconds=time.perf_counter()-trial_started,
+            requested_base_substeps=trial_options["substeps"]))
+        if meta["reference_accepted"] or not counts or not finite or 2*counts[-1]>options["max_substeps"]:
+            break
+        # A fresh three-level trial doubles its finest grid, not the cap.
+        trial_options["substeps"]=2*counts[0]
+    meta.update(temporal_refinements=lawson_attempts,joint_refinements=attempts,
+        joint_refinement_stop="accepted" if meta["reference_accepted"] else "nonfinite" if not finite else "declared_substep_limit",
+        reference_seconds=time.perf_counter()-started,reference_target="same-grid FD/nodal" if track=="discrete" else "same-grid Fourier Galerkin",
         uncertainty_semantics="maximum of observed time refinements and independent crosscheck; not a certificate",
         reference_dtype="float64",reference_device="cpu")
     return truth,meta,difference

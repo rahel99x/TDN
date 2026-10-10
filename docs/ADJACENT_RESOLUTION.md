@@ -43,6 +43,11 @@ cross-check and a declared tolerance of 1e-10. Failure to meet the reference
 criterion remains visible. The recorded uncertainty is an empirical refinement
 estimate, not a mathematical certificate.
 
+Both solver refinements and their agreement must meet the criterion. Passing
+Lawson refinement alone must not stop refinement while the independent check
+is unresolved and declared refinement work remains available. Refinement stays
+inside the existing step and wall-time ceilings; the tolerance is not relaxed.
+
 Training/evaluation targets are explicitly the **same-grid FD/nodal equation**
 or the **same-grid dealiased Galerkin equation**. The historical code string
 `continuum` denotes the latter track; it does not turn that finite equation into

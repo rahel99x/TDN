@@ -608,7 +608,7 @@ def build_figures(data, output, budget=None, *, _test_dpi=None, _test_page_limit
             method_label=f" — {patterns[0]['role']}: {patterns[0]['method']}" if patterns else ''
             selection_label=f" Selected parent: {patterns[0]['parent_id']}." if patterns else ''
             page(f'Raw and smooth spatial display {track} {grid} square{method_label}',spatial,
-                'Top: raw nearest samples. Bottom: bicubic display of identical arrays. Input/prediction/reference share a color scale; error has its own symmetric scale. Raw and smooth limits match. Interpolation can overshoot; colors clip, metrics do not change. Representative selection and source hashes are recorded.'+selection_label,(2,4))
+                'Top: raw nearest samples. Bottom: bicubic display of identical arrays. Input/prediction/reference share a color scale; states have no preferred numerical direction. Signed error closest to zero is better; red and blue indicate sign, not good or bad. Raw and smooth limits match. Interpolation can overshoot; colors clip, metrics do not change. Representative selection and source hashes are recorded.'+selection_label,(2,4))
     _gzip(output/'smoothed-display-data.json.gz',{'schema':'tdn.adjacent-display/v1','policy':DISPLAY,'records':displays})
     artifacts={name:_sha(output/name) for name in ('resolution-atlas.pdf','chart-data.json.gz','smoothed-display-data.json.gz')}
     manifest={'schema':SCHEMA,'profile':data['profile'],'panels':panels,'sources':data['sources'],

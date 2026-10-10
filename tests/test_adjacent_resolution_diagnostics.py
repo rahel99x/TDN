@@ -240,3 +240,39 @@ def test_feature_collision_requires_individually_resolved_feasible_fits(interval
     if intervals[0] is None:
         assert result['acceptable_intervals_overlap'] is None
         assert 'scalar-family' in result['collision_inference_reason']
+
+
+@pytest.mark.parametrize('grid',[64,128])
+def test_joint_teacher_refines_crosscheck_after_lawson_accepts(protocol,grid):
+    parent=rd.resolution_parent(protocol,'evaluation',1,grid)
+    initial=rd.sample_resolution_parent(parent,grid);eq,geo=rd._physics(parent,grid)
+    options=protocol['resolution']['reference']
+    _,meta,_=rd.converged_reference(initial,.04,eq,geo,'continuum',options,projection_grid=grid//2)
+    assert meta['reference_accepted']
+    assert meta['refinement_substeps'][-1]==128
+    assert len(meta['joint_refinements'])==2
+    rejected,accepted=meta['joint_refinements']
+    assert rejected['temporal_accepted'] and not rejected['reference_accepted']
+    assert rejected['independent_crosscheck']['own_refinement']['error_max']>options['tolerance']
+    assert accepted['reference_accepted']
+    assert max(meta['uncertainty_rms'],meta['uncertainty_max_bound'])<=options['tolerance']
+    assert all('projected_temporal_uncertainty' in trial for trial in meta['joint_refinements'])
+    assert meta['reference_seconds']>=sum(trial['trial_elapsed_seconds'] for trial in meta['joint_refinements'])
+    assert meta['joint_refinement_stop']=='accepted'
+
+
+def test_joint_teacher_crosscheck_failure_honors_existing_substep_limit(protocol,monkeypatch):
+    parent=rd.resolution_parent(protocol,'train',0);initial=rd.sample_resolution_parent(parent,8)
+    eq,geo=rd._physics(parent,8);options=dict(protocol['resolution']['reference'],max_substeps=64)
+    actual=rd.numerics.etdrk4_step;steps=[]
+    def biased_etd(state,h,*args,**kwargs):
+        steps.append(h)
+        return actual(state,h,*args,**kwargs)+1e-7*h
+    monkeypatch.setattr(rd.numerics,'etdrk4_step',biased_etd)
+    _,meta,_=rd.converged_reference(initial,.04,eq,geo,'discrete',options)
+    assert not meta['reference_accepted']
+    assert meta['joint_refinement_stop']=='declared_substep_limit'
+    assert meta['refinement_substeps'][-1]==64
+    assert len(meta['joint_refinements'])==2
+    assert max(round(.04/h) for h in steps)==64
+    assert all(max(trial['refinement_substeps'])<=64 for trial in meta['joint_refinements'])
