@@ -22,6 +22,7 @@ import sys
 import tarfile
 import time
 import uuid
+import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = "tdn.compact-review/v1"
@@ -30,6 +31,37 @@ BLOCK = 1024 * 1024
 SHA = re.compile(r"[0-9a-f]{64}\Z")
 REPLAY = {".pt", ".pth", ".npz", ".npy", ".safetensors"}
 RENDERED = {".png", ".pdf", ".svg", ".jpg", ".jpeg", ".webp"}
+
+
+class Progress:
+    """Bounded-frequency byte progress, including activity inside large files."""
+    def __init__(self, phase, total, *, output_bytes=None, interval=5.0):
+        self.phase, self.total, self.output_bytes = phase, total, output_bytes
+        self.interval, self.done, self.name = interval, 0, ""
+        self.started = time.monotonic()
+        self.last = self.started
+        self.emit(force=True)
+
+    def add(self, count, name=""):
+        self.done += count
+        self.name = name
+        self.emit()
+
+    def emit(self, *, force=False):
+        now = time.monotonic()
+        if not force and now - self.last < self.interval:
+            return
+        self.last = now
+        elapsed = now - self.started
+        percent = 100 * self.done / self.total if self.total else 100
+        rate = self.done / BLOCK / elapsed if elapsed else 0
+        output = f"; compressed output {self.output_bytes() / BLOCK:.1f} MiB" if self.output_bytes else ""
+        name = f"; file={self.name}" if self.name else ""
+        print(f"{self.phase}: {percent:.1f}% ({self.done / BLOCK:.1f}/{self.total / BLOCK:.1f} MiB); "
+              f"{elapsed:.1f}s; {rate:.1f} MiB/s{output}{name}", flush=True)
+
+    def finish(self):
+        self.emit(force=True)
 
 
 def json_bytes(value):
@@ -71,11 +103,13 @@ def fingerprint(path):
     return (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns, info.st_mode)
 
 
-def digest(path):
+def digest(path, *, progress=None):
     result = hashlib.sha256()
     with path.open("rb") as stream:
         while block := stream.read(BLOCK):
             result.update(block)
+            if progress:
+                progress.add(len(block), str(path.relative_to(ROOT)))
     return result.hexdigest()
 
 
@@ -155,17 +189,18 @@ def role(path):
     return "evidence_or_other"
 
 
-def inventory(value, mode="review", *, hash_files=True):
+def inventory(value, mode="review", *, hash_files=True, show_progress=False):
     initial, roots = run_roots(value)
     paths, skipped = enumerate_files(roots)
     # Related tables/catalogs share the XZ dictionary even across distant stages.
     # Choose aliases in this same order so hardlink targets always come first.
     paths.sort(key=lambda path: (path.name, str(path.relative_to(ROOT))))
+    progress = Progress("Hashing source", sum(p.stat().st_size for p in paths)) if show_progress and hash_files else None
     rows, stamps, duplicates = [], {}, {}
     for path in paths:
         name = str(path.relative_to(ROOT))
         stamp = fingerprint(path)
-        sha = digest(path) if hash_files else None
+        sha = digest(path, progress=progress) if hash_files else None
         if stamp != fingerprint(path):
             raise ValueError(f"Source changed while hashing: {path}")
         stamps[name] = stamp
@@ -184,6 +219,8 @@ def inventory(value, mode="review", *, hash_files=True):
             else:
                 duplicates[key] = name
         rows.append(row)
+    if progress:
+        progress.finish()
     if not rows:
         raise ValueError("Run contains no regular files")
     manifest = {"schema": SCHEMA, "mode": mode, "primary_run": initial.name,
@@ -258,13 +295,37 @@ class PartWriter:
 
 
 class HashReader:
-    def __init__(self, stream):
+    def __init__(self, stream, *, progress=None, name=""):
         self.stream, self.sha = stream, hashlib.sha256()
+        self.progress, self.name = progress, name
 
     def read(self, size=-1):
         data = self.stream.read(size)
         self.sha.update(data)
+        if self.progress:
+            self.progress.add(len(data), self.name)
         return data
+
+
+class CompressionWriter:
+    """Flush only on success: Ctrl-C must not finish compressing a doomed part."""
+    def __init__(self, sink, codec, level):
+        self.sink = sink
+        self.compressor = (lzma.LZMACompressor(preset=level) if codec == "xz" else
+                           zlib.compressobj(level=level, wbits=31))
+
+    def write(self, data):
+        self.sink.write(self.compressor.compress(data))
+        return len(data)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, traceback):
+        if exc_type is None:
+            self.sink.write(self.compressor.flush())
+        # Dropping the compressor after an exception does not flush pending data.
+        self.compressor = None
 
 
 class ChainReader:
@@ -292,11 +353,12 @@ class ChainReader:
             self.stream.close()
 
 
-def check_parts(index_path):
+def check_parts(index_path, *, show_progress=False):
     index_path = inside(index_path)
     index = read_json(index_path)
     if index.get("schema") != SCHEMA or not index.get("parts"):
         raise ValueError("Not a compact review index")
+    progress = Progress("Verifying compressed parts", index["bytes"]) if show_progress else None
     whole, total, names = hashlib.sha256(), 0, set()
     for row in index["parts"]:
         name = safe_name(row["path"])
@@ -312,20 +374,27 @@ def check_parts(index_path):
                 sha.update(block)
                 whole.update(block)
                 total += len(block)
+                if progress:
+                    progress.add(len(block), name)
         if sha.hexdigest() != row["sha256"]:
             raise ValueError(f"Part checksum mismatch: {name}")
     if total != index["bytes"] or whole.hexdigest() != index["sha256"]:
         raise ValueError("Complete archive checksum/size mismatch")
+    if progress:
+        progress.finish()
     return index
 
 
-def inspect_archive(index_path, *, restore=None):
+def inspect_archive(index_path, *, restore=None, show_progress=False):
     """Verify every exact included member; never use tar.extract(all)."""
     index_path = inside(index_path)
-    index = check_parts(index_path)
+    index = check_parts(index_path, show_progress=show_progress)
+    codec = index.get("compression", "xz")  # Read all pre-update XZ indices.
+    if codec not in ("gzip", "xz"):
+        raise ValueError("Unsupported archive compression")
     reader = ChainReader(index_path.parent, index["parts"])
     try:
-        with tarfile.open(fileobj=reader, mode="r|xz") as archive:
+        with tarfile.open(fileobj=reader, mode="r|gz" if codec == "gzip" else "r|xz") as archive:
             first = archive.next()
             if first is None or first.name != MANIFEST or not first.isfile() or first.size > 64 * BLOCK:
                 raise ValueError("Missing or oversized review manifest")
@@ -343,6 +412,8 @@ def inspect_archive(index_path, *, restore=None):
                 if type(row["bytes"]) is not int or row["bytes"] < 0 or not SHA.fullmatch(row["sha256"]):
                     raise ValueError("Invalid file size/hash")
                 expected[name] = row
+            progress = Progress("Restoring exact files" if restore else "Verifying exact files",
+                sum(r["bytes"] for r in expected.values() if r["included"] and not r.get("duplicate_of"))) if show_progress else None
             seen = set()
             # archive.next() above caches the first entry; iteration would emit it twice.
             while member := archive.next():
@@ -375,6 +446,8 @@ def inspect_archive(index_path, *, restore=None):
                             sha.update(block)
                             if output:
                                 output.write(block)
+                            if progress:
+                                progress.add(len(block), name)
                     finally:
                         if output:
                             output.close()
@@ -388,6 +461,8 @@ def inspect_archive(index_path, *, restore=None):
                 seen.add(name)
             if seen != {name for name, row in expected.items() if row["included"]}:
                 raise ValueError("Archive is missing declared files")
+            if progress:
+                progress.finish()
             return manifest, index
     finally:
         reader.close()
@@ -415,8 +490,14 @@ def fresh_output(value, default):
 
 def pack(args):
     started = time.monotonic()
+    # Preserve explicit legacy --preset commands, but never select slow XZ by
+    # default for multi-gigabyte evidence. Conflicts fail before source I/O.
+    codec = args.compression or ("xz" if args.preset is not None else "gzip")
+    if (codec == "gzip" and args.preset is not None) or (codec == "xz" and args.gzip_level is not None):
+        raise ValueError("Use --gzip-level with gzip, or --preset with xz; do not combine them")
+    level = (args.preset if args.preset is not None else 1) if codec == "xz" else (args.gzip_level or 1)
     print("Inventory and SHA-256 of every source file (original files are read-only)...", flush=True)
-    manifest, stamps, roots = inventory(args.run, args.mode)
+    manifest, stamps, roots = inventory(args.run, args.mode, show_progress=True)
     destination = fresh_output(args.output, ROOT / "runs/review-exports" /
         (manifest["primary_run"] + "-" + args.mode + "-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")))
     if any(destination.is_relative_to(root) for root in roots):
@@ -429,10 +510,14 @@ def pack(args):
         manifest_data = json_bytes(manifest)
         if len(manifest_data) > 64 * BLOCK:
             raise ValueError("Inventory exceeds the 64 MiB verifier limit; export smaller independent runs")
-        archive_name = manifest["primary_run"] + "-" + args.mode + ".tar.xz"
+        archive_name = manifest["primary_run"] + "-" + args.mode + (".tar.gz" if codec == "gzip" else ".tar.xz")
         writer = PartWriter(staging, archive_name, args.part_mib * BLOCK)
-        print(f"Compressing {summarize(manifest)['included_bytes']:,} exact bytes using XZ-{args.preset}...", flush=True)
-        with lzma.LZMAFile(writer, "w", preset=args.preset) as compressed:
+        unique_bytes = summarize(manifest)["unique_payload_bytes"]
+        print(f"Compressing {unique_bytes:,} unique exact bytes using {codec.upper()}-{level} (one CPU thread)...", flush=True)
+        if codec == "xz" and level >= 6:
+            print("High XZ levels can be slow on multi-GB runs; gzip-1 is the fast default, XZ-1 gives smaller uploads.", flush=True)
+        progress = Progress("Compression input", unique_bytes, output_bytes=lambda: writer.total)
+        with CompressionWriter(writer, codec, level) as compressed:
             with tarfile.open(fileobj=compressed, mode="w|", format=tarfile.PAX_FORMAT) as archive:
                 entry = tarfile.TarInfo(MANIFEST)
                 entry.size, entry.mode = len(manifest_data), 0o644
@@ -452,21 +537,23 @@ def pack(args):
                     else:
                         entry.size = row["bytes"]
                         with path.open("rb") as source:
-                            reader = HashReader(source)
+                            reader = HashReader(source, progress=progress, name=row["path"])
                             archive.addfile(entry, reader)
                         if reader.sha.hexdigest() != row["sha256"]:
                             raise ValueError(f"Source bytes changed during export: {path}")
+        progress.finish()
         writer.finish()
         assert_stable(manifest, stamps, roots)
         index = {"schema": SCHEMA, "archive": archive_name, "bytes": writer.total,
             "sha256": writer.whole_hash.hexdigest(), "manifest_sha256": hashlib.sha256(manifest_data).hexdigest(),
-            "parts": writer.parts, "mode": args.mode, "xz_preset": args.preset,
+            "parts": writer.parts, "mode": args.mode, "compression": codec,
+            "xz_preset": level if codec == "xz" else None, "gzip_level": level if codec == "gzip" else None,
             "statistics": summarize(manifest), "included_workflow_directories": manifest["run_roots"],
             "reassemble": "Concatenate parts in the listed order; verify SHA-256. Or use compact_review.sh unpack.",
             "scope": manifest["scope"]}
         (staging / "index.json").write_bytes(json_bytes(index))
         print("Verifying parts, archive, and every retained file...", flush=True)
-        inspect_archive(staging / "index.json")
+        inspect_archive(staging / "index.json", show_progress=True)
         assert_stable(manifest, stamps, roots)
         index["export_and_verification_seconds"] = time.monotonic() - started
         (staging / "index.json").write_bytes(json_bytes(index))
@@ -504,12 +591,12 @@ def unpack(args):
     if index_path.is_relative_to(destination):
         raise ValueError("Restore cannot contain its input bundle")
     # Verify everything before publishing a restore directory.
-    inspect_archive(index_path)
+    inspect_archive(index_path, show_progress=True)
     destination.parent.mkdir(parents=True, exist_ok=True)
     staging = destination.with_name(destination.name + ".partial-" + uuid.uuid4().hex)
     staging.mkdir()
     try:
-        manifest, _ = inspect_archive(index_path, restore=staging)
+        manifest, _ = inspect_archive(index_path, restore=staging, show_progress=True)
         (staging / MANIFEST).write_bytes(json_bytes(manifest))
         if destination.exists():
             raise ValueError("Restore destination appeared; refusing to overwrite")
@@ -530,8 +617,10 @@ def parser():
         if name == "pack":
             command.add_argument("--output", type=Path, help="fresh project-contained directory")
             command.add_argument("--part-mib", type=int, choices=range(1, 29), default=24, metavar="1..28")
-            command.add_argument("--preset", type=int, choices=range(10), default=6, metavar="0..9",
-                                 help="XZ level; 6 balances size/time (~100 MiB memory), 9 ~700 MiB and slower")
+            command.add_argument("--compression", choices=("gzip", "xz"), help="default gzip: fast and dependency-free; xz: smaller but slower")
+            command.add_argument("--gzip-level", type=int, choices=range(1, 10), default=None, metavar="1..9", help="gzip level, default 1")
+            command.add_argument("--preset", type=int, choices=range(10), default=None, metavar="0..9",
+                                 help="select XZ at this level; --compression xz defaults to 1; 9 is very slow on large runs")
     for name in ("verify", "unpack"):
         command = commands.add_parser(name)
         command.add_argument("index", type=Path)
@@ -551,11 +640,15 @@ def main(argv=None):
         elif args.command == "pack":
             pack(args)
         elif args.command == "verify":
-            manifest, index = inspect_archive(args.index)
+            manifest, index = inspect_archive(args.index, show_progress=True)
             print(f"VERIFIED: {index['bytes']:,} compressed bytes; {sum(r['included'] for r in manifest['files'])} exact files; mode {manifest['mode']}. Transport integrity only.")
         elif args.command == "unpack":
             unpack(args)
         return 0
+    except KeyboardInterrupt:
+        print("TDN compact review: cancelled; original runs are unchanged. No incomplete bundle was published. "
+              "Retry without --preset 9 to use fast gzip-1.", file=sys.stderr)
+        return 130
     except (OSError, ValueError, KeyError, TypeError, tarfile.TarError, lzma.LZMAError, EOFError) as exc:
         print(f"TDN compact review: {type(exc).__name__}: {exc}", file=sys.stderr)
         return 2

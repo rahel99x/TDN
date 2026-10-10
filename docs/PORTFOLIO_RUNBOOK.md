@@ -93,9 +93,12 @@ bash scripts/fedora_portfolio.sh compact latest
 ```
 
 Upload its printed `index.json` and all listed archive/parts. This streams
-deduplicated, solid XZ output, keeping all raw text measurements and chart data
+deduplicated gzip-1 output by default, keeping all raw text measurements and chart data
 exact while listing the hashes of omitted checkpoints, numerical arrays and
-rendered figures. Use `--mode full` to retain those too. Original runs stay
+rendered figures. Use `--compression xz --preset 1` for a smaller but slower
+package, or `--mode full` to retain the binary/rendered files too. Byte progress
+is printed during hashing, compression and verification; avoid XZ-9 for a fast
+multi-GB export. Original runs stay
 unchanged; review mode is not a complete replay bundle. See
 [compact review instructions](COMPACT_REVIEW.md) for verification, restoration,
 resource use and measured reduction. It can read historical runs after an

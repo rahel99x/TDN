@@ -1,0 +1,35 @@
+{
+  "scope": "Artifact transport engineering; not a scientific or GPU result",
+  "source_run": "runs/portfolio-local-review-v2",
+  "exporter_sha256": "b61eedc7f7dd175cd06d8b45d13294903d319b4c758331ae8c7d9c3a5bc3672b",
+  "source_bytes": 138435823,
+  "retained_bytes": 124533755,
+  "unique_payload_bytes": 116843859,
+  "retained_files": 1188,
+  "validation": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest tests/test_compact_review.py tests/test_portfolio_workflow.py -q --basetemp=.runtime/compact-speed-final-tests -o cache_dir=.runtime/compact-review-pytest-cache",
+    "result": "76 passed in 4.33s",
+    "shell_syntax": "bash -n scripts/compact_review.sh scripts/fedora_portfolio.sh: passed"
+  },
+  "compression_only_comparison": {
+    "method": "Same exact files, table ordering and deduplication; compressed output to a counting sink; excludes disk output and verification",
+    "gzip_1": {"bytes": 23103431, "seconds": 0.661},
+    "gzip_3": {"bytes": 21748509, "seconds": 1.024},
+    "xz_1": {"bytes": 14223676, "seconds": 3.006},
+    "xz_3": {"bytes": 9965504, "seconds": 9.959}
+  },
+  "updated_export_with_verification": {
+    "compression": "gzip",
+    "level": 1,
+    "seconds": 1.7233512680104468,
+    "bytes": 23103433,
+    "archive_sha256": "67fdcad299d44d75d0740fbd099f444a33271123427cfbc0556faf9c9eeb2245",
+    "manifest_sha256": "68954acca5777264bfeb563d8e568ecd4db3ac680a5550ef29905adcf566211c"
+  },
+  "limitations": [
+    "The codec comparison and complete export are distinct measurements with newly generated manifests",
+    "Cloud CPU sample timings do not predict the user's multi-GB Fedora export duration",
+    "Faster gzip packing produces larger uploads than XZ on this evidence",
+    "Review retains the same exact observations and omissions for every codec"
+  ]
+}

@@ -108,21 +108,36 @@ def test_plan_does_not_write_or_require_current_scientific_source(exporter, run)
     assert snapshot(exporter.ROOT) == before
 
 
-def test_full_roundtrip_retains_exact_sealed_bytes_and_failure_evidence(exporter, run):
+@pytest.mark.parametrize("options,compression,level", [
+    ([], "gzip", 1),
+    (["--gzip-level", "3"], "gzip", 3),
+    (["--compression", "gzip", "--gzip-level", "6"], "gzip", 6),
+    (["--compression", "xz", "--preset", "0"], "xz", 0),
+    (["--preset", "1"], "xz", 1),
+])
+def test_full_roundtrip_retains_exact_sealed_bytes_and_failure_evidence(
+    exporter, run, options, compression, level
+):
     original = snapshot(run)
-    output, index_path, index = pack(exporter, run)
+    output, index_path, index = pack(exporter, run, "bundle", *options)
     assert exporter.main(["verify", str(index_path)]) == 0
     destination = exporter.ROOT / "restored"
     assert exporter.main(["unpack", str(index_path), "--output", str(destination)]) == 0
     assert snapshot(restored_run(destination, run)) == original
     assert snapshot(run) == original
     assert index["manifest_sha256"]
+    assert index["compression"] == compression
+    assert index["gzip_level"] == (level if compression == "gzip" else None)
+    assert index["xz_preset"] == (level if compression == "xz" else None)
+    assert index["archive"].endswith(".tar.gz" if compression == "gzip" else ".tar.xz")
+    payload = archive_bytes(output, index)
+    assert payload.startswith(b"\x1f\x8b" if compression == "gzip" else b"\xfd7zXZ\x00")
     for row in index["parts"]:
         data = (output / row["path"]).read_bytes()
         assert row["bytes"] == len(data)
         assert row["sha256"] == hashlib.sha256(data).hexdigest()
         assert len(data) <= 1024 * 1024
-    with tarfile.open(fileobj=io.BytesIO(archive_bytes(output, index)), mode="r:xz") as tar:
+    with tarfile.open(fileobj=io.BytesIO(payload), mode="r:*") as tar:
         members = tar.getmembers()
         assert members[0].name == "REVIEW-MANIFEST.json"
         manifest = tar.extractfile(members[0]).read()
@@ -144,7 +159,7 @@ def test_review_mode_keeps_all_raw_text_but_explicitly_omits_heavy_payloads(expo
     assert retained == {
         name: data for name, data in original.items() if Path(name).suffix not in excluded
     }
-    with tarfile.open(fileobj=io.BytesIO(archive_bytes(output, index)), mode="r:xz") as tar:
+    with tarfile.open(fileobj=io.BytesIO(archive_bytes(output, index)), mode="r:*") as tar:
         manifest = json.loads(tar.extractfile("REVIEW-MANIFEST.json").read())
     entries = {row["path"]: row for row in manifest["files"]}
     for name, data in original.items():
@@ -157,6 +172,162 @@ def test_review_mode_keeps_all_raw_text_but_explicitly_omits_heavy_payloads(expo
         if not row["included"]:
             assert row["reason"]
     assert snapshot(run) == original
+
+
+def test_pre_codec_xz_index_still_verifies_and_restores(exporter, run):
+    # Bundles already uploaded under c8b6352 did not declare a compression
+    # field; transport upgrades must not strand those historical exports.
+    original = snapshot(run)
+    _, index_path, index = pack(exporter, run, "legacy-xz", "--preset", "0")
+    index.pop("compression")
+    index.pop("gzip_level")
+    index_path.write_text(json.dumps(index))
+    assert exporter.main(["verify", str(index_path)]) == 0
+    destination = exporter.ROOT / "legacy-restored"
+    assert exporter.main(["unpack", str(index_path), "--output", str(destination)]) == 0
+    assert snapshot(restored_run(destination, run)) == original
+
+
+@pytest.mark.parametrize("options", [
+    ["--compression", "gzip", "--preset", "9"],
+    ["--compression", "xz", "--gzip-level", "1"],
+    ["--preset", "1", "--gzip-level", "1"],
+    ["--gzip-level", "0"],
+    ["--gzip-level", "10"],
+    ["--preset", "-1"],
+    ["--preset", "10"],
+])
+def test_invalid_compression_flags_fail_without_output(exporter, run, options):
+    original = snapshot(run)
+    destination = exporter.ROOT / "invalid-options"
+    try:
+        result = exporter.main(["pack", str(run), "--output", str(destination), *options])
+    except SystemExit as error:
+        result = error.code
+    assert result == 2
+    assert snapshot(run) == original
+    assert not destination.exists()
+    assert not list(exporter.ROOT.glob("invalid-options.partial-*"))
+
+
+@pytest.mark.parametrize("phase", ["inventory", "compression", "verification"])
+@pytest.mark.parametrize("options", [[], ["--preset", "0"]], ids=["gzip", "xz"])
+def test_interrupt_cleans_only_own_staging_and_returns_130(
+    exporter, run, monkeypatch, capsys, phase, options
+):
+    original = snapshot(run)
+    destination = exporter.ROOT / "interrupted-export"
+    other_partial = exporter.ROOT / "unrelated.partial-other"
+    other_partial.mkdir()
+    (other_partial / "keep").write_bytes(b"another invocation's output\n")
+    reached = False
+
+    def interrupt(*args, **kwargs):
+        nonlocal reached
+        reached = True
+        raise KeyboardInterrupt
+
+    if phase == "inventory":
+        monkeypatch.setattr(exporter, "inventory", interrupt)
+    elif phase == "compression":
+        original_addfile = exporter.tarfile.TarFile.addfile
+
+        def interrupt_after_source_read(archive, member, fileobj=None):
+            result = original_addfile(archive, member, fileobj)
+            if member.name.endswith("/logs/train.out"):
+                interrupt()
+            return result
+
+        monkeypatch.setattr(exporter.tarfile.TarFile, "addfile", interrupt_after_source_read)
+    else:
+        original_inspect = exporter.inspect_archive
+
+        def interrupt_after_archive_verification(*args, **kwargs):
+            original_inspect(*args, **kwargs)
+            interrupt()
+
+        monkeypatch.setattr(exporter, "inspect_archive", interrupt_after_archive_verification)
+
+    assert exporter.main(["pack", str(run), "--output", str(destination), *options]) == 130
+    assert reached
+    assert snapshot(run) == original
+    assert not destination.exists()
+    assert not list(exporter.ROOT.glob("interrupted-export.partial-*"))
+    assert (other_partial / "keep").read_bytes() == b"another invocation's output\n"
+    captured = capsys.readouterr()
+    assert "Traceback" not in captured.err
+    assert any(word in captured.err.lower() for word in ("interrupted", "cancelled", "canceled"))
+
+
+def test_progress_updates_inside_one_file_and_throttles_by_elapsed_seconds(
+    exporter, monkeypatch, capsys
+):
+    clock = [0.0]
+    monkeypatch.setattr(exporter.time, "monotonic", lambda: clock[0])
+    payload = b"x" * (4 * exporter.BLOCK)
+    progress = exporter.Progress("Compression input", len(payload), output_bytes=lambda: exporter.BLOCK)
+    reader = exporter.HashReader(io.BytesIO(payload), progress=progress, name="large.csv")
+    assert "0.0%" in capsys.readouterr().out
+
+    clock[0] = 1.0
+    assert len(reader.read(exporter.BLOCK)) == exporter.BLOCK
+    assert not capsys.readouterr().out
+    clock[0] = 5.0
+    assert len(reader.read(exporter.BLOCK)) == exporter.BLOCK
+    update = capsys.readouterr().out
+    assert "50.0% (2.0/4.0 MiB)" in update
+    assert "5.0s; 0.4 MiB/s" in update
+    assert "compressed output 1.0 MiB; file=large.csv" in update
+    assert reader.stream.tell() < len(payload)  # Progress before file completion.
+
+    clock[0] = 6.0
+    reader.read(exporter.BLOCK)
+    assert not capsys.readouterr().out
+    clock[0] = 10.0
+    reader.read(exporter.BLOCK)
+    assert "100.0% (4.0/4.0 MiB)" in capsys.readouterr().out
+    assert progress.done == len(payload)
+    assert reader.sha.hexdigest() == hashlib.sha256(payload).hexdigest()
+    progress.finish()
+    assert "100.0%" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("codec", ["gzip", "xz"])
+def test_compressor_interrupt_drops_buffer_without_slow_final_flush(exporter, monkeypatch, codec):
+    class Compressor:
+        interrupted = True
+        flush_calls = 0
+
+        def compress(self, data):
+            if self.interrupted:
+                raise KeyboardInterrupt
+            return b"compressed-data"
+
+        def flush(self):
+            self.flush_calls += 1
+            return b"final-buffer"
+
+    compressor = Compressor()
+    if codec == "gzip":
+        monkeypatch.setattr(exporter.zlib, "compressobj", lambda **kwargs: compressor)
+    else:
+        monkeypatch.setattr(exporter.lzma, "LZMACompressor", lambda **kwargs: compressor)
+    sink = io.BytesIO()
+    writer = exporter.CompressionWriter(sink, codec, 1)
+    with pytest.raises(KeyboardInterrupt):
+        with writer:
+            writer.write(b"source-bytes")
+    assert compressor.flush_calls == 0
+    assert writer.compressor is None
+    assert sink.getvalue() == b""
+
+    # Successful completion must still flush; skipping every flush would corrupt
+    # the codec trailer while appearing to satisfy the interruption behavior.
+    compressor.interrupted = False
+    with exporter.CompressionWriter(sink, codec, 1) as complete:
+        complete.write(b"source-bytes")
+    assert compressor.flush_calls == 1
+    assert sink.getvalue() == b"compressed-datafinal-buffer"
 
 
 def test_chunk_limits_and_corruption_are_checked_before_restoration(exporter, run):
@@ -288,8 +459,9 @@ def rewrite_tar(output, index_path, mutate):
     index = json.loads(index_path.read_text())
     original = archive_bytes(output, index)
     result = io.BytesIO()
-    with tarfile.open(fileobj=io.BytesIO(original), mode="r:xz") as source:
-        with tarfile.open(fileobj=result, mode="w:xz", format=tarfile.PAX_FORMAT) as target:
+    with tarfile.open(fileobj=io.BytesIO(original), mode="r:*") as source:
+        codec = "gz" if index.get("compression", "xz") == "gzip" else "xz"
+        with tarfile.open(fileobj=result, mode=f"w:{codec}", format=tarfile.PAX_FORMAT) as target:
             for original_member in source.getmembers():
                 payload = source.extractfile(original_member).read() if original_member.isfile() else None
                 member = copy.copy(original_member)
