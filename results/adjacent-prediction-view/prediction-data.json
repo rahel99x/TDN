@@ -1,0 +1,786 @@
+{
+  "schema": "tdn.adjacent-prediction-view/v1",
+  "physical": {
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "step": 0.06,
+    "grid": [
+      8,
+      8
+    ],
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "mean": 0.429999977350235,
+    "input_split_modes": 1,
+    "output_modes": 2,
+    "quadrature_nodes": 2,
+    "product": "nodal FD"
+  },
+  "network": {
+    "kind": "channel_neural",
+    "trainable_parameters": 59,
+    "fitted_buffer_coefficients": 0,
+    "parameters": {
+      "conditioner.0.weight": [
+        [
+          0.18556223809719086,
+          0.03597825765609741,
+          0.25638484954833984
+        ],
+        [
+          -0.3320401608943939,
+          0.5370093584060669,
+          0.5273062586784363
+        ],
+        [
+          -0.008267971687018871,
+          0.20127242803573608,
+          -0.5133342742919922
+        ],
+        [
+          0.4941771924495697,
+          -0.4440167546272278,
+          0.3680189251899719
+        ],
+        [
+          0.5153774619102478,
+          0.22230686247348785,
+          0.5353965759277344
+        ],
+        [
+          0.08867213129997253,
+          -0.01719474233686924,
+          0.20531700551509857
+        ],
+        [
+          0.10489794611930847,
+          0.5327155590057373,
+          0.4015844166278839
+        ],
+        [
+          0.26458531618118286,
+          -0.46941089630126953,
+          0.42986321449279785
+        ]
+      ],
+      "conditioner.0.bias": [
+        0.49593061208724976,
+        0.04785400629043579,
+        -0.29595881700515747,
+        0.4911412298679352,
+        0.3728925287723541,
+        0.09347253292798996,
+        -0.44346100091934204,
+        -0.21237713098526
+      ],
+      "conditioner.2.weight": [
+        [
+          -0.001999886007979512,
+          -0.001986597664654255,
+          0.001999642001464963,
+          -0.0019998974166810513,
+          -0.001999898348003626,
+          -0.0019993942696601152,
+          0.0019996624905616045,
+          0.0019994303584098816
+        ],
+        [
+          -0.0019971164874732494,
+          -0.0017074306961148977,
+          0.001990952994674444,
+          -0.0019973954185843468,
+          -0.001997422194108367,
+          -0.0019847352523356676,
+          0.0019914712756872177,
+          0.0019856381695717573
+        ],
+        [
+          0.0019999812357127666,
+          0.001997801475226879,
+          -0.001999941188842058,
+          0.0019999828655272722,
+          0.001999983098357916,
+          0.0019999011419713497,
+          -0.001999944681301713,
+          -0.001999906962737441
+        ]
+      ],
+      "conditioner.2.bias": [
+        -0.001999956788495183,
+        -0.001998910680413246,
+        0.0019999928772449493
+      ]
+    },
+    "layer_shapes": [
+      3,
+      8,
+      3
+    ],
+    "activation": "SiLU(x)=x*sigmoid(x)",
+    "exact_gain_reconstruction": true,
+    "hidden_activation": [
+      0.3775384724140167,
+      0.0028414654079824686,
+      -0.11965649574995041,
+      0.41769739985466003,
+      0.4215919077396393,
+      0.0710936114192009,
+      -0.1281130313873291,
+      -0.07644212245941162
+    ],
+    "logits": [
+      -0.005229566246271133,
+      -0.00522040668874979,
+      0.0052298856899142265
+    ]
+  },
+  "features": [
+    0.429999977350235,
+    0.16551443934440613,
+    0.0222021397203207
+  ],
+  "gains": [
+    0.996077835559845,
+    0.9960847496986389,
+    1.0039223432540894
+  ],
+  "gain_formula": "g = 1 + 0.75*tanh(logit)",
+  "channel_names": [
+    "LL",
+    "LH",
+    "HH"
+  ],
+  "reconstruction_max_abs_error": 0.0,
+  "error_rms": 6.544207080888879e-08,
+  "error_max": 1.612230831060657e-07,
+  "baseline_error_rms": 6.0886597208373e-08,
+  "channel_rms": [
+    8.648720850601421e-09,
+    5.928570523394683e-09,
+    3.45503536891556e-08
+  ],
+  "channel_combination_norm_over_root_sum_channel_norms": 0.9411634939512811,
+  "sensitivity": {
+    "definition": "d endpoint / d independent effective gain_c = P_K C_c; state, physics, other gains fixed",
+    "not_input_or_network_weight_derivative": true,
+    "perturbation_delta": 0.1,
+    "admissible_gain_bounds": [
+      0.25,
+      1.75
+    ],
+    "per_channel_deltas": "gain_perturbation_actual_deltas in NPZ; clipped to attainable floating-point range closure",
+    "arithmetic": "FP64 visualization of linear effective-gain perturbations of the actual FP32 endpoint",
+    "curves": [
+      {
+        "channel": "LL",
+        "measurements": [
+          {
+            "delta": -0.1,
+            "effective_gain": 0.896077835559845,
+            "error_rms": 6.54235486752594e-08,
+            "error_max": 1.604000584576326e-07
+          },
+          {
+            "delta": -0.07500000000000001,
+            "effective_gain": 0.921077835559845,
+            "error_rms": 6.542710790133598e-08,
+            "error_max": 1.606058145919853e-07
+          },
+          {
+            "delta": -0.05,
+            "effective_gain": 0.9460778355598449,
+            "error_rms": 6.543138142690415e-08,
+            "error_max": 1.6081157078184916e-07
+          },
+          {
+            "delta": -0.024999999999999994,
+            "effective_gain": 0.971077835559845,
+            "error_rms": 6.543636912287806e-08,
+            "error_max": 1.6101732691620185e-07
+          },
+          {
+            "delta": 0.0,
+            "effective_gain": 0.996077835559845,
+            "error_rms": 6.544207080888879e-08,
+            "error_max": 1.612230831060657e-07
+          },
+          {
+            "delta": 0.024999999999999994,
+            "effective_gain": 1.0210778355598449,
+            "error_rms": 6.544848630788056e-08,
+            "error_max": 1.6142883929592955e-07
+          },
+          {
+            "delta": 0.05000000000000002,
+            "effective_gain": 1.046077835559845,
+            "error_rms": 6.545561541833796e-08,
+            "error_max": 1.6163459543028225e-07
+          },
+          {
+            "delta": 0.07500000000000001,
+            "effective_gain": 1.071077835559845,
+            "error_rms": 6.546345789359354e-08,
+            "error_max": 1.618403516201461e-07
+          },
+          {
+            "delta": 0.1,
+            "effective_gain": 1.096077835559845,
+            "error_rms": 6.547201348462713e-08,
+            "error_max": 1.620461077544988e-07
+          }
+        ],
+        "actual_delta_interval": [
+          -0.1,
+          0.1
+        ],
+        "clipped_to_admissible_range": false
+      },
+      {
+        "channel": "LH",
+        "measurements": [
+          {
+            "delta": -0.1,
+            "effective_gain": 0.8960847496986389,
+            "error_rms": 6.5395557304499e-08,
+            "error_max": 1.6030220878482382e-07
+          },
+          {
+            "delta": -0.07500000000000001,
+            "effective_gain": 0.921084749698639,
+            "error_rms": 6.540668499259718e-08,
+            "error_max": 1.605324273512565e-07
+          },
+          {
+            "delta": -0.05,
+            "effective_gain": 0.9460847496986389,
+            "error_rms": 6.541814659231866e-08,
+            "error_max": 1.6076264597320034e-07
+          },
+          {
+            "delta": -0.024999999999999994,
+            "effective_gain": 0.9710847496986389,
+            "error_rms": 6.542994192087174e-08,
+            "error_max": 1.6099286453963302e-07
+          },
+          {
+            "delta": 0.0,
+            "effective_gain": 0.9960847496986389,
+            "error_rms": 6.544207080888879e-08,
+            "error_max": 1.612230831060657e-07
+          },
+          {
+            "delta": 0.024999999999999994,
+            "effective_gain": 1.0210847496986388,
+            "error_rms": 6.545453306439201e-08,
+            "error_max": 1.6145330167249838e-07
+          },
+          {
+            "delta": 0.05000000000000002,
+            "effective_gain": 1.046084749698639,
+            "error_rms": 6.546732849037409e-08,
+            "error_max": 1.6168352023893107e-07
+          },
+          {
+            "delta": 0.07500000000000001,
+            "effective_gain": 1.0710847496986389,
+            "error_rms": 6.548045690265301e-08,
+            "error_max": 1.619137388608749e-07
+          },
+          {
+            "delta": 0.1,
+            "effective_gain": 1.096084749698639,
+            "error_rms": 6.54939180935262e-08,
+            "error_max": 1.6214395742730758e-07
+          }
+        ],
+        "actual_delta_interval": [
+          -0.1,
+          0.1
+        ],
+        "clipped_to_admissible_range": false
+      },
+      {
+        "channel": "HH",
+        "measurements": [
+          {
+            "delta": -0.1,
+            "effective_gain": 0.9039223432540894,
+            "error_rms": 6.458880942773591e-08,
+            "error_max": 1.5747657317044528e-07
+          },
+          {
+            "delta": -0.07500000000000001,
+            "effective_gain": 0.9289223432540894,
+            "error_rms": 6.478590624449773e-08,
+            "error_max": 1.5841320066822817e-07
+          },
+          {
+            "delta": -0.05,
+            "effective_gain": 0.9539223432540893,
+            "error_rms": 6.499388547401306e-08,
+            "error_max": 1.5934982811049991e-07
+          },
+          {
+            "delta": -0.024999999999999994,
+            "effective_gain": 0.9789223432540893,
+            "error_rms": 6.521264303354562e-08,
+            "error_max": 1.602864556082828e-07
+          },
+          {
+            "delta": 0.0,
+            "effective_gain": 1.0039223432540894,
+            "error_rms": 6.544207080888879e-08,
+            "error_max": 1.612230831060657e-07
+          },
+          {
+            "delta": 0.024999999999999994,
+            "effective_gain": 1.0289223432540893,
+            "error_rms": 6.568205699398284e-08,
+            "error_max": 1.621597106038486e-07
+          },
+          {
+            "delta": 0.05000000000000002,
+            "effective_gain": 1.0539223432540894,
+            "error_rms": 6.593248630255445e-08,
+            "error_max": 1.630963381016315e-07
+          },
+          {
+            "delta": 0.07500000000000001,
+            "effective_gain": 1.0789223432540893,
+            "error_rms": 6.619324017992696e-08,
+            "error_max": 1.6403296554390323e-07
+          },
+          {
+            "delta": 0.1,
+            "effective_gain": 1.1039223432540894,
+            "error_rms": 6.646419714685702e-08,
+            "error_max": 1.6496959304168612e-07
+          }
+        ],
+        "actual_delta_interval": [
+          -0.1,
+          0.1
+        ],
+        "clipped_to_admissible_range": false
+      }
+    ]
+  },
+  "learned_vs_unit": {
+    "rounded_fp32_endpoint_max_change": 0.0,
+    "analytic_gain_mixing_max_change": 3.1512925134321444e-10,
+    "unit_gain_error_rms": 6.544207080888879e-08,
+    "interpretation": "Actual rounded FP32 endpoint change and FP64 gain-mixing response are distinct quantities"
+  },
+  "reference_used_for_inference": false,
+  "interpolation": "none: nearest display of actual stored cells",
+  "execution": "CPU replay and visualization; no new training, native GPU validation, or deployment timing",
+  "selected_model": {
+    "family": "channel_neural",
+    "track": "discrete",
+    "model_id": "discrete/channel_neural/seed731001",
+    "seed": 731001,
+    "selection_status": "FITTED_CHECKPOINT",
+    "selected_update": 2,
+    "checkpoint_sha256": "772d00b4701591546a975001720cf4911b6ca3a110dc0885be2ddfac9c6f7c08",
+    "config": {
+      "modes": 2,
+      "split_modes": 1,
+      "quad_nodes": 2,
+      "cubic_nodes": 4,
+      "hidden": 8,
+      "reaction_substeps": 4
+    }
+  },
+  "parent_id": "adjacent/confirmation/71200000",
+  "parent_index": 0,
+  "source_profile": "smoke",
+  "reference_metadata": {
+    "parent_index": 0,
+    "state_key": "state-0",
+    "key": "reference-0-discrete-0",
+    "split": "confirmation",
+    "parent": {
+      "seed": 71200000,
+      "alpha": 0.3,
+      "generator": "multiscale_2d",
+      "levels": 2,
+      "phase_mode": "random",
+      "orientation": [
+        1,
+        0
+      ],
+      "mean": 0.43,
+      "rms": 0.05,
+      "bounds": [
+        0.0,
+        1.0
+      ],
+      "modes": [
+        [
+          1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          -2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          -1
+        ]
+      ],
+      "amplitudes": [
+        0.0301081472637392,
+        0.0301081472637392,
+        0.0301081472637392,
+        0.0301081472637392,
+        0.01853373864995927,
+        0.01853373864995927,
+        0.01853373864995927,
+        0.01853373864995927
+      ],
+      "phases": [
+        5.175423114936037,
+        5.103815708625957,
+        4.736473883060335,
+        0.7843809069077441,
+        0.05191308100315824,
+        5.0823786756142315,
+        2.1545135636956223,
+        3.114053108105481
+      ],
+      "shell_indices": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "split": "confirmation",
+      "cluster_id": "confirmation/seed-71200000",
+      "parent_id": "adjacent/confirmation/71200000",
+      "modes_per_level": 4,
+      "translation": [
+        0.0,
+        0.0
+      ],
+      "workload": "fixed_physical_bandwidth",
+      "hurst": 0.7,
+      "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+      "continuous_range_bound": [
+        0.2354324563452061,
+        0.6245675436547939
+      ],
+      "identity_sha256": "5afc651755c5b72e5c6ef50ffd7e752f979b8bc95adadcbaac1f567792f2d9fd",
+      "finite_field_dimension": 2,
+      "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+      "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+      "physical_frequency_units": "integer cycles per domain length"
+    },
+    "accepted": true,
+    "uncertainty_rms": 1e-12,
+    "uncertainty_max_bound": 1e-12,
+    "track": "discrete",
+    "grid": 8,
+    "horizon": 0.06,
+    "temporal_refinement": [
+      {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 6.8158069128623185e-12,
+                "max": 1.0261180793946778e-11
+              },
+              {
+                "rms": 4.257318758021042e-13,
+                "max": 6.410982855697966e-13
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true
+      }
+    ],
+    "spatial_factors": [
+      1
+    ],
+    "spatial_difference_rms": 0.0,
+    "spatial_difference_max": 0.0,
+    "reference_seconds": 0.014449406997300684,
+    "uncertainty_semantics": "actual refinement difference plus temporal estimates; not an error certificate",
+    "target": "FD nodal semidiscrete"
+  },
+  "provenance": {
+    "source_run": "runs/adjacent-local-review-v2",
+    "source_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+    "freeze_sha256": "7f4ea5d5f46f251e178bdeeecad2ae82171d54fdbbf3102554a19e15141b15ea",
+    "pilot_manifest_sha256": "4674ff4de14d8755865dbef25810b2f5b832715ea719946a794bdfa11fbd2689",
+    "evaluation_manifest_sha256": "07d9ced466dc5f13467e2b380f51ad2979740673542ada91873bc85f3a1006e8",
+    "verified_implementation_files": {
+      "tdn/analysis/adjacent/models.py": "f09f08fb43f4a726379487dfa6f38c47082abe476dc007ff97e6fb80a02d4022",
+      "tdn/analysis/adjacent/fields.py": "5f30b8db96463726087cf9c4cb486b29a7737a2a04f3dac00923f913cb7c3acd",
+      "tdn/analysis/adjacent/pilots.py": "20cee460a51dc60ae032e266e1d7473c604d6b085587bef748b42123e53f61e0",
+      "tdn/analysis/portfolio/models.py": "a4a154fcfd13b571a1e6af369995d2da4dc0c6cbdf4dbe5b19c0986ed3b3f7ae",
+      "tdn/analysis/frontier/models.py": "6e4eb885538733099f9396aa24532be3234ec28f1fd9df825039e571b9c246c3",
+      "tdn/analysis/frontier/numerics.py": "0946769bb1b44fe89b2f96f49dae89ff5e6d0106e029c56e8721d172d4c7151c",
+      "tdn/analysis/roadmap/numerics.py": "31f5d463be2d3088669282e7f1403d13bbcc04f8ad6c028bd2e426b46846aab4",
+      "tdn/analysis/agenda/physics.py": "6ff6922431bd04de12b0f18ab358059f3a929867f8b9aa95ffc0fdffa05f7352",
+      "tdn/numerics/operators.py": "a590a0debed272d6cfb0fe9a2ddd721e8e6c1e77caf36145d38805048ff2296d",
+      "tdn/numerics/subflows.py": "49f261759e67a406cb2e2b6fc079f722740f329a9eaf99ca2ecc63f6d9199e54",
+      "tdn/numerics/types.py": "686ac3a165734367dbd1a6273e1a88225a012f49bfdc840bf09bd1667a9d81c7"
+    },
+    "source_artifacts": {
+      "runs/adjacent-local-review-v2/local-protocol.json": "326cb7be6dda0bb9f578532268aa760c008e6b442a7ec79461288c675bc59371",
+      "runs/adjacent-local-review-v2/pilot/science_manifest.json": "4674ff4de14d8755865dbef25810b2f5b832715ea719946a794bdfa11fbd2689",
+      "runs/adjacent-local-review-v2/pilot/workflow-seal.json": "ea51fd63fbf77030d74fbd4908e9c4ceb11ba2f9c6580a07e45cf3b7c288de98",
+      "runs/adjacent-local-review-v2/pilot/freeze.json": "9d7ee9bfe2cdcd06f25b4cf1434453e468dc1a44eb0e9d3f1ccbfe55e7a00851",
+      "runs/adjacent-local-review-v2/pilot/catalog.json": "341eabd1ab084610a0f9db67074450bd78e5ac3136ae10a00be83d4dc91d5f43",
+      "runs/adjacent-local-review-v2/pilot/checkpoints/23424781a550f7e29a16fdffba74354c66c80682ee8d82ccfea42c703b43b6d3.selected.pt": "772d00b4701591546a975001720cf4911b6ca3a110dc0885be2ddfac9c6f7c08",
+      "runs/adjacent-local-review-v2/evaluate/science_manifest.json": "07d9ced466dc5f13467e2b380f51ad2979740673542ada91873bc85f3a1006e8",
+      "runs/adjacent-local-review-v2/evaluate/workflow-seal.json": "98ee9f9da46bb12bfa4146a92de7e172a19c685ee99c728ceec49a422e9cdbcd",
+      "runs/adjacent-local-review-v2/evaluate/reference-bank.json": "04212a2f7ec5f9a5726c40da81153e58223b4b26d2e9f7161ba2dc3e9eb4994e",
+      "runs/adjacent-local-review-v2/evaluate/reference-bank.npz": "a80004e9c349ee8861c63855567e104f148a12c772b52c413c7f040d2e1c0bb0",
+      "runs/adjacent-local-review-v2/evaluate/evaluation-rows.json": "0f5fbfc1328a51f341776c27c41c80c9408a692c1ba39a396e014f520f59066b"
+    },
+    "initial_fp64": {
+      "dtype": "float64",
+      "shape": [
+        1,
+        1,
+        8,
+        8
+      ],
+      "sha256": "2c6ee92e53cb42775ab8c96e7d7c038259c568f94314d195187ae0686c5a9cdd"
+    },
+    "reference_fp64": {
+      "dtype": "float64",
+      "shape": [
+        1,
+        1,
+        8,
+        8
+      ],
+      "sha256": "3b444bb16bcc5d82c866e8d98ed96437011b18d654bf7d97f08e9e1427870704"
+    },
+    "parent_identity_sha256": "5afc651755c5b72e5c6ef50ffd7e752f979b8bc95adadcbaac1f567792f2d9fd",
+    "parent": {
+      "seed": 71200000,
+      "alpha": 0.3,
+      "generator": "multiscale_2d",
+      "levels": 2,
+      "phase_mode": "random",
+      "orientation": [
+        1,
+        0
+      ],
+      "mean": 0.43,
+      "rms": 0.05,
+      "bounds": [
+        0.0,
+        1.0
+      ],
+      "modes": [
+        [
+          1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          -2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          -1
+        ]
+      ],
+      "amplitudes": [
+        0.0301081472637392,
+        0.0301081472637392,
+        0.0301081472637392,
+        0.0301081472637392,
+        0.01853373864995927,
+        0.01853373864995927,
+        0.01853373864995927,
+        0.01853373864995927
+      ],
+      "phases": [
+        5.175423114936037,
+        5.103815708625957,
+        4.736473883060335,
+        0.7843809069077441,
+        0.05191308100315824,
+        5.0823786756142315,
+        2.1545135636956223,
+        3.114053108105481
+      ],
+      "shell_indices": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "split": "confirmation",
+      "cluster_id": "confirmation/seed-71200000",
+      "parent_id": "adjacent/confirmation/71200000",
+      "modes_per_level": 4,
+      "translation": [
+        0.0,
+        0.0
+      ],
+      "workload": "fixed_physical_bandwidth",
+      "hurst": 0.7,
+      "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+      "continuous_range_bound": [
+        0.2354324563452061,
+        0.6245675436547939
+      ],
+      "identity_sha256": "5afc651755c5b72e5c6ef50ffd7e752f979b8bc95adadcbaac1f567792f2d9fd",
+      "finite_field_dimension": 2,
+      "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+      "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+      "physical_frequency_units": "integer cycles per domain length"
+    },
+    "selection_rule": "explicit family/track/parent/seed; never selected by endpoint error"
+  },
+  "original_evaluation": {
+    "model_id": "discrete/channel_neural/seed731001",
+    "family": "channel_neural",
+    "role": "Ours",
+    "track": "discrete",
+    "seed": 731001,
+    "selection_status": "FITTED_CHECKPOINT",
+    "checkpoint_sha256": "772d00b4701591546a975001720cf4911b6ca3a110dc0885be2ddfac9c6f7c08",
+    "parameter_count": 59,
+    "parent_id": "adjacent/confirmation/71200000",
+    "field_cluster": "confirmation/seed-71200000",
+    "alpha": 0.3,
+    "generator": "multiscale_2d",
+    "grid": 8,
+    "schedule_id": "endpoint-1",
+    "schedule": [
+      0.06
+    ],
+    "final_time": 0.06,
+    "timing_id": "parent-0/discrete/0.06/steps-1",
+    "cost_seconds": 0.0013615960051538423,
+    "cold_seconds": 0.001438709005014971,
+    "raw_timing_seconds": [
+      0.0012773209891747683,
+      0.0014458710211329162
+    ],
+    "reference_uncertainty_rms": 1e-12,
+    "reference_uncertainty_max": 1e-12,
+    "error_rms": 6.544207080888879e-08,
+    "error_max": 1.612230831060657e-07,
+    "centered_rms": 6.300428463376471e-08,
+    "mean_error": 1.7695331292269523e-08,
+    "upper_rms": 6.544307080888879e-08,
+    "upper_max": 1.612240831060657e-07,
+    "spectral_low_rms": 2.9135378930757602e-08,
+    "spectral_high_rms": 5.8598586384969905e-08,
+    "minimum": 0.37240538001060486,
+    "maximum": 0.5625900030136108,
+    "physical_interval_violations": 0,
+    "finite": true,
+    "reference_accepted": true,
+    "eligibility": "ELIGIBLE",
+    "scientific_verdict": "NA",
+    "scientific_reason": "Bounded development pilot, no powered familywise confirmatory claim"
+  },
+  "replay": {
+    "original_device": "cpu",
+    "device": "cpu",
+    "dtype": "float32",
+    "absolute_rms_metric_difference": 0.0,
+    "absolute_max_metric_difference": 0.0,
+    "relative_rms_metric_difference": 0.0,
+    "relative_max_metric_difference": 0.0,
+    "tolerance": 1e-12,
+    "comparison_scope": "Endpoint metric parity only; historical full prediction array was not stored",
+    "status": "SAME_CPU_METRIC_REPLAY",
+    "no_new_timing_claim": true
+  },
+  "renderer": {
+    "commit": "b94a64dfd6c38ad8946066e7dc2defde047da133",
+    "files": {
+      "tdn/analysis/adjacent/prediction_view.py": "9bd26a5f443dd8686d6eb0f5f670f9e2100bcf6280e29482af3d80993075a0fb",
+      "scripts/adjacent_prediction_view.py": "4d1a7eee31390558968becd19e883a1defc84c2533f811d08b8d1cc6447fddac"
+    },
+    "python": "3.12.14",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6"
+  },
+  "rendering": {
+    "dpi": 400,
+    "interpolation": "nearest",
+    "spatial_resolution_is_unchanged": true
+  }
+}

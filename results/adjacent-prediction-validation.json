@@ -1,0 +1,69 @@
+{
+  "schema": "tdn.adjacent-prediction-validation/v1",
+  "status": "VERIFIED",
+  "cpu_tests": {
+    "passed": 8,
+    "log": "adjacent-prediction-tests.log"
+  },
+  "publication_files_verified": 504,
+  "output_files_verified": 8,
+  "source_files_unchanged": 11,
+  "images": [
+    {
+      "file": "prediction-architecture.png",
+      "pixels": [
+        6400,
+        6800
+      ],
+      "dpi": [
+        399.9992,
+        399.9992
+      ],
+      "sha256": "039b60b61984566edc4102642312aae9f6861f23bfbdd37b501fe4af1feea8fc"
+    },
+    {
+      "file": "prediction-parameters.png",
+      "pixels": [
+        6000,
+        5200
+      ],
+      "dpi": [
+        399.9992,
+        399.9992
+      ],
+      "sha256": "4ed96c54ede3679019465118824e10864b6c0684429c7dfbd2acdc155a94622c"
+    },
+    {
+      "file": "prediction-sensitivity.png",
+      "pixels": [
+        6400,
+        4800
+      ],
+      "dpi": [
+        399.9992,
+        399.9992
+      ],
+      "sha256": "5cfb401c9b2da4ff43be2c1990e32dcb486728eb041618e1515ecf9ee2ca8918"
+    }
+  ],
+  "metric_replay": {
+    "original_device": "cpu",
+    "device": "cpu",
+    "dtype": "float32",
+    "absolute_rms_metric_difference": 0.0,
+    "absolute_max_metric_difference": 0.0,
+    "relative_rms_metric_difference": 0.0,
+    "relative_max_metric_difference": 0.0,
+    "tolerance": 1e-12,
+    "comparison_scope": "Endpoint metric parity only; historical full prediction array was not stored",
+    "status": "SAME_CPU_METRIC_REPLAY",
+    "no_new_timing_claim": true
+  },
+  "learned_vs_unit": {
+    "rounded_fp32_endpoint_max_change": 0.0,
+    "analytic_gain_mixing_max_change": 3.1512925134321444e-10,
+    "unit_gain_error_rms": 6.544207080888879e-08,
+    "interpretation": "Actual rounded FP32 endpoint change and FP64 gain-mixing response are distinct quantities"
+  },
+  "native_gpu_verified": false
+}
