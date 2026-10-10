@@ -118,3 +118,7 @@ better/worse guidance, translucent continuous observed-range bands and visible
 missing measurements. An observed range is not a confidence interval. Read
 scientific effects, reference and sampling uncertainty, failure denominators
 and complete costs separately from computational completion.
+
+For high-resolution illustrations of a frozen checkpoint while predicting,
+see the [prediction-image guide](ADJACENT_PREDICTION_IMAGES.md). It includes actual
+parameter values, signed spatial responses, raw plotted arrays and replay commands.

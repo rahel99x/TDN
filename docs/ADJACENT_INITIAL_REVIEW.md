@@ -104,6 +104,10 @@ improves RMS over the bounded scalar oracle by at most **0.340%**. Output-band
 oracles do better on the mixed fields. The Galerkin localized channel improvement
 also worsens maximum error by 1.89% and the declared MSE + 0.1 maximum-squared
 objective by 1.77%. A slightly smaller RMS is not an unqualified improvement.
+These oracle conclusions apply to the recorded input split, output support and
+gain bounds. The tiny learned pilot uses input split 1 and output cutoff 2;
+D01's partitions are recorded separately. Its oracle is not a universal bound
+on every possible band partition or learned architecture.
 
 Source: [N16 D01 rows](../results/adjacent-development/selected-development-v2/D01/diagnostic_rows.json),
 particularly full-Q4/full-cubic pairs 00003/00006, 00020/00023, 00037/00040,
