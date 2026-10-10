@@ -86,6 +86,21 @@ The three research paths remain scientifically independent where possible. A fai
 
 ## Collect everything needed for review
 
+For a much smaller quantitative review upload from an existing finished run:
+
+```bash
+bash scripts/fedora_portfolio.sh compact latest
+```
+
+Upload its printed `index.json` and all listed archive/parts. This streams
+deduplicated, solid XZ output, keeping all raw text measurements and chart data
+exact while listing the hashes of omitted checkpoints, numerical arrays and
+rendered figures. Use `--mode full` to retain those too. Original runs stay
+unchanged; review mode is not a complete replay bundle. See
+[compact review instructions](COMPACT_REVIEW.md) for verification, restoration,
+resource use and measured reduction. It can read historical runs after an
+exporter update without applying today's scientific-source guards.
+
 After the jobs finish:
 
 ```bash

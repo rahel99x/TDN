@@ -1,0 +1,32 @@
+{
+  "scope": "Artifact transport engineering; not a scientific or GPU result",
+  "source_run": "runs/portfolio-local-review-v2",
+  "source_run_git_commit": "4b6b5ec1e3055bb53b6507ae4775c7bed1dc91b6",
+  "exporter_sha256": "2d776ab55f5d68d39f9ac43d1fdbca18baaab40f370db689889a3fa632aca69f",
+  "exported_at": "2026-10-10T19:02:21.171157+00:00",
+  "mode": "review",
+  "xz_preset": 6,
+  "source_bytes": 138435823,
+  "retained_logical_bytes": 124533755,
+  "retained_files": 1188,
+  "omitted_bytes": 13902068,
+  "omitted_files": 253,
+  "deduplicated_bytes": 7689896,
+  "legacy_full_gzip_bytes": 30692960,
+  "legacy_measurement": "Read-only tar.gz compression to a counting sink; same original files",
+  "compact_archive_bytes": 7771872,
+  "compact_archive_sha256": "c668e391922cc01941b339128c900ce76a7619eab62cd9bd24c74b7935f097a2",
+  "manifest_sha256": "27410868200ab4fce4364e1abd18d9c1b08a9d4ab7a7bd460ad267d07d4c565e",
+  "reduction_vs_legacy_gzip_percent": 74.67864943622251,
+  "export_and_verification_seconds": 23.182918342994526,
+  "test_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest tests/test_compact_review.py tests/test_portfolio_workflow.py -q --basetemp=.runtime/compact-review-final-tests -o cache_dir=.runtime/compact-review-pytest-cache",
+  "test_result": "55 passed in 4.75s",
+  "shell_syntax": "bash -n scripts/compact_review.sh scripts/fedora_portfolio.sh: passed",
+  "integrity_scope": "Archive, part, manifest and every retained file SHA-256; exact-byte restore and unsafe input regressions; original runs unchanged",
+  "limitations": [
+    "The user's unuploaded 2 GB Fedora campaign was not measured",
+    "Review is an explicit subset, not a complete replay archive",
+    "Compression ratio and elapsed time depend on data and hardware",
+    "Transport checks do not establish mathematical or scientific validity"
+  ]
+}

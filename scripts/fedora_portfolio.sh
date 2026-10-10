@@ -5,6 +5,7 @@ root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 if [[ $# == 0 ]]; then set -- plan; fi
 case "$1" in
     doctor|configure|setup) exec bash "$root/scripts/fedora_setup.sh" "$@" ;;
+    compact) shift; exec bash "$root/scripts/compact_review.sh" pack "$@" ;;
 esac
 export PYTHONDONTWRITEBYTECODE=1
 # Artifact validation imports the scientific dependencies installed in this
