@@ -1,0 +1,629 @@
+{
+  "schema": "tdn.resolution-readiness/v1",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "52567ab4f4e10708211d40b71d7258e32118b84e",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "e74ca62aa7837e7f79f12ba0e00ec4639e13d335fc0990e5aa9dc02e3d87c101",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "cpu_tests": {
+    "passed": 322,
+    "deselected_gpu": 37,
+    "source": "cpu-tests.txt",
+    "source_commit": "52567ab4f4e10708211d40b71d7258e32118b84e"
+  },
+  "cuda": {
+    "executed": false,
+    "collection_only": true,
+    "expected_cases": 108,
+    "collected_cases": [
+      "test_adjacent_cuda_limits[discrete-channel_fixed]",
+      "test_adjacent_cuda_limits[discrete-channel_global]",
+      "test_adjacent_cuda_limits[discrete-channel_affine]",
+      "test_adjacent_cuda_limits[discrete-channel_neural]",
+      "test_adjacent_cuda_limits[discrete-feature_capacity]",
+      "test_adjacent_cuda_limits[continuum-channel_fixed]",
+      "test_adjacent_cuda_limits[continuum-channel_global]",
+      "test_adjacent_cuda_limits[continuum-channel_affine]",
+      "test_adjacent_cuda_limits[continuum-channel_neural]",
+      "test_adjacent_cuda_limits[continuum-feature_capacity]",
+      "test_adjacent_cuda_gradients[discrete-channel_neural]",
+      "test_adjacent_cuda_gradients[discrete-feature_capacity]",
+      "test_adjacent_cuda_gradients[continuum-channel_neural]",
+      "test_adjacent_cuda_gradients[continuum-feature_capacity]",
+      "test_adjacent_cuda_polarization[discrete-2]",
+      "test_adjacent_cuda_polarization[discrete-4]",
+      "test_adjacent_cuda_polarization[continuum-2]",
+      "test_adjacent_cuda_polarization[continuum-4]",
+      "test_adjacent_cuda_fitted_control[channel_global]",
+      "test_adjacent_cuda_fitted_control[channel_affine]",
+      "test_adjacent_cuda_visible_allocation",
+      "test_portfolio_cuda_limits[discrete-historical_half]",
+      "test_portfolio_cuda_limits[discrete-quad2_fixed]",
+      "test_portfolio_cuda_limits[discrete-quad2_amplitude]",
+      "test_portfolio_cuda_limits[discrete-quad2_nodes]",
+      "test_portfolio_cuda_limits[discrete-quad2_joint]",
+      "test_portfolio_cuda_limits[discrete-quad2_linear]",
+      "test_portfolio_cuda_limits[discrete-quad2_conditioned]",
+      "test_portfolio_cuda_limits[discrete-quad2_input]",
+      "test_portfolio_cuda_limits[discrete-quad2_full]",
+      "test_portfolio_cuda_limits[discrete-quad2_conditioned_full]",
+      "test_portfolio_cuda_limits[discrete-quad4_fixed]",
+      "test_portfolio_cuda_limits[discrete-quad4_full]",
+      "test_portfolio_cuda_limits[discrete-quad4_conditioned]",
+      "test_portfolio_cuda_limits[discrete-analytic_quad_cubic]",
+      "test_portfolio_cuda_limits[discrete-df]",
+      "test_portfolio_cuda_limits[discrete-rf]",
+      "test_portfolio_cuda_limits[discrete-etdrk4]",
+      "test_portfolio_cuda_limits[discrete-fno_small]",
+      "test_portfolio_cuda_limits[discrete-fno_standard]",
+      "test_portfolio_cuda_limits[discrete-direct_fno]",
+      "test_portfolio_cuda_limits[discrete-residual_quad2]",
+      "test_portfolio_cuda_limits[discrete-conditioned_rich]",
+      "test_portfolio_cuda_limits[discrete-band_gain]",
+      "test_portfolio_cuda_limits[continuum-historical_half]",
+      "test_portfolio_cuda_limits[continuum-quad2_fixed]",
+      "test_portfolio_cuda_limits[continuum-quad2_amplitude]",
+      "test_portfolio_cuda_limits[continuum-quad2_nodes]",
+      "test_portfolio_cuda_limits[continuum-quad2_joint]",
+      "test_portfolio_cuda_limits[continuum-quad2_linear]",
+      "test_portfolio_cuda_limits[continuum-quad2_conditioned]",
+      "test_portfolio_cuda_limits[continuum-quad2_input]",
+      "test_portfolio_cuda_limits[continuum-quad2_full]",
+      "test_portfolio_cuda_limits[continuum-quad2_conditioned_full]",
+      "test_portfolio_cuda_limits[continuum-quad4_fixed]",
+      "test_portfolio_cuda_limits[continuum-quad4_full]",
+      "test_portfolio_cuda_limits[continuum-quad4_conditioned]",
+      "test_portfolio_cuda_limits[continuum-analytic_quad_cubic]",
+      "test_portfolio_cuda_limits[continuum-df]",
+      "test_portfolio_cuda_limits[continuum-rf]",
+      "test_portfolio_cuda_limits[continuum-etdrk4]",
+      "test_portfolio_cuda_limits[continuum-fno_small]",
+      "test_portfolio_cuda_limits[continuum-fno_standard]",
+      "test_portfolio_cuda_limits[continuum-direct_fno]",
+      "test_portfolio_cuda_limits[continuum-residual_quad2]",
+      "test_portfolio_cuda_limits[continuum-conditioned_rich]",
+      "test_portfolio_cuda_limits[continuum-band_gain]",
+      "test_portfolio_cuda_gradients[discrete-quad2_nodes]",
+      "test_portfolio_cuda_gradients[discrete-quad2_joint]",
+      "test_portfolio_cuda_gradients[discrete-quad2_conditioned]",
+      "test_portfolio_cuda_gradients[discrete-quad2_conditioned_full]",
+      "test_portfolio_cuda_gradients[discrete-quad4_conditioned]",
+      "test_portfolio_cuda_gradients[discrete-fno_small]",
+      "test_portfolio_cuda_gradients[discrete-fno_standard]",
+      "test_portfolio_cuda_gradients[discrete-direct_fno]",
+      "test_portfolio_cuda_gradients[discrete-residual_quad2]",
+      "test_portfolio_cuda_gradients[discrete-conditioned_rich]",
+      "test_portfolio_cuda_gradients[discrete-band_gain]",
+      "test_portfolio_cuda_gradients[continuum-quad2_nodes]",
+      "test_portfolio_cuda_gradients[continuum-quad2_joint]",
+      "test_portfolio_cuda_gradients[continuum-quad2_conditioned]",
+      "test_portfolio_cuda_gradients[continuum-quad2_conditioned_full]",
+      "test_portfolio_cuda_gradients[continuum-quad4_conditioned]",
+      "test_portfolio_cuda_gradients[continuum-fno_small]",
+      "test_portfolio_cuda_gradients[continuum-fno_standard]",
+      "test_portfolio_cuda_gradients[continuum-direct_fno]",
+      "test_portfolio_cuda_gradients[continuum-residual_quad2]",
+      "test_portfolio_cuda_gradients[continuum-conditioned_rich]",
+      "test_portfolio_cuda_gradients[continuum-band_gain]",
+      "test_portfolio_cuda_fitted_control[quad2_amplitude]",
+      "test_portfolio_cuda_fitted_control[quad2_linear]",
+      "test_portfolio_cuda_visible_allocation",
+      "test_resolution_cuda_large_grid_contract[64-discrete]",
+      "test_resolution_cuda_large_grid_contract[64-continuum]",
+      "test_resolution_cuda_large_grid_contract[128-discrete]",
+      "test_resolution_cuda_large_grid_contract[128-continuum]",
+      "test_resolution_cuda_fno_local_path[64-discrete]",
+      "test_resolution_cuda_fno_local_path[64-continuum]",
+      "test_resolution_cuda_fno_local_path[128-discrete]",
+      "test_resolution_cuda_fno_local_path[128-continuum]",
+      "test_resolution_cuda_precision[64-discrete]",
+      "test_resolution_cuda_precision[64-continuum]",
+      "test_resolution_cuda_precision[128-discrete]",
+      "test_resolution_cuda_precision[128-continuum]",
+      "test_resolution_cuda_exploration[64-discrete]",
+      "test_resolution_cuda_exploration[64-continuum]",
+      "test_resolution_cuda_exploration[128-discrete]",
+      "test_resolution_cuda_exploration[128-continuum]"
+    ],
+    "missing": [],
+    "extra": []
+  },
+  "shell_syntax": "PASSED",
+  "historical_scientific_protocols": "smoke, development and full exactly match prior 1676f13 declarations",
+  "slurm_submission": "NOT_RUN: native desktop unavailable",
+  "performance_scope": "CPU engineering checks only; unit tests overlapped part of the smoke. Not isolated performance or GPU evidence.",
+  "actual_grid_cpu_smoke": {
+    "run": "runs/adjacent-resolution-cpu-review-v1",
+    "profile": "resolution-smoke",
+    "completed_units": 44,
+    "verified_execution_seals": {
+      "audit": {
+        "workflow_seal_sha256": "d39a7984c8b9b4a4109826cfbe5ccf03fdcde2f8921937112be3a125c68bc905",
+        "science_manifest_sha256": "d2ebdac81c4e69f4221d948baeff191143914d45fa65b97b97d25248ef9951d1"
+      },
+      "prepare-train-n64-discrete-p000": {
+        "workflow_seal_sha256": "13164fef179a66a1750800342c8f87a7c90ea2f4cad7f3ad301c0bd13c7a1e04",
+        "science_manifest_sha256": "b1f52401bd4f5ba1d2c89d546939365f291f450405b31c5a24231f5b991836f4"
+      },
+      "prepare-train-n64-continuum-p000": {
+        "workflow_seal_sha256": "7930ec542b6782c001de87761f078522445e2f2c81ce1d2c07411cef669c0165",
+        "science_manifest_sha256": "815255e5327d3f73c966660406ebabdc0a8b77f3b0cdbb9fecb3ce1e0d73b994"
+      },
+      "prepare-train-n128-discrete-p000": {
+        "workflow_seal_sha256": "116513f08dbabe644932e8f9e7560cce3fc938eb5e35a40593ac8d6846889ede",
+        "science_manifest_sha256": "a4d774034cb334f6762297cd6a952b93f21c9c9f0fa66634931e808a2b07a4a6"
+      },
+      "prepare-train-n128-continuum-p000": {
+        "workflow_seal_sha256": "9a85c0192901e9e011edd77918c6f19e823f5753f97bda8efa6acdd47963420a",
+        "science_manifest_sha256": "8588736fc269e28ae8edb861659d38ca471c445ed0ab2103e53eaf145825c264"
+      },
+      "prepare-validation-n64-discrete-p000": {
+        "workflow_seal_sha256": "d05b5807b99673dcae2df1099a59cc1733b4058cb50ae23d470ecf970fbee60b",
+        "science_manifest_sha256": "45df33ba3d6200982020f9423c095863257f09baa11d94954ab79c6599ce27ea"
+      },
+      "prepare-validation-n64-continuum-p000": {
+        "workflow_seal_sha256": "a712c4440492eccdc5b91f4e27e476c841f32f33b1232661c1dbf64736945a0b",
+        "science_manifest_sha256": "aad4f556f60efad1ae7fde5eea967ec7158008de41333aeb9550442b2244562d"
+      },
+      "prepare-validation-n128-discrete-p000": {
+        "workflow_seal_sha256": "4cbc577fdc9ff7f9cc66b220e225462114caac47e364ec19282caa45e510dd6a",
+        "science_manifest_sha256": "f1c93d0fff20902b04f6bc9790063498bbe540886e0b4c43f5c88dfe504ea3a0"
+      },
+      "prepare-validation-n128-continuum-p000": {
+        "workflow_seal_sha256": "6b787ac3556aae1155c9249e166086ac26ed35d39cac5b1515a5de82c14d5a2c",
+        "science_manifest_sha256": "cb9f369a91df4d11f1226c0eace14a3d6baf16c1b536047428ce83f5a2d9af9b"
+      },
+      "diagnostic-n64-discrete": {
+        "workflow_seal_sha256": "e1da49108dcfea1adf755407425ecba4f3f80d222f7200064fb47de5308bd497",
+        "science_manifest_sha256": "496d3cc7eb86c2c68af7d874870ccd2f57eb69d90342056ecde06e55ec80cfb2"
+      },
+      "train-n64-discrete-ours": {
+        "workflow_seal_sha256": "ab48dfae9b9334c9c45b0be1d5ae7658667d67d615bdaca864f346bb23af196b",
+        "science_manifest_sha256": "df3acb20403e0b51d342ce7f97872ef2d5bf1e9c1972911b6cad5821a19c9151"
+      },
+      "train-n64-discrete-theirs": {
+        "workflow_seal_sha256": "be4480b3164f10d039e795b7ac1b908da53f98440e2afdf2c653bf066340db98",
+        "science_manifest_sha256": "06c733ea71718c663daac0edecd086454c1b2baec428629b8d866d576ad1838b"
+      },
+      "explore-n64-discrete": {
+        "workflow_seal_sha256": "f8825f8591b5743ea5337cc4c93b2b6b0e5fd2b55c2ce8d6f7863de92aa7ae51",
+        "science_manifest_sha256": "cf604ae3d133737b26f4c4ca0194e5342a75c425fac69f798fe97ff6d789cf5d"
+      },
+      "diagnostic-n64-continuum": {
+        "workflow_seal_sha256": "73bd524caa5be24e6ff1955d7f84adf719a941e08860eec07bd45220bcbd9cfe",
+        "science_manifest_sha256": "4bfa2086d9a269bbe90ea84c8af685ae14e7ed0e98b3963fb09e53126ddcfe15"
+      },
+      "train-n64-continuum-ours": {
+        "workflow_seal_sha256": "32bf28dfbe3f006c707edc8ce5b2fd5a9933920bd124933de8c607cd7a2ecb08",
+        "science_manifest_sha256": "357c34b08f0b89ac5b21b8e563b6536c4cdd1d97565803de221f2eb83f4e7ab5"
+      },
+      "train-n64-continuum-theirs": {
+        "workflow_seal_sha256": "9f397e566ed145ba6a15f8544d57e86dac4bdb4a396ed40a57b03764a3d5b4a9",
+        "science_manifest_sha256": "02bb849c706c57043085f3d7f15a5c068f368ea784cd7a89620b1f3a287bcf8b"
+      },
+      "explore-n64-continuum": {
+        "workflow_seal_sha256": "1e56fb39a77e7b90f9b29be78525e87799e891c6975c9033cbced25645dbce35",
+        "science_manifest_sha256": "0a1b525174db505756af6d47d6381eef84e5f10db3e51b6210c0e3f791399d1a"
+      },
+      "diagnostic-n128-discrete": {
+        "workflow_seal_sha256": "1c1b34e77a76cd0a7ee1b5f79fed478e76049b07ad447c370a8da19d701ed7c1",
+        "science_manifest_sha256": "22f4c8bdc916019d87789fa5380a5dc2f264832f9d3c9079a3cc2bd6dc09f882"
+      },
+      "train-n128-discrete-ours": {
+        "workflow_seal_sha256": "65998ca563cee0f5d524ec9c3c38dec4edd621f0a74d59d0f723256fe7073f15",
+        "science_manifest_sha256": "7cd387e6afabad10ae232da18b4ba15b608f6cf38b53e8961ea1435bbb61c688"
+      },
+      "train-n128-discrete-theirs": {
+        "workflow_seal_sha256": "a57f40af5ae9935e1b8ee05124ded249c934c0379b4cb9eeac9a18cc70268d1f",
+        "science_manifest_sha256": "a3a07997fcb2550c9a2e663e9c16f0e7d0be7976706a1dcb5e08c2c5c9e42c16"
+      },
+      "explore-n128-discrete": {
+        "workflow_seal_sha256": "683447b644f18459f6c1cc272504f6b32774d0ddf522ea49d58ba4b20b276600",
+        "science_manifest_sha256": "64926d000761be48461f61ebd90c6d98b8c31c260cf13c495e617a888bc7466d"
+      },
+      "diagnostic-n128-continuum": {
+        "workflow_seal_sha256": "0d257b118106d2d08024883044c6d503ca29b4206af874dc97470ff80477342f",
+        "science_manifest_sha256": "76934b59be2e006d4a9b902c48c4b127d8e417242e09efa67f8a005603d361e1"
+      },
+      "train-n128-continuum-ours": {
+        "workflow_seal_sha256": "9f366b7c7c7601fe37ce95f520cdb15200ba79c662028c92ae12278f7a423cee",
+        "science_manifest_sha256": "3113b83fb438e3353c985fb7eeea5c05610b0d9a422a667ae099c31cd57e2a32"
+      },
+      "train-n128-continuum-theirs": {
+        "workflow_seal_sha256": "1b5f0249a4bfb015ac74d8c201fe403464edbdff46952f8f0c4b5efa2f61b935",
+        "science_manifest_sha256": "c16960c864d9934110b9506cc0346d725dee30468d06c9b60c22aae8ec40cc38"
+      },
+      "explore-n128-continuum": {
+        "workflow_seal_sha256": "7b87d1e2ee61af0ec4c47a2bbad7c0aa1c25c6022bb8de66b83adc24c13301bf",
+        "science_manifest_sha256": "cab4821cff2d19255399a59c80c3d5b5297b1d550e808232a7afe829ef0facd5"
+      },
+      "freeze": {
+        "workflow_seal_sha256": "5b91b53b241063b0d335779e5ceb5d4de14d7ba18fbe9b045fd2ba462c017397",
+        "science_manifest_sha256": "d46b564125d7432f4a2f51b30dc708f1ce7578d6910ecbee40b984661f6f8e89"
+      },
+      "prepare-evaluation-n64-discrete-p000": {
+        "workflow_seal_sha256": "68ef5ecd64e7dc8940a97af71018243da226decbd7245fe30b27db6d7279a0df",
+        "science_manifest_sha256": "ebecbda1761e5f19f5a5996ee3487ba631f52a378c06af7cc3fe039580842b71"
+      },
+      "prepare-evaluation-n64-discrete-p001": {
+        "workflow_seal_sha256": "20486f4b183f3d83eafbd7c62d27afb3421a9caec6771a8180fc28217ea90461",
+        "science_manifest_sha256": "1187e6809b735e622c64f22e873c67c19e4e7a446d928e06beb0d2ce0192a3b0"
+      },
+      "prepare-evaluation-n64-continuum-p000": {
+        "workflow_seal_sha256": "c6a418d843a7b823bb591a6f4e2fe50477a846418c1183aac34b78145393948f",
+        "science_manifest_sha256": "4da82129dc319193ade7bfc870168705632f9d414ed22cee4d8e81c767c0469c"
+      },
+      "prepare-evaluation-n64-continuum-p001": {
+        "workflow_seal_sha256": "9f819a06d4b8a393d5520f09ae7efa2d0ea0af4c2ccedcfeba31d0cca459ade7",
+        "science_manifest_sha256": "9825a8136ca454367af06f93e040a303619b4daf98ca12f76346a8385971b4e5"
+      },
+      "prepare-evaluation-n128-discrete-p000": {
+        "workflow_seal_sha256": "d7025d0e26cba7ab2123ff84c636be353818ffa985d6055bca7884caa341eebd",
+        "science_manifest_sha256": "5de69ad75438f14dc8ecf6d9337480568702d696f5c2c812b6e09582155014ff"
+      },
+      "prepare-evaluation-n128-discrete-p001": {
+        "workflow_seal_sha256": "d7b57125c862330390a6b6ec0621c0630ec5aca83bf9c98726099a9a04ab8303",
+        "science_manifest_sha256": "a3bc353c34cdd101e6004494ee11ca5e35982bcbcbb82af2fe11383a698b8ac9"
+      },
+      "prepare-evaluation-n128-continuum-p000": {
+        "workflow_seal_sha256": "1c9c3790215de73a9743b13a91f25456acff454bcf17b48112f6ff620f80e5bd",
+        "science_manifest_sha256": "e06ef923db869eee16448b27cf5f1f1552d9375144f716dab3c59b4b10d0a4fb"
+      },
+      "prepare-evaluation-n128-continuum-p001": {
+        "workflow_seal_sha256": "d67fc9633fa3e256d5186f6938af7b97f4125da54c3cebdadadae1cb1cfec3f9",
+        "science_manifest_sha256": "ec4be139a0ee4e7958de9e8d9873d96cc938fb85c28cb485b9d48271ca66d4ec"
+      },
+      "evaluate-n64-discrete-p000": {
+        "workflow_seal_sha256": "43644de19be536af8e272783ee34d0b1413a0088e59021cc4f99616e5891ab30",
+        "science_manifest_sha256": "88ad9743e6d5cce8203b930ca438b2916bee79dbc8ffd460483905f6cf7cee5a"
+      },
+      "evaluate-n64-discrete-p001": {
+        "workflow_seal_sha256": "81402dc3d64c5c34e334bcf5723369162026f7ba68e57a1e9752052538b88f0b",
+        "science_manifest_sha256": "a175abc774647aa0ecf00fe2b5f2961496feaeec2da998c7a25ed607b8d7b88b"
+      },
+      "evaluate-n64-continuum-p000": {
+        "workflow_seal_sha256": "8b98eb7ba315fbaccfa076634569809a929f4f9ea18f350fb10407eed23ac39d",
+        "science_manifest_sha256": "b944c8bdcd1c3ea142476623163be471a9b9e9ca5ed7c37f465706ac6ca35b82"
+      },
+      "evaluate-n64-continuum-p001": {
+        "workflow_seal_sha256": "92497f9fab8a408a77751022ae2d554fb9655c91010476f7aa075474dd4da9b2",
+        "science_manifest_sha256": "b77ba88a39b968a80264d9b2d9459094bb93db5796f6ac1f8d82d518aa2ff202"
+      },
+      "evaluate-n128-discrete-p000": {
+        "workflow_seal_sha256": "7c2e2d83456c1cee380720962c5b53b34a9a348c3c2c74f1fc8c97919ab2357f",
+        "science_manifest_sha256": "565a86936df86349f5f1f066ec2bcb9c32de2c22fba03c41206bfe1ac7e56ea9"
+      },
+      "evaluate-n128-discrete-p001": {
+        "workflow_seal_sha256": "f9c25ab4b5877e411e29582fd44115067dd5fc592cfba42ebd640612df14dbb2",
+        "science_manifest_sha256": "37d1332954263cae889854671888b9e36f5775204b958a0a7ad068625cbbb5a6"
+      },
+      "evaluate-n128-continuum-p000": {
+        "workflow_seal_sha256": "0b0d52902c9229963daf6e6692aa02dd48a2507ae0002299f499c0191abd3145",
+        "science_manifest_sha256": "afbde1bfd3a34a2d512beb6827d8c3f4b1d4a2196c64bc9bb1be95e5bd2178e7"
+      },
+      "evaluate-n128-continuum-p001": {
+        "workflow_seal_sha256": "e2c7559d3dd8381302848460332ebd47a201246fe87bbd1b52797626679a6040",
+        "science_manifest_sha256": "177579e4db910f0eca243857f3923e0ffa52268a13590f1ec1b44eb89fa40c5a"
+      },
+      "aggregate": {
+        "workflow_seal_sha256": "667be192d04dc926fa7aff0cea2701646ee76cd137e4895a40ffface4cf37ea2",
+        "science_manifest_sha256": "cd656c6ceb7061a4c1770986f9d7b6e299fba676e7286622798a656f00942414"
+      },
+      "report": {
+        "workflow_seal_sha256": "1669856dae060fd76d90db806eb21b6e261fb0610e2a385fcb494a58a0f3fe0b",
+        "science_manifest_sha256": "1a15ca719bf7330689bd121d471fae97ef8c32814c7aa473b6ffab41ac231ad5"
+      }
+    },
+    "reference_bank_entries": 16,
+    "accepted_bank_entries": 14,
+    "diagnostics": {
+      "diagnostic-n64-discrete": {
+        "status": "COMPLETED",
+        "grid": 64,
+        "track": "discrete",
+        "rows": 150,
+        "programs_measured": [
+          "D01",
+          "D02",
+          "D03",
+          "D04",
+          "D05",
+          "D06",
+          "D08"
+        ],
+        "elapsed_seconds": 7.384030854009325,
+        "references": 17,
+        "accepted_references": 17,
+        "scientific_success": null,
+        "error": null,
+        "scope": "development diagnosis; no trained-competitor or statistical superiority claim"
+      },
+      "diagnostic-n64-continuum": {
+        "status": "COMPLETED",
+        "grid": 64,
+        "track": "continuum",
+        "rows": 150,
+        "programs_measured": [
+          "D01",
+          "D02",
+          "D03",
+          "D04",
+          "D05",
+          "D06",
+          "D08"
+        ],
+        "elapsed_seconds": 34.97002312299446,
+        "references": 17,
+        "accepted_references": 17,
+        "scientific_success": null,
+        "error": null,
+        "scope": "development diagnosis; no trained-competitor or statistical superiority claim"
+      },
+      "diagnostic-n128-continuum": {
+        "status": "COMPLETED",
+        "grid": 128,
+        "track": "continuum",
+        "rows": 150,
+        "programs_measured": [
+          "D01",
+          "D02",
+          "D03",
+          "D04",
+          "D05",
+          "D06",
+          "D08"
+        ],
+        "elapsed_seconds": 139.00876288002473,
+        "references": 17,
+        "accepted_references": 16,
+        "scientific_success": null,
+        "error": null,
+        "scope": "development diagnosis; no trained-competitor or statistical superiority claim"
+      },
+      "diagnostic-n128-discrete": {
+        "status": "COMPLETED",
+        "grid": 128,
+        "track": "discrete",
+        "rows": 150,
+        "programs_measured": [
+          "D01",
+          "D02",
+          "D03",
+          "D04",
+          "D05",
+          "D06",
+          "D08"
+        ],
+        "elapsed_seconds": 18.79409205398406,
+        "references": 17,
+        "accepted_references": 13,
+        "scientific_success": null,
+        "error": null,
+        "scope": "development diagnosis; no trained-competitor or statistical superiority claim"
+      }
+    },
+    "endpoint_cells": 296,
+    "independent_evaluation_parents": 2,
+    "selected_models": 28,
+    "atlas_pages": 28,
+    "atlas_manifest_sha256": "9b863a25b4cbae9049ca34bee7c529495b512f1a7cabd5ba2f12057705ba3ce0",
+    "scope": "Actual 64/128 CPU engineering smoke; two training updates; not a GPU result or convergence/superiority claim",
+    "atlas": "runs/adjacent-resolution-cpu-review-v1/report/figures/index.html",
+    "software": {
+      "python": "3.12.14",
+      "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+      "venv": true,
+      "torch": "2.10.0+cpu",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "torch_cuda_runtime": null,
+      "git_commit": "82bb0674a944e7f7614216874bbe2fcadc4fd414",
+      "git_available": true,
+      "tracked_or_untracked_changes": true,
+      "source_tree_sha256": "22718bec603a75b181685c3976d35645e945c6fe94e9729300bf93e51fed078e",
+      "execution_mode": "carc_or_local_cpu",
+      "slurm_job_id": null,
+      "cuda_available": false
+    }
+  },
+  "actual_checkpoint_gallery": {
+    "status": "COMPLETED",
+    "views": 4,
+    "source_run": "runs/adjacent-resolution-cpu-review-v1",
+    "manifest": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/image-gallery.json",
+    "png_panels": [
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-discrete-channel-neural-seed871001/prediction-parameters.png",
+        "pixels": [
+          6000,
+          5200
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-discrete-channel-neural-seed871001/prediction-parameters-bicubic.png",
+        "pixels": [
+          6000,
+          5200
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-discrete-channel-neural-seed871001/prediction-sensitivity.png",
+        "pixels": [
+          6400,
+          4800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-discrete-channel-neural-seed871001/prediction-architecture.png",
+        "pixels": [
+          6400,
+          6800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-discrete-channel-neural-seed871001/prediction-sensitivity-bicubic.png",
+        "pixels": [
+          6400,
+          4800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-discrete-channel-neural-seed871001/prediction-architecture-bicubic.png",
+        "pixels": [
+          6400,
+          6800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-discrete-channel-neural-seed871001/prediction-parameters.png",
+        "pixels": [
+          6000,
+          5200
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-discrete-channel-neural-seed871001/prediction-parameters-bicubic.png",
+        "pixels": [
+          6000,
+          5200
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-discrete-channel-neural-seed871001/prediction-sensitivity.png",
+        "pixels": [
+          6400,
+          4800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-discrete-channel-neural-seed871001/prediction-architecture.png",
+        "pixels": [
+          6400,
+          6800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-discrete-channel-neural-seed871001/prediction-sensitivity-bicubic.png",
+        "pixels": [
+          6400,
+          4800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-discrete-channel-neural-seed871001/prediction-architecture-bicubic.png",
+        "pixels": [
+          6400,
+          6800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-continuum-channel-neural-seed871001/prediction-parameters.png",
+        "pixels": [
+          6000,
+          5200
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-continuum-channel-neural-seed871001/prediction-parameters-bicubic.png",
+        "pixels": [
+          6000,
+          5200
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-continuum-channel-neural-seed871001/prediction-sensitivity.png",
+        "pixels": [
+          6400,
+          4800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-continuum-channel-neural-seed871001/prediction-architecture.png",
+        "pixels": [
+          6400,
+          6800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-continuum-channel-neural-seed871001/prediction-sensitivity-bicubic.png",
+        "pixels": [
+          6400,
+          4800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n128-continuum-channel-neural-seed871001/prediction-architecture-bicubic.png",
+        "pixels": [
+          6400,
+          6800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-continuum-channel-neural-seed871001/prediction-parameters.png",
+        "pixels": [
+          6000,
+          5200
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-continuum-channel-neural-seed871001/prediction-parameters-bicubic.png",
+        "pixels": [
+          6000,
+          5200
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-continuum-channel-neural-seed871001/prediction-sensitivity.png",
+        "pixels": [
+          6400,
+          4800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-continuum-channel-neural-seed871001/prediction-architecture.png",
+        "pixels": [
+          6400,
+          6800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-continuum-channel-neural-seed871001/prediction-sensitivity-bicubic.png",
+        "pixels": [
+          6400,
+          4800
+        ]
+      },
+      {
+        "path": "outputs/resolution-predictions-adjacent-resolution-cpu-review-v1-20261010T023803197572Z/n64-continuum-channel-neural-seed871001/prediction-architecture-bicubic.png",
+        "pixels": [
+          6400,
+          6800
+        ]
+      }
+    ],
+    "scope": "Actual sealed CPU checkpoint replay, raw plus display interpolation; no GPU timing claim"
+  },
+  "post_smoke_reference_fix": {
+    "source_commit": "52567ab4f4e10708211d40b71d7258e32118b84e",
+    "accepted": 16,
+    "count": 16,
+    "reference_tolerance": 1e-10,
+    "maximum_substeps": 256,
+    "evidence": "reference-recheck.json",
+    "sha256": "7bce5a0d4fe808e8ac68bbcae2d005295028e5df189038dcd5de740efc7a314d",
+    "old_smoke_preserved": true,
+    "old_smoke_not_rescored": true,
+    "scope": "All original smoke bank cases recomputed with joint solver refinement; no tolerance or budget increase"
+  }
+}

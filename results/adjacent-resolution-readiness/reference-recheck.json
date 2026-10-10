@@ -1,0 +1,3218 @@
+{
+  "schema": "tdn.resolution-reference-recheck/v1",
+  "status": "COMPLETED",
+  "scope": "Post-fix engineering recheck on already inspected smoke fields; not new confirmation or performance evidence",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "52567ab4f4e10708211d40b71d7258e32118b84e",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "e74ca62aa7837e7f79f12ba0e00ec4639e13d335fc0990e5aa9dc02e3d87c101",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "protocol_sha256": "fe8654b4e246c965f3c24e355c85f5adda1e0666449c912407337926b758296f",
+  "tolerance": 1e-10,
+  "max_substeps": 256,
+  "wall_cap_seconds": 240,
+  "elapsed_seconds": 23.780355694994796,
+  "accepted": 16,
+  "count": 16,
+  "arrays": "reference-recheck.npz",
+  "arrays_sha256": "8377cd1b3a01b521758a644e7a55c943629971952f5b567d7b87c15a91b316a8",
+  "cases": [
+    {
+      "case_id": "case_000",
+      "parent": {
+        "parent_id": "resolution-evaluation-0000",
+        "field_cluster": "resolution-evaluation-0000",
+        "split": "evaluation",
+        "index": 0,
+        "seed": 86200000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.05270478455096281,
+          0.028527511799949643,
+          0.044663957150540674
+        ],
+        "phases": [
+          -0.39186996264504925,
+          -1.2676519518101177,
+          0.19990191852188932
+        ],
+        "mean": 0.47616377307204516,
+        "rms": 0.05285112256331462,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.35026751957059205,
+          0.6020600265734983
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "f597487548c795fff8894f9785bbaaff3bf7bded270c8a49e583a2e1195b899a"
+      },
+      "grid": 128,
+      "track": "continuum",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-evaluation-n128-continuum-p000/reference_bank.json",
+      "original_bank_sha256": "3632cb6688261bfe4335af39fbf9a4e01199a91de6614a0ee9fc897133744b97",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 8.242104922432013e-13,
+                "max": 1.2214673716925972e-12
+              },
+              {
+                "rms": 5.158224588049398e-14,
+                "max": 7.677192215282957e-14
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 5.900879664304308e-16,
+            "error_max": 1.942890293094024e-15,
+            "mean_error": -1.4490023222089865e-16,
+            "combined_objective": 7.256860772258994e-31
+          },
+          "own_refinement": {
+            "error_rms": 5.242886045658338e-14,
+            "error_max": 9.170442183403793e-14,
+            "mean_error": 5.140759169806712e-14,
+            "combined_objective": 3.589755507167409e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 8.242104922432013e-13,
+                    "max": 1.2214673716925972e-12
+                  },
+                  {
+                    "rms": 5.158224588049398e-14,
+                    "max": 7.677192215282957e-14
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 5.900879664304308e-16,
+                "error_max": 1.942890293094024e-15,
+                "mean_error": -1.4490023222089865e-16,
+                "combined_objective": 7.256860772258994e-31
+              },
+              "own_refinement": {
+                "error_rms": 5.242886045658338e-14,
+                "error_max": 9.170442183403793e-14,
+                "mean_error": 5.140759169806712e-14,
+                "combined_objective": 3.589755507167409e-27
+              }
+            },
+            "trial_elapsed_seconds": 2.0649221780186053,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 2.0649270649882965,
+        "reference_target": "same-grid Fourier Galerkin",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_001",
+      "parent": {
+        "parent_id": "resolution-evaluation-0001",
+        "field_cluster": "resolution-evaluation-0001",
+        "split": "evaluation",
+        "index": 1,
+        "seed": 86200001,
+        "regime": "high_pair",
+        "alpha": 0.7,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            23,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "amplitudes": [
+          0.05268187009779183,
+          0.06419125806133376,
+          0.013321763942014607
+        ],
+        "phases": [
+          -1.6967594721522488,
+          -0.422551116537476,
+          -0.8362146220980362
+        ],
+        "mean": 0.3962265139118132,
+        "rms": 0.05947001951834269,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.004,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.26603162181067297,
+          0.5264214060129534
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.30000000000000004,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "d7ed98188b3db34c9a6a7a64a492d0bf6f4de2cb82056ba46750810b0881153d"
+      },
+      "grid": 128,
+      "track": "continuum",
+      "horizon": 0.04,
+      "original_accepted": false,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-evaluation-n128-continuum-p001/reference_bank.json",
+      "original_bank_sha256": "92b0cf888e6b69e8d3e6d4e0094f1a0d29c216208a5dfffa2ff51b5f5e064559",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 3.540350645222113e-12,
+        "uncertainty_max_bound": 6.540934460730341e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 1.373516397349086e-08,
+                "max": 2.226676593108934e-08
+              },
+              {
+                "rms": 8.739553377344499e-10,
+                "max": 1.4168979323159192e-09
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": false
+          },
+          {
+            "counts": [
+              16,
+              32,
+              64
+            ],
+            "differences": [
+              {
+                "rms": 8.739553377344499e-10,
+                "max": 1.4168979323159192e-09
+              },
+              {
+                "rms": 5.4869264872556085e-11,
+                "max": 8.896372527544827e-11
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          },
+          {
+            "counts": [
+              32,
+              64,
+              128
+            ],
+            "differences": [
+              {
+                "rms": 5.4869264872556085e-11,
+                "max": 8.896372527544827e-11
+              },
+              {
+                "rms": 3.4329401222048967e-12,
+                "max": 5.567046823529154e-12
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          32,
+          64,
+          128
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            64,
+            128
+          ],
+          "difference_from_lawson": {
+            "error_rms": 2.996633963150814e-14,
+            "error_max": 6.888933867799096e-14,
+            "mean_error": -4.786305358127352e-15,
+            "combined_objective": 1.3725556092599895e-27
+          },
+          "own_refinement": {
+            "error_rms": 3.540350645222113e-12,
+            "error_max": 6.540934460730341e-12,
+            "mean_error": 2.9209412666375556e-12,
+            "combined_objective": 1.6812465053081605e-23
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": false,
+            "uncertainty_rms": 5.65761199261719e-11,
+            "uncertainty_max_bound": 1.045362130192018e-10,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 1.373516397349086e-08,
+                    "max": 2.226676593108934e-08
+                  },
+                  {
+                    "rms": 8.739553377344499e-10,
+                    "max": 1.4168979323159192e-09
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": false
+              },
+              {
+                "counts": [
+                  16,
+                  32,
+                  64
+                ],
+                "differences": [
+                  {
+                    "rms": 8.739553377344499e-10,
+                    "max": 1.4168979323159192e-09
+                  },
+                  {
+                    "rms": 5.4869264872556085e-11,
+                    "max": 8.896372527544827e-11
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              16,
+              32,
+              64
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": false,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                32,
+                64
+              ],
+              "difference_from_lawson": {
+                "error_rms": 4.781634318591613e-13,
+                "error_max": 1.0751954881982329e-12,
+                "mean_error": -7.044433870321935e-14,
+                "combined_objective": 3.442448013515144e-25
+              },
+              "own_refinement": {
+                "error_rms": 5.65761199261719e-11,
+                "error_max": 1.045362130192018e-10,
+                "mean_error": 4.668243569483366e-11,
+                "combined_objective": 4.293639329140178e-21
+              }
+            },
+            "trial_elapsed_seconds": 4.9665482779964805,
+            "requested_base_substeps": 8
+          },
+          {
+            "accepted": true,
+            "uncertainty_rms": 3.540350645222113e-12,
+            "uncertainty_max_bound": 6.540934460730341e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  32,
+                  64,
+                  128
+                ],
+                "differences": [
+                  {
+                    "rms": 5.4869264872556085e-11,
+                    "max": 8.896372527544827e-11
+                  },
+                  {
+                    "rms": 3.4329401222048967e-12,
+                    "max": 5.567046823529154e-12
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              32,
+              64,
+              128
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                64,
+                128
+              ],
+              "difference_from_lawson": {
+                "error_rms": 2.996633963150814e-14,
+                "error_max": 6.888933867799096e-14,
+                "mean_error": -4.786305358127352e-15,
+                "combined_objective": 1.3725556092599895e-27
+              },
+              "own_refinement": {
+                "error_rms": 3.540350645222113e-12,
+                "error_max": 6.540934460730341e-12,
+                "mean_error": 2.9209412666375556e-12,
+                "combined_objective": 1.6812465053081605e-23
+              }
+            },
+            "trial_elapsed_seconds": 7.547851395007456,
+            "requested_base_substeps": 32
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 12.514410768984817,
+        "reference_target": "same-grid Fourier Galerkin",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_002",
+      "parent": {
+        "parent_id": "resolution-evaluation-0000",
+        "field_cluster": "resolution-evaluation-0000",
+        "split": "evaluation",
+        "index": 0,
+        "seed": 86200000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.05270478455096281,
+          0.028527511799949643,
+          0.044663957150540674
+        ],
+        "phases": [
+          -0.39186996264504925,
+          -1.2676519518101177,
+          0.19990191852188932
+        ],
+        "mean": 0.47616377307204516,
+        "rms": 0.05285112256331462,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.35026751957059205,
+          0.6020600265734983
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "f597487548c795fff8894f9785bbaaff3bf7bded270c8a49e583a2e1195b899a"
+      },
+      "grid": 128,
+      "track": "discrete",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-evaluation-n128-discrete-p000/reference_bank.json",
+      "original_bank_sha256": "ee65c19ed28726648c16cbc495a9d744166dc85e54185bf04da58b1d0aa475d1",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 8.240649398407943e-13,
+                "max": 1.221189815936441e-12
+              },
+              {
+                "rms": 5.152993691603009e-14,
+                "max": 7.693845560652335e-14
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 5.887950535890659e-16,
+            "error_max": 1.9984014443252818e-15,
+            "mean_error": -5.880780346197156e-17,
+            "combined_objective": 7.460404483990882e-31
+          },
+          "own_refinement": {
+            "error_rms": 5.2522628474856015e-14,
+            "error_max": 9.192646643896296e-14,
+            "mean_error": 5.1508036253084324e-14,
+            "combined_objective": 3.603674025103135e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 8.240649398407943e-13,
+                    "max": 1.221189815936441e-12
+                  },
+                  {
+                    "rms": 5.152993691603009e-14,
+                    "max": 7.693845560652335e-14
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 5.887950535890659e-16,
+                "error_max": 1.9984014443252818e-15,
+                "mean_error": -5.880780346197156e-17,
+                "combined_objective": 7.460404483990882e-31
+              },
+              "own_refinement": {
+                "error_rms": 5.2522628474856015e-14,
+                "error_max": 9.192646643896296e-14,
+                "mean_error": 5.1508036253084324e-14,
+                "combined_objective": 3.603674025103135e-27
+              }
+            },
+            "trial_elapsed_seconds": 0.16774369397899136,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.16774751001503319,
+        "reference_target": "same-grid FD/nodal",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_003",
+      "parent": {
+        "parent_id": "resolution-evaluation-0001",
+        "field_cluster": "resolution-evaluation-0001",
+        "split": "evaluation",
+        "index": 1,
+        "seed": 86200001,
+        "regime": "high_pair",
+        "alpha": 0.7,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            23,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "amplitudes": [
+          0.05268187009779183,
+          0.06419125806133376,
+          0.013321763942014607
+        ],
+        "phases": [
+          -1.6967594721522488,
+          -0.422551116537476,
+          -0.8362146220980362
+        ],
+        "mean": 0.3962265139118132,
+        "rms": 0.05947001951834269,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.004,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.26603162181067297,
+          0.5264214060129534
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.30000000000000004,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "d7ed98188b3db34c9a6a7a64a492d0bf6f4de2cb82056ba46750810b0881153d"
+      },
+      "grid": 128,
+      "track": "discrete",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-evaluation-n128-discrete-p001/reference_bank.json",
+      "original_bank_sha256": "205deddf7ab473d927956cad96b87572b3df307e52439fdac5f394b049f2ecc3",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 4.0578891599384096e-11,
+        "uncertainty_max_bound": 7.704215043702334e-11,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 9.80725155104764e-09,
+                "max": 1.589799819567972e-08
+              },
+              {
+                "rms": 6.217629930177362e-10,
+                "max": 1.0078588519313314e-09
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": false
+          },
+          {
+            "counts": [
+              16,
+              32,
+              64
+            ],
+            "differences": [
+              {
+                "rms": 6.217629930177362e-10,
+                "max": 1.0078588519313314e-09
+              },
+              {
+                "rms": 3.900086069480787e-11,
+                "max": 6.321876355741551e-11
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          16,
+          32,
+          64
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            32,
+            64
+          ],
+          "difference_from_lawson": {
+            "error_rms": 4.5230446073070687e-13,
+            "error_max": 9.52071754767303e-13,
+            "mean_error": -5.788567596174549e-14,
+            "combined_objective": 2.9522338781946468e-25
+          },
+          "own_refinement": {
+            "error_rms": 4.0578891599384096e-11,
+            "error_max": 7.704215043702334e-11,
+            "mean_error": 3.3247460340390944e-11,
+            "combined_objective": 2.240195737830659e-21
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 4.0578891599384096e-11,
+            "uncertainty_max_bound": 7.704215043702334e-11,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 9.80725155104764e-09,
+                    "max": 1.589799819567972e-08
+                  },
+                  {
+                    "rms": 6.217629930177362e-10,
+                    "max": 1.0078588519313314e-09
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": false
+              },
+              {
+                "counts": [
+                  16,
+                  32,
+                  64
+                ],
+                "differences": [
+                  {
+                    "rms": 6.217629930177362e-10,
+                    "max": 1.0078588519313314e-09
+                  },
+                  {
+                    "rms": 3.900086069480787e-11,
+                    "max": 6.321876355741551e-11
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              16,
+              32,
+              64
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                32,
+                64
+              ],
+              "difference_from_lawson": {
+                "error_rms": 4.5230446073070687e-13,
+                "error_max": 9.52071754767303e-13,
+                "mean_error": -5.788567596174549e-14,
+                "combined_objective": 2.9522338781946468e-25
+              },
+              "own_refinement": {
+                "error_rms": 4.0578891599384096e-11,
+                "error_max": 7.704215043702334e-11,
+                "mean_error": 3.3247460340390944e-11,
+                "combined_objective": 2.240195737830659e-21
+              }
+            },
+            "trial_elapsed_seconds": 0.42407435600762255,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.4240782319975551,
+        "reference_target": "same-grid FD/nodal",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_004",
+      "parent": {
+        "parent_id": "resolution-evaluation-0000",
+        "field_cluster": "resolution-evaluation-0000",
+        "split": "evaluation",
+        "index": 0,
+        "seed": 86200000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.05270478455096281,
+          0.028527511799949643,
+          0.044663957150540674
+        ],
+        "phases": [
+          -0.39186996264504925,
+          -1.2676519518101177,
+          0.19990191852188932
+        ],
+        "mean": 0.47616377307204516,
+        "rms": 0.05285112256331462,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.35026751957059205,
+          0.6020600265734983
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "f597487548c795fff8894f9785bbaaff3bf7bded270c8a49e583a2e1195b899a"
+      },
+      "grid": 64,
+      "track": "continuum",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-evaluation-n64-continuum-p000/reference_bank.json",
+      "original_bank_sha256": "7d1a225a2c59b42bb6e092d7fb2b6510ae888a49274e6b284f64d9892952646f",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 8.244310044885196e-13,
+                "max": 1.2215783939950597e-12
+              },
+              {
+                "rms": 5.1367047070315244e-14,
+                "max": 7.643885524544203e-14
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 6.981028180938505e-16,
+            "error_max": 2.3314683517128287e-15,
+            "mean_error": -1.4742439040371647e-16,
+            "combined_objective": 1.0309220121344291e-30
+          },
+          "own_refinement": {
+            "error_rms": 5.2647865564809414e-14,
+            "error_max": 9.203748874142548e-14,
+            "mean_error": 5.162805404544668e-14,
+            "combined_objective": 3.618887681913047e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 8.244310044885196e-13,
+                    "max": 1.2215783939950597e-12
+                  },
+                  {
+                    "rms": 5.1367047070315244e-14,
+                    "max": 7.643885524544203e-14
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 6.981028180938505e-16,
+                "error_max": 2.3314683517128287e-15,
+                "mean_error": -1.4742439040371647e-16,
+                "combined_objective": 1.0309220121344291e-30
+              },
+              "own_refinement": {
+                "error_rms": 5.2647865564809414e-14,
+                "error_max": 9.203748874142548e-14,
+                "mean_error": 5.162805404544668e-14,
+                "combined_objective": 3.618887681913047e-27
+              }
+            },
+            "trial_elapsed_seconds": 0.41701428301166743,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.41701752800145186,
+        "reference_target": "same-grid Fourier Galerkin",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_005",
+      "parent": {
+        "parent_id": "resolution-evaluation-0001",
+        "field_cluster": "resolution-evaluation-0001",
+        "split": "evaluation",
+        "index": 1,
+        "seed": 86200001,
+        "regime": "high_pair",
+        "alpha": 0.7,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            23,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "amplitudes": [
+          0.05268187009779183,
+          0.06419125806133376,
+          0.013321763942014607
+        ],
+        "phases": [
+          -1.6967594721522488,
+          -0.422551116537476,
+          -0.8362146220980362
+        ],
+        "mean": 0.3962265139118132,
+        "rms": 0.05947001951834269,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.004,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.26603162181067297,
+          0.5264214060129534
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.30000000000000004,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "d7ed98188b3db34c9a6a7a64a492d0bf6f4de2cb82056ba46750810b0881153d"
+      },
+      "grid": 64,
+      "track": "continuum",
+      "horizon": 0.04,
+      "original_accepted": false,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-evaluation-n64-continuum-p001/reference_bank.json",
+      "original_bank_sha256": "60a2debb3b6bd11fd3af098d0db5e59e1e7ae3e9a58d0a852f43e9860aa75587",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 3.5410228275913943e-12,
+        "uncertainty_max_bound": 6.577793865147896e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 1.3735671691044383e-08,
+                "max": 2.2243802133559143e-08
+              },
+              {
+                "rms": 8.739899740888518e-10,
+                "max": 1.4152262695077411e-09
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": false
+          },
+          {
+            "counts": [
+              16,
+              32,
+              64
+            ],
+            "differences": [
+              {
+                "rms": 8.739899740888518e-10,
+                "max": 1.4152262695077411e-09
+              },
+              {
+                "rms": 5.487076531687673e-11,
+                "max": 8.884920577045818e-11
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          },
+          {
+            "counts": [
+              32,
+              64,
+              128
+            ],
+            "differences": [
+              {
+                "rms": 5.487076531687673e-11,
+                "max": 8.884920577045818e-11
+              },
+              {
+                "rms": 3.4343704777546923e-12,
+                "max": 5.561440197254797e-12
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          32,
+          64,
+          128
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            64,
+            128
+          ],
+          "difference_from_lawson": {
+            "error_rms": 2.9964004539218574e-14,
+            "error_max": 7.127631818093505e-14,
+            "mean_error": -5.0099898188382674e-15,
+            "combined_objective": 1.4058729213693005e-27
+          },
+          "own_refinement": {
+            "error_rms": 3.5410228275913943e-12,
+            "error_max": 6.577793865147896e-12,
+            "mean_error": 2.9218294450572557e-12,
+            "combined_objective": 1.6865579878761084e-23
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": false,
+            "uncertainty_rms": 5.657346714738782e-11,
+            "uncertainty_max_bound": 1.0511280734704087e-10,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 1.3735671691044383e-08,
+                    "max": 2.2243802133559143e-08
+                  },
+                  {
+                    "rms": 8.739899740888518e-10,
+                    "max": 1.4152262695077411e-09
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": false
+              },
+              {
+                "counts": [
+                  16,
+                  32,
+                  64
+                ],
+                "differences": [
+                  {
+                    "rms": 8.739899740888518e-10,
+                    "max": 1.4152262695077411e-09
+                  },
+                  {
+                    "rms": 5.487076531687673e-11,
+                    "max": 8.884920577045818e-11
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              16,
+              32,
+              64
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": false,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                32,
+                64
+              ],
+              "difference_from_lawson": {
+                "error_rms": 4.774248601813717e-13,
+                "error_max": 1.1170508962266013e-12,
+                "mean_error": -6.989274068357199e-14,
+                "combined_objective": 3.5271476759526766e-25
+              },
+              "own_refinement": {
+                "error_rms": 5.657346714738782e-11,
+                "error_max": 1.0511280734704087e-10,
+                "mean_error": 4.66794936038184e-11,
+                "combined_objective": 4.305427411914182e-21
+              }
+            },
+            "trial_elapsed_seconds": 1.0085392049804796,
+            "requested_base_substeps": 8
+          },
+          {
+            "accepted": true,
+            "uncertainty_rms": 3.5410228275913943e-12,
+            "uncertainty_max_bound": 6.577793865147896e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  32,
+                  64,
+                  128
+                ],
+                "differences": [
+                  {
+                    "rms": 5.487076531687673e-11,
+                    "max": 8.884920577045818e-11
+                  },
+                  {
+                    "rms": 3.4343704777546923e-12,
+                    "max": 5.561440197254797e-12
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              32,
+              64,
+              128
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                64,
+                128
+              ],
+              "difference_from_lawson": {
+                "error_rms": 2.9964004539218574e-14,
+                "error_max": 7.127631818093505e-14,
+                "mean_error": -5.0099898188382674e-15,
+                "combined_objective": 1.4058729213693005e-27
+              },
+              "own_refinement": {
+                "error_rms": 3.5410228275913943e-12,
+                "error_max": 6.577793865147896e-12,
+                "mean_error": 2.9218294450572557e-12,
+                "combined_objective": 1.6865579878761084e-23
+              }
+            },
+            "trial_elapsed_seconds": 1.62846386898309,
+            "requested_base_substeps": 32
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 2.6370128400158137,
+        "reference_target": "same-grid Fourier Galerkin",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_006",
+      "parent": {
+        "parent_id": "resolution-evaluation-0000",
+        "field_cluster": "resolution-evaluation-0000",
+        "split": "evaluation",
+        "index": 0,
+        "seed": 86200000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.05270478455096281,
+          0.028527511799949643,
+          0.044663957150540674
+        ],
+        "phases": [
+          -0.39186996264504925,
+          -1.2676519518101177,
+          0.19990191852188932
+        ],
+        "mean": 0.47616377307204516,
+        "rms": 0.05285112256331462,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.35026751957059205,
+          0.6020600265734983
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "f597487548c795fff8894f9785bbaaff3bf7bded270c8a49e583a2e1195b899a"
+      },
+      "grid": 64,
+      "track": "discrete",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-evaluation-n64-discrete-p000/reference_bank.json",
+      "original_bank_sha256": "c8600fa3dbe922ca7ce1092bc51cee17af0b870edf3e7cae4bfe492541d821bd",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 8.244308678780462e-13,
+                "max": 1.2219114609024473e-12
+              },
+              {
+                "rms": 5.187094269990253e-14,
+                "max": 7.72715225139109e-14
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 6.658796564048059e-16,
+            "error_max": 2.6645352591003757e-15,
+            "mean_error": -2.6969529040576923e-17,
+            "combined_objective": 1.1533705315126929e-30
+          },
+          "own_refinement": {
+            "error_rms": 5.2643012953835516e-14,
+            "error_max": 9.220402219511925e-14,
+            "mean_error": 5.161932621795817e-14,
+            "combined_objective": 3.621444983753499e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 8.244308678780462e-13,
+                    "max": 1.2219114609024473e-12
+                  },
+                  {
+                    "rms": 5.187094269990253e-14,
+                    "max": 7.72715225139109e-14
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 6.658796564048059e-16,
+                "error_max": 2.6645352591003757e-15,
+                "mean_error": -2.6969529040576923e-17,
+                "combined_objective": 1.1533705315126929e-30
+              },
+              "own_refinement": {
+                "error_rms": 5.2643012953835516e-14,
+                "error_max": 9.220402219511925e-14,
+                "mean_error": 5.161932621795817e-14,
+                "combined_objective": 3.621444983753499e-27
+              }
+            },
+            "trial_elapsed_seconds": 0.053670452994992957,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.05367466900497675,
+        "reference_target": "same-grid FD/nodal",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_007",
+      "parent": {
+        "parent_id": "resolution-evaluation-0001",
+        "field_cluster": "resolution-evaluation-0001",
+        "split": "evaluation",
+        "index": 1,
+        "seed": 86200001,
+        "regime": "high_pair",
+        "alpha": 0.7,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            23,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "amplitudes": [
+          0.05268187009779183,
+          0.06419125806133376,
+          0.013321763942014607
+        ],
+        "phases": [
+          -1.6967594721522488,
+          -0.422551116537476,
+          -0.8362146220980362
+        ],
+        "mean": 0.3962265139118132,
+        "rms": 0.05947001951834269,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.004,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.26603162181067297,
+          0.5264214060129534
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.30000000000000004,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "d7ed98188b3db34c9a6a7a64a492d0bf6f4de2cb82056ba46750810b0881153d"
+      },
+      "grid": 64,
+      "track": "discrete",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-evaluation-n64-discrete-p001/reference_bank.json",
+      "original_bank_sha256": "46e305ba0961b2e0c31a7561b80b94bc5a9933e2b61997df13b845c1cdb9d7ec",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1.4472450855964886e-11,
+        "uncertainty_max_bound": 2.9071967055926962e-11,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 3.3576432541870044e-09,
+                "max": 5.84189602248486e-09
+              },
+              {
+                "rms": 2.1132092565706005e-10,
+                "max": 3.6767927591441207e-10
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": false
+          },
+          {
+            "counts": [
+              16,
+              32,
+              64
+            ],
+            "differences": [
+              {
+                "rms": 2.1132092565706005e-10,
+                "max": 3.6767927591441207e-10
+              },
+              {
+                "rms": 1.3230403736519057e-11,
+                "max": 2.3021862194383402e-11
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          16,
+          32,
+          64
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            32,
+            64
+          ],
+          "difference_from_lawson": {
+            "error_rms": 3.199181556907258e-13,
+            "error_max": 7.870926133080047e-13,
+            "mean_error": -2.926746844010564e-14,
+            "combined_objective": 1.642991045329579e-25
+          },
+          "own_refinement": {
+            "error_rms": 1.4472450855964886e-11,
+            "error_max": 2.9071967055926962e-11,
+            "mean_error": 1.1374401420738423e-11,
+            "combined_objective": 2.9396976062840904e-22
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1.4472450855964886e-11,
+            "uncertainty_max_bound": 2.9071967055926962e-11,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 3.3576432541870044e-09,
+                    "max": 5.84189602248486e-09
+                  },
+                  {
+                    "rms": 2.1132092565706005e-10,
+                    "max": 3.6767927591441207e-10
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": false
+              },
+              {
+                "counts": [
+                  16,
+                  32,
+                  64
+                ],
+                "differences": [
+                  {
+                    "rms": 2.1132092565706005e-10,
+                    "max": 3.6767927591441207e-10
+                  },
+                  {
+                    "rms": 1.3230403736519057e-11,
+                    "max": 2.3021862194383402e-11
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              16,
+              32,
+              64
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                32,
+                64
+              ],
+              "difference_from_lawson": {
+                "error_rms": 3.199181556907258e-13,
+                "error_max": 7.870926133080047e-13,
+                "mean_error": -2.926746844010564e-14,
+                "combined_objective": 1.642991045329579e-25
+              },
+              "own_refinement": {
+                "error_rms": 1.4472450855964886e-11,
+                "error_max": 2.9071967055926962e-11,
+                "mean_error": 1.1374401420738423e-11,
+                "combined_objective": 2.9396976062840904e-22
+              }
+            },
+            "trial_elapsed_seconds": 0.14926462300354615,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.1492681780073326,
+        "reference_target": "same-grid FD/nodal",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_008",
+      "parent": {
+        "parent_id": "resolution-train-0000",
+        "field_cluster": "resolution-train-0000",
+        "split": "train",
+        "index": 0,
+        "seed": 86000000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.023495901756154958,
+          0.042939953843615264,
+          0.04147128081313771
+        ],
+        "phases": [
+          -1.6595269470117233,
+          0.574639344134388,
+          0.5079614340153564
+        ],
+        "mean": 0.4526249964216491,
+        "rms": 0.04536388523764702,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.34471786000874116,
+          0.560532132834557
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "3d1e3967d631b8e3b3d7bc5508c13edb61376aa3e7c6977ede558b813984c17e"
+      },
+      "grid": 128,
+      "track": "continuum",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-train-n128-continuum-p000/reference_bank.json",
+      "original_bank_sha256": "efb51dab452851d5ee984ed7d775c672f1a1f7be58ea219eea3275b38fbc7ef4",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 8.382492544327192e-13,
+                "max": 1.2370104940373494e-12
+              },
+              {
+                "rms": 5.2476599007011264e-14,
+                "max": 7.771561172376096e-14
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 5.675118091116975e-16,
+            "error_max": 1.7763568394002505e-15,
+            "mean_error": -1.2969090862000043e-16,
+            "combined_objective": 6.376140155696365e-31
+          },
+          "own_refinement": {
+            "error_rms": 5.408583521891231e-14,
+            "error_max": 9.35918009759007e-14,
+            "mean_error": 5.252156877271451e-14,
+            "combined_objective": 3.801220092318596e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 8.382492544327192e-13,
+                    "max": 1.2370104940373494e-12
+                  },
+                  {
+                    "rms": 5.2476599007011264e-14,
+                    "max": 7.771561172376096e-14
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 5.675118091116975e-16,
+                "error_max": 1.7763568394002505e-15,
+                "mean_error": -1.2969090862000043e-16,
+                "combined_objective": 6.376140155696365e-31
+              },
+              "own_refinement": {
+                "error_rms": 5.408583521891231e-14,
+                "error_max": 9.35918009759007e-14,
+                "mean_error": 5.252156877271451e-14,
+                "combined_objective": 3.801220092318596e-27
+              }
+            },
+            "trial_elapsed_seconds": 1.854480103997048,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 1.8544836289947852,
+        "reference_target": "same-grid Fourier Galerkin",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_009",
+      "parent": {
+        "parent_id": "resolution-train-0000",
+        "field_cluster": "resolution-train-0000",
+        "split": "train",
+        "index": 0,
+        "seed": 86000000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.023495901756154958,
+          0.042939953843615264,
+          0.04147128081313771
+        ],
+        "phases": [
+          -1.6595269470117233,
+          0.574639344134388,
+          0.5079614340153564
+        ],
+        "mean": 0.4526249964216491,
+        "rms": 0.04536388523764702,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.34471786000874116,
+          0.560532132834557
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "3d1e3967d631b8e3b3d7bc5508c13edb61376aa3e7c6977ede558b813984c17e"
+      },
+      "grid": 128,
+      "track": "discrete",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-train-n128-discrete-p000/reference_bank.json",
+      "original_bank_sha256": "b292ac2ad1919fa4b82d803e58d64f1454c65e19e2b9f21adad440e387506f1a",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 8.383176861013498e-13,
+                "max": 1.2368439605836556e-12
+              },
+              {
+                "rms": 5.222038830134957e-14,
+                "max": 7.760458942129844e-14
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 5.499358997807771e-16,
+            "error_max": 1.887379141862766e-15,
+            "mean_error": -3.625639827427307e-17,
+            "combined_objective": 6.586494963815562e-31
+          },
+          "own_refinement": {
+            "error_rms": 5.396896189894402e-14,
+            "error_max": 9.298117831235686e-14,
+            "mean_error": 5.240882529930317e-14,
+            "combined_objective": 3.777198800485102e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 8.383176861013498e-13,
+                    "max": 1.2368439605836556e-12
+                  },
+                  {
+                    "rms": 5.222038830134957e-14,
+                    "max": 7.760458942129844e-14
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 5.499358997807771e-16,
+                "error_max": 1.887379141862766e-15,
+                "mean_error": -3.625639827427307e-17,
+                "combined_objective": 6.586494963815562e-31
+              },
+              "own_refinement": {
+                "error_rms": 5.396896189894402e-14,
+                "error_max": 9.298117831235686e-14,
+                "mean_error": 5.240882529930317e-14,
+                "combined_objective": 3.777198800485102e-27
+              }
+            },
+            "trial_elapsed_seconds": 0.18736097498913296,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.1873651210044045,
+        "reference_target": "same-grid FD/nodal",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_010",
+      "parent": {
+        "parent_id": "resolution-train-0000",
+        "field_cluster": "resolution-train-0000",
+        "split": "train",
+        "index": 0,
+        "seed": 86000000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.023495901756154958,
+          0.042939953843615264,
+          0.04147128081313771
+        ],
+        "phases": [
+          -1.6595269470117233,
+          0.574639344134388,
+          0.5079614340153564
+        ],
+        "mean": 0.4526249964216491,
+        "rms": 0.04536388523764702,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.34471786000874116,
+          0.560532132834557
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "3d1e3967d631b8e3b3d7bc5508c13edb61376aa3e7c6977ede558b813984c17e"
+      },
+      "grid": 64,
+      "track": "continuum",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-train-n64-continuum-p000/reference_bank.json",
+      "original_bank_sha256": "efb8ffcb51f765d1afc50c3693e84ee9d62556088ac8b9b1fa55f6cd98c5f526",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 8.38308321222815e-13,
+                "max": 1.235400670651643e-12
+              },
+              {
+                "rms": 5.22516949431765e-14,
+                "max": 7.760458942129844e-14
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 5.729191835548828e-16,
+            "error_max": 1.9984014443252818e-15,
+            "mean_error": 9.946199679838896e-17,
+            "combined_objective": 7.275972241533307e-31
+          },
+          "own_refinement": {
+            "error_rms": 5.4037693250339336e-14,
+            "error_max": 9.320322291728189e-14,
+            "mean_error": 5.246505812260549e-14,
+            "combined_objective": 3.788756368034624e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 8.38308321222815e-13,
+                    "max": 1.235400670651643e-12
+                  },
+                  {
+                    "rms": 5.22516949431765e-14,
+                    "max": 7.760458942129844e-14
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 5.729191835548828e-16,
+                "error_max": 1.9984014443252818e-15,
+                "mean_error": 9.946199679838896e-17,
+                "combined_objective": 7.275972241533307e-31
+              },
+              "own_refinement": {
+                "error_rms": 5.4037693250339336e-14,
+                "error_max": 9.320322291728189e-14,
+                "mean_error": 5.246505812260549e-14,
+                "combined_objective": 3.788756368034624e-27
+              }
+            },
+            "trial_elapsed_seconds": 0.45579200898646377,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.4557956449862104,
+        "reference_target": "same-grid Fourier Galerkin",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_011",
+      "parent": {
+        "parent_id": "resolution-train-0000",
+        "field_cluster": "resolution-train-0000",
+        "split": "train",
+        "index": 0,
+        "seed": 86000000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.023495901756154958,
+          0.042939953843615264,
+          0.04147128081313771
+        ],
+        "phases": [
+          -1.6595269470117233,
+          0.574639344134388,
+          0.5079614340153564
+        ],
+        "mean": 0.4526249964216491,
+        "rms": 0.04536388523764702,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.34471786000874116,
+          0.560532132834557
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "3d1e3967d631b8e3b3d7bc5508c13edb61376aa3e7c6977ede558b813984c17e"
+      },
+      "grid": 64,
+      "track": "discrete",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-train-n64-discrete-p000/reference_bank.json",
+      "original_bank_sha256": "9aa51c21de9d24248177386236175d8f57cc94b6f99f62367df165a21729a011",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 8.384478008877758e-13,
+                "max": 1.2366774271299619e-12
+              },
+              {
+                "rms": 5.246323882164469e-14,
+                "max": 7.754907827006718e-14
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 7.557130245030187e-16,
+            "error_max": 2.3314683517128287e-15,
+            "mean_error": -4.267555276174506e-16,
+            "combined_objective": 1.1146766429073535e-30
+          },
+          "own_refinement": {
+            "error_rms": 5.387263553848532e-14,
+            "error_max": 9.275913370743183e-14,
+            "mean_error": 5.229543469272013e-14,
+            "combined_objective": 3.762686548477794e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 8.384478008877758e-13,
+                    "max": 1.2366774271299619e-12
+                  },
+                  {
+                    "rms": 5.246323882164469e-14,
+                    "max": 7.754907827006718e-14
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 7.557130245030187e-16,
+                "error_max": 2.3314683517128287e-15,
+                "mean_error": -4.267555276174506e-16,
+                "combined_objective": 1.1146766429073535e-30
+              },
+              "own_refinement": {
+                "error_rms": 5.387263553848532e-14,
+                "error_max": 9.275913370743183e-14,
+                "mean_error": 5.229543469272013e-14,
+                "combined_objective": 3.762686548477794e-27
+              }
+            },
+            "trial_elapsed_seconds": 0.0584715309960302,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.058475466998061165,
+        "reference_target": "same-grid FD/nodal",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_012",
+      "parent": {
+        "parent_id": "resolution-validation-0000",
+        "field_cluster": "resolution-validation-0000",
+        "split": "validation",
+        "index": 0,
+        "seed": 86100000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.041504279781245546,
+          0.05850072527703927,
+          0.04554324795537529
+        ],
+        "phases": [
+          -0.11690298204876637,
+          -1.6255740295588146,
+          -2.526667181296072
+        ],
+        "mean": 0.4351565452132317,
+        "rms": 0.060079645190464985,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.2896082921995716,
+          0.5807047982268918
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "eb3277d4e0ffce8f6b820911822715a1099dfb87e35510788e7078047c0147c1"
+      },
+      "grid": 128,
+      "track": "continuum",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-validation-n128-continuum-p000/reference_bank.json",
+      "original_bank_sha256": "ec1cbcb4f7a58e7d43c3ad2a4d666323c25d5cab74558003f2e2f0095275d770",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 9.36843845930359e-13,
+                "max": 1.6976975381055581e-12
+              },
+              {
+                "rms": 5.865783272420073e-14,
+                "max": 1.071365218763276e-13
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 6.911620052136883e-16,
+            "error_max": 2.1094237467877974e-15,
+            "mean_error": 3.103833650600768e-16,
+            "combined_objective": 9.226717718022334e-31
+          },
+          "own_refinement": {
+            "error_rms": 6.186008234667053e-14,
+            "error_max": 1.2695400286588665e-13,
+            "mean_error": 5.85011199368251e-14,
+            "combined_objective": 5.438401672304014e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 9.36843845930359e-13,
+                    "max": 1.6976975381055581e-12
+                  },
+                  {
+                    "rms": 5.865783272420073e-14,
+                    "max": 1.071365218763276e-13
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 6.911620052136883e-16,
+                "error_max": 2.1094237467877974e-15,
+                "mean_error": 3.103833650600768e-16,
+                "combined_objective": 9.226717718022334e-31
+              },
+              "own_refinement": {
+                "error_rms": 6.186008234667053e-14,
+                "error_max": 1.2695400286588665e-13,
+                "mean_error": 5.85011199368251e-14,
+                "combined_objective": 5.438401672304014e-27
+              }
+            },
+            "trial_elapsed_seconds": 1.884684417018434,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 1.8846887029940262,
+        "reference_target": "same-grid Fourier Galerkin",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_013",
+      "parent": {
+        "parent_id": "resolution-validation-0000",
+        "field_cluster": "resolution-validation-0000",
+        "split": "validation",
+        "index": 0,
+        "seed": 86100000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.041504279781245546,
+          0.05850072527703927,
+          0.04554324795537529
+        ],
+        "phases": [
+          -0.11690298204876637,
+          -1.6255740295588146,
+          -2.526667181296072
+        ],
+        "mean": 0.4351565452132317,
+        "rms": 0.060079645190464985,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.2896082921995716,
+          0.5807047982268918
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "eb3277d4e0ffce8f6b820911822715a1099dfb87e35510788e7078047c0147c1"
+      },
+      "grid": 128,
+      "track": "discrete",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-validation-n128-discrete-p000/reference_bank.json",
+      "original_bank_sha256": "7ffaebeb4260ef1db0c06996104521e791e9af75850723ca4a6f5e35499d8595",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 9.369667441917027e-13,
+                "max": 1.6981971384666394e-12
+              },
+              {
+                "rms": 5.829269524973035e-14,
+                "max": 1.0619283230539622e-13
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 7.524008125257055e-16,
+            "error_max": 2.3314683517128287e-15,
+            "mean_error": 4.424662947231234e-16,
+            "combined_objective": 1.1096814501931953e-30
+          },
+          "own_refinement": {
+            "error_rms": 6.121963691374872e-14,
+            "error_max": 1.2634338020234281e-13,
+            "mean_error": 5.784541817982838e-14,
+            "combined_objective": 5.3441089159466014e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 9.369667441917027e-13,
+                    "max": 1.6981971384666394e-12
+                  },
+                  {
+                    "rms": 5.829269524973035e-14,
+                    "max": 1.0619283230539622e-13
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 7.524008125257055e-16,
+                "error_max": 2.3314683517128287e-15,
+                "mean_error": 4.424662947231234e-16,
+                "combined_objective": 1.1096814501931953e-30
+              },
+              "own_refinement": {
+                "error_rms": 6.121963691374872e-14,
+                "error_max": 1.2634338020234281e-13,
+                "mean_error": 5.784541817982838e-14,
+                "combined_objective": 5.3441089159466014e-27
+              }
+            },
+            "trial_elapsed_seconds": 0.20425839300150983,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.2042620989959687,
+        "reference_target": "same-grid FD/nodal",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_014",
+      "parent": {
+        "parent_id": "resolution-validation-0000",
+        "field_cluster": "resolution-validation-0000",
+        "split": "validation",
+        "index": 0,
+        "seed": 86100000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.041504279781245546,
+          0.05850072527703927,
+          0.04554324795537529
+        ],
+        "phases": [
+          -0.11690298204876637,
+          -1.6255740295588146,
+          -2.526667181296072
+        ],
+        "mean": 0.4351565452132317,
+        "rms": 0.060079645190464985,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.2896082921995716,
+          0.5807047982268918
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "eb3277d4e0ffce8f6b820911822715a1099dfb87e35510788e7078047c0147c1"
+      },
+      "grid": 64,
+      "track": "continuum",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-validation-n64-continuum-p000/reference_bank.json",
+      "original_bank_sha256": "f6f286d518a1ad400256f0120d2ee74d6f741dd11e428dc4ec857ef76d62a86a",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 9.369466761997149e-13,
+                "max": 1.6979195827104832e-12
+              },
+              {
+                "rms": 5.865678059842946e-14,
+                "max": 1.0691447727140257e-13
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 1.0031348802791764e-15,
+            "error_max": 2.9976021664879227e-15,
+            "mean_error": 7.067778437161443e-16,
+            "combined_objective": 1.9048414628860264e-30
+          },
+          "own_refinement": {
+            "error_rms": 6.228397909091806e-14,
+            "error_max": 1.2734258092450546e-13,
+            "mean_error": 5.895619008180336e-14,
+            "combined_objective": 5.5009073430493396e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 9.369466761997149e-13,
+                    "max": 1.6979195827104832e-12
+                  },
+                  {
+                    "rms": 5.865678059842946e-14,
+                    "max": 1.0691447727140257e-13
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 1.0031348802791764e-15,
+                "error_max": 2.9976021664879227e-15,
+                "mean_error": 7.067778437161443e-16,
+                "combined_objective": 1.9048414628860264e-30
+              },
+              "own_refinement": {
+                "error_rms": 6.228397909091806e-14,
+                "error_max": 1.2734258092450546e-13,
+                "mean_error": 5.895619008180336e-14,
+                "combined_objective": 5.5009073430493396e-27
+              }
+            },
+            "trial_elapsed_seconds": 0.4313753200112842,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.43137880600988865,
+        "reference_target": "same-grid Fourier Galerkin",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    },
+    {
+      "case_id": "case_015",
+      "parent": {
+        "parent_id": "resolution-validation-0000",
+        "field_cluster": "resolution-validation-0000",
+        "split": "validation",
+        "index": 0,
+        "seed": 86100000,
+        "regime": "low",
+        "alpha": 0.3,
+        "generator": "finite_2d_fourier",
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "amplitudes": [
+          0.041504279781245546,
+          0.05850072527703927,
+          0.04554324795537529
+        ],
+        "phases": [
+          -0.11690298204876637,
+          -1.6255740295588146,
+          -2.526667181296072
+        ],
+        "mean": 0.4351565452132317,
+        "rms": 0.060079645190464985,
+        "domain": [
+          1.0,
+          1.0
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "continuous_range_bound": [
+          0.2896082921995716,
+          0.5807047982268918
+        ],
+        "bandwidth_policy": "fixed_physical",
+        "finite_field_dimension": 2,
+        "nominal_hurst": 0.7,
+        "roughness_scope": "finite smooth Fourier field; alpha is a spectral-envelope label",
+        "normalization": "continuous Fourier RMS, no clipping or grid normalization",
+        "parent_sha256": "eb3277d4e0ffce8f6b820911822715a1099dfb87e35510788e7078047c0147c1"
+      },
+      "grid": 64,
+      "track": "discrete",
+      "horizon": 0.04,
+      "original_accepted": true,
+      "original_bank": "runs/adjacent-resolution-cpu-review-v1/prepare-validation-n64-discrete-p000/reference_bank.json",
+      "original_bank_sha256": "1e8d76580fc785ca9909e82d096f5127e0341282ec3a11362250919fb62ebf5f",
+      "reference": {
+        "accepted": true,
+        "uncertainty_rms": 1e-12,
+        "uncertainty_max_bound": 1e-12,
+        "temporal_refinements": [
+          {
+            "counts": [
+              8,
+              16,
+              32
+            ],
+            "differences": [
+              {
+                "rms": 9.3685481836414e-13,
+                "max": 1.698530205374027e-12
+              },
+              {
+                "rms": 5.863250872614712e-14,
+                "max": 1.0641487691032125e-13
+              }
+            ],
+            "rounding_allowance": 1e-12,
+            "finite": true,
+            "converged": true,
+            "accepted": true
+          }
+        ],
+        "refinement_substeps": [
+          8,
+          16,
+          32
+        ],
+        "temporal_accepted": true,
+        "reference_accepted": true,
+        "independent_crosscheck": {
+          "method": "Cox-Matthews ETDRK4",
+          "counts": [
+            16,
+            32
+          ],
+          "difference_from_lawson": {
+            "error_rms": 7.957740245471113e-16,
+            "error_max": 3.3306690738754696e-15,
+            "mean_error": 2.0689287956454638e-16,
+            "combined_objective": 1.7425919461109544e-30
+          },
+          "own_refinement": {
+            "error_rms": 6.143467050805499e-14,
+            "error_max": 1.270095140171179e-13,
+            "mean_error": 5.805962264779363e-14,
+            "combined_objective": 5.387360405519728e-27
+          }
+        },
+        "joint_refinements": [
+          {
+            "accepted": true,
+            "uncertainty_rms": 1e-12,
+            "uncertainty_max_bound": 1e-12,
+            "temporal_refinements": [
+              {
+                "counts": [
+                  8,
+                  16,
+                  32
+                ],
+                "differences": [
+                  {
+                    "rms": 9.3685481836414e-13,
+                    "max": 1.698530205374027e-12
+                  },
+                  {
+                    "rms": 5.863250872614712e-14,
+                    "max": 1.0641487691032125e-13
+                  }
+                ],
+                "rounding_allowance": 1e-12,
+                "finite": true,
+                "converged": true,
+                "accepted": true
+              }
+            ],
+            "refinement_substeps": [
+              8,
+              16,
+              32
+            ],
+            "temporal_accepted": true,
+            "reference_accepted": true,
+            "independent_crosscheck": {
+              "method": "Cox-Matthews ETDRK4",
+              "counts": [
+                16,
+                32
+              ],
+              "difference_from_lawson": {
+                "error_rms": 7.957740245471113e-16,
+                "error_max": 3.3306690738754696e-15,
+                "mean_error": 2.0689287956454638e-16,
+                "combined_objective": 1.7425919461109544e-30
+              },
+              "own_refinement": {
+                "error_rms": 6.143467050805499e-14,
+                "error_max": 1.270095140171179e-13,
+                "mean_error": 5.805962264779363e-14,
+                "combined_objective": 5.387360405519728e-27
+              }
+            },
+            "trial_elapsed_seconds": 0.05573914499836974,
+            "requested_base_substeps": 8
+          }
+        ],
+        "joint_refinement_stop": "accepted",
+        "reference_seconds": 0.055742450000252575,
+        "reference_target": "same-grid FD/nodal",
+        "uncertainty_semantics": "maximum of observed time refinements and independent crosscheck; not a certificate",
+        "reference_dtype": "float64",
+        "reference_device": "cpu"
+      }
+    }
+  ]
+}

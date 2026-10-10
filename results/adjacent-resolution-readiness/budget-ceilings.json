@@ -1,0 +1,48 @@
+{
+  "resolution-smoke": {
+    "units": 44,
+    "gpu_units": 20,
+    "science_seconds": 10380,
+    "allocation_seconds": 27180,
+    "max_job_seconds": 780,
+    "grids": [
+      64,
+      128
+    ],
+    "cross_grid_transfer": true
+  },
+  "resolution-full": {
+    "units": 68,
+    "gpu_units": 24,
+    "science_seconds": 57180,
+    "allocation_seconds": 82020,
+    "max_job_seconds": 1380,
+    "grids": [
+      64,
+      128
+    ],
+    "cross_grid_transfer": true
+  },
+  "resolution64": {
+    "units": 36,
+    "gpu_units": 12,
+    "science_seconds": 29280,
+    "allocation_seconds": 42300,
+    "max_job_seconds": 1380,
+    "grids": [
+      64
+    ],
+    "cross_grid_transfer": false
+  },
+  "resolution128": {
+    "units": 36,
+    "gpu_units": 12,
+    "science_seconds": 29280,
+    "allocation_seconds": 42300,
+    "max_job_seconds": 1380,
+    "grids": [
+      128
+    ],
+    "cross_grid_transfer": false
+  }
+}
