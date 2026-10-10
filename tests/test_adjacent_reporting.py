@@ -160,3 +160,64 @@ def test_categorical_floors_keep_both_equation_tracks_visible():
     assert any('[discrete]' in label for label in labels)
     assert any('[continuum]' in label for label in labels)
     plt.close(fig)
+
+
+def test_embedded_summary_rows_do_not_double_count_canonical_measurements(tmp_path):
+    source=tmp_path/'evaluate'
+    row={'family':'channel_neural','track':'discrete','error_rms':.1,'cost_seconds':.01}
+    put(source,'evaluation-rows.json',[row])
+    put(source,'evaluation-summary.json',{'rows':[row],'status':'COMPLETED'})
+    put(source,'reference-bank.json',{'records':[{'family':'reference','rms':1.}]})
+    put(source,'validation-rows.json',[{'family':'channel_neural','error_rms':.2}])
+    data=report.collect(context(tmp_path,prerequisites={'evaluate':source}))
+    assert len(data['evaluation'])==1
+    assert len(data['validation'])==1
+    assert len(data['sources'])==4
+    summary=next(r for r in data['auxiliary'] if r['path'].endswith('evaluation-summary.json'))
+    assert summary['value']['rows']==[row]
+    assert 'not lower/upper bounds' in data['reference_adjusted_interval_estimand']
+
+
+def test_heat_only_field_rms_cannot_become_solver_accuracy():
+    field={'alpha':.5,'generator':'ridge','horizon':.12,'metrics':{'rms':.04,
+           'roughness_estimates':[{'axis':0,'empirical_H':.6},{'axis':1,'empirical_H':None}]}}
+    values=report.roughness_view([field])
+    assert len(values)==1 and values[0]['rms'] is None
+    assert values[0]['input_fluctuation_rms']==.04
+    assert values[0]['role']=='Analytic control'
+    scaling=report.roughness_view([field],expand_scaling=True)
+    assert len(scaling)==2 and scaling[1]['empirical_hurst'] is None
+    data={name:[] for name in report.TABLES};data['roughness']=[field]
+    assert report.roughness_accuracy_rows(data)==[]
+    data['evaluation']=[{'alpha':.5,'error_rms':.001,'family':'channel_neural'}]
+    assert report.roughness_accuracy_rows(data)[0]['rms']==.001
+
+
+def test_positive_learning_loss_uses_log_scale_without_changing_observations():
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    curves=[{'family':'channel_neural','track':'discrete','phase':'train','train_count':2,
+             'model_id':'m','seed':1,'update':i,'loss':10.**i} for i in range(4)]
+    ranges=report._learning_ranges(curves,'update','loss',max_windows=2)
+    original=copy.deepcopy(ranges)
+    fig,ax=plt.subplots();report.range_plot(ax,ranges)
+    assert ax.get_yscale()=='log' and ranges==original
+    plt.close(fig)
+
+
+def test_temporal_and_prototype_summary_mirrors_not_plotted_twice():
+    source=lambda name:{'path':'/root/'+name,'sha256':'hash','pointer':'/0'}
+    costs={'method':'direct_gl4','query_count':4,'measured_complete_seconds':.1,'_source':source('temporal_cost_rows.json')}
+    mirror={'config':{'method':'direct_gl4'},'metrics':{'query_count':4,'complete_seconds':.1},'_source':source('temporal_rows.json')}
+    assert len(report.temporal_view([costs,mirror]))==1
+    canonical={'method':'selective_cubic','metrics':{'error_rms':.1},'_source':source('prototype_rows.json')}
+    raw={'method':'selective_cubic','error_rms':.1,'_source':source('prototype_measurements.json')}
+    assert report.exploration_view([canonical,raw])==[canonical]
+    assert len([canonical,raw])==2  # Canonical filtering never mutates raw inventory.
+
+
+def test_core_pilot_methods_have_distinct_colors_even_with_same_role_marker():
+    families=('channel_neural','channel_global','channel_affine','quad2_conditioned','band_gain','feature_capacity',
+              'df','etdrk4','fno_small','quad2_fixed','quad4_fixed','channel_fixed','analytic_quad_cubic')
+    assert len({report.style(name)['color'] for name in families})==len(families)

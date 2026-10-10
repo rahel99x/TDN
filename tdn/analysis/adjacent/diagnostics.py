@@ -106,41 +106,57 @@ def basis_oracle(basis, defect, *, bounds=None, uncertainty=1e-12,
                  reference_difference=None):
     """Stable SVD/bounded least squares with identifiable-space diagnostics.
 
-    Individual coefficients may be non-identifiable even if predictions are
-    well determined. Sensitivity is measured both against the actual reference
-    refinement change and an L2 uncertainty ball; neither is a statistical CI.
+    Algebraic floating-point rank is not a reference-resolved response space.
+    Singular directions whose unit-coefficient RMS response is no larger than
+    five times the reference uncertainty are excluded before fitting. This
+    conservative diagnostic truncation prevents enormous gains on roundoff
+    channels from masquerading as useful new spatial directions. It is not a
+    theorem about the rank of the exact analytic quadratic form.
     """
     defect = np.asarray(defect, float).ravel()
     basis = np.asarray(basis, float).reshape(len(basis), -1).T
     if basis.shape[0] != defect.size or not np.isfinite(basis).all() or not np.isfinite(defect).all():
         raise ValueError("Finite shape-matched basis and defect required")
+    if not math.isfinite(uncertainty) or uncertainty <= 0:
+        raise ValueError("Positive finite reference uncertainty required")
     scale = max(float(np.sqrt(np.mean(defect**2))), float(np.max(np.abs(basis))), uncertainty)
     u, singular, vh = np.linalg.svd(basis, full_matrices=False)
-    threshold = max(basis.shape)*np.finfo(float).eps*singular[0] if singular.size else 0.
+    algebraic_threshold = max(basis.shape)*np.finfo(float).eps*singular[0] if singular.size else 0.
+    threshold = max(algebraic_threshold,5*uncertainty*math.sqrt(defect.size))
+    algebraic_rank = int(np.sum(singular > algebraic_threshold))
     rank = int(np.sum(singular > threshold))
+    resolved_basis = (u[:,:rank]*singular[:rank])@vh[:rank] if rank else np.zeros_like(basis)
     rms_columns = np.sqrt(np.mean(basis**2, axis=0))
     resolved = bool(rank and np.max(rms_columns) > 5*uncertainty
                     and np.sqrt(np.mean(defect**2)) > 5*uncertainty)
-    coefficients = np.linalg.lstsq(basis/scale, defect/scale, rcond=None)[0]
+    nominal = np.linalg.lstsq(basis/scale, defect/scale, rcond=None)[0]
+    coefficients = (vh[:rank].T@((u[:,:rank].T@defect)/singular[:rank])
+                    if rank else np.zeros(basis.shape[1]))
     unrestricted = coefficients.copy()
-    optimizer = dict(kind="SVD least squares", success=True, optimality=None)
+    optimizer = dict(kind="reference-resolved truncated SVD least squares", success=True, optimality=None)
     if bounds is not None:
         lower = np.broadcast_to(np.asarray(bounds[0], float), coefficients.shape)
         upper = np.broadcast_to(np.asarray(bounds[1], float), coefficients.shape)
         if np.any(lower >= upper):
             raise ValueError("Basis bounds require a nonempty interval per coefficient")
-        result = lsq_linear(basis/scale, defect/scale, bounds=(lower, upper),
+        result = lsq_linear(resolved_basis/scale, defect/scale, bounds=(lower, upper),
                             tol=1e-13, max_iter=300)
         coefficients = result.x
-        optimizer = dict(kind="scaled bounded least squares", success=bool(result.success),
+        optimizer = dict(kind="scaled bounded least squares on reference-resolved basis", success=bool(result.success),
                          optimality=float(result.optimality), iterations=result.nit)
     prediction = basis@coefficients
     perturbation = np.zeros_like(defect) if reference_difference is None else np.asarray(reference_difference, float).ravel()
-    delta = np.linalg.lstsq(basis/scale, perturbation/scale, rcond=None)[0]
+    delta = (vh[:rank].T@((u[:,:rank].T@perturbation)/singular[:rank])
+             if rank else np.zeros(basis.shape[1]))
     coefficient_radius = math.sqrt(defect.size)*uncertainty/singular[rank-1] if rank else None
     return dict(resolved=resolved, coefficients=coefficients.tolist(),
         unrestricted_coefficients=unrestricted.tolist(), bounds=bounds,
-        effective_rank=rank, columns=basis.shape[1], singular_values=singular.tolist(),
+        effective_rank=rank, algebraic_rank=algebraic_rank, columns=basis.shape[1], singular_values=singular.tolist(),
+        reference_resolved_singular_threshold=threshold,algebraic_singular_threshold=algebraic_threshold,
+        singular_response_rms=(singular/math.sqrt(defect.size)).tolist(),
+        numerical_direction_truncation=rank < algebraic_rank,
+        nominal_algebraic_coefficients=nominal.tolist(),
+        nominal_coefficients_scope="raw floating-point algebraic fit; not inferred or deployable gains, may amplify numerical noise",
         condition_number=float(singular[0]/singular[-1]) if rank == basis.shape[1] else None,
         rank_deficient=rank < basis.shape[1], column_rms=rms_columns.tolist(),
         coefficient_refinement_sensitivity_l2=float(np.linalg.norm(delta)),
@@ -150,6 +166,27 @@ def basis_oracle(basis, defect, *, bounds=None, uncertainty=1e-12,
             and coefficient_radius < .05*max(1., float(np.linalg.norm(coefficients)))),
         practical_identifiability_criterion="coefficient uncertainty radius below 5% of max(1, coefficient norm)",
         optimizer=optimizer, objective_optimized="squared_L2_only", **error_metrics(prediction-defect))
+
+
+def output_compression_oracle(base,reference,cutoff):
+    """Orthogonal L2 floor for *any* correction confined to retained modes.
+
+    If d=reference-base and P is the same Fourier projector, then
+    ||d-c||²=||(I-P)d||²+||Pd-c||² for every c=P(c). This establishes an
+    L2/RMS floor, not a maximum-norm floor. Reference uncertainty still applies.
+    """
+    if base.shape != reference.shape or base.ndim != 4:
+        raise ValueError("Shape-matched scalar field tensors required")
+    desired=reference-base
+    projected=lowpass(desired,cutoff)
+    prediction=base+projected
+    return prediction,dict(output_compression_rms_floor=error_metrics(desired-projected)["error_rms"],
+        floor_scope="orthogonal RMS/L2 floor for arbitrary same-cutoff additive correction",
+        maximum_norm_floor=None,
+        maximum_error_semantics="maximum error of the minimum-L2 projection, not a minimax lower bound",
+        projection_idempotence_max=float((lowpass(projected,cutoff)-projected).abs().max()),
+        orthogonality_inner_product=float(((desired-projected)*projected).mean()),
+        reference_informed=True,deployable=False)
 
 
 def _state(n, regime, *, phase=0., amplitude=.08, frequency=None, orientation=0, separation=1):
@@ -202,7 +239,7 @@ def _role(family):
         return "Reference-informed oracle, not deployable"
     if family in ("df", "etdrk4", "adaptive_dop853", "rf") or "fno" in family:
         return "Theirs"
-    if family in ("quad2_fixed", "quad4_full", "quad2_full", "quad2_input", "analytic_quad_cubic", "even_odd_defect") or family.startswith("quadratic_"):
+    if family in ("quad2_fixed", "channel_fixed", "quad4_full", "quad2_full", "quad2_input", "analytic_quad_cubic", "even_odd_defect") or family.startswith("quadratic_"):
         return "Analytic control"
     return "Ours"
 
@@ -328,12 +365,17 @@ def _d01(ex):
         defect=ref-base;unc=record["reference_uncertainty"]
         baseline=error_metrics(base-ref)["error_rms"]
         common=dict(regime=regime,h=h,N=n,output_modes=k,reference_informed=True)
-        for family in ("df","quad2_fixed","quad2_conditioned","band_gain","analytic_quad_cubic"):
+        for family in ("df","quad2_fixed","quad2_full","quad4_full","quad2_conditioned","band_gain","analytic_quad_cubic"):
             prediction=_model(family,track,n)(u,h,eq,geo)
+            actual={**common,"output_modes":None if family in ("df","quad2_full","quad4_full","analytic_quad_cubic") else k}
             row=_prediction_row(ex,u,ref,record,prediction,method=family,parent_id=parent,track=track,
                 category="baseline",checkpoint_status="fresh_initialized_no_trained_checkpoint" if family in ("quad2_conditioned","band_gain") else "frozen_analytic",
-                **common)
+                **actual)
             row["deployed_model_available"]=False if family in ("quad2_conditioned","band_gain") else None
+        floor_prediction,floor_report=output_compression_oracle(base,ref,k)
+        _prediction_row(ex,u,ref,record,floor_prediction,method="output_compression_l2_oracle",
+            parent_id=parent,track=track,category="compression_floor",
+            **{**common,**floor_report})
         global_gain=global_gains[track]
         if global_gain["resolved"]:
             _prediction_row(ex,u,ref,record,base+global_gain["coefficient"]*q,

@@ -28,8 +28,8 @@ a kernel-only latency into an end-to-end speedup.
 
 | ID | Mechanism and challenged assumption | Added or avoided computation | Largest risk | Cheapest falsifier | Advance criterion |
 |---|---|---|---|---|---|
-| E01 | Compute the analytic cubic only when `h r RMS(v) > 0.012`, with `u=m+v`. Challenges uniform interaction order on every state. | One mean/variance statistic, followed by **no cubic evaluation** on skipped states. Selection occurs before nested transport/products. | A scalar amplitude indicator can miss phase-specific cubic relevance. | Held-out mixed-phase parents; compare complete PDE errors against always-quadratic and always-quadratic+cubic. | Median paired complete speedup at least 1.10, worst held-out RMS ratio at most 1.10 against always-cubic, at least 1.10 median RMS improvement over quadratic alone, and no new maximum-error target failures. |
-| E02 | Use `gamma P[v Q(v)]` as a signed cubic direction, with one globally fitted coefficient. Challenges the need to evaluate nested cubic transport to obtain useful cubic structure. | One target-consistent product after the quadratic correction, replacing nested cubic quadrature. Analytic cubic labels and fitting are charged offline. | The true cubic spatial direction may not align with the surrogate, even when amplitude order is correct. | Fit on disjoint parents, then inspect held-out cubic residual and complete PDE error; retain failures. | Same full-cost and accuracy gates as E01; no per-query reference-informed coefficient is allowed. |
+| E01 | Compute the analytic cubic only when `h r RMS(v) > 0.012`, with `u=m+v`. Challenges uniform interaction order on every state. | One mean/variance statistic, followed by **no cubic evaluation** on skipped states. Selection occurs before nested transport/products. | A scalar amplitude indicator can miss phase-specific cubic relevance. | Held-out mixed-phase parents; compare complete PDE errors against always-quadratic and always-quadratic+cubic. | Median paired complete speedup at least 1.10, worst held-out RMS ratio at most 1.05 against always-cubic, at least 1.10 median RMS improvement over quadratic alone, and no new maximum-error target failures. |
+| E02 | Use `gamma P[v Q(v)]` as a signed cubic direction, with one globally fitted coefficient. Challenges the need to evaluate nested cubic transport to obtain useful cubic structure. | One target-consistent product after the quadratic correction, replacing nested cubic quadrature. Analytic cubic labels and fitting are charged offline. | The true cubic spatial direction may not align with the surrogate, even when amplitude order is correct. | Fit on disjoint parents, then inspect held-out cubic residual and complete PDE error; retain failures. | Same full-cost and improvement gates as E01, allowing at most 1.10 RMS ratio against always-cubic; no per-query reference-informed coefficient is allowed. |
 
 E02 is the additional idea generated from the amplitude-order diagnostic:
 it combines an already available quadratic spatial direction with the signed
@@ -66,10 +66,9 @@ where `C_i` is the analytic cubic correction. A vanishing denominator is
 reported as unresolved rather than an informative fitted coefficient.
 Fit parents and held-out development parents have different seeds and IDs.
 The fixed bound and selector threshold are not retuned on held-out results.
-The frozen protocol can impose a stricter regression allowance: E01 currently
-allows 5% RMS regression, while E02 allows 10%. The actual thresholds are
-written into each decision; the protocol takes precedence over the broad
-10% pilot envelope in the table above.
+The frozen protocol allows 5% RMS regression for E01 and 10% for E02.
+The actual thresholds are written into each decision; they are not changed
+after inspecting held-out results.
 Every parent must also have an accepted reference and errors resolved above
 five times its refinement uncertainty. Unresolved cases retain their full
 denominator and produce `NA / REFINE_REFERENCE`, even if measured latency is

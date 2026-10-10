@@ -22,7 +22,7 @@ from tdn.analysis.frontier.report import _learning_ranges
 from tdn.analysis.portfolio.report import _read_source, _rows, _pointer
 
 SCHEMA = 'tdn.adjacent-analytics/v1'
-TABLES = ('experiments', 'checks', 'diagnostics', 'learning', 'evaluation', 'temporal',
+TABLES = ('experiments', 'checks', 'diagnostics', 'learning', 'evaluation', 'validation', 'temporal',
           'exploration', 'roughness', 'parameters', 'profiles', 'claims', 'stage_status', 'trajectories', 'patterns')
 SCOPE = ('Adjacent study only; no promotion into the main architecture. Computational completion, '
          'mathematical checks and scientific utility are separate outcomes. Independent parents are '
@@ -67,7 +67,11 @@ def style(family, row=None):
                 'Theirs': ('#D55E00', '#B77700', '#BC5F92', '#666666'),
                 'Analytic control': ('#008F70', '#739D42', '#8C6835', '#425A39')}
     code = int(hashlib.sha256(str(family).encode()).hexdigest()[:8], 16)
-    return {'color': palettes[category][code % 4], 'marker': {'Ours': '^', 'Theirs': 'o', 'Analytic control': 's'}[category],
+    core_colors={'channel_neural':'#0072B2','channel_global':'#269CAB','channel_affine':'#5363B6',
+        'quad2_conditioned':'#8D56A3','band_gain':'#CC79A7','feature_capacity':'#598D98',
+        'df':'#777777','etdrk4':'#222222','fno_small':'#D55E00',
+        'quad2_fixed':'#008F70','quad4_fixed':'#739D42','channel_fixed':'#8C6835','analytic_quad_cubic':'#425A39'}
+    return {'color': core_colors.get(family,palettes[category][code % 4]), 'marker': {'Ours': '^', 'Theirs': 'o', 'Analytic control': 's'}[category],
             'linestyle': ('-', '--', ':', '-.')[(code // 4) % 4], 'linewidth': .55}
 
 
@@ -132,6 +136,7 @@ def _source(row, unit, path, sha, pointer, index=None):
 def _table(filename, unit):
     if filename == 'rows.jsonl': return 'experiments'
     if 'learning' in filename or 'loss' in filename: return 'learning'
+    if filename == 'validation-rows.json': return 'validation'
     if 'catalog' in filename or 'parameter' in filename or 'response' in filename: return 'parameters'
     if 'claim' in filename or 'primary-comparison' in filename or 'confirmation-plan' in filename: return 'claims'
     if 'profile' in filename or 'timing' in filename: return 'profiles'
@@ -145,7 +150,8 @@ def _table(filename, unit):
 def collect(ctx):
     data = {name: [] for name in TABLES}
     data.update(schema=SCHEMA, profile=ctx.protocol.get('profile'), protocol=ctx.protocol,
-                device=str(ctx.device), sources=[], auxiliary=[], omissions=[])
+                device=str(ctx.device), sources=[], auxiliary=[], omissions=[],
+                reference_adjusted_interval_estimand='Bootstrap interval of pessimistic reference-adjusted parent log effects; these are not lower/upper bounds on the unknown true effect. Raw effect intervals remain separate.')
     units = ctx.protocol.get('units', {})
     for unit in sorted(set(units) | set(ctx.prerequisites)):
         if unit == ctx.stage: continue
@@ -168,6 +174,15 @@ def collect(ctx):
             if path.name == 'summary.json':
                 status.update(elapsed_seconds=value.get('elapsed_seconds'), scientific_outcome=value.get('scientific_outcome', 'NA'),
                               computational_status=value.get('status'), math_outcome=value.get('math_outcome', 'NA'))
+            # Canonical row files are the only plotted observation inventory.
+            # Summaries often embed their full rows/catalog again; retain those
+            # exact documents as auxiliary metadata without double-counting.
+            metadata_only=(path.name.endswith(('summary.json','-summary.json','_summary.json')) or path.name in (
+                'reference-bank.json','freeze.json','confirmation-plan.json','training-plan.json','trials.json',
+                'roughness_parents.json','temporal_build_costs.json','prototype_fits.json','prototype_decisions.json'))
+            if metadata_only:
+                data['auxiliary'].append({**provenance, 'value':value})
+                continue
             rows = _rows(value)
             table = _table(path.name, unit)
             if rows:
@@ -263,7 +278,8 @@ def pattern_rows(rows, sources):
 
 
 def temporal_view(rows):
-    values=[flatten(r) for r in rows]
+    canonical=[r for r in rows if Path(r.get('_source',{}).get('path','')).name=='temporal_cost_rows.json']
+    values=[flatten(r) for r in (canonical or rows)]
     controls={}
     for row in values:
         if row.get('method') in ('direct_gl4','uncached_pairs'):
@@ -276,16 +292,38 @@ def temporal_view(rows):
     return values
 
 
-def roughness_view(rows):
+def exploration_view(rows):
+    canonical=[r for r in rows if Path(r.get('_source',{}).get('path','')).name=='prototype_rows.json']
+    return canonical or rows
+
+
+def roughness_view(rows, *, expand_scaling=False):
+    """Field statistics are not solver errors; input RMS is named explicitly."""
     result=[]
     for source in rows:
-        row=flatten(source); rough=row.get('roughness',row.get('metrics',{}))
-        if not isinstance(rough,dict): rough={}
-        row['interaction_strength']=rough.get('nodal_quadratic_interaction_rms', row.get('interaction_strength'))
-        for estimate in rough.get('roughness_estimates',[]):
-            result.append({**row,'empirical_hurst':estimate.get('empirical_H'),'axis':estimate.get('axis')})
-        if not rough.get('roughness_estimates'): result.append(row)
+        row=flatten(source);rough=row.get('roughness',row.get('metrics',{}))
+        if not isinstance(rough,dict):rough={}
+        row['input_fluctuation_rms']=rough.get('rms')
+        row['rms']=None  # Never publish initial/heat-only field amplitude as solver error.
+        row['family']='field_generator/'+str(row.get('generator','unspecified'))
+        row['role']='Analytic control'
+        row['interaction_strength']=rough.get('nodal_quadratic_interaction_rms',row.get('interaction_strength'))
+        if expand_scaling:
+            for estimate in rough.get('roughness_estimates',[]):
+                result.append({**row,'empirical_hurst':estimate.get('empirical_H'),'axis':estimate.get('axis')})
+            if not rough.get('roughness_estimates'):result.append(row)
+        else:result.append(row)
     return result
+
+
+def roughness_accuracy_rows(data):
+    rows=[]
+    for source in data['evaluation']+_diagnostic(data,'D08'):
+        row=flatten(source);parent=row.get('continuous_parent')
+        if row.get('alpha') is None and isinstance(parent,dict):row['alpha']=parent.get('alpha')
+        if finite(row.get('alpha')) and finite(row.get('error_rms')):
+            row['rms']=row['error_rms'];rows.append(row)
+    return rows
 
 
 def _cell(value):
@@ -406,6 +444,8 @@ def range_plot(ax, records):
         if any(r['observation_count'] for r in values):
             ax.plot([], [], **sty, markersize=3, label=label({'family': key[0]}) + f' [{key[1]}, {key[2]}]')
     if not found: _blank(ax)
+    elif all(r['y_min'] > 0 for r in records if r.get('observation_count')):
+        ax.set_yscale('log')
     ax.set_xlabel('Optimizer update'); ax.set_ylabel('Observed loss range (lower is better)'); ax.grid(alpha=.15)
 
 
@@ -504,9 +544,9 @@ def build_figures(data, output, budget=None):
              'GOOD meets a declared check; BAD fails it; NA is unresolved. More passing checks do not prove a theorem, improve statistical precision or establish a model advantage.')
         specs = [
             ('D01 Scalar and channel correction floors', 'D01', 'seconds', 'rms', False, 'Lower-left is favorable only for matched targets. Oracle projections are reference-informed floors and cannot be deployed.'),
-            ('D01 Residual RMS and maximum error', 'D01', 'rms', 'max_error', False, 'Lower on each axis is better. A small RMS does not imply small worst-cell error; compare the same parent, equation, h, nodes and cutoff.'),
+            ('D01 Residual RMS and maximum error', 'D01', 'rms', 'max_error', False, 'Lower on each axis is better. A small RMS does not imply small worst-cell error. Squared-L2 projection is not a minimax or composite-loss optimum; compare the same parent, equation, h, nodes and cutoff.'),
             ('D01 Coefficient sensitivity', 'D01', 'condition_number', 'coefficient_refinement_sensitivity_l2', False, 'Lower Y means fitted coefficients change less under reference refinement. Ill-conditioning can make gains unidentifiable even with a small residual.'),
-            ('D01 Basis conditioning and effective rank', 'D01', 'effective_rank', 'condition_number', False, 'Larger rank expands identifiable response directions. Lower condition number is better numerical conditioning; rank alone is not solver quality.'),
+            ('D01 Basis conditioning and effective rank', 'D01', 'effective_rank', 'condition_number', False, 'Rank counts reference-resolved numerical directions at the recorded uncertainty threshold, not exact algebraic or theorem rank. Lower condition number is better conditioning; rank alone is not solver quality.'),
             ('D02 Feature collisions and response ambiguity', 'D02', 'feature_distance', 'shared_response_penalty', False, 'A small X with materially positive Y supports insufficient conditioning information only beyond reference uncertainty and flat-response sensitivity.'),
             ('D02 Acceptable gain intervals', 'D02', 'gain_interval_low', 'gain_interval_high', False, 'Intervals are acceptable objective ranges, not confidence intervals. Separated optima alone are insufficient; interval incompatibility and excess error matter.'),
             ('D03 Grid refinement at fixed workload', 'D03', 'n', 'rms', True, 'Y lower is better; X finer grid costs more. Follow only paired parents with fixed physical bandwidth. Added scales change the workload.'),
@@ -537,15 +577,18 @@ def build_figures(data, output, budget=None):
             ('D07 Actual multi query costs','temporal','query_count','seconds','Lower Y is better for the same accurate query workload. Compare measured totals with build plus Q times query models; caching must be equally available.'),
             ('D07 Encoding refresh and break even','temporal','query_count','measured_speedup_over_direct','Y greater than one favors the named reusable representation. No positive query saving means no finite break-even. Refresh and operator preparation are charged.'),
             ('Roughness approximation and empirical scaling','roughness','alpha','empirical_hurst','X is a generator label, not a neural-network dimension. Empirical H is descriptive over the recorded scale range; finite trigonometric fields are smooth.'),
-            ('Roughness accuracy and nonlinear interaction','roughness','alpha','rms','Lower Y is better at fixed mean, amplitude, bandwidth, grid and horizon. Alpha=1 is a finite-bandwidth stress endpoint, not the convergent ridge theorem.'),
-            ('Roughness spectrum and runtime','roughness','interaction_strength','seconds','Lower Y means cheaper complete work; X interaction strength has no universal favorable direction. Matched spectral power does not match signed phase interactions.'),
+            ('Roughness accuracy and nonlinear interaction','roughness_accuracy','alpha','rms','Lower Y is better at fixed mean, amplitude, bandwidth, grid and horizon. Alpha=1 is a finite-bandwidth stress endpoint, not the convergent ridge theorem.'),
+            ('Roughness heat-only amplitude evolution','roughness','T','input_fluctuation_rms','Y is fluctuation amplitude after exact heat-only smoothing, not error and not full reaction-diffusion. Lower amplitude means smoother/weaker fluctuations; it is not a model win. X is physical time.'),
+            ('Roughness signed-product strength','roughness','alpha','interaction_strength','Y measures nodal centered-square RMS, not solver error or a dealiased Galerkin defect. Neither higher nor lower is automatically better. X is the ideal-generator label; finite samples are smooth.'),
             ('Pilot accuracy cost comparisons','evaluation','seconds','rms','Lower-left is favorable only at matched accuracy definitions and physical tasks. These are development pilots unless a fresh locked confirmation is explicitly supplied.'),
             ('Pilot gain responses','parameters','h','gain','X is step size; neither larger nor smaller gain is inherently better. Inspect response identifiability and sensitivity before attributing physical meaning.'),
             ('Pilot model size and error','evaluation','parameters','rms','Lower-left is compact and accurate; parameter count is not measured compute or a fairness definition. Fixed and initialized selections remain visible.'),
             ('Peak measured memory','profiles','n','peak_reserved_bytes','Lower Y uses less GPU memory for matched batch, precision and work. Host RAM is not VRAM; missing GPU measurements remain NA.'),
             ('Exploratory alternatives','exploration','seconds','rms','Lower-left is favorable for matched targets. A successful mathematical prototype is not a complete solver or evidence of useful amortization.'),
         ):
-            rows = temporal_view(data[table]) if table == 'temporal' else roughness_view(data[table]) if table == 'roughness' else data[table]
+            rows = (roughness_accuracy_rows(data) if table == 'roughness_accuracy' else temporal_view(data[table]) if table == 'temporal'
+                    else roughness_view(data[table],expand_scaling=y=='empirical_hurst') if table == 'roughness'
+                    else exploration_view(data[table]) if table=='exploration' else data[table])
             page(title, lambda ax, rows=rows, x=x, y=y: _scatter(ax, rows, x, y), guide)
         def stability(ax):
             rows=[r for r in _diagnostic(data,'D06') if r.get('category')=='rollout_summary']

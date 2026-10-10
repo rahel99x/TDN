@@ -141,6 +141,38 @@ def test_every_gpu_unit_requires_complete_suite_and_real_preflight(controller):
     assert env['TDN_EXECUTION_MODE']=='desktop-slurm'
 
 
+def test_cpu_unit_fixture_environment_does_not_become_a_carc_allocation(controller,monkeypatch,tmp_path):
+    """Simulate inherited metadata only inside this unit-test fixture.
+
+    Clearing desktop mode while retaining Slurm IDs makes project-local file
+    validation infer CARC. The allocated worker remains untouched; its CPU
+    unit-test subprocess must receive a complete local-fixture environment.
+    """
+    from tdn.runtime.storage import contained_path
+    original={
+        'TDN_EXECUTION_MODE':'desktop-slurm', 'TDN_PROJECT_ROOT':str(ROOT),
+        'TDN_SLURM_CONFIG':str(ROOT/'.tdn/fedora-slurm.json'),
+        'SLURM_JOB_ID':'123', 'SLURM_STEP_ID':'0', 'SLURM_JOB_ACCOUNT':'fixture',
+        'SLURM_CPUS_PER_TASK':'4', 'SLURM_JOB_PARTITION':'local',
+    }
+    prepared=original.copy()
+    controller.prepare_test_environment(prepared,'tests')
+    for key,value in original.items():
+        monkeypatch.setenv(key,value)
+    for key in original:
+        if key not in prepared:
+            monkeypatch.delenv(key,raising=False)
+    for key,value in prepared.items():
+        monkeypatch.setenv(key,value)
+    assert contained_path(tmp_path)==tmp_path.resolve()
+    assert not any(key.startswith('SLURM_') for key in prepared)
+    assert original['SLURM_JOB_ID']=='123'  # Parent environment was not mutated.
+    gpu=original.copy()
+    controller.prepare_test_environment(gpu,'gpu-tests')
+    assert all(gpu[key]==value for key,value in original.items())
+    assert gpu['TDN_REQUIRE_ADJACENT_GPU_TESTS']=='1'
+
+
 def junit(path,names,outcome=None):
     root=ElementTree.Element('testsuites');suite=ElementTree.SubElement(root,'testsuite',tests=str(len(names)),failures='0',errors='0',skipped='0')
     for i,name in enumerate(names):

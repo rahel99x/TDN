@@ -729,6 +729,7 @@ def _primary_comparisons(protocol, rows, plan):
                 missing_parents=evidence["missing_parents"], declared_parent_denominator=evidence["declared_parent_denominator"],
                 reference_unresolved_parents=evidence["reference_unresolved_parents"],
                 interval=f"Bonferroni over {multiplicity} track-specific contrasts; percentile parent-cluster bootstrap, 4000 replicates; finite-sample approximation",
+                conservative_reference_interval_estimand="Bootstrap interval of pessimistic reference-adjusted parent log effects, not lower/upper bounds on the unknown true effect",
                 precision_met=precision, required_inventory_met=enough, verdict=verdict,
                 scope="held-out one-step complete-solution RMS; cost, regime subgroups and FNO adequacy are separate",
                 cost_claim="NA: bounded shared 1/2/4/8 menu does not establish the optimal classical solver frontier",

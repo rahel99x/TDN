@@ -709,6 +709,14 @@ def prepare_test_environment(env, name):
     if name == "tests":
         for key in ("TDN_EXECUTION_MODE", "TDN_SLURM_CONFIG"):
             env.pop(key, None)
+        # CPU unit tests own their synthetic runtime fixtures. Removing the
+        # desktop mode but retaining real Slurm IDs would instead make local
+        # path checks infer a CARC allocation. This is only the child test
+        # environment: the allocated worker and every GPU test retain their
+        # real scheduler identity and all native verification requirements.
+        for key in tuple(env):
+            if key.startswith("SLURM_"):
+                env.pop(key)
 
 def scheduler_accounting(workflow, *, enabled=True, runner=None):
     """Snapshot exact submitted jobs; unavailable accounting never invents cost."""

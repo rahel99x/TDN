@@ -8,7 +8,7 @@ import torch
 
 from tdn.analysis.adjacent.diagnostics import (
     _Experiment, _model, _state, acceptable_gain_interval, basis_oracle,
-    run_diagnostic, scalar_oracle,
+    output_compression_oracle, run_diagnostic, scalar_oracle,
 )
 from tdn.analysis.frontier import numerics
 from tdn.analysis.portfolio.models import physical_features
@@ -56,9 +56,45 @@ def test_rank_deficient_basis_reports_nonidentifiable_coefficients():
 def test_algebraically_full_rank_can_be_unidentifiable_at_reference_floor():
     basis=np.array([[1.,0.,0.],[0.,1e-10,0.]])
     result=basis_oracle(basis,np.array([1.,1e-10,0.]),uncertainty=1e-8)
-    assert result['effective_rank']==2
+    assert result['algebraic_rank']==2
+    assert result['effective_rank']==1
     assert not result['coefficient_values_identifiable']
-    assert result['coefficient_uncertainty_radius_l2']>100
+    assert result['numerical_direction_truncation']
+    assert result['coefficients']==pytest.approx([1.,0.])
+
+
+def test_unrestricted_oracle_rejects_roundoff_direction_amplification():
+    # Raw algebra can fit the second target component with gain 1e13.
+    # That tiny unit-gain basis response is below the reference uncertainty,
+    # so it must not be counted as an identified useful physical direction.
+    basis=np.array([[1.,0.],[0.,1e-15]])
+    result=basis_oracle(basis,np.array([1.,.01]),uncertainty=1e-12)
+    assert result['algebraic_rank']==2
+    assert result['effective_rank']==1
+    assert result['nominal_algebraic_coefficients'][1]==pytest.approx(1e13)
+    assert result['coefficients']==pytest.approx([1.,0.])
+    assert result['error_rms']==pytest.approx(.01/np.sqrt(2))
+    assert not result['coefficient_values_identifiable']
+    assert result['coefficient_refinement_sensitivity_l2']==0.
+
+
+def test_compression_oracle_is_l2_floor_not_a_maximum_norm_certificate():
+    n=16;x=torch.arange(n,dtype=torch.float64)/n
+    xx,yy=torch.meshgrid(x,x,indexing='ij')
+    base=torch.full((1,1,n,n),.4,dtype=torch.float64)
+    low=torch.cos(2*torch.pi*xx)[None,None]
+    high=.3*torch.cos(6*torch.pi*yy)[None,None]
+    reference=base+low+high
+    prediction,record=output_compression_oracle(base,reference,1)
+    assert torch.max(torch.abs(prediction-(base+low)))<2e-15
+    assert record['output_compression_rms_floor']==pytest.approx(.3/np.sqrt(2))
+    assert record['maximum_norm_floor'] is None
+    assert not record['deployable']
+    for amplitude in (0.,.5,1.,1.5):
+        candidate=base+amplitude*low
+        total=float((candidate-reference).square().mean())
+        retained=float(((amplitude-1)*low).square().mean())
+        assert total==pytest.approx(record['output_compression_rms_floor']**2+retained,abs=3e-15)
 
 
 def test_bounded_multichannel_fit_and_reference_sensitivity():
@@ -134,6 +170,13 @@ def test_d01_unresolved_and_initializer_evidence_is_labeled(executed):
     initial=[r for r in rows if r['method']=='quad2_conditioned']
     assert all(r['checkpoint_status']=='fresh_initialized_no_trained_checkpoint' for r in initial)
     assert {r['basis'] for r in oracles}=={'scalar','output_band','interaction_channel','quadratic_cubic'}
+    assert {'quad2_full','quad4_full'}<={r['method'] for r in rows}
+    assert all(r['output_modes'] is None for r in rows if r['method'] in ('quad2_full','quad4_full','analytic_quad_cubic'))
+    floors=[r for r in rows if r['category']=='compression_floor']
+    assert len(floors)==8
+    for row in oracles:
+        floor=next(r for r in floors if r['track']==row['track'] and r['regime']==row['regime'])
+        assert row['error_rms']+1e-14>=floor['output_compression_rms_floor']
 
 
 def test_d02_claim_scope_preserves_node_search_caveat(executed):
