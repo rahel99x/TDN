@@ -198,3 +198,29 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
   software guards or mix unsealed partial measurements into new science. Reused
   training/reference costs and new part/merge allocations must remain distinguishable.
   Each native confirmation part and its aggregate require all 45 CUDA cases.
+
+## Adjacent interaction study
+
+- Read `docs/ADJACENT_INTERACTION_STUDY_PROMPT.md`, `ADJACENT_RESEARCH.md`,
+  `ADJACENT_EVIDENCE.md` and `ADJACENT_RUNBOOK.md` before changing the separate
+  `tdn.analysis.adjacent` program. Keep active portfolio source, protocols,
+  budgets and historical evidence unchanged. Use an isolated checkout;
+  promotion into the main architecture is a separate proposed decision.
+- D01–D08 are development diagnostics. LL/LH/HH describe input origins, not a
+  third spatial dimension. Fix the same background in every polarization term;
+  normalized fixed recombination must match the two-node analytic correction.
+- Preserve finite-field roughness semantics, actual gain bounds, signed phase,
+  physical nulls, output-compression attribution, independent parent clusters,
+  scalar/affine controls, strong cubic/classical controls and local FNO paths.
+  Finite trigonometric fields are smooth; alpha=1 is a finite-band stress case.
+- Keep the independent 20% exploration allocation, finite per-unit budgets,
+  45-minute maximum, 110000 MiB scheduler ceiling and 4090 VRAM limits. Current
+  adjacent requests are four CPUs/32 GiB and at most 38 minutes per job.
+  Native GPU stages require all 92 declared CUDA cases, without skips.
+- Freeze model selection and precision planning before generating fresh fields.
+  Inadequate references, training, coverage or sample precision remain NA.
+  Do not pool discrete and continuum claims or treat paired variants as fields.
+  Read-only main-queue discovery defers adjacent work; never cancel main jobs.
+- Use exact-source recovery and the separate latest pointer. Preserve failed
+  work and costs, reference/timing journals, source-bound charts and Tower
+  sidecars. Mathematical checks, job completion and scientific success differ.

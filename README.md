@@ -2,6 +2,13 @@
 
 A runnable research pipeline for learning the finite-time error of a symmetric split solver. It includes exact noncommuting linear controls, periodic logistic reaction–diffusion, refined FP64 coupled teachers, six local-input learned models, deterministic datasets/training, checkpoint resume, and complete-solver accuracy/cost reports.
 
+This branch also contains the **separate [adjacent interaction study](docs/ADJACENT_RESEARCH.md)**:
+D01–D08, controlled rough fields, LL/LH/HH correction channels, two bounded
+alternatives, fitted/neural controls and a separate analytical atlas. Use the
+[isolated-checkout runbook](docs/ADJACENT_RUNBOOK.md). Its source and budgets
+must remain separate from live portfolio jobs; it makes no automatic change
+to TDN's main architecture or research objective.
+
 The current [three-path research portfolio](docs/PORTFOLIO_RESEARCH.md) resolves
 normalization and conditioning attribution, tests three grounded improvements,
 and protects 20% of its discretionary budget for three distinct exploratory

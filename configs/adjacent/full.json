@@ -1,0 +1,716 @@
+{
+  "adjacent_budget": {
+    "architecture_seconds": 2400,
+    "discretionary_seconds": 3000,
+    "energy_joules": null,
+    "exploration_fraction": 0.2,
+    "monetary_cost": null,
+    "protected_exploration_seconds": 600,
+    "shared_work_separately_enumerated": true,
+    "summed_science_ceiling_seconds": 12480,
+    "transfer_from_main_campaign": 0
+  },
+  "automatic_budget_expansion": false,
+  "budgets": {
+    "D01": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D02": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D03": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D04": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D05": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D06": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D07": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D08": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "audit": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 180,
+      "walltime": "00:08:00"
+    },
+    "evaluate-continuum": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 1800,
+      "walltime": "00:38:00"
+    },
+    "evaluate-discrete": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 1800,
+      "walltime": "00:38:00"
+    },
+    "explore-E01": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 300,
+      "walltime": "00:10:00"
+    },
+    "explore-E02": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 300,
+      "walltime": "00:10:00"
+    },
+    "pilot-continuum": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 1200,
+      "walltime": "00:28:00"
+    },
+    "pilot-discrete": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 1200,
+      "walltime": "00:28:00"
+    },
+    "report": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "roughness": {
+      "cpus": 4,
+      "mem_gib": 32,
+      "seconds": 300,
+      "walltime": "00:10:00"
+    }
+  },
+  "combinations": {},
+  "confirmation": {
+    "confidence_level": 0.95,
+    "coverage_regression": 0.05,
+    "desired_log_halfwidth": 0.13976194237515863,
+    "independent_unit": "parent field, with phases/grids/schedules/roughness variants/seeds paired",
+    "inspected_confirmation_becomes_development": true,
+    "insufficient_precision": "NA, retain all observations; never silently expand budget",
+    "maximum_parents": 64,
+    "multiple_comparisons": "Bonferroni across three predeclared contrasts on each of two separate equation tracks",
+    "planning": "validation independent-parent paired log-error variability; freeze N before generating fresh fields",
+    "practical_speedup": 1.2,
+    "primary_claims": [
+      "channel_neural vs channel_global",
+      "channel_neural vs quad2_conditioned",
+      "channel_neural vs band_gain"
+    ],
+    "primary_comparisons": 6,
+    "primary_effect_ratio": 1.1
+  },
+  "deployment": {
+    "automatic": false,
+    "reason": "Require complete-cost margin first"
+  },
+  "diagnostics": {
+    "alpha_levels": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "grid": 16,
+    "horizon": 0.12,
+    "max_reference_substeps": 256,
+    "same_grid_and_continuum_targets_separate": true,
+    "teacher_precision": "float64",
+    "uncertainty_floor": 1e-12
+  },
+  "exploration": {
+    "E01": {
+      "maximum_accuracy_regression": 0.05,
+      "minimum_accuracy_improvement_over_quadratic": 1.1,
+      "speedup": 1.1
+    },
+    "E02": {
+      "error_ratio": 1.1,
+      "minimum_accuracy_improvement_over_quadratic": 1.1,
+      "speedup": 1.1
+    },
+    "novel_in_literature": false,
+    "prototype_ids": [
+      "E01",
+      "E02"
+    ]
+  },
+  "gpu_stages": [
+    "pilot-discrete",
+    "evaluate-discrete",
+    "pilot-continuum",
+    "evaluate-continuum"
+  ],
+  "gpu_test_cases": [
+    "test_adjacent_cuda_limits[discrete-channel_fixed]",
+    "test_adjacent_cuda_limits[discrete-channel_global]",
+    "test_adjacent_cuda_limits[discrete-channel_affine]",
+    "test_adjacent_cuda_limits[discrete-channel_neural]",
+    "test_adjacent_cuda_limits[discrete-feature_capacity]",
+    "test_adjacent_cuda_limits[continuum-channel_fixed]",
+    "test_adjacent_cuda_limits[continuum-channel_global]",
+    "test_adjacent_cuda_limits[continuum-channel_affine]",
+    "test_adjacent_cuda_limits[continuum-channel_neural]",
+    "test_adjacent_cuda_limits[continuum-feature_capacity]",
+    "test_adjacent_cuda_gradients[discrete-channel_neural]",
+    "test_adjacent_cuda_gradients[discrete-feature_capacity]",
+    "test_adjacent_cuda_gradients[continuum-channel_neural]",
+    "test_adjacent_cuda_gradients[continuum-feature_capacity]",
+    "test_adjacent_cuda_polarization[discrete-2]",
+    "test_adjacent_cuda_polarization[discrete-4]",
+    "test_adjacent_cuda_polarization[continuum-2]",
+    "test_adjacent_cuda_polarization[continuum-4]",
+    "test_adjacent_cuda_fitted_control[channel_global]",
+    "test_adjacent_cuda_fitted_control[channel_affine]",
+    "test_adjacent_cuda_visible_allocation",
+    "test_portfolio_cuda_limits[discrete-historical_half]",
+    "test_portfolio_cuda_limits[discrete-quad2_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad2_amplitude]",
+    "test_portfolio_cuda_limits[discrete-quad2_nodes]",
+    "test_portfolio_cuda_limits[discrete-quad2_joint]",
+    "test_portfolio_cuda_limits[discrete-quad2_linear]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_limits[discrete-quad2_input]",
+    "test_portfolio_cuda_limits[discrete-quad2_full]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad4_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_limits[discrete-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[discrete-df]",
+    "test_portfolio_cuda_limits[discrete-rf]",
+    "test_portfolio_cuda_limits[discrete-etdrk4]",
+    "test_portfolio_cuda_limits[discrete-fno_small]",
+    "test_portfolio_cuda_limits[discrete-fno_standard]",
+    "test_portfolio_cuda_limits[discrete-direct_fno]",
+    "test_portfolio_cuda_limits[discrete-residual_quad2]",
+    "test_portfolio_cuda_limits[discrete-conditioned_rich]",
+    "test_portfolio_cuda_limits[discrete-band_gain]",
+    "test_portfolio_cuda_limits[continuum-historical_half]",
+    "test_portfolio_cuda_limits[continuum-quad2_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad2_amplitude]",
+    "test_portfolio_cuda_limits[continuum-quad2_nodes]",
+    "test_portfolio_cuda_limits[continuum-quad2_joint]",
+    "test_portfolio_cuda_limits[continuum-quad2_linear]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_limits[continuum-quad2_input]",
+    "test_portfolio_cuda_limits[continuum-quad2_full]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad4_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_limits[continuum-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[continuum-df]",
+    "test_portfolio_cuda_limits[continuum-rf]",
+    "test_portfolio_cuda_limits[continuum-etdrk4]",
+    "test_portfolio_cuda_limits[continuum-fno_small]",
+    "test_portfolio_cuda_limits[continuum-fno_standard]",
+    "test_portfolio_cuda_limits[continuum-direct_fno]",
+    "test_portfolio_cuda_limits[continuum-residual_quad2]",
+    "test_portfolio_cuda_limits[continuum-conditioned_rich]",
+    "test_portfolio_cuda_limits[continuum-band_gain]",
+    "test_portfolio_cuda_gradients[discrete-quad2_nodes]",
+    "test_portfolio_cuda_gradients[discrete-quad2_joint]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-fno_small]",
+    "test_portfolio_cuda_gradients[discrete-fno_standard]",
+    "test_portfolio_cuda_gradients[discrete-direct_fno]",
+    "test_portfolio_cuda_gradients[discrete-residual_quad2]",
+    "test_portfolio_cuda_gradients[discrete-conditioned_rich]",
+    "test_portfolio_cuda_gradients[discrete-band_gain]",
+    "test_portfolio_cuda_gradients[continuum-quad2_nodes]",
+    "test_portfolio_cuda_gradients[continuum-quad2_joint]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-fno_small]",
+    "test_portfolio_cuda_gradients[continuum-fno_standard]",
+    "test_portfolio_cuda_gradients[continuum-direct_fno]",
+    "test_portfolio_cuda_gradients[continuum-residual_quad2]",
+    "test_portfolio_cuda_gradients[continuum-conditioned_rich]",
+    "test_portfolio_cuda_gradients[continuum-band_gain]",
+    "test_portfolio_cuda_fitted_control[quad2_amplitude]",
+    "test_portfolio_cuda_fitted_control[quad2_linear]",
+    "test_portfolio_cuda_visible_allocation"
+  ],
+  "main_campaign_unchanged": true,
+  "mechanisms": {
+    "C01": {
+      "name": "Origin-of-interaction channels versus fitted and learned controls",
+      "question": "Origin-of-interaction channels versus fitted and learned controls"
+    },
+    "D01": {
+      "name": "Scalar, band, interaction-channel and cubic representation floors",
+      "question": "Scalar, band, interaction-channel and cubic representation floors"
+    },
+    "D02": {
+      "name": "Feature collisions require materially different responses",
+      "question": "Feature collisions require materially different responses"
+    },
+    "D03": {
+      "name": "Grid, step, duration and complete accuracy-qualified cost",
+      "question": "Grid, step, duration and complete accuracy-qualified cost"
+    },
+    "D04": {
+      "name": "Signed high-to-low interactions and phase information",
+      "question": "Signed high-to-low interactions and phase information"
+    },
+    "D05": {
+      "name": "Quadrature versus missing interaction order",
+      "question": "Quadrature versus missing interaction order"
+    },
+    "D06": {
+      "name": "Autonomous transient fidelity and stability",
+      "question": "Autonomous transient fidelity and stability"
+    },
+    "D07": {
+      "name": "Accuracy-qualified temporal reuse and refresh economics",
+      "question": "Accuracy-qualified temporal reuse and refresh economics"
+    },
+    "D08": {
+      "name": "Competitor-favorable and assumption-breaking workloads",
+      "question": "Competitor-favorable and assumption-breaking workloads"
+    },
+    "E01": {
+      "name": "Select cubic work before computing the cubic term",
+      "question": "Select cubic work before computing the cubic term"
+    },
+    "E02": {
+      "name": "Signed modulation as a cheaper cubic spatial direction",
+      "question": "Signed modulation as a cheaper cubic spatial direction"
+    },
+    "R01": {
+      "name": "Controlled finite-resolution rough-surface benchmark",
+      "question": "Controlled finite-resolution rough-surface benchmark"
+    }
+  },
+  "original_objective": "Approximate coupled finite-time splitting defects with reusable temporal structure at lower complete accuracy-qualified cost",
+  "pilot": {
+    "alpha_cycle": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "endpoint_steps": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "evaluation_fields": 64,
+    "grid": 32,
+    "horizons": [
+      0.04,
+      0.12
+    ],
+    "max_seconds": 1200,
+    "max_substeps": 256,
+    "reference_substeps": 8,
+    "reference_tolerance": 1e-07,
+    "seed_offset": 73000000,
+    "seeds": [
+      731001
+    ],
+    "tracks": [
+      "discrete",
+      "continuum"
+    ],
+    "train_fields": 32,
+    "trial_seconds": 90,
+    "updates": 200,
+    "val_fields": 16
+  },
+  "profile": "full",
+  "purpose": "Adjacent origin-of-interaction study; no promotion or modification of the active portfolio",
+  "roughness": {
+    "alpha_levels": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "alpha_one": "finite-bandwidth stress; H=0 infinite sum not convergent",
+    "channel_axis_is_not_space": true,
+    "finite_sums_are_smooth": true,
+    "generators": [
+      "ridge",
+      "multiscale2d"
+    ],
+    "no_clipping": true,
+    "paired_grid_refinement": true
+  },
+  "schema": "tdn.adjacent/v1",
+  "scientific_scope": "Smoke/development exploratory; full fresh comparisons require precision, reference, optimization and cost gates",
+  "seed": 73000000,
+  "stages": [
+    "audit",
+    "D01",
+    "D05",
+    "D02",
+    "D04",
+    "D03",
+    "D06",
+    "D07",
+    "D08",
+    "roughness",
+    "explore-E01",
+    "explore-E02",
+    "pilot-discrete",
+    "evaluate-discrete",
+    "pilot-continuum",
+    "evaluate-continuum",
+    "report"
+  ],
+  "timing_repeats": 7,
+  "tracks": [
+    "discrete",
+    "continuum"
+  ],
+  "units": {
+    "D01": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "diagnostic": "D01",
+      "id": "D01",
+      "kind": "diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D02": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "device": "cpu",
+      "diagnostic": "D02",
+      "id": "D02",
+      "kind": "diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D03": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "device": "cpu",
+      "diagnostic": "D03",
+      "id": "D03",
+      "kind": "diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D04": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "device": "cpu",
+      "diagnostic": "D04",
+      "id": "D04",
+      "kind": "diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D05": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "diagnostic": "D05",
+      "id": "D05",
+      "kind": "diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D06": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "device": "cpu",
+      "diagnostic": "D06",
+      "id": "D06",
+      "kind": "diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D07": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "device": "cpu",
+      "diagnostic": "D07",
+      "id": "D07",
+      "kind": "diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "D08": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "device": "cpu",
+      "diagnostic": "D08",
+      "id": "D08",
+      "kind": "diagnostic",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "audit": {
+      "cpus": 4,
+      "dependencies": [],
+      "device": "cpu",
+      "id": "audit",
+      "kind": "audit",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 180,
+      "walltime": "00:08:00"
+    },
+    "evaluate-continuum": {
+      "cpus": 4,
+      "dependencies": [
+        "pilot-continuum"
+      ],
+      "device": "cuda",
+      "id": "evaluate-continuum",
+      "kind": "confirm",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "pilot_unit": "pilot-continuum",
+      "seconds": 1800,
+      "tracks": [
+        "continuum"
+      ],
+      "walltime": "00:38:00"
+    },
+    "evaluate-discrete": {
+      "cpus": 4,
+      "dependencies": [
+        "pilot-discrete"
+      ],
+      "device": "cuda",
+      "id": "evaluate-discrete",
+      "kind": "confirm",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "pilot_unit": "pilot-discrete",
+      "seconds": 1800,
+      "tracks": [
+        "discrete"
+      ],
+      "walltime": "00:38:00"
+    },
+    "explore-E01": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "device": "cpu",
+      "id": "explore-E01",
+      "kind": "explore",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "prototype_ids": [
+        "E01"
+      ],
+      "seconds": 300,
+      "walltime": "00:10:00"
+    },
+    "explore-E02": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "device": "cpu",
+      "id": "explore-E02",
+      "kind": "explore",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "prototype_ids": [
+        "E02"
+      ],
+      "seconds": 300,
+      "walltime": "00:10:00"
+    },
+    "pilot-continuum": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05",
+        "D02",
+        "D04",
+        "roughness"
+      ],
+      "device": "cuda",
+      "id": "pilot-continuum",
+      "kind": "train",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 1200,
+      "tracks": [
+        "continuum"
+      ],
+      "walltime": "00:28:00"
+    },
+    "pilot-discrete": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05",
+        "D02",
+        "D04",
+        "roughness"
+      ],
+      "device": "cuda",
+      "id": "pilot-discrete",
+      "kind": "train",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 1200,
+      "tracks": [
+        "discrete"
+      ],
+      "walltime": "00:28:00"
+    },
+    "report": {
+      "cpus": 4,
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05",
+        "D02",
+        "D04",
+        "D03",
+        "D06",
+        "D07",
+        "D08",
+        "roughness",
+        "explore-E01",
+        "explore-E02",
+        "pilot-discrete",
+        "evaluate-discrete",
+        "pilot-continuum",
+        "evaluate-continuum"
+      ],
+      "device": "cpu",
+      "id": "report",
+      "kind": "report",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 600,
+      "walltime": "00:15:00"
+    },
+    "roughness": {
+      "cpus": 4,
+      "dependencies": [
+        "audit"
+      ],
+      "device": "cpu",
+      "id": "roughness",
+      "kind": "roughness",
+      "mem_gib": 32,
+      "path": "adjacent",
+      "seconds": 300,
+      "walltime": "00:10:00"
+    }
+  },
+  "version": 1
+}
