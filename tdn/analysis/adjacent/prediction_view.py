@@ -340,6 +340,7 @@ def _images(info, arrays, output, *, dpi=400):
                 options.update(vmin=value_range[0], vmax=value_range[1])
         picture = ax.imshow(values.T, **options)
         ax.set(title=title, xlabel="x / Lx", ylabel="y / Ly")
+        ax.set_title(title, pad=16)
         ax.set_xticks([0, .5, 1]); ax.set_yticks([0, .5, 1])
         bar = fig.colorbar(picture, ax=ax, fraction=.045, pad=.025)
         bar.ax.tick_params(labelsize=7); bar.set_label(units, fontsize=7)
@@ -387,7 +388,7 @@ def _images(info, arrays, output, *, dpi=400):
         "\n\nThe physical branch sees the full field.\nThe reference is not an input.", va="top", linespacing=1.6)
     channel_limit = max(float(np.abs(arrays["channels"]).max()), 1e-30)
     for i, name in enumerate(CHANNEL_NAMES):
-        map_panel(fig, a[4+i], arrays["channels"][0, i], f"5{i+1}. Projected signed {name}: P_K C{name}\nRMS {info['channel_rms'][i]:.3e}", symmetric=True, limit=channel_limit)
+        map_panel(fig, a[4+i], arrays["channels"][0, i], f"5.{i+1}. Projected signed {name}: P_K C{name}\nRMS {info['channel_rms'][i]:.3e}", symmetric=True, limit=channel_limit)
     gains = np.asarray(info["gains"])
     a[7].axhline(1, color="#777777", linestyle="--", linewidth=.7, label="Analytic control: gain 1")
     a[7].plot(range(3), gains, "^", color="#0072B2", markersize=7, label="Ours: selected effective gain")
@@ -399,7 +400,7 @@ def _images(info, arrays, output, *, dpi=400):
     a[7].legend(loc="lower left", fontsize=6.5, frameon=False)
     weighted_limit = max(float(np.abs(arrays["weighted_channels"]).max()), 1e-30)
     for i, name in enumerate(CHANNEL_NAMES):
-        map_panel(fig, a[8+i], arrays["weighted_channels"][0, i], f"7{i+1}. Actual g{name} × P_K C{name}", symmetric=True, limit=weighted_limit)
+        map_panel(fig, a[8+i], arrays["weighted_channels"][0, i], f"7.{i+1}. Actual g{name} × P_K C{name}", symmetric=True, limit=weighted_limit)
     map_panel(fig, a[11], arrays["correction"], "8. Sum: physical mixed correction", symmetric=True)
     map_panel(fig, a[12], arrays["baseline"], "9. Physical DF backbone S_h(u)", value_range=state_range)
     map_panel(fig, a[13], arrays["prediction"], "10. Ours: S_h(u) + correction", value_range=state_range)
@@ -420,7 +421,7 @@ def _images(info, arrays, output, *, dpi=400):
         image = ax.imshow(value, interpolation="nearest", cmap="RdBu_r", vmin=-cap, vmax=cap, aspect="auto")
         for i in range(value.shape[0]):
             for j in range(value.shape[1]):
-                ax.text(j, i, f"{value[i,j]:+.5f}", ha="center", va="center", fontsize=6.5,
+                ax.text(j, i, f"{value[i,j]:+.5f}", ha="center", va="center", fontsize=5 if value.shape[1] >= 6 else 6.5,
                         color="white" if abs(value[i,j]) > .6*cap else "black")
         ax.set(title=title, xlabel=xlabel, ylabel=ylabel)
         ax.set_xticks(range(value.shape[1]), labels=xlabels if xlabels else range(value.shape[1]))
@@ -463,13 +464,13 @@ def _images(info, arrays, output, *, dpi=400):
     fig, axes = plt.subplots(3, 4, figsize=(16, 12))
     fig.subplots_adjust(left=.055, right=.965, top=.84, bottom=.11, wspace=.42, hspace=.48)
     fig.suptitle("What each effective channel gain changes | signed sensitivity", fontsize=16, y=.975)
-    fig.text(.5, .925, "Analytic gain response before final FP32 rounding: ∂ endpoint / ∂ g_c = P_K C_c. Input and physics fixed.\n"
+    fig.text(.5, .90, "Analytic gain response before final FP32 rounding: ∂ endpoint / ∂ g_c = P_K C_c. Input and physics fixed.\n"
              "This is not a derivative with respect to an input pixel or neural weight. Gain probes are illustrative and clipped to admissible bounds.\n"
              "Signed response has no universal better direction; endpoint RMS error is lower-is-better.", ha="center", fontsize=10)
     for i, name in enumerate(CHANNEL_NAMES):
         derivative = arrays["gain_derivative"][0,i]
         changes = arrays["gain_perturbation_changes"][i]
-        map_panel(fig, axes[i,0], derivative, f"{name}: analytic effective-gain derivative", symmetric=True, limit=channel_limit)
+        map_panel(fig, axes[i,0], derivative, f"{name}: analytic gain response", symmetric=True, limit=channel_limit)
         actual_delta = arrays["gain_perturbation_actual_deltas"][i]
         map_panel(fig, axes[i,1], changes[-1], f"{name}: output change for {actual_delta[-1]:+.5g}", symmetric=True, limit=channel_limit*info["sensitivity"]["perturbation_delta"])
         map_panel(fig, axes[i,2], changes[0], f"{name}: output change for {actual_delta[0]:+.5g}", symmetric=True, limit=channel_limit*info["sensitivity"]["perturbation_delta"])
