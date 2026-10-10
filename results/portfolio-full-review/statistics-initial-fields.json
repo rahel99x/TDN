@@ -1,0 +1,389 @@
+{
+  "source": "Exact field generator evaluated from frozen protocol; CPU FP64 no teachers needed",
+  "rows": [
+    {
+      "parent_id": "portfolio-confirmation-53040000",
+      "regime": "low",
+      "grid": 32,
+      "minimum": 0.225491339712935,
+      "maximum": 0.47450866028706495,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040000",
+      "regime": "low",
+      "grid": 64,
+      "minimum": 0.22538004248037025,
+      "maximum": 0.4746199575196297,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040001",
+      "regime": "mixed",
+      "grid": 32,
+      "minimum": 0.3572999040876905,
+      "maximum": 0.6427000959123095,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040001",
+      "regime": "mixed",
+      "grid": 64,
+      "minimum": 0.356686181870831,
+      "maximum": 0.6433138181291689,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040002",
+      "regime": "high_pair",
+      "grid": 32,
+      "minimum": 0.5255262831979066,
+      "maximum": 0.7744737168020934,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040002",
+      "regime": "high_pair",
+      "grid": 64,
+      "minimum": 0.5253345314991203,
+      "maximum": 0.7746654685008797,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040003",
+      "regime": "rough",
+      "grid": 32,
+      "minimum": 0.1993999155330803,
+      "maximum": 0.5006000844669196,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040003",
+      "regime": "rough",
+      "grid": 64,
+      "minimum": 0.1993999155330803,
+      "maximum": 0.5006000844669196,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040004",
+      "regime": "near_nyquist",
+      "grid": 32,
+      "minimum": 0.3756835825019333,
+      "maximum": 0.6243164174980668,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040004",
+      "regime": "near_nyquist",
+      "grid": 64,
+      "minimum": 0.37549649848833877,
+      "maximum": 0.6245035015116612,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040005",
+      "regime": "boundary_mean",
+      "grid": 32,
+      "minimum": 0.04117294480828576,
+      "maximum": 0.19882705519171423,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040005",
+      "regime": "boundary_mean",
+      "grid": 64,
+      "minimum": 0.04117294480828576,
+      "maximum": 0.19882705519171423,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040006",
+      "regime": "reaction_stiff",
+      "grid": 32,
+      "minimum": 0.2256346123207617,
+      "maximum": 0.47436538767923825,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040006",
+      "regime": "reaction_stiff",
+      "grid": 64,
+      "minimum": 0.22540766924222577,
+      "maximum": 0.4745923307577742,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040007",
+      "regime": "diffusion_stiff",
+      "grid": 32,
+      "minimum": 0.37555341397173736,
+      "maximum": 0.6244465860282626,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040007",
+      "regime": "diffusion_stiff",
+      "grid": 64,
+      "minimum": 0.3753849765770032,
+      "maximum": 0.6246150234229968,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040008",
+      "regime": "low",
+      "grid": 32,
+      "minimum": 0.5253809032309198,
+      "maximum": 0.7746190967690803,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040008",
+      "regime": "low",
+      "grid": 64,
+      "minimum": 0.5253809032309198,
+      "maximum": 0.7746190967690803,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040009",
+      "regime": "mixed",
+      "grid": 32,
+      "minimum": 0.20370751873995468,
+      "maximum": 0.49629248126004527,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040009",
+      "regime": "mixed",
+      "grid": 64,
+      "minimum": 0.20339750179087243,
+      "maximum": 0.4966024982091275,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040010",
+      "regime": "high_pair",
+      "grid": 32,
+      "minimum": 0.3754725415000233,
+      "maximum": 0.6245274584999767,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040010",
+      "regime": "high_pair",
+      "grid": 64,
+      "minimum": 0.3753705455056953,
+      "maximum": 0.6246294544943046,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040011",
+      "regime": "rough",
+      "grid": 32,
+      "minimum": 0.5003528160496862,
+      "maximum": 0.7996471839503139,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040011",
+      "regime": "rough",
+      "grid": 64,
+      "minimum": 0.5003528160496862,
+      "maximum": 0.7996471839503139,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040012",
+      "regime": "near_nyquist",
+      "grid": 32,
+      "minimum": 0.22589702493871439,
+      "maximum": 0.4741029750612855,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040012",
+      "regime": "near_nyquist",
+      "grid": 64,
+      "minimum": 0.22586424886940637,
+      "maximum": 0.47413575113059364,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040013",
+      "regime": "boundary_mean",
+      "grid": 32,
+      "minimum": 0.04156412187328565,
+      "maximum": 0.19843587812671434,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040013",
+      "regime": "boundary_mean",
+      "grid": 64,
+      "minimum": 0.04124336964455813,
+      "maximum": 0.19875663035544186,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040014",
+      "regime": "reaction_stiff",
+      "grid": 32,
+      "minimum": 0.5254549816836743,
+      "maximum": 0.7745450183163257,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040014",
+      "regime": "reaction_stiff",
+      "grid": 64,
+      "minimum": 0.5254549816836743,
+      "maximum": 0.7745450183163257,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040015",
+      "regime": "diffusion_stiff",
+      "grid": 32,
+      "minimum": 0.22542857780038006,
+      "maximum": 0.4745714221996199,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040015",
+      "regime": "diffusion_stiff",
+      "grid": 64,
+      "minimum": 0.22542857780038006,
+      "maximum": 0.4745714221996199,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040016",
+      "regime": "low",
+      "grid": 32,
+      "minimum": 0.3754069055118521,
+      "maximum": 0.6245930944881479,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040016",
+      "regime": "low",
+      "grid": 64,
+      "minimum": 0.3754069055118521,
+      "maximum": 0.6245930944881479,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040017",
+      "regime": "mixed",
+      "grid": 32,
+      "minimum": 0.5009737632593873,
+      "maximum": 0.7990262367406128,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040017",
+      "regime": "mixed",
+      "grid": 64,
+      "minimum": 0.4996369278628932,
+      "maximum": 0.8003630721371068,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040018",
+      "regime": "high_pair",
+      "grid": 32,
+      "minimum": 0.22579961666797332,
+      "maximum": 0.47420038333202663,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040018",
+      "regime": "high_pair",
+      "grid": 64,
+      "minimum": 0.22534433513198726,
+      "maximum": 0.4746556648680127,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040019",
+      "regime": "rough",
+      "grid": 32,
+      "minimum": 0.37134521807596066,
+      "maximum": 0.6286547819240395,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040019",
+      "regime": "rough",
+      "grid": 64,
+      "minimum": 0.34988999537286675,
+      "maximum": 0.6501100046271332,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040020",
+      "regime": "near_nyquist",
+      "grid": 32,
+      "minimum": 0.526042916737315,
+      "maximum": 0.7739570832626851,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040020",
+      "regime": "near_nyquist",
+      "grid": 64,
+      "minimum": 0.5257951096501985,
+      "maximum": 0.7742048903498016,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040021",
+      "regime": "boundary_mean",
+      "grid": 32,
+      "minimum": 0.04115490831471587,
+      "maximum": 0.19884509168528414,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040021",
+      "regime": "boundary_mean",
+      "grid": 64,
+      "minimum": 0.04115490831471587,
+      "maximum": 0.19884509168528414,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040022",
+      "regime": "reaction_stiff",
+      "grid": 32,
+      "minimum": 0.3756163825721941,
+      "maximum": 0.6243836174278059,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040022",
+      "regime": "reaction_stiff",
+      "grid": 64,
+      "minimum": 0.37538979381542814,
+      "maximum": 0.6246102061845719,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040023",
+      "regime": "diffusion_stiff",
+      "grid": 32,
+      "minimum": 0.5256174250758201,
+      "maximum": 0.77438257492418,
+      "out_of_bounds": 0
+    },
+    {
+      "parent_id": "portfolio-confirmation-53040023",
+      "regime": "diffusion_stiff",
+      "grid": 64,
+      "minimum": 0.5253941284157113,
+      "maximum": 0.7746058715842887,
+      "out_of_bounds": 0
+    }
+  ]
+}

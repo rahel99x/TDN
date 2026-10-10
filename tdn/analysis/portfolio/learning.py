@@ -658,7 +658,7 @@ def scaling(ctx):
         eq=Equation(chunk[0]["kappa"],chunk[0]["reaction_rate"]);geom=geometry(chunk[0],n)
         calls={r["model_id"]:(lambda m=models[r["model_id"]]:rollout(m,u,schedule,eq,geom,ctx.budget)[0]) for r in selected if r["track"]==track and r["model_id"] in models}
         with torch.no_grad():
-            answers,timing=measure_paired(calls,device=ctx.device,repeats=int(ctx.protocol.get("timing",{}).get("repeats",3)),
+            answers,timing=measure_paired(calls,device=ctx.device,repeats=int(options.get("repeats",ctx.protocol.get("timing",{}).get("repeats",ctx.protocol.get("timing_repeats",3)))),
                                          warmup=1,budget=ctx.budget,seed=n*17+batch)
         for r in selected:
             if r["track"]!=track or r["model_id"] not in answers:continue

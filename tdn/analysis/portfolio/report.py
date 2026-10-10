@@ -294,26 +294,88 @@ def write_tables(data, output):
 
 
 def amortization(data):
-    """Measured time economics, never made-up monetary rates or amortization."""
-    rows = []
-    training = defaultdict(float)
-    for row in data.get('catalog', []):
-        cost = row.get('total_training_seconds', row.get('training_seconds'))
-        if finite(cost):
-            training[row.get('model_id')] += cost
-    for source in data.get('locked_frontiers', []):
-        row = flatten(source)
-        candidate = row.get('candidate_seconds', row.get('model_seconds'))
-        comparator = row.get('comparator_seconds', row.get('baseline_seconds'))
-        offline = training.get(row.get('model_id'))
-        margin = comparator-candidate if finite(candidate) and finite(comparator) else None
-        rows.append({'model_id': row.get('model_id'), 'track': row.get('track'), 'horizon': row.get('horizon'),
-            'offline_training_seconds': offline, 'inference_saving_seconds': margin,
-            'training_only_break_even_queries': math.ceil(offline/margin) if offline is not None and margin and margin > 0 else None,
-            'status': 'MEASURED_TRAINING_ONLY' if offline is not None and margin and margin > 0 else 'NA',
-            'monetary_cost': None, 'reason': 'Training-only optimistic bound; full reference/tuning/preprocessing and failures remain stage costs; no price supplied.',
-            '_source': source.get('_source')})
-    return rows
+    """Explicit paired economics, conditional on both frozen schedules qualifying.
+
+    A field/grid/seed row is a deployment scenario, not an independent estimate
+    of a population mean. No comparator seed or schedule is selected here.
+    Existing artifacts are never edited by this reporting calculation.
+    """
+    catalog = {}
+    for item in data.get('catalog', []):
+        identity = item.get('model_id')
+        if identity in catalog and catalog[identity] != item:
+            # Source annotations may differ on a duplicate projection.
+            if {k:v for k,v in catalog[identity].items() if k != '_source'} != {k:v for k,v in item.items() if k != '_source'}:
+                raise ValueError('Conflicting catalog costs for one model')
+        catalog[identity] = item
+
+    def economics(source, control, *, legacy=False):
+        row = flatten(source); entry = catalog.get(row.get('model_id'), {})
+        training = entry.get('total_training_seconds', entry.get('training_seconds'))
+        training = training if finite(training) and training >= 0 else None
+        # Components must be non-overlapping measured charges, not copies of
+        # aggregate stage totals. Completion is an explicit upstream assertion.
+        declared = data.get('offline_costs', {}).get(row.get('model_id'), {})
+        components = dict(declared.get('components_seconds', {}))
+        if training is not None:
+            components.setdefault('training_and_tuning', training)
+        known = {k:v for k,v in components.items() if finite(v) and v >= 0}
+        complete = declared.get('complete') is True and bool(components) and len(known) == len(components)
+        offline = sum(known.values()) if known else None
+        candidate_seconds = row.get('candidate_seconds', row.get('model_seconds')) if legacy else row.get('cost_seconds')
+        control_seconds = row.get('comparator_seconds', row.get('baseline_seconds')) if legacy else (control or {}).get('cost_seconds')
+        eligible = legacy or (row.get('status') == 'ELIGIBLE' and control is not None and control.get('status') == 'ELIGIBLE')
+        valid = all(finite(v) and v > 0 for v in (candidate_seconds, control_seconds))
+        saving = control_seconds - candidate_seconds if eligible and valid else None
+        if not legacy and control is None: status = 'MISSING_MATCHED_CONTROL'
+        elif not eligible: status = 'INELIGIBLE_COMPARISON'
+        elif not valid: status = 'TIMING_UNAVAILABLE'
+        elif saving <= 0: status = 'NONPOSITIVE_MARGIN'
+        elif offline is None: status = 'OFFLINE_COST_UNAVAILABLE'
+        else: status = 'MEASURED_COMPLETE_OFFLINE' if complete else 'MEASURED_TRAINING_ONLY' if set(known) == {'training_and_tuning'} else 'MEASURED_PARTIAL_OFFLINE'
+        count = math.ceil(offline / saving) if offline is not None and saving is not None and saving > 0 else None
+        result = {k:row.get(k) for k in ('model_id','family','track','parent_id','field_cluster','grid','seed','train_count','final_time','rms_target','max_target')}
+        result.update(horizon=row.get('horizon'), comparator=(control or {}).get('model_id'),
+            comparator_family=(control or {}).get('family'), candidate_seconds=candidate_seconds,
+            comparator_seconds=control_seconds, candidate_status=row.get('status'), control_status=(control or {}).get('status'),
+            offline_training_seconds=training, known_offline_components_seconds=known,
+            known_offline_seconds=offline, offline_cost_complete=complete,
+            inference_saving_seconds=saving, known_offline_break_even_queries=count,
+            training_only_break_even_queries=count if set(known) == {'training_and_tuning'} and not complete else None,
+            status='NA' if legacy and status == 'NONPOSITIVE_MARGIN' else status, monetary_cost=None,
+            reason='Conditional matched-accuracy scenario; known offline charges only. Missing reference/preprocessing/failure/verification and deployment costs are not zero. No price supplied.',
+            comparison_scope='legacy pre-paired input; physical eligibility not verified' if legacy else 'same parent/grid/track/horizon/targets and paired seed/data count, or unique frozen control; no best-seed selection',
+            uncertainty='per-workload scenario; no uncertainty interval or population break-even guarantee',
+            _source=source.get('_source'), _control_source=(control or {}).get('_source'))
+        return result
+
+    locked = [flatten(r) for r in data.get('locked_frontiers', [])]
+    # Backward compatibility for previously constructed explicitly paired data.
+    if locked and all('cost_seconds' not in row and ('candidate_seconds' in row or 'model_seconds' in row) for row in locked):
+        return [economics(r, None, legacy=True) for r in locked]
+    key_names = ('parent_id','grid','track','final_time','rms_target','max_target')
+    def key(row):
+        return tuple(tuple(row[k]) if isinstance(row.get(k), list) else row.get(k) for k in key_names)
+    lookup = {}
+    for row in locked:
+        identity = (*key(row), row.get('family'), row.get('seed'), row.get('train_count'))
+        if identity in lookup:
+            raise ValueError('Duplicate frozen frontier identity; cannot choose a cheaper replicate')
+        lookup[identity] = row
+    primary = data.get('protocol', {}).get('selection', {}).get('primary_family', 'quad2_conditioned')
+    comparators = data.get('amortization_comparators', ['quad2_fixed','df','etdrk4','fno_small','fno_standard'])
+    result = []
+    for row in locked:
+        if row.get('family') != primary: continue
+        if any(row.get(name) is None for name in key_names):
+            raise ValueError('Amortization requires explicit workload, horizon and accuracy targets')
+        for family in comparators:
+            if family == primary: continue
+            paired = lookup.get((*key(row), family, row.get('seed'), row.get('train_count')))
+            if paired is None: paired = lookup.get((*key(row), family, None, 0))
+            result.append(economics(row, paired))
+            result[-1]['comparator_family'] = family
+    return result
 
 
 def _blank(ax, reason='NA: no verified measurements for this panel'):
@@ -696,16 +758,24 @@ def build_figures(data, output, budget=None):
                lambda ax,rows:_scatter(ax,rows,'query_count','total_seconds'),
                'Lower total time is better for the same number of requested horizons. Right means more queries.',
                'Measured build plus query count times median query cost; a scenario calculation, not an observed batched execution. Reuse requires fixed state/operator/horizon range; state refresh costs remain included.')
-        def economics(ax):
-            rows=data['amortization']
-            valid=[r for r in rows if finite(r.get('training_only_break_even_queries'))]
-            if not valid:_blank(ax,'NA: no positive measured matched-accuracy margin with known offline cost. No invented amortization or monetary price.');return
-            ax.bar(range(len(valid)),[r['training_only_break_even_queries'] for r in valid],color='#0072B2')
-            ax.set_yscale('log');ax.set_xticks(range(len(valid)),[r.get('model_id','unknown') for r in valid],rotation=60,fontsize=5)
-            ax.set_ylabel('Training-only optimistic break-even query count (lower is better)')
-        single('Amortization and deployment economics',economics,
+        def economics(ax,rows):
+            groups=defaultdict(list)
+            for row in rows: groups[row.get('comparator_family') or row.get('comparator') or 'Unspecified legacy comparator'].append(row)
+            if not groups:_blank(ax,'NA: no matched comparisons with known offline cost.');return
+            labels=[]
+            for index,(family,members) in enumerate(sorted(groups.items())):
+                values=[r.get('known_offline_break_even_queries',r.get('training_only_break_even_queries')) for r in members]
+                values=[v for v in values if finite(v)]
+                labels.append(f'Ours vs {role(family)}: {family}\n{len(values)}/{len(members)} scenarios')
+                if values:
+                    ax.vlines(index,min(values),max(values),color='#0072B2',alpha=.5,linewidth=.6)
+                    ax.scatter([index],[statistics.median(values)],color='#0072B2',marker='^',s=22)
+                else: ax.text(index,.02,'NA',ha='center',transform=ax.get_xaxis_transform(),fontsize=6)
+            ax.set_yscale('symlog',linthresh=1);ax.set_xticks(range(len(labels)),labels,rotation=35,ha='right',fontsize=6)
+            ax.set_ylabel('Known-offline break-even queries (lower is better)')
+        facets('Amortization and deployment economics',data['amortization'],('track','horizon','train_count'),economics,
                'Fewer break-even queries is better if both solvers satisfy the same accuracy. No positive margin means no amortization.',
-               'Training-only lower bound when computable; reference generation, tuning, failures, verification, rejection and fallback can increase cost. Money remains NA without an explicit rate.')
+               'Triangles are medians and thin spans observed scenario ranges, not confidence intervals. Paired fields/grids/seeds remain dependent. All known nonoverlapping offline charges included; partial/training-only costs are optimistic. Missing verification, rejection and fallback can increase cost. No price is assumed.')
     _gzip(output/'learning-range-data.json.gz',{'schema':'tdn.portfolio-ranges/v1','records':ranges,
           'meaning':'Observed low/high range, not a confidence interval; straight connections between adjacent dense window centers.'})
     manifest={'schema':'tdn.portfolio-figures/v1','panels':panels,'profile':data['profile'],

@@ -183,7 +183,7 @@ def test_scaling_respects_frozen_step_count_and_primary_tolerance(tmp_path,monke
     from tdn.analysis.portfolio import learning
     from tdn.analysis.frontier import data as teacher
     p=tiny_protocol();parent=copy.deepcopy(p['parents'][0]);parent.update(split='scaling',parent_id='scaling-only',field_cluster='scaling-only')
-    p['parents'].append(parent);p['scaling'].update(grids=[4],batches=[1],maximum_cases=1,steps=2,horizon=.06,families=['quad2_conditioned'])
+    p['parents'].append(parent);p['scaling'].update(grids=[4],batches=[1],maximum_cases=1,steps=2,horizon=.06,families=['quad2_conditioned'],repeats=7)
     p['primary_target']=2e-5;p['targets']=[2e-4,2e-5]
     p['units']['scaling']={'id':'scaling','kind':'scaling'}
     ctx=context(tmp_path,p,'scaling',{'freeze':tmp_path/'freeze'})
@@ -202,4 +202,6 @@ def test_scaling_respects_frozen_step_count_and_primary_tolerance(tmp_path,monke
     assert calls and all(x==.03 for x in calls)
     assert result['rms_target']==result['max_target']==2e-5
     assert result['status']=='ACCURACY_UNQUALIFIED'
+    assert result['raw_timing']['repeats']==7
+    assert len(result['raw_timing']['methods']['m']['samples_seconds'])==7
     assert all(2e-5<r['upper_rms']<2e-4 for r in result['errors'])

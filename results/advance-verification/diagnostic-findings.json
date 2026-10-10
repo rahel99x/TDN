@@ -1,0 +1,277 @@
+{
+  "classification": "post-hoc development diagnostics; CPU FP64; no independent-field inference or speed claim",
+  "grid": [
+    16,
+    16
+  ],
+  "endpoint_rows": 256,
+  "paired_cases": 32,
+  "comparisons": {
+    "commutator_raw": {
+      "paired_cases": 32,
+      "rms_worse_cases": [
+        [
+          "continuum",
+          "broadband",
+          16,
+          0.12
+        ],
+        [
+          "continuum",
+          "high_pair",
+          16,
+          0.12
+        ],
+        [
+          "continuum",
+          "near_nyquist",
+          16,
+          0.12
+        ]
+      ],
+      "both_errors_above_estimated_reference_uncertainty": 32,
+      "gl2_error_over_candidate_error_min": 0.6573576899093898,
+      "gl2_error_over_candidate_error_max": 44.71550672807176,
+      "median_by_track_and_regime": {
+        "continuum/broadband": 2.712851409371196,
+        "continuum/high_pair": 3.32903614710344,
+        "continuum/low": 17.98295961965106,
+        "continuum/near_nyquist": 1.7657903191278321,
+        "discrete/broadband": 5.119435794051167,
+        "discrete/high_pair": 5.657467021496206,
+        "discrete/low": 19.10283128674311,
+        "discrete/near_nyquist": 3.250320069456591
+      }
+    },
+    "commutator_cubic": {
+      "paired_cases": 32,
+      "rms_worse_cases": [],
+      "both_errors_above_estimated_reference_uncertainty": 32,
+      "gl2_error_over_candidate_error_min": 1.167208635833638,
+      "gl2_error_over_candidate_error_max": 35.33720724456787,
+      "median_by_track_and_regime": {
+        "continuum/broadband": 5.34905110921292,
+        "continuum/high_pair": 8.177429628307923,
+        "continuum/low": 14.07758111663093,
+        "continuum/near_nyquist": 2.0811638219748065,
+        "discrete/broadband": 11.64243547892519,
+        "discrete/high_pair": 9.496096263301894,
+        "discrete/low": 14.888608302673894,
+        "discrete/near_nyquist": 3.9134886238548052
+      }
+    },
+    "analytic_quad_cubic": {
+      "paired_cases": 32,
+      "rms_worse_cases": [],
+      "both_errors_above_estimated_reference_uncertainty": 32,
+      "gl2_error_over_candidate_error_min": 7.9230389327993604,
+      "gl2_error_over_candidate_error_max": 813.8661395618537,
+      "median_by_track_and_regime": {
+        "continuum/broadband": 40.29628128914027,
+        "continuum/high_pair": 283.9613773360136,
+        "continuum/low": 37.0288194441361,
+        "continuum/near_nyquist": 58.319224487214086,
+        "discrete/broadband": 48.0085958888818,
+        "discrete/high_pair": 155.4092103268665,
+        "discrete/low": 51.79842754883039,
+        "discrete/near_nyquist": 53.18690770571485
+      }
+    },
+    "quad4_full": {
+      "paired_cases": 32,
+      "rms_worse_cases": [
+        [
+          "continuum",
+          "broadband",
+          16,
+          0.015
+        ],
+        [
+          "continuum",
+          "broadband",
+          16,
+          0.03
+        ],
+        [
+          "continuum",
+          "broadband",
+          16,
+          0.06
+        ],
+        [
+          "continuum",
+          "low",
+          16,
+          0.015
+        ],
+        [
+          "continuum",
+          "low",
+          16,
+          0.03
+        ],
+        [
+          "continuum",
+          "low",
+          16,
+          0.06
+        ],
+        [
+          "continuum",
+          "low",
+          16,
+          0.12
+        ],
+        [
+          "continuum",
+          "near_nyquist",
+          16,
+          0.015
+        ],
+        [
+          "discrete",
+          "broadband",
+          16,
+          0.015
+        ],
+        [
+          "discrete",
+          "broadband",
+          16,
+          0.03
+        ],
+        [
+          "discrete",
+          "broadband",
+          16,
+          0.06
+        ],
+        [
+          "discrete",
+          "broadband",
+          16,
+          0.12
+        ],
+        [
+          "discrete",
+          "low",
+          16,
+          0.015
+        ],
+        [
+          "discrete",
+          "low",
+          16,
+          0.03
+        ],
+        [
+          "discrete",
+          "low",
+          16,
+          0.06
+        ],
+        [
+          "discrete",
+          "low",
+          16,
+          0.12
+        ],
+        [
+          "discrete",
+          "near_nyquist",
+          16,
+          0.015
+        ],
+        [
+          "discrete",
+          "near_nyquist",
+          16,
+          0.03
+        ],
+        [
+          "discrete",
+          "near_nyquist",
+          16,
+          0.06
+        ]
+      ],
+      "both_errors_above_estimated_reference_uncertainty": 32,
+      "gl2_error_over_candidate_error_min": 0.999437155730776,
+      "gl2_error_over_candidate_error_max": 1.0872845358235403,
+      "median_by_track_and_regime": {
+        "continuum/broadband": 0.9999696691019127,
+        "continuum/high_pair": 1.000184130900895,
+        "continuum/low": 0.9999734323543983,
+        "continuum/near_nyquist": 1.0027684164828305,
+        "discrete/broadband": 0.9999612336832195,
+        "discrete/high_pair": 1.0000032909543757,
+        "discrete/low": 0.9999839354237323,
+        "discrete/near_nyquist": 0.9999910460538668
+      }
+    }
+  },
+  "absolute_error_and_feasibility": {
+    "analytic_quad_cubic": {
+      "cases": 32,
+      "rms_min": 5.837352078197678e-13,
+      "rms_max": 1.822106730514335e-08,
+      "joint_rms_max_2e_minus_5_passes": 32
+    },
+    "commutator_cubic": {
+      "cases": 32,
+      "rms_min": 2.2757593511835844e-12,
+      "rms_max": 3.7769784352343487e-07,
+      "joint_rms_max_2e_minus_5_passes": 32
+    },
+    "commutator_raw": {
+      "cases": 32,
+      "rms_min": 1.8105899008959921e-12,
+      "rms_max": 1.3476159604213742e-06,
+      "joint_rms_max_2e_minus_5_passes": 32
+    },
+    "df": {
+      "cases": 32,
+      "rms_min": 2.4249963393142205e-10,
+      "rms_max": 2.3146846756425578e-05,
+      "joint_rms_max_2e_minus_5_passes": 29
+    },
+    "etdrk4": {
+      "cases": 32,
+      "rms_min": 3.404875825965209e-11,
+      "rms_max": 1.6040487750396526e-06,
+      "joint_rms_max_2e_minus_5_passes": 32
+    },
+    "quad2_full": {
+      "cases": 32,
+      "rms_min": 8.041897983153764e-11,
+      "rms_max": 1.0908438211063056e-06,
+      "joint_rms_max_2e_minus_5_passes": 32
+    },
+    "quad4_full": {
+      "cases": 32,
+      "rms_min": 8.041902630703681e-11,
+      "rms_max": 1.0839025541048915e-06,
+      "joint_rms_max_2e_minus_5_passes": 32
+    },
+    "two_basis": {
+      "cases": 32,
+      "rms_min": 2.2757593511835844e-12,
+      "rms_max": 3.7769784352343487e-07,
+      "joint_rms_max_2e_minus_5_passes": 32
+    }
+  },
+  "teacher_informed_oracle": {
+    "scope": "unbounded per-case projection; not a learned deployable model",
+    "median_one_basis_error_over_two_basis_error": 16.97147916705528,
+    "coefficient_ranges": [
+      [
+        0.9970232065157469,
+        1.0445389382010544
+      ],
+      [
+        0.6416450217548691,
+        1.501398313631271
+      ]
+    ]
+  }
+}

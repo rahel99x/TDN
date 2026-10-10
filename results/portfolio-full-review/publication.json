@@ -1,0 +1,140 @@
+{
+  "review_date": "2026-10-10",
+  "run_id": "fedora-portfolio-20261009T183307014599Z",
+  "native_commit": "c5c9a85e5cc92cf4f361e57a74626c8a0a5c2fc3",
+  "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861",
+  "archive_sha256": "979fd362ad3c0dd7bc456707cc667875d6f0f3e461edf8965b0c4751d4403591",
+  "classification": "Post-hoc descriptive review; native-* files preserve exact original bytes; other summaries are derived; no new inference accuracy or GPU experiments",
+  "omitted_original_files": 1402,
+  "files": {
+    "results/portfolio-full-review/review_io.py": {
+      "bytes": 723,
+      "sha256": "a30439210eb573f05ceb1878ed0bb3c1e160798eae5ac4b3424f683de80eb432"
+    },
+    "results/portfolio-full-review/costs-amortization-artifact-verification.json": {
+      "bytes": 153,
+      "sha256": "860207b033250aa49f4bb3877208f06d807a017076fd40a6839afe40ed8566ba"
+    },
+    "results/portfolio-full-review/training-analysis.py": {
+      "bytes": 5986,
+      "sha256": "b1f61531617e9604899ad8eb92af46ea2d772afdc3459789b5e2f289f44875ed"
+    },
+    "results/portfolio-full-review/training-response-audit.json.gz": {
+      "bytes": 361113,
+      "sha256": "865c2438b3618a0b306782b3cda99a8fd078ac2d60bf80912837f2535edaa9d7"
+    },
+    "results/portfolio-full-review/statistics-followup.py": {
+      "bytes": 4551,
+      "sha256": "07b74cd9d1b693a81181ec11a65944981ccf2c839cf15d589ad246e68464cd1a"
+    },
+    "results/portfolio-full-review/training-response-audit.py": {
+      "bytes": 4061,
+      "sha256": "222b92867b04894f077e8dc2174ba3d8473e37bf93896129f5844ccba921b5b6"
+    },
+    "results/portfolio-full-review/training-summary.json.gz": {
+      "bytes": 64113,
+      "sha256": "15ce028f1f5466855465d8d2a5c93d89a48f7615275ea15dd559c30fba714a06"
+    },
+    "results/portfolio-full-review/statistics-timing-counts.json": {
+      "bytes": 314,
+      "sha256": "6d60377bf05ae9cd8483791767d5399551c6d6a4cb87adbde91aec94779fe648"
+    },
+    "results/portfolio-full-review/native-claims.json": {
+      "bytes": 161069,
+      "sha256": "bd176dfce1c1c2b5ddcab4b6e9afce1042c46bb424d7b37e8f88a3f39ecd6856"
+    },
+    "results/portfolio-full-review/statistics-followup.json.gz": {
+      "bytes": 11536,
+      "sha256": "a56ca4e1777555f6117d5e75e36fe8d41818bcc82a3aef4c91a39a4dfb330e08"
+    },
+    "results/portfolio-full-review/provenance-review.py": {
+      "bytes": 4211,
+      "sha256": "a273ac1279c09727ba9a67d319c791162962ab04ec52ab147bf2a8a78f821ceb"
+    },
+    "results/portfolio-full-review/statistics-initial-fields.json": {
+      "bytes": 10390,
+      "sha256": "1fecf5321e99729bd2f86905c7cf7560dec376da0bbc58de776b3e2f0a26c53f"
+    },
+    "results/portfolio-full-review/costs-analysis.py": {
+      "bytes": 8506,
+      "sha256": "51e8e5ed3cac358b9ec50a3e8e35a2b08a10fe01ae17cc1c390dfc5d0b9a90b0"
+    },
+    "results/portfolio-full-review/statistics-review.json.gz": {
+      "bytes": 2172381,
+      "sha256": "edbefe1e75e34ce3610ed8b64e1c4057f8498d862242e0c131f39b2c0389e520"
+    },
+    "results/portfolio-full-review/statistics-review.py": {
+      "bytes": 10231,
+      "sha256": "6ff9c75446decd6db26cacec533541b1e8b29e5e70f8355f52523968c2aa98d4"
+    },
+    "results/portfolio-full-review/costs-summary.json.gz": {
+      "bytes": 12863,
+      "sha256": "6d610bbb4686c60a83d73b3699201406982e1dd9739ece8e8e2fd2df6e503543"
+    },
+    "results/portfolio-full-review/source-index.json.gz": {
+      "bytes": 121076,
+      "sha256": "91f9ba77c228551b1934a0384f8b9d973f086b0f32ac41606b598d2f023bf3bc"
+    },
+    "results/portfolio-full-review/provenance-summary.json": {
+      "bytes": 24201,
+      "sha256": "d7dbcda5a6fe2ad5d0fe9fac950a0b5a26854f75302b4b2461426bd4e6e4bc91"
+    },
+    "results/portfolio-full-review/README.md": {
+      "bytes": 5588,
+      "sha256": "7ef53edecbaab9d77aa3e0582296174e019ae4d3d7d50315701d9c70b4111674"
+    },
+    "results/portfolio-full-review/statistics-all-pair-subgroups.json.gz": {
+      "bytes": 1477466,
+      "sha256": "8a932b00156a9952af4f6a030d5366f4657698abe40ffa5e58021a0b4049fa1d"
+    },
+    "results/portfolio-full-review/extract_canonical.py": {
+      "bytes": 3031,
+      "sha256": "65603fc0136a1bd25b267ab6614b4dc6559228910bc71e935f7e7fb24b1c48f8"
+    },
+    "results/portfolio-full-review/costs-optimistic-amortization.json": {
+      "bytes": 3983,
+      "sha256": "d299242df2805867e3168c98a22d55ed51e11ea3c7c8b7d60949b991640b8faa"
+    },
+    "results/portfolio-full-review/statistics-endpoints-compact.csv.gz": {
+      "bytes": 10256204,
+      "sha256": "631b798e1a10b0195c10fbe47dbfe467ba85041fcd4896bc9955d66832433202"
+    },
+    "results/portfolio-full-review/native-aggregate-summary.json": {
+      "bytes": 2483,
+      "sha256": "b2d2b88ec31dc21f17a483a60435646eb1d92e40727c95aa2ac0f87d8c5ddcb6"
+    },
+    "results/portfolio-full-review/native-protocol.json": {
+      "bytes": 168635,
+      "sha256": "b18cfb520d9c6538e1e777535e29964b1aac59e13b0eddce7cf60cadffd1dfad"
+    },
+    "docs/reviews/portfolio-native-20261009/mathematics.md": {
+      "bytes": 18411,
+      "sha256": "751483ff3ea42a29966ba79678e99029ee54207114b67b83dd9ea4455ec76f31"
+    },
+    "docs/reviews/portfolio-native-20261009/statistics.md": {
+      "bytes": 22224,
+      "sha256": "4863f94c745b59deb900e85bd77ec2b0c37e458db0ae371cdfeef3c31a2b8a56"
+    },
+    "docs/reviews/portfolio-native-20261009/costs.md": {
+      "bytes": 12920,
+      "sha256": "0faa227fbe16f2125f5e546707e8778ddde18a1d0d591b674fd994cfdc4c7290"
+    },
+    "docs/reviews/portfolio-native-20261009/training.md": {
+      "bytes": 14564,
+      "sha256": "c022d92841e8dc0631f7c4f7d77b5312260a10d638314ccc4763a808e2b8b5cb"
+    },
+    "docs/PORTFOLIO_FULL_REVIEW.md": {
+      "bytes": 29192,
+      "sha256": "7626ee2104e9b9c204d05c636bddef38c9a8f4e9f38fb8145ca943afdc5952fe"
+    }
+  },
+  "verification": {
+    "metadata_issues": 0,
+    "stages_checked": 40,
+    "native_test_instances": 1715,
+    "published_json_parse": "PASS",
+    "analysis_script_syntax": "PASS",
+    "review_links": "PASS",
+    "new_GPU_or_PDE_accuracy_experiments": false
+  }
+}

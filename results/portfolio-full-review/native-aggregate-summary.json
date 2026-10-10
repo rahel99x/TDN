@@ -1,0 +1,59 @@
+{
+  "schema": "tdn.portfolio/v1",
+  "stage": "aggregate",
+  "kind": "aggregate",
+  "profile": "full",
+  "status": "COMPLETED",
+  "device": "cpu",
+  "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861",
+  "protocol_sha256": "b72581c490dc4925f687a42d20b0c12ea6991470ff14e577441fb5fe1c3b296a",
+  "software": {
+    "python": "3.13.13",
+    "executable": "/home/rahel/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cu126",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": "12.6",
+    "git_commit": "c5c9a85e5cc92cf4f361e57a74626c8a0a5c2fc3",
+    "source_tree_sha256": "a83f6a15a41d35ae17ccc08babc8304204a5f12e5c82d0d96399cb3982d45861"
+  },
+  "prerequisites": {
+    "freeze": "6f3e51cc7fc9fe939ab06645654c6b51b1419f2fa9e0da3bddb72da483a2873b",
+    "confirm-000": "a3853d8965ac37edaf09c60206cd641dd97d90b61b4cd6b7bec7f495c802289a",
+    "confirm-001": "94f8611c0ddfb3ac124b3ebe2da5b1bd38f39e654749433ac55adcfe29c8a10d",
+    "confirm-002": "9eb5655569855bc2214dcd71543c9a15449723dd4e41e13527916bc262c74253",
+    "confirm-003": "857a5056b4b037759305e9e4137473b3c0d21294c54b5379a6277d91e5794941",
+    "confirm-004": "8237a8906a74a10a3055c77b79f51e8e1e30a13ad5f771d4a6e7b09c57081308",
+    "confirm-005": "946b76ec37c7438316a9eb7282d5ae32fdfdc869e93664519903c9303dba8108",
+    "confirm-006": "37fc905fb5b8b92779b02fe4fb7f654ecfa52939932647c84c40329fb5b421f2",
+    "confirm-007": "be2b61e6499154a230fc44fed9b8811cc1f7940ec36550a139667e590765083f",
+    "confirm-008": "da4527bb2161383dab585a1306ce9a01e113c031a69abbdc0137c74a7d71c944",
+    "confirm-009": "c4fd8109cc2b19d36db6c6e32f3f8c2435ff4d729e109be450ab63ed113843b0",
+    "confirm-010": "c85c8eaa93e7017073fe5c73de957cd143be3fce48b6ec5088d31b27c2df0950",
+    "confirm-011": "d5dc48898a3dcc07675f6957c1a60437bc778577cf31a4e7db379880f53066e5"
+  },
+  "elapsed_seconds": 31.995322072994895,
+  "experiment_count": 97,
+  "verdict_counts": {
+    "BAD": 69,
+    "GOOD": 21,
+    "NA": 7
+  },
+  "correctness_failures": 0,
+  "memory": {
+    "enabled": false,
+    "observations": 0,
+    "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+  },
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "details": {
+    "parents": 24,
+    "models": 176,
+    "endpoint_rows": 101376,
+    "timing_groups": 1152,
+    "scientific_outcome": "DESCRIPTIVE_COMPLETE_COHORT",
+    "comparisons": 14752,
+    "paper_reproduction": false
+  }
+}

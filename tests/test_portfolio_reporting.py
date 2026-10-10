@@ -124,6 +124,51 @@ def test_amortization_requires_positive_margin_and_does_not_invent_money():
     assert all(r['monetary_cost'] is None for r in result)
 
 
+def test_amortization_joins_real_locked_rows_without_best_seed_or_workload_selection():
+    common=dict(parent_id='field-a',field_cluster='field-a',grid=32,track='discrete',final_time=.12,
+                rms_target=2e-5,max_target=2e-5,status='ELIGIBLE')
+    candidate=dict(common,model_id='ours',family='quad2_conditioned',seed=11,train_count=32,cost_seconds=1.)
+    fixed=dict(common,model_id='fixed',family='quad2_fixed',seed=None,train_count=0,cost_seconds=2.)
+    fno=dict(common,model_id='paired-fno',family='fno_small',seed=11,train_count=32,cost_seconds=3.)
+    other_seed=dict(fno,model_id='lucky-fno',seed=21,cost_seconds=.01)
+    other_grid=dict(fixed,model_id='other-grid',grid=64,cost_seconds=.001)
+    data=dict(catalog=[dict(model_id='ours',total_training_seconds=10.)],
+              locked_frontiers=[candidate,fixed,fno,other_seed,other_grid],amortization_comparators=['quad2_fixed','fno_small','etdrk4'])
+    result=report.amortization(data)
+    assert result[0]['comparator']=='fixed' and result[0]['training_only_break_even_queries']==10
+    assert result[1]['comparator']=='paired-fno' and result[1]['training_only_break_even_queries']==5
+    assert result[2]['status']=='MISSING_MATCHED_CONTROL'
+    assert result[2]['inference_saving_seconds']is None
+    assert all(r['monetary_cost']is None for r in result)
+    data['locked_frontiers'][1]['status']='ACCURACY_INFEASIBLE'
+    assert report.amortization(data)[0]['status']=='INELIGIBLE_COMPARISON'
+    data['locked_frontiers'][1]['status']='ELIGIBLE';data['locked_frontiers'][1]['cost_seconds']=.5
+    assert report.amortization(data)[0]['status']=='NONPOSITIVE_MARGIN'
+
+
+def test_amortization_charges_known_nonoverlapping_costs_and_preserves_missing_cost():
+    common=dict(parent_id='a',grid=32,track='continuum',final_time=.12,rms_target=1e-5,max_target=1e-5,status='ELIGIBLE')
+    data=dict(catalog=[dict(model_id='ours',total_training_seconds=10.)],amortization_comparators=['df'],
+        locked_frontiers=[dict(common,model_id='ours',family='quad2_conditioned',seed=1,train_count=32,cost_seconds=1),
+                          dict(common,model_id='control',family='df',seed=None,train_count=0,cost_seconds=3)],
+        offline_costs={'ours':{'components_seconds':{'references':30.,'preprocessing':2.},'complete':False}})
+    row=report.amortization(data)[0]
+    assert row['known_offline_seconds']==42 and row['known_offline_break_even_queries']==21
+    assert row['status']=='MEASURED_PARTIAL_OFFLINE' and row['training_only_break_even_queries'] is None
+    data['offline_costs']['ours']['complete']=True
+    assert report.amortization(data)[0]['status']=='MEASURED_COMPLETE_OFFLINE'
+    data['offline_costs']={};data['catalog']=[]
+    row=report.amortization(data)[0]
+    assert row['status']=='OFFLINE_COST_UNAVAILABLE' and row['known_offline_break_even_queries']is None
+
+
+def test_amortization_rejects_ambiguous_duplicate_comparator():
+    row=dict(parent_id='a',grid=32,track='discrete',final_time=.12,rms_target=1e-5,max_target=1e-5,
+        family='df',seed=None,train_count=0,cost_seconds=1.,status='ELIGIBLE',model_id='df')
+    with pytest.raises(ValueError,match='Duplicate frozen frontier'):
+        report.amortization({'locked_frontiers':[row,{**row,'cost_seconds':.1}]})
+
+
 def test_empty_atlas_explicit_na_and_exact_raw_chart_source(tmp_path):
     data=report.collect(context(tmp_path))
     before=copy.deepcopy(data)

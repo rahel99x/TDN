@@ -202,13 +202,14 @@ class Context:
         self.rows.append(row); self.identities.add(experiment_id); self._last = now
         count = len(self.rows)
         if count <= 3 or count % self.protocol.get("console_every", 100) == 0:
-            print(f"TDN frontier {self.stage}: {count} experiments; latest {experiment_id}: "
+            program = getattr(self, "program", "frontier")
+            print(f"TDN {program} {self.stage}: {count} experiments; latest {experiment_id}: "
                   f"{row['assessment']['verdict']} {row['assessment']['score_1_100']}/100; "
                   f"evidence {row['assessment']['evidence_coverage']:.0%}", flush=True)
             from tdn.reporting import emit
             emit({"experiment_rows": count, "latest_score_1_100": row["assessment"]["score_1_100"],
                   "latest_evidence_coverage": row["assessment"]["evidence_coverage"],
-                  "latest_wall_seconds": metrics["wall_seconds"]}, phase="frontier/" + self.stage,
+                  "latest_wall_seconds": metrics["wall_seconds"]}, phase=program + "/" + self.stage,
                  step=count)
         return row
 

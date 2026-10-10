@@ -134,9 +134,13 @@ def run_roots(value):
         if base in found:
             continue
         found.add(base)
-        workflow = base / "portfolio-workflow.json"
-        if not workflow.exists():
+        workflows = [base / name for name in ("portfolio-workflow.json", "advance-workflow.json")
+                     if (base / name).exists()]
+        if not workflows:
             continue
+        if len(workflows) != 1:
+            raise ValueError("Ambiguous workflow manifests in one run directory")
+        workflow = workflows[0]
         descriptor = read_json(workflow).get("recovery")
         if not descriptor:
             continue

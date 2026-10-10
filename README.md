@@ -1,6 +1,22 @@
 # Order-Anchored Temporal-Defect Networks
 
-A runnable research pipeline for learning the finite-time error of a symmetric split solver. It includes exact noncommuting linear controls, periodic logistic reaction–diffusion, refined FP64 coupled teachers, six local-input learned models, deterministic datasets/training, checkpoint resume, and complete-solver accuracy/cost reports.
+A runnable research pipeline for learning the finite-time error of a symmetric split solver. It includes exact noncommuting linear controls, periodic logistic reaction–diffusion, refined FP64 coupled teachers, local-input learned models, deterministic datasets/training, checkpoint resume, and complete-solver accuracy/cost reports.
+
+The next [Advance campaign](docs/ADVANCE_RESEARCH.md) tests stronger FNO
+optimization controls, inexpensive cubic interaction corrections, and three
+protected formulation experiments: causal memory, rational temporal response,
+and tangent information. It keeps discrete and continuum targets separate,
+freezes selection before fresh confirmation, and includes 64²/128² scaling.
+Use the [automated Fedora runbook](docs/ADVANCE_RUNBOOK.md) and
+`bash scripts/fedora_advance.sh plan --smoke`. Every job is bounded to at most
+35 minutes. The [metrics guide](docs/ADVANCE_METRICS.md) explains the source-linked
+HD atlas and which conclusions remain unmeasured. The
+[local verification record](results/advance-verification/README.md) includes
+the complete CPU smoke, bounded 16² diagnostics and exact-byte evidence;
+native GPU performance remains to be measured.
+
+The [full native portfolio review](docs/PORTFOLIO_FULL_REVIEW.md) motivates this
+campaign; successful jobs alone do not establish a learned accuracy or cost gain.
 
 The current [three-path research portfolio](docs/PORTFOLIO_RESEARCH.md) resolves
 normalization and conditioning attribution, tests three grounded improvements,

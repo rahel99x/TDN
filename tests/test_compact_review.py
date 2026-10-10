@@ -535,8 +535,18 @@ def recovery_origin(exporter, run):
     return origin, bridge, descriptor
 
 
-def test_verified_recovery_closure_keeps_original_cost_and_failure_evidence(exporter, run):
-    origin, _, _ = recovery_origin(exporter, run)
+@pytest.mark.parametrize('workflow_name', ['portfolio-workflow.json', 'advance-workflow.json'])
+def test_verified_recovery_closure_keeps_original_cost_and_failure_evidence(exporter, run, workflow_name):
+    origin, bridge, descriptor = recovery_origin(exporter, run)
+    if workflow_name != 'portfolio-workflow.json':
+        # The shared exporter must retain advance recovery ancestors too,
+        # without importing or mutating either experiment's scientific code.
+        for root in (run, origin):
+            (root / 'portfolio-workflow.json').rename(root / workflow_name)
+        bridge['origin_workflow_path'] = str(origin / workflow_name)
+        (run / 'recovery.json').write_text(json.dumps(bridge))
+        descriptor['sha256'] = hashlib.sha256((run / 'recovery.json').read_bytes()).hexdigest()
+        (run / workflow_name).write_text(json.dumps({'recovery': descriptor}))
     original_bytes = snapshot(origin)
     _, index_path, _ = pack(exporter, run)
     destination = exporter.ROOT / "recovery-restored"
