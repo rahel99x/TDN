@@ -301,7 +301,7 @@ def compute_prediction_data(model, initial, truth, h, equation, geometry, *, gai
             input_split_modes=model.split_modes, output_modes=model.modes,
             quadrature_nodes=model.quad_nodes, product="nodal FD" if model.track == "discrete" else "dealiased Galerkin"),
         network=network, features=response["features"].flatten().tolist(), gains=gains.flatten().tolist(),
-        gain_formula="1 + 0.75*tanh(logit)", channel_names=list(CHANNEL_NAMES),
+        gain_formula="g = 1 (fixed)" if model.family == "channel_fixed" else "g = 1 + 0.75*tanh(logit)", channel_names=list(CHANNEL_NAMES),
         reconstruction_max_abs_error=reconstruction_error,
         error_rms=float((prediction.double() - reference).square().mean().sqrt()),
         error_max=float((prediction.double() - reference).abs().max()),
@@ -387,7 +387,7 @@ def _images(info, arrays, output, *, dpi=400):
         "\n\nThe physical branch sees the full field.\nThe reference is not an input.", va="top", linespacing=1.6)
     channel_limit = max(float(np.abs(arrays["channels"]).max()), 1e-30)
     for i, name in enumerate(CHANNEL_NAMES):
-        map_panel(fig, a[4+i], arrays["channels"][0, i], f"5{i+1}. Signed {name} interaction\nRMS {info['channel_rms'][i]:.3e}", symmetric=True, limit=channel_limit)
+        map_panel(fig, a[4+i], arrays["channels"][0, i], f"5{i+1}. Projected signed {name}: P_K C{name}\nRMS {info['channel_rms'][i]:.3e}", symmetric=True, limit=channel_limit)
     gains = np.asarray(info["gains"])
     a[7].axhline(1, color="#777777", linestyle="--", linewidth=.7, label="Analytic control: gain 1")
     a[7].plot(range(3), gains, "^", color="#0072B2", markersize=7, label="Ours: selected effective gain")
@@ -401,7 +401,7 @@ def _images(info, arrays, output, *, dpi=400):
     for i, name in enumerate(CHANNEL_NAMES):
         map_panel(fig, a[8+i], arrays["weighted_channels"][0, i], f"7{i+1}. Actual g{name} × P_K C{name}", symmetric=True, limit=weighted_limit)
     map_panel(fig, a[11], arrays["correction"], "8. Sum: physical mixed correction", symmetric=True)
-    map_panel(fig, a[12], arrays["baseline"], "9. Analytic DF backbone S_h(u)", value_range=state_range)
+    map_panel(fig, a[12], arrays["baseline"], "9. Physical DF backbone S_h(u)", value_range=state_range)
     map_panel(fig, a[13], arrays["prediction"], "10. Ours: S_h(u) + correction", value_range=state_range)
     map_panel(fig, a[14], arrays["reference_fp64"], "11. Independent reference (evaluation)", value_range=state_range)
     map_panel(fig, a[15], arrays["error"], f"12. Endpoint error (lower |error| better)\nRMS {info['error_rms']:.3e}; max {info['error_max']:.3e}", symmetric=True)
@@ -441,15 +441,17 @@ def _images(info, arrays, output, *, dpi=400):
     axes[1,2].axis("off")
     logits = info["network"].get("logits", [0,0,0])
     axes[1,2].text(0, .98, "Actual response mapping", fontsize=12, weight="bold", va="top")
+    bounds = info["sensitivity"]["admissible_gain_bounds"]
+    bound_label = f"Fixed gain: {bounds[0]:g}" if bounds[0] == bounds[1] else f"Admissible gain: ({bounds[0]:g}, {bounds[1]:g})"
     axes[1,2].text(0, .82, "\n\n".join(f"{name}: logit {raw:+.8f}\n       gain = {gain:.8f}" for name, raw, gain in zip(CHANNEL_NAMES, logits, gains))
-        + "\n\ng = 1 + 0.75 tanh(logit)\nAdmissible gain: (0.25, 1.75)\nBounded gain ≠ stability proof.", va="top", linespacing=1.4)
+        + f"\n\n{info['gain_formula']}\n{bound_label}\nBounded gain ≠ stability proof.", va="top", linespacing=1.4)
     for axis in axes[2]:
         axis.set_axis_on()
     change = info["learned_vs_unit"]
     map_panel(fig, axes[2,0], arrays["learned_minus_unit_endpoint"],
         f"Actual learned − unit-gain FP32 endpoint\nmax change {change['rounded_fp32_endpoint_max_change']:.3e}", symmetric=True)
     map_panel(fig, axes[2,1], arrays["learned_minus_unit_analytic_correction"],
-        f"Analytic gain-mixing change (FP64 display)\nmax change {change['analytic_gain_mixing_max_change']:.3e}", symmetric=True)
+        f"FP64 gain mix of stored FP32 channels\nmax change {change['analytic_gain_mixing_max_change']:.3e}", symmetric=True)
     axes[2,2].axis("off")
     axes[2,2].text(0, .98, "Do the gains visibly change this output?", weight="bold", va="top", fontsize=10)
     axes[2,2].text(0, .81, f"FP32 endpoint max change: {change['rounded_fp32_endpoint_max_change']:.9e}\n\n"
@@ -461,7 +463,7 @@ def _images(info, arrays, output, *, dpi=400):
     fig, axes = plt.subplots(3, 4, figsize=(16, 12))
     fig.subplots_adjust(left=.055, right=.965, top=.84, bottom=.11, wspace=.42, hspace=.48)
     fig.suptitle("What each effective channel gain changes | signed sensitivity", fontsize=16, y=.975)
-    fig.text(.5, .925, "∂ endpoint / ∂ g_c = P_K C_c, with the input, physics, and other effective gains fixed.\n"
+    fig.text(.5, .925, "Analytic gain response before final FP32 rounding: ∂ endpoint / ∂ g_c = P_K C_c. Input and physics fixed.\n"
              "This is not a derivative with respect to an input pixel or neural weight. Gain probes are illustrative and clipped to admissible bounds.\n"
              "Signed response has no universal better direction; endpoint RMS error is lower-is-better.", ha="center", fontsize=10)
     for i, name in enumerate(CHANNEL_NAMES):
@@ -507,7 +509,7 @@ def render_prediction_view(run_dir, output_dir, *, family="channel_neural", trac
         raise ValueError("CPU replay endpoint metrics differ from the recorded evaluation beyond the declared tolerance")
     renderer_commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True,
                                      text=True, check=True).stdout.strip()
-    renderer_files = {str(Path(__file__).relative_to(ROOT)): file_digest(__file__),
+    renderer_files = {str(Path(__file__).relative_to(ROOT)): file_digest(Path(__file__)),
                       "scripts/adjacent_prediction_view.py": file_digest(ROOT / "scripts/adjacent_prediction_view.py")}
     info.update(selected_model={k: bundle["spec"][k] for k in ("family", "track", "model_id", "seed", "selection_status", "selected_update", "checkpoint_sha256", "config")},
         parent_id=bundle["reference"]["parent"]["parent_id"], parent_index=parent_index, source_profile=bundle["source_profile"],

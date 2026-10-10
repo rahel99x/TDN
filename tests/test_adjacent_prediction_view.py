@@ -122,7 +122,7 @@ def test_prediction_view_renders_actual_cells_at_small_test_dpi(example, tmp_pat
     assert sum(shape == (8,8) for shape, _ in calls) >= 20
 
 
-def test_prediction_view_actual_sealed_replay_if_available():
+def test_prediction_view_actual_sealed_replay_if_available(tmp_path, monkeypatch):
     source = view.ROOT/'runs/adjacent-local-review-v2'
     if not source.exists():
         pytest.skip('Archived local development run is not distributed as a test fixture')
@@ -135,6 +135,18 @@ def test_prediction_view_actual_sealed_replay_if_available():
     assert bundle['spec']['selection_status'] == 'FITTED_CHECKPOINT'
     assert bundle['spec']['selected_update'] == 2
     assert all(view.file_digest(view.ROOT/path) == expected for path,expected in before.items())
+    # Exercise provenance and complete output sealing; plotting has a separate
+    # actual-cell render test, so this avoids duplicating high-resolution work.
+    monkeypatch.setattr(view, '_images', lambda *args, **kwargs: [])
+    output = tmp_path / 'sealed-replay'
+    result = view.render_prediction_view(source, output)
+    manifest = json.loads((output/'manifest.json').read_text())
+    assert result['replay']['status'] == 'SAME_CPU_METRIC_REPLAY'
+    assert manifest['source_artifacts'] == before
+    assert all(view.file_digest(output/path) == expected
+               for path, expected in manifest['files'].items())
+    assert all(view.file_digest(view.ROOT/path) == expected
+               for path, expected in manifest['renderer']['files'].items())
 
 
 def test_prediction_view_near_bound_fitted_gains_clip_probes(example):
