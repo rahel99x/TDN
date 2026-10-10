@@ -1,0 +1,7102 @@
+{
+  "roughness-development/canonical-ridge-1-0/ea0a7156387a2c33": {
+    "seed": 71000801,
+    "alpha": 0.1,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.049860457656808174,
+      0.026719557673240763
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/ea0a7156387a2c33",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.9,
+    "dimension_label": "D=2.1 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.35341998466995106,
+      0.5065800153300489
+    ],
+    "identity_sha256": "7e00fdc20befe5a77d8eb5aa49f403c6c00092f93c5146b3809cb6e8c24be851",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/ea0a7156387a2c33/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.1,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04833605097626401,
+      0.025902648360080625,
+      0.013880885560871824
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/ea0a7156387a2c33/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.9,
+    "dimension_label": "D=2.1 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.34188041510278355,
+      0.5181195848972164
+    ],
+    "identity_sha256": "ca65c18803adc8aa9448a1e6548b7b48d60c8f3b831b9f6ec9cc215e02b344eb",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/140d288966b55927": {
+    "seed": 71000801,
+    "alpha": 0.1,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.049860457656808174,
+      0.026719557673240763
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/140d288966b55927",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.9,
+    "dimension_label": "nominal D=2.1; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.35341998466995106,
+      0.5065800153300489
+    ],
+    "identity_sha256": "1715bb1e823a1024251c975eb1e6e37f5a333450b977e572f06b0977f05b50c2",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/140d288966b55927/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.1,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04833605097626401,
+      0.025902648360080625,
+      0.013880885560871824
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/140d288966b55927/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.9,
+    "dimension_label": "nominal D=2.1; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.34188041510278355,
+      0.5181195848972164
+    ],
+    "identity_sha256": "9bae7b55ff927f31fbc8f8b53a40976d96ee45a1481b17113334988af437448b",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/15b952f3f3f0f664": {
+    "seed": 71000801,
+    "alpha": 0.1,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.024930228828404087,
+      0.024930228828404087,
+      0.024930228828404087,
+      0.024930228828404087,
+      0.013359778836620382,
+      0.013359778836620382,
+      0.013359778836620382,
+      0.013359778836620382
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/15b952f3f3f0f664",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.9,
+    "dimension_label": "nominal D=2.1; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2768399693399021,
+      0.5831600306600979
+    ],
+    "identity_sha256": "1e41e1072205371e017b35bf34c5db7ec1fa0772cfd39f15516c64eac450090c",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/15b952f3f3f0f664/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.1,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.024168025488132006,
+      0.024168025488132006,
+      0.024168025488132006,
+      0.024168025488132006,
+      0.012951324180040313,
+      0.012951324180040313,
+      0.012951324180040313,
+      0.012951324180040313,
+      0.006940442780435912,
+      0.006940442780435912,
+      0.006940442780435912,
+      0.006940442780435912
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/15b952f3f3f0f664/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.9,
+    "dimension_label": "nominal D=2.1; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.25376083020556706,
+      0.6062391697944329
+    ],
+    "identity_sha256": "69db5a9286076880323bc80dc53dea739b3e27934c04ba304605baac90ee9f27",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/c3103ce39a82cb76": {
+    "seed": 71000801,
+    "alpha": 0.1,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.024930228828404087,
+      0.024930228828404087,
+      0.024930228828404087,
+      0.024930228828404087,
+      0.013359778836620382,
+      0.013359778836620382,
+      0.013359778836620382,
+      0.013359778836620382
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/c3103ce39a82cb76",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.9,
+    "dimension_label": "nominal D=2.1; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2768399693399021,
+      0.5831600306600979
+    ],
+    "identity_sha256": "423e704028ffad1ab45ac6db99048d5a8ae8889b4ada79a9acc4ac31569aea26",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/c3103ce39a82cb76/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.1,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.024168025488132006,
+      0.024168025488132006,
+      0.024168025488132006,
+      0.024168025488132006,
+      0.012951324180040313,
+      0.012951324180040313,
+      0.012951324180040313,
+      0.012951324180040313,
+      0.006940442780435912,
+      0.006940442780435912,
+      0.006940442780435912,
+      0.006940442780435912
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/c3103ce39a82cb76/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.9,
+    "dimension_label": "nominal D=2.1; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.25376083020556706,
+      0.6062391697944329
+    ],
+    "identity_sha256": "7e07a3418a57a76f031c426444681e825dc948ed73c6affdf130c98bab4da429",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/d1b1c917f9ff436a": {
+    "seed": 71000801,
+    "alpha": 0.2,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04905341588208001,
+      0.028173789065365367
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/d1b1c917f9ff436a",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.8,
+    "dimension_label": "D=2.2 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3527727950525546,
+      0.5072272049474453
+    ],
+    "identity_sha256": "0ff86bcd37c448d1745fa41af58d71924a85f222a18e76419e4044d148102be8",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/d1b1c917f9ff436a/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.2,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04716181404457218,
+      0.02708734910583806,
+      0.015557596679553296
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/d1b1c917f9ff436a/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.8,
+    "dimension_label": "D=2.2 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.34019324017003644,
+      0.5198067598299635
+    ],
+    "identity_sha256": "89d2951f418259b1808582f28262372de23a0bfdd4069bf7c8c5eb4b67f7bb01",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/5a8903fd286535cf": {
+    "seed": 71000801,
+    "alpha": 0.2,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04905341588208001,
+      0.028173789065365367
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/5a8903fd286535cf",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.8,
+    "dimension_label": "nominal D=2.2; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3527727950525546,
+      0.5072272049474453
+    ],
+    "identity_sha256": "16ab1382b571f61b73a55a56b144190dff35842edd0525508619dcffd6e89e62",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/5a8903fd286535cf/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.2,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04716181404457218,
+      0.02708734910583806,
+      0.015557596679553296
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/5a8903fd286535cf/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.8,
+    "dimension_label": "nominal D=2.2; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.34019324017003644,
+      0.5198067598299635
+    ],
+    "identity_sha256": "ffbe226c25cea8771f4faa200773fb20e9ed6132bfb911419816bc05e26d8fec",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/4a3c83fa154ca39e": {
+    "seed": 71000801,
+    "alpha": 0.2,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.024526707941040005,
+      0.024526707941040005,
+      0.024526707941040005,
+      0.024526707941040005,
+      0.014086894532682684,
+      0.014086894532682684,
+      0.014086894532682684,
+      0.014086894532682684
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/4a3c83fa154ca39e",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.8,
+    "dimension_label": "nominal D=2.2; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27554559010510926,
+      0.5844544098948907
+    ],
+    "identity_sha256": "aec8832eb7be61360fd48c2798d13e84064d0601892f1e39628d46b93bcb6936",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/4a3c83fa154ca39e/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.2,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.02358090702228609,
+      0.02358090702228609,
+      0.02358090702228609,
+      0.02358090702228609,
+      0.01354367455291903,
+      0.01354367455291903,
+      0.01354367455291903,
+      0.01354367455291903,
+      0.007778798339776648,
+      0.007778798339776648,
+      0.007778798339776648,
+      0.007778798339776648
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/4a3c83fa154ca39e/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.8,
+    "dimension_label": "nominal D=2.2; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.25038648034007294,
+      0.609613519659927
+    ],
+    "identity_sha256": "3c26c61fbb33d1784c8ff9cfe71d06ef7c0a65ae07684ee8f8d029651ca765ed",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/cb532fb06223d022": {
+    "seed": 71000801,
+    "alpha": 0.2,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.024526707941040005,
+      0.024526707941040005,
+      0.024526707941040005,
+      0.024526707941040005,
+      0.014086894532682684,
+      0.014086894532682684,
+      0.014086894532682684,
+      0.014086894532682684
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/cb532fb06223d022",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.8,
+    "dimension_label": "nominal D=2.2; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27554559010510926,
+      0.5844544098948907
+    ],
+    "identity_sha256": "a7ce3675f76f8334c65ea8dfc6b50311de75959e2ddd3f785ea3cdeee7dc3fb2",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/cb532fb06223d022/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.2,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.02358090702228609,
+      0.02358090702228609,
+      0.02358090702228609,
+      0.02358090702228609,
+      0.01354367455291903,
+      0.01354367455291903,
+      0.01354367455291903,
+      0.01354367455291903,
+      0.007778798339776648,
+      0.007778798339776648,
+      0.007778798339776648,
+      0.007778798339776648
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/cb532fb06223d022/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.8,
+    "dimension_label": "nominal D=2.2; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.25038648034007294,
+      0.609613519659927
+    ],
+    "identity_sha256": "66adace6613043a8e714a8ff98e6e5e5e94d5269ae36ac4bbaa74674699a5911",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/967a43f58c15a87c": {
+    "seed": 71000801,
+    "alpha": 0.3,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04817303562198272,
+      0.029653981839934836
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/967a43f58c15a87c",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.7,
+    "dimension_label": "D=2.3 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.35217298253808244,
+      0.5078270174619175
+    ],
+    "identity_sha256": "5682336f4ac2533bd1ac36738cc5b42d0f29b07d1d94a5db773d8fd2b45f7eca",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/967a43f58c15a87c/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.3,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.045845212946775904,
+      0.02822103889901559,
+      0.017372087189656306
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/967a43f58c15a87c/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.7,
+    "dimension_label": "D=2.3 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3385616609645522,
+      0.5214383390354478
+    ],
+    "identity_sha256": "7aa1af1325b25ae0cad6f074063b6926b4c4aec9775c2d84bb384a6b5273fcbd",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/10d0540fb8d6bf66": {
+    "seed": 71000801,
+    "alpha": 0.3,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04817303562198272,
+      0.029653981839934836
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/10d0540fb8d6bf66",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.7,
+    "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.35217298253808244,
+      0.5078270174619175
+    ],
+    "identity_sha256": "ad1623da47f5f0c6d7c8def81eb879f46ceb6bc58e451c4770374cfc4dabdcb2",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/10d0540fb8d6bf66/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.3,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.045845212946775904,
+      0.02822103889901559,
+      0.017372087189656306
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/10d0540fb8d6bf66/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.7,
+    "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3385616609645522,
+      0.5214383390354478
+    ],
+    "identity_sha256": "6226b5bb1b78ddd3ed0362c528eaaaf99eadcbb89975453316eae14254bfb58b",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/41921ec1a082b206": {
+    "seed": 71000801,
+    "alpha": 0.3,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.02408651781099136,
+      0.02408651781099136,
+      0.02408651781099136,
+      0.02408651781099136,
+      0.014826990919967418,
+      0.014826990919967418,
+      0.014826990919967418,
+      0.014826990919967418
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/41921ec1a082b206",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.7,
+    "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2743459650761649,
+      0.585654034923835
+    ],
+    "identity_sha256": "c4f414d2e340235b8c7018b0083ad2851cb6f5baf7862f9d179782f8acbbd4dc",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/41921ec1a082b206/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.3,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.022922606473387952,
+      0.022922606473387952,
+      0.022922606473387952,
+      0.022922606473387952,
+      0.014110519449507796,
+      0.014110519449507796,
+      0.014110519449507796,
+      0.014110519449507796,
+      0.008686043594828153,
+      0.008686043594828153,
+      0.008686043594828153,
+      0.008686043594828153
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/41921ec1a082b206/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.7,
+    "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.24712332192910438,
+      0.6128766780708956
+    ],
+    "identity_sha256": "e88498e8a615312d81492c4052e0d7c54529045ecd38fa8eb01080aec6f2ac13",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/facd4d70a4f48076": {
+    "seed": 71000801,
+    "alpha": 0.3,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.02408651781099136,
+      0.02408651781099136,
+      0.02408651781099136,
+      0.02408651781099136,
+      0.014826990919967418,
+      0.014826990919967418,
+      0.014826990919967418,
+      0.014826990919967418
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/facd4d70a4f48076",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.7,
+    "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2743459650761649,
+      0.585654034923835
+    ],
+    "identity_sha256": "baa6e0cc38ad96ffb81b53815b737ed0df0586ddbe1d598d07e6f7257a6bf6a4",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/facd4d70a4f48076/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.3,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.022922606473387952,
+      0.022922606473387952,
+      0.022922606473387952,
+      0.022922606473387952,
+      0.014110519449507796,
+      0.014110519449507796,
+      0.014110519449507796,
+      0.014110519449507796,
+      0.008686043594828153,
+      0.008686043594828153,
+      0.008686043594828153,
+      0.008686043594828153
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/facd4d70a4f48076/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.7,
+    "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.24712332192910438,
+      0.6128766780708956
+    ],
+    "identity_sha256": "766bcfd4a4f5ddf925782e2524dc32969897520f5dbbf770f67136ce358fdee0",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/5290464b58d5ba0b": {
+    "seed": 71000801,
+    "alpha": 0.4,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04721797810078945,
+      0.031152247817346476
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/5290464b58d5ba0b",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.6,
+    "dimension_label": "D=2.4 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3516297740818641,
+      0.508370225918136
+    ],
+    "identity_sha256": "952ae68cccc31fa3da50188898bbd8c470bb573ed3c29e802c0cbd0c78bdda24",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/5290464b58d5ba0b/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.4,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.0443795682203336,
+      0.02927959567170776,
+      0.01931732905652509
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/5290464b58d5ba0b/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.6,
+    "dimension_label": "D=2.4 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3370235070514335,
+      0.5229764929485664
+    ],
+    "identity_sha256": "c7eda4a46b9c22238430e66f3b5c0f565dbad8987cdf219ca6a91ee5e1a53f14",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/e8dc0490d8e9724b": {
+    "seed": 71000801,
+    "alpha": 0.4,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04721797810078945,
+      0.031152247817346476
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/e8dc0490d8e9724b",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.6,
+    "dimension_label": "nominal D=2.4; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3516297740818641,
+      0.508370225918136
+    ],
+    "identity_sha256": "baa837cc17f25a42a9444ea496e7ee1800a0f778fd4f51836b96bbead3f82059",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/e8dc0490d8e9724b/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.4,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.0443795682203336,
+      0.02927959567170776,
+      0.01931732905652509
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/e8dc0490d8e9724b/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.6,
+    "dimension_label": "nominal D=2.4; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3370235070514335,
+      0.5229764929485664
+    ],
+    "identity_sha256": "165092693eda46781545e398fd04b3d25493665dd659595c5be51644b2f361f0",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/57f71b7caf76e73b": {
+    "seed": 71000801,
+    "alpha": 0.4,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.023608989050394723,
+      0.023608989050394723,
+      0.023608989050394723,
+      0.023608989050394723,
+      0.015576123908673238,
+      0.015576123908673238,
+      0.015576123908673238,
+      0.015576123908673238
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/57f71b7caf76e73b",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.6,
+    "dimension_label": "nominal D=2.4; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27325954816372816,
+      0.5867404518362718
+    ],
+    "identity_sha256": "253c3b037ff747974b57a8527392d60b66c546be6ea0c4cd0e4b760a057247ac",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/57f71b7caf76e73b/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.4,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.0221897841101668,
+      0.0221897841101668,
+      0.0221897841101668,
+      0.0221897841101668,
+      0.01463979783585388,
+      0.01463979783585388,
+      0.01463979783585388,
+      0.01463979783585388,
+      0.009658664528262546,
+      0.009658664528262546,
+      0.009658664528262546,
+      0.009658664528262546
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/57f71b7caf76e73b/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.6,
+    "dimension_label": "nominal D=2.4; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.24404701410286708,
+      0.6159529858971329
+    ],
+    "identity_sha256": "ff98911ae4756afbf5adef971dae4ee38ca4499e4ecbaae9a39c355181c8bc89",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/850a22b656e7d116": {
+    "seed": 71000801,
+    "alpha": 0.4,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.023608989050394723,
+      0.023608989050394723,
+      0.023608989050394723,
+      0.023608989050394723,
+      0.015576123908673238,
+      0.015576123908673238,
+      0.015576123908673238,
+      0.015576123908673238
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/850a22b656e7d116",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.6,
+    "dimension_label": "nominal D=2.4; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27325954816372816,
+      0.5867404518362718
+    ],
+    "identity_sha256": "2b5ab603c74d6fd7ec611f5143eac8e3536420b63ce924c5254aed63c0aa9a6b",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/850a22b656e7d116/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.4,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.0221897841101668,
+      0.0221897841101668,
+      0.0221897841101668,
+      0.0221897841101668,
+      0.01463979783585388,
+      0.01463979783585388,
+      0.01463979783585388,
+      0.01463979783585388,
+      0.009658664528262546,
+      0.009658664528262546,
+      0.009658664528262546,
+      0.009658664528262546
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/850a22b656e7d116/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.6,
+    "dimension_label": "nominal D=2.4; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.24404701410286708,
+      0.6159529858971329
+    ],
+    "identity_sha256": "63767e55302e04c95eb00c1c6c2e2bf140eb191d7298e8e126a3fa1fa5d31a57",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/f131c182aee4f188": {
+    "seed": 71000801,
+    "alpha": 0.5,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.046188021535170064,
+      0.032659863237109045
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/f131c182aee4f188",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.5,
+    "dimension_label": "D=2.5 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3511521152277209,
+      0.508847884772279
+    ],
+    "identity_sha256": "0019b6f59ac864876852908a6762af71bfb90dd26fa0b186368f094dccf7a1d6",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/f131c182aee4f188/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.5,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.042761798705987904,
+      0.03023715784073818,
+      0.021380899352993952
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/f131c182aee4f188/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.5,
+    "dimension_label": "D=2.5 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.33562014410027996,
+      0.52437985589972
+    ],
+    "identity_sha256": "0ee94d0292748d3364644dec44ccf039fa6c2ef08cae57edf464552b0f8266d7",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/a2a6e09d542bc40a": {
+    "seed": 71000801,
+    "alpha": 0.5,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.046188021535170064,
+      0.032659863237109045
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/a2a6e09d542bc40a",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.5,
+    "dimension_label": "nominal D=2.5; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3511521152277209,
+      0.508847884772279
+    ],
+    "identity_sha256": "7596fc7a868eb9ec6af381b19831a31cbf6c3d3798437a41e048e9a5f039ad03",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/a2a6e09d542bc40a/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.5,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.042761798705987904,
+      0.03023715784073818,
+      0.021380899352993952
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/a2a6e09d542bc40a/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.5,
+    "dimension_label": "nominal D=2.5; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.33562014410027996,
+      0.52437985589972
+    ],
+    "identity_sha256": "79291b15e4df81264fadc0d9fe962ea49951c0b395a5272675ba59a40f329bf4",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/d7d684a775e2e0e3": {
+    "seed": 71000801,
+    "alpha": 0.5,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.023094010767585032,
+      0.023094010767585032,
+      0.023094010767585032,
+      0.023094010767585032,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/d7d684a775e2e0e3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.5,
+    "dimension_label": "nominal D=2.5; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2723042304554418,
+      0.5876957695445582
+    ],
+    "identity_sha256": "f74bfa5647a32d8d46569e4fa748884acb1b0033a80d899f1ebdc7a9e6ea952b",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/d7d684a775e2e0e3/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.5,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.021380899352993952,
+      0.021380899352993952,
+      0.021380899352993952,
+      0.021380899352993952,
+      0.01511857892036909,
+      0.01511857892036909,
+      0.01511857892036909,
+      0.01511857892036909,
+      0.010690449676496976,
+      0.010690449676496976,
+      0.010690449676496976,
+      0.010690449676496976
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/d7d684a775e2e0e3/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.5,
+    "dimension_label": "nominal D=2.5; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.24124028820055993,
+      0.6187597117994401
+    ],
+    "identity_sha256": "f81f41f19da6b52c66925ff31568581d4144ccc399e68f4679cc9284f6c43d3a",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/c8514484ba11d1f4": {
+    "seed": 71000801,
+    "alpha": 0.5,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.023094010767585032,
+      0.023094010767585032,
+      0.023094010767585032,
+      0.023094010767585032,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/c8514484ba11d1f4",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.5,
+    "dimension_label": "nominal D=2.5; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2723042304554418,
+      0.5876957695445582
+    ],
+    "identity_sha256": "40269698083d2aeb5faa5af39859879a00b2cb7da4a7a856d62f0f9dfa9eaebc",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/c8514484ba11d1f4/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.5,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.021380899352993952,
+      0.021380899352993952,
+      0.021380899352993952,
+      0.021380899352993952,
+      0.01511857892036909,
+      0.01511857892036909,
+      0.01511857892036909,
+      0.01511857892036909,
+      0.010690449676496976,
+      0.010690449676496976,
+      0.010690449676496976,
+      0.010690449676496976
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/c8514484ba11d1f4/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.5,
+    "dimension_label": "nominal D=2.5; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.24124028820055993,
+      0.6187597117994401
+    ],
+    "identity_sha256": "b6833ba6a66f95b7d8a3646fdcfbc36245940d24a63de305b42e0d995dee5123",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/e7ba78e01c7d58d8": {
+    "seed": 71000801,
+    "alpha": 0.6,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04508420941083317,
+      0.034167441546011916
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/e7ba78e01c7d58d8",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.4,
+    "dimension_label": "D=2.6 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3507483490431549,
+      0.5092516509568451
+    ],
+    "identity_sha256": "d3b153acd94e22369e7011a1ebcb7596ac6dfd192bee7ed254717a2c56ef96be",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/e7ba78e01c7d58d8/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.6,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04099356856955014,
+      0.03106731550062355,
+      0.023544622390650197
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/e7ba78e01c7d58d8/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.4,
+    "dimension_label": "D=2.6 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3343944935391761,
+      0.5256055064608238
+    ],
+    "identity_sha256": "bedcd175adcf4c9d7dcf59090d4ebe5ea174f489d403b8451f560ff2288a7049",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/9dfaf109c5e3d82b": {
+    "seed": 71000801,
+    "alpha": 0.6,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04508420941083317,
+      0.034167441546011916
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/9dfaf109c5e3d82b",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.4,
+    "dimension_label": "nominal D=2.6; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3507483490431549,
+      0.5092516509568451
+    ],
+    "identity_sha256": "57bec25e3edfe32fc24e3b741b6699e9f648ced7774ca7dcbab9818bc992d515",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/9dfaf109c5e3d82b/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.6,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04099356856955014,
+      0.03106731550062355,
+      0.023544622390650197
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/9dfaf109c5e3d82b/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.4,
+    "dimension_label": "nominal D=2.6; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3343944935391761,
+      0.5256055064608238
+    ],
+    "identity_sha256": "6b1a94f49f9c18a8b395504321c7ecb0763254df7e01dc05708273f09acb75e8",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/3fc86d7f564da0de": {
+    "seed": 71000801,
+    "alpha": 0.6,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.022542104705416587,
+      0.022542104705416587,
+      0.022542104705416587,
+      0.022542104705416587,
+      0.017083720773005958,
+      0.017083720773005958,
+      0.017083720773005958,
+      0.017083720773005958
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/3fc86d7f564da0de",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.4,
+    "dimension_label": "nominal D=2.6; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27149669808630983,
+      0.5885033019136902
+    ],
+    "identity_sha256": "188ad9a790360394d5aac8d3f98fda9c72ee7dff57190683b5e427f5f113b4df",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/3fc86d7f564da0de/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.6,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.02049678428477507,
+      0.02049678428477507,
+      0.02049678428477507,
+      0.02049678428477507,
+      0.015533657750311776,
+      0.015533657750311776,
+      0.015533657750311776,
+      0.015533657750311776,
+      0.011772311195325099,
+      0.011772311195325099,
+      0.011772311195325099,
+      0.011772311195325099
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/3fc86d7f564da0de/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.4,
+    "dimension_label": "nominal D=2.6; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.23878898707835222,
+      0.6212110129216477
+    ],
+    "identity_sha256": "06c1484e16022d0199ff35de6b0f26e10b0b4307e28189361dc31f0d6e6c551e",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/0d6e91c214b4cfcc": {
+    "seed": 71000801,
+    "alpha": 0.6,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.022542104705416587,
+      0.022542104705416587,
+      0.022542104705416587,
+      0.022542104705416587,
+      0.017083720773005958,
+      0.017083720773005958,
+      0.017083720773005958,
+      0.017083720773005958
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/0d6e91c214b4cfcc",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.4,
+    "dimension_label": "nominal D=2.6; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27149669808630983,
+      0.5885033019136902
+    ],
+    "identity_sha256": "6905dee2d0066ca485fb364bb4909fa9b99457584dea2e6390f1404e34505ec4",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/0d6e91c214b4cfcc/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.6,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.02049678428477507,
+      0.02049678428477507,
+      0.02049678428477507,
+      0.02049678428477507,
+      0.015533657750311776,
+      0.015533657750311776,
+      0.015533657750311776,
+      0.015533657750311776,
+      0.011772311195325099,
+      0.011772311195325099,
+      0.011772311195325099,
+      0.011772311195325099
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/0d6e91c214b4cfcc/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.4,
+    "dimension_label": "nominal D=2.6; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.23878898707835222,
+      0.6212110129216477
+    ],
+    "identity_sha256": "984d93610df5f49ac2a1eaac647c083890d485404d6c11e5ddb21933f130d878",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/6428ddd59c27ad43": {
+    "seed": 71000801,
+    "alpha": 0.7,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04390895820160113,
+      0.035665156520756296
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/6428ddd59c27ad43",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.30000000000000004,
+    "dimension_label": "D=2.7 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.35042588527764257,
+      0.5095741147223574
+    ],
+    "identity_sha256": "0e91572ad8f44efcd2dd297d1fbefc5c258b7f7351186182adbfc341748eac50",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/6428ddd59c27ad43/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.7,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.039082284791777375,
+      0.03174467947719803,
+      0.02578469197691471
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/6428ddd59c27ad43/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.30000000000000004,
+    "dimension_label": "D=2.7 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.33338834375410986,
+      0.5266116562458901
+    ],
+    "identity_sha256": "cb094777d81d7713eb63d8407b1d97935acc09b19741e3d7ea8490d83e9c8c21",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/4bbfcea8a024cc8c": {
+    "seed": 71000801,
+    "alpha": 0.7,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04390895820160113,
+      0.035665156520756296
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/4bbfcea8a024cc8c",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.30000000000000004,
+    "dimension_label": "nominal D=2.7; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.35042588527764257,
+      0.5095741147223574
+    ],
+    "identity_sha256": "2715debb8b30a46d83648b344705640a80a6965391aaef1220675eba8b9ae5ae",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/4bbfcea8a024cc8c/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.7,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.039082284791777375,
+      0.03174467947719803,
+      0.02578469197691471
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/4bbfcea8a024cc8c/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.30000000000000004,
+    "dimension_label": "nominal D=2.7; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.33338834375410986,
+      0.5266116562458901
+    ],
+    "identity_sha256": "acc51b691456a7f09e28c617631a83a7d91a3baef5f1f1342257efb3ebdc1140",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/e0e5121cb139be6a": {
+    "seed": 71000801,
+    "alpha": 0.7,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.021954479100800565,
+      0.021954479100800565,
+      0.021954479100800565,
+      0.021954479100800565,
+      0.017832578260378148,
+      0.017832578260378148,
+      0.017832578260378148,
+      0.017832578260378148
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/e0e5121cb139be6a",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.30000000000000004,
+    "dimension_label": "nominal D=2.7; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27085177055528514,
+      0.5891482294447148
+    ],
+    "identity_sha256": "bb11ff28a15e5ce8799cdbcd25b2f2c61c73a7d71d2ddc6ac3818641a28f31d6",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/e0e5121cb139be6a/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.7,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.019541142395888687,
+      0.019541142395888687,
+      0.019541142395888687,
+      0.019541142395888687,
+      0.015872339738599014,
+      0.015872339738599014,
+      0.015872339738599014,
+      0.015872339738599014,
+      0.012892345988457355,
+      0.012892345988457355,
+      0.012892345988457355,
+      0.012892345988457355
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/e0e5121cb139be6a/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.30000000000000004,
+    "dimension_label": "nominal D=2.7; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.23677668750821976,
+      0.6232233124917802
+    ],
+    "identity_sha256": "fd281b15c6756c9c880a8a4833f8ac5e17ff70516895b3932faabeb97d6b2a32",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/1da825f617926adf": {
+    "seed": 71000801,
+    "alpha": 0.7,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.021954479100800565,
+      0.021954479100800565,
+      0.021954479100800565,
+      0.021954479100800565,
+      0.017832578260378148,
+      0.017832578260378148,
+      0.017832578260378148,
+      0.017832578260378148
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/1da825f617926adf",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.30000000000000004,
+    "dimension_label": "nominal D=2.7; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27085177055528514,
+      0.5891482294447148
+    ],
+    "identity_sha256": "14747cdcf6e9a663e0e9d4968ebca8fb7fb47e6da2ef691997f91353fdf896a8",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/1da825f617926adf/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.7,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.019541142395888687,
+      0.019541142395888687,
+      0.019541142395888687,
+      0.019541142395888687,
+      0.015872339738599014,
+      0.015872339738599014,
+      0.015872339738599014,
+      0.015872339738599014,
+      0.012892345988457355,
+      0.012892345988457355,
+      0.012892345988457355,
+      0.012892345988457355
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/1da825f617926adf/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.30000000000000004,
+    "dimension_label": "nominal D=2.7; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.23677668750821976,
+      0.6232233124917802
+    ],
+    "identity_sha256": "75e5baf3bfbee2a65612c6e3917a425c461b88408df27ecc2453c303888cf1bf",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/e5f2c42ba976986b": {
+    "seed": 71000801,
+    "alpha": 0.8,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04266611103836989,
+      0.03714300699810789
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/e5f2c42ba976986b",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.19999999999999996,
+    "dimension_label": "D=2.8 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3501908819635222,
+      0.5098091180364778
+    ],
+    "identity_sha256": "60ff577f9a8ef0a91d02de126b7e294805b80d4c929cebc42256916b2e3e9e26",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/e5f2c42ba976986b/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.8,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.03704174170088434,
+      0.03224670910317439,
+      0.028072390774214726
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/e5f2c42ba976986b/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.19999999999999996,
+    "dimension_label": "D=2.8 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.33263915842172653,
+      0.5273608415782735
+    ],
+    "identity_sha256": "63c1b1fa6d8525b861725c08390541fa0200e703cd7436ee1eaf73e132cd84b4",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/7a9366cb2f619098": {
+    "seed": 71000801,
+    "alpha": 0.8,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04266611103836989,
+      0.03714300699810789
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/7a9366cb2f619098",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.19999999999999996,
+    "dimension_label": "nominal D=2.8; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3501908819635222,
+      0.5098091180364778
+    ],
+    "identity_sha256": "59adf70c73434c17805ac5e13dd27c00b8d50d2130c384e9c93111b2200718c8",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/7a9366cb2f619098/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.8,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.03704174170088434,
+      0.03224670910317439,
+      0.028072390774214726
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/7a9366cb2f619098/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.19999999999999996,
+    "dimension_label": "nominal D=2.8; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.33263915842172653,
+      0.5273608415782735
+    ],
+    "identity_sha256": "df2cb3a8fdfb7f9f92dd14c92b937fe089ad5d84edb6cb2b75b1e8fa1c931cb8",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/825c112ef67282ce": {
+    "seed": 71000801,
+    "alpha": 0.8,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.021333055519184945,
+      0.021333055519184945,
+      0.021333055519184945,
+      0.021333055519184945,
+      0.018571503499053944,
+      0.018571503499053944,
+      0.018571503499053944,
+      0.018571503499053944
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/825c112ef67282ce",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.19999999999999996,
+    "dimension_label": "nominal D=2.8; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27038176392704444,
+      0.5896182360729556
+    ],
+    "identity_sha256": "104a3ab1d3558bb7c0fd3420320218ad7e1dd57e18474bf3a4144d6a7f626402",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/825c112ef67282ce/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.8,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.01852087085044217,
+      0.01852087085044217,
+      0.01852087085044217,
+      0.01852087085044217,
+      0.016123354551587196,
+      0.016123354551587196,
+      0.016123354551587196,
+      0.016123354551587196,
+      0.014036195387107363,
+      0.014036195387107363,
+      0.014036195387107363,
+      0.014036195387107363
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/825c112ef67282ce/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.19999999999999996,
+    "dimension_label": "nominal D=2.8; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.23527831684345307,
+      0.624721683156547
+    ],
+    "identity_sha256": "5ea78d35a654bcc89e078b0e731a6b52920aa6f9ca3fb1254211a4f3cc3dd4b0",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/4e2839f0d9204f57": {
+    "seed": 71000801,
+    "alpha": 0.8,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.021333055519184945,
+      0.021333055519184945,
+      0.021333055519184945,
+      0.021333055519184945,
+      0.018571503499053944,
+      0.018571503499053944,
+      0.018571503499053944,
+      0.018571503499053944
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/4e2839f0d9204f57",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.19999999999999996,
+    "dimension_label": "nominal D=2.8; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.27038176392704444,
+      0.5896182360729556
+    ],
+    "identity_sha256": "c74695ae5c9cec62297029b19e324b67f8a6cbafb75fc59e47a07365bc291914",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/4e2839f0d9204f57/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.8,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.01852087085044217,
+      0.01852087085044217,
+      0.01852087085044217,
+      0.01852087085044217,
+      0.016123354551587196,
+      0.016123354551587196,
+      0.016123354551587196,
+      0.016123354551587196,
+      0.014036195387107363,
+      0.014036195387107363,
+      0.014036195387107363,
+      0.014036195387107363
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/4e2839f0d9204f57/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.19999999999999996,
+    "dimension_label": "nominal D=2.8; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.23527831684345307,
+      0.624721683156547
+    ],
+    "identity_sha256": "6cbef015c3c05a0bf4e5af0d518bdc074ef086936d18551150d4c57e863dcb73",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/8c244d57f77ecaef": {
+    "seed": 71000801,
+    "alpha": 0.9,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.041360926928907714,
+      0.03859110938521406
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/8c244d57f77ecaef",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.09999999999999998,
+    "dimension_label": "D=2.9 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3500479636858782,
+      0.5099520363141218
+    ],
+    "identity_sha256": "4e686949c1a2a17f9360eb7542f8ce054608a764ead15f0489261bb220aa422c",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/8c244d57f77ecaef/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.9,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.034892214130324874,
+      0.03255558693135988,
+      0.0303754366658033
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/8c244d57f77ecaef/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.09999999999999998,
+    "dimension_label": "D=2.9 ideal canonical ridge; finite sample is smooth",
+    "continuous_range_bound": [
+      0.3321767622725119,
+      0.5278232377274881
+    ],
+    "identity_sha256": "81e1db339fec5a0682ec85442cbe81ffde8dbead72bc23b14c0ff6c3addd3224",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/ac9d61885e99a83c": {
+    "seed": 71000801,
+    "alpha": 0.9,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.041360926928907714,
+      0.03859110938521406
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/ac9d61885e99a83c",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.09999999999999998,
+    "dimension_label": "nominal D=2.9; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3500479636858782,
+      0.5099520363141218
+    ],
+    "identity_sha256": "dddc57329c3a6dad74db8c6f48770f8fc2bcc6b038256e9c40c617e91b73c377",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/ac9d61885e99a83c/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.9,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.034892214130324874,
+      0.03255558693135988,
+      0.0303754366658033
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/ac9d61885e99a83c/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.09999999999999998,
+    "dimension_label": "nominal D=2.9; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.3321767622725119,
+      0.5278232377274881
+    ],
+    "identity_sha256": "da43a52dfb32cd2afc99b70894f9aad8b03a0d4492da809b903c48cd522f9bbb",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/0330e41897403b3e": {
+    "seed": 71000801,
+    "alpha": 0.9,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.020680463464453857,
+      0.020680463464453857,
+      0.020680463464453857,
+      0.020680463464453857,
+      0.01929555469260703,
+      0.01929555469260703,
+      0.01929555469260703,
+      0.01929555469260703
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/0330e41897403b3e",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.09999999999999998,
+    "dimension_label": "nominal D=2.9; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2700959273717565,
+      0.5899040726282435
+    ],
+    "identity_sha256": "fb41a8c86240d41c9db84017b5bb4ccb233a7ef0d96fe5fe3c630bd561f7e65c",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/0330e41897403b3e/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.9,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.017446107065162437,
+      0.017446107065162437,
+      0.017446107065162437,
+      0.017446107065162437,
+      0.01627779346567994,
+      0.01627779346567994,
+      0.01627779346567994,
+      0.01627779346567994,
+      0.01518771833290165,
+      0.01518771833290165,
+      0.01518771833290165,
+      0.01518771833290165
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/0330e41897403b3e/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.09999999999999998,
+    "dimension_label": "nominal D=2.9; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2343535245450239,
+      0.6256464754549761
+    ],
+    "identity_sha256": "078e709f540c62c62a04a4ca8bf0f537e2869187e12a2ba8aecddf8c6f31d2d9",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/dc09990dccda2de1": {
+    "seed": 71000801,
+    "alpha": 0.9,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.020680463464453857,
+      0.020680463464453857,
+      0.020680463464453857,
+      0.020680463464453857,
+      0.01929555469260703,
+      0.01929555469260703,
+      0.01929555469260703,
+      0.01929555469260703
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/dc09990dccda2de1",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.09999999999999998,
+    "dimension_label": "nominal D=2.9; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2700959273717565,
+      0.5899040726282435
+    ],
+    "identity_sha256": "ebbf91ca77349ecf1f63136fc0abd198a715bc6ef054445f1c8e3a7020a66105",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/dc09990dccda2de1/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 0.9,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.017446107065162437,
+      0.017446107065162437,
+      0.017446107065162437,
+      0.017446107065162437,
+      0.01627779346567994,
+      0.01627779346567994,
+      0.01627779346567994,
+      0.01627779346567994,
+      0.01518771833290165,
+      0.01518771833290165,
+      0.01518771833290165,
+      0.01518771833290165
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/dc09990dccda2de1/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.09999999999999998,
+    "dimension_label": "nominal D=2.9; finite sample smooth, dimension theorem not transferred",
+    "continuous_range_bound": [
+      0.2343535245450239,
+      0.6256464754549761
+    ],
+    "identity_sha256": "b648021c6048cbfd45bc83be64de83934d9b08ce1cde33874e2ce97f881063ad",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/a6a9d28d384e522f": {
+    "seed": 71000801,
+    "alpha": 1.0,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04,
+      0.04
+    ],
+    "phases": [
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/a6a9d28d384e522f",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.0,
+    "dimension_label": "D=3.0 label: finite-bandwidth H=0 stress, no convergent-series claim",
+    "continuous_range_bound": [
+      0.35,
+      0.51
+    ],
+    "identity_sha256": "31a96a1e6a3f55a16f504f10f65ce5038ebcda7c30b54ca8d2e3b72ec751bc2b",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/canonical-ridge-1-0/a6a9d28d384e522f/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 1.0,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.032659863237109045,
+      0.032659863237109045,
+      0.032659863237109045
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/canonical-ridge-1-0",
+    "parent_id": "roughness-development/canonical-ridge-1-0/a6a9d28d384e522f/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.0,
+    "dimension_label": "D=3.0 label: finite-bandwidth H=0 stress, no convergent-series claim",
+    "continuous_range_bound": [
+      0.33202041028867285,
+      0.5279795897113271
+    ],
+    "identity_sha256": "b91c552b8d52aa041291dbdebba69658b395b85e34cc2e29a0a355bfe1469fba",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/894f1b70d37fc2ee": {
+    "seed": 71000801,
+    "alpha": 1.0,
+    "generator": "ridge",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.04,
+      0.04
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349
+    ],
+    "shell_indices": [
+      0,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/894f1b70d37fc2ee",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.0,
+    "dimension_label": "D=3.0 label: finite-bandwidth H=0 stress, no convergent-series claim",
+    "continuous_range_bound": [
+      0.35,
+      0.51
+    ],
+    "identity_sha256": "c77f3bc3bab0224ba34e372f8a2993a324e8c4d1d68334fe7fb535bd5c11acf0",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/894f1b70d37fc2ee/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 1.0,
+    "generator": "ridge",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "amplitudes": [
+      0.032659863237109045,
+      0.032659863237109045,
+      0.032659863237109045
+    ],
+    "phases": [
+      0.5106225844963527,
+      2.018328078279349,
+      4.2364884014197495
+    ],
+    "shell_indices": [
+      0,
+      1,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/894f1b70d37fc2ee/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.0,
+    "dimension_label": "D=3.0 label: finite-bandwidth H=0 stress, no convergent-series claim",
+    "continuous_range_bound": [
+      0.33202041028867285,
+      0.5279795897113271
+    ],
+    "identity_sha256": "6b468bf65858c1a66d6f752d8edb60beb5ecf870209bdb94aa4a7a073ab9b6af",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/d9356a7408b51bbe": {
+    "seed": 71000801,
+    "alpha": 1.0,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.02,
+      0.02,
+      0.02,
+      0.02,
+      0.02,
+      0.02,
+      0.02,
+      0.02
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/d9356a7408b51bbe",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.0,
+    "dimension_label": "D=3.0 label: finite-bandwidth H=0 stress, no convergent-series claim",
+    "continuous_range_bound": [
+      0.27,
+      0.59
+    ],
+    "identity_sha256": "4e2a8d410d28a49fc0943163f878c6f8346f8e748c013f3a541ce45e90b60b79",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/d9356a7408b51bbe/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 1.0,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "structured",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522
+    ],
+    "phases": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/d9356a7408b51bbe/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.0,
+    "dimension_label": "D=3.0 label: finite-bandwidth H=0 stress, no convergent-series claim",
+    "continuous_range_bound": [
+      0.2340408205773457,
+      0.6259591794226542
+    ],
+    "identity_sha256": "743fb73d7021d76462f31ca24a95be885070225020e0c0765d50fd07ab508a80",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/8b55e4349ae957a3": {
+    "seed": 71000801,
+    "alpha": 1.0,
+    "generator": "multiscale_2d",
+    "levels": 2,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "amplitudes": [
+      0.02,
+      0.02,
+      0.02,
+      0.02,
+      0.02,
+      0.02,
+      0.02,
+      0.02
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/8b55e4349ae957a3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "fixed_physical_bandwidth",
+    "hurst": 0.0,
+    "dimension_label": "D=3.0 label: finite-bandwidth H=0 stress, no convergent-series claim",
+    "continuous_range_bound": [
+      0.27,
+      0.59
+    ],
+    "identity_sha256": "03264b6503ce5612ecbd0974d57609f452e4ff4a79e2e3eb630b0b0b5d5ba285",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  },
+  "roughness-development/seed-71000801/8b55e4349ae957a3/bandwidth-3": {
+    "seed": 71000801,
+    "alpha": 1.0,
+    "generator": "multiscale_2d",
+    "levels": 3,
+    "phase_mode": "random",
+    "orientation": [
+      1,
+      0
+    ],
+    "mean": 0.43,
+    "rms": 0.04,
+    "bounds": [
+      0.0,
+      1.0
+    ],
+    "modes": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        -3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        7,
+        -2
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "amplitudes": [
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522,
+      0.016329931618554522
+    ],
+    "phases": [
+      0.5106225844963527,
+      0.9367744840214828,
+      1.0601597311108488,
+      2.518823836321841,
+      2.018328078279349,
+      3.784320575055209,
+      4.895709365409549,
+      3.2888151237881136,
+      4.2364884014197495,
+      5.649083770531482,
+      0.42853055860358374,
+      5.687943708180976
+    ],
+    "shell_indices": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ],
+    "split": "roughness-development",
+    "cluster_id": "roughness-development/seed-71000801",
+    "parent_id": "roughness-development/seed-71000801/8b55e4349ae957a3/bandwidth-3",
+    "modes_per_level": 4,
+    "translation": [
+      0.0,
+      0.0
+    ],
+    "workload": "changed_physical_bandwidth_at_fixed_total_RMS",
+    "hurst": 0.0,
+    "dimension_label": "D=3.0 label: finite-bandwidth H=0 stress, no convergent-series claim",
+    "continuous_range_bound": [
+      0.2340408205773457,
+      0.6259591794226542
+    ],
+    "identity_sha256": "da4c7e5895e1bcad9fd0afba6e9023656a3bce5903cb1d9eadc6e17b13b99c8b",
+    "finite_field_dimension": 2,
+    "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+    "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+    "physical_frequency_units": "integer cycles per domain length"
+  }
+}

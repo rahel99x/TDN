@@ -1,0 +1,43 @@
+{
+  "schema": "tdn.adjacent-science/v1",
+  "stage": "D06",
+  "kind": "diagnostic",
+  "device": "cpu",
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "unit_sha256": "46f25a33bf2b6ca8bb5fa26b3fb0d413940da97f9995a7349a66a657d7d924ac",
+  "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+  "prerequisites": {
+    "audit": "283336e44e095adcaf516e924054804adc574fa6fd63b25773e1333f44c39b05",
+    "D01": "792958c903e55f7105d92c8cec1466ae37be2e659a8911b1d06ddd68c59ba421",
+    "D05": "9e22fc7dd5a45ec8fbb0bb17a409afa1232e6a88167b5b34f3c5dfaa6099e0d3"
+  },
+  "lineage": {
+    "audit": "283336e44e095adcaf516e924054804adc574fa6fd63b25773e1333f44c39b05",
+    "D01": "792958c903e55f7105d92c8cec1466ae37be2e659a8911b1d06ddd68c59ba421",
+    "D05": "9e22fc7dd5a45ec8fbb0bb17a409afa1232e6a88167b5b34f3c5dfaa6099e0d3"
+  },
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25"
+  },
+  "artifacts": {
+    "arrays.npz": "4e27ce5a916caf54d0d676493603ba79abc98faef0a95cff9225511ce0dfdadf",
+    "diagnostic_rows.json": "4f21d4c874e8542f3fd407b895cdd46dc6f82ba1994f000d85d9bf37cc7a43e6",
+    "diagnostic_summary.json": "95de92fbef13fdb423947dcd406ca854cd4a4edff25f86cbe0d06c19537878f8",
+    "protocol.json": "326cb7be6dda0bb9f578532268aa760c008e6b442a7ec79461288c675bc59371",
+    "reference_records.json": "21ce43fa09b001720472d37a6a4ca64f853f558d47483198a61ce18befb774bf",
+    "review.csv": "6a58b5246b8005e8f6a3246eca54ef23b28380e98de548c36a4c99e858d8186b",
+    "review.md": "cf22a6ac1454ce94db72ede20c4491ddd38e1bd0f749a89968d8673e74348a96",
+    "rows.json": "e75e0724f92680a6993d43d5040641b5f0dda354954168d2cfba89998a8e16ff",
+    "rows.jsonl": "0ce267730800a6fab519be59b245c94416ba3e3b6fac91d9e0837022c8b3dbdf",
+    "summary.json": "322bb61571c6be08a72c4f96b913ea7cac8d92650533285d6c1557a0cd759765",
+    "summary.txt": "f0dd5cc71ac9600f56f49e0295ef22e1b4d523ef3345434dfda739d48c3196ae"
+  }
+}

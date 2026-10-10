@@ -1,0 +1,1158 @@
+{
+  "schema": "tdn.adjacent-figures/v1",
+  "panels": [
+    {
+      "title": "Architecture and information flow",
+      "path": "01-architecture-and-information-flow.png",
+      "reading_guide": "Arrows denote data flow, not better/worse. Input-origin channels are not a third spatial dimension. Equal unit gains reproduce normalized quadratic correction.",
+      "scope": "Fixed physical background and operator shared by every channel. Learning receives features; the physical branch still receives the full field. Promotion into main TDN requires a separate decision.",
+      "sha256": "c4264f8cf34712ea072fd4cecb920e259d2c718190fb121a6215af01c9eb599d"
+    },
+    {
+      "title": "Stage completion and observed compute",
+      "path": "02-stage-completion-and-observed-compute.png",
+      "reading_guide": "Y lower is less stage time for equal completed work. A short failed stage is not a scientific win. Missing measurements are NA; walltime ceilings are not consumed costs.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "e44704c283ecab6a36d988c839b9468864588bba24913f5bce9b8c9a99f678f6"
+    },
+    {
+      "title": "D01 Spatial residual Theirs: df [discrete]",
+      "path": "03-d01-spatial-residual-theirs--df--discrete.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "e2140b8f6401dc786271fe5640acb0c122918e0765fccd3189213b1e7829dc61"
+    },
+    {
+      "title": "D01 Spectral residual Theirs: df [discrete]",
+      "path": "04-d01-spectral-residual-theirs--df--discrete.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "cac66f963fede09657cdf47ecf05bdb9aef5769844aed55343ab245a79c0d29a"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: quad2_fixed [discrete]",
+      "path": "05-d01-spatial-residual-analytic-control--quad2-fixed--discrete.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "1f3234c6418e8b38e25a96abd7ff7597d3c8ccb8ce55fd1d9c591c77af71969f"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: quad2_fixed [discrete]",
+      "path": "06-d01-spectral-residual-analytic-control--quad2-fixed--discrete.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "52394c0d27bd64e8fe15cb337fd3be6488d83d8618b27166942b207e945a96ab"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: analytic_quad_cubic [discrete]",
+      "path": "07-d01-spatial-residual-analytic-control--analytic-quad-cubic--discrete.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "18bff88fdc200180cdb27007c4cbedc3349c2ce6518851857b1db854093fa6ef"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: analytic_quad_cubic [discrete]",
+      "path": "08-d01-spectral-residual-analytic-control--analytic-quad-cubic--discrete.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "4d71760d743ddc74bb20e9b68cad18cf1b5b4abf07a595d562de2fbb0d0eb5f1"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: scalar_bounded_oracle [discrete]",
+      "path": "09-d01-spatial-residual-analytic-control--scalar-bounded-oracle--discrete.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "9b112f448a2719db1acca0a2604338667985dcb641822343ce3a5525c06c4eec"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: scalar_bounded_oracle [discrete]",
+      "path": "10-d01-spectral-residual-analytic-control--scalar-bounded-oracle--discrete.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "44b011a26137b273b64ac3f7cfeee1ae05679068523d7b63b4b3e62c2ecc2863"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: interaction_channel_bounded_oracle [discrete]",
+      "path": "11-d01-spatial-residual-analytic-control--interaction-channel-bounded-oracle--discrete.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "5e606bb16d8704a687fdb49709b7bf14f8a2927e836da7eed431c39b5d54f453"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: interaction_channel_bounded_oracle [discrete]",
+      "path": "12-d01-spectral-residual-analytic-control--interaction-channel-bounded-oracle--discrete.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "a46188e309268386e94e1d00466a78a2ec7fbc0078500b42e6eda1d093eb029b"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: quadratic_cubic_bounded_oracle [discrete]",
+      "path": "13-d01-spatial-residual-analytic-control--quadratic-cubic-bounded-oracle--discrete.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "43bb9800654efb7ba3400baca17c3544703a3dde24dfb973832d6b945905deba"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: quadratic_cubic_bounded_oracle [discrete]",
+      "path": "14-d01-spectral-residual-analytic-control--quadratic-cubic-bounded-oracle--discrete.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "c5ed36600dc22d1796b7dd1202d9ebfc890092e25bb04c099b01f397c400d0d1"
+    },
+    {
+      "title": "D01 Spatial residual Theirs: df [continuum]",
+      "path": "15-d01-spatial-residual-theirs--df--continuum.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "c441c1b0ac77176ff397e0a85dc2c00a726fccf61f72638cc898bdd796742a64"
+    },
+    {
+      "title": "D01 Spectral residual Theirs: df [continuum]",
+      "path": "16-d01-spectral-residual-theirs--df--continuum.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "126e5c999c26c675ff643ada2e4034afa3df09ef0fcb61ace7582c9e7e365353"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: quad2_fixed [continuum]",
+      "path": "17-d01-spatial-residual-analytic-control--quad2-fixed--continuum.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "91610323fdff8687bc65b1640129161ad9089d6c27c3d7889d67d1844ea825ec"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: quad2_fixed [continuum]",
+      "path": "18-d01-spectral-residual-analytic-control--quad2-fixed--continuum.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "6af6c0df9d71f5836ba0e90cda6b3203c910907411f0344d807db962e2f4b810"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: analytic_quad_cubic [continuum]",
+      "path": "19-d01-spatial-residual-analytic-control--analytic-quad-cubic--continuum.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "24d870a1b743d55b84f29e46fdba80e7a6dd8ee1f9b520811b34cf7b7cdfcb12"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: analytic_quad_cubic [continuum]",
+      "path": "20-d01-spectral-residual-analytic-control--analytic-quad-cubic--continuum.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "86fcccd3aa4369d92905d3bb27232c7dfab81fbfe4f7482d42d32bac615a3a35"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: scalar_bounded_oracle [continuum]",
+      "path": "21-d01-spatial-residual-analytic-control--scalar-bounded-oracle--continuum.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "0013eefdf67e275fdfa9743ed4aa0972e7202019979834fe514a4a1a6cd9faa6"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: scalar_bounded_oracle [continuum]",
+      "path": "22-d01-spectral-residual-analytic-control--scalar-bounded-oracle--continuum.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "d450dd73adcb2ec90515cd27ba88aaaab16635e21c852c0953001b3177681808"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: interaction_channel_bounded_oracle [continuum]",
+      "path": "23-d01-spatial-residual-analytic-control--interaction-channel-bounded-oracle--continuum.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "65d4fd017ff6609099974f7bc1345bcc58fcab4c173d7ee656a10d5549bf13fe"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: interaction_channel_bounded_oracle [continuum]",
+      "path": "24-d01-spectral-residual-analytic-control--interaction-channel-bounded-oracle--continuum.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "d97bcfb1c45b0e0c642db82798c43eec8c406a5068d26440161099e867b0d3de"
+    },
+    {
+      "title": "D01 Spatial residual Analytic control: quadratic_cubic_bounded_oracle [continuum]",
+      "path": "25-d01-spatial-residual-analytic-control--quadratic-cubic-bounded-oracle--continuum.png",
+      "reading_guide": "White/zero is better; larger absolute red or blue residual is worse. Spatial indices have no favorable direction. This is the predeclared representative high-pair parent, not a pooled comparison.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "7fdfecd99010ad42a140e68de04189dc80cc4d078c4b16b052193564fbf0c748"
+    },
+    {
+      "title": "D01 Spectral residual Analytic control: quadratic_cubic_bounded_oracle [continuum]",
+      "path": "26-d01-spectral-residual-analytic-control--quadratic-cubic-bounded-oracle--continuum.png",
+      "reading_guide": "Lower color values mean smaller residual Fourier magnitude; a 1e-16 display floor is explicit. Signed complex coefficients remain in raw chart data and NPZ sources.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "f7418fea3fa56cbd4dc0cd13683925708abe5357c79ec333be83c15945a9faf6"
+    },
+    {
+      "title": "Mathematics gap and utility outcomes",
+      "path": "27-mathematics-gap-and-utility-outcomes.png",
+      "reading_guide": "GOOD meets a declared check; BAD fails it; NA is unresolved. More passing checks do not prove a theorem, improve statistical precision or establish a model advantage.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "289aa7dabcc4802fd6d2ca569dea91420c3993e03a66503f5b23a705da5137ec"
+    },
+    {
+      "title": "D01 Scalar and channel correction floors",
+      "path": "28-d01-scalar-and-channel-correction-floors.png",
+      "reading_guide": "Y lower is a smaller correction-space error floor. X lists methods, not a ranking. Oracle fits use references and are not deployable. Values below reference uncertainty are unresolved. Compare identical field/operator/h/nodes/cutoff; offset groups distinguish tracks.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "cb2492b764458a55f33d044ea0e81185ea68ee3a4a4ffe525f43da72677d1df5"
+    },
+    {
+      "title": "D01 Residual RMS and maximum error",
+      "path": "29-d01-residual-rms-and-maximum-error.png",
+      "reading_guide": "Lower on each axis is better. A small RMS does not imply small worst-cell error. Squared-L2 projection is not a minimax or composite-loss optimum; compare the same parent, equation, h, nodes and cutoff.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "30f909dc692fadd8a68c3bb31bc236f5d6127bf639ebf85724c74546eebd7e0b"
+    },
+    {
+      "title": "D01 Coefficient sensitivity",
+      "path": "30-d01-coefficient-sensitivity.png",
+      "reading_guide": "Lower Y means fitted coefficients change less under reference refinement. Ill-conditioning can make gains unidentifiable even with a small residual.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "e79f886f5f2493771df4e4d0b357858fb18845b16614e08dd4b68b62db8d73e9"
+    },
+    {
+      "title": "D01 Basis conditioning and effective rank",
+      "path": "31-d01-basis-conditioning-and-effective-rank.png",
+      "reading_guide": "Rank counts reference-resolved numerical directions at the recorded uncertainty threshold, not exact algebraic or theorem rank. Lower condition number is better conditioning; rank alone is not solver quality.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "f4a6ab6db4a8410b5f8f61fd5a815970187076b2b705a1c604adb67d6653a29b"
+    },
+    {
+      "title": "D02 Feature collisions and response ambiguity",
+      "path": "32-d02-feature-collisions-and-response-ambiguity.png",
+      "reading_guide": "A small X with materially positive Y supports insufficient conditioning information only beyond reference uncertainty and flat-response sensitivity.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "0a8f8369a4e7e237765e3d2e4358b6459725c7298ca39d53a02a88498e37bcda"
+    },
+    {
+      "title": "D02 Acceptable gain intervals",
+      "path": "33-d02-acceptable-gain-intervals.png",
+      "reading_guide": "Intervals are acceptable objective ranges, not confidence intervals. Separated optima alone are insufficient; interval incompatibility and excess error matter.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "37c85ca979e9cf969e91c837f37f1915626e18a710872fb77343be8981fa6e06"
+    },
+    {
+      "title": "D03 Grid refinement at fixed workload",
+      "path": "34-d03-grid-refinement-at-fixed-workload.png",
+      "reading_guide": "Y lower is better; X finer grid costs more. Follow only paired parents with fixed physical bandwidth. Added scales change the workload.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "0b66792232241d9dc2c607b874a0898a1a6fb543b7320c415537efbfe5cac1f8"
+    },
+    {
+      "title": "D03 Timestep refinement",
+      "path": "35-d03-timestep-refinement.png",
+      "reading_guide": "Y lower is better; X smaller step generally costs more. Amplitude, grid and endpoint must stay fixed to interpret temporal order.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "cecabf5cfe4ba9fb90c5e3fbd6979cfb05bc13d619e499f0e9302885fe02cee1"
+    },
+    {
+      "title": "D03 Duration and complete solve error",
+      "path": "36-d03-duration-and-complete-solve-error.png",
+      "reading_guide": "Y lower is better at the same T. A later endpoint near equilibrium may hide earlier errors. Every exact step sequence remains in raw data.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "36c3aa9f7dd0c3e935e602d6cc89851dd82b5a2f916e0cb551f23ef1d8e8be01"
+    },
+    {
+      "title": "D03 Accuracy cost observations",
+      "path": "37-d03-accuracy-cost-observations.png",
+      "reading_guide": "Lower-left is favorable within the same track, field, grid, T and target. Unqualified latency is not time to an accurate solution.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "f236391d5166dd7ca2eb894fbdb67513026bbab66eb5a4e5e19c0d2c8cc03410"
+    },
+    {
+      "title": "D04 Signed interaction coefficient error",
+      "path": "38-d04-signed-interaction-coefficient-error.png",
+      "reading_guide": "Agreement with the diagonal is better; sign matters. Neither larger X nor larger Y alone is favorable. Near-zero targets require absolute error.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "29245b5b87db6c274aa9a2c5547499635c30adbb1d91b1fb14ba8dd135561a02"
+    },
+    {
+      "title": "D04 Signed imaginary interaction coefficient",
+      "path": "39-d04-signed-imaginary-interaction-coefficient.png",
+      "reading_guide": "Agreement with the diagonal is better; imaginary signs carry phase. Larger magnitude alone is neither better nor worse.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "1d5d1bd9e39c0f6476d3cff2215f88f83cfba59286148c58146b0fa6b085bc9b"
+    },
+    {
+      "title": "D04 Phase and coefficient magnitude error",
+      "path": "40-d04-phase-and-coefficient-magnitude-error.png",
+      "reading_guide": "Lower on both axes is better. Phase at vanishing amplitude is unresolved; nodal and dealiased products are different target equations.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "4065e50e061d9b67a2842b23a48bd465a7ed261f6172a5064c1fbb30e3f3c9f4"
+    },
+    {
+      "title": "D05 Fluctuation amplitude order",
+      "path": "41-d05-fluctuation-amplitude-order.png",
+      "reading_guide": "Y lower is better; X varies perturbation amplitude at fixed h. Slopes are meaningful only above uncertainty and roundoff; this is not temporal order.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "959e0af52600f6ed89a90d2b54a27e070905510a3ef5a3dadbd4523f6f7cb83e"
+    },
+    {
+      "title": "D05 Quadrature convergence",
+      "path": "42-d05-quadrature-convergence.png",
+      "reading_guide": "Y lower is better; X more nodes adds work. Refining a quadratic integral does not introduce a missing cubic spatial direction.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "730f0d012f9723e78958c4bce35f218becaf93ca99bb26729c2479bbbdef5415"
+    },
+    {
+      "title": "D05 Cubic spatial direction",
+      "path": "43-d05-cubic-spatial-direction.png",
+      "reading_guide": "Y closer to one means a larger cubic component orthogonal to the quadratic direction. That is new spatial information, not automatic accuracy or speed utility.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "f047c0209b75cc83c1b696a94472b3d728933f519ebd20779571da7d0b7365d0"
+    },
+    {
+      "title": "D06 Autonomous trajectory RMS",
+      "path": "44-d06-autonomous-trajectory-rms.png",
+      "reading_guide": "Y lower is better throughout the trajectory. Own-output rollouts and teacher-forced one-step measurements are distinct; final equilibrium is insufficient.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "0382a5c4f6e83cc1b43474a2707f0567917dbdeaa9ad5cca211db4fc3aefded1"
+    },
+    {
+      "title": "D06 Worst cell trajectory error",
+      "path": "45-d06-worst-cell-trajectory-error.png",
+      "reading_guide": "Lower Y is better. Maximum error can regress despite lower RMS; zero-time exactness is retained.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "4447b9cc0a7293263d25aab122659748cf7d676e8d6d3ae284ff8899fe70017d"
+    },
+    {
+      "title": "D06 Variance trajectory error",
+      "path": "46-d06-variance-trajectory-error.png",
+      "reading_guide": "Lower absolute variance error is better at each matched time. Diffusive smoothing can erase initial roughness and hide transient defects.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "c360c6b54687e71d0f76b8a6944dbe60554ba00b8ffc5d3ea2b86ef904aea30f"
+    },
+    {
+      "title": "D06 Mean variance and physical range",
+      "path": "47-d06-mean-variance-and-physical-range.png",
+      "reading_guide": "Smaller absolute mean error is better. Logistic reaction does not conserve mean. Variance, range violations and late absolute error remain raw metrics.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "5f66faae222ec33a0e767be3073adcaa9d993eb30aba391e9c6fc5a01fc751e5"
+    },
+    {
+      "title": "D06 Threshold crossing times",
+      "path": "48-d06-threshold-crossing-times.png",
+      "reading_guide": "Agreement with the diagonal is better. Neither early nor late crossing is automatically accurate. Missing crossings remain unresolved.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "3a0bfac92370bfa7a5c2f2c788511f04966bdc1f1ebd5f0457049668d6643b23"
+    },
+    {
+      "title": "D06 Integrated error and stability",
+      "path": "49-d06-integrated-error-and-stability.png",
+      "reading_guide": "Y lower is better over the same physical interval. Stable and accurate, stable but inaccurate, and unstable cases require separate denominators.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "3137d0f3d603ee76d8ca6b2521d1960677354a1c73582bb6ee2571cd9f176d52"
+    },
+    {
+      "title": "D08 Competitor favorable regimes",
+      "path": "50-d08-competitor-favorable-regimes.png",
+      "reading_guide": "Lower-left is favorable within a matched regime. Smooth, weak-interaction and small-step workloads stay visible; short undertraining cannot establish neural inferiority.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "2ea2aa457cb3d0982f7a7e4015e09ceb349bbc8f25bef47ce9823e777704b738"
+    },
+    {
+      "title": "D07 Actual multi query costs",
+      "path": "51-d07-actual-multi-query-costs.png",
+      "reading_guide": "Lower Y is better for the same accurate query workload. Compare measured totals with build plus Q times query models; caching must be equally available.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "70083fc91a603882db51787d1fa3baa22f971cab742fea06f61af2084058f432"
+    },
+    {
+      "title": "D07 Encoding refresh and break even",
+      "path": "52-d07-encoding-refresh-and-break-even.png",
+      "reading_guide": "Y greater than one favors the named reusable representation. No positive query saving means no finite break-even. Refresh and operator preparation are charged.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "236662c99928ac9f1ffa1b3832ed2a62440aa72ad2ffbdedb25744770b326269"
+    },
+    {
+      "title": "Roughness approximation and empirical scaling",
+      "path": "53-roughness-approximation-and-empirical-scaling.png",
+      "reading_guide": "X is a generator label, not a neural-network dimension. Empirical H is descriptive over the recorded scale range; finite trigonometric fields are smooth.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "0e8eae38acfe0859ea6682fe8239da28842399e6eafd2d6fba6985d143a92e96"
+    },
+    {
+      "title": "Roughness accuracy and nonlinear interaction",
+      "path": "54-roughness-accuracy-and-nonlinear-interaction.png",
+      "reading_guide": "Lower Y is better at fixed mean, amplitude, bandwidth, grid and horizon. Alpha=1 is a finite-bandwidth stress endpoint, not the convergent ridge theorem.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "8a1905c12129288623a1f955844135a4486428a3e3d74a5eb887f791da890815"
+    },
+    {
+      "title": "Roughness heat-only amplitude evolution",
+      "path": "55-roughness-heat-only-amplitude-evolution.png",
+      "reading_guide": "Y is fluctuation amplitude after exact heat-only smoothing, not error and not full reaction-diffusion. Lower amplitude means smoother/weaker fluctuations; it is not a model win. X is physical time.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "985b9be46f34d0ed41b524cf05640b3c13d0a28e489ad936f971a55386d46e14"
+    },
+    {
+      "title": "Roughness signed-product strength",
+      "path": "56-roughness-signed-product-strength.png",
+      "reading_guide": "Y measures nodal centered-square RMS, not solver error or a dealiased Galerkin defect. Neither higher nor lower is automatically better. X is the ideal-generator label; finite samples are smooth.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "eab3a1f467f1f481689faa4d93428ea3df98b88ff5b64de06842821dceb20d53"
+    },
+    {
+      "title": "Pilot accuracy cost comparisons",
+      "path": "57-pilot-accuracy-cost-comparisons.png",
+      "reading_guide": "Lower-left is favorable only at matched accuracy definitions and physical tasks. These are development pilots unless a fresh locked confirmation is explicitly supplied.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "eeb1fef0a18ce8b2b9cb341cb203622d8b67372cfa343f93d5ba9329ed1408b7"
+    },
+    {
+      "title": "Pilot gain responses",
+      "path": "58-pilot-gain-responses.png",
+      "reading_guide": "X is step size; neither larger nor smaller gain is inherently better. Inspect response identifiability and sensitivity before attributing physical meaning.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "59ec0239b026a3ca20031bd0dfee9b5dd377e7740b71600cec0ec5740d2ce0b2"
+    },
+    {
+      "title": "Pilot model size and error",
+      "path": "59-pilot-model-size-and-error.png",
+      "reading_guide": "Lower-left is compact and accurate; parameter count is not measured compute or a fairness definition. Fixed and initialized selections remain visible.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "1cb372665cbd7bab83493a1a5d8047d9ba506f0f9ee7e3b4ba846cda274ffb46"
+    },
+    {
+      "title": "Peak measured memory",
+      "path": "60-peak-measured-memory.png",
+      "reading_guide": "Lower Y uses less GPU memory for matched batch, precision and work. Host RAM is not VRAM; missing GPU measurements remain NA.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "ecf66a1c4bb2c8ff4ec446f82742d12f6c546ba8007dfbb753bb8ff7ff40d72c"
+    },
+    {
+      "title": "Exploratory alternatives",
+      "path": "61-exploratory-alternatives.png",
+      "reading_guide": "Lower-left is favorable for matched targets. A successful mathematical prototype is not a complete solver or evidence of useful amortization.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "c3926fe5f3e376afa404179407a59ca2751d3ebe9c6c310e9f6da02c642db8f8"
+    },
+    {
+      "title": "D06 Stability classifications and denominators",
+      "path": "62-d06-stability-classifications-and-denominators.png",
+      "reading_guide": "Accurate/stable is favorable; stable/inaccurate and unstable remain distinct. Counts refer to the declared paired rollouts, not independent samples or confidence bounds.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "21bdb32dbb292102ae149751408ef457707bf5360fa033573e5a4d094a512622"
+    },
+    {
+      "title": "Pilot checkpoint and baseline adequacy",
+      "path": "63-pilot-checkpoint-and-baseline-adequacy.png",
+      "reading_guide": "A fitted selection shows that this validation objective improved over initialization; it does not establish optimization convergence. Initialization-selected or failed competitors leave broad inferiority claims unresolved.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "d191bf3f85719ed00f98a9040fa698a266cb0f92ac14a2f6bbf2c2ce2bfaacc3"
+    },
+    {
+      "title": "D07 Encoding reference and reconstruction costs",
+      "path": "64-d07-encoding-reference-and-reconstruction-costs.png",
+      "reading_guide": "Lower seconds is cheaper for equal work. Reference generation is offline cost, while encoding, validation and reconstruction may be paid at runtime. Compilation and energy stay NA when unavailable.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "4681100972998f477cc4aa02aa8e9df3a7ae5412ce23e5cd838a25fd09b9362a"
+    },
+    {
+      "title": "Learning loss observed ranges",
+      "path": "65-learning-loss-observed-ranges.png",
+      "reading_guide": "Lower loss is a closer fit to the stated training objective. Translucent bands span observed minima and maxima in adjacent windows; they are continuous observed ranges, not confidence intervals. Empty windows leave visible gaps.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "7c565bf6f1271cf74a9c1d39771e678e3b615613a2ddb038067073a1d2418e45"
+    },
+    {
+      "title": "Validation loss observed ranges",
+      "path": "66-validation-loss-observed-ranges.png",
+      "reading_guide": "Lower validation loss is better on the same objective. Observed low/high ranges are not confidence intervals; unmeasured validation windows remain gaps. Selection does not replace fresh confirmation.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "c83bf6bbda591407efc52b5d46eecd3e52d88b7e78c413ce085b490310776bca"
+    },
+    {
+      "title": "Complete cost ledger and limitations",
+      "path": "67-complete-cost-ledger-and-limitations.png",
+      "reading_guide": "Smaller complete cost is better for the same accuracy and deployment volume. Missing charges are not zero; ceilings and operation counts are not resource bills.",
+      "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA.",
+      "sha256": "a1c6bdd1ff14f9472850659e170ab0ebe34279622e8e8795773b8133a1de82a8"
+    }
+  ],
+  "pdf": "adjacent-atlas.pdf",
+  "profile": "smoke",
+  "counts": {
+    "experiments": 102,
+    "checks": 405,
+    "diagnostics": 1120,
+    "learning": 50,
+    "evaluation": 208,
+    "validation": 52,
+    "temporal": 102,
+    "exploration": 96,
+    "roughness": 480,
+    "parameters": 194,
+    "profiles": 16,
+    "claims": 6,
+    "stage_status": 14,
+    "trajectories": 352,
+    "patterns": 12
+  },
+  "sources": [
+    {
+      "unit": "D01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01/diagnostic_rows.json",
+      "sha256": "f600257fdd2a66001dc690b5e8c5416596ade1e76edb4c9ce06527a2afd927a5",
+      "bytes": 251416
+    },
+    {
+      "unit": "D01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01/diagnostic_summary.json",
+      "sha256": "289d2eba2b3cf09426af56d1f21d72af6401919eac101eb4002180981ff7dc74",
+      "bytes": 800
+    },
+    {
+      "unit": "D01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01/reference_records.json",
+      "sha256": "97309266071f4dcae922d7d275e70a90a201588b158bd287579cdceabbb7897d",
+      "bytes": 7236
+    },
+    {
+      "unit": "D01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01/rows.jsonl",
+      "sha256": "6d2462fdeeb4bd61b0e1e43117b6b8112480e7f106f2a0ae28a51bf023529144",
+      "bytes": 3071
+    },
+    {
+      "unit": "D01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01/summary.json",
+      "sha256": "b7e47a06714ecfaa540e2d6cbbea6183f977f698fe359a1db9b51fb2eda81bec",
+      "bytes": 2046
+    },
+    {
+      "unit": "D02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D02/diagnostic_rows.json",
+      "sha256": "c7a27d210926f4c6f5a7c4c35dcab344ce9c7eced64706e429ebf9b1c40701e3",
+      "bytes": 43728
+    },
+    {
+      "unit": "D02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D02/diagnostic_summary.json",
+      "sha256": "e4da5a31de6eb46a1bbf492484815aeb2cbe9e04807df577d941944c71cc49e6",
+      "bytes": 800
+    },
+    {
+      "unit": "D02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D02/reference_records.json",
+      "sha256": "a73e1a18b4d6225aef87394477e60d60990db829c58c9341e80f47f2684fc7d4",
+      "bytes": 5513
+    },
+    {
+      "unit": "D02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D02/rows.jsonl",
+      "sha256": "05f7ab1a78f430089457744215a829ed4ef836ae2c938436d85b079309106dbc",
+      "bytes": 3073
+    },
+    {
+      "unit": "D02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D02/summary.json",
+      "sha256": "d96d6a76cdd9062befc3ccb842deb48c6a98663ca2b71a8e48b50859a9a5363b",
+      "bytes": 2205
+    },
+    {
+      "unit": "D03",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D03/diagnostic_rows.json",
+      "sha256": "c8b65a1a83895caffecd18390f0d205a30933f858b19861de6c456158490e5f6",
+      "bytes": 330179
+    },
+    {
+      "unit": "D03",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D03/diagnostic_summary.json",
+      "sha256": "9afdec73097ede7dd030fa9ba2b64dce2b68838e90454d1b9fa35e656e1f074e",
+      "bytes": 801
+    },
+    {
+      "unit": "D03",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D03/reference_records.json",
+      "sha256": "e7e93357d197726f01ae6628ad80943b04d8ded89ce51384d5f7eea3ec2714c1",
+      "bytes": 28533
+    },
+    {
+      "unit": "D03",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D03/rows.jsonl",
+      "sha256": "780a81d865579619577a4466412f471e9e787dae8405f5082676d6eefb8d09a6",
+      "bytes": 3072
+    },
+    {
+      "unit": "D03",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D03/summary.json",
+      "sha256": "7b83a9d2c6569ac84ada757cc6da58f29c44c878b14be06571b1b62fbdde7d3b",
+      "bytes": 2205
+    },
+    {
+      "unit": "D04",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D04/diagnostic_rows.json",
+      "sha256": "2b5a126874dba0e809ddb75a8fb1dba5118184c001f67a14c590b202af3eff7a",
+      "bytes": 209016
+    },
+    {
+      "unit": "D04",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D04/diagnostic_summary.json",
+      "sha256": "d7417c57c0c2e81a4efb0156e21c169e4c4b92f246c9bbbb415b276bb897b94a",
+      "bytes": 801
+    },
+    {
+      "unit": "D04",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D04/reference_records.json",
+      "sha256": "de65da6c15f7b1e3e8f9d11cece837e5b8e5fd9bc72cb495a15d1111ea91885d",
+      "bytes": 18196
+    },
+    {
+      "unit": "D04",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D04/rows.jsonl",
+      "sha256": "184ba073d0936b212127f370c009871ab186852368fec136de82e8c6c313b730",
+      "bytes": 3072
+    },
+    {
+      "unit": "D04",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D04/summary.json",
+      "sha256": "25f7a2690b07e6f02654dbaa5a84f9045bf228106a1de92025cb57cbacc1bef0",
+      "bytes": 2204
+    },
+    {
+      "unit": "D05",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D05/diagnostic_rows.json",
+      "sha256": "62a87a7c26e008d2c7419545e84ccf5647ee4fc982e0cd010e7f6cc1804ac526",
+      "bytes": 141080
+    },
+    {
+      "unit": "D05",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D05/diagnostic_summary.json",
+      "sha256": "21614386554a059f8886b04a68b368ae1f21ef3b0732a35859f533c5c4b9b183",
+      "bytes": 800
+    },
+    {
+      "unit": "D05",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D05/reference_records.json",
+      "sha256": "404b2dfe665c54f4e80bfdeb2ec90b656fdbda86ba05cccb574bdfaa3682652f",
+      "bytes": 18005
+    },
+    {
+      "unit": "D05",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D05/rows.jsonl",
+      "sha256": "db76666e266c9b3814233634d6293ff37fa42065a22ce101267dd3523802e465",
+      "bytes": 3071
+    },
+    {
+      "unit": "D05",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D05/summary.json",
+      "sha256": "e12a285957dcc88d843ac11f7ba10b6512833b40d25c5c911131b8f6cd69f830",
+      "bytes": 2045
+    },
+    {
+      "unit": "D06",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D06/diagnostic_rows.json",
+      "sha256": "4f21d4c874e8542f3fd407b895cdd46dc6f82ba1994f000d85d9bf37cc7a43e6",
+      "bytes": 299880
+    },
+    {
+      "unit": "D06",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D06/diagnostic_summary.json",
+      "sha256": "95de92fbef13fdb423947dcd406ca854cd4a4edff25f86cbe0d06c19537878f8",
+      "bytes": 2637
+    },
+    {
+      "unit": "D06",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D06/reference_records.json",
+      "sha256": "21ce43fa09b001720472d37a6a4ca64f853f558d47483198a61ce18befb774bf",
+      "bytes": 18285
+    },
+    {
+      "unit": "D06",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D06/rows.jsonl",
+      "sha256": "0ce267730800a6fab519be59b245c94416ba3e3b6fac91d9e0837022c8b3dbdf",
+      "bytes": 4489
+    },
+    {
+      "unit": "D06",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D06/summary.json",
+      "sha256": "322bb61571c6be08a72c4f96b913ea7cac8d92650533285d6c1557a0cd759765",
+      "bytes": 4154
+    },
+    {
+      "unit": "D07",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D07/rows.jsonl",
+      "sha256": "86367fd283c2c2e712141440b979aea260208ca5259633f5a901c4f9202dbf84",
+      "bytes": 82345
+    },
+    {
+      "unit": "D07",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D07/summary.json",
+      "sha256": "f8d75ba2254de180c1434cf92ee4dd94c817d572ac2740bf104eebeead3776cc",
+      "bytes": 2340
+    },
+    {
+      "unit": "D07",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D07/temporal_applicability.json",
+      "sha256": "e17f6bbfdd17a5829339bf1ef5a00fa39eeaa3730e303250cebe7e847c7b7630",
+      "bytes": 809
+    },
+    {
+      "unit": "D07",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D07/temporal_build_costs.json",
+      "sha256": "861feebea9c72208290ae65b103c4995a32fbd5c9cb587623c7c155cd481291c",
+      "bytes": 2182
+    },
+    {
+      "unit": "D07",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D07/temporal_cache_checks.json",
+      "sha256": "39265fbd8740a2ec9b9db1da8f6b81f67326474b0dd634418ae26aaafb992367",
+      "bytes": 1009
+    },
+    {
+      "unit": "D07",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D07/temporal_cost_rows.json",
+      "sha256": "f955cecc879abfec6b43f1b727cd5a553bb080d3a434fe4e70ce2349734a018d",
+      "bytes": 81585
+    },
+    {
+      "unit": "D07",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D07/temporal_rows.json",
+      "sha256": "1a626a80b87ddb3d3776949fbf3d32ec9e3cf977ca38c7b9869618a630ed811f",
+      "bytes": 56430
+    },
+    {
+      "unit": "D08",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D08/competitor_audit.json",
+      "sha256": "7d0faad04cab856e1bf6915e1b13d103c9070f95a4020ea50fa7d47c352c412b",
+      "bytes": 583
+    },
+    {
+      "unit": "D08",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D08/diagnostic_rows.json",
+      "sha256": "0c22a5f87bfa0277d046cd472643fb73b4b6c96f623442f275e62221ac13c9a2",
+      "bytes": 1614813
+    },
+    {
+      "unit": "D08",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D08/diagnostic_summary.json",
+      "sha256": "962b0fd6ae71bc2160147b78cfc4dd97ae5871739302503fa8144432e5b966d0",
+      "bytes": 801
+    },
+    {
+      "unit": "D08",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D08/reference_records.json",
+      "sha256": "0cadce6b8996384d3686d1517fe25282ef1ac7e024cdbdab21ad4e80736796e9",
+      "bytes": 19998
+    },
+    {
+      "unit": "D08",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D08/rows.jsonl",
+      "sha256": "c2c5986325aa0ecde693843b9f7ee587838b57902ccbd94de6495690f679a687",
+      "bytes": 3072
+    },
+    {
+      "unit": "D08",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D08/summary.json",
+      "sha256": "4cbade93db438b738c630389c08c39059229bec65c87cc9ccc92e5b79b2a284e",
+      "bytes": 2205
+    },
+    {
+      "unit": "audit",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/audit/rows.jsonl",
+      "sha256": "7bd824e53b9b8912d285066216364c57addd7750355f81c534f025706493e125",
+      "bytes": 55811
+    },
+    {
+      "unit": "audit",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/audit/summary.json",
+      "sha256": "b4026d819c8450189f7ec6f134012a918ed1e7026be4e9b5e89ebe8573719dbb",
+      "bytes": 1237
+    },
+    {
+      "unit": "evaluate",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/evaluate/evaluation-rows.json",
+      "sha256": "0f5fbfc1328a51f341776c27c41c80c9408a692c1ba39a396e014f520f59066b",
+      "bytes": 334929
+    },
+    {
+      "unit": "evaluate",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/evaluate/evaluation-summary.json",
+      "sha256": "a5a4a979a32e7a1e172850902993e101fbcbe71ecb3cb7b5e20b1abf67545b76",
+      "bytes": 367889
+    },
+    {
+      "unit": "evaluate",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/evaluate/paired-timings.json",
+      "sha256": "aa27345947d97f1acf46a80f2d12cda3392c0f431d5731d596a3a9a1c5d8f1e0",
+      "bytes": 237821
+    },
+    {
+      "unit": "evaluate",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/evaluate/primary-comparisons.json",
+      "sha256": "b62b87f4726c9f58933fcfada80d3e0e3225d109913648046d9a3a11a978f93e",
+      "bytes": 7907
+    },
+    {
+      "unit": "evaluate",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/evaluate/reference-bank.json",
+      "sha256": "04212a2f7ec5f9a5726c40da81153e58223b4b26d2e9f7161ba2dc3e9eb4994e",
+      "bytes": 20523
+    },
+    {
+      "unit": "evaluate",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/evaluate/rows.jsonl",
+      "sha256": "6150d2700a17193936daea525b207f3c62c566c7bb78945b12c42398cef2c3f5",
+      "bytes": 13117
+    },
+    {
+      "unit": "evaluate",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/evaluate/summary.json",
+      "sha256": "7e50619910d43e5db5902b4e2777039e73e317221df23e8f7b6d9c6dffbf75d5",
+      "bytes": 389536
+    },
+    {
+      "unit": "explore-E01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E01/prototype_decisions.json",
+      "sha256": "feed12036515b81607ce5c9233bd5b48ac7fbdd7d3f632b2a422794fbec4759a",
+      "bytes": 3303
+    },
+    {
+      "unit": "explore-E01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E01/prototype_fits.json",
+      "sha256": "33f2435db0ce45b68790f79649bd569b20309bd655f61ec780fa425d692178d3",
+      "bytes": 518
+    },
+    {
+      "unit": "explore-E01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E01/prototype_measurements.json",
+      "sha256": "87e9712ba260d6fb6172142293649d6f752c2e325249bcb325aa2fc1d9ba9b2e",
+      "bytes": 40069
+    },
+    {
+      "unit": "explore-E01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E01/prototype_rows.json",
+      "sha256": "13cd6b99fcd4d208cda77cf29a609904c3052a4090854667a1850cc45162276a",
+      "bytes": 88523
+    },
+    {
+      "unit": "explore-E01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E01/rows.jsonl",
+      "sha256": "21f7558722e500315dc51b8550fb1b5f683aa7abb38def4749477dc0fc64fd41",
+      "bytes": 94286
+    },
+    {
+      "unit": "explore-E01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E01/summary.json",
+      "sha256": "d8362bc4b3576206e62a709ed5e330e31c24ffb02915bb4309c585ed9ac79136",
+      "bytes": 3758
+    },
+    {
+      "unit": "explore-E02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E02/prototype_decisions.json",
+      "sha256": "f9a37e183721feea863206e8f400a4ba9c3ddc704435cc8f1e21fa38af4fcdfb",
+      "bytes": 3343
+    },
+    {
+      "unit": "explore-E02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E02/prototype_fits.json",
+      "sha256": "b7bd770063dc68e98e694e06846d8971eec6aaa23db4ca680a7ce2d22d0b1e19",
+      "bytes": 1134
+    },
+    {
+      "unit": "explore-E02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E02/prototype_measurements.json",
+      "sha256": "58dd03914a8640d6e6ece81834248d945fda9b19ece6e9fe95fb2434228f32e4",
+      "bytes": 40192
+    },
+    {
+      "unit": "explore-E02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E02/prototype_rows.json",
+      "sha256": "3bf664b87bfc30f11cb2a8a1c8d09d9f05d1acb98f6170f63b9099d078eb8409",
+      "bytes": 88681
+    },
+    {
+      "unit": "explore-E02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E02/rows.jsonl",
+      "sha256": "67cd742da12f998089999c4042ce0dc0c9acd854fbaa654b8cb14e607261cbfd",
+      "bytes": 94370
+    },
+    {
+      "unit": "explore-E02",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E02/summary.json",
+      "sha256": "18e1f48895222d0f58c594248722374ca2fdae5bf9ac18d8761a972d7ae991d0",
+      "bytes": 3743
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/catalog.json",
+      "sha256": "341eabd1ab084610a0f9db67074450bd78e5ac3136ae10a00be83d4dc91d5f43",
+      "bytes": 4955849
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/confirmation-plan.json",
+      "sha256": "f6c7323ff0ddb6db0e5ebea96d36ba6c23bb38560d86a2394d0ac05d32460634",
+      "bytes": 3780
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/freeze.json",
+      "sha256": "9d7ee9bfe2cdcd06f25b4cf1434453e468dc1a44eb0e9d3f1ccbfe55e7a00851",
+      "bytes": 15371
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/loss-curves.json",
+      "sha256": "81a64bb803a78d9e2daf6275521fe8fab936c8f67ab1347e72edc4f3d8fc7fd3",
+      "bytes": 17836
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/pilot-summary.json",
+      "sha256": "657aec327f99a1db2125fa7a4dfede1ed126649be723324c899a5d418e7fcbd8",
+      "bytes": 5286403
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/reference-bank.json",
+      "sha256": "a1894c1114520290b0d1e66cf348cc9b155d4e85c1f1aa4a5e8c1628148bec8a",
+      "bytes": 40364
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/rows.jsonl",
+      "sha256": "f7f96a31e2d622a1a44bc50f44bfe6f38e9a153bbe2b3fa946e3074a6c6f2ad6",
+      "bytes": 3124
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/summary.json",
+      "sha256": "251adc466bc262d5d62dfa62c765b9bcf481bcbfeac8bebe7b71e802a2973554",
+      "bytes": 5617759
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/trials.json",
+      "sha256": "66c372548ae3006f169a5bbd1893788aec65684342ab1d0e63d02dc026a8acec",
+      "bytes": 4961908
+    },
+    {
+      "unit": "pilot",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot/validation-rows.json",
+      "sha256": "2c2297bc83af9aefcb38adbdd27781254565d032bc81a4d5720390bb4d892867",
+      "bytes": 40034
+    },
+    {
+      "unit": "roughness",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/roughness/roughness_parents.json",
+      "sha256": "12f4d2e73df1b1a0a7705b3386248907ad288035514d2c07e2bc773f08a30441",
+      "bytes": 148077
+    },
+    {
+      "unit": "roughness",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/roughness/roughness_rows.json",
+      "sha256": "109d45d883fb281e8d51d9c3d60beda7bd8ae917c2c0023425b82212acc1dc59",
+      "bytes": 1480733
+    },
+    {
+      "unit": "roughness",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/roughness/rows.jsonl",
+      "sha256": "5251edc65dacf090372f2e4d92d49a7867f1a790e9ae14d6326417584a4ea4c8",
+      "bytes": 2643
+    },
+    {
+      "unit": "roughness",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/roughness/summary.json",
+      "sha256": "5db40900921a269e8a0c06f88ed282d90d9c106a918de4571f97973dc1f2b385",
+      "bytes": 1270
+    },
+    {
+      "unit": "D01",
+      "path": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01/arrays.npz",
+      "sha256": "70e743b9a4692d829b450105702d095e44550e122c84e2498ecf2de68dbf79a1",
+      "bytes": 397142
+    }
+  ],
+  "stage_status": [
+    {
+      "unit": "D01",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 1.4271228979923762,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "D02",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 0.46378849499160424,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "D03",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 23.077989917015657,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "D04",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 2.708089925989043,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "D05",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 2.651277918019332,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "D06",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 5.052180986996973,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "D07",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 4.641610891005257,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "D08",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 16.387335503997747,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "audit",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 0.23804371402366087,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "evaluate",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 600,
+      "elapsed_seconds": 13.07311689099879,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "explore-E01",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 40,
+      "elapsed_seconds": 2.419847742014099,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "explore-E02",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 40,
+      "elapsed_seconds": 2.3646076210134197,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "pilot",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 320,
+      "elapsed_seconds": 3.1605076109990478,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    },
+    {
+      "unit": "roughness",
+      "verified": true,
+      "status": "VERIFIED",
+      "planned_seconds": 180,
+      "elapsed_seconds": 0.44089941200218163,
+      "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+      "math_outcome": "NA",
+      "monetary_cost": null,
+      "energy_joules": null,
+      "error": null,
+      "computational_status": "COMPLETED"
+    }
+  ],
+  "chart_data": "chart-data.json.gz",
+  "chart_data_sha256": "eef42633d416c4754462af8c8d2b0352269852e9c53e0f511effcf14ba2a8934",
+  "learning_range_data": "learning-range-data.json.gz",
+  "raw_observations_discarded": false,
+  "scope": "Adjacent study only; no promotion into the main architecture. Computational completion, mathematical checks and scientific utility are separate outcomes. Independent parents are the statistical units; paired grids, phases, schedules and seeds are repeated observations. Observed-range bands are not confidence intervals. Missing evidence is NA."
+}

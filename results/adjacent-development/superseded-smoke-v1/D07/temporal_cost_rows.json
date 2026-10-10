@@ -1,0 +1,2876 @@
+[
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "compact_kernel",
+    "query_count": 1,
+    "measured_query_seconds": 4.6599001507274806e-05,
+    "measured_complete_seconds": 0.0003202484949724749,
+    "modeled_complete_seconds": 0.0006361220002872869,
+    "build_seconds": 0.0005895229987800121,
+    "timing": {
+      "first_invocation_seconds": 0.0003890360239893198,
+      "median_seconds": 0.0003202484949724749,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.00031269199098460376
+        },
+        {
+          "repeat": 1,
+          "order": 3,
+          "seconds": 0.000327804998960346
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 3.308898885734379e-05,
+      "median_seconds": 4.6599001507274806e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 2.8000999009236693e-05
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 6.519700400531292e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.43222692155554e-18,
+    "error_max": 6.071532165918825e-18
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "cached_exact_kernel",
+    "query_count": 1,
+    "measured_query_seconds": 4.003950743936002e-05,
+    "measured_complete_seconds": 3.904799814336002e-05,
+    "modeled_complete_seconds": 4.2323488742113113e-05,
+    "build_seconds": 2.283981302753091e-06,
+    "timing": {
+      "first_invocation_seconds": 3.6092998925596476e-05,
+      "median_seconds": 3.904799814336002e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 3.969899262301624e-05
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 3.83970036637038e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 4.093098687008023e-05,
+      "median_seconds": 4.003950743936002e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 4.1652005165815353e-05
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 3.842700971290469e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 0.0,
+    "error_max": 0.0
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "fft_gl4",
+    "query_count": 1,
+    "measured_query_seconds": 6.297348591033369e-05,
+    "measured_complete_seconds": 6.698899960611016e-05,
+    "modeled_complete_seconds": 6.297348591033369e-05,
+    "build_seconds": 0.0,
+    "timing": {
+      "first_invocation_seconds": 5.326900281943381e-05,
+      "median_seconds": 6.698899960611016e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 3,
+          "seconds": 6.802001735195518e-05
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 6.595798186026514e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.0003864419995807111,
+      "median_seconds": 6.297348591033369e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 6.240198854357004e-05
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 6.354498327709734e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 8.351250784813534e-17,
+    "error_max": 1.8778381627448937e-16
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "dop853_lifted_dense",
+    "query_count": 1,
+    "measured_query_seconds": 4.993351467419416e-05,
+    "measured_complete_seconds": 0.0006561510090250522,
+    "modeled_complete_seconds": 0.0008754455338930711,
+    "build_seconds": 0.000825512019218877,
+    "timing": {
+      "first_invocation_seconds": 0.0006420600111596286,
+      "median_seconds": 0.0006561510090250522,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0006560909969266504
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.000656211021123454
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 9.107499499805272e-05,
+      "median_seconds": 4.993351467419416e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 3,
+          "seconds": 5.4871023166924715e-05
+        },
+        {
+          "repeat": 1,
+          "order": 3,
+          "seconds": 4.49960061814636e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.5656797538207885e-17,
+    "error_max": 3.5561831257524545e-17
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "compact_kernel",
+    "query_count": 4,
+    "measured_query_seconds": 8.228150545619428e-05,
+    "measured_complete_seconds": 0.00039819898665882647,
+    "modeled_complete_seconds": 0.0006718045042362064,
+    "build_seconds": 0.0005895229987800121,
+    "timing": {
+      "first_invocation_seconds": 0.00045092799700796604,
+      "median_seconds": 0.00039819898665882647,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0004009229887742549
+        },
+        {
+          "repeat": 1,
+          "order": 3,
+          "seconds": 0.000395474984543398
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 8.22120055090636e-05,
+      "median_seconds": 8.228150545619428e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 8.452500333078206e-05
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 8.003800758160651e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.2423696968964216e-18,
+    "error_max": 6.071532165918825e-18
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "cached_exact_kernel",
+    "query_count": 4,
+    "measured_query_seconds": 0.0001341934985248372,
+    "measured_complete_seconds": 9.482049790676683e-05,
+    "modeled_complete_seconds": 0.0001364774798275903,
+    "build_seconds": 2.283981302753091e-06,
+    "timing": {
+      "first_invocation_seconds": 0.00010007800301536918,
+      "median_seconds": 9.482049790676683e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 9.141498594544828e-05
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 9.822600986808538e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 8.849101141095161e-05,
+      "median_seconds": 0.0001341934985248372,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 9.33679984882474e-05
+        },
+        {
+          "repeat": 1,
+          "order": 3,
+          "seconds": 0.000175018998561427
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 0.0,
+    "error_max": 0.0
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "fft_gl4",
+    "query_count": 4,
+    "measured_query_seconds": 0.00017214950639754534,
+    "measured_complete_seconds": 0.00018156848091166466,
+    "modeled_complete_seconds": 0.00017214950639754534,
+    "build_seconds": 0.0,
+    "timing": {
+      "first_invocation_seconds": 0.00016791900270618498,
+      "median_seconds": 0.00018156848091166466,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.000195118976989761
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.00016801798483356833
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00018777800141833723,
+      "median_seconds": 0.00017214950639754534,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.00015363702550530434
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.00019066198728978634
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 4.1887891140278975e-17,
+    "error_max": 1.8778381627448937e-16
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "dop853_lifted_dense",
+    "query_count": 4,
+    "measured_query_seconds": 6.041899905540049e-05,
+    "measured_complete_seconds": 0.0006604024965781718,
+    "modeled_complete_seconds": 0.0008859310182742774,
+    "build_seconds": 0.000825512019218877,
+    "timing": {
+      "first_invocation_seconds": 0.0006649240094702691,
+      "median_seconds": 0.0006604024965781718,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 3,
+          "seconds": 0.0006598070031031966
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0006609979900531471
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 6.793101783841848e-05,
+      "median_seconds": 6.041899905540049e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 3,
+          "seconds": 7.377899601124227e-05
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 4.705900209955871e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 4.914626292827532e-16,
+    "error_max": 1.5525775109992423e-15
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "compact_kernel",
+    "query_count": 16,
+    "measured_query_seconds": 0.00030709449492860585,
+    "measured_complete_seconds": 0.0007128305151127279,
+    "modeled_complete_seconds": 0.000896617493708618,
+    "build_seconds": 0.0005895229987800121,
+    "timing": {
+      "first_invocation_seconds": 0.0006562909984495491,
+      "median_seconds": 0.0007128305151127279,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 3,
+          "seconds": 0.0006945590139366686
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.0007311020162887871
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00044492899905890226,
+      "median_seconds": 0.00030709449492860585,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0002861639950424433
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.00032802499481476843
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 7.120931574573e-19,
+    "error_max": 6.071532165918825e-18
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "cached_exact_kernel",
+    "query_count": 16,
+    "measured_query_seconds": 0.00046156797907315195,
+    "measured_complete_seconds": 0.000347329507349059,
+    "modeled_complete_seconds": 0.00046385196037590504,
+    "build_seconds": 2.283981302753091e-06,
+    "timing": {
+      "first_invocation_seconds": 0.00030945902108214796,
+      "median_seconds": 0.000347329507349059,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.00037650801823474467
+        },
+        {
+          "repeat": 1,
+          "order": 3,
+          "seconds": 0.0003181509964633733
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00033600698225200176,
+      "median_seconds": 0.00046156797907315195,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0003065439814236015
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0006165919767227024
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 0.0,
+    "error_max": 0.0
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "fft_gl4",
+    "query_count": 16,
+    "measured_query_seconds": 0.0005766234826296568,
+    "measured_complete_seconds": 0.0006314445054158568,
+    "modeled_complete_seconds": 0.0005766234826296568,
+    "build_seconds": 0.0,
+    "timing": {
+      "first_invocation_seconds": 0.0006909029907546937,
+      "median_seconds": 0.0006314445054158568,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0006486499914899468
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0006142390193417668
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.0005485519941430539,
+      "median_seconds": 0.0005766234826296568,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0006229819846339524
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.0005302649806253612
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.5134385864811207e-17,
+    "error_max": 1.8778381627448937e-16
+  },
+  {
+    "task": "quadratic_kernel_only",
+    "workload": "same_state_queries",
+    "method": "dop853_lifted_dense",
+    "query_count": 16,
+    "measured_query_seconds": 8.487050945404917e-05,
+    "measured_complete_seconds": 0.0006517000001622364,
+    "modeled_complete_seconds": 0.0009103825286729261,
+    "build_seconds": 0.000825512019218877,
+    "timing": {
+      "first_invocation_seconds": 0.0006848729972261935,
+      "median_seconds": 0.0006517000001622364,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0006403379957191646
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0006630620046053082
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 9.051398956216872e-05,
+      "median_seconds": 8.487050945404917e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 3,
+          "seconds": 8.314300794154406e-05
+        },
+        {
+          "repeat": 1,
+          "order": 3,
+          "seconds": 8.659801096655428e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 6.429243967045778e-16,
+    "error_max": 2.2551405187698492e-15
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "same_state_queries",
+    "method": "cached_correction",
+    "query_count": 1,
+    "measurement_id": "pde/discrete/1/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.00036399350210558623,
+    "measured_complete_seconds": 0.00791202750406228,
+    "modeled_complete_seconds": 0.009235075514880009,
+    "timing": {
+      "first_invocation_seconds": 0.007424301002174616,
+      "median_seconds": 0.00791202750406228,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.007701691007241607
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.008122364000882953
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.0007707510085310787,
+      "median_seconds": 0.00036399350210558623,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.00036613200791180134
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0003618549962993711
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.2825386697975352e-07,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "trajectory_dense_output",
+    "method": "cached_correction",
+    "query_count": 1,
+    "measurement_id": "pde/discrete/1/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.00036399350210558623,
+    "measured_complete_seconds": 0.00791202750406228,
+    "modeled_complete_seconds": 0.009235075514880009,
+    "timing": {
+      "first_invocation_seconds": 0.007424301002174616,
+      "median_seconds": 0.00791202750406228,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.007701691007241607
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.008122364000882953
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.0007707510085310787,
+      "median_seconds": 0.00036399350210558623,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.00036613200791180134
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0003618549962993711
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.2825386697975352e-07,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "same_state_queries",
+    "method": "direct_gl4",
+    "query_count": 1,
+    "measurement_id": "pde/discrete/1/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.0016929410048760474,
+    "measured_complete_seconds": 0.001113507998525165,
+    "modeled_complete_seconds": 0.0016929410048760474,
+    "timing": {
+      "first_invocation_seconds": 0.0011611090158112347,
+      "median_seconds": 0.001113507998525165,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0010970740113407373
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0011299419857095927
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.001288247003685683,
+      "median_seconds": 0.0016929410048760474,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0012159100151620805
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0021699719945900142
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.2825386697857972e-07,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "trajectory_dense_output",
+    "method": "direct_gl4",
+    "query_count": 1,
+    "measurement_id": "pde/discrete/1/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.0016929410048760474,
+    "measured_complete_seconds": 0.001113507998525165,
+    "modeled_complete_seconds": 0.0016929410048760474,
+    "timing": {
+      "first_invocation_seconds": 0.0011611090158112347,
+      "median_seconds": 0.001113507998525165,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0010970740113407373
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0011299419857095927
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.001288247003685683,
+      "median_seconds": 0.0016929410048760474,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0012159100151620805
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0021699719945900142
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.2825386697857972e-07,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "same_state_queries",
+    "method": "dop853_dense",
+    "query_count": 1,
+    "measurement_id": "pde/discrete/1/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 9.33679984882474e-05,
+    "measured_complete_seconds": 0.0030297355115180835,
+    "modeled_complete_seconds": 0.003362616989761591,
+    "timing": {
+      "first_invocation_seconds": 0.0030467000033240765,
+      "median_seconds": 0.0030297355115180835,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0030536410049535334
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.0030058300180826336
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00011052301852032542,
+      "median_seconds": 9.33679984882474e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.00012066899216733873
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 6.606700480915606e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 5.834991593081522e-14,
+    "error_max": 9.903189379656396e-14
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "trajectory_dense_output",
+    "method": "dop853_dense",
+    "query_count": 1,
+    "measurement_id": "pde/discrete/1/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 9.33679984882474e-05,
+    "measured_complete_seconds": 0.0030297355115180835,
+    "modeled_complete_seconds": 0.003362616989761591,
+    "timing": {
+      "first_invocation_seconds": 0.0030467000033240765,
+      "median_seconds": 0.0030297355115180835,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0030536410049535334
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.0030058300180826336
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00011052301852032542,
+      "median_seconds": 9.33679984882474e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.00012066899216733873
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 6.606700480915606e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 5.834991593081522e-14,
+    "error_max": 9.903189379656396e-14
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "same_state_queries",
+    "method": "cached_correction",
+    "query_count": 4,
+    "measurement_id": "pde/discrete/4/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.0012654479942284524,
+    "measured_complete_seconds": 0.008382479005376808,
+    "modeled_complete_seconds": 0.010136530007002875,
+    "timing": {
+      "first_invocation_seconds": 0.009171565994620323,
+      "median_seconds": 0.008382479005376808,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.008512021013302729
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.008252936997450888
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.0027003069990314543,
+      "median_seconds": 0.0012654479942284524,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0012378919927868992
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0012930039956700057
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.256764348860776e-07,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "trajectory_dense_output",
+    "method": "cached_correction",
+    "query_count": 4,
+    "measurement_id": "pde/discrete/4/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.0012654479942284524,
+    "measured_complete_seconds": 0.008382479005376808,
+    "modeled_complete_seconds": 0.010136530007002875,
+    "timing": {
+      "first_invocation_seconds": 0.009171565994620323,
+      "median_seconds": 0.008382479005376808,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.008512021013302729
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.008252936997450888
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.0027003069990314543,
+      "median_seconds": 0.0012654479942284524,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0012378919927868992
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0012930039956700057
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.256764348860776e-07,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "same_state_queries",
+    "method": "direct_gl4",
+    "query_count": 4,
+    "measurement_id": "pde/discrete/4/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.004187193510006182,
+    "measured_complete_seconds": 0.003918826507288031,
+    "modeled_complete_seconds": 0.004187193510006182,
+    "timing": {
+      "first_invocation_seconds": 0.004866074013989419,
+      "median_seconds": 0.003918826507288031,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.00393967202398926
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0038979809905868024
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.004714178998256102,
+      "median_seconds": 0.004187193510006182,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.004144205013290048
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.004230182006722316
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.2567643488454616e-07,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "trajectory_dense_output",
+    "method": "direct_gl4",
+    "query_count": 4,
+    "measurement_id": "pde/discrete/4/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.004187193510006182,
+    "measured_complete_seconds": 0.003918826507288031,
+    "modeled_complete_seconds": 0.004187193510006182,
+    "timing": {
+      "first_invocation_seconds": 0.004866074013989419,
+      "median_seconds": 0.003918826507288031,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.00393967202398926
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0038979809905868024
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.004714178998256102,
+      "median_seconds": 0.004187193510006182,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.004144205013290048
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.004230182006722316
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.2567643488454616e-07,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "same_state_queries",
+    "method": "dop853_dense",
+    "query_count": 4,
+    "measurement_id": "pde/discrete/4/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.00013171500177122653,
+    "measured_complete_seconds": 0.00303755649656523,
+    "modeled_complete_seconds": 0.00340096399304457,
+    "timing": {
+      "first_invocation_seconds": 0.003352692991029471,
+      "median_seconds": 0.00303755649656523,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0031088620016817003
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.00296625099144876
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 7.222700514830649e-05,
+      "median_seconds": 0.00013171500177122653,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.00012718900688923895
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0001362409966532141
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 5.812008733746622e-13,
+    "error_max": 2.1845858455549205e-12
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "trajectory_dense_output",
+    "method": "dop853_dense",
+    "query_count": 4,
+    "measurement_id": "pde/discrete/4/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.00013171500177122653,
+    "measured_complete_seconds": 0.00303755649656523,
+    "modeled_complete_seconds": 0.00340096399304457,
+    "timing": {
+      "first_invocation_seconds": 0.003352692991029471,
+      "median_seconds": 0.00303755649656523,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0031088620016817003
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.00296625099144876
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 7.222700514830649e-05,
+      "median_seconds": 0.00013171500177122653,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.00012718900688923895
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0001362409966532141
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 5.812008733746622e-13,
+    "error_max": 2.1845858455549205e-12
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "same_state_queries",
+    "method": "cached_correction",
+    "query_count": 16,
+    "measurement_id": "pde/discrete/16/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.004789239988895133,
+    "measured_complete_seconds": 0.01245188299799338,
+    "modeled_complete_seconds": 0.013660322001669556,
+    "timing": {
+      "first_invocation_seconds": 0.011555045988643542,
+      "median_seconds": 0.01245188299799338,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.01240422300179489
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.01249954299419187
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.004886784008704126,
+      "median_seconds": 0.004789239988895133,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.004912431992124766
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0046660479856655
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 9.747583164163484e-08,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "trajectory_dense_output",
+    "method": "cached_correction",
+    "query_count": 16,
+    "measurement_id": "pde/discrete/16/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.004789239988895133,
+    "measured_complete_seconds": 0.01245188299799338,
+    "modeled_complete_seconds": 0.013660322001669556,
+    "timing": {
+      "first_invocation_seconds": 0.011555045988643542,
+      "median_seconds": 0.01245188299799338,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.01240422300179489
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.01249954299419187
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.004886784008704126,
+      "median_seconds": 0.004789239988895133,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.004912431992124766
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0046660479856655
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 9.747583164163484e-08,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "same_state_queries",
+    "method": "direct_gl4",
+    "query_count": 16,
+    "measurement_id": "pde/discrete/16/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.015984006997314282,
+    "measured_complete_seconds": 0.01608038999256678,
+    "modeled_complete_seconds": 0.015984006997314282,
+    "timing": {
+      "first_invocation_seconds": 0.01606666500447318,
+      "median_seconds": 0.01608038999256678,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0157769659999758
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.016383813985157758
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.017391325993230566,
+      "median_seconds": 0.015984006997314282,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.015673042013077065
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.016294971981551498
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 9.747583163989063e-08,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "trajectory_dense_output",
+    "method": "direct_gl4",
+    "query_count": 16,
+    "measurement_id": "pde/discrete/16/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.015984006997314282,
+    "measured_complete_seconds": 0.01608038999256678,
+    "modeled_complete_seconds": 0.015984006997314282,
+    "timing": {
+      "first_invocation_seconds": 0.01606666500447318,
+      "median_seconds": 0.01608038999256678,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0157769659999758
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.016383813985157758
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.017391325993230566,
+      "median_seconds": 0.015984006997314282,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.015673042013077065
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.016294971981551498
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 9.747583163989063e-08,
+    "error_max": 6.253168380876417e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "same_state_queries",
+    "method": "dop853_dense",
+    "query_count": 16,
+    "measurement_id": "pde/discrete/16/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.0001497664925409481,
+    "measured_complete_seconds": 0.00327943499723915,
+    "modeled_complete_seconds": 0.0034190154838142917,
+    "timing": {
+      "first_invocation_seconds": 0.003045068006031215,
+      "median_seconds": 0.00327943499723915,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0031746899767313153
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.003384180017746985
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00010377401486039162,
+      "median_seconds": 0.0001497664925409481,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0001702119770925492
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.00012932100798934698
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 5.806747109330373e-13,
+    "error_max": 2.5069391007548347e-12
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "trajectory_dense_output",
+    "method": "dop853_dense",
+    "query_count": 16,
+    "measurement_id": "pde/discrete/16/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.0001497664925409481,
+    "measured_complete_seconds": 0.00327943499723915,
+    "modeled_complete_seconds": 0.0034190154838142917,
+    "timing": {
+      "first_invocation_seconds": 0.003045068006031215,
+      "median_seconds": 0.00327943499723915,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0031746899767313153
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.003384180017746985
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00010377401486039162,
+      "median_seconds": 0.0001497664925409481,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0001702119770925492
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.00012932100798934698
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 5.806747109330373e-13,
+    "error_max": 2.5069391007548347e-12
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "parameter_queries",
+    "method": "cached_correction",
+    "query_count": 3,
+    "refresh_count": 3,
+    "measured_complete_seconds": 0.022449914496974088,
+    "timing": {
+      "first_invocation_seconds": 0.022984465002082288,
+      "median_seconds": 0.022449914496974088,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.022304139012703672
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.022595689981244504
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.2930331434889742e-07,
+    "error_max": 7.285244827404114e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "parameter_queries",
+    "method": "direct_gl4",
+    "query_count": 3,
+    "refresh_count": 3,
+    "measured_complete_seconds": 0.0034157315094489604,
+    "timing": {
+      "first_invocation_seconds": 0.002932781004346907,
+      "median_seconds": 0.0034157315094489604,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0035589979961514473
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0032724650227464736
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.2930331435163808e-07,
+    "error_max": 7.285244827404114e-07
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "parameter_queries",
+    "method": "dop853_dense",
+    "query_count": 3,
+    "refresh_count": 3,
+    "measured_complete_seconds": 0.008901672510546632,
+    "timing": {
+      "first_invocation_seconds": 0.009081734984647483,
+      "median_seconds": 0.008901672510546632,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.009041014011017978
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.008762331010075286
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 0.0,
+    "error_max": 0.0
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "autonomous_rollout",
+    "method": "cached_correction",
+    "query_count": 4,
+    "refresh_count": 4,
+    "steps": [
+      0.02,
+      0.03,
+      0.01,
+      0.04
+    ],
+    "final_time": 0.1,
+    "measured_complete_seconds": 0.029754703005892225,
+    "timing": {
+      "first_invocation_seconds": 0.03271379802026786,
+      "median_seconds": 0.029754703005892225,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.029905481002060696
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.029603925009723753
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.3865259297865878e-08,
+    "error_max": 3.6736815811622137e-08
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "autonomous_rollout",
+    "method": "direct_gl4",
+    "query_count": 4,
+    "refresh_count": 4,
+    "steps": [
+      0.02,
+      0.03,
+      0.01,
+      0.04
+    ],
+    "final_time": 0.1,
+    "measured_complete_seconds": 0.004403753991937265,
+    "timing": {
+      "first_invocation_seconds": 0.005133679980644956,
+      "median_seconds": 0.004403753991937265,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.003845501982141286
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.0049620060017332435
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.3865259311628725e-08,
+    "error_max": 3.6736815700599834e-08
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "discrete",
+    "workload": "autonomous_rollout",
+    "method": "dop853_dense",
+    "query_count": 4,
+    "refresh_count": 4,
+    "steps": [
+      0.02,
+      0.03,
+      0.01,
+      0.04
+    ],
+    "final_time": 0.1,
+    "measured_complete_seconds": 0.009404767493833788,
+    "timing": {
+      "first_invocation_seconds": 0.009477389976382256,
+      "median_seconds": 0.009404767493833788,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.009315800009062514
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.009493734978605062
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.0431675641177681e-15,
+    "error_max": 2.275957200481571e-15
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "same_state_queries",
+    "method": "cached_correction",
+    "query_count": 1,
+    "measurement_id": "pde/continuum/1/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.004849378499784507,
+    "measured_complete_seconds": 0.030339047996676527,
+    "modeled_complete_seconds": 0.028116562505601905,
+    "timing": {
+      "first_invocation_seconds": 0.030891770991729572,
+      "median_seconds": 0.030339047996676527,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.03113964799558744
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.029538447997765616
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.004247578006470576,
+      "median_seconds": 0.004849378499784507,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0053457129979506135
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0043530440016184
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 4.3038880175609027e-07,
+    "error_max": 1.018772832539483e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "trajectory_dense_output",
+    "method": "cached_correction",
+    "query_count": 1,
+    "measurement_id": "pde/continuum/1/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.004849378499784507,
+    "measured_complete_seconds": 0.030339047996676527,
+    "modeled_complete_seconds": 0.028116562505601905,
+    "timing": {
+      "first_invocation_seconds": 0.030891770991729572,
+      "median_seconds": 0.030339047996676527,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.03113964799558744
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.029538447997765616
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.004247578006470576,
+      "median_seconds": 0.004849378499784507,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0053457129979506135
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0043530440016184
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 4.3038880175609027e-07,
+    "error_max": 1.018772832539483e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "same_state_queries",
+    "method": "direct_gl4",
+    "query_count": 1,
+    "measurement_id": "pde/continuum/1/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.008497353992424905,
+    "measured_complete_seconds": 0.007420915499096736,
+    "modeled_complete_seconds": 0.008497353992424905,
+    "timing": {
+      "first_invocation_seconds": 0.006967463996261358,
+      "median_seconds": 0.007420915499096736,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.007962547009810805
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.006879283988382667
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.006664555985480547,
+      "median_seconds": 0.008497353992424905,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.00780568498885259
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.00918902299599722
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 4.3038880172929216e-07,
+    "error_max": 1.0187728326505052e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "trajectory_dense_output",
+    "method": "direct_gl4",
+    "query_count": 1,
+    "measurement_id": "pde/continuum/1/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.008497353992424905,
+    "measured_complete_seconds": 0.007420915499096736,
+    "modeled_complete_seconds": 0.008497353992424905,
+    "timing": {
+      "first_invocation_seconds": 0.006967463996261358,
+      "median_seconds": 0.007420915499096736,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.007962547009810805
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.006879283988382667
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.006664555985480547,
+      "median_seconds": 0.008497353992424905,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.00780568498885259
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.00918902299599722
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 4.3038880172929216e-07,
+    "error_max": 1.0187728326505052e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "same_state_queries",
+    "method": "dop853_dense",
+    "query_count": 1,
+    "measurement_id": "pde/continuum/1/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 9.541101462673396e-05,
+    "measured_complete_seconds": 0.01310150499921292,
+    "modeled_complete_seconds": 0.01221086700388696,
+    "timing": {
+      "first_invocation_seconds": 0.015858015976846218,
+      "median_seconds": 0.01310150499921292,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.012840618990594521
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.01336239100783132
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00010902099893428385,
+      "median_seconds": 9.541101462673396e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.00010769901564344764
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 8.312301361002028e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 6.183218845404257e-14,
+    "error_max": 1.2456702336294256e-13
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "trajectory_dense_output",
+    "method": "dop853_dense",
+    "query_count": 1,
+    "measurement_id": "pde/continuum/1/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 9.541101462673396e-05,
+    "measured_complete_seconds": 0.01310150499921292,
+    "modeled_complete_seconds": 0.01221086700388696,
+    "timing": {
+      "first_invocation_seconds": 0.015858015976846218,
+      "median_seconds": 0.01310150499921292,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.012840618990594521
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.01336239100783132
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00010902099893428385,
+      "median_seconds": 9.541101462673396e-05,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.00010769901564344764
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 8.312301361002028e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 6.183218845404257e-14,
+    "error_max": 1.2456702336294256e-13
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "same_state_queries",
+    "method": "cached_correction",
+    "query_count": 4,
+    "measurement_id": "pde/continuum/4/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.015270765987224877,
+    "measured_complete_seconds": 0.03650636250677053,
+    "modeled_complete_seconds": 0.038537949993042275,
+    "timing": {
+      "first_invocation_seconds": 0.03675314801512286,
+      "median_seconds": 0.03650636250677053,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.03722425500745885
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.03578847000608221
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.019076088996371254,
+      "median_seconds": 0.015270765987224877,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.016737426980398595
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.013804104994051158
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.3789251414121136e-07,
+    "error_max": 1.018772832539483e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "trajectory_dense_output",
+    "method": "cached_correction",
+    "query_count": 4,
+    "measurement_id": "pde/continuum/4/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.015270765987224877,
+    "measured_complete_seconds": 0.03650636250677053,
+    "modeled_complete_seconds": 0.038537949993042275,
+    "timing": {
+      "first_invocation_seconds": 0.03675314801512286,
+      "median_seconds": 0.03650636250677053,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.03722425500745885
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.03578847000608221
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.019076088996371254,
+      "median_seconds": 0.015270765987224877,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.016737426980398595
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.013804104994051158
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.3789251414121136e-07,
+    "error_max": 1.018772832539483e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "same_state_queries",
+    "method": "direct_gl4",
+    "query_count": 4,
+    "measurement_id": "pde/continuum/4/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.02613748499425128,
+    "measured_complete_seconds": 0.022966468997765332,
+    "modeled_complete_seconds": 0.02613748499425128,
+    "timing": {
+      "first_invocation_seconds": 0.023969633999513462,
+      "median_seconds": 0.022966468997765332,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.022962502989685163
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.022970435005845502
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.027500941010657698,
+      "median_seconds": 0.02613748499425128,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.029023599985521287
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.023251370002981275
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.378925141302697e-07,
+    "error_max": 1.0187728326505052e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "trajectory_dense_output",
+    "method": "direct_gl4",
+    "query_count": 4,
+    "measurement_id": "pde/continuum/4/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.02613748499425128,
+    "measured_complete_seconds": 0.022966468997765332,
+    "modeled_complete_seconds": 0.02613748499425128,
+    "timing": {
+      "first_invocation_seconds": 0.023969633999513462,
+      "median_seconds": 0.022966468997765332,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.022962502989685163
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.022970435005845502
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.027500941010657698,
+      "median_seconds": 0.02613748499425128,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.029023599985521287
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.023251370002981275
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.378925141302697e-07,
+    "error_max": 1.0187728326505052e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "same_state_queries",
+    "method": "dop853_dense",
+    "query_count": 4,
+    "measurement_id": "pde/continuum/4/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.0001289905048906803,
+    "measured_complete_seconds": 0.01177568749699276,
+    "modeled_complete_seconds": 0.012244446494150907,
+    "timing": {
+      "first_invocation_seconds": 0.011556537996511906,
+      "median_seconds": 0.01177568749699276,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.011436931003117934
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.012114443990867585
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00022290999186225235,
+      "median_seconds": 0.0001289905048906803,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.00017265501082874835
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 8.532599895261228e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 5.986060459787405e-13,
+    "error_max": 2.411626454090765e-12
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "trajectory_dense_output",
+    "method": "dop853_dense",
+    "query_count": 4,
+    "measurement_id": "pde/continuum/4/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.0001289905048906803,
+    "measured_complete_seconds": 0.01177568749699276,
+    "modeled_complete_seconds": 0.012244446494150907,
+    "timing": {
+      "first_invocation_seconds": 0.011556537996511906,
+      "median_seconds": 0.01177568749699276,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.011436931003117934
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.012114443990867585
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00022290999186225235,
+      "median_seconds": 0.0001289905048906803,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.00017265501082874835
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 8.532599895261228e-05
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 5.986060459787405e-13,
+    "error_max": 2.411626454090765e-12
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "same_state_queries",
+    "method": "cached_correction",
+    "query_count": 16,
+    "measurement_id": "pde/continuum/16/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.05484560401237104,
+    "measured_complete_seconds": 0.08347061550011858,
+    "modeled_complete_seconds": 0.07811278801818844,
+    "timing": {
+      "first_invocation_seconds": 0.08052606100682169,
+      "median_seconds": 0.08347061550011858,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.08395702298730612
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.08298420801293105
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.05745301899150945,
+      "median_seconds": 0.05484560401237104,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.05566341002122499
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.05402779800351709
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.8539659140910177e-07,
+    "error_max": 1.018772832539483e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "trajectory_dense_output",
+    "method": "cached_correction",
+    "query_count": 16,
+    "measurement_id": "pde/continuum/16/cached_correction",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.05484560401237104,
+    "measured_complete_seconds": 0.08347061550011858,
+    "modeled_complete_seconds": 0.07811278801818844,
+    "timing": {
+      "first_invocation_seconds": 0.08052606100682169,
+      "median_seconds": 0.08347061550011858,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.08395702298730612
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.08298420801293105
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.05745301899150945,
+      "median_seconds": 0.05484560401237104,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.05566341002122499
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.05402779800351709
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.8539659140910177e-07,
+    "error_max": 1.018772832539483e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "same_state_queries",
+    "method": "direct_gl4",
+    "query_count": 16,
+    "measurement_id": "pde/continuum/16/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.09473531700496096,
+    "measured_complete_seconds": 0.10003005848557223,
+    "modeled_complete_seconds": 0.09473531700496096,
+    "timing": {
+      "first_invocation_seconds": 0.09640661597950384,
+      "median_seconds": 0.10003005848557223,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.09892413098714314
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.10113598598400131
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.09748156601563096,
+      "median_seconds": 0.09473531700496096,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.09546525301993825
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.09400538098998368
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.8539659140561814e-07,
+    "error_max": 1.0187728326505052e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "trajectory_dense_output",
+    "method": "direct_gl4",
+    "query_count": 16,
+    "measurement_id": "pde/continuum/16/direct_gl4",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.09473531700496096,
+    "measured_complete_seconds": 0.10003005848557223,
+    "modeled_complete_seconds": 0.09473531700496096,
+    "timing": {
+      "first_invocation_seconds": 0.09640661597950384,
+      "median_seconds": 0.10003005848557223,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.09892413098714314
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.10113598598400131
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.09748156601563096,
+      "median_seconds": 0.09473531700496096,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.09546525301993825
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.09400538098998368
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.8539659140561814e-07,
+    "error_max": 1.0187728326505052e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "same_state_queries",
+    "method": "dop853_dense",
+    "query_count": 16,
+    "measurement_id": "pde/continuum/16/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.00019064701336901635,
+    "measured_complete_seconds": 0.011792445002356544,
+    "modeled_complete_seconds": 0.012306103002629243,
+    "timing": {
+      "first_invocation_seconds": 0.012138106016209349,
+      "median_seconds": 0.011792445002356544,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.01187327498337254
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.011711615021340549
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00011403902317397296,
+      "median_seconds": 0.00019064701336901635,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.00020473301992751658
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.00017656100681051612
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 6.121654621960501e-13,
+    "error_max": 3.1050162441204066e-12
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "trajectory_dense_output",
+    "method": "dop853_dense",
+    "query_count": 16,
+    "measurement_id": "pde/continuum/16/dop853_dense",
+    "shared_measurement": true,
+    "measured_query_seconds": 0.00019064701336901635,
+    "measured_complete_seconds": 0.011792445002356544,
+    "modeled_complete_seconds": 0.012306103002629243,
+    "timing": {
+      "first_invocation_seconds": 0.012138106016209349,
+      "median_seconds": 0.011792445002356544,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.01187327498337254
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.011711615021340549
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "query_timing": {
+      "first_invocation_seconds": 0.00011403902317397296,
+      "median_seconds": 0.00019064701336901635,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.00020473301992751658
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.00017656100681051612
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 6.121654621960501e-13,
+    "error_max": 3.1050162441204066e-12
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "parameter_queries",
+    "method": "cached_correction",
+    "query_count": 3,
+    "refresh_count": 3,
+    "measured_complete_seconds": 0.08241632349381689,
+    "timing": {
+      "first_invocation_seconds": 0.08017017401289195,
+      "median_seconds": 0.08241632349381689,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.08247985198977403
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.08235279499785975
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 4.307944536143153e-07,
+    "error_max": 1.1667460352304815e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "parameter_queries",
+    "method": "direct_gl4",
+    "query_count": 3,
+    "refresh_count": 3,
+    "measured_complete_seconds": 0.01996840100036934,
+    "timing": {
+      "first_invocation_seconds": 0.018698155996389687,
+      "median_seconds": 0.01996840100036934,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.020581983990268782
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0193548180104699
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 4.307944536015859e-07,
+    "error_max": 1.1667460351749703e-06
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "parameter_queries",
+    "method": "dop853_dense",
+    "query_count": 3,
+    "refresh_count": 3,
+    "measured_complete_seconds": 0.03540833399165422,
+    "timing": {
+      "first_invocation_seconds": 0.03696828801184893,
+      "median_seconds": 0.03540833399165422,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.035662184993270785
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.03515448299003765
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 0.0,
+    "error_max": 0.0
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "autonomous_rollout",
+    "method": "cached_correction",
+    "query_count": 4,
+    "refresh_count": 4,
+    "steps": [
+      0.02,
+      0.03,
+      0.01,
+      0.04
+    ],
+    "final_time": 0.1,
+    "measured_complete_seconds": 0.10174203850328922,
+    "timing": {
+      "first_invocation_seconds": 0.10462128999643028,
+      "median_seconds": 0.10174203850328922,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.10292040300555527
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.10056367400102317
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.6686901891645148e-08,
+    "error_max": 6.04456172892398e-08
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "autonomous_rollout",
+    "method": "direct_gl4",
+    "query_count": 4,
+    "refresh_count": 4,
+    "steps": [
+      0.02,
+      0.03,
+      0.01,
+      0.04
+    ],
+    "final_time": 0.1,
+    "measured_complete_seconds": 0.023031283999443986,
+    "timing": {
+      "first_invocation_seconds": 0.023363401007372886,
+      "median_seconds": 0.023031283999443986,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.02280864299973473
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.02325392499915324
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 2.6686901877368073e-08,
+    "error_max": 6.044561740026211e-08
+  },
+  {
+    "task": "complete_finite_pde",
+    "track": "continuum",
+    "workload": "autonomous_rollout",
+    "method": "dop853_dense",
+    "query_count": 4,
+    "refresh_count": 4,
+    "steps": [
+      0.02,
+      0.03,
+      0.01,
+      0.04
+    ],
+    "final_time": 0.1,
+    "measured_complete_seconds": 0.03507712848659139,
+    "timing": {
+      "first_invocation_seconds": 0.04111861198907718,
+      "median_seconds": 0.03507712848659139,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.03637161498772912
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.033782641985453665
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "error_rms": 1.2542326652481565e-15,
+    "error_max": 3.3861802251067274e-15
+  }
+]

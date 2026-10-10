@@ -1,0 +1,29 @@
+{
+  "diagnostic": "D05",
+  "status": "COMPLETED",
+  "rows": 148,
+  "reference_cases": 20,
+  "unresolved_references": 0,
+  "elapsed_seconds": 3.875872263975907,
+  "device": "cpu",
+  "dtype": "float64",
+  "process_peak_rss_bytes": 393969664,
+  "memory_scope": "whole Python process high-water RSS, not per-method peak",
+  "evidence_category": "bounded development; no independent confirmation",
+  "energy_joules": null,
+  "monetary_cost": null,
+  "analytical_uncertainty_is_certificate": false,
+  "initialized_neural_comparisons_are_not_trained_baselines": true,
+  "rollout_denominators": {},
+  "configuration": {
+    "grid": 8,
+    "timing_repeats": 3,
+    "max_reference_substeps": 256,
+    "uncertainty_floor": 1e-12,
+    "tracks": [
+      "discrete",
+      "continuum"
+    ]
+  },
+  "error": null
+}

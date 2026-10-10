@@ -1,0 +1,147 @@
+TDN frontier audit: 1 experiments; latest identity/discrete/2: NA 67/100; evidence 67%
+TDN frontier audit: 2 experiments; latest identity/discrete/4: NA 67/100; evidence 67%
+TDN frontier audit: 3 experiments; latest null/discrete/channel_fixed: NA 73/100; evidence 73%
+/workspace/TDN-adjacent/tdn/analysis/adjacent/engine.py:179: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  nulls = {'zero_time':float((model(u,0.,eq,geo)-u).abs().max())}
+{
+  "status": "COMPLETED",
+  "stage": "audit",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/audit/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/audit-tower/tdn-20261010T012149447093Z-d2c8dd70e77a"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/audit-tower/tdn-20261010T012149447093Z-d2c8dd70e77a
+TDN frontier D01: 1 experiments; latest D01/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "D01",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D01/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D01-tower/tdn-20261010T012151749564Z-94881c21ab16"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/D01-tower/tdn-20261010T012151749564Z-94881c21ab16
+TDN frontier D05: 1 experiments; latest D05/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "D05",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D05/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D05-tower/tdn-20261010T012154893686Z-361f0add74a0"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/D05-tower/tdn-20261010T012154893686Z-361f0add74a0
+TDN frontier D02: 1 experiments; latest D02/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "D02",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D02/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D02-tower/tdn-20261010T012200893657Z-c8ec43199428"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/D02-tower/tdn-20261010T012200893657Z-c8ec43199428
+TDN frontier D04: 1 experiments; latest D04/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "D04",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D04/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D04-tower/tdn-20261010T012203321198Z-56601f26378a"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/D04-tower/tdn-20261010T012203321198Z-56601f26378a
+TDN frontier D03: 1 experiments; latest D03/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "D03",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D03/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D03-tower/tdn-20261010T012208224398Z-6485424b7fea"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/D03-tower/tdn-20261010T012208224398Z-6485424b7fea
+TDN frontier D06: 1 experiments; latest D06/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "D06",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D06/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D06-tower/tdn-20261010T012233948651Z-9b181192e5fc"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/D06-tower/tdn-20261010T012233948651Z-9b181192e5fc
+TDN frontier D07: 1 experiments; latest D07/kernel/1/compact_kernel: NA 41/100; evidence 40%
+TDN frontier D07: 2 experiments; latest D07/kernel/1/cached_exact_kernel: NA 41/100; evidence 40%
+TDN frontier D07: 3 experiments; latest D07/kernel/1/fft_gl4: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "D07",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D07/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D07-tower/tdn-20261010T012241730501Z-17e6a66fa617"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/D07-tower/tdn-20261010T012241730501Z-17e6a66fa617
+TDN frontier D08: 1 experiments; latest D08/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "D08",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D08/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D08-tower/tdn-20261010T012248104555Z-9aad5102f05e"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/D08-tower/tdn-20261010T012248104555Z-9aad5102f05e
+TDN frontier roughness: 1 experiments; latest roughness/sweep: NA 58/100; evidence 57%
+{
+  "status": "COMPLETED",
+  "stage": "roughness",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/roughness/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/roughness-tower/tdn-20261010T012306893945Z-b5b53e6b2c20"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/roughness-tower/tdn-20261010T012306893945Z-b5b53e6b2c20
+TDN frontier explore-E01: 1 experiments; latest CONTROL/discrete/adjacent-exploration-954001/analytic_quad_cubic: NA 31/100; evidence 31%
+TDN frontier explore-E01: 2 experiments; latest CONTROL/discrete/adjacent-exploration-954001/quadratic: NA 31/100; evidence 31%
+TDN frontier explore-E01: 3 experiments; latest E01/discrete/adjacent-exploration-954001/selective_cubic: NA 54/100; evidence 54%
+{
+  "status": "COMPLETED",
+  "stage": "explore-E01",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/explore-E01/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/explore-E01-tower/tdn-20261010T012309909887Z-0865441c579c"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/explore-E01-tower/tdn-20261010T012309909887Z-0865441c579c
+TDN frontier explore-E02: 1 experiments; latest CONTROL/discrete/adjacent-exploration-954001/analytic_quad_cubic: NA 31/100; evidence 31%
+TDN frontier explore-E02: 2 experiments; latest CONTROL/discrete/adjacent-exploration-954001/quadratic: NA 31/100; evidence 31%
+TDN frontier explore-E02: 3 experiments; latest E02/discrete/adjacent-exploration-954001/signed_modulation: NA 54/100; evidence 54%
+{
+  "status": "COMPLETED",
+  "stage": "explore-E02",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/explore-E02/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/explore-E02-tower/tdn-20261010T012314482808Z-3efd88de0777"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/explore-E02-tower/tdn-20261010T012314482808Z-3efd88de0777
+TDN frontier pilot: 1 experiments; latest pilot/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "pilot",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/pilot/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/pilot-tower/tdn-20261010T012319165912Z-c0ff91eb3c15"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/pilot-tower/tdn-20261010T012319165912Z-c0ff91eb3c15
+TDN frontier evaluate: 1 experiments; latest evaluate/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "evaluate",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/evaluate/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/evaluate-tower/tdn-20261010T012326749102Z-732d9c92bb54"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/evaluate-tower/tdn-20261010T012326749102Z-732d9c92bb54
+TDN frontier report: 1 experiments; latest report/source-linked-atlas: NA 72/100; evidence 71%
+{
+  "status": "COMPLETED",
+  "stage": "report",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/report/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/report-tower/tdn-20261010T012342733620Z-428c5890b5ad"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-local-review-v1/report-tower/tdn-20261010T012342733620Z-428c5890b5ad
+Local CPU adjacent complete (runtime failure=False): /workspace/TDN-adjacent/runs/adjacent-local-review-v1

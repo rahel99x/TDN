@@ -1,0 +1,81 @@
+{
+  "proposals": {
+    "E02": {
+      "name": "Signed cubic modulation",
+      "role": "Ours fitted numerical prototype",
+      "challenged_assumption": "A missing cubic spatial direction requires nested cubic quadrature",
+      "mechanism": "Fit gamma*P[(u-mean(u))*Q(u)] to the analytic cubic on independent fit parents",
+      "saved_work": "Replace nested Volterra transports with one signed physical product",
+      "failure_mode": "Cubic shape need not align with the modulated quadratic direction",
+      "falsification": "Held-out cubic residual remains large or complete-PDE accuracy regresses",
+      "advance": "Use frozen protocol speed, regression and quadratic-improvement gates, with resolved accepted references and no new maximum-target failures",
+      "novelty": "Diagnostics-generated new-to-TDN combination; not a literature novelty claim",
+      "frozen_thresholds": {
+        "rms_ratio": 1.1,
+        "speedup": 1.1,
+        "quadratic_improvement": 1.1
+      }
+    }
+  },
+  "decisions": [
+    {
+      "prototype_id": "E02",
+      "track": "discrete",
+      "independent_parent_count": 4,
+      "reference_accepted_parent_count": 4,
+      "resolved_parent_count": 3,
+      "unresolved_parent_ids": [
+        "adjacent-exploration-954001"
+      ],
+      "finite_predictions": true,
+      "full_denominator_required": true,
+      "median_paired_speedup": 3.5296581030788396,
+      "worst_rms_ratio": null,
+      "new_maximum_target_failures": null,
+      "median_accuracy_improvement_over_quadratic": null,
+      "frozen_thresholds": {
+        "rms_ratio": 1.1,
+        "speedup": 1.1,
+        "quadratic_improvement": 1.1
+      },
+      "ratio_scope": "refinement-uncertainty-adjusted sensitivity, not a certified bound",
+      "skipped_cubic_parents": 4,
+      "utility": "NA",
+      "decision": "REFINE_REFERENCE",
+      "scientific_status": "DEVELOPMENT_ONLY",
+      "confidence_interval": null,
+      "qualification": "Independent held-out development parents; unresolved cases retain denominator weight; no confirmatory claim"
+    },
+    {
+      "prototype_id": "E02",
+      "track": "continuum",
+      "independent_parent_count": 4,
+      "reference_accepted_parent_count": 4,
+      "resolved_parent_count": 4,
+      "unresolved_parent_ids": [],
+      "finite_predictions": true,
+      "full_denominator_required": true,
+      "median_paired_speedup": 2.892682877364183,
+      "worst_rms_ratio": 48.50873813632461,
+      "new_maximum_target_failures": 0,
+      "median_accuracy_improvement_over_quadratic": 0.9930066939589475,
+      "frozen_thresholds": {
+        "rms_ratio": 1.1,
+        "speedup": 1.1,
+        "quadratic_improvement": 1.1
+      },
+      "ratio_scope": "refinement-uncertainty-adjusted sensitivity, not a certified bound",
+      "skipped_cubic_parents": 4,
+      "utility": "BAD",
+      "decision": "STOP_CURRENT_VARIANT",
+      "scientific_status": "DEVELOPMENT_ONLY",
+      "confidence_interval": null,
+      "qualification": "Independent held-out development parents; unresolved cases retain denominator weight; no confirmatory claim"
+    }
+  ],
+  "protected_budget_fraction": 0.2,
+  "budget_scope": "Adjacent discretionary pilot budget only; independent of main portfolio",
+  "mathematical_status": "Finite numerical checks, not a proof",
+  "energy_joules": null,
+  "monetary_cost": null
+}

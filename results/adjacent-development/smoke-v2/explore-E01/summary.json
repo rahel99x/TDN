@@ -1,0 +1,105 @@
+{
+  "schema": "tdn.adjacent/v1",
+  "stage": "explore-E01",
+  "kind": "explore",
+  "profile": "smoke",
+  "status": "COMPLETED",
+  "device": "cpu",
+  "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25"
+  },
+  "prerequisites": {
+    "audit": "283336e44e095adcaf516e924054804adc574fa6fd63b25773e1333f44c39b05",
+    "D01": "792958c903e55f7105d92c8cec1466ae37be2e659a8911b1d06ddd68c59ba421",
+    "D05": "9e22fc7dd5a45ec8fbb0bb17a409afa1232e6a88167b5b34f3c5dfaa6099e0d3"
+  },
+  "elapsed_seconds": 2.419847742014099,
+  "experiment_count": 24,
+  "verdict_counts": {
+    "NA": 17,
+    "BAD": 6,
+    "GOOD": 1
+  },
+  "correctness_failures": 0,
+  "memory": {
+    "enabled": false,
+    "observations": 0,
+    "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+  },
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "details": {
+    "status": "COMPLETED",
+    "prototype_ids": [
+      "E01"
+    ],
+    "row_count": 24,
+    "decisions": [
+      {
+        "prototype_id": "E01",
+        "track": "discrete",
+        "independent_parent_count": 4,
+        "reference_accepted_parent_count": 4,
+        "resolved_parent_count": 3,
+        "unresolved_parent_ids": [
+          "adjacent-exploration-954001"
+        ],
+        "finite_predictions": true,
+        "full_denominator_required": true,
+        "median_paired_speedup": 2.2276096246595656,
+        "worst_rms_ratio": null,
+        "new_maximum_target_failures": null,
+        "median_accuracy_improvement_over_quadratic": null,
+        "frozen_thresholds": {
+          "rms_ratio": 1.05,
+          "speedup": 1.1,
+          "quadratic_improvement": 1.1
+        },
+        "ratio_scope": "refinement-uncertainty-adjusted sensitivity, not a certified bound",
+        "skipped_cubic_parents": 2,
+        "utility": "NA",
+        "decision": "REFINE_REFERENCE",
+        "scientific_status": "DEVELOPMENT_ONLY",
+        "confidence_interval": null,
+        "qualification": "Independent held-out development parents; unresolved cases retain denominator weight; no confirmatory claim"
+      },
+      {
+        "prototype_id": "E01",
+        "track": "continuum",
+        "independent_parent_count": 4,
+        "reference_accepted_parent_count": 4,
+        "resolved_parent_count": 4,
+        "unresolved_parent_ids": [],
+        "finite_predictions": true,
+        "full_denominator_required": true,
+        "median_paired_speedup": 2.183870344961908,
+        "worst_rms_ratio": 47.25212752642714,
+        "new_maximum_target_failures": 0,
+        "median_accuracy_improvement_over_quadratic": 4.858156798814683,
+        "frozen_thresholds": {
+          "rms_ratio": 1.05,
+          "speedup": 1.1,
+          "quadratic_improvement": 1.1
+        },
+        "ratio_scope": "refinement-uncertainty-adjusted sensitivity, not a certified bound",
+        "skipped_cubic_parents": 2,
+        "utility": "BAD",
+        "decision": "STOP_CURRENT_VARIANT",
+        "scientific_status": "DEVELOPMENT_ONLY",
+        "confidence_interval": null,
+        "qualification": "Independent held-out development parents; unresolved cases retain denominator weight; no confirmatory claim"
+      }
+    ],
+    "device": "cpu",
+    "scientific_status": "DEVELOPMENT_ONLY"
+  }
+}

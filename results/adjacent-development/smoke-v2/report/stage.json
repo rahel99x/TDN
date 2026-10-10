@@ -1,0 +1,129 @@
+{
+  "stage": "report",
+  "profile": "smoke",
+  "device": "cpu",
+  "execution_mode": "local-cpu",
+  "command": [
+    "/workspace/TDN-adjacent/.venv/bin/python",
+    "/workspace/TDN-adjacent/scripts/adjacent.py",
+    "--stage",
+    "report",
+    "--profile",
+    "smoke",
+    "--run-dir",
+    "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/report",
+    "--device",
+    "cpu",
+    "--local-root",
+    "/workspace/TDN-adjacent",
+    "--prerequisite-dir",
+    "audit=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/audit",
+    "--prerequisite-dir",
+    "D01=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01",
+    "--prerequisite-dir",
+    "D05=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D05",
+    "--prerequisite-dir",
+    "D02=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D02",
+    "--prerequisite-dir",
+    "D04=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D04",
+    "--prerequisite-dir",
+    "D03=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D03",
+    "--prerequisite-dir",
+    "D06=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D06",
+    "--prerequisite-dir",
+    "D07=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D07",
+    "--prerequisite-dir",
+    "D08=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D08",
+    "--prerequisite-dir",
+    "roughness=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/roughness",
+    "--prerequisite-dir",
+    "explore-E01=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E01",
+    "--prerequisite-dir",
+    "explore-E02=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E02",
+    "--prerequisite-dir",
+    "pilot=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot",
+    "--prerequisite-dir",
+    "evaluate=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/evaluate"
+  ],
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "git_available": true,
+    "tracked_or_untracked_changes": false,
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "prerequisites": {
+    "audit": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/audit",
+      "workflow_seal_sha256": "f303c30d7da366237f2348dcb87ebd8d80e44d8857db783dd7afc9cffcfa2c59"
+    },
+    "D01": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01",
+      "workflow_seal_sha256": "c85c0f55848028597c8afb61f5fe05ec65384220f6b57582aac873e7b1247ee9"
+    },
+    "D05": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D05",
+      "workflow_seal_sha256": "395ec1492e8611642f380a85219e46c10bf61a6ece7aa57c871e7ecc1e163b5f"
+    },
+    "D02": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D02",
+      "workflow_seal_sha256": "1c0652b084ab2345016e1629c68dbdbed2a00edb96a51c4508a898c4cd2b8a2f"
+    },
+    "D04": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D04",
+      "workflow_seal_sha256": "15b00dabaf40b375b57eb0adf169057e7cb0698261ec6beab5e13e9a3ef552b8"
+    },
+    "D03": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D03",
+      "workflow_seal_sha256": "fe0971d66855c526e8e49711862a36470e277e3220eb5389c502d196237f052f"
+    },
+    "D06": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D06",
+      "workflow_seal_sha256": "447da135cacc36006181bd01652f769ec451043f1ee79d8236fc164a0643e031"
+    },
+    "D07": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D07",
+      "workflow_seal_sha256": "96b7f9b4ce0cdf4fd0388ad6c8ba18c3986feb2716cc68a05c64b69aae80ec96"
+    },
+    "D08": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D08",
+      "workflow_seal_sha256": "cb55553ca7fed9af7832285711bfabb67b4b6572ca4873ff7b54846076e913ac"
+    },
+    "roughness": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/roughness",
+      "workflow_seal_sha256": "96a7b3fbd06014470f8d0daf59aeab264048433e64b3611fa227fa30bb657fcd"
+    },
+    "explore-E01": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E01",
+      "workflow_seal_sha256": "edebe5265e925dbda03210de7adf80f4c41c9f5e3bcc47710fd47a7f3b0ecd4b"
+    },
+    "explore-E02": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/explore-E02",
+      "workflow_seal_sha256": "206b4eef5b9bc902aae1facfd950b0e86067df46037f4d9b959298c266733097"
+    },
+    "pilot": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/pilot",
+      "workflow_seal_sha256": "ea51fd63fbf77030d74fbd4908e9c4ceb11ba2f9c6580a07e45cf3b7c288de98"
+    },
+    "evaluate": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/evaluate",
+      "workflow_seal_sha256": "98ee9f9da46bb12bfa4146a92de7e172a19c685ee99c728ceec49a422e9cdbcd"
+    }
+  },
+  "slurm_job_id": null,
+  "slurm_step_id": null,
+  "status": "COMPLETED",
+  "actually_ran": true,
+  "benchmark_suite": "adjacent",
+  "elapsed_seconds": 35.86407362599857
+}

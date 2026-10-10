@@ -1,0 +1,59 @@
+{
+  "stage": "D06",
+  "profile": "smoke",
+  "device": "cpu",
+  "execution_mode": "local-cpu",
+  "command": [
+    "/workspace/TDN-adjacent/.venv/bin/python",
+    "/workspace/TDN-adjacent/scripts/adjacent.py",
+    "--stage",
+    "D06",
+    "--profile",
+    "smoke",
+    "--run-dir",
+    "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D06",
+    "--device",
+    "cpu",
+    "--local-root",
+    "/workspace/TDN-adjacent",
+    "--prerequisite-dir",
+    "audit=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/audit",
+    "--prerequisite-dir",
+    "D01=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01",
+    "--prerequisite-dir",
+    "D05=/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D05"
+  ],
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "git_available": true,
+    "tracked_or_untracked_changes": false,
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "prerequisites": {
+    "audit": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/audit",
+      "workflow_seal_sha256": "f303c30d7da366237f2348dcb87ebd8d80e44d8857db783dd7afc9cffcfa2c59"
+    },
+    "D01": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D01",
+      "workflow_seal_sha256": "c85c0f55848028597c8afb61f5fe05ec65384220f6b57582aac873e7b1247ee9"
+    },
+    "D05": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v2/D05",
+      "workflow_seal_sha256": "395ec1492e8611642f380a85219e46c10bf61a6ece7aa57c871e7ecc1e163b5f"
+    }
+  },
+  "slurm_job_id": null,
+  "slurm_step_id": null
+}

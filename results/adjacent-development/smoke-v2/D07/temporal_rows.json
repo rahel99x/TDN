@@ -1,0 +1,2012 @@
+[
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/1/compact_kernel",
+    "metrics": {
+      "error_rms": 2.43222692155554e-18,
+      "error_max": 6.071532165918825e-18,
+      "query_count": 1,
+      "complete_seconds": 0.0004252640064805746,
+      "storage_bytes": 9416
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 6.071532165918825e-18,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "compact_kernel",
+      "role": "Ours"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/1/cached_exact_kernel",
+    "metrics": {
+      "error_rms": 0.0,
+      "error_max": 0.0,
+      "query_count": 1,
+      "complete_seconds": 4.038999031763524e-05,
+      "storage_bytes": null
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 0.0,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "cached_exact_kernel",
+      "role": "Analytic control"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/1/fft_gl4",
+    "metrics": {
+      "error_rms": 8.351250784813534e-17,
+      "error_max": 1.8778381627448937e-16,
+      "query_count": 1,
+      "complete_seconds": 6.702900282107294e-05,
+      "storage_bytes": null
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 1.8778381627448937e-16,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "fft_gl4",
+      "role": "Analytic control"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/1/dop853_lifted_dense",
+    "metrics": {
+      "error_rms": 1.5656797538207885e-17,
+      "error_max": 3.5561831257524545e-17,
+      "query_count": 1,
+      "complete_seconds": 0.0007431400008499622,
+      "storage_bytes": null
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 3.5561831257524545e-17,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "dop853_lifted_dense",
+      "role": "Theirs"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/4/compact_kernel",
+    "metrics": {
+      "error_rms": 1.2423696968964216e-18,
+      "error_max": 6.071532165918825e-18,
+      "query_count": 4,
+      "complete_seconds": 0.0003974579885834828,
+      "storage_bytes": 9416
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 6.071532165918825e-18,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "compact_kernel",
+      "role": "Ours"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/4/cached_exact_kernel",
+    "metrics": {
+      "error_rms": 0.0,
+      "error_max": 0.0,
+      "query_count": 4,
+      "complete_seconds": 9.714349289424717e-05,
+      "storage_bytes": null
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 0.0,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "cached_exact_kernel",
+      "role": "Analytic control"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/4/fft_gl4",
+    "metrics": {
+      "error_rms": 4.1887891140278975e-17,
+      "error_max": 1.8778381627448937e-16,
+      "query_count": 4,
+      "complete_seconds": 0.00018928000645246357,
+      "storage_bytes": null
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 1.8778381627448937e-16,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "fft_gl4",
+      "role": "Analytic control"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/4/dop853_lifted_dense",
+    "metrics": {
+      "error_rms": 4.914626292827532e-16,
+      "error_max": 1.5525775109992423e-15,
+      "query_count": 4,
+      "complete_seconds": 0.0007325789920287207,
+      "storage_bytes": null
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 1.5525775109992423e-15,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "dop853_lifted_dense",
+      "role": "Theirs"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/16/compact_kernel",
+    "metrics": {
+      "error_rms": 7.120931574573e-19,
+      "error_max": 6.071532165918825e-18,
+      "query_count": 16,
+      "complete_seconds": 0.0006289260054472834,
+      "storage_bytes": 9416
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 6.071532165918825e-18,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "compact_kernel",
+      "role": "Ours"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/16/cached_exact_kernel",
+    "metrics": {
+      "error_rms": 0.0,
+      "error_max": 0.0,
+      "query_count": 16,
+      "complete_seconds": 0.00034691298787947744,
+      "storage_bytes": null
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 0.0,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "cached_exact_kernel",
+      "role": "Analytic control"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/16/fft_gl4",
+    "metrics": {
+      "error_rms": 2.5134385864811207e-17,
+      "error_max": 1.8778381627448937e-16,
+      "query_count": 16,
+      "complete_seconds": 0.0007153634942369536,
+      "storage_bytes": null
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 1.8778381627448937e-16,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "fft_gl4",
+      "role": "Analytic control"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/kernel/16/dop853_lifted_dense",
+    "metrics": {
+      "error_rms": 6.429243967045778e-16,
+      "error_max": 2.2551405187698492e-15,
+      "query_count": 16,
+      "complete_seconds": 0.0006792100029997528,
+      "storage_bytes": null
+    },
+    "checks": [
+      {
+        "check_id": "same-kernel",
+        "category": "math",
+        "measured": 2.2551405187698492e-15,
+        "target": 1e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "full-pde-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "This task is only a lifted quadratic response",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "quadratic_kernel_only",
+      "workload": "same_state_queries",
+      "method": "dop853_lifted_dense",
+      "role": "Theirs"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/discrete/1/cached_correction",
+    "metrics": {
+      "error_rms": 2.2825386697975352e-07,
+      "error_max": 6.253168380876417e-07,
+      "query_count": 1,
+      "complete_seconds": 0.007271849506651051,
+      "reference_uncertainty_max": 1e-12,
+      "correction_interpolation_error": {
+        "error_rms": 6.619282909410174e-17,
+        "error_max": 2.220446049250313e-16
+      }
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 6.253168380876417e-07,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.007271849506651051,
+        "target": 0.001044981981976889,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "discrete",
+      "method": "cached_correction",
+      "role": "Ours",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/discrete/1/direct_gl4",
+    "metrics": {
+      "error_rms": 2.2825386697857972e-07,
+      "error_max": 6.253168380876417e-07,
+      "query_count": 1,
+      "complete_seconds": 0.001044981981976889,
+      "reference_uncertainty_max": 1e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 6.253168380876417e-07,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.001044981981976889,
+        "target": 0.001044981981976889,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "discrete",
+      "method": "direct_gl4",
+      "role": "Analytic control",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/discrete/1/dop853_dense",
+    "metrics": {
+      "error_rms": 5.834991593081522e-14,
+      "error_max": 9.903189379656396e-14,
+      "query_count": 1,
+      "complete_seconds": 0.0031916544976411387,
+      "reference_uncertainty_max": 1e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 9.903189379656396e-14,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.0031916544976411387,
+        "target": 0.001044981981976889,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "discrete",
+      "method": "dop853_dense",
+      "role": "Theirs",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/discrete/4/cached_correction",
+    "metrics": {
+      "error_rms": 1.256764348860776e-07,
+      "error_max": 6.253168380876417e-07,
+      "query_count": 4,
+      "complete_seconds": 0.008802789991023019,
+      "reference_uncertainty_max": 2.1845858455549205e-12,
+      "correction_interpolation_error": {
+        "error_rms": 4.0161752058697714e-17,
+        "error_max": 2.220446049250313e-16
+      }
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 2.1845858455549205e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 6.253168380876417e-07,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.008802789991023019,
+        "target": 0.004066875495482236,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "discrete",
+      "method": "cached_correction",
+      "role": "Ours",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/discrete/4/direct_gl4",
+    "metrics": {
+      "error_rms": 1.2567643488454616e-07,
+      "error_max": 6.253168380876417e-07,
+      "query_count": 4,
+      "complete_seconds": 0.004066875495482236,
+      "reference_uncertainty_max": 2.1845858455549205e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 2.1845858455549205e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 6.253168380876417e-07,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.004066875495482236,
+        "target": 0.004066875495482236,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "discrete",
+      "method": "direct_gl4",
+      "role": "Analytic control",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/discrete/4/dop853_dense",
+    "metrics": {
+      "error_rms": 5.812008733746622e-13,
+      "error_max": 2.1845858455549205e-12,
+      "query_count": 4,
+      "complete_seconds": 0.0033218919998034835,
+      "reference_uncertainty_max": 2.1845858455549205e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 2.1845858455549205e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 2.1845858455549205e-12,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.0033218919998034835,
+        "target": 0.004066875495482236,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "discrete",
+      "method": "dop853_dense",
+      "role": "Theirs",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/discrete/16/cached_correction",
+    "metrics": {
+      "error_rms": 9.747583164163484e-08,
+      "error_max": 6.253168380876417e-07,
+      "query_count": 16,
+      "complete_seconds": 0.012055775499902666,
+      "reference_uncertainty_max": 2.5069391007548347e-12,
+      "correction_interpolation_error": {
+        "error_rms": 3.0444273447339113e-17,
+        "error_max": 2.220446049250313e-16
+      }
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 2.5069391007548347e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 6.253168380876417e-07,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.012055775499902666,
+        "target": 0.017280234504141845,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "discrete",
+      "method": "cached_correction",
+      "role": "Ours",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/discrete/16/direct_gl4",
+    "metrics": {
+      "error_rms": 9.747583163989063e-08,
+      "error_max": 6.253168380876417e-07,
+      "query_count": 16,
+      "complete_seconds": 0.017280234504141845,
+      "reference_uncertainty_max": 2.5069391007548347e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 2.5069391007548347e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 6.253168380876417e-07,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.017280234504141845,
+        "target": 0.017280234504141845,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "discrete",
+      "method": "direct_gl4",
+      "role": "Analytic control",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/discrete/16/dop853_dense",
+    "metrics": {
+      "error_rms": 5.806747109330373e-13,
+      "error_max": 2.5069391007548347e-12,
+      "query_count": 16,
+      "complete_seconds": 0.0031789354979991913,
+      "reference_uncertainty_max": 2.5069391007548347e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 2.5069391007548347e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 2.5069391007548347e-12,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.0031789354979991913,
+        "target": 0.017280234504141845,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "discrete",
+      "method": "dop853_dense",
+      "role": "Theirs",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/continuum/1/cached_correction",
+    "metrics": {
+      "error_rms": 4.3038880175609027e-07,
+      "error_max": 1.018772832539483e-06,
+      "query_count": 1,
+      "complete_seconds": 0.02871128750848584,
+      "reference_uncertainty_max": 1e-12,
+      "correction_interpolation_error": {
+        "error_rms": 1.2412670766236366e-16,
+        "error_max": 4.440892098500626e-16
+      }
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 1.018772832539483e-06,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.02871128750848584,
+        "target": 0.008191604996682145,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "continuum",
+      "method": "cached_correction",
+      "role": "Ours",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/continuum/1/direct_gl4",
+    "metrics": {
+      "error_rms": 4.3038880172929216e-07,
+      "error_max": 1.0187728326505052e-06,
+      "query_count": 1,
+      "complete_seconds": 0.008191604996682145,
+      "reference_uncertainty_max": 1e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 1.0187728326505052e-06,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.008191604996682145,
+        "target": 0.008191604996682145,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "continuum",
+      "method": "direct_gl4",
+      "role": "Analytic control",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/continuum/1/dop853_dense",
+    "metrics": {
+      "error_rms": 6.183218845404257e-14,
+      "error_max": 1.2456702336294256e-13,
+      "query_count": 1,
+      "complete_seconds": 0.013403294506133534,
+      "reference_uncertainty_max": 1e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 1.2456702336294256e-13,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.013403294506133534,
+        "target": 0.008191604996682145,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "continuum",
+      "method": "dop853_dense",
+      "role": "Theirs",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/continuum/4/cached_correction",
+    "metrics": {
+      "error_rms": 2.3789251414121136e-07,
+      "error_max": 1.018772832539483e-06,
+      "query_count": 4,
+      "complete_seconds": 0.03885535198787693,
+      "reference_uncertainty_max": 2.411626454090765e-12,
+      "correction_interpolation_error": {
+        "error_rms": 7.67210752826985e-17,
+        "error_max": 4.440892098500626e-16
+      }
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 2.411626454090765e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 1.018772832539483e-06,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.03885535198787693,
+        "target": 0.025391768984263763,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "continuum",
+      "method": "cached_correction",
+      "role": "Ours",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/continuum/4/direct_gl4",
+    "metrics": {
+      "error_rms": 2.378925141302697e-07,
+      "error_max": 1.0187728326505052e-06,
+      "query_count": 4,
+      "complete_seconds": 0.025391768984263763,
+      "reference_uncertainty_max": 2.411626454090765e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 2.411626454090765e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 1.0187728326505052e-06,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.025391768984263763,
+        "target": 0.025391768984263763,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "continuum",
+      "method": "direct_gl4",
+      "role": "Analytic control",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/continuum/4/dop853_dense",
+    "metrics": {
+      "error_rms": 5.986060459787405e-13,
+      "error_max": 2.411626454090765e-12,
+      "query_count": 4,
+      "complete_seconds": 0.012887950986623764,
+      "reference_uncertainty_max": 2.411626454090765e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 2.411626454090765e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 2.411626454090765e-12,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.012887950986623764,
+        "target": 0.025391768984263763,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "continuum",
+      "method": "dop853_dense",
+      "role": "Theirs",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/continuum/16/cached_correction",
+    "metrics": {
+      "error_rms": 1.8539659140910177e-07,
+      "error_max": 1.018772832539483e-06,
+      "query_count": 16,
+      "complete_seconds": 0.08178467401012313,
+      "reference_uncertainty_max": 3.1050162441204066e-12,
+      "correction_interpolation_error": {
+        "error_rms": 5.287350645549808e-17,
+        "error_max": 4.440892098500626e-16
+      }
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 3.1050162441204066e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 1.018772832539483e-06,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.08178467401012313,
+        "target": 0.09798944501380902,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "continuum",
+      "method": "cached_correction",
+      "role": "Ours",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/continuum/16/direct_gl4",
+    "metrics": {
+      "error_rms": 1.8539659140561814e-07,
+      "error_max": 1.0187728326505052e-06,
+      "query_count": 16,
+      "complete_seconds": 0.09798944501380902,
+      "reference_uncertainty_max": 3.1050162441204066e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 3.1050162441204066e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 1.0187728326505052e-06,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.09798944501380902,
+        "target": 0.09798944501380902,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "continuum",
+      "method": "direct_gl4",
+      "role": "Analytic control",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  },
+  {
+    "schema": "tdn.adjacent-temporal/v1",
+    "diagnostic_id": "D07",
+    "experiment_id": "D07/pde/continuum/16/dop853_dense",
+    "metrics": {
+      "error_rms": 6.121654621960501e-13,
+      "error_max": 3.1050162441204066e-12,
+      "query_count": 16,
+      "complete_seconds": 0.01222121500177309,
+      "reference_uncertainty_max": 3.1050162441204066e-12,
+      "correction_interpolation_error": null
+    },
+    "checks": [
+      {
+        "check_id": "dense-independent-crosscheck",
+        "category": "math",
+        "measured": 3.1050162441204066e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-pde-target",
+        "category": "gap",
+        "measured": 3.1050162441204066e-12,
+        "target": 2e-05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "reuse-over-direct",
+        "category": "utility",
+        "measured": 0.01222121500177309,
+        "target": 0.09798944501380902,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "task": "complete_finite_pde",
+      "track": "continuum",
+      "method": "dop853_dense",
+      "role": "Theirs",
+      "interpretation": "One initial state, many horizons; not composition of predicted states"
+    },
+    "status": "COMPLETED"
+  }
+]

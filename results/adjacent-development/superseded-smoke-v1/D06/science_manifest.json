@@ -1,0 +1,43 @@
+{
+  "schema": "tdn.adjacent-science/v1",
+  "stage": "D06",
+  "kind": "diagnostic",
+  "device": "cpu",
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "unit_sha256": "46f25a33bf2b6ca8bb5fa26b3fb0d413940da97f9995a7349a66a657d7d924ac",
+  "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+  "prerequisites": {
+    "audit": "941b63f92c587bd4e784747b382cc9f641ceb20d790b965470a36d134fe63c36",
+    "D01": "bde93ef500f59a49108ca2c747a3a1148e6b182c1e8783fa379a1611c876b5ec",
+    "D05": "070b79fda3ac05f7f990fc79d47e24c07e7435fd3f4a8e28f39baf4993456da9"
+  },
+  "lineage": {
+    "audit": "941b63f92c587bd4e784747b382cc9f641ceb20d790b965470a36d134fe63c36",
+    "D01": "bde93ef500f59a49108ca2c747a3a1148e6b182c1e8783fa379a1611c876b5ec",
+    "D05": "070b79fda3ac05f7f990fc79d47e24c07e7435fd3f4a8e28f39baf4993456da9"
+  },
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+    "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd"
+  },
+  "artifacts": {
+    "arrays.npz": "4e27ce5a916caf54d0d676493603ba79abc98faef0a95cff9225511ce0dfdadf",
+    "diagnostic_rows.json": "baedd025e419fafe22172c89f0969be877ca8e1db400e6fc4c2bb16c262f5789",
+    "diagnostic_summary.json": "ce677c5fc76af9a69a6d198a2e1c9da17b2872dc0c5867c67a49546823c0350a",
+    "protocol.json": "326cb7be6dda0bb9f578532268aa760c008e6b442a7ec79461288c675bc59371",
+    "reference_records.json": "53d04acd50b5316a33edc76112d4ced9bb148a01c839fb2cd14a2d4bf558f0bb",
+    "review.csv": "1d668e07d2503ae55aebd8da64ea8432af47c3347124dacd7ee8ba31d11c9020",
+    "review.md": "cf22a6ac1454ce94db72ede20c4491ddd38e1bd0f749a89968d8673e74348a96",
+    "rows.json": "3f7cbd18336a994009a24895e097d19ec4d7f3ed65faaa6994ce83129c2c3440",
+    "rows.jsonl": "21980bcc92cf8b54bc5416c4a0d62550208a5a8ae4ee995561c197e47e645673",
+    "summary.json": "811c2a1ec8d06ea38824fe242d7136297785710a5811987e7d3d36759a4a8402",
+    "summary.txt": "99cdd7de511ef431cf3bf14a80f41a662dd82fdfecf12da0fae6dc2e9993a011"
+  }
+}

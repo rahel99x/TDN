@@ -1,0 +1,112 @@
+{
+  "schema": "tdn.adjacent-pilot/v1",
+  "contrasts": [
+    {
+      "track": "discrete",
+      "candidate": "channel_neural",
+      "control": "channel_global",
+      "validation_parent_count": 2,
+      "paired_parent_log_error_ratios": {
+        "validation/seed-71100000": 0.0,
+        "validation/seed-71100001": 0.034139928994724525
+      },
+      "pilot_standard_deviation": 0.024140575301396943,
+      "missing_parents": {},
+      "reference_unresolved_parents": [],
+      "planning_upper_sd": null,
+      "required_parents": null,
+      "status": "INSUFFICIENT_PILOT_FIELDS"
+    },
+    {
+      "track": "discrete",
+      "candidate": "channel_neural",
+      "control": "quad2_conditioned",
+      "validation_parent_count": 2,
+      "paired_parent_log_error_ratios": {
+        "validation/seed-71100000": 0.0,
+        "validation/seed-71100001": 0.0
+      },
+      "pilot_standard_deviation": 0.0,
+      "missing_parents": {},
+      "reference_unresolved_parents": [],
+      "planning_upper_sd": null,
+      "required_parents": null,
+      "status": "INSUFFICIENT_PILOT_FIELDS"
+    },
+    {
+      "track": "discrete",
+      "candidate": "channel_neural",
+      "control": "band_gain",
+      "validation_parent_count": 2,
+      "paired_parent_log_error_ratios": {
+        "validation/seed-71100000": 0.0,
+        "validation/seed-71100001": 0.0
+      },
+      "pilot_standard_deviation": 0.0,
+      "missing_parents": {},
+      "reference_unresolved_parents": [],
+      "planning_upper_sd": null,
+      "required_parents": null,
+      "status": "INSUFFICIENT_PILOT_FIELDS"
+    },
+    {
+      "track": "continuum",
+      "candidate": "channel_neural",
+      "control": "channel_global",
+      "validation_parent_count": 2,
+      "paired_parent_log_error_ratios": {
+        "validation/seed-71100000": 0.0,
+        "validation/seed-71100001": 0.0252865521037122
+      },
+      "pilot_standard_deviation": 0.017880292465361856,
+      "missing_parents": {},
+      "reference_unresolved_parents": [],
+      "planning_upper_sd": null,
+      "required_parents": null,
+      "status": "INSUFFICIENT_PILOT_FIELDS"
+    },
+    {
+      "track": "continuum",
+      "candidate": "channel_neural",
+      "control": "quad2_conditioned",
+      "validation_parent_count": 2,
+      "paired_parent_log_error_ratios": {
+        "validation/seed-71100000": 0.0,
+        "validation/seed-71100001": -0.022250585373440043
+      },
+      "pilot_standard_deviation": 0.01573353980292966,
+      "missing_parents": {},
+      "reference_unresolved_parents": [],
+      "planning_upper_sd": null,
+      "required_parents": null,
+      "status": "INSUFFICIENT_PILOT_FIELDS"
+    },
+    {
+      "track": "continuum",
+      "candidate": "channel_neural",
+      "control": "band_gain",
+      "validation_parent_count": 2,
+      "paired_parent_log_error_ratios": {
+        "validation/seed-71100000": 0.0,
+        "validation/seed-71100001": 0.0
+      },
+      "pilot_standard_deviation": 0.0,
+      "missing_parents": {},
+      "reference_unresolved_parents": [],
+      "planning_upper_sd": null,
+      "required_parents": null,
+      "status": "INSUFFICIENT_PILOT_FIELDS"
+    }
+  ],
+  "chosen_parents": 64,
+  "maximum_parents": 64,
+  "required_parents": null,
+  "desired_log_halfwidth": 0.13976194237515863,
+  "confidence_level": 0.95,
+  "primary_comparisons": 6,
+  "multiple_comparisons": "Bonferroni across all 6 track-specific declared contrasts",
+  "primary_effect": "track-specific one-step paired log RMS ratios; all preregistered horizons/seeds required then averaged within parent",
+  "planning_scope": "validation-selected models on validation variability; conservative SD planning heuristic, not a power guarantee",
+  "frozen_before_fresh_references": true,
+  "status": "INSUFFICIENT_PILOT_FIELDS"
+}

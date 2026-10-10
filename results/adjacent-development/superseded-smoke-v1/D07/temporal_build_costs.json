@@ -1,0 +1,57 @@
+{
+  "kernel": {
+    "operator_preparation_seconds": 0.0005032049957662821,
+    "encoding_seconds": 8.631800301373005e-05,
+    "classical_build_seconds": 0.000825512019218877,
+    "prior_cost_failure": "X01 exceeded realistic query budget",
+    "changed_premise": "Actual finite query groups and full build-and-query costs are now measured"
+  },
+  "pde": [
+    {
+      "track": "discrete",
+      "encoding_seconds": 0.008871082012774423,
+      "classical_build_seconds": 0.0032692489912733436,
+      "validation_seconds": 3.123600617982447e-05,
+      "query_reconstruction_seconds": 5.400998634286225e-05,
+      "storage_bytes": 5120,
+      "compilation_seconds": null,
+      "transfer_seconds": 0.0,
+      "reference_generation_seconds": 0.0681240779813379,
+      "transfer_note": "CPU-only; no host/device copy, NumPy reconstruction included in query",
+      "reference_uncertainty_max": 1e-12,
+      "reference_is_certificate": false
+    },
+    {
+      "track": "continuum",
+      "encoding_seconds": 0.0232671840058174,
+      "classical_build_seconds": 0.012115455989260226,
+      "validation_seconds": 3.761600237339735e-05,
+      "query_reconstruction_seconds": 4.385501961223781e-05,
+      "storage_bytes": 5120,
+      "compilation_seconds": null,
+      "transfer_seconds": 0.0,
+      "reference_generation_seconds": 0.3113205220142845,
+      "transfer_note": "CPU-only; no host/device copy, NumPy reconstruction included in query",
+      "reference_uncertainty_max": 1e-12,
+      "reference_is_certificate": false
+    }
+  ],
+  "decisions": [
+    {
+      "track": "discrete",
+      "nominal_break_even_queries": 13,
+      "measured_accuracy_qualified_break_even_queries": null,
+      "utility": "BAD",
+      "decision": "STOP_CURRENT_COST_CLAIM",
+      "qualification": "Single independent development field; no confidence interval or GPU claim"
+    },
+    {
+      "track": "continuum",
+      "nominal_break_even_queries": 10,
+      "measured_accuracy_qualified_break_even_queries": null,
+      "utility": "BAD",
+      "decision": "STOP_CURRENT_COST_CLAIM",
+      "qualification": "Single independent development field; no confidence interval or GPU claim"
+    }
+  ]
+}

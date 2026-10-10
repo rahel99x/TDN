@@ -1,0 +1,62 @@
+[
+  {
+    "track": "discrete",
+    "change": "state",
+    "rejected": true
+  },
+  {
+    "track": "discrete",
+    "change": "parameter",
+    "rejected": true
+  },
+  {
+    "track": "discrete",
+    "change": "operator_domain",
+    "rejected": true
+  },
+  {
+    "track": "discrete",
+    "change": "precision",
+    "rejected": true
+  },
+  {
+    "track": "discrete",
+    "change": "spatial_equation",
+    "rejected": true
+  },
+  {
+    "track": "discrete",
+    "change": "interval",
+    "rejected": true
+  },
+  {
+    "track": "continuum",
+    "change": "state",
+    "rejected": true
+  },
+  {
+    "track": "continuum",
+    "change": "parameter",
+    "rejected": true
+  },
+  {
+    "track": "continuum",
+    "change": "operator_domain",
+    "rejected": true
+  },
+  {
+    "track": "continuum",
+    "change": "precision",
+    "rejected": true
+  },
+  {
+    "track": "continuum",
+    "change": "spatial_equation",
+    "rejected": true
+  },
+  {
+    "track": "continuum",
+    "change": "interval",
+    "rejected": true
+  }
+]

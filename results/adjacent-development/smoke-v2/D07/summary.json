@@ -1,0 +1,68 @@
+{
+  "schema": "tdn.adjacent/v1",
+  "stage": "D07",
+  "kind": "diagnostic",
+  "profile": "smoke",
+  "status": "COMPLETED",
+  "device": "cpu",
+  "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25"
+  },
+  "prerequisites": {
+    "audit": "283336e44e095adcaf516e924054804adc574fa6fd63b25773e1333f44c39b05",
+    "D01": "792958c903e55f7105d92c8cec1466ae37be2e659a8911b1d06ddd68c59ba421",
+    "D05": "9e22fc7dd5a45ec8fbb0bb17a409afa1232e6a88167b5b34f3c5dfaa6099e0d3"
+  },
+  "elapsed_seconds": 4.641610891005257,
+  "experiment_count": 30,
+  "verdict_counts": {
+    "NA": 12,
+    "BAD": 6,
+    "GOOD": 12
+  },
+  "correctness_failures": 0,
+  "memory": {
+    "enabled": false,
+    "observations": 0,
+    "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+  },
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "details": {
+    "status": "COMPLETED",
+    "diagnostic_id": "D07",
+    "row_count": 30,
+    "cost_rows": 60,
+    "decisions": [
+      {
+        "track": "discrete",
+        "nominal_break_even_queries": 12,
+        "measured_accuracy_qualified_break_even_queries": null,
+        "utility": "BAD",
+        "decision": "STOP_CURRENT_COST_CLAIM",
+        "qualification": "Single independent development field; no confidence interval or GPU claim"
+      },
+      {
+        "track": "continuum",
+        "nominal_break_even_queries": 12,
+        "measured_accuracy_qualified_break_even_queries": null,
+        "utility": "BAD",
+        "decision": "STOP_CURRENT_COST_CLAIM",
+        "qualification": "Single independent development field; no confidence interval or GPU claim"
+      }
+    ],
+    "device": "cpu",
+    "energy_joules": null,
+    "monetary_cost": null,
+    "interpretation": "Kernel representation and complete finite-equation accuracy are distinct results"
+  }
+}

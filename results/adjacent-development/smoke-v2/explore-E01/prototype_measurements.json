@@ -1,0 +1,1562 @@
+[
+  {
+    "parent_id": "adjacent-exploration-954001",
+    "amplitude": 0.02,
+    "phases": [
+      2.5167315547273645,
+      1.1062974589886325,
+      0.1193064950237206
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "analytic_quad_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.004168750019744039,
+      "median_seconds": 0.003491693511023186,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.003483897016849369
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.0034994900051970035
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.06107883696677163,
+    "reference_cost_id": "discrete/adjacent-exploration-954001",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": false,
+    "finite_prediction": true,
+    "error_rms": 1.3194380142854065e-13,
+    "error_max": 4.543587728278453e-13,
+    "cubic_direction_error": {
+      "error_rms": 2.5248062789662077e-17,
+      "error_max": 5.2898809888484206e-17
+    },
+    "rms_ratio_to_analytic": null,
+    "speedup_over_analytic": 1.0,
+    "selection_statistic": 0.001029769163013288,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954001",
+    "amplitude": 0.02,
+    "phases": [
+      2.5167315547273645,
+      1.1062974589886325,
+      0.1193064950237206
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "quadratic",
+    "timing": {
+      "first_invocation_seconds": 0.0010358930157963187,
+      "median_seconds": 0.001034020009683445,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0010001500195357949
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0010678899998310953
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.06107883696677163,
+    "reference_cost_id": "discrete/adjacent-exploration-954001",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": false,
+    "finite_prediction": true,
+    "error_rms": 2.8485365065983826e-11,
+    "error_max": 8.602435430660194e-11,
+    "cubic_direction_error": {
+      "error_rms": 2.8515639265275467e-11,
+      "error_max": 8.620009368725413e-11
+    },
+    "rms_ratio_to_analytic": null,
+    "speedup_over_analytic": 3.3768142572909525,
+    "selection_statistic": 0.001029769163013288,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954001",
+    "amplitude": 0.02,
+    "phases": [
+      2.5167315547273645,
+      1.1062974589886325,
+      0.1193064950237206
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "selective_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.0013408450176939368,
+      "median_seconds": 0.0010136754863196984,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0010002809867728502
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0010270699858665466
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.06107883696677163,
+    "reference_cost_id": "discrete/adjacent-exploration-954001",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": false,
+    "finite_prediction": true,
+    "error_rms": 2.8485365065983826e-11,
+    "error_max": 8.602435430660194e-11,
+    "cubic_direction_error": {
+      "error_rms": 2.8515639265275467e-11,
+      "error_max": 8.620009368725413e-11
+    },
+    "rms_ratio_to_analytic": null,
+    "speedup_over_analytic": 3.4445871071621803,
+    "selection_statistic": 0.001029769163013288,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954002",
+    "amplitude": 0.07,
+    "phases": [
+      2.0074217152370224,
+      -0.6922356190675134,
+      -1.4589103224673352
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "analytic_quad_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.0035581570118665695,
+      "median_seconds": 0.0035777555021923035,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0036796870117541403
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.003475823992630467
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.06108866198337637,
+    "reference_cost_id": "discrete/adjacent-exploration-954002",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 1.9632851334074302e-11,
+    "error_max": 5.967049077071351e-11,
+    "cubic_direction_error": {
+      "error_rms": 2.931782134920699e-17,
+      "error_max": 8.005264171696652e-17
+    },
+    "rms_ratio_to_analytic": 1.0,
+    "speedup_over_analytic": 1.0,
+    "selection_statistic": 0.003626661169457189,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954002",
+    "amplitude": 0.07,
+    "phases": [
+      2.0074217152370224,
+      -0.6922356190675134,
+      -1.4589103224673352
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "quadratic",
+    "timing": {
+      "first_invocation_seconds": 0.0010350419906899333,
+      "median_seconds": 0.0009919330041157082,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.001007601007586345
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.0009762650006450713
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.06108866198337637,
+    "reference_cost_id": "discrete/adjacent-exploration-954002",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 1.2875385994988862e-09,
+    "error_max": 3.1800631572487248e-09,
+    "cubic_direction_error": {
+      "error_rms": 1.285950287539423e-09,
+      "error_max": 3.192969024736115e-09
+    },
+    "rms_ratio_to_analytic": 65.5808256065315,
+    "speedup_over_analytic": 3.606851962126024,
+    "selection_statistic": 0.003626661169457189,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954002",
+    "amplitude": 0.07,
+    "phases": [
+      2.0074217152370224,
+      -0.6922356190675134,
+      -1.4589103224673352
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "selective_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.0013774990220554173,
+      "median_seconds": 0.0010333899990655482,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0010767439962364733
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.000990036001894623
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.06108866198337637,
+    "reference_cost_id": "discrete/adjacent-exploration-954002",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 1.2875385994988862e-09,
+    "error_max": 3.1800631572487248e-09,
+    "cubic_direction_error": {
+      "error_rms": 1.285950287539423e-09,
+      "error_max": 3.192969024736115e-09
+    },
+    "rms_ratio_to_analytic": 65.5808256065315,
+    "speedup_over_analytic": 3.4621541774427076,
+    "selection_statistic": 0.003626661169457189,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954003",
+    "amplitude": 0.14,
+    "phases": [
+      0.31869765078681755,
+      1.821916487791298,
+      0.9041369226107854
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "analytic_quad_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.0039235170115716755,
+      "median_seconds": 0.0035415375023148954,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0035189790069125593
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.0035640959977172315
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.0638150559971109,
+    "reference_cost_id": "discrete/adjacent-exploration-954003",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 5.5040039187114024e-09,
+    "error_max": 1.5350030024841033e-08,
+    "cubic_direction_error": {
+      "error_rms": 3.784241712404157e-17,
+      "error_max": 9.836607182226236e-17
+    },
+    "rms_ratio_to_analytic": 1.0,
+    "speedup_over_analytic": 1.0,
+    "selection_statistic": 0.014953742196683642,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954003",
+    "amplitude": 0.14,
+    "phases": [
+      0.31869765078681755,
+      1.821916487791298,
+      0.9041369226107854
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "quadratic",
+    "timing": {
+      "first_invocation_seconds": 0.002414824004517868,
+      "median_seconds": 0.0010712799994507805,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0011106030142400414
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0010319569846615195
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.0638150559971109,
+    "reference_cost_id": "discrete/adjacent-exploration-954003",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 8.775914075276616e-08,
+    "error_max": 2.3378595437328897e-07,
+    "cubic_direction_error": {
+      "error_rms": 8.715003925733498e-08,
+      "error_max": 2.3103908451713823e-07
+    },
+    "rms_ratio_to_analytic": 15.944599976468101,
+    "speedup_over_analytic": 3.305893421076242,
+    "selection_statistic": 0.014953742196683642,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954003",
+    "amplitude": 0.14,
+    "phases": [
+      0.31869765078681755,
+      1.821916487791298,
+      0.9041369226107854
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "selective_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.0038504989934153855,
+      "median_seconds": 0.003584810998290777,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.003685866016894579
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.0034837559796869755
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.0638150559971109,
+    "reference_cost_id": "discrete/adjacent-exploration-954003",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 5.504003921316904e-09,
+    "error_max": 1.5350030024841033e-08,
+    "cubic_direction_error": {
+      "error_rms": 2.3499918651647937e-17,
+      "error_max": 5.037580223029182e-17
+    },
+    "rms_ratio_to_analytic": 1.0000000004733829,
+    "speedup_over_analytic": 0.9879286534223103,
+    "selection_statistic": 0.014953742196683642,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954004",
+    "amplitude": 0.22,
+    "phases": [
+      0.1948847411281056,
+      2.7684524928467384,
+      -1.3357994260858528
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "analytic_quad_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.0038369190006051213,
+      "median_seconds": 0.003465164016233757,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.0034353250230196863
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.003495003009447828
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.06042829400394112,
+    "reference_cost_id": "discrete/adjacent-exploration-954004",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 5.141320433824988e-08,
+    "error_max": 2.0499078517977054e-07,
+    "cubic_direction_error": {
+      "error_rms": 4.011958139627267e-17,
+      "error_max": 1.0413179531572033e-16
+    },
+    "rms_ratio_to_analytic": 1.0,
+    "speedup_over_analytic": 1.0,
+    "selection_statistic": 0.025516081803175748,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954004",
+    "amplitude": 0.22,
+    "phases": [
+      0.1948847411281056,
+      2.7684524928467384,
+      -1.3357994260858528
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "quadratic",
+    "timing": {
+      "first_invocation_seconds": 0.0010283429874107242,
+      "median_seconds": 0.0010375810088589787,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0010301050206180662
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.0010450569970998913
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.06042829400394112,
+    "reference_cost_id": "discrete/adjacent-exploration-954004",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 3.8399686799858944e-07,
+    "error_max": 1.0164541542900807e-06,
+    "cubic_direction_error": {
+      "error_rms": 3.8674563633809907e-07,
+      "error_max": 1.1088757140679611e-06
+    },
+    "rms_ratio_to_analytic": 7.46883748914493,
+    "speedup_over_analytic": 3.339656360947061,
+    "selection_statistic": 0.025516081803175748,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954004",
+    "amplitude": 0.22,
+    "phases": [
+      0.1948847411281056,
+      2.7684524928467384,
+      -1.3357994260858528
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "discrete",
+    "split": "heldout_development",
+    "method": "selective_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.004057516023749486,
+      "median_seconds": 0.003428709489526227,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.0034225049894303083
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.003434913989622146
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.06042829400394112,
+    "reference_cost_id": "discrete/adjacent-exploration-954004",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 5.1413204337168814e-08,
+    "error_max": 2.0499078517977054e-07,
+    "cubic_direction_error": {
+      "error_rms": 2.611363412472337e-17,
+      "error_max": 5.421900247022139e-17
+    },
+    "rms_ratio_to_analytic": 0.999999999978973,
+    "speedup_over_analytic": 1.010632142156951,
+    "selection_statistic": 0.025516081803175748,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954001",
+    "amplitude": 0.02,
+    "phases": [
+      2.5167315547273645,
+      1.1062974589886325,
+      0.1193064950237206
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "analytic_quad_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.020171826996374875,
+      "median_seconds": 0.018949578487081453,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.019215752981835976
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.01868340399232693
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.2857929890160449,
+    "reference_cost_id": "continuum/adjacent-exploration-954001",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 1.4376817119000708e-11,
+    "error_max": 1.531402782362079e-11,
+    "cubic_direction_error": {
+      "error_rms": 2.22402441747647e-17,
+      "error_max": 4.8223423359390984e-17
+    },
+    "rms_ratio_to_analytic": 1.0,
+    "speedup_over_analytic": 1.0,
+    "selection_statistic": 0.001029769163013288,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954001",
+    "amplitude": 0.02,
+    "phases": [
+      2.5167315547273645,
+      1.1062974589886325,
+      0.1193064950237206
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "quadratic",
+    "timing": {
+      "first_invocation_seconds": 0.005795237986603752,
+      "median_seconds": 0.005841691498062573,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.005960401991615072
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.005722981004510075
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.2857929890160449,
+    "reference_cost_id": "continuum/adjacent-exploration-954001",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 4.706295824090272e-11,
+    "error_max": 1.2890444267554813e-10,
+    "cubic_direction_error": {
+      "error_rms": 4.457408636847217e-11,
+      "error_max": 1.4359074726275903e-10
+    },
+    "rms_ratio_to_analytic": 3.273531119673444,
+    "speedup_over_analytic": 3.2438512874851706,
+    "selection_statistic": 0.001029769163013288,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954001",
+    "amplitude": 0.02,
+    "phases": [
+      2.5167315547273645,
+      1.1062974589886325,
+      0.1193064950237206
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "selective_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.006099838996306062,
+      "median_seconds": 0.0057584534952184185,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.005839563993504271
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.005677342996932566
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.2857929890160449,
+    "reference_cost_id": "continuum/adjacent-exploration-954001",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 4.706295824090272e-11,
+    "error_max": 1.2890444267554813e-10,
+    "cubic_direction_error": {
+      "error_rms": 4.457408636847217e-11,
+      "error_max": 1.4359074726275903e-10
+    },
+    "rms_ratio_to_analytic": 3.273531119673444,
+    "speedup_over_analytic": 3.2907409086165926,
+    "selection_statistic": 0.001029769163013288,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954002",
+    "amplitude": 0.07,
+    "phases": [
+      2.0074217152370224,
+      -0.6922356190675134,
+      -1.4589103224673352
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "analytic_quad_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.018594411987578496,
+      "median_seconds": 0.018454150995239615,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.018323893018532544
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.018584408971946687
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.27616435699746944,
+    "reference_cost_id": "continuum/adjacent-exploration-954002",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 4.2886287974534285e-11,
+    "error_max": 1.236271085502949e-10,
+    "cubic_direction_error": {
+      "error_rms": 2.3265196709587488e-17,
+      "error_max": 4.846419171209089e-17
+    },
+    "rms_ratio_to_analytic": 1.0,
+    "speedup_over_analytic": 1.0,
+    "selection_statistic": 0.003626661169457189,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954002",
+    "amplitude": 0.07,
+    "phases": [
+      2.0074217152370224,
+      -0.6922356190675134,
+      -1.4589103224673352
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "quadratic",
+    "timing": {
+      "first_invocation_seconds": 0.006040039996150881,
+      "median_seconds": 0.005680908507201821,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.005665175005560741
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.0056966420088429
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.27616435699746944,
+    "reference_cost_id": "continuum/adjacent-exploration-954002",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 1.9782162209813455e-09,
+    "error_max": 5.365346389396564e-09,
+    "cubic_direction_error": {
+      "error_rms": 1.973519648511012e-09,
+      "error_max": 5.254857258335077e-09
+    },
+    "rms_ratio_to_analytic": 46.12700969027683,
+    "speedup_over_analytic": 3.2484506609893216,
+    "selection_statistic": 0.003626661169457189,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954002",
+    "amplitude": 0.07,
+    "phases": [
+      2.0074217152370224,
+      -0.6922356190675134,
+      -1.4589103224673352
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.04,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "selective_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.0059364570188336074,
+      "median_seconds": 0.005695854997611605,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.005657873989548534
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.005733836005674675
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.27616435699746944,
+    "reference_cost_id": "continuum/adjacent-exploration-954002",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 1.9782162209813455e-09,
+    "error_max": 5.365346389396564e-09,
+    "cubic_direction_error": {
+      "error_rms": 1.973519648511012e-09,
+      "error_max": 5.254857258335077e-09
+    },
+    "rms_ratio_to_analytic": 46.12700969027683,
+    "speedup_over_analytic": 3.2399264031436616,
+    "selection_statistic": 0.003626661169457189,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954003",
+    "amplitude": 0.14,
+    "phases": [
+      0.31869765078681755,
+      1.821916487791298,
+      0.9041369226107854
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "analytic_quad_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.019315119017846882,
+      "median_seconds": 0.02179204550338909,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.020893134002108127
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.022690957004670054
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.28062773498822935,
+    "reference_cost_id": "continuum/adjacent-exploration-954003",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 9.359635115680805e-09,
+    "error_max": 2.712776403512862e-08,
+    "cubic_direction_error": {
+      "error_rms": 3.4107879364534997e-17,
+      "error_max": 1.0632278830885893e-16
+    },
+    "rms_ratio_to_analytic": 1.0,
+    "speedup_over_analytic": 1.0,
+    "selection_statistic": 0.014953742196683642,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954003",
+    "amplitude": 0.14,
+    "phases": [
+      0.31869765078681755,
+      1.821916487791298,
+      0.9041369226107854
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "quadratic",
+    "timing": {
+      "first_invocation_seconds": 0.006128020002506673,
+      "median_seconds": 0.005830335489008576,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.005676031985785812
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.005984638992231339
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.28062773498822935,
+    "reference_cost_id": "continuum/adjacent-exploration-954003",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 1.335430357486639e-07,
+    "error_max": 4.1172413361989513e-07,
+    "cubic_direction_error": {
+      "error_rms": 1.322397738636886e-07,
+      "error_max": 3.8598621283837077e-07
+    },
+    "rms_ratio_to_analytic": 14.267974562911172,
+    "speedup_over_analytic": 3.737700093669007,
+    "selection_statistic": 0.014953742196683642,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954003",
+    "amplitude": 0.14,
+    "phases": [
+      0.31869765078681755,
+      1.821916487791298,
+      0.9041369226107854
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "selective_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.019964479986811057,
+      "median_seconds": 0.01932237049913965,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.01865347000421025
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.019991270994069055
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.28062773498822935,
+    "reference_cost_id": "continuum/adjacent-exploration-954003",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 9.359635121289164e-09,
+    "error_max": 2.712776403512862e-08,
+    "cubic_direction_error": {
+      "error_rms": 2.505618174654633e-17,
+      "error_max": 5.3493386402000075e-17
+    },
+    "rms_ratio_to_analytic": 1.000000000599207,
+    "speedup_over_analytic": 1.1278142867801548,
+    "selection_statistic": 0.014953742196683642,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954004",
+    "amplitude": 0.22,
+    "phases": [
+      0.1948847411281056,
+      2.7684524928467384,
+      -1.3357994260858528
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "analytic_quad_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.02796724098152481,
+      "median_seconds": 0.019018645994947292,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 2,
+          "seconds": 0.01924191098078154
+        },
+        {
+          "repeat": 1,
+          "order": 2,
+          "seconds": 0.018795381009113044
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.30614840899943374,
+    "reference_cost_id": "continuum/adjacent-exploration-954004",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 7.119002025195667e-08,
+    "error_max": 2.487944527063135e-07,
+    "cubic_direction_error": {
+      "error_rms": 3.335047722556921e-17,
+      "error_max": 1.0372003142423633e-16
+    },
+    "rms_ratio_to_analytic": 1.0,
+    "speedup_over_analytic": 1.0,
+    "selection_statistic": 0.025516081803175748,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954004",
+    "amplitude": 0.22,
+    "phases": [
+      0.1948847411281056,
+      2.7684524928467384,
+      -1.3357994260858528
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "quadratic",
+    "timing": {
+      "first_invocation_seconds": 0.0058112519909627736,
+      "median_seconds": 0.006203046999871731,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 0,
+          "seconds": 0.0062508530099876225
+        },
+        {
+          "repeat": 1,
+          "order": 0,
+          "seconds": 0.006155240989755839
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.30614840899943374,
+    "reference_cost_id": "continuum/adjacent-exploration-954004",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 6.205961964572358e-07,
+    "error_max": 1.3240552592108656e-06,
+    "cubic_direction_error": {
+      "error_rms": 6.254922523462242e-07,
+      "error_max": 1.2964561931148767e-06
+    },
+    "rms_ratio_to_analytic": 8.717460597156926,
+    "speedup_over_analytic": 3.066016748759209,
+    "selection_statistic": 0.025516081803175748,
+    "cubic_computed": false,
+    "scalar_fit_coefficient": null
+  },
+  {
+    "parent_id": "adjacent-exploration-954004",
+    "amplitude": 0.22,
+    "phases": [
+      0.1948847411281056,
+      2.7684524928467384,
+      -1.3357994260858528
+    ],
+    "mode_vectors": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "h": 0.08,
+    "track": "continuum",
+    "split": "heldout_development",
+    "method": "selective_cubic",
+    "timing": {
+      "first_invocation_seconds": 0.03081295799347572,
+      "median_seconds": 0.019059375990764238,
+      "raw": [
+        {
+          "repeat": 0,
+          "order": 1,
+          "seconds": 0.019038559985347092
+        },
+        {
+          "repeat": 1,
+          "order": 1,
+          "seconds": 0.019080191996181384
+        }
+      ],
+      "device": "cpu",
+      "synchronization": "CPU synchronous calls",
+      "first_invocation_scope": "warm process, not cold process"
+    },
+    "reference_seconds": 0.30614840899943374,
+    "reference_cost_id": "continuum/adjacent-exploration-954004",
+    "reference_cost_shared_across_methods": true,
+    "reference_uncertainty_max": 1e-12,
+    "reference_is_certificate": false,
+    "reference_accepted": true,
+    "errors_resolved": true,
+    "finite_prediction": true,
+    "error_rms": 7.119002025284939e-08,
+    "error_max": 2.487944527063135e-07,
+    "cubic_direction_error": {
+      "error_rms": 2.380311903908944e-17,
+      "error_max": 5.194355433654112e-17
+    },
+    "rms_ratio_to_analytic": 1.00000000001254,
+    "speedup_over_analytic": 0.9978629942639946,
+    "selection_statistic": 0.025516081803175748,
+    "cubic_computed": true,
+    "scalar_fit_coefficient": null
+  }
+]

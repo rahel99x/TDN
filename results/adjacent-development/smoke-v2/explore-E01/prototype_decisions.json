@@ -1,0 +1,81 @@
+{
+  "proposals": {
+    "E01": {
+      "name": "Pre-work cubic selection",
+      "role": "Ours numerical prototype",
+      "challenged_assumption": "Every field needs the same interaction order",
+      "mechanism": "Compute cubic only when h*r*RMS(u-mean(u)) exceeds a fixed threshold",
+      "saved_work": "Nested cubic transports and products on skipped fields",
+      "failure_mode": "Amplitude statistic can miss phase-specific cubic relevance",
+      "falsification": "Held-out complete-PDE error exceeds the frozen protocol regression allowance",
+      "advance": "Use frozen protocol speed, regression and quadratic-improvement gates, with resolved accepted references and no new maximum-target failures",
+      "novelty": "New to TDN implementation; deterministic adaptivity and order selection are established",
+      "frozen_thresholds": {
+        "rms_ratio": 1.05,
+        "speedup": 1.1,
+        "quadratic_improvement": 1.1
+      }
+    }
+  },
+  "decisions": [
+    {
+      "prototype_id": "E01",
+      "track": "discrete",
+      "independent_parent_count": 4,
+      "reference_accepted_parent_count": 4,
+      "resolved_parent_count": 3,
+      "unresolved_parent_ids": [
+        "adjacent-exploration-954001"
+      ],
+      "finite_predictions": true,
+      "full_denominator_required": true,
+      "median_paired_speedup": 2.2276096246595656,
+      "worst_rms_ratio": null,
+      "new_maximum_target_failures": null,
+      "median_accuracy_improvement_over_quadratic": null,
+      "frozen_thresholds": {
+        "rms_ratio": 1.05,
+        "speedup": 1.1,
+        "quadratic_improvement": 1.1
+      },
+      "ratio_scope": "refinement-uncertainty-adjusted sensitivity, not a certified bound",
+      "skipped_cubic_parents": 2,
+      "utility": "NA",
+      "decision": "REFINE_REFERENCE",
+      "scientific_status": "DEVELOPMENT_ONLY",
+      "confidence_interval": null,
+      "qualification": "Independent held-out development parents; unresolved cases retain denominator weight; no confirmatory claim"
+    },
+    {
+      "prototype_id": "E01",
+      "track": "continuum",
+      "independent_parent_count": 4,
+      "reference_accepted_parent_count": 4,
+      "resolved_parent_count": 4,
+      "unresolved_parent_ids": [],
+      "finite_predictions": true,
+      "full_denominator_required": true,
+      "median_paired_speedup": 2.183870344961908,
+      "worst_rms_ratio": 47.25212752642714,
+      "new_maximum_target_failures": 0,
+      "median_accuracy_improvement_over_quadratic": 4.858156798814683,
+      "frozen_thresholds": {
+        "rms_ratio": 1.05,
+        "speedup": 1.1,
+        "quadratic_improvement": 1.1
+      },
+      "ratio_scope": "refinement-uncertainty-adjusted sensitivity, not a certified bound",
+      "skipped_cubic_parents": 2,
+      "utility": "BAD",
+      "decision": "STOP_CURRENT_VARIANT",
+      "scientific_status": "DEVELOPMENT_ONLY",
+      "confidence_interval": null,
+      "qualification": "Independent held-out development parents; unresolved cases retain denominator weight; no confirmatory claim"
+    }
+  ],
+  "protected_budget_fraction": 0.2,
+  "budget_scope": "Adjacent discretionary pilot budget only; independent of main portfolio",
+  "mathematical_status": "Finite numerical checks, not a proof",
+  "energy_joules": null,
+  "monetary_cost": null
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "tdn.adjacent-science/v1",
+  "stage": "D07",
+  "kind": "diagnostic",
+  "device": "cpu",
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "unit_sha256": "2b137decc1174a59e3639d5fc8fbc6acc6a655d0f91f88e289138ce1cb381ef7",
+  "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+  "prerequisites": {
+    "audit": "941b63f92c587bd4e784747b382cc9f641ceb20d790b965470a36d134fe63c36",
+    "D01": "bde93ef500f59a49108ca2c747a3a1148e6b182c1e8783fa379a1611c876b5ec",
+    "D05": "070b79fda3ac05f7f990fc79d47e24c07e7435fd3f4a8e28f39baf4993456da9"
+  },
+  "lineage": {
+    "audit": "941b63f92c587bd4e784747b382cc9f641ceb20d790b965470a36d134fe63c36",
+    "D01": "bde93ef500f59a49108ca2c747a3a1148e6b182c1e8783fa379a1611c876b5ec",
+    "D05": "070b79fda3ac05f7f990fc79d47e24c07e7435fd3f4a8e28f39baf4993456da9"
+  },
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+    "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd"
+  },
+  "artifacts": {
+    "protocol.json": "326cb7be6dda0bb9f578532268aa760c008e6b442a7ec79461288c675bc59371",
+    "review.csv": "d8fec0db918fb461fb3888da09dfca265ddf101acf10fe1a4b9db36e285cd727",
+    "review.md": "8e46cd0a475f51ac72f92a481c19b1f74da8826130ac10912ca88684f4f3e28e",
+    "rows.json": "8b35eceaba55549f7a9030a24214ecbb87f15db55e1b43bb335cb8afa851b57e",
+    "rows.jsonl": "67c2fc609acb4595bfa37119f4141cf283c4149e581343b32688df9841696566",
+    "summary.json": "d6a0b5f79ee97e17af4a307acde46c1b783f53deefbb88499571ae45dfdfec3b",
+    "summary.txt": "268b41477b76179e1e8af256053edd4a574b08a69a4f7a67b98a33964152e4c5",
+    "temporal_applicability.json": "e17f6bbfdd17a5829339bf1ef5a00fa39eeaa3730e303250cebe7e847c7b7630",
+    "temporal_build_costs.json": "4781ee15f152dc72e51d15aa6e6851eee17c57b90d0a52c81a0f5a8cf1a3fdfd",
+    "temporal_cache_checks.json": "39265fbd8740a2ec9b9db1da8f6b81f67326474b0dd634418ae26aaafb992367",
+    "temporal_cost_rows.json": "c2538456c2ec670a88be7b51e73f21254d6a33e70448c9b5fa34d5523d1217cf",
+    "temporal_rows.json": "5cf2a2ddda9ab3ba49261a20b8ce101303763a239a09c5f6474afd12d6fc3999"
+  }
+}

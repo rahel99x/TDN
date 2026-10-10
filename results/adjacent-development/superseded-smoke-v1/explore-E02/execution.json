@@ -1,0 +1,59 @@
+{
+  "stage": "explore-E02",
+  "profile": "smoke",
+  "device": "cpu",
+  "execution_mode": "local-cpu",
+  "command": [
+    "/workspace/TDN-adjacent/.venv/bin/python",
+    "/workspace/TDN-adjacent/scripts/adjacent.py",
+    "--stage",
+    "explore-E02",
+    "--profile",
+    "smoke",
+    "--run-dir",
+    "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/explore-E02",
+    "--device",
+    "cpu",
+    "--local-root",
+    "/workspace/TDN-adjacent",
+    "--prerequisite-dir",
+    "audit=/workspace/TDN-adjacent/runs/adjacent-local-review-v1/audit",
+    "--prerequisite-dir",
+    "D01=/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D01",
+    "--prerequisite-dir",
+    "D05=/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D05"
+  ],
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+    "git_available": true,
+    "tracked_or_untracked_changes": false,
+    "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "prerequisites": {
+    "audit": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/audit",
+      "workflow_seal_sha256": "e7c8101cdaaeb8e9475574249c892365f899738091c93a435788b5441f72628d"
+    },
+    "D01": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D01",
+      "workflow_seal_sha256": "37f883461a512d2faa61efd90549973cc6a1ec247dbe39d281564fdd7fc96afe"
+    },
+    "D05": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-local-review-v1/D05",
+      "workflow_seal_sha256": "ae69a25b3d4b960f602ef854c012de93d4644a87e5f736bbc85e480dd7a0aca9"
+    }
+  },
+  "slurm_job_id": null,
+  "slurm_step_id": null
+}

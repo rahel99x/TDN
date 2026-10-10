@@ -1,0 +1,15 @@
+{
+  "historical_temporal_mlp": {
+    "status": "NA",
+    "reason": "No compatible sealed trained checkpoint is supplied to this adjacent development stage; random initialization is not a temporal competitor"
+  },
+  "published_dense_output_reproduction": {
+    "status": "NA",
+    "reason": "SciPy DOP853 uses the same finite equation through a Torch/NumPy CPU RHS adapter; this is an implementation control, not an optimized reference-library benchmark"
+  },
+  "continuum_solution": {
+    "status": "NA",
+    "reason": "The continuum-labeled operator is the finite Galerkin equation here; D07 does not perform spatial refinement"
+  },
+  "timing_policy": "Cached competitors receive the same fixed-state interval. Complete timings rebuild every representation; query-only timings reuse all representations."
+}

@@ -1,0 +1,1350 @@
+[
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00000",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "fresh_initialized_no_trained_checkpoint",
+    "method": "quad2_conditioned",
+    "parent_id": "matched-power-phase-66dc28d786b3968c",
+    "track": "discrete",
+    "array_prefix": "row00000",
+    "error_rms": 2.1013366886815738e-05,
+    "error_max": 5.940655102276704e-05,
+    "mean_error": 2.7291471542314344e-06,
+    "combined_objective": 7.944754183619866e-10,
+    "reference_id": "reference-00000",
+    "reference_uncertainty": 2.1601387345526746e-11,
+    "reference_accepted": true,
+    "category": "feature_state",
+    "phase": 0.0,
+    "features": {
+      "original": [
+        0.42999999999999994,
+        0.47000362924573563,
+        0.13754485167144911
+      ],
+      "rich": [
+        0.42999999999999994,
+        0.47000362924573563,
+        0.13754485167144911,
+        0.012100000000000001,
+        0.09174173484073593,
+        0.05822369401647195,
+        0.06391332574365281
+      ],
+      "spectral_moments": [
+        6.508474576271187,
+        53.118644067796616
+      ],
+      "band_energies": [
+        0.001845762711864407,
+        0.001845762711864407
+      ],
+      "signed_interaction": [
+        -3.6478961963171716e-20,
+        -1.5732327628512687e-19,
+        -1.0501928150541931e-05,
+        -9.689841849629932e-20,
+        4.622865647065189e-20,
+        8.198463058975048e-20
+      ]
+    },
+    "feature_cost_seconds": {
+      "original": 0.00019166400306858122,
+      "rich": 0.00020066698198206723,
+      "moments_and_bands": 0.0002125549945048988,
+      "signed_interaction": 0.0009879330173134804
+    },
+    "oracle": {
+      "resolved": true,
+      "coefficient": 1.1039176815210798,
+      "unrestricted_coefficient": 1.1039176815210798,
+      "correction_rms": 3.0630285473660915e-05,
+      "defect_rms": 3.96833731441816e-05,
+      "bounds": [
+        0.25,
+        1.75
+      ],
+      "coefficient_uncertainty_bound": 7.052297101214369e-07,
+      "error_rms": 2.0770891147825284e-05,
+      "error_max": 5.457689303711976e-05,
+      "mean_error": -3.285323398125803e-08,
+      "combined_objective": 7.292936444333278e-10
+    },
+    "acceptable_gain_interval": [
+      0.8868030206378233,
+      1.3210323424043364
+    ],
+    "acceptable_interval_semantics": "RMS <= 1.05 * individually optimal bounded RMS + 5 * reference uncertainty; not CI",
+    "node_trials": [
+      {
+        "left_node": 0.08,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.5253935001959198,
+          "unrestricted_coefficient": 0.5253935001959198,
+          "correction_rms": 6.435813238421651e-05,
+          "defect_rms": 3.96833731441816e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 3.35643477293079e-07,
+          "error_rms": 2.077084114622651e-05,
+          "error_max": 5.458264410850403e-05,
+          "mean_error": -3.551975263697364e-08,
+          "combined_objective": 7.293543457093371e-10
+        }
+      },
+      {
+        "left_node": 0.15,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.7533191717682892,
+          "unrestricted_coefficient": 0.7533191717682892,
+          "correction_rms": 4.488579086561171e-05,
+          "defect_rms": 3.96833731441816e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 4.81252238825454e-07,
+          "error_rms": 2.077086986337325e-05,
+          "error_max": 5.457931384815718e-05,
+          "mean_error": -3.3975823539037136e-08,
+          "combined_objective": 7.293191848947513e-10
+        }
+      },
+      {
+        "left_node": 0.21132486540518708,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.1039176815210785,
+          "unrestricted_coefficient": 1.1039176815210785,
+          "correction_rms": 3.063028547366094e-05,
+          "defect_rms": 3.96833731441816e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 7.052297101214363e-07,
+          "error_rms": 2.0770891147825315e-05,
+          "error_max": 5.4576893037120274e-05,
+          "mean_error": -3.2853233981218644e-08,
+          "combined_objective": 7.292936444333347e-10
+        }
+      },
+      {
+        "left_node": 0.3,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 2.2918649471186403,
+          "correction_rms": 1.4753617594116712e-05,
+          "defect_rms": 3.96833731441816e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 1.4641417406765859e-06,
+          "error_rms": 2.2256289817335412e-05,
+          "error_max": 6.670498281270094e-05,
+          "mean_error": 6.905116681426554e-06,
+          "combined_objective": 9.402979096375007e-10
+        }
+      },
+      {
+        "left_node": 0.4,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 9.145443965565397,
+          "correction_rms": 3.6972823616283164e-06,
+          "defect_rms": 3.96833731441816e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 5.842504096985793e-06,
+          "error_rms": 3.4337642581704745e-05,
+          "error_max": 9.60640803772053e-05,
+          "mean_error": 2.3693872005713644e-05,
+          "combined_objective": 2.101904451940719e-09
+        }
+      }
+    ],
+    "method_role": "Ours"
+  },
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00001",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "fresh_initialized_no_trained_checkpoint",
+    "method": "quad2_conditioned",
+    "parent_id": "matched-power-phase-296226360ea519da",
+    "track": "discrete",
+    "array_prefix": "row00001",
+    "error_rms": 2.1246497945433235e-05,
+    "error_max": 5.913945621655037e-05,
+    "mean_error": 2.181352583002262e-06,
+    "combined_objective": 8.011612031042266e-10,
+    "reference_id": "reference-00001",
+    "reference_uncertainty": 2.263822462822418e-11,
+    "reference_accepted": true,
+    "category": "feature_state",
+    "phase": 1.5707963267948966,
+    "features": {
+      "original": [
+        0.42999999999999994,
+        0.47000362924573563,
+        0.13754485167144914
+      ],
+      "rich": [
+        0.42999999999999994,
+        0.47000362924573563,
+        0.13754485167144914,
+        0.012100000000000001,
+        0.09105465100005243,
+        0.058223694016471955,
+        0.06391332574365281
+      ],
+      "spectral_moments": [
+        6.508474576271188,
+        53.118644067796616
+      ],
+      "band_energies": [
+        0.0018457627118644065,
+        0.0018457627118644065
+      ],
+      "signed_interaction": [
+        -1.7803119216937805e-19,
+        -1.4504312432339078e-19,
+        1.0803144236065052e-19,
+        -1.0501928150541385e-05,
+        -2.0645893332660607e-20,
+        6.133873725708989e-20
+      ]
+    },
+    "feature_cost_seconds": {
+      "original": 0.00014841000665910542,
+      "rich": 0.00014552500215359032,
+      "moments_and_bands": 0.0001471680006943643,
+      "signed_interaction": 0.0009141040209215134
+    },
+    "oracle": {
+      "resolved": true,
+      "coefficient": 1.084847612664437,
+      "unrestricted_coefficient": 1.084847612664437,
+      "correction_rms": 3.06302854736597e-05,
+      "defect_rms": 3.935528636860911e-05,
+      "bounds": [
+        0.25,
+        1.75
+      ],
+      "coefficient_uncertainty_bound": 7.390797793148797e-07,
+      "error_rms": 2.1086947608458994e-05,
+      "error_max": 5.5726114938023774e-05,
+      "mean_error": -7.378952263606313e-08,
+      "combined_objective": 7.551993480504782e-10
+    },
+    "acceptable_gain_interval": [
+      0.8644288872182551,
+      1.3052663381106195
+    ],
+    "acceptable_interval_semantics": "RMS <= 1.05 * individually optimal bounded RMS + 5 * reference uncertainty; not CI",
+    "node_trials": [
+      {
+        "left_node": 0.08,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.5163169983507551,
+          "unrestricted_coefficient": 0.5163169983507551,
+          "correction_rms": 6.435813238421597e-05,
+          "defect_rms": 3.935528636860911e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 3.5175390878459164e-07,
+          "error_rms": 2.1086938688146067e-05,
+          "error_max": 5.571942145227828e-05,
+          "mean_error": -7.638869568665741e-08,
+          "combined_objective": 7.551243759352923e-10
+        }
+      },
+      {
+        "left_node": 0.15,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.7403054274390809,
+          "unrestricted_coefficient": 0.7403054274390809,
+          "correction_rms": 4.488579086561073e-05,
+          "defect_rms": 3.935528636860911e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 5.043516933009744e-07,
+          "error_rms": 2.1086943635226806e-05,
+          "error_max": 5.57232973348612e-05,
+          "mean_error": -7.488375786922274e-08,
+          "combined_objective": 7.551677784621672e-10
+        }
+      },
+      {
+        "left_node": 0.21132486540518708,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.0848476126644366,
+          "unrestricted_coefficient": 1.0848476126644366,
+          "correction_rms": 3.063028547365973e-05,
+          "defect_rms": 3.935528636860911e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 7.390797793148791e-07,
+          "error_rms": 2.1086947608458987e-05,
+          "error_max": 5.5726114938023754e-05,
+          "mean_error": -7.37895226360626e-08,
+          "combined_objective": 7.551993480504776e-10
+        }
+      },
+      {
+        "left_node": 0.3,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 2.2522739818773747,
+          "correction_rms": 1.4753617594117412e-05,
+          "defect_rms": 3.935528636860911e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 1.5344185576051891e-06,
+          "error_rms": 2.2351129054198565e-05,
+          "error_max": 6.650821117272276e-05,
+          "mean_error": 6.3573221101899235e-06,
+          "combined_objective": 9.419071853369877e-10
+        }
+      },
+      {
+        "left_node": 0.4,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 8.987462561875224,
+          "correction_rms": 3.697282361627829e-06,
+          "defect_rms": 3.935528636860911e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 6.122936366227947e-06,
+          "error_rms": 3.406905813718101e-05,
+          "error_max": 9.615098481855068e-05,
+          "mean_error": 2.314607743447916e-05,
+          "combined_objective": 2.0852019105123356e-09
+        }
+      }
+    ],
+    "method_role": "Ours"
+  },
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00002",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "fresh_initialized_no_trained_checkpoint",
+    "method": "quad2_conditioned",
+    "parent_id": "matched-power-phase-14f969efc499f613",
+    "track": "discrete",
+    "array_prefix": "row00002",
+    "error_rms": 2.3920113128549885e-05,
+    "error_max": 6.541741173560212e-05,
+    "mean_error": -4.229090371047142e-06,
+    "combined_objective": 1.000115587901154e-09,
+    "reference_id": "reference-00002",
+    "reference_uncertainty": 3.275180127104704e-11,
+    "reference_accepted": true,
+    "category": "feature_state",
+    "phase": 3.141592653589793,
+    "features": {
+      "original": [
+        0.43000000000000005,
+        0.47000362924573563,
+        0.13754485167144903
+      ],
+      "rich": [
+        0.43000000000000005,
+        0.47000362924573563,
+        0.13754485167144903,
+        0.012100000000000003,
+        0.09174173484073593,
+        0.05822369401647195,
+        0.06391332574365281
+      ],
+      "spectral_moments": [
+        6.508474576271184,
+        53.11864406779659
+      ],
+      "band_energies": [
+        0.001845762711864408,
+        0.001845762711864408
+      ],
+      "signed_interaction": [
+        7.942848255345276e-20,
+        9.926367490840783e-20,
+        1.050192815054224e-05,
+        1.2011820547127536e-19,
+        6.338365568612806e-20,
+        -3.605544548954457e-20
+      ]
+    },
+    "feature_cost_seconds": {
+      "original": 0.0001835309958551079,
+      "rich": 0.00015954600530676544,
+      "moments_and_bands": 0.000149720988702029,
+      "signed_interaction": 0.0008764869999140501
+    },
+    "oracle": {
+      "resolved": true,
+      "coefficient": 0.8479979682355977,
+      "unrestricted_coefficient": 0.8479979682355977,
+      "correction_rms": 3.063028547366028e-05,
+      "defect_rms": 3.500236011767407e-05,
+      "bounds": [
+        0.25,
+        1.75
+      ],
+      "coefficient_uncertainty_bound": 1.069262031501832e-06,
+      "error_rms": 2.3462624051028016e-05,
+      "error_max": 6.02805958407914e-05,
+      "mean_error": -1.8906884056719768e-07,
+      "combined_objective": 9.138697508519621e-10
+    },
+    "acceptable_gain_interval": [
+      0.6027426016849522,
+      1.0932533347862432
+    ],
+    "acceptable_interval_semantics": "RMS <= 1.05 * individually optimal bounded RMS + 5 * reference uncertainty; not CI",
+    "node_trials": [
+      {
+        "left_node": 0.08,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.4035894836593393,
+          "unrestricted_coefficient": 0.4035894836593393,
+          "correction_rms": 6.435813238421594e-05,
+          "defect_rms": 3.500236011767407e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 5.08899187371067e-07,
+          "error_rms": 2.346279501233678e-05,
+          "error_max": 6.0286089904324584e-05,
+          "mean_error": -1.909626934427505e-07,
+          "combined_objective": 9.139440133861663e-10
+        }
+      },
+      {
+        "left_node": 0.15,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.5786765565808728,
+          "unrestricted_coefficient": 0.5786765565808728,
+          "correction_rms": 4.488579086561044e-05,
+          "defect_rms": 3.500236011767407e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 7.29669693670031e-07,
+          "error_rms": 2.3462695954748797e-05,
+          "error_max": 6.0282908629323986e-05,
+          "mean_error": -1.8986610477735098e-07,
+          "combined_objective": 9.139010087461281e-10
+        }
+      },
+      {
+        "left_node": 0.21132486540518708,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.8479979682355977,
+          "unrestricted_coefficient": 0.8479979682355977,
+          "correction_rms": 3.0630285473660264e-05,
+          "defect_rms": 3.500236011767407e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 1.0692620315018324e-06,
+          "error_rms": 2.3462624051028026e-05,
+          "error_max": 6.028059584079135e-05,
+          "mean_error": -1.8906884056719535e-07,
+          "combined_objective": 9.138697508519619e-10
+        }
+      },
+      {
+        "left_node": 0.3,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 1.7605506903167107,
+          "correction_rms": 1.4753617594116851e-05,
+          "defect_rms": 3.500236011767407e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 2.2199166449933705e-06,
+          "error_rms": 2.346306092886605e-05,
+          "error_max": 6.053561932602289e-05,
+          "mean_error": -5.31208438596102e-08,
+          "combined_objective": 9.169713488701962e-10
+        }
+      },
+      {
+        "left_node": 0.4,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 7.025306362745907,
+          "correction_rms": 3.697282361628397e-06,
+          "defect_rms": 3.500236011767407e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 8.858344607638282e-06,
+          "error_rms": 3.0510752629953803e-05,
+          "error_max": 9.255272038595823e-05,
+          "mean_error": 1.6735634480427502e-05,
+          "combined_objective": 1.7875066311303699e-09
+        }
+      }
+    ],
+    "method_role": "Ours"
+  },
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00003",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "not_applicable",
+    "category": "feature_collision",
+    "parent_id": "matched-power-phase-66dc28d786b3968c",
+    "paired_parent_id": "matched-power-phase-296226360ea519da",
+    "field_cluster": "matched-power-phase-group",
+    "track": "discrete",
+    "method": "shared_vs_separate_gain",
+    "feature_differences": {
+      "original": 2.7755575615628914e-17,
+      "rich": 0.0006870838406835,
+      "spectral_moments": 8.881784197001252e-16,
+      "band_energies": 4.336808689942018e-19,
+      "signed_interaction": 1.050192815054204e-05
+    },
+    "features_matched": true,
+    "acceptable_gain_intervals": [
+      [
+        0.8868030206378233,
+        1.3210323424043364
+      ],
+      [
+        0.8644288872182551,
+        1.3052663381106195
+      ]
+    ],
+    "intervals_overlap": true,
+    "shared_gain": 1.094382647092759,
+    "individual_gains": [
+      1.1039176815210798,
+      1.084847612664437
+    ],
+    "shared_error_rms": 2.0931553663900588e-05,
+    "separate_error_rms": 2.0929515982419435e-05,
+    "shared_over_separate": 1.0000973592262175,
+    "response_insufficiency_demonstrated": false,
+    "reference_uncertainty": 2.263822462822418e-11,
+    "reference_accepted": true,
+    "response_insufficiency_scope": "bounded scalar gain at frozen GL2 only, not arbitrary node choices",
+    "best_separate_node_gain_error_rms": 2.0929486677405724e-05,
+    "finite_node_grid_shared_over_separate": 1.0000973678505414,
+    "arbitrary_node_conditioner_insufficiency": null,
+    "best_shared_node_gain": {
+      "left_node": 0.08,
+      "fit": {
+        "resolved": true,
+        "coefficient": 0.5208552492733375,
+        "unrestricted_coefficient": 0.5208552492733375,
+        "correction_rms": 6.435813238421624e-05,
+        "defect_rms": 3.951967022417814e-05,
+        "bounds": [
+          0.25,
+          1.75
+        ],
+        "coefficient_uncertainty_bound": 3.5175390878459015e-07,
+        "error_rms": 2.0931524536536436e-05,
+        "error_max": 5.62024644029589e-05,
+        "mean_error": -5.595422416181764e-08,
+        "combined_objective": 7.540004199202131e-10
+      }
+    },
+    "finite_node_search_not_global_node_optimum": true,
+    "future_solution_difference_alone_is_not_evidence": true,
+    "method_role": "Ours"
+  },
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00004",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "not_applicable",
+    "category": "feature_collision",
+    "parent_id": "matched-power-phase-66dc28d786b3968c",
+    "paired_parent_id": "matched-power-phase-14f969efc499f613",
+    "field_cluster": "matched-power-phase-group",
+    "track": "discrete",
+    "method": "shared_vs_separate_gain",
+    "feature_differences": {
+      "original": 1.1102230246251565e-16,
+      "rich": 1.1102230246251565e-16,
+      "spectral_moments": 2.842170943040401e-14,
+      "band_energies": 1.0842021724855044e-18,
+      "signed_interaction": 2.100385630108417e-05
+    },
+    "features_matched": true,
+    "acceptable_gain_intervals": [
+      [
+        0.8868030206378233,
+        1.3210323424043364
+      ],
+      [
+        0.6027426016849522,
+        1.0932533347862432
+      ]
+    ],
+    "intervals_overlap": true,
+    "shared_gain": 0.9759578248783414,
+    "individual_gains": [
+      1.1039176815210798,
+      0.8479979682355977
+    ],
+    "shared_error_rms": 2.2501652995240257e-05,
+    "separate_error_rms": 2.2157669625151072e-05,
+    "shared_over_separate": 1.0155243478176392,
+    "response_insufficiency_demonstrated": false,
+    "reference_uncertainty": 3.275180127104704e-11,
+    "reference_accepted": true,
+    "response_insufficiency_scope": "bounded scalar gain at frozen GL2 only, not arbitrary node choices",
+    "best_separate_node_gain_error_rms": 2.2157646189088486e-05,
+    "finite_node_grid_shared_over_separate": 1.015525421934086,
+    "arbitrary_node_conditioner_insufficiency": null,
+    "best_shared_node_gain": {
+      "left_node": 0.21132486540518708,
+      "fit": {
+        "resolved": true,
+        "coefficient": 0.9759578248783408,
+        "unrestricted_coefficient": 0.9759578248783408,
+        "correction_rms": 3.06302854736606e-05,
+        "defect_rms": 3.741614168983552e-05,
+        "bounds": [
+          0.25,
+          1.75
+        ],
+        "coefficient_uncertainty_bound": 1.0692620315018205e-06,
+        "error_rms": 2.2501652995240274e-05,
+        "error_max": 6.42795501988204e-05,
+        "mean_error": -1.1096103727426618e-07,
+        "combined_objective": 9.195104448944727e-10
+      }
+    },
+    "finite_node_search_not_global_node_optimum": true,
+    "future_solution_difference_alone_is_not_evidence": true,
+    "method_role": "Ours"
+  },
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00005",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "fresh_initialized_no_trained_checkpoint",
+    "method": "quad2_conditioned",
+    "parent_id": "matched-power-phase-66dc28d786b3968c",
+    "track": "continuum",
+    "array_prefix": "row00005",
+    "error_rms": 2.8669606140263564e-05,
+    "error_max": 7.901866506837552e-05,
+    "mean_error": 3.7665969360566737e-06,
+    "combined_objective": 1.4463412591566493e-09,
+    "reference_id": "reference-00003",
+    "reference_uncertainty": 1.79571357783459e-11,
+    "reference_accepted": true,
+    "category": "feature_state",
+    "phase": 0.0,
+    "features": {
+      "original": [
+        0.42999999999999994,
+        0.47000362924573563,
+        0.18694039172706478
+      ],
+      "rich": [
+        0.42999999999999994,
+        0.47000362924573563,
+        0.18694039172706478,
+        0.012100000000000001,
+        0.09174173484073593,
+        0.09856975350015523,
+        0.06391332574365281
+      ],
+      "spectral_moments": [
+        6.508474576271187,
+        53.118644067796616
+      ],
+      "band_energies": [
+        0.001845762711864407,
+        0.001845762711864407
+      ],
+      "signed_interaction": [
+        -9.053643961544677e-20,
+        3.3397051531794927e-19,
+        -2.01068628086595e-05,
+        -3.0892218028650393e-19,
+        -1.4459756881462437e-21,
+        1.3364633727845776e-20
+      ]
+    },
+    "feature_cost_seconds": {
+      "original": 0.0002584930043667555,
+      "rich": 0.00020809797570109367,
+      "moments_and_bands": 0.00015111398533917964,
+      "signed_interaction": 0.0027589249948505312
+    },
+    "oracle": {
+      "resolved": true,
+      "coefficient": 1.0593841154975745,
+      "unrestricted_coefficient": 1.0593841154975745,
+      "correction_rms": 5.753912886196462e-05,
+      "defect_rms": 6.727488199587634e-05,
+      "bounds": [
+        0.25,
+        1.75
+      ],
+      "coefficient_uncertainty_bound": 3.1208563865165145e-07,
+      "error_rms": 2.8465260238010245e-05,
+      "error_max": 7.43082267130102e-05,
+      "mean_error": 8.039682655906376e-07,
+      "combined_objective": 1.3624422961408592e-09
+    },
+    "acceptable_gain_interval": [
+      0.9009940854572811,
+      1.217774145537868
+    ],
+    "acceptable_interval_semantics": "RMS <= 1.05 * individually optimal bounded RMS + 5 * reference uncertainty; not CI",
+    "node_trials": [
+      {
+        "left_node": 0.08,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.503526011335366,
+          "unrestricted_coefficient": 0.503526011335366,
+          "correction_rms": 0.0001210616886238486,
+          "defect_rms": 6.727488199587634e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 1.4833045848336554e-07,
+          "error_rms": 2.8461683661648148e-05,
+          "error_max": 7.431817693001728e-05,
+          "mean_error": 7.884303474093776e-07,
+          "combined_objective": 1.3623865790758643e-09
+        }
+      },
+      {
+        "left_node": 0.15,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.7225233468057707,
+          "unrestricted_coefficient": 0.7225233468057707,
+          "correction_rms": 8.436646980225169e-05,
+          "defect_rms": 6.727488199587634e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 2.1284683145372802e-07,
+          "error_rms": 2.8463750523836125e-05,
+          "error_max": 7.43124105874472e-05,
+          "mean_error": 7.974247834637316e-07,
+          "combined_objective": 1.3624185306149147e-09
+        }
+      },
+      {
+        "left_node": 0.21132486540518708,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.0593841154975743,
+          "unrestricted_coefficient": 1.0593841154975743,
+          "correction_rms": 5.7539128861964636e-05,
+          "defect_rms": 6.727488199587634e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 3.120856386516514e-07,
+          "error_rms": 2.8465260238010255e-05,
+          "error_max": 7.430822671301024e-05,
+          "mean_error": 8.039682655906272e-07,
+          "combined_objective": 1.3624422961408606e-09
+        }
+      },
+      {
+        "left_node": 0.3,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 2.20077498154533,
+          "correction_rms": 2.7697177597067477e-05,
+          "defect_rms": 6.727488199587634e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 6.483381100985238e-07,
+          "error_rms": 3.1084508357950606e-05,
+          "error_max": 9.151644438567266e-05,
+          "mean_error": 1.1635145855797227e-05,
+          "combined_objective": 1.8037726191550929e-09
+        }
+      },
+      {
+        "left_node": 0.4,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 8.785737666965643,
+          "correction_rms": 6.937916095051001e-06,
+          "defect_rms": 6.727488199587634e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 2.588260730214826e-06,
+          "error_rms": 5.6508201733303214e-05,
+          "error_max": 0.00014160059975901296,
+          "mean_error": 4.3130907799315803e-05,
+          "combined_objective": 5.1982498483429114e-09
+        }
+      }
+    ],
+    "method_role": "Ours"
+  },
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00006",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "fresh_initialized_no_trained_checkpoint",
+    "method": "quad2_conditioned",
+    "parent_id": "matched-power-phase-296226360ea519da",
+    "track": "continuum",
+    "array_prefix": "row00006",
+    "error_rms": 2.9239612466397493e-05,
+    "error_max": 7.978063172719985e-05,
+    "mean_error": 3.19717465881858e-06,
+    "combined_objective": 1.4914498570642163e-09,
+    "reference_id": "reference-00004",
+    "reference_uncertainty": 1.8924750655457956e-11,
+    "reference_accepted": true,
+    "category": "feature_state",
+    "phase": 1.5707963267948966,
+    "features": {
+      "original": [
+        0.42999999999999994,
+        0.47000362924573563,
+        0.18694039172706478
+      ],
+      "rich": [
+        0.42999999999999994,
+        0.47000362924573563,
+        0.18694039172706478,
+        0.012100000000000001,
+        0.09105465100005243,
+        0.09856975350015526,
+        0.06391332574365281
+      ],
+      "spectral_moments": [
+        6.508474576271188,
+        53.118644067796616
+      ],
+      "band_energies": [
+        0.0018457627118644065,
+        0.0018457627118644065
+      ],
+      "signed_interaction": [
+        4.235164736271502e-22,
+        -1.2941117254218626e-20,
+        -2.3160395406994732e-19,
+        -2.0106862808659046e-05,
+        5.783902752584969e-21,
+        1.5120357019254713e-19
+      ]
+    },
+    "feature_cost_seconds": {
+      "original": 0.00020478302030824125,
+      "rich": 0.0002288190007675439,
+      "moments_and_bands": 0.00014752798597328365,
+      "signed_interaction": 0.002780576003715396
+    },
+    "oracle": {
+      "resolved": true,
+      "coefficient": 1.0516920145346846,
+      "unrestricted_coefficient": 1.0516920145346846,
+      "correction_rms": 5.753912886196456e-05,
+      "defect_rms": 6.714153037583246e-05,
+      "bounds": [
+        0.25,
+        1.75
+      ],
+      "coefficient_uncertainty_bound": 3.289022797140034e-07,
+      "error_rms": 2.9087942458611266e-05,
+      "error_max": 7.562530766287872e-05,
+      "mean_error": 6.182990956821698e-07,
+      "combined_objective": 1.4180271123859862e-09
+    },
+    "acceptable_gain_interval": [
+      0.8898370128880839,
+      1.2135470161812854
+    ],
+    "acceptable_interval_semantics": "RMS <= 1.05 * individually optimal bounded RMS + 5 * reference uncertainty; not CI",
+    "node_trials": [
+      {
+        "left_node": 0.08,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.4998673681617028,
+          "unrestricted_coefficient": 0.4998673681617028,
+          "correction_rms": 0.00012106168862384852,
+          "defect_rms": 6.714153037583246e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 1.5632320076303544e-07,
+          "error_rms": 2.9085143519364735e-05,
+          "error_max": 7.563804038080793e-05,
+          "mean_error": 6.031451139980346e-07,
+          "combined_objective": 1.4180568888069177e-09
+        }
+      },
+      {
+        "left_node": 0.15,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.717275603854986,
+          "unrestricted_coefficient": 0.717275603854986,
+          "correction_rms": 8.436646980225312e-05,
+          "defect_rms": 6.714153037583246e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 2.2431601914618153e-07,
+          "error_rms": 2.9086760315257197e-05,
+          "error_max": 7.563066341932846e-05,
+          "mean_error": 6.119172762396164e-07,
+          "combined_objective": 1.418039350561996e-09
+        }
+      },
+      {
+        "left_node": 0.21132486540518708,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.0516920145346869,
+          "unrestricted_coefficient": 1.0516920145346869,
+          "correction_rms": 5.7539128861964454e-05,
+          "defect_rms": 6.714153037583246e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 3.2890227971400404e-07,
+          "error_rms": 2.9087942458611252e-05,
+          "error_max": 7.562530766287857e-05,
+          "mean_error": 6.182990956821586e-07,
+          "combined_objective": 1.4180271123859833e-09
+        }
+      },
+      {
+        "left_node": 0.3,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 2.1848005987567523,
+          "correction_rms": 2.7697177597068405e-05,
+          "defect_rms": 6.714153037583246e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 6.832736147621423e-07,
+          "error_rms": 3.148353087475068e-05,
+          "error_max": 9.244530447992512e-05,
+          "mean_error": 1.1065723578546066e-05,
+          "combined_objective": 1.8458261483799854e-09
+        }
+      },
+      {
+        "left_node": 0.4,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 8.721980719607492,
+          "correction_rms": 6.937916095053269e-06,
+          "defect_rms": 6.714153037583246e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 2.727728383592199e-06,
+          "error_rms": 5.64446050356366e-05,
+          "error_max": 0.0001432021907261977,
+          "mean_error": 4.2561485522063344e-05,
+          "combined_objective": 5.236680180507243e-09
+        }
+      }
+    ],
+    "method_role": "Ours"
+  },
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00007",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "fresh_initialized_no_trained_checkpoint",
+    "method": "quad2_conditioned",
+    "parent_id": "matched-power-phase-14f969efc499f613",
+    "track": "continuum",
+    "array_prefix": "row00007",
+    "error_rms": 3.707691544453044e-05,
+    "error_max": 8.616361997570987e-05,
+    "mean_error": -3.4562241447997147e-06,
+    "combined_objective": 2.1171145996127146e-09,
+    "reference_id": "reference-00005",
+    "reference_uncertainty": 2.7026547666508804e-11,
+    "reference_accepted": true,
+    "category": "feature_state",
+    "phase": 3.141592653589793,
+    "features": {
+      "original": [
+        0.43000000000000005,
+        0.47000362924573563,
+        0.18694039172706473
+      ],
+      "rich": [
+        0.43000000000000005,
+        0.47000362924573563,
+        0.18694039172706473,
+        0.012100000000000003,
+        0.09174173484073593,
+        0.09856975350015526,
+        0.06391332574365281
+      ],
+      "spectral_moments": [
+        6.508474576271184,
+        53.11864406779659
+      ],
+      "band_energies": [
+        0.001845762711864408,
+        0.001845762711864408
+      ],
+      "signed_interaction": [
+        -3.11185756842139e-20,
+        1.4540461824542734e-19,
+        2.010686280865908e-05,
+        1.3367404134979438e-19,
+        1.5748365335785682e-19,
+        3.899877802992067e-20
+      ]
+    },
+    "feature_cost_seconds": {
+      "original": 0.00019575998885557055,
+      "rich": 0.00018637601169757545,
+      "moments_and_bands": 0.00014500500401481986,
+      "signed_interaction": 0.0027685390086844563
+    },
+    "oracle": {
+      "resolved": true,
+      "coefficient": 0.9577704600619501,
+      "unrestricted_coefficient": 0.9577704600619501,
+      "correction_rms": 5.7539128861965334e-05,
+      "defect_rms": 6.637639637957406e-05,
+      "bounds": [
+        0.25,
+        1.75
+      ],
+      "coefficient_uncertainty_bound": 4.697072792211487e-07,
+      "error_rms": 3.699720912837135e-05,
+      "error_max": 8.501914045689607e-05,
+      "mean_error": -1.3494242924548736e-06,
+      "combined_objective": 2.0916189076913866e-09
+    },
+    "acceptable_gain_interval": [
+      0.7519048215117212,
+      1.163636098612179
+    ],
+    "acceptable_interval_semantics": "RMS <= 1.05 * individually optimal bounded RMS + 5 * reference uncertainty; not CI",
+    "node_trials": [
+      {
+        "left_node": 0.08,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.4551971467257737,
+          "unrestricted_coefficient": 0.4551971467257737,
+          "correction_rms": 0.00012106168862384882,
+          "defect_rms": 6.637639637957406e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 2.2324608200768687e-07,
+          "error_rms": 3.700069843747693e-05,
+          "error_max": 8.505177018860839e-05,
+          "mean_error": -1.3601306042291723e-06,
+          "combined_objective": 2.0924320460826937e-09
+        }
+      },
+      {
+        "left_node": 0.15,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.6532013611281006,
+          "unrestricted_coefficient": 0.6532013611281006,
+          "correction_rms": 8.436646980225351e-05,
+          "defect_rms": 6.637639637957406e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 3.203470256590836e-07,
+          "error_rms": 3.6998676314968296e-05,
+          "error_max": 8.503287377259927e-05,
+          "mean_error": -1.353933301061519e-06,
+          "combined_objective": 2.0919610112624766e-09
+        }
+      },
+      {
+        "left_node": 0.21132486540518708,
+        "fit": {
+          "resolved": true,
+          "coefficient": 0.9577704600619503,
+          "unrestricted_coefficient": 0.9577704600619503,
+          "correction_rms": 5.7539128861965314e-05,
+          "defect_rms": 6.637639637957406e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 4.6970727922114883e-07,
+          "error_rms": 3.6997209128371363e-05,
+          "error_max": 8.501914045689586e-05,
+          "mean_error": -1.349424292454871e-06,
+          "combined_objective": 2.091618907691384e-09
+        }
+      },
+      {
+        "left_node": 0.3,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 1.9897466453406574,
+          "correction_rms": 2.769717759706957e-05,
+          "defect_rms": 6.637639637957406e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 9.757870660932716e-07,
+          "error_rms": 3.758679540243248e-05,
+          "error_max": 9.601868066857366e-05,
+          "mean_error": 4.41232477493348e-06,
+          "combined_objective": 2.3347258923576715e-09
+        }
+      },
+      {
+        "left_node": 0.4,
+        "fit": {
+          "resolved": true,
+          "coefficient": 1.75,
+          "unrestricted_coefficient": 7.943468608045432,
+          "correction_rms": 6.9379160950535475e-06,
+          "defect_rms": 6.637639637957406e-05,
+          "bounds": [
+            0.25,
+            1.75
+          ],
+          "coefficient_uncertainty_bound": 3.89548494046759e-06,
+          "error_rms": 5.6700893659950304e-05,
+          "error_max": 0.00015627759275570815,
+          "mean_error": 3.5908086718452205e-05,
+          "combined_objective": 5.657259941588888e-09
+        }
+      }
+    ],
+    "method_role": "Ours"
+  },
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00008",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "not_applicable",
+    "category": "feature_collision",
+    "parent_id": "matched-power-phase-66dc28d786b3968c",
+    "paired_parent_id": "matched-power-phase-296226360ea519da",
+    "field_cluster": "matched-power-phase-group",
+    "track": "continuum",
+    "method": "shared_vs_separate_gain",
+    "feature_differences": {
+      "original": 0.0,
+      "rich": 0.0006870838406835,
+      "spectral_moments": 8.881784197001252e-16,
+      "band_energies": 4.336808689942018e-19,
+      "signed_interaction": 2.010686280865927e-05
+    },
+    "features_matched": true,
+    "acceptable_gain_intervals": [
+      [
+        0.9009940854572811,
+        1.217774145537868
+      ],
+      [
+        0.8898370128880839,
+        1.2135470161812854
+      ]
+    ],
+    "intervals_overlap": true,
+    "shared_gain": 1.0555380650161297,
+    "individual_gains": [
+      1.0593841154975745,
+      1.0516920145346846
+    ],
+    "shared_error_rms": 2.877913639124472e-05,
+    "separate_error_rms": 2.877828553695587e-05,
+    "shared_over_separate": 1.0000295658435856,
+    "response_insufficiency_demonstrated": false,
+    "reference_uncertainty": 1.8924750655457956e-11,
+    "reference_accepted": true,
+    "response_insufficiency_scope": "bounded scalar gain at frozen GL2 only, not arbitrary node choices",
+    "best_separate_node_gain_error_rms": 2.877510217529882e-05,
+    "finite_node_grid_shared_over_separate": 1.0000296157951785,
+    "arbitrary_node_conditioner_insufficiency": null,
+    "best_shared_node_gain": {
+      "left_node": 0.08,
+      "fit": {
+        "resolved": true,
+        "coefficient": 0.5016966897485344,
+        "unrestricted_coefficient": 0.5016966897485344,
+        "correction_rms": 0.00012106168862384856,
+        "defect_rms": 6.72082392596619e-05,
+        "bounds": [
+          0.25,
+          1.75
+        ],
+        "coefficient_uncertainty_bound": 1.563232007630354e-07,
+        "error_rms": 2.877595437283108e-05,
+        "error_max": 7.532869767723332e-05,
+        "mean_error": 6.957877307037029e-07,
+        "combined_objective": 1.3954968194420579e-09
+      }
+    },
+    "finite_node_search_not_global_node_optimum": true,
+    "future_solution_difference_alone_is_not_evidence": true,
+    "method_role": "Ours"
+  },
+  {
+    "diagnostic": "D02",
+    "case_id": "D02-00009",
+    "evidence_category": "development_diagnostic",
+    "device": "cpu",
+    "dtype": "float64",
+    "checkpoint_status": "not_applicable",
+    "category": "feature_collision",
+    "parent_id": "matched-power-phase-66dc28d786b3968c",
+    "paired_parent_id": "matched-power-phase-14f969efc499f613",
+    "field_cluster": "matched-power-phase-group",
+    "track": "continuum",
+    "method": "shared_vs_separate_gain",
+    "feature_differences": {
+      "original": 1.1102230246251565e-16,
+      "rich": 1.1102230246251565e-16,
+      "spectral_moments": 2.842170943040401e-14,
+      "band_energies": 1.0842021724855044e-18,
+      "signed_interaction": 4.021372561731858e-05
+    },
+    "features_matched": true,
+    "acceptable_gain_intervals": [
+      [
+        0.9009940854572811,
+        1.217774145537868
+      ],
+      [
+        0.7519048215117212,
+        1.163636098612179
+      ]
+    ],
+    "intervals_overlap": true,
+    "shared_gain": 1.0085772877797619,
+    "individual_gains": [
+      1.0593841154975745,
+      0.9577704600619501
+    ],
+    "shared_error_rms": 3.313726627268984e-05,
+    "separate_error_rms": 3.30080635883574e-05,
+    "shared_over_separate": 1.0039142764005706,
+    "response_insufficiency_demonstrated": false,
+    "reference_uncertainty": 2.7026547666508804e-11,
+    "reference_accepted": true,
+    "response_insufficiency_scope": "bounded scalar gain at frozen GL2 only, not arbitrary node choices",
+    "best_separate_node_gain_error_rms": 3.300652147791535e-05,
+    "finite_node_grid_shared_over_separate": 1.0039611806673412,
+    "arbitrary_node_conditioner_insufficiency": null,
+    "best_shared_node_gain": {
+      "left_node": 0.21132486540518708,
+      "fit": {
+        "resolved": true,
+        "coefficient": 1.0085772877797616,
+        "unrestricted_coefficient": 1.0085772877797616,
+        "correction_rms": 5.7539128861964975e-05,
+        "defect_rms": 6.682714921309086e-05,
+        "bounds": [
+          0.25,
+          1.75
+        ],
+        "coefficient_uncertainty_bound": 4.697072792211516e-07,
+        "error_rms": 3.313726627268985e-05,
+        "error_max": 8.684398348713321e-05,
+        "mean_error": -2.727280134321005e-07,
+        "combined_objective": 1.852266162818495e-09
+      }
+    },
+    "finite_node_search_not_global_node_optimum": true,
+    "future_solution_difference_alone_is_not_evidence": true,
+    "method_role": "Ours"
+  }
+]

@@ -1,0 +1,682 @@
+[
+  {
+    "reference_id": "reference-00000",
+    "parent_id": "D06-high_pair-3650be67a242885b",
+    "track": "discrete",
+    "target": "same-grid FD/nodal",
+    "N": 8,
+    "h": 1.0,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1357293666527396e-07,
+        "error_max": 1.2193545539940231e-07,
+        "mean_error": 1.1350344245389388e-07,
+        "combined_objective": 1.4385637471120293e-14
+      },
+      {
+        "error_rms": 6.871422711083796e-09,
+        "error_max": 7.433758719699313e-09,
+        "mean_error": 6.866507430355884e-09,
+        "combined_objective": 5.2742526944668734e-17
+      }
+    ],
+    "reference_uncertainty": 7.433758719699313e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.02991182397818193
+  },
+  {
+    "reference_id": "dense-00001",
+    "parent_id": "D06-high_pair-3650be67a242885b",
+    "track": "discrete",
+    "target": "same-grid FD/nodal",
+    "N": 8,
+    "h": 1.0,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1357293666527396e-07,
+        "error_max": 1.2193545539940231e-07,
+        "mean_error": 1.1350344245389388e-07,
+        "combined_objective": 1.4385637471120293e-14
+      },
+      {
+        "error_rms": 6.871422711083796e-09,
+        "error_max": 7.433758719699313e-09,
+        "mean_error": 6.866507430355884e-09,
+        "combined_objective": 5.2742526944668734e-17
+      }
+    ],
+    "reference_uncertainty": 7.433758719699313e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.06732692301739007,
+    "dense_requested_times": [
+      0.005,
+      0.01,
+      0.02,
+      0.04,
+      0.08,
+      0.16,
+      0.30000000000000004,
+      0.5,
+      0.7,
+      1.0
+    ],
+    "adaptive_refinement_change": 1.368537505541667e-10,
+    "independent_lawson_change": 4.89167151229708e-10,
+    "adaptive_nfev": [
+      161,
+      236
+    ],
+    "reference_method": "DOP853 tolerance refinement plus independently coded Lawson endpoint"
+  },
+  {
+    "reference_id": "reference-00002",
+    "parent_id": "D06-high_pair-3650be67a242885b",
+    "track": "discrete",
+    "target": "same-grid FD/nodal",
+    "N": 8,
+    "h": 0.9999999999999999,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1357293666527396e-07,
+        "error_max": 1.2193545539940231e-07,
+        "mean_error": 1.1350344245389388e-07,
+        "combined_objective": 1.4385637471120293e-14
+      },
+      {
+        "error_rms": 6.871422711083796e-09,
+        "error_max": 7.433758719699313e-09,
+        "mean_error": 6.866507430355884e-09,
+        "combined_objective": 5.2742526944668734e-17
+      }
+    ],
+    "reference_uncertainty": 7.433758719699313e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.028051289991708472
+  },
+  {
+    "reference_id": "dense-00003",
+    "parent_id": "D06-high_pair-3650be67a242885b",
+    "track": "discrete",
+    "target": "same-grid FD/nodal",
+    "N": 8,
+    "h": 0.9999999999999999,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1357293666527396e-07,
+        "error_max": 1.2193545539940231e-07,
+        "mean_error": 1.1350344245389388e-07,
+        "combined_objective": 1.4385637471120293e-14
+      },
+      {
+        "error_rms": 6.871422711083796e-09,
+        "error_max": 7.433758719699313e-09,
+        "mean_error": 6.866507430355884e-09,
+        "combined_objective": 5.2742526944668734e-17
+      }
+    ],
+    "reference_uncertainty": 7.433758719699313e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.06467652998981066,
+    "dense_requested_times": [
+      0.1,
+      0.2,
+      0.30000000000000004,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.7999999999999999,
+      0.8999999999999999,
+      0.9999999999999999
+    ],
+    "adaptive_refinement_change": 1.368537505541667e-10,
+    "independent_lawson_change": 4.89167151229708e-10,
+    "adaptive_nfev": [
+      161,
+      236
+    ],
+    "reference_method": "DOP853 tolerance refinement plus independently coded Lawson endpoint"
+  },
+  {
+    "reference_id": "reference-00004",
+    "parent_id": "D06-high_pair-3650be67a242885b",
+    "track": "continuum",
+    "target": "same-grid dealiased Galerkin",
+    "N": 8,
+    "h": 1.0,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1376841652799255e-07,
+        "error_max": 1.1999230031811692e-07,
+        "mean_error": 1.1372633670382604e-07,
+        "combined_objective": 1.4383067812850122e-14
+      },
+      {
+        "error_rms": 6.881276360926696e-09,
+        "error_max": 7.291738546300053e-09,
+        "mean_error": 6.878314192521051e-09,
+        "combined_objective": 5.266890945820835e-17
+      }
+    ],
+    "reference_uncertainty": 7.291738546300053e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.13464901901897974
+  },
+  {
+    "reference_id": "dense-00005",
+    "parent_id": "D06-high_pair-3650be67a242885b",
+    "track": "continuum",
+    "target": "same-grid dealiased Galerkin",
+    "N": 8,
+    "h": 1.0,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1376841652799255e-07,
+        "error_max": 1.1999230031811692e-07,
+        "mean_error": 1.1372633670382604e-07,
+        "combined_objective": 1.4383067812850122e-14
+      },
+      {
+        "error_rms": 6.881276360926696e-09,
+        "error_max": 7.291738546300053e-09,
+        "mean_error": 6.878314192521051e-09,
+        "combined_objective": 5.266890945820835e-17
+      }
+    ],
+    "reference_uncertainty": 7.291738546300053e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.27431054701446556,
+    "dense_requested_times": [
+      0.005,
+      0.01,
+      0.02,
+      0.04,
+      0.08,
+      0.16,
+      0.30000000000000004,
+      0.5,
+      0.7,
+      1.0
+    ],
+    "adaptive_refinement_change": 1.1483192174921442e-10,
+    "independent_lawson_change": 4.790842167423648e-10,
+    "adaptive_nfev": [
+      161,
+      224
+    ],
+    "reference_method": "DOP853 tolerance refinement plus independently coded Lawson endpoint"
+  },
+  {
+    "reference_id": "reference-00006",
+    "parent_id": "D06-high_pair-3650be67a242885b",
+    "track": "continuum",
+    "target": "same-grid dealiased Galerkin",
+    "N": 8,
+    "h": 0.9999999999999999,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1376841652799255e-07,
+        "error_max": 1.1999230031811692e-07,
+        "mean_error": 1.1372633670382604e-07,
+        "combined_objective": 1.4383067812850122e-14
+      },
+      {
+        "error_rms": 6.881276360926696e-09,
+        "error_max": 7.291738546300053e-09,
+        "mean_error": 6.878314192521051e-09,
+        "combined_objective": 5.266890945820835e-17
+      }
+    ],
+    "reference_uncertainty": 7.291738546300053e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.15293962199939415
+  },
+  {
+    "reference_id": "dense-00007",
+    "parent_id": "D06-high_pair-3650be67a242885b",
+    "track": "continuum",
+    "target": "same-grid dealiased Galerkin",
+    "N": 8,
+    "h": 0.9999999999999999,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1376841652799255e-07,
+        "error_max": 1.1999230031811692e-07,
+        "mean_error": 1.1372633670382604e-07,
+        "combined_objective": 1.4383067812850122e-14
+      },
+      {
+        "error_rms": 6.881276360926696e-09,
+        "error_max": 7.291738546300053e-09,
+        "mean_error": 6.878314192521051e-09,
+        "combined_objective": 5.266890945820835e-17
+      }
+    ],
+    "reference_uncertainty": 7.291738546300053e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.33078393500181846,
+    "dense_requested_times": [
+      0.1,
+      0.2,
+      0.30000000000000004,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.7999999999999999,
+      0.8999999999999999,
+      0.9999999999999999
+    ],
+    "adaptive_refinement_change": 1.1483192174921442e-10,
+    "independent_lawson_change": 4.790841057200623e-10,
+    "adaptive_nfev": [
+      161,
+      224
+    ],
+    "reference_method": "DOP853 tolerance refinement plus independently coded Lawson endpoint"
+  },
+  {
+    "reference_id": "reference-00008",
+    "parent_id": "D06-localized-b62c025f25fb43e1",
+    "track": "discrete",
+    "target": "same-grid FD/nodal",
+    "N": 8,
+    "h": 1.0,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1282705982324805e-07,
+        "error_max": 1.1934051802331425e-07,
+        "mean_error": 1.1270541772079312e-07,
+        "combined_objective": 1.4154161352566092e-14
+      },
+      {
+        "error_rms": 6.825000668894108e-09,
+        "error_max": 7.258668666132451e-09,
+        "mean_error": 6.81671762786662e-09,
+        "combined_objective": 5.184946121087433e-17
+      }
+    ],
+    "reference_uncertainty": 7.258668666132451e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.0297745110001415
+  },
+  {
+    "reference_id": "dense-00009",
+    "parent_id": "D06-localized-b62c025f25fb43e1",
+    "track": "discrete",
+    "target": "same-grid FD/nodal",
+    "N": 8,
+    "h": 1.0,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1282705982324805e-07,
+        "error_max": 1.1934051802331425e-07,
+        "mean_error": 1.1270541772079312e-07,
+        "combined_objective": 1.4154161352566092e-14
+      },
+      {
+        "error_rms": 6.825000668894108e-09,
+        "error_max": 7.258668666132451e-09,
+        "mean_error": 6.81671762786662e-09,
+        "combined_objective": 5.184946121087433e-17
+      }
+    ],
+    "reference_uncertainty": 7.258668666132451e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.0629897239850834,
+    "dense_requested_times": [
+      0.005,
+      0.01,
+      0.02,
+      0.04,
+      0.08,
+      0.16,
+      0.30000000000000004,
+      0.5,
+      0.7,
+      1.0
+    ],
+    "adaptive_refinement_change": 9.980272164256121e-11,
+    "independent_lawson_change": 4.770981387736128e-10,
+    "adaptive_nfev": [
+      146,
+      209
+    ],
+    "reference_method": "DOP853 tolerance refinement plus independently coded Lawson endpoint"
+  },
+  {
+    "reference_id": "reference-00010",
+    "parent_id": "D06-localized-b62c025f25fb43e1",
+    "track": "discrete",
+    "target": "same-grid FD/nodal",
+    "N": 8,
+    "h": 0.9999999999999999,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1282705982324805e-07,
+        "error_max": 1.1934051802331425e-07,
+        "mean_error": 1.1270541772079312e-07,
+        "combined_objective": 1.4154161352566092e-14
+      },
+      {
+        "error_rms": 6.825000668894108e-09,
+        "error_max": 7.258668666132451e-09,
+        "mean_error": 6.81671762786662e-09,
+        "combined_objective": 5.184946121087433e-17
+      }
+    ],
+    "reference_uncertainty": 7.258668666132451e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.0294839599810075
+  },
+  {
+    "reference_id": "dense-00011",
+    "parent_id": "D06-localized-b62c025f25fb43e1",
+    "track": "discrete",
+    "target": "same-grid FD/nodal",
+    "N": 8,
+    "h": 0.9999999999999999,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1282705982324805e-07,
+        "error_max": 1.1934051802331425e-07,
+        "mean_error": 1.1270541772079312e-07,
+        "combined_objective": 1.4154161352566092e-14
+      },
+      {
+        "error_rms": 6.825000668894108e-09,
+        "error_max": 7.258668666132451e-09,
+        "mean_error": 6.81671762786662e-09,
+        "combined_objective": 5.184946121087433e-17
+      }
+    ],
+    "reference_uncertainty": 7.258668666132451e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.0635321069858037,
+    "dense_requested_times": [
+      0.1,
+      0.2,
+      0.30000000000000004,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.7999999999999999,
+      0.8999999999999999,
+      0.9999999999999999
+    ],
+    "adaptive_refinement_change": 9.980272164256121e-11,
+    "independent_lawson_change": 4.770982497959153e-10,
+    "adaptive_nfev": [
+      146,
+      209
+    ],
+    "reference_method": "DOP853 tolerance refinement plus independently coded Lawson endpoint"
+  },
+  {
+    "reference_id": "reference-00012",
+    "parent_id": "D06-localized-b62c025f25fb43e1",
+    "track": "continuum",
+    "target": "same-grid dealiased Galerkin",
+    "N": 8,
+    "h": 1.0,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1297038129978396e-07,
+        "error_max": 1.1883315387262172e-07,
+        "mean_error": 1.1287916435072376e-07,
+        "combined_objective": 1.4174438896949996e-14
+      },
+      {
+        "error_rms": 6.832650406123335e-09,
+        "error_max": 7.220252951078976e-09,
+        "mean_error": 6.826388739000766e-09,
+        "combined_objective": 5.189831684005384e-17
+      }
+    ],
+    "reference_uncertainty": 7.220252951078976e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.13233156799105927
+  },
+  {
+    "reference_id": "dense-00013",
+    "parent_id": "D06-localized-b62c025f25fb43e1",
+    "track": "continuum",
+    "target": "same-grid dealiased Galerkin",
+    "N": 8,
+    "h": 1.0,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1297038129978396e-07,
+        "error_max": 1.1883315387262172e-07,
+        "mean_error": 1.1287916435072376e-07,
+        "combined_objective": 1.4174438896949996e-14
+      },
+      {
+        "error_rms": 6.832650406123335e-09,
+        "error_max": 7.220252951078976e-09,
+        "mean_error": 6.826388739000766e-09,
+        "combined_objective": 5.189831684005384e-17
+      }
+    ],
+    "reference_uncertainty": 7.220252951078976e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.27439242901164107,
+    "dense_requested_times": [
+      0.005,
+      0.01,
+      0.02,
+      0.04,
+      0.08,
+      0.16,
+      0.30000000000000004,
+      0.5,
+      0.7,
+      1.0
+    ],
+    "adaptive_refinement_change": 1.9730783673566066e-10,
+    "independent_lawson_change": 4.743376802451849e-10,
+    "adaptive_nfev": [
+      134,
+      212
+    ],
+    "reference_method": "DOP853 tolerance refinement plus independently coded Lawson endpoint"
+  },
+  {
+    "reference_id": "reference-00014",
+    "parent_id": "D06-localized-b62c025f25fb43e1",
+    "track": "continuum",
+    "target": "same-grid dealiased Galerkin",
+    "N": 8,
+    "h": 0.9999999999999999,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1297038129978396e-07,
+        "error_max": 1.1883315387262172e-07,
+        "mean_error": 1.1287916435072376e-07,
+        "combined_objective": 1.4174438896949996e-14
+      },
+      {
+        "error_rms": 6.832650406123335e-09,
+        "error_max": 7.220252951078976e-09,
+        "mean_error": 6.826388739000766e-09,
+        "combined_objective": 5.189831684005384e-17
+      }
+    ],
+    "reference_uncertainty": 7.220252951078976e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.1294082009990234
+  },
+  {
+    "reference_id": "dense-00015",
+    "parent_id": "D06-localized-b62c025f25fb43e1",
+    "track": "continuum",
+    "target": "same-grid dealiased Galerkin",
+    "N": 8,
+    "h": 0.9999999999999999,
+    "kappa": 0.004,
+    "reaction_rate": 3.0,
+    "refinement_counts": [
+      24,
+      48,
+      96
+    ],
+    "refinement_changes": [
+      {
+        "error_rms": 1.1297038129978396e-07,
+        "error_max": 1.1883315387262172e-07,
+        "mean_error": 1.1287916435072376e-07,
+        "combined_objective": 1.4174438896949996e-14
+      },
+      {
+        "error_rms": 6.832650406123335e-09,
+        "error_max": 7.220252951078976e-09,
+        "mean_error": 6.826388739000766e-09,
+        "combined_objective": 5.189831684005384e-17
+      }
+    ],
+    "reference_uncertainty": 7.220252951078976e-09,
+    "reference_accepted": true,
+    "uncertainty_is_certificate": false,
+    "reference_seconds": 0.2587629030167591,
+    "dense_requested_times": [
+      0.1,
+      0.2,
+      0.30000000000000004,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.7999999999999999,
+      0.8999999999999999,
+      0.9999999999999999
+    ],
+    "adaptive_refinement_change": 1.9730783673566066e-10,
+    "independent_lawson_change": 4.743375692228824e-10,
+    "adaptive_nfev": [
+      134,
+      212
+    ],
+    "reference_method": "DOP853 tolerance refinement plus independently coded Lawson endpoint"
+  }
+]

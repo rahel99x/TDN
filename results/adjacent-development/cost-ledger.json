@@ -1,0 +1,345 @@
+{
+  "schema": "tdn.adjacent-cost-review/v1",
+  "rows": [
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D01",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 2.5273787699989043,
+      "nested_science_seconds": 1.2672880550089758,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/D01/stage.json",
+      "sha256": "e654bf4ea7aead8fc70eb540b7ba4829a234c6e57e2477cc688094d01f708fc6"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D02",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 1.7898274000035599,
+      "nested_science_seconds": 0.45646387798478827,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/D02/stage.json",
+      "sha256": "95060e55b42408e6031efb8cf601e0ad1dc798fdd490cdfa3077ebe4b7096edd"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D03",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 24.928344799001934,
+      "nested_science_seconds": 23.493879515997833,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/D03/stage.json",
+      "sha256": "d8e0695cd29550e8f1655e24c9021b7b830ed30417a97542bb3ad68381acc426"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D04",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 4.183870006003417,
+      "nested_science_seconds": 2.789411622012267,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/D04/stage.json",
+      "sha256": "377c01ab45fc098bcb9c232cac783f4715ea7a65df129371814fddb863497bd2"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D05",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 5.148070290015312,
+      "nested_science_seconds": 3.924579852988245,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/D05/stage.json",
+      "sha256": "2968b1961c4ec157bc6f352d2dc720c3aaaa97af06a0ac4f5d27ad0f6e43f10a"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D06",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 7.192272009997396,
+      "nested_science_seconds": 5.758875149011146,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/D06/stage.json",
+      "sha256": "466b5ac187d45ec6d573343266c089cbc8e74d05b206b49d859b321117ef81ab"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D07",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 5.68130973901134,
+      "nested_science_seconds": 4.344109120982466,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/D07/stage.json",
+      "sha256": "893b3610744635343611c3d7df9b6852486fc1874b4b7fd16ef798488c4be7a8"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D08",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 17.68255518100341,
+      "nested_science_seconds": 16.32724606100237,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/D08/stage.json",
+      "sha256": "78494c0100f55ac87cbfd8bd12f17e51df43b4c3967862e354cfa8c96491d680"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "audit",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 3.9475503510038834,
+      "nested_science_seconds": 0.2687227400019765,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/audit/stage.json",
+      "sha256": "73fb350d0cfbb85b2070926de2f814d2ed969a5acc0082fa42dc33e9a3546ebb"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "evaluate",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 14.905346796993399,
+      "nested_science_seconds": 13.195968938001897,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/evaluate/stage.json",
+      "sha256": "f6fe8b9d936bdd2ef825f6ce24d7555e83bac070e9e03e525ebb69bf40afad72"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "explore-E01",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 3.8939653759880457,
+      "nested_science_seconds": 2.5140454419888556,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/explore-E01/stage.json",
+      "sha256": "78cab30ac2ca841214faaeb379376997d0ead13ed52a9bda505e1323fdd962fc"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "explore-E02",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 3.991172548994655,
+      "nested_science_seconds": 2.578733888018178,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/explore-E02/stage.json",
+      "sha256": "1f7b0c3d221f0dbd22f7b2375e41f4f9430837b1c8fb4ed1f03f4b37ae191871"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "pilot",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 5.803236040985212,
+      "nested_science_seconds": 4.175138145015808,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/pilot/stage.json",
+      "sha256": "e47b4f0b25a6b394cc9ee5d5dd5b3a9a29fc6c13f550ae251b978b8922440373"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "report",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 36.36387116400874,
+      "nested_science_seconds": 34.188028887991095,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/report/stage.json",
+      "sha256": "92e2569ea3834ad3ff0db8d16002830d76c2aa0241216dc1e028b62e47720e0f"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "roughness",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 1.7525146099796984,
+      "nested_science_seconds": 0.4211487779975869,
+      "interpretation": "Superseded diagnostic/report defects; retained actual work",
+      "source": "runs/adjacent-local-review-v1/roughness/stage.json",
+      "sha256": "a5e1645c706232abdf31538f2ed72b9808d90dea247db3060090ff60d87b7bf7"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D01",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 2.740134675987065,
+      "nested_science_seconds": 1.4271228979923762,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/D01/stage.json",
+      "sha256": "0a1ee530d7facbb341a2ef310937dd246111cccc1cfa9e2dfff82c7cf679c261"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D02",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 1.8014567359932698,
+      "nested_science_seconds": 0.46378849499160424,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/D02/stage.json",
+      "sha256": "fab68b960be2c1fb1bb4e46a60fc8acbb0e614761283247c472bc47e66ec99fd"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D03",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 24.492888401000528,
+      "nested_science_seconds": 23.077989917015657,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/D03/stage.json",
+      "sha256": "713764c78f725c0d241c7569320180f48f425a2f8ce9afd01bfd806ba4baafba"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D04",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 4.062311455985764,
+      "nested_science_seconds": 2.708089925989043,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/D04/stage.json",
+      "sha256": "87218fa088b96d7c636fd64ea5cbfc7fc9d9285b3774b0c4e8447c50cdd38934"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D05",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 3.9731835929851513,
+      "nested_science_seconds": 2.651277918019332,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/D05/stage.json",
+      "sha256": "1ee1d947f47d7aa794b601131c34fa01de755365a2556393cca04c13ce900b19"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D06",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 6.413028991984902,
+      "nested_science_seconds": 5.052180986996973,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/D06/stage.json",
+      "sha256": "c8a406c1bc03b456bf7397902bef8cf9e7fde2f7826dafeaf7ea555fa82a9dfc"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D07",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 6.022937522997381,
+      "nested_science_seconds": 4.641610891005257,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/D07/stage.json",
+      "sha256": "707bfea95a75f027362cd17000bed2f4e956c394b80a67c5c659bdb34cd01ae7"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D08",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 17.64202956997906,
+      "nested_science_seconds": 16.387335503997747,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/D08/stage.json",
+      "sha256": "df21c8902a26e16690c5ab8287e2cea2b561e75a7b0e9c762d3a6655192ab484"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "audit",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 1.5330383719992824,
+      "nested_science_seconds": 0.23804371402366087,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/audit/stage.json",
+      "sha256": "4b6958c7299357c5b9a3579d1be4c82a0e0d187418c2dd876dc12e671e0ca12e"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "evaluate",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 14.681825661013136,
+      "nested_science_seconds": 13.07311689099879,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/evaluate/stage.json",
+      "sha256": "c4039fdcec2f7c8426e2b68463424c25269d1340570bd524a9f576064964647a"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "explore-E01",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 3.751188345020637,
+      "nested_science_seconds": 2.419847742014099,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/explore-E01/stage.json",
+      "sha256": "6f5abd5a4ffbac1c30caa8a2a2f029887d17d467c1856e862092719d5325040a"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "explore-E02",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 3.744440176989883,
+      "nested_science_seconds": 2.3646076210134197,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/explore-E02/stage.json",
+      "sha256": "549136255430a4696596227e2125aa852415c1b6c16ed33a6cf9f8242a8aa94b"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "pilot",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 4.71665859100176,
+      "nested_science_seconds": 3.1605076109990478,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/pilot/stage.json",
+      "sha256": "0e540c793806c0f5c9f8a752919e0a223f0be2808f69512aa5f764f872276f45"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "report",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 35.86407362599857,
+      "nested_science_seconds": 34.07577694000793,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/report/stage.json",
+      "sha256": "7f7e0d5009bd887c09bec82e0deceecb0127de397d9817de57ca30ed07fdc077"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "roughness",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 1.7628638409951236,
+      "nested_science_seconds": 0.44089941200218163,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-local-review-v2/roughness/stage.json",
+      "sha256": "edcef1db241b9602f878b77ee1107740d40662f3f1a33da5f414e869368c4d73"
+    },
+    {
+      "run": "adjacent-development-review-v2",
+      "stage": "D01",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 3.9287923939991742,
+      "nested_science_seconds": 2.646553230995778,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-development-review-v2/D01/stage.json",
+      "sha256": "ac822d8b6b6ace1c53f34880cb8807a191e7dba2fc9bcd17b43f68d74354325e"
+    },
+    {
+      "run": "adjacent-development-review-v2",
+      "stage": "D05",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 6.207438448007451,
+      "nested_science_seconds": 4.875657342985505,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-development-review-v2/D05/stage.json",
+      "sha256": "94bb4f7c1c5ae30f03e7f7c206d3e3b1c8669ff8ccf5a5f29a7af85982e98f6b"
+    },
+    {
+      "run": "adjacent-development-review-v2",
+      "stage": "audit",
+      "computational_status": "COMPLETED",
+      "cli_elapsed_seconds": 1.5544496980146505,
+      "nested_science_seconds": 0.2331006710010115,
+      "interpretation": "Corrected CPU development evidence",
+      "source": "runs/adjacent-development-review-v2/audit/stage.json",
+      "sha256": "a293562427f12be0e14010d19cfe5cbfff0d7343b4a651163efbb9ea4a14847a"
+    }
+  ],
+  "total_recorded_cli_seconds": 284.6840251829417,
+  "per_run_cli_seconds": {
+    "adjacent-development-review-v2": 11.690680540021276,
+    "adjacent-local-review-v1": 139.7912850829889,
+    "adjacent-local-review-v2": 133.2020595599315
+  },
+  "scope": "Sum of recorded per-stage CLI timers, including superseded v1 and reports. Science timers are nested; do not add them again. This is not complete engineering time, scheduler billing, energy or process-cold deployment cost. Early ad hoc unit-test/diagnostic time was not exhaustively logged.",
+  "monetary_cost": null,
+  "energy_joules": null,
+  "native_scheduler_accounting": null
+}

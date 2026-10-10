@@ -1,0 +1,124 @@
+{
+  "schema": "tdn.adjacent/v1",
+  "stage": "D06",
+  "kind": "diagnostic",
+  "profile": "smoke",
+  "status": "COMPLETED",
+  "device": "cpu",
+  "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+    "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd"
+  },
+  "prerequisites": {
+    "audit": "941b63f92c587bd4e784747b382cc9f641ceb20d790b965470a36d134fe63c36",
+    "D01": "bde93ef500f59a49108ca2c747a3a1148e6b182c1e8783fa379a1611c876b5ec",
+    "D05": "070b79fda3ac05f7f990fc79d47e24c07e7435fd3f4a8e28f39baf4993456da9"
+  },
+  "elapsed_seconds": 5.758875149011146,
+  "experiment_count": 1,
+  "verdict_counts": {
+    "NA": 1
+  },
+  "correctness_failures": 0,
+  "memory": {
+    "enabled": false,
+    "observations": 0,
+    "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+  },
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "details": {
+    "diagnostic": "D06",
+    "status": "COMPLETED",
+    "rows": 64,
+    "reference_cases": 16,
+    "unresolved_references": 0,
+    "elapsed_seconds": 5.696094540995546,
+    "device": "cpu",
+    "dtype": "float64",
+    "process_peak_rss_bytes": 351764480,
+    "memory_scope": "whole Python process high-water RSS, not per-method peak",
+    "evidence_category": "bounded development; no independent confirmation",
+    "energy_joules": null,
+    "monetary_cost": null,
+    "analytical_uncertainty_is_certificate": false,
+    "initialized_neural_comparisons_are_not_trained_baselines": true,
+    "rollout_denominators": {
+      "discrete/high_pair/unequal_early_dense": {
+        "denominator": 4,
+        "classifications": {
+          "accurate_stable": 4
+        },
+        "statistical_scope": "paired method/trajectory observations, not independent fields"
+      },
+      "discrete/high_pair/uniform": {
+        "denominator": 4,
+        "classifications": {
+          "accurate_stable": 4
+        },
+        "statistical_scope": "paired method/trajectory observations, not independent fields"
+      },
+      "continuum/high_pair/unequal_early_dense": {
+        "denominator": 4,
+        "classifications": {
+          "accurate_stable": 4
+        },
+        "statistical_scope": "paired method/trajectory observations, not independent fields"
+      },
+      "continuum/high_pair/uniform": {
+        "denominator": 4,
+        "classifications": {
+          "accurate_stable": 4
+        },
+        "statistical_scope": "paired method/trajectory observations, not independent fields"
+      },
+      "discrete/localized/unequal_early_dense": {
+        "denominator": 4,
+        "classifications": {
+          "accurate_stable": 4
+        },
+        "statistical_scope": "paired method/trajectory observations, not independent fields"
+      },
+      "discrete/localized/uniform": {
+        "denominator": 4,
+        "classifications": {
+          "accurate_stable": 4
+        },
+        "statistical_scope": "paired method/trajectory observations, not independent fields"
+      },
+      "continuum/localized/unequal_early_dense": {
+        "denominator": 4,
+        "classifications": {
+          "accurate_stable": 4
+        },
+        "statistical_scope": "paired method/trajectory observations, not independent fields"
+      },
+      "continuum/localized/uniform": {
+        "denominator": 4,
+        "classifications": {
+          "accurate_stable": 4
+        },
+        "statistical_scope": "paired method/trajectory observations, not independent fields"
+      }
+    },
+    "configuration": {
+      "grid": 8,
+      "timing_repeats": 3,
+      "max_reference_substeps": 256,
+      "uncertainty_floor": 1e-12,
+      "tracks": [
+        "discrete",
+        "continuum"
+      ]
+    },
+    "error": null
+  }
+}

@@ -1,0 +1,33 @@
+TDN frontier audit: 1 experiments; latest identity/discrete/2: NA 67/100; evidence 67%
+TDN frontier audit: 2 experiments; latest identity/discrete/4: NA 67/100; evidence 67%
+TDN frontier audit: 3 experiments; latest null/discrete/channel_fixed: NA 73/100; evidence 73%
+/workspace/TDN-adjacent/tdn/analysis/adjacent/engine.py:179: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  nulls = {'zero_time':float((model(u,0.,eq,geo)-u).abs().max())}
+{
+  "status": "COMPLETED",
+  "stage": "audit",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-development-review-v2/audit/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-development-review-v2/audit-tower/tdn-20261010T013429373942Z-6ccd5deb50e7"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-development-review-v2/audit-tower/tdn-20261010T013429373942Z-6ccd5deb50e7
+TDN frontier D01: 1 experiments; latest D01/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "D01",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-development-review-v2/D01/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-development-review-v2/D01-tower/tdn-20261010T013431383811Z-de3bb66994a3"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-development-review-v2/D01-tower/tdn-20261010T013431383811Z-de3bb66994a3
+TDN frontier D05: 1 experiments; latest D05/summary: NA 1/100; evidence 0%
+{
+  "status": "COMPLETED",
+  "stage": "D05",
+  "summary": "/workspace/TDN-adjacent/runs/adjacent-development-review-v2/D05/summary.json",
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "tower": "/workspace/TDN-adjacent/runs/adjacent-development-review-v2/D05-tower/tdn-20261010T013436137899Z-a579f39cdfcb"
+}
+TDN Tower report: /workspace/TDN-adjacent/runs/adjacent-development-review-v2/D05-tower/tdn-20261010T013436137899Z-a579f39cdfcb
+{"audit": "COMPLETED", "D01": "COMPLETED", "D05": "COMPLETED"}

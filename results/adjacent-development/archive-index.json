@@ -1,0 +1,27 @@
+{
+  "schema": "tdn.adjacent-publication/v1",
+  "archives": [
+    {
+      "archive": "results/adjacent-development/archives/superseded-smoke-v1.tar.gz",
+      "sha256": "c1392b2a674eef65b8d4679b3a01c422dbea8f7050608dfff6485be416a313cd",
+      "bytes": 26476472,
+      "original_root": "runs/adjacent-local-review-v1",
+      "scope": "Exact complete local run, including sealed science, checkpoints, references, atlas and Tower sidecars"
+    },
+    {
+      "archive": "results/adjacent-development/archives/smoke-v2.tar.gz",
+      "sha256": "31fd5a19c53875926a17c8399e94cb668227b592ceddf44bfa1dd3ddf9a4991e",
+      "bytes": 25213136,
+      "original_root": "runs/adjacent-local-review-v2",
+      "scope": "Exact complete local run, including sealed science, checkpoints, references, atlas and Tower sidecars"
+    },
+    {
+      "archive": "results/adjacent-development/archives/selected-development-v2.tar.gz",
+      "sha256": "5ddf534bdb64e7d537264eab4f4d6df8b907887ab9dce9b1dd20cba5e16300f7",
+      "bytes": 2239977,
+      "original_root": "runs/adjacent-development-review-v2",
+      "scope": "Exact complete local run, including sealed science, checkpoints, references, atlas and Tower sidecars"
+    }
+  ],
+  "extraction": "Extract only after verifying archive SHA256; members are contained under runs/ and preserve original immutable bytes. Readability copies omit non-JSON payloads and are not standalone sealed stages."
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "tdn.adjacent-science/v1",
+  "stage": "explore-E01",
+  "kind": "explore",
+  "device": "cpu",
+  "protocol_sha256": "66d453bcbbd3332cc6c19d2d116fa5f6ff6ed443b724257796864466087ef43f",
+  "unit_sha256": "d38e95f58079928acdd480d599f05a2fb812f0bfe1ba5c51575dc44596e8e831",
+  "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+  "prerequisites": {
+    "audit": "941b63f92c587bd4e784747b382cc9f641ceb20d790b965470a36d134fe63c36",
+    "D01": "bde93ef500f59a49108ca2c747a3a1148e6b182c1e8783fa379a1611c876b5ec",
+    "D05": "070b79fda3ac05f7f990fc79d47e24c07e7435fd3f4a8e28f39baf4993456da9"
+  },
+  "lineage": {
+    "audit": "941b63f92c587bd4e784747b382cc9f641ceb20d790b965470a36d134fe63c36",
+    "D01": "bde93ef500f59a49108ca2c747a3a1148e6b182c1e8783fa379a1611c876b5ec",
+    "D05": "070b79fda3ac05f7f990fc79d47e24c07e7435fd3f4a8e28f39baf4993456da9"
+  },
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+    "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd"
+  },
+  "artifacts": {
+    "protocol.json": "326cb7be6dda0bb9f578532268aa760c008e6b442a7ec79461288c675bc59371",
+    "prototype_decisions.json": "16e8c1fbb0f0ceb8a2c43792a4e426452fb0b97eeb92afc41700f80e8ed5a09d",
+    "prototype_fits.json": "7754f6d6e4487f38c02d09161f0787de7c77c34aa5c01f5304f442f576522155",
+    "prototype_measurements.json": "1333aef45a3408a531bd691e4cbdf678b06f27b55dd16c8fd5e16d01926fe0c2",
+    "prototype_rows.json": "072873862bd7a35dc19b552ecdcd51a6256d47314ef78086e4f8e4d1de3aa37d",
+    "review.csv": "897163f5914aa57fb12c62be8dea641fc9b637f06082cbaad71cd0b704def3fd",
+    "review.md": "93ca3e61109bb2b310c3503123ec30f042d710c9bc95642505d0e1347de0f7f6",
+    "rows.json": "b3d07e203fb7ecd22397d46ec0b54211aa367652340f3158bb24c6b916f2400b",
+    "rows.jsonl": "7549f763f81ce09c23f60a74aadf5985752b8ffc8468b1b3b2615f6bf781794e",
+    "summary.json": "b146dff80b25f47144a0a2bad4621dc4dc2bddfcadf3995459c1a55231ef65d1",
+    "summary.txt": "8a199ab3686f3182d03e68f34676c1643998fc74ffb57fef081860853c758efe"
+  }
+}

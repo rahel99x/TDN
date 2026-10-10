@@ -1,0 +1,791 @@
+{
+  "binding": {
+    "schema": "tdn.adjacent-pilot/v1",
+    "protocol_sha256": "f313b8a8f388bfcd395196c36a7df48cd6b27d04936a9266735e6970fa6eb428",
+    "settings_sha256": "eaa274c27525e392c2ceee0c706deb4417c8310320d54dd08d707a095072d216",
+    "splits": [
+      "confirmation"
+    ],
+    "parents": [
+      {
+        "seed": 71200000,
+        "alpha": 0.3,
+        "generator": "multiscale_2d",
+        "levels": 2,
+        "phase_mode": "random",
+        "orientation": [
+          1,
+          0
+        ],
+        "mean": 0.43,
+        "rms": 0.05,
+        "bounds": [
+          0.0,
+          1.0
+        ],
+        "modes": [
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            -2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            -1
+          ]
+        ],
+        "amplitudes": [
+          0.0301081472637392,
+          0.0301081472637392,
+          0.0301081472637392,
+          0.0301081472637392,
+          0.01853373864995927,
+          0.01853373864995927,
+          0.01853373864995927,
+          0.01853373864995927
+        ],
+        "phases": [
+          5.175423114936037,
+          5.103815708625957,
+          4.736473883060335,
+          0.7843809069077441,
+          0.05191308100315824,
+          5.0823786756142315,
+          2.1545135636956223,
+          3.114053108105481
+        ],
+        "shell_indices": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
+        ],
+        "split": "confirmation",
+        "cluster_id": "confirmation/seed-71200000",
+        "parent_id": "adjacent/confirmation/71200000",
+        "modes_per_level": 4,
+        "translation": [
+          0.0,
+          0.0
+        ],
+        "workload": "fixed_physical_bandwidth",
+        "hurst": 0.7,
+        "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+        "continuous_range_bound": [
+          0.2354324563452061,
+          0.6245675436547939
+        ],
+        "identity_sha256": "5afc651755c5b72e5c6ef50ffd7e752f979b8bc95adadcbaac1f567792f2d9fd",
+        "finite_field_dimension": 2,
+        "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+        "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+        "physical_frequency_units": "integer cycles per domain length"
+      },
+      {
+        "seed": 71200001,
+        "alpha": 0.7,
+        "generator": "ridge",
+        "levels": 2,
+        "phase_mode": "random",
+        "orientation": [
+          1,
+          0
+        ],
+        "mean": 0.43,
+        "rms": 0.05,
+        "bounds": [
+          0.0,
+          1.0
+        ],
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "amplitudes": [
+          0.05488619775200141,
+          0.04458144565094537
+        ],
+        "phases": [
+          0.2463531408833405,
+          1.3615512032176098
+        ],
+        "shell_indices": [
+          0,
+          1
+        ],
+        "split": "confirmation",
+        "cluster_id": "confirmation/seed-71200001",
+        "parent_id": "adjacent/confirmation/71200001",
+        "modes_per_level": 4,
+        "translation": [
+          0.0,
+          0.0
+        ],
+        "workload": "fixed_physical_bandwidth",
+        "hurst": 0.30000000000000004,
+        "dimension_label": "nominal D=2.7; finite sample smooth, dimension theorem not transferred",
+        "continuous_range_bound": [
+          0.3305323565970532,
+          0.5294676434029468
+        ],
+        "identity_sha256": "2438e9a7fb205e36cdf7a95537dd8636018f718726b8c798d13020271b22c7b2",
+        "finite_field_dimension": 2,
+        "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+        "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+        "physical_frequency_units": "integer cycles per domain length"
+      }
+    ]
+  },
+  "references": [
+    {
+      "parent_index": 0,
+      "state_key": "state-0",
+      "key": "reference-0-discrete-0",
+      "split": "confirmation",
+      "parent": {
+        "seed": 71200000,
+        "alpha": 0.3,
+        "generator": "multiscale_2d",
+        "levels": 2,
+        "phase_mode": "random",
+        "orientation": [
+          1,
+          0
+        ],
+        "mean": 0.43,
+        "rms": 0.05,
+        "bounds": [
+          0.0,
+          1.0
+        ],
+        "modes": [
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            -2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            -1
+          ]
+        ],
+        "amplitudes": [
+          0.0301081472637392,
+          0.0301081472637392,
+          0.0301081472637392,
+          0.0301081472637392,
+          0.01853373864995927,
+          0.01853373864995927,
+          0.01853373864995927,
+          0.01853373864995927
+        ],
+        "phases": [
+          5.175423114936037,
+          5.103815708625957,
+          4.736473883060335,
+          0.7843809069077441,
+          0.05191308100315824,
+          5.0823786756142315,
+          2.1545135636956223,
+          3.114053108105481
+        ],
+        "shell_indices": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
+        ],
+        "split": "confirmation",
+        "cluster_id": "confirmation/seed-71200000",
+        "parent_id": "adjacent/confirmation/71200000",
+        "modes_per_level": 4,
+        "translation": [
+          0.0,
+          0.0
+        ],
+        "workload": "fixed_physical_bandwidth",
+        "hurst": 0.7,
+        "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+        "continuous_range_bound": [
+          0.2354324563452061,
+          0.6245675436547939
+        ],
+        "identity_sha256": "5afc651755c5b72e5c6ef50ffd7e752f979b8bc95adadcbaac1f567792f2d9fd",
+        "finite_field_dimension": 2,
+        "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+        "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+        "physical_frequency_units": "integer cycles per domain length"
+      },
+      "accepted": true,
+      "uncertainty_rms": 1e-12,
+      "uncertainty_max_bound": 1e-12,
+      "track": "discrete",
+      "grid": 8,
+      "horizon": 0.06,
+      "temporal_refinement": [
+        {
+          "accepted": true,
+          "uncertainty_rms": 1e-12,
+          "uncertainty_max_bound": 1e-12,
+          "temporal_refinements": [
+            {
+              "counts": [
+                8,
+                16,
+                32
+              ],
+              "differences": [
+                {
+                  "rms": 6.8158069128623185e-12,
+                  "max": 1.0261180793946778e-11
+                },
+                {
+                  "rms": 4.257318758021042e-13,
+                  "max": 6.410982855697966e-13
+                }
+              ],
+              "rounding_allowance": 1e-12,
+              "finite": true,
+              "converged": true,
+              "accepted": true
+            }
+          ],
+          "refinement_substeps": [
+            8,
+            16,
+            32
+          ],
+          "temporal_accepted": true
+        }
+      ],
+      "spatial_factors": [
+        1
+      ],
+      "spatial_difference_rms": 0.0,
+      "spatial_difference_max": 0.0,
+      "reference_seconds": 0.014449406997300684,
+      "uncertainty_semantics": "actual refinement difference plus temporal estimates; not an error certificate",
+      "target": "FD nodal semidiscrete"
+    },
+    {
+      "parent_index": 0,
+      "state_key": "state-0",
+      "key": "reference-0-continuum-0",
+      "split": "confirmation",
+      "parent": {
+        "seed": 71200000,
+        "alpha": 0.3,
+        "generator": "multiscale_2d",
+        "levels": 2,
+        "phase_mode": "random",
+        "orientation": [
+          1,
+          0
+        ],
+        "mean": 0.43,
+        "rms": 0.05,
+        "bounds": [
+          0.0,
+          1.0
+        ],
+        "modes": [
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            -2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            -1
+          ]
+        ],
+        "amplitudes": [
+          0.0301081472637392,
+          0.0301081472637392,
+          0.0301081472637392,
+          0.0301081472637392,
+          0.01853373864995927,
+          0.01853373864995927,
+          0.01853373864995927,
+          0.01853373864995927
+        ],
+        "phases": [
+          5.175423114936037,
+          5.103815708625957,
+          4.736473883060335,
+          0.7843809069077441,
+          0.05191308100315824,
+          5.0823786756142315,
+          2.1545135636956223,
+          3.114053108105481
+        ],
+        "shell_indices": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
+        ],
+        "split": "confirmation",
+        "cluster_id": "confirmation/seed-71200000",
+        "parent_id": "adjacent/confirmation/71200000",
+        "modes_per_level": 4,
+        "translation": [
+          0.0,
+          0.0
+        ],
+        "workload": "fixed_physical_bandwidth",
+        "hurst": 0.7,
+        "dimension_label": "nominal D=2.3; finite sample smooth, dimension theorem not transferred",
+        "continuous_range_bound": [
+          0.2354324563452061,
+          0.6245675436547939
+        ],
+        "identity_sha256": "5afc651755c5b72e5c6ef50ffd7e752f979b8bc95adadcbaac1f567792f2d9fd",
+        "finite_field_dimension": 2,
+        "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+        "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+        "physical_frequency_units": "integer cycles per domain length"
+      },
+      "accepted": true,
+      "uncertainty_rms": 2.9740133011280793e-12,
+      "uncertainty_max_bound": 4.600253345974579e-12,
+      "track": "continuum",
+      "grid": 8,
+      "horizon": 0.06,
+      "temporal_refinement": [
+        {
+          "accepted": true,
+          "uncertainty_rms": 1e-12,
+          "uncertainty_max_bound": 1e-12,
+          "temporal_refinements": [
+            {
+              "counts": [
+                8,
+                16,
+                32
+              ],
+              "differences": [
+                {
+                  "rms": 6.815611980640185e-12,
+                  "max": 1.020433737508597e-11
+                },
+                {
+                  "rms": 4.255613624420281e-13,
+                  "max": 6.36879438076221e-13
+                }
+              ],
+              "rounding_allowance": 1e-12,
+              "finite": true,
+              "converged": true,
+              "accepted": true
+            }
+          ],
+          "refinement_substeps": [
+            8,
+            16,
+            32
+          ],
+          "temporal_accepted": true
+        },
+        {
+          "accepted": true,
+          "uncertainty_rms": 1e-12,
+          "uncertainty_max_bound": 1e-12,
+          "temporal_refinements": [
+            {
+              "counts": [
+                8,
+                16,
+                32
+              ],
+              "differences": [
+                {
+                  "rms": 6.815682464984946e-12,
+                  "max": 1.0382028570177226e-11
+                },
+                {
+                  "rms": 4.2557180336629077e-13,
+                  "max": 6.484257575323227e-13
+                }
+              ],
+              "rounding_allowance": 1e-12,
+              "finite": true,
+              "converged": true,
+              "accepted": true
+            }
+          ],
+          "refinement_substeps": [
+            8,
+            16,
+            32
+          ],
+          "temporal_accepted": true
+        }
+      ],
+      "spatial_factors": [
+        2,
+        4
+      ],
+      "spatial_difference_rms": 9.740133011280792e-13,
+      "spatial_difference_max": 2.600253345974579e-12,
+      "reference_seconds": 0.11771861300803721,
+      "uncertainty_semantics": "actual refinement difference plus temporal estimates; not an error certificate",
+      "target": "projected spatially refined dealiased Galerkin"
+    },
+    {
+      "parent_index": 1,
+      "state_key": "state-1",
+      "key": "reference-1-discrete-0",
+      "split": "confirmation",
+      "parent": {
+        "seed": 71200001,
+        "alpha": 0.7,
+        "generator": "ridge",
+        "levels": 2,
+        "phase_mode": "random",
+        "orientation": [
+          1,
+          0
+        ],
+        "mean": 0.43,
+        "rms": 0.05,
+        "bounds": [
+          0.0,
+          1.0
+        ],
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "amplitudes": [
+          0.05488619775200141,
+          0.04458144565094537
+        ],
+        "phases": [
+          0.2463531408833405,
+          1.3615512032176098
+        ],
+        "shell_indices": [
+          0,
+          1
+        ],
+        "split": "confirmation",
+        "cluster_id": "confirmation/seed-71200001",
+        "parent_id": "adjacent/confirmation/71200001",
+        "modes_per_level": 4,
+        "translation": [
+          0.0,
+          0.0
+        ],
+        "workload": "fixed_physical_bandwidth",
+        "hurst": 0.30000000000000004,
+        "dimension_label": "nominal D=2.7; finite sample smooth, dimension theorem not transferred",
+        "continuous_range_bound": [
+          0.3305323565970532,
+          0.5294676434029468
+        ],
+        "identity_sha256": "2438e9a7fb205e36cdf7a95537dd8636018f718726b8c798d13020271b22c7b2",
+        "finite_field_dimension": 2,
+        "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+        "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+        "physical_frequency_units": "integer cycles per domain length"
+      },
+      "accepted": true,
+      "uncertainty_rms": 1e-12,
+      "uncertainty_max_bound": 1e-12,
+      "track": "discrete",
+      "grid": 8,
+      "horizon": 0.06,
+      "temporal_refinement": [
+        {
+          "accepted": true,
+          "uncertainty_rms": 1e-12,
+          "uncertainty_max_bound": 1e-12,
+          "temporal_refinements": [
+            {
+              "counts": [
+                8,
+                16,
+                32
+              ],
+              "differences": [
+                {
+                  "rms": 6.769981735082465e-12,
+                  "max": 8.716694033239492e-12
+                },
+                {
+                  "rms": 4.2250375540907555e-13,
+                  "max": 5.436762151589392e-13
+                }
+              ],
+              "rounding_allowance": 1e-12,
+              "finite": true,
+              "converged": true,
+              "accepted": true
+            }
+          ],
+          "refinement_substeps": [
+            8,
+            16,
+            32
+          ],
+          "temporal_accepted": true
+        }
+      ],
+      "spatial_factors": [
+        1
+      ],
+      "spatial_difference_rms": 0.0,
+      "spatial_difference_max": 0.0,
+      "reference_seconds": 0.00996836501872167,
+      "uncertainty_semantics": "actual refinement difference plus temporal estimates; not an error certificate",
+      "target": "FD nodal semidiscrete"
+    },
+    {
+      "parent_index": 1,
+      "state_key": "state-1",
+      "key": "reference-1-continuum-0",
+      "split": "confirmation",
+      "parent": {
+        "seed": 71200001,
+        "alpha": 0.7,
+        "generator": "ridge",
+        "levels": 2,
+        "phase_mode": "random",
+        "orientation": [
+          1,
+          0
+        ],
+        "mean": 0.43,
+        "rms": 0.05,
+        "bounds": [
+          0.0,
+          1.0
+        ],
+        "modes": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "amplitudes": [
+          0.05488619775200141,
+          0.04458144565094537
+        ],
+        "phases": [
+          0.2463531408833405,
+          1.3615512032176098
+        ],
+        "shell_indices": [
+          0,
+          1
+        ],
+        "split": "confirmation",
+        "cluster_id": "confirmation/seed-71200001",
+        "parent_id": "adjacent/confirmation/71200001",
+        "modes_per_level": 4,
+        "translation": [
+          0.0,
+          0.0
+        ],
+        "workload": "fixed_physical_bandwidth",
+        "hurst": 0.30000000000000004,
+        "dimension_label": "nominal D=2.7; finite sample smooth, dimension theorem not transferred",
+        "continuous_range_bound": [
+          0.3305323565970532,
+          0.5294676434029468
+        ],
+        "identity_sha256": "2438e9a7fb205e36cdf7a95537dd8636018f718726b8c798d13020271b22c7b2",
+        "finite_field_dimension": 2,
+        "statistical_unit": "cluster_id, never phase/grid/roughness variants",
+        "normalization": "continuous Fourier RMS; no clipping or grid renormalization",
+        "physical_frequency_units": "integer cycles per domain length"
+      },
+      "accepted": true,
+      "uncertainty_rms": 2.0055477400599503e-12,
+      "uncertainty_max_bound": 2.006439293542826e-12,
+      "track": "continuum",
+      "grid": 8,
+      "horizon": 0.06,
+      "temporal_refinement": [
+        {
+          "accepted": true,
+          "uncertainty_rms": 1e-12,
+          "uncertainty_max_bound": 1e-12,
+          "temporal_refinements": [
+            {
+              "counts": [
+                8,
+                16,
+                32
+              ],
+              "differences": [
+                {
+                  "rms": 6.7687610878578895e-12,
+                  "max": 8.634204462509842e-12
+                },
+                {
+                  "rms": 4.225281983961614e-13,
+                  "max": 5.386247003968947e-13
+                }
+              ],
+              "rounding_allowance": 1e-12,
+              "finite": true,
+              "converged": true,
+              "accepted": true
+            }
+          ],
+          "refinement_substeps": [
+            8,
+            16,
+            32
+          ],
+          "temporal_accepted": true
+        },
+        {
+          "accepted": true,
+          "uncertainty_rms": 1e-12,
+          "uncertainty_max_bound": 1e-12,
+          "temporal_refinements": [
+            {
+              "counts": [
+                8,
+                16,
+                32
+              ],
+              "differences": [
+                {
+                  "rms": 6.768842827431777e-12,
+                  "max": 8.715472787912404e-12
+                },
+                {
+                  "rms": 4.2267127998173566e-13,
+                  "max": 5.448974604860268e-13
+                }
+              ],
+              "rounding_allowance": 1e-12,
+              "finite": true,
+              "converged": true,
+              "accepted": true
+            }
+          ],
+          "refinement_substeps": [
+            8,
+            16,
+            32
+          ],
+          "temporal_accepted": true
+        }
+      ],
+      "spatial_factors": [
+        2,
+        4
+      ],
+      "spatial_difference_rms": 5.547740059950308e-15,
+      "spatial_difference_max": 6.439293542825908e-15,
+      "reference_seconds": 0.10925736898207106,
+      "uncertainty_semantics": "actual refinement difference plus temporal estimates; not an error certificate",
+      "target": "projected spatially refined dealiased Galerkin"
+    }
+  ],
+  "data_sha256": "a80004e9c349ee8861c63855567e104f148a12c772b52c413c7f040d2e1c0bb0",
+  "reference_seconds": 0.2513937540061306,
+  "status": "ACCEPTED"
+}

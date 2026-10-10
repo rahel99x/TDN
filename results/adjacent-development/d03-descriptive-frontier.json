@@ -1,0 +1,198 @@
+{
+  "selection": "post hoc minimum measured latency among fixed declared candidates with RMS + reference uncertainty <= target",
+  "scope": "Descriptive CPU point estimates; DOP853 single warm observation vs three paired repeats others; not statistical inference or deployable selection",
+  "rows": [
+    {
+      "track": "discrete",
+      "slice": "added_fine_content",
+      "tolerance": 0.0001,
+      "case_id": "D03-00094",
+      "method": "etdrk4",
+      "seconds": 0.00027244299417361617
+    },
+    {
+      "track": "discrete",
+      "slice": "added_fine_content",
+      "tolerance": 1e-06,
+      "case_id": "D03-00095",
+      "method": "etdrk4",
+      "seconds": 0.0004949319991283119
+    },
+    {
+      "track": "discrete",
+      "slice": "added_fine_content",
+      "tolerance": 1e-08,
+      "case_id": "D03-00096",
+      "method": "etdrk4",
+      "seconds": 0.0010295739921275526
+    },
+    {
+      "track": "discrete",
+      "slice": "anchor",
+      "tolerance": 0.0001,
+      "case_id": "D03-00006",
+      "method": "etdrk4",
+      "seconds": 0.00025824198382906616
+    },
+    {
+      "track": "discrete",
+      "slice": "anchor",
+      "tolerance": 1e-06,
+      "case_id": "D03-00000",
+      "method": "df",
+      "seconds": 0.0003421469882596284
+    },
+    {
+      "track": "discrete",
+      "slice": "anchor",
+      "tolerance": 1e-08,
+      "case_id": "D03-00008",
+      "method": "etdrk4",
+      "seconds": 0.0008997020195238292
+    },
+    {
+      "track": "discrete",
+      "slice": "longer_duration",
+      "tolerance": 0.0001,
+      "case_id": "D03-00139",
+      "method": "etdrk4",
+      "seconds": 0.0002541060093790293
+    },
+    {
+      "track": "discrete",
+      "slice": "longer_duration",
+      "tolerance": 1e-06,
+      "case_id": "D03-00141",
+      "method": "etdrk4",
+      "seconds": 0.0009332320187240839
+    },
+    {
+      "track": "discrete",
+      "slice": "longer_duration",
+      "tolerance": 1e-08,
+      "case_id": "D03-00143",
+      "method": "etdrk4",
+      "seconds": 0.0035046470002271235
+    },
+    {
+      "track": "discrete",
+      "slice": "same_field_grid",
+      "tolerance": 0.0001,
+      "case_id": "D03-00049",
+      "method": "etdrk4",
+      "seconds": 0.0002690879919100553
+    },
+    {
+      "track": "discrete",
+      "slice": "same_field_grid",
+      "tolerance": 1e-06,
+      "case_id": "D03-00043",
+      "method": "df",
+      "seconds": 0.0003273450129199773
+    },
+    {
+      "track": "discrete",
+      "slice": "same_field_grid",
+      "tolerance": 1e-08,
+      "case_id": "D03-00051",
+      "method": "etdrk4",
+      "seconds": 0.0009958739974536002
+    },
+    {
+      "track": "continuum",
+      "slice": "added_fine_content",
+      "tolerance": 0.0001,
+      "case_id": "D03-00116",
+      "method": "etdrk4",
+      "seconds": 0.0011598770215641707
+    },
+    {
+      "track": "continuum",
+      "slice": "added_fine_content",
+      "tolerance": 1e-06,
+      "case_id": "D03-00117",
+      "method": "etdrk4",
+      "seconds": 0.0022977510234341025
+    },
+    {
+      "track": "continuum",
+      "slice": "added_fine_content",
+      "tolerance": 1e-08,
+      "case_id": "D03-00118",
+      "method": "etdrk4",
+      "seconds": 0.0045206809882074594
+    },
+    {
+      "track": "continuum",
+      "slice": "anchor",
+      "tolerance": 0.0001,
+      "case_id": "D03-00027",
+      "method": "etdrk4",
+      "seconds": 0.0011370930005796254
+    },
+    {
+      "track": "continuum",
+      "slice": "anchor",
+      "tolerance": 1e-06,
+      "case_id": "D03-00028",
+      "method": "etdrk4",
+      "seconds": 0.0021656059834640473
+    },
+    {
+      "track": "continuum",
+      "slice": "anchor",
+      "tolerance": 1e-08,
+      "case_id": "D03-00029",
+      "method": "etdrk4",
+      "seconds": 0.004412601003423333
+    },
+    {
+      "track": "continuum",
+      "slice": "longer_duration",
+      "tolerance": 0.0001,
+      "case_id": "D03-00160",
+      "method": "etdrk4",
+      "seconds": 0.0012335860228631645
+    },
+    {
+      "track": "continuum",
+      "slice": "longer_duration",
+      "tolerance": 1e-06,
+      "case_id": "D03-00162",
+      "method": "etdrk4",
+      "seconds": 0.004392801987705752
+    },
+    {
+      "track": "continuum",
+      "slice": "longer_duration",
+      "tolerance": 1e-08,
+      "case_id": "D03-00174",
+      "method": "adaptive_dop853",
+      "seconds": 0.01348376800888218
+    },
+    {
+      "track": "continuum",
+      "slice": "same_field_grid",
+      "tolerance": 0.0001,
+      "case_id": "D03-00071",
+      "method": "etdrk4",
+      "seconds": 0.0012243019882589579
+    },
+    {
+      "track": "continuum",
+      "slice": "same_field_grid",
+      "tolerance": 1e-06,
+      "case_id": "D03-00072",
+      "method": "etdrk4",
+      "seconds": 0.0023607549956068397
+    },
+    {
+      "track": "continuum",
+      "slice": "same_field_grid",
+      "tolerance": 1e-08,
+      "case_id": "D03-00073",
+      "method": "etdrk4",
+      "seconds": 0.0051894010102842
+    }
+  ]
+}

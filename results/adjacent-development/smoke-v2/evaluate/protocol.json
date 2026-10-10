@@ -1,0 +1,648 @@
+{
+  "schema": "tdn.adjacent/v1",
+  "version": 1,
+  "profile": "smoke",
+  "purpose": "Adjacent origin-of-interaction study; no promotion or modification of the active portfolio",
+  "original_objective": "Approximate coupled finite-time splitting defects with reusable temporal structure at lower complete accuracy-qualified cost",
+  "main_campaign_unchanged": true,
+  "automatic_budget_expansion": false,
+  "tracks": [
+    "discrete",
+    "continuum"
+  ],
+  "timing_repeats": 3,
+  "mechanisms": {
+    "D01": {
+      "name": "Scalar, band, interaction-channel and cubic representation floors",
+      "question": "Scalar, band, interaction-channel and cubic representation floors"
+    },
+    "D02": {
+      "name": "Feature collisions require materially different responses",
+      "question": "Feature collisions require materially different responses"
+    },
+    "D03": {
+      "name": "Grid, step, duration and complete accuracy-qualified cost",
+      "question": "Grid, step, duration and complete accuracy-qualified cost"
+    },
+    "D04": {
+      "name": "Signed high-to-low interactions and phase information",
+      "question": "Signed high-to-low interactions and phase information"
+    },
+    "D05": {
+      "name": "Quadrature versus missing interaction order",
+      "question": "Quadrature versus missing interaction order"
+    },
+    "D06": {
+      "name": "Autonomous transient fidelity and stability",
+      "question": "Autonomous transient fidelity and stability"
+    },
+    "D07": {
+      "name": "Accuracy-qualified temporal reuse and refresh economics",
+      "question": "Accuracy-qualified temporal reuse and refresh economics"
+    },
+    "D08": {
+      "name": "Competitor-favorable and assumption-breaking workloads",
+      "question": "Competitor-favorable and assumption-breaking workloads"
+    },
+    "R01": {
+      "name": "Controlled finite-resolution rough-surface benchmark",
+      "question": "Controlled finite-resolution rough-surface benchmark"
+    },
+    "C01": {
+      "name": "Origin-of-interaction channels versus fitted and learned controls",
+      "question": "Origin-of-interaction channels versus fitted and learned controls"
+    },
+    "E01": {
+      "name": "Select cubic work before computing the cubic term",
+      "question": "Select cubic work before computing the cubic term"
+    },
+    "E02": {
+      "name": "Signed modulation as a cheaper cubic spatial direction",
+      "question": "Signed modulation as a cheaper cubic spatial direction"
+    }
+  },
+  "combinations": {},
+  "seed": 71000000,
+  "diagnostics": {
+    "grid": 8,
+    "horizon": 0.12,
+    "uncertainty_floor": 1e-12,
+    "alpha_levels": [
+      0.1,
+      0.5,
+      0.9,
+      1.0
+    ],
+    "max_reference_substeps": 256,
+    "teacher_precision": "float64",
+    "same_grid_and_continuum_targets_separate": true
+  },
+  "roughness": {
+    "alpha_levels": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "generators": [
+      "ridge",
+      "multiscale2d"
+    ],
+    "finite_sums_are_smooth": true,
+    "alpha_one": "finite-bandwidth stress; H=0 infinite sum not convergent",
+    "no_clipping": true,
+    "paired_grid_refinement": true,
+    "channel_axis_is_not_space": true
+  },
+  "pilot": {
+    "grid": 8,
+    "tracks": [
+      "discrete",
+      "continuum"
+    ],
+    "train_fields": 2,
+    "val_fields": 2,
+    "evaluation_fields": 2,
+    "updates": 2,
+    "seeds": [
+      731001
+    ],
+    "horizons": [
+      0.06
+    ],
+    "endpoint_steps": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "alpha_cycle": [
+      0.3,
+      0.7,
+      1.0
+    ],
+    "max_seconds": 320,
+    "trial_seconds": 15,
+    "reference_tolerance": 1e-07,
+    "reference_substeps": 8,
+    "max_substeps": 256,
+    "seed_offset": 71000000
+  },
+  "confirmation": {
+    "maximum_parents": 64,
+    "desired_log_halfwidth": 0.13976194237515863,
+    "confidence_level": 0.95,
+    "primary_comparisons": 6,
+    "multiple_comparisons": "Bonferroni across three predeclared contrasts on each of two separate equation tracks",
+    "planning": "validation independent-parent paired log-error variability; freeze N before generating fresh fields",
+    "insufficient_precision": "NA, retain all observations; never silently expand budget",
+    "primary_effect_ratio": 1.1,
+    "practical_speedup": 1.2,
+    "coverage_regression": 0.05,
+    "independent_unit": "parent field, with phases/grids/schedules/roughness variants/seeds paired",
+    "primary_claims": [
+      "channel_neural vs channel_global",
+      "channel_neural vs quad2_conditioned",
+      "channel_neural vs band_gain"
+    ],
+    "inspected_confirmation_becomes_development": true
+  },
+  "exploration": {
+    "prototype_ids": [
+      "E01",
+      "E02"
+    ],
+    "novel_in_literature": false,
+    "E01": {
+      "speedup": 1.1,
+      "maximum_accuracy_regression": 0.05,
+      "minimum_accuracy_improvement_over_quadratic": 1.1
+    },
+    "E02": {
+      "error_ratio": 1.1,
+      "speedup": 1.1,
+      "minimum_accuracy_improvement_over_quadratic": 1.1
+    }
+  },
+  "adjacent_budget": {
+    "discretionary_seconds": 400,
+    "architecture_seconds": 320,
+    "protected_exploration_seconds": 80,
+    "exploration_fraction": 0.2,
+    "shared_work_separately_enumerated": true,
+    "transfer_from_main_campaign": 0,
+    "monetary_cost": null,
+    "energy_joules": null,
+    "summed_science_ceiling_seconds": 3040
+  },
+  "deployment": {
+    "automatic": false,
+    "reason": "Require complete-cost margin first"
+  },
+  "scientific_scope": "Smoke/development exploratory; full fresh comparisons require precision, reference, optimization and cost gates",
+  "units": {
+    "audit": {
+      "id": "audit",
+      "kind": "audit",
+      "path": "adjacent",
+      "dependencies": [],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "D01": {
+      "id": "D01",
+      "kind": "diagnostic",
+      "path": "adjacent",
+      "dependencies": [
+        "audit"
+      ],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "diagnostic": "D01"
+    },
+    "D05": {
+      "id": "D05",
+      "kind": "diagnostic",
+      "path": "adjacent",
+      "dependencies": [
+        "audit"
+      ],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "diagnostic": "D05"
+    },
+    "D02": {
+      "id": "D02",
+      "kind": "diagnostic",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "diagnostic": "D02"
+    },
+    "D04": {
+      "id": "D04",
+      "kind": "diagnostic",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "diagnostic": "D04"
+    },
+    "D03": {
+      "id": "D03",
+      "kind": "diagnostic",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "diagnostic": "D03"
+    },
+    "D06": {
+      "id": "D06",
+      "kind": "diagnostic",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "diagnostic": "D06"
+    },
+    "D07": {
+      "id": "D07",
+      "kind": "diagnostic",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "diagnostic": "D07"
+    },
+    "D08": {
+      "id": "D08",
+      "kind": "diagnostic",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "diagnostic": "D08"
+    },
+    "roughness": {
+      "id": "roughness",
+      "kind": "roughness",
+      "path": "adjacent",
+      "dependencies": [
+        "audit"
+      ],
+      "seconds": 180,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "explore-E01": {
+      "id": "explore-E01",
+      "kind": "explore",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "seconds": 40,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "prototype_ids": [
+        "E01"
+      ]
+    },
+    "explore-E02": {
+      "id": "explore-E02",
+      "kind": "explore",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05"
+      ],
+      "seconds": 40,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00",
+      "prototype_ids": [
+        "E02"
+      ]
+    },
+    "pilot": {
+      "id": "pilot",
+      "kind": "train",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05",
+        "D02",
+        "D04",
+        "roughness"
+      ],
+      "seconds": 320,
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:14:00",
+      "tracks": [
+        "discrete",
+        "continuum"
+      ]
+    },
+    "evaluate": {
+      "id": "evaluate",
+      "kind": "confirm",
+      "path": "adjacent",
+      "dependencies": [
+        "pilot"
+      ],
+      "seconds": 600,
+      "device": "cuda",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:18:00",
+      "pilot_unit": "pilot",
+      "tracks": [
+        "discrete",
+        "continuum"
+      ]
+    },
+    "report": {
+      "id": "report",
+      "kind": "report",
+      "path": "adjacent",
+      "dependencies": [
+        "audit",
+        "D01",
+        "D05",
+        "D02",
+        "D04",
+        "D03",
+        "D06",
+        "D07",
+        "D08",
+        "roughness",
+        "explore-E01",
+        "explore-E02",
+        "pilot",
+        "evaluate"
+      ],
+      "seconds": 240,
+      "device": "cpu",
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:09:00"
+    }
+  },
+  "stages": [
+    "audit",
+    "D01",
+    "D05",
+    "D02",
+    "D04",
+    "D03",
+    "D06",
+    "D07",
+    "D08",
+    "roughness",
+    "explore-E01",
+    "explore-E02",
+    "pilot",
+    "evaluate",
+    "report"
+  ],
+  "gpu_stages": [
+    "pilot",
+    "evaluate"
+  ],
+  "budgets": {
+    "audit": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "D01": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "D05": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "D02": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "D04": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "D03": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "D06": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "D07": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "D08": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "roughness": {
+      "seconds": 180,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "explore-E01": {
+      "seconds": 40,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "explore-E02": {
+      "seconds": 40,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:08:00"
+    },
+    "pilot": {
+      "seconds": 320,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:14:00"
+    },
+    "evaluate": {
+      "seconds": 600,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:18:00"
+    },
+    "report": {
+      "seconds": 240,
+      "cpus": 4,
+      "mem_gib": 32,
+      "walltime": "00:09:00"
+    }
+  },
+  "gpu_test_cases": [
+    "test_adjacent_cuda_limits[discrete-channel_fixed]",
+    "test_adjacent_cuda_limits[discrete-channel_global]",
+    "test_adjacent_cuda_limits[discrete-channel_affine]",
+    "test_adjacent_cuda_limits[discrete-channel_neural]",
+    "test_adjacent_cuda_limits[discrete-feature_capacity]",
+    "test_adjacent_cuda_limits[continuum-channel_fixed]",
+    "test_adjacent_cuda_limits[continuum-channel_global]",
+    "test_adjacent_cuda_limits[continuum-channel_affine]",
+    "test_adjacent_cuda_limits[continuum-channel_neural]",
+    "test_adjacent_cuda_limits[continuum-feature_capacity]",
+    "test_adjacent_cuda_gradients[discrete-channel_neural]",
+    "test_adjacent_cuda_gradients[discrete-feature_capacity]",
+    "test_adjacent_cuda_gradients[continuum-channel_neural]",
+    "test_adjacent_cuda_gradients[continuum-feature_capacity]",
+    "test_adjacent_cuda_polarization[discrete-2]",
+    "test_adjacent_cuda_polarization[discrete-4]",
+    "test_adjacent_cuda_polarization[continuum-2]",
+    "test_adjacent_cuda_polarization[continuum-4]",
+    "test_adjacent_cuda_fitted_control[channel_global]",
+    "test_adjacent_cuda_fitted_control[channel_affine]",
+    "test_adjacent_cuda_visible_allocation",
+    "test_portfolio_cuda_limits[discrete-historical_half]",
+    "test_portfolio_cuda_limits[discrete-quad2_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad2_amplitude]",
+    "test_portfolio_cuda_limits[discrete-quad2_nodes]",
+    "test_portfolio_cuda_limits[discrete-quad2_joint]",
+    "test_portfolio_cuda_limits[discrete-quad2_linear]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_limits[discrete-quad2_input]",
+    "test_portfolio_cuda_limits[discrete-quad2_full]",
+    "test_portfolio_cuda_limits[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_fixed]",
+    "test_portfolio_cuda_limits[discrete-quad4_full]",
+    "test_portfolio_cuda_limits[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_limits[discrete-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[discrete-df]",
+    "test_portfolio_cuda_limits[discrete-rf]",
+    "test_portfolio_cuda_limits[discrete-etdrk4]",
+    "test_portfolio_cuda_limits[discrete-fno_small]",
+    "test_portfolio_cuda_limits[discrete-fno_standard]",
+    "test_portfolio_cuda_limits[discrete-direct_fno]",
+    "test_portfolio_cuda_limits[discrete-residual_quad2]",
+    "test_portfolio_cuda_limits[discrete-conditioned_rich]",
+    "test_portfolio_cuda_limits[discrete-band_gain]",
+    "test_portfolio_cuda_limits[continuum-historical_half]",
+    "test_portfolio_cuda_limits[continuum-quad2_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad2_amplitude]",
+    "test_portfolio_cuda_limits[continuum-quad2_nodes]",
+    "test_portfolio_cuda_limits[continuum-quad2_joint]",
+    "test_portfolio_cuda_limits[continuum-quad2_linear]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_limits[continuum-quad2_input]",
+    "test_portfolio_cuda_limits[continuum-quad2_full]",
+    "test_portfolio_cuda_limits[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_fixed]",
+    "test_portfolio_cuda_limits[continuum-quad4_full]",
+    "test_portfolio_cuda_limits[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_limits[continuum-analytic_quad_cubic]",
+    "test_portfolio_cuda_limits[continuum-df]",
+    "test_portfolio_cuda_limits[continuum-rf]",
+    "test_portfolio_cuda_limits[continuum-etdrk4]",
+    "test_portfolio_cuda_limits[continuum-fno_small]",
+    "test_portfolio_cuda_limits[continuum-fno_standard]",
+    "test_portfolio_cuda_limits[continuum-direct_fno]",
+    "test_portfolio_cuda_limits[continuum-residual_quad2]",
+    "test_portfolio_cuda_limits[continuum-conditioned_rich]",
+    "test_portfolio_cuda_limits[continuum-band_gain]",
+    "test_portfolio_cuda_gradients[discrete-quad2_nodes]",
+    "test_portfolio_cuda_gradients[discrete-quad2_joint]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[discrete-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[discrete-fno_small]",
+    "test_portfolio_cuda_gradients[discrete-fno_standard]",
+    "test_portfolio_cuda_gradients[discrete-direct_fno]",
+    "test_portfolio_cuda_gradients[discrete-residual_quad2]",
+    "test_portfolio_cuda_gradients[discrete-conditioned_rich]",
+    "test_portfolio_cuda_gradients[discrete-band_gain]",
+    "test_portfolio_cuda_gradients[continuum-quad2_nodes]",
+    "test_portfolio_cuda_gradients[continuum-quad2_joint]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-quad2_conditioned_full]",
+    "test_portfolio_cuda_gradients[continuum-quad4_conditioned]",
+    "test_portfolio_cuda_gradients[continuum-fno_small]",
+    "test_portfolio_cuda_gradients[continuum-fno_standard]",
+    "test_portfolio_cuda_gradients[continuum-direct_fno]",
+    "test_portfolio_cuda_gradients[continuum-residual_quad2]",
+    "test_portfolio_cuda_gradients[continuum-conditioned_rich]",
+    "test_portfolio_cuda_gradients[continuum-band_gain]",
+    "test_portfolio_cuda_fitted_control[quad2_amplitude]",
+    "test_portfolio_cuda_fitted_control[quad2_linear]",
+    "test_portfolio_cuda_visible_allocation"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "stage": "D01",
+  "profile": "development",
+  "device": "cpu",
+  "execution_mode": "local-cpu",
+  "command": [
+    "/workspace/TDN-adjacent/.venv/bin/python",
+    "/workspace/TDN-adjacent/scripts/adjacent.py",
+    "--stage",
+    "D01",
+    "--profile",
+    "development",
+    "--run-dir",
+    "/workspace/TDN-adjacent/runs/adjacent-development-review-v2/D01",
+    "--device",
+    "cpu",
+    "--local-root",
+    "/workspace/TDN-adjacent",
+    "--prerequisite-dir",
+    "audit=/workspace/TDN-adjacent/runs/adjacent-development-review-v2/audit"
+  ],
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "git_available": true,
+    "tracked_or_untracked_changes": false,
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "protocol_sha256": "9c2004ffe18a74b9d2162a6f43631f1b674711fa9d2c0ea9aee4d7f296ebe97b",
+  "prerequisites": {
+    "audit": {
+      "run_dir": "/workspace/TDN-adjacent/runs/adjacent-development-review-v2/audit",
+      "workflow_seal_sha256": "60d565c7a982779311672606c730b21010cf29e408578d071ba6fc371ae120d6"
+    }
+  },
+  "slurm_job_id": null,
+  "slurm_step_id": null,
+  "status": "COMPLETED",
+  "actually_ran": true,
+  "benchmark_suite": "adjacent",
+  "elapsed_seconds": 3.9287923939991742
+}

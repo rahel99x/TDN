@@ -1,0 +1,39 @@
+{
+  "schema": "tdn.adjacent-science/v1",
+  "stage": "D05",
+  "kind": "diagnostic",
+  "device": "cpu",
+  "protocol_sha256": "9c2004ffe18a74b9d2162a6f43631f1b674711fa9d2c0ea9aee4d7f296ebe97b",
+  "unit_sha256": "b06f28f32671a783a22d4d67291e2f48fe960b5e588f9fbcc8b83cec6e7f7c1f",
+  "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+  "prerequisites": {
+    "audit": "bc4ba0fb06b3e2e4678f725640acd82e0a18a6a4dfa05521d63af798d794f258"
+  },
+  "lineage": {
+    "audit": "bc4ba0fb06b3e2e4678f725640acd82e0a18a6a4dfa05521d63af798d794f258"
+  },
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25"
+  },
+  "artifacts": {
+    "arrays.npz": "adeb61d432c1870ddd375f83293e99b7f2dc87428bc159f409d1ed3277f57659",
+    "diagnostic_rows.json": "e8796f37fa203925cdc84735f6f698fca1f2260bb74dd4d76e2c8680eedbed8d",
+    "diagnostic_summary.json": "ff8bfba57327c677f407583d8a94f30268957b442cc8882307a2af6bc69fe7a9",
+    "protocol.json": "43a4865bdd35124dca44a6f8fb06f28e938cc01d8fe8884b23b12bae404d52b3",
+    "reference_records.json": "8952751e2e6e79565bd2b085ef50bb61588034bf08bb3e225ca894beb0c9f345",
+    "review.csv": "96ab9b5b6119252ff9b97fccfcd71ef2bc90b40ec4f1552d36546a1b5f8229dd",
+    "review.md": "cf22a6ac1454ce94db72ede20c4491ddd38e1bd0f749a89968d8673e74348a96",
+    "rows.json": "e0c191dc40e0a084354babb6e61442203fcd13276fce929182e5ce3b2f8a98ab",
+    "rows.jsonl": "f0995b96163c19eb06929e8df688510c4f8de00644e8429a0a1a6595a55df320",
+    "summary.json": "0a6a595e5abf7dc4a6e57352d17702691ca0989ab84211680ebdd875acb6672f",
+    "summary.txt": "a1efa3ba38ae81f4c43795b3e77a0ca8144aa5f0c06bb323dc1a8cf4ed6ca626"
+  }
+}

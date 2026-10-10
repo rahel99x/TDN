@@ -1,0 +1,287 @@
+{
+  "records": [
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "audit",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "e7c8101cdaaeb8e9475574249c892365f899738091c93a435788b5441f72628d"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D01",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "37f883461a512d2faa61efd90549973cc6a1ec247dbe39d281564fdd7fc96afe"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D05",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "ae69a25b3d4b960f602ef854c012de93d4644a87e5f736bbc85e480dd7a0aca9"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D02",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "fe1ba7f29bb8e1761b08e06211f784842ffd553428c757d5a0eb31aad571b4f9"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D04",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "4f0765621feee9e1c3d64a935ea2fb7778420c2df31c466722d99dd41e1f1c33"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D03",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "8416548bc0ac54128a970e8e70a92ad45beb2cd655ac931b5fe551b73d563c9e"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D06",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "6c8429dc7f3a9a8a53065eb2512ce76f8a8312cde41df41f8662053bdd2fc386"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D07",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "2682fbba1650087a83261159e927f3967edf9ed5d259196f8c406afd3603b053"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "D08",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "66d4cf9f4085fc23cd0e640c72e608f3a1c29a8fe728acd8b6c9dd089d30d30e"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "roughness",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "3ae39a6feb794c73085754b6ec66ed1e15843d6eafe257d09fff3e34642aca28"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "explore-E01",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "44fce4086134a1deffdb56b2942edcece6545560033b3e496a276125f89b3f53"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "explore-E02",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "ce458487ea9d39027689beed8b4fb5d2ab03044872e2b4e19ba726cbb6d94b7e"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "pilot",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "db97f8ce1a8073b94d3644b24ac4c3700d92cb246595f816a058b70b73cd2114"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "evaluate",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "62da2419e2c04cbcb5abb731718ca6bbcf8da8134153ee2ff77f9c429f04fe45"
+    },
+    {
+      "run": "adjacent-local-review-v1",
+      "stage": "report",
+      "status": "VERIFIED",
+      "source_tree_sha256": "78f8239d16bc7994a28bf5b673cac8e257baa0b0cee14360c337493ba12f57dd",
+      "git_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+      "workflow_seal_sha256": "bcdfa10c73ba002ea85000e939e0f594649be3f2e25806c51a4a7456ad23d33e"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "audit",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "f303c30d7da366237f2348dcb87ebd8d80e44d8857db783dd7afc9cffcfa2c59"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D01",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "c85c0f55848028597c8afb61f5fe05ec65384220f6b57582aac873e7b1247ee9"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D05",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "395ec1492e8611642f380a85219e46c10bf61a6ece7aa57c871e7ecc1e163b5f"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D02",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "1c0652b084ab2345016e1629c68dbdbed2a00edb96a51c4508a898c4cd2b8a2f"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D04",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "15b00dabaf40b375b57eb0adf169057e7cb0698261ec6beab5e13e9a3ef552b8"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D03",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "fe0971d66855c526e8e49711862a36470e277e3220eb5389c502d196237f052f"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D06",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "447da135cacc36006181bd01652f769ec451043f1ee79d8236fc164a0643e031"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D07",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "96b7f9b4ce0cdf4fd0388ad6c8ba18c3986feb2716cc68a05c64b69aae80ec96"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "D08",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "cb55553ca7fed9af7832285711bfabb67b4b6572ca4873ff7b54846076e913ac"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "roughness",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "96a7b3fbd06014470f8d0daf59aeab264048433e64b3611fa227fa30bb657fcd"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "explore-E01",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "edebe5265e925dbda03210de7adf80f4c41c9f5e3bcc47710fd47a7f3b0ecd4b"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "explore-E02",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "206b4eef5b9bc902aae1facfd950b0e86067df46037f4d9b959298c266733097"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "pilot",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "ea51fd63fbf77030d74fbd4908e9c4ceb11ba2f9c6580a07e45cf3b7c288de98"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "evaluate",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "98ee9f9da46bb12bfa4146a92de7e172a19c685ee99c728ceec49a422e9cdbcd"
+    },
+    {
+      "run": "adjacent-local-review-v2",
+      "stage": "report",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "d4b430307ec98239d4a3f2ccb56422f2b538b56fc5dd5cad23d8b5d78e75b1aa"
+    },
+    {
+      "run": "adjacent-development-review-v2",
+      "stage": "audit",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "60d565c7a982779311672606c730b21010cf29e408578d071ba6fc371ae120d6"
+    },
+    {
+      "run": "adjacent-development-review-v2",
+      "stage": "D01",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "9be216df3a4d9328ea4ca817afda7d44f206b702f27600432e28313a7a7a8cc9"
+    },
+    {
+      "run": "adjacent-development-review-v2",
+      "stage": "D05",
+      "status": "VERIFIED",
+      "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+      "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+      "workflow_seal_sha256": "cfd61a7aced5bfc16a465171b7470fce10f5ddcf495d26f631b159b57d2e1dd1"
+    }
+  ],
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "git_available": true,
+    "tracked_or_untracked_changes": false,
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "cuda_cases": 92,
+  "cuda_execution": "NOT_RUN",
+  "scope": "Exact immutable science and execution seals; native GPU remains unverified"
+}

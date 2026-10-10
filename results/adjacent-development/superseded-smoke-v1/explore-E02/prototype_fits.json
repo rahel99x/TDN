@@ -1,0 +1,42 @@
+{
+  "discrete": {
+    "coefficient": 3.931405754660578,
+    "unconstrained_coefficient": 3.931405754660578,
+    "status": "FITTED",
+    "denominator": 4.904174695243621e-14,
+    "admissible_interval": [
+      -8.0,
+      8.0
+    ],
+    "training_pairs": 4,
+    "parent_ids": [
+      "adjacent-exploration-944001",
+      "adjacent-exploration-944002",
+      "adjacent-exploration-944003",
+      "adjacent-exploration-944004"
+    ],
+    "fit_seconds": 0.016947330004768446,
+    "objective": "Analytic cubic squared L2 on fit parents only",
+    "track": "discrete"
+  },
+  "continuum": {
+    "coefficient": 4.386752779387668,
+    "unconstrained_coefficient": 4.386752779387668,
+    "status": "FITTED",
+    "denominator": 2.805335670365848e-13,
+    "admissible_interval": [
+      -8.0,
+      8.0
+    ],
+    "training_pairs": 4,
+    "parent_ids": [
+      "adjacent-exploration-944001",
+      "adjacent-exploration-944002",
+      "adjacent-exploration-944003",
+      "adjacent-exploration-944004"
+    ],
+    "fit_seconds": 0.06557070999406278,
+    "objective": "Analytic cubic squared L2 on fit parents only",
+    "track": "continuum"
+  }
+}

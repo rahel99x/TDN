@@ -1,0 +1,20 @@
+{
+  "discrete": {
+    "coefficient": 0.0,
+    "status": "NOT_APPLICABLE",
+    "training_pairs": 0,
+    "parent_ids": [],
+    "fit_seconds": 1.0910152923315763e-06,
+    "objective": "Analytic cubic squared L2 on fit parents only",
+    "track": "discrete"
+  },
+  "continuum": {
+    "coefficient": 0.0,
+    "status": "NOT_APPLICABLE",
+    "training_pairs": 0,
+    "parent_ids": [],
+    "fit_seconds": 2.0030129235237837e-06,
+    "objective": "Analytic cubic squared L2 on fit parents only",
+    "track": "continuum"
+  }
+}

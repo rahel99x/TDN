@@ -1,0 +1,65 @@
+{
+  "schema": "tdn.adjacent/v1",
+  "stage": "D05",
+  "kind": "diagnostic",
+  "profile": "development",
+  "status": "COMPLETED",
+  "device": "cpu",
+  "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25",
+  "protocol_sha256": "9c2004ffe18a74b9d2162a6f43631f1b674711fa9d2c0ea9aee4d7f296ebe97b",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN-adjacent/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+    "source_tree_sha256": "579433e7d7e5c7a699825d5f5268265bbb75e063ef53229470ad5f994cd3af25"
+  },
+  "prerequisites": {
+    "audit": "bc4ba0fb06b3e2e4678f725640acd82e0a18a6a4dfa05521d63af798d794f258"
+  },
+  "elapsed_seconds": 4.875657342985505,
+  "experiment_count": 1,
+  "verdict_counts": {
+    "NA": 1
+  },
+  "correctness_failures": 0,
+  "memory": {
+    "enabled": false,
+    "observations": 0,
+    "scope": "CUDA allocator peaks and physical device use sampled at safe boundaries"
+  },
+  "scientific_outcome": "BOUNDED_MEASURED_EVIDENCE; SEE GOOD/BAD/NA CHECKS",
+  "details": {
+    "diagnostic": "D05",
+    "status": "COMPLETED",
+    "rows": 236,
+    "reference_cases": 36,
+    "unresolved_references": 0,
+    "elapsed_seconds": 4.831075797002995,
+    "device": "cpu",
+    "dtype": "float64",
+    "process_peak_rss_bytes": 390656000,
+    "memory_scope": "whole Python process high-water RSS, not per-method peak",
+    "evidence_category": "bounded development; no independent confirmation",
+    "energy_joules": null,
+    "monetary_cost": null,
+    "analytical_uncertainty_is_certificate": false,
+    "initialized_neural_comparisons_are_not_trained_baselines": true,
+    "rollout_denominators": {},
+    "configuration": {
+      "grid": 16,
+      "timing_repeats": 7,
+      "max_reference_substeps": 256,
+      "uncertainty_floor": 1e-12,
+      "tracks": [
+        "discrete",
+        "continuum"
+      ]
+    },
+    "error": null
+  }
+}

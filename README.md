@@ -235,3 +235,9 @@ checks. The [native full agenda review](docs/AGENDA_REVIEW.md) records all eight
 completed Fedora stages and their verified scientific artifacts. No trained
 complete joint solver gate passed; the roadmap above sets out the next research
 questions without changing the archived gates.
+
+The isolated adjacent study now includes [reviewed CPU evidence](docs/ADJACENT_INITIAL_REVIEW.md)
+and a [67-panel atlas](results/adjacent-development/atlas/index.html). Its
+[separate Fedora runbook](docs/ADJACENT_RUNBOOK.md) preserves the main portfolio.
+These development results favor testing higher-order response and output
+retention together; they do not establish a learned or GPU solver advantage.

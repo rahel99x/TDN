@@ -1,0 +1,3290 @@
+[
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/discrete/adjacent-exploration-954001/analytic_quad_cubic",
+    "method": "analytic_quad_cubic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 1.3194380142854065e-13,
+      "error_max": 4.543587728278453e-13,
+      "rms_ratio_to_analytic": null,
+      "speedup_over_analytic": 1.0,
+      "reference_accepted": true,
+      "errors_resolved": false,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.5248062789662077e-17,
+        "error_max": 5.2898809888484206e-17
+      },
+      "complete_seconds": 0.003931263490812853
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954001",
+      "amplitude": 0.02,
+      "phases": [
+        2.5167315547273645,
+        1.1062974589886325,
+        0.1193064950237206
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "analytic_quad_cubic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/discrete/adjacent-exploration-954001/quadratic",
+    "method": "quadratic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 2.8485365065983826e-11,
+      "error_max": 8.602435430660194e-11,
+      "rms_ratio_to_analytic": null,
+      "speedup_over_analytic": 3.6064387433360223,
+      "reference_accepted": true,
+      "errors_resolved": false,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.8515639265275467e-11,
+        "error_max": 8.620009368725413e-11
+      },
+      "complete_seconds": 0.0010900680063059554
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": null,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954001",
+      "amplitude": 0.02,
+      "phases": [
+        2.5167315547273645,
+        1.1062974589886325,
+        0.1193064950237206
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "quadratic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "E01",
+    "experiment_id": "E01/discrete/adjacent-exploration-954001/selective_cubic",
+    "method": "selective_cubic",
+    "role": "Ours numerical prototype",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 2.8485365065983826e-11,
+      "error_max": 8.602435430660194e-11,
+      "rms_ratio_to_analytic": null,
+      "speedup_over_analytic": 3.789257276630859,
+      "reference_accepted": true,
+      "errors_resolved": false,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.8515639265275467e-11,
+        "error_max": 8.620009368725413e-11
+      },
+      "complete_seconds": 0.0010374760022386909
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": null,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": null,
+        "target": 1.05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": 3.789257276630859,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954001",
+      "amplitude": 0.02,
+      "phases": [
+        2.5167315547273645,
+        1.1062974589886325,
+        0.1193064950237206
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "selective_cubic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Ours numerical prototype"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/discrete/adjacent-exploration-954002/analytic_quad_cubic",
+    "method": "analytic_quad_cubic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 1.9632851334074302e-11,
+      "error_max": 5.967049077071351e-11,
+      "rms_ratio_to_analytic": 1.0,
+      "speedup_over_analytic": 1.0,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.931782134920699e-17,
+        "error_max": 8.005264171696652e-17
+      },
+      "complete_seconds": 0.003807309505646117
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.0,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954002",
+      "amplitude": 0.07,
+      "phases": [
+        2.0074217152370224,
+        -0.6922356190675134,
+        -1.4589103224673352
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "analytic_quad_cubic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/discrete/adjacent-exploration-954002/quadratic",
+    "method": "quadratic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 1.2875385994988862e-09,
+      "error_max": 3.1800631572487248e-09,
+      "rms_ratio_to_analytic": 65.5808256065315,
+      "speedup_over_analytic": 3.0832086944032397,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 1.285950287539423e-09,
+        "error_max": 3.192969024736115e-09
+      },
+      "complete_seconds": 0.0012348529999144375
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 65.5808256065315,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954002",
+      "amplitude": 0.07,
+      "phases": [
+        2.0074217152370224,
+        -0.6922356190675134,
+        -1.4589103224673352
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "quadratic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "E01",
+    "experiment_id": "E01/discrete/adjacent-exploration-954002/selective_cubic",
+    "method": "selective_cubic",
+    "role": "Ours numerical prototype",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 1.2875385994988862e-09,
+      "error_max": 3.1800631572487248e-09,
+      "rms_ratio_to_analytic": 65.5808256065315,
+      "speedup_over_analytic": 3.0468481743755182,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 1.285950287539423e-09,
+        "error_max": 3.192969024736115e-09
+      },
+      "complete_seconds": 0.0012495895061874762
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 65.5808256065315,
+        "target": 1.05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": 3.0468481743755182,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954002",
+      "amplitude": 0.07,
+      "phases": [
+        2.0074217152370224,
+        -0.6922356190675134,
+        -1.4589103224673352
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "selective_cubic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Ours numerical prototype"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/discrete/adjacent-exploration-954003/analytic_quad_cubic",
+    "method": "analytic_quad_cubic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 5.5040039187114024e-09,
+      "error_max": 1.5350030024841033e-08,
+      "rms_ratio_to_analytic": 1.0,
+      "speedup_over_analytic": 1.0,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 3.784241712404157e-17,
+        "error_max": 9.836607182226236e-17
+      },
+      "complete_seconds": 0.00384057400515303
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.0,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954003",
+      "amplitude": 0.14,
+      "phases": [
+        0.31869765078681755,
+        1.821916487791298,
+        0.9041369226107854
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "analytic_quad_cubic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/discrete/adjacent-exploration-954003/quadratic",
+    "method": "quadratic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 8.775914075276616e-08,
+      "error_max": 2.3378595437328897e-07,
+      "rms_ratio_to_analytic": 15.944599976468101,
+      "speedup_over_analytic": 3.699595346870291,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 8.715003925733498e-08,
+        "error_max": 2.3103908451713823e-07
+      },
+      "complete_seconds": 0.0010381065076217055
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 15.944599976468101,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954003",
+      "amplitude": 0.14,
+      "phases": [
+        0.31869765078681755,
+        1.821916487791298,
+        0.9041369226107854
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "quadratic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "E01",
+    "experiment_id": "E01/discrete/adjacent-exploration-954003/selective_cubic",
+    "method": "selective_cubic",
+    "role": "Ours numerical prototype",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 5.504003921316904e-09,
+      "error_max": 1.5350030024841033e-08,
+      "rms_ratio_to_analytic": 1.0000000004733829,
+      "speedup_over_analytic": 0.9152405418995128,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.3499918651647937e-17,
+        "error_max": 5.037580223029182e-17
+      },
+      "complete_seconds": 0.004196245499770157
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.0000000004733829,
+        "target": 1.05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": 0.9152405418995128,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954003",
+      "amplitude": 0.14,
+      "phases": [
+        0.31869765078681755,
+        1.821916487791298,
+        0.9041369226107854
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "selective_cubic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Ours numerical prototype"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/discrete/adjacent-exploration-954004/analytic_quad_cubic",
+    "method": "analytic_quad_cubic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 5.141320433824988e-08,
+      "error_max": 2.0499078517977054e-07,
+      "rms_ratio_to_analytic": 1.0,
+      "speedup_over_analytic": 1.0,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 4.011958139627267e-17,
+        "error_max": 1.0413179531572033e-16
+      },
+      "complete_seconds": 0.004128214000957087
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.0,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954004",
+      "amplitude": 0.22,
+      "phases": [
+        0.1948847411281056,
+        2.7684524928467384,
+        -1.3357994260858528
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "analytic_quad_cubic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/discrete/adjacent-exploration-954004/quadratic",
+    "method": "quadratic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 3.8399686799858944e-07,
+      "error_max": 1.0164541542900807e-06,
+      "rms_ratio_to_analytic": 7.46883748914493,
+      "speedup_over_analytic": 3.868358883563271,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 3.8674563633809907e-07,
+        "error_max": 1.1088757140679611e-06
+      },
+      "complete_seconds": 0.001067174511263147
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 7.46883748914493,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954004",
+      "amplitude": 0.22,
+      "phases": [
+        0.1948847411281056,
+        2.7684524928467384,
+        -1.3357994260858528
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "quadratic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "E01",
+    "experiment_id": "E01/discrete/adjacent-exploration-954004/selective_cubic",
+    "method": "selective_cubic",
+    "role": "Ours numerical prototype",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 5.1413204337168814e-08,
+      "error_max": 2.0499078517977054e-07,
+      "rms_ratio_to_analytic": 0.999999999978973,
+      "speedup_over_analytic": 0.9328286366183158,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.611363412472337e-17,
+        "error_max": 5.421900247022139e-17
+      },
+      "complete_seconds": 0.0044254794920561835
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 0.999999999978973,
+        "target": 1.05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": 0.9328286366183158,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954004",
+      "amplitude": 0.22,
+      "phases": [
+        0.1948847411281056,
+        2.7684524928467384,
+        -1.3357994260858528
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "selective_cubic",
+      "track": "discrete",
+      "split": "heldout_development",
+      "role": "Ours numerical prototype"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/continuum/adjacent-exploration-954001/analytic_quad_cubic",
+    "method": "analytic_quad_cubic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 1.4376817119000708e-11,
+      "error_max": 1.531402782362079e-11,
+      "rms_ratio_to_analytic": 1.0,
+      "speedup_over_analytic": 1.0,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.22402441747647e-17,
+        "error_max": 4.8223423359390984e-17
+      },
+      "complete_seconds": 0.020352720486698672
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.0,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954001",
+      "amplitude": 0.02,
+      "phases": [
+        2.5167315547273645,
+        1.1062974589886325,
+        0.1193064950237206
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "analytic_quad_cubic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/continuum/adjacent-exploration-954001/quadratic",
+    "method": "quadratic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 4.706295824090272e-11,
+      "error_max": 1.2890444267554813e-10,
+      "rms_ratio_to_analytic": 3.273531119673444,
+      "speedup_over_analytic": 3.068125054948622,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 4.457408636847217e-11,
+        "error_max": 1.4359074726275903e-10
+      },
+      "complete_seconds": 0.006633601995417848
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 3.273531119673444,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954001",
+      "amplitude": 0.02,
+      "phases": [
+        2.5167315547273645,
+        1.1062974589886325,
+        0.1193064950237206
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "quadratic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "E01",
+    "experiment_id": "E01/continuum/adjacent-exploration-954001/selective_cubic",
+    "method": "selective_cubic",
+    "role": "Ours numerical prototype",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 4.706295824090272e-11,
+      "error_max": 1.2890444267554813e-10,
+      "rms_ratio_to_analytic": 3.273531119673444,
+      "speedup_over_analytic": 3.0139546703796216,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 4.457408636847217e-11,
+        "error_max": 1.4359074726275903e-10
+      },
+      "complete_seconds": 0.006752828994649462
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 3.273531119673444,
+        "target": 1.05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": 3.0139546703796216,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954001",
+      "amplitude": 0.02,
+      "phases": [
+        2.5167315547273645,
+        1.1062974589886325,
+        0.1193064950237206
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "selective_cubic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Ours numerical prototype"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/continuum/adjacent-exploration-954002/analytic_quad_cubic",
+    "method": "analytic_quad_cubic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 4.2886287974534285e-11,
+      "error_max": 1.236271085502949e-10,
+      "rms_ratio_to_analytic": 1.0,
+      "speedup_over_analytic": 1.0,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.3265196709587488e-17,
+        "error_max": 4.846419171209089e-17
+      },
+      "complete_seconds": 0.021283552996465005
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.0,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954002",
+      "amplitude": 0.07,
+      "phases": [
+        2.0074217152370224,
+        -0.6922356190675134,
+        -1.4589103224673352
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "analytic_quad_cubic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/continuum/adjacent-exploration-954002/quadratic",
+    "method": "quadratic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 1.9782162209813455e-09,
+      "error_max": 5.365346389396564e-09,
+      "rms_ratio_to_analytic": 46.12700969027683,
+      "speedup_over_analytic": 3.229739385704933,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 1.973519648511012e-09,
+        "error_max": 5.254857258335077e-09
+      },
+      "complete_seconds": 0.006589867000002414
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 46.12700969027683,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954002",
+      "amplitude": 0.07,
+      "phases": [
+        2.0074217152370224,
+        -0.6922356190675134,
+        -1.4589103224673352
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "quadratic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "E01",
+    "experiment_id": "E01/continuum/adjacent-exploration-954002/selective_cubic",
+    "method": "selective_cubic",
+    "role": "Ours numerical prototype",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 1.9782162209813455e-09,
+      "error_max": 5.365346389396564e-09,
+      "rms_ratio_to_analytic": 46.12700969027683,
+      "speedup_over_analytic": 3.402250652207636,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 1.973519648511012e-09,
+        "error_max": 5.254857258335077e-09
+      },
+      "complete_seconds": 0.006255727508687414
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 46.12700969027683,
+        "target": 1.05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": 3.402250652207636,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954002",
+      "amplitude": 0.07,
+      "phases": [
+        2.0074217152370224,
+        -0.6922356190675134,
+        -1.4589103224673352
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.04,
+      "method": "selective_cubic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Ours numerical prototype"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/continuum/adjacent-exploration-954003/analytic_quad_cubic",
+    "method": "analytic_quad_cubic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 9.359635115680805e-09,
+      "error_max": 2.712776403512862e-08,
+      "rms_ratio_to_analytic": 1.0,
+      "speedup_over_analytic": 1.0,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 3.4107879364534997e-17,
+        "error_max": 1.0632278830885893e-16
+      },
+      "complete_seconds": 0.019474165004794486
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.0,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954003",
+      "amplitude": 0.14,
+      "phases": [
+        0.31869765078681755,
+        1.821916487791298,
+        0.9041369226107854
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "analytic_quad_cubic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/continuum/adjacent-exploration-954003/quadratic",
+    "method": "quadratic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 1.335430357486639e-07,
+      "error_max": 4.1172413361989513e-07,
+      "rms_ratio_to_analytic": 14.267974562911172,
+      "speedup_over_analytic": 2.9708660380498473,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 1.322397738636886e-07,
+        "error_max": 3.8598621283837077e-07
+      },
+      "complete_seconds": 0.006555046493303962
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 14.267974562911172,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954003",
+      "amplitude": 0.14,
+      "phases": [
+        0.31869765078681755,
+        1.821916487791298,
+        0.9041369226107854
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "quadratic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "E01",
+    "experiment_id": "E01/continuum/adjacent-exploration-954003/selective_cubic",
+    "method": "selective_cubic",
+    "role": "Ours numerical prototype",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 9.359635121289164e-09,
+      "error_max": 2.712776403512862e-08,
+      "rms_ratio_to_analytic": 1.000000000599207,
+      "speedup_over_analytic": 1.010074596734005,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.505618174654633e-17,
+        "error_max": 5.3493386402000075e-17
+      },
+      "complete_seconds": 0.019279927510069683
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.000000000599207,
+        "target": 1.05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": 1.010074596734005,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954003",
+      "amplitude": 0.14,
+      "phases": [
+        0.31869765078681755,
+        1.821916487791298,
+        0.9041369226107854
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "selective_cubic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Ours numerical prototype"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/continuum/adjacent-exploration-954004/analytic_quad_cubic",
+    "method": "analytic_quad_cubic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 7.119002025195667e-08,
+      "error_max": 2.487944527063135e-07,
+      "rms_ratio_to_analytic": 1.0,
+      "speedup_over_analytic": 1.0,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 3.335047722556921e-17,
+        "error_max": 1.0372003142423633e-16
+      },
+      "complete_seconds": 0.020176585006993264
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.0,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954004",
+      "amplitude": 0.22,
+      "phases": [
+        0.1948847411281056,
+        2.7684524928467384,
+        -1.3357994260858528
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "analytic_quad_cubic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "CONTROL",
+    "experiment_id": "CONTROL/continuum/adjacent-exploration-954004/quadratic",
+    "method": "quadratic",
+    "role": "Analytic control",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 6.205961964572358e-07,
+      "error_max": 1.3240552592108656e-06,
+      "rms_ratio_to_analytic": 8.717460597156926,
+      "speedup_over_analytic": 3.1006220702403677,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 6.254922523462242e-07,
+        "error_max": 1.2964561931148767e-06
+      },
+      "complete_seconds": 0.006507270009024069
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 8.717460597156926,
+        "target": null,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "No applicable measured evidence or valid target",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": null,
+        "target": null,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "NA",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "Analytic rows provide the comparison; they do not claim prototype savings",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954004",
+      "amplitude": 0.22,
+      "phases": [
+        0.1948847411281056,
+        2.7684524928467384,
+        -1.3357994260858528
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "quadratic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Analytic control"
+    }
+  },
+  {
+    "schema": "tdn.adjacent-prototype/v1",
+    "prototype_id": "E01",
+    "experiment_id": "E01/continuum/adjacent-exploration-954004/selective_cubic",
+    "method": "selective_cubic",
+    "role": "Ours numerical prototype",
+    "status": "COMPLETED",
+    "metrics": {
+      "error_rms": 7.119002025284939e-08,
+      "error_max": 2.487944527063135e-07,
+      "rms_ratio_to_analytic": 1.00000000001254,
+      "speedup_over_analytic": 0.9740267390432693,
+      "reference_accepted": true,
+      "errors_resolved": true,
+      "finite_prediction": true,
+      "cubic_direction_error": {
+        "error_rms": 2.380311903908944e-17,
+        "error_max": 5.194355433654112e-17
+      },
+      "complete_seconds": 0.020714611004223116
+    },
+    "checks": [
+      {
+        "check_id": "reference-refinement",
+        "category": "math",
+        "measured": 1e-12,
+        "target": 2e-08,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "finite-prediction",
+        "category": "correctness",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 2,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "resolved-accuracy",
+        "category": "gap",
+        "measured": true,
+        "target": true,
+        "relation": "eq",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "Both control and measured errors must exceed five times accepted reference uncertainty",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "rms-regression",
+        "category": "gap",
+        "measured": 1.00000000001254,
+        "target": 1.05,
+        "relation": "le",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "GOOD",
+        "score_1_100": 100,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      },
+      {
+        "check_id": "complete-speedup",
+        "category": "utility",
+        "measured": 0.9740267390432693,
+        "target": 1.1,
+        "relation": "ge",
+        "units": "",
+        "required": true,
+        "applicable": true,
+        "verdict": "BAD",
+        "score_1_100": 1,
+        "weight": 3,
+        "reason": "",
+        "evidence_kind": "numerical_test",
+        "nonfinite": false,
+        "proof_status": "NOT_A_PROOF"
+      }
+    ],
+    "config": {
+      "parent_id": "adjacent-exploration-954004",
+      "amplitude": 0.22,
+      "phases": [
+        0.1948847411281056,
+        2.7684524928467384,
+        -1.3357994260858528
+      ],
+      "mode_vectors": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          -1
+        ]
+      ],
+      "h": 0.08,
+      "method": "selective_cubic",
+      "track": "continuum",
+      "split": "heldout_development",
+      "role": "Ours numerical prototype"
+    }
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "cpu_full_suite": "213 passed, 21 GPU cases deselected before the final two reporting regressions",
+  "final_reporting_suite": "16 passed after all report fixes, including rendering and the two additional regressions",
+  "earlier_infrastructure_suite": "69 passed",
+  "stage_seals_verified": 33,
+  "native_cuda_cases_collected": 92,
+  "native_cuda_cases_executed": 0,
+  "primary_source_commit": "2d04dbf804ca9298078a7f7a4db8ff4953bc6c94",
+  "predecessor_commit": "fd02415ef4b9773d4725de4019adfddac2dee68b",
+  "interpretation": "CPU-only bounded development; successful tests and execution are not scientific superiority"
+}
