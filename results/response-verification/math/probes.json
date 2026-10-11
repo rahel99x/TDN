@@ -1,0 +1,5187 @@
+{
+  "schema": "tdn.response-math-probes/v1",
+  "rows": [
+    {
+      "probe": "A1/fd_same_grid/15",
+      "metrics": {
+        "rhs_max_discrepancy": 7.216449660063518e-16,
+        "mean_discrepancy": 0.0,
+        "nodal_vs_physical_variance": 0.0
+      },
+      "config": {
+        "seed": 83041,
+        "h": 0.12,
+        "kappa": 0.006,
+        "reaction_rate": 3,
+        "input_key": "A1_15",
+        "sha256": "a9ea3b92ef70de94452a81478a52492c01d9b76ca1e3adce09be981c6ffb3e63",
+        "shape": [
+          1,
+          1,
+          15,
+          15
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "transformed_rhs_identity",
+          "category": "correctness",
+          "measured": 7.216449660063518e-16,
+          "target": 2e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "mean_identity",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 2e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A1/galerkin_same_grid/15",
+      "metrics": {
+        "rhs_max_discrepancy": 1.887379141862766e-15,
+        "mean_discrepancy": 2.220446049250313e-16,
+        "nodal_vs_physical_variance": 1.0842021724855044e-19
+      },
+      "config": {
+        "seed": 83041,
+        "h": 0.12,
+        "kappa": 0.006,
+        "reaction_rate": 3,
+        "input_key": "A1_15",
+        "sha256": "a9ea3b92ef70de94452a81478a52492c01d9b76ca1e3adce09be981c6ffb3e63",
+        "shape": [
+          1,
+          1,
+          15,
+          15
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "transformed_rhs_identity",
+          "category": "correctness",
+          "measured": 1.887379141862766e-15,
+          "target": 2e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "mean_identity",
+          "category": "correctness",
+          "measured": 2.220446049250313e-16,
+          "target": 2e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A1/fd_same_grid/16",
+      "metrics": {
+        "rhs_max_discrepancy": 7.771561172376096e-16,
+        "mean_discrepancy": 1.1102230246251565e-16,
+        "nodal_vs_physical_variance": 0.0
+      },
+      "config": {
+        "seed": 83041,
+        "h": 0.12,
+        "kappa": 0.006,
+        "reaction_rate": 3,
+        "input_key": "A1_16",
+        "sha256": "ec9d32692043db0f716b2f050f8acfa5272fd0aecd61cf0ce4cdf35f7b66a4a9",
+        "shape": [
+          1,
+          1,
+          16,
+          16
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "transformed_rhs_identity",
+          "category": "correctness",
+          "measured": 7.771561172376096e-16,
+          "target": 2e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "mean_identity",
+          "category": "correctness",
+          "measured": 1.1102230246251565e-16,
+          "target": 2e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A1/galerkin_same_grid/16",
+      "metrics": {
+        "rhs_max_discrepancy": 1.887379141862766e-15,
+        "mean_discrepancy": 0.0,
+        "nodal_vs_physical_variance": 4.6889846714721494e-05
+      },
+      "config": {
+        "seed": 83041,
+        "h": 0.12,
+        "kappa": 0.006,
+        "reaction_rate": 3,
+        "input_key": "A1_16",
+        "sha256": "ec9d32692043db0f716b2f050f8acfa5272fd0aecd61cf0ce4cdf35f7b66a4a9",
+        "shape": [
+          1,
+          1,
+          16,
+          16
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "transformed_rhs_identity",
+          "category": "correctness",
+          "measured": 1.887379141862766e-15,
+          "target": 2e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "mean_identity",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 2e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "wrong_nodal_mass_detected",
+          "category": "correctness",
+          "measured": 4.6889846714721494e-05,
+          "target": 1e-07,
+          "relation": "gt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A2/fd_same_grid/15",
+      "metrics": {
+        "mean_reduction_discrepancy": 3.049318610115481e-20,
+        "GL64_GL96_mean_disagreement": 7.115076756936123e-20,
+        "scope": "Algebraic reduction and mean-only quadrature refinement; not full PDE accuracy"
+      },
+      "config": {
+        "seed": 80231,
+        "input_key": "A2_15",
+        "sha256": "01aca2ef1439bd4e3333c0c2651eae4f24d808704bc1cde2f7faff166a29c705",
+        "shape": [
+          1,
+          1,
+          15,
+          15
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "mean_reduction_parity",
+          "category": "correctness",
+          "measured": 3.049318610115481e-20,
+          "target": 1e-14,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "mean_quadrature_refinement",
+          "category": "correctness",
+          "measured": 7.115076756936123e-20,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A2/galerkin_same_grid/15",
+      "metrics": {
+        "mean_reduction_discrepancy": 6.776263578034403e-21,
+        "GL64_GL96_mean_disagreement": 1.2197274440461925e-19,
+        "scope": "Algebraic reduction and mean-only quadrature refinement; not full PDE accuracy"
+      },
+      "config": {
+        "seed": 80231,
+        "input_key": "A2_15",
+        "sha256": "01aca2ef1439bd4e3333c0c2651eae4f24d808704bc1cde2f7faff166a29c705",
+        "shape": [
+          1,
+          1,
+          15,
+          15
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "mean_reduction_parity",
+          "category": "correctness",
+          "measured": 6.776263578034403e-21,
+          "target": 1e-14,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "mean_quadrature_refinement",
+          "category": "correctness",
+          "measured": 1.2197274440461925e-19,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A2/fd_same_grid/16",
+      "metrics": {
+        "mean_reduction_discrepancy": 1.0164395367051604e-20,
+        "GL64_GL96_mean_disagreement": 1.1519648082658485e-19,
+        "scope": "Algebraic reduction and mean-only quadrature refinement; not full PDE accuracy"
+      },
+      "config": {
+        "seed": 80231,
+        "input_key": "A2_16",
+        "sha256": "dc1d96e8d30f3a98174c7da092222b7d9c9c1ba2619a5068992f7e298a8577da",
+        "shape": [
+          1,
+          1,
+          16,
+          16
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "mean_reduction_parity",
+          "category": "correctness",
+          "measured": 1.0164395367051604e-20,
+          "target": 1e-14,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "mean_quadrature_refinement",
+          "category": "correctness",
+          "measured": 1.1519648082658485e-19,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A2/galerkin_same_grid/16",
+      "metrics": {
+        "mean_reduction_discrepancy": 6.776263578034403e-21,
+        "GL64_GL96_mean_disagreement": 1.3552527156068805e-19,
+        "scope": "Algebraic reduction and mean-only quadrature refinement; not full PDE accuracy"
+      },
+      "config": {
+        "seed": 80231,
+        "input_key": "A2_16",
+        "sha256": "dc1d96e8d30f3a98174c7da092222b7d9c9c1ba2619a5068992f7e298a8577da",
+        "shape": [
+          1,
+          1,
+          16,
+          16
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "mean_reduction_parity",
+          "category": "correctness",
+          "measured": 6.776263578034403e-21,
+          "target": 1e-14,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "mean_quadrature_refinement",
+          "category": "correctness",
+          "measured": 1.3552527156068805e-19,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A3/fd_same_grid",
+      "metrics": {
+        "remainders": [
+          5.815942431073984e-12,
+          3.665349250497685e-13,
+          2.300421374393887e-14,
+          1.4407695380905155e-15
+        ],
+        "remainder_orders": [
+          3.9879904125452126,
+          3.9939806183644233,
+          3.996986658549196
+        ],
+        "nested_GL8_GL12_disagreement": [
+          5.44547769547465e-24,
+          1.467530545833457e-24,
+          4.204079475160092e-25,
+          8.907623657945012e-26
+        ],
+        "interpretation": "Small-h coefficient check at fixed grid; no stiff order or finite-amplitude claim"
+      },
+      "config": {
+        "h": [
+          0.002,
+          0.001,
+          0.0005,
+          0.00025
+        ],
+        "input_key": "A3",
+        "sha256": "76c4debf5cdb7e8481f0d3e01cad8fa38020b9df42bec5560ecd54359efd842d",
+        "shape": [
+          1,
+          1,
+          10,
+          10
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "leading_coefficient_remainder_order",
+          "category": "math",
+          "measured": 3.9879904125452126,
+          "target": 3.7,
+          "relation": "gt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "nested_quadrature_refinement",
+          "category": "correctness",
+          "measured": 5.44547769547465e-24,
+          "target": 1e-16,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A3/galerkin_same_grid",
+      "metrics": {
+        "remainders": [
+          1.084104220264354e-11,
+          6.877189929465784e-13,
+          4.330493570251119e-14,
+          2.716718889895749e-15
+        ],
+        "remainder_orders": [
+          3.9785404569999723,
+          3.9892158181434767,
+          3.994594269447563
+        ],
+        "nested_GL8_GL12_disagreement": [
+          4.025693310893921e-24,
+          9.942785308055756e-25,
+          3.142866610608793e-25,
+          6.622746073883246e-26
+        ],
+        "interpretation": "Small-h coefficient check at fixed grid; no stiff order or finite-amplitude claim"
+      },
+      "config": {
+        "h": [
+          0.002,
+          0.001,
+          0.0005,
+          0.00025
+        ],
+        "input_key": "A3",
+        "sha256": "76c4debf5cdb7e8481f0d3e01cad8fa38020b9df42bec5560ecd54359efd842d",
+        "shape": [
+          1,
+          1,
+          10,
+          10
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "leading_coefficient_remainder_order",
+          "category": "math",
+          "measured": 3.9785404569999723,
+          "target": 3.7,
+          "relation": "gt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "nested_quadrature_refinement",
+          "category": "correctness",
+          "measured": 4.025693310893921e-24,
+          "target": 1e-16,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A4/resolved_reaction_only_closure",
+      "metrics": {
+        "closure_rms": [
+          3.366010496569384e-08,
+          1.350367959231244e-07,
+          5.432664677318132e-07,
+          2.197169433930138e-06,
+          8.967181069696166e-06
+        ],
+        "doubling_orders": [
+          2.0042409974215087,
+          2.008307423564993,
+          2.0159142201720432,
+          2.0290084026737145
+        ],
+        "coefficient_relative_errors": [
+          0.0030889996177612734,
+          0.006148397782859409,
+          0.012176960689146091,
+          0.023863302511796736,
+          0.04567773619648103
+        ],
+        "reference_refinement": [
+          0.0,
+          0.0,
+          0.0,
+          4.663869570635836e-17,
+          7.850462293418876e-17
+        ],
+        "spatial_refinement": [
+          1.3926682103051952e-16,
+          1.3926682103051952e-16,
+          9.984748225229399e-17,
+          1.4056235423995454e-16,
+          1.5815951213154502e-16
+        ],
+        "coefficient_rms": 0.005369592119635333
+      },
+      "config": {
+        "h": [
+          0.0025,
+          0.005,
+          0.01,
+          0.02,
+          0.04
+        ],
+        "coarse_grid": 17,
+        "fine_grid": 257,
+        "input_key": "A4_resolved_fine",
+        "sha256": "c90926ecb8e9a8c135bf99432052cb0fa209d512d996f5c806d834545c66b3fd",
+        "shape": [
+          257
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "closure_nonzero",
+          "category": "math",
+          "measured": 1.350367959231244e-07,
+          "target": 1e-08,
+          "relation": "gt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "quadratic_closure_order",
+          "category": "math",
+          "measured": 2.0042409974215087,
+          "target": 1.9,
+          "relation": "gt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "derived_coefficient_small_h",
+          "category": "correctness",
+          "measured": 0.0030889996177612734,
+          "target": 0.01,
+          "relation": "lt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.5815951213154502e-16,
+          "target": 1e-11,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A4/hidden_initial_mode",
+      "metrics": {
+        "relative_first_order_forcing_error": [
+          0.0011017660142387262,
+          0.0005511723197041874
+        ],
+        "forcing_rms": 0.035178118198675744
+      },
+      "config": {
+        "coarse_observation": "Fourier projection, never nodal sampling",
+        "input_key": "A4_hidden_fine",
+        "sha256": "5a2e6d22baedfbfa6c7e33ad2daeedbdc19f7d0cd114e1b2207968530d06e6da",
+        "shape": [
+          257
+        ],
+        "dtype": "float64"
+      },
+      "checks": [
+        {
+          "check_id": "hidden_mode_first_order_coefficient",
+          "category": "correctness",
+          "measured": 0.0005511723197041874,
+          "target": 0.02,
+          "relation": "lt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A5/phase_twins",
+      "metrics": {
+        "fields": [
+          {
+            "sign": 1,
+            "target_mean": 0.8135545763083237,
+            "df_mean": 0.8177010907193166,
+            "quadratic_mean": -0.004270199731652709,
+            "remaining_mean_defect": 0.00012368532065981219,
+            "teacher_refinement": 7.314112558881938e-16,
+            "anchor_refinement": 3.616898447411643e-16,
+            "quadrature_error_estimate": 1.2060660801163509e-17,
+            "input_key": "A5_1",
+            "sha256": "cfd099eb17244f169e3588ff91de2ee0605772492f0bd61f3959c0d55684a2e0",
+            "shape": [
+              31
+            ],
+            "dtype": "float64"
+          },
+          {
+            "sign": -1,
+            "target_mean": 0.813050610922124,
+            "df_mean": 0.8176913803103152,
+            "quadratic_mean": -0.004270199731652711,
+            "remaining_mean_defect": -0.00037056965653842373,
+            "teacher_refinement": 1.1693327106295295e-14,
+            "anchor_refinement": 6.661338147750939e-16,
+            "quadrature_error_estimate": 1.2060660801163509e-17,
+            "input_key": "A5_-1",
+            "sha256": "3c9e6b4e7b8ca5cf249601845efc21f2ceda83746f19f2bb32bd5f0994cba11a",
+            "shape": [
+              31
+            ],
+            "dtype": "float64"
+          }
+        ],
+        "power_discrepancy": 8.326672684688674e-17,
+        "interpretation": "Opposite remaining mean corrections after the same converged analytic quadratic control"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "identical_power",
+          "category": "correctness",
+          "measured": 8.326672684688674e-17,
+          "target": 1e-14,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "opposite_residual_mean_signs",
+          "category": "math",
+          "measured": -4.583402679575141e-08,
+          "target": 0,
+          "relation": "lt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "independent_teacher_refinement",
+          "category": "correctness",
+          "measured": 1.1693327106295295e-14,
+          "target": 1e-11,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A6/scalar_amplitude_radius",
+      "metrics": {
+        "chi": 2.6247460342356246,
+        "exact": 0.9525741268224334,
+        "truncations": [
+          1.640274042638496,
+          -0.8524634999599515,
+          5.690339479365582,
+          -11.482856693404134
+        ],
+        "rational": 0.9525741268224331
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "rational_identity",
+          "category": "correctness",
+          "measured": 2.220446049250313e-16,
+          "target": 1e-13,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "valid_input_outside_series_radius",
+          "category": "math",
+          "measured": 2.6247460342356246,
+          "target": 1,
+          "relation": "gt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A6/fd_amplitude_0.05",
+      "metrics": {
+        "amplitude": 0.05,
+        "chi": 0.20169875188673894,
+        "min_initial": 0.1408252293660217,
+        "max_initial": 0.19082295936953358,
+        "df_rms": 1.8505125118920435e-06,
+        "quadratic_rms": 3.1812271668812923e-06,
+        "quadratic_cubic_rms": 1.2989765837200414e-06,
+        "residual_response_rms": 3.169219940853243e-07,
+        "teacher_disagreement": 1.0960219596671133e-14,
+        "quadratic_GL32_GL64": 9.327725261316209e-20,
+        "cubic_GL12_GL20": 6.76792864178948e-19,
+        "response_GL16_GL32": 3.3841252205324406e-17,
+        "teacher_wall_seconds": 0.008291096950415522,
+        "torch_df_single_wall_seconds": 0.0009390910272486508,
+        "numpy_response_single_wall_seconds": 0.0022083300282247365,
+        "timing_scope": "Observed probe timers, different implementations; not paired deployment timing",
+        "input_key": "A6_0.05",
+        "sha256": "6af66354493d3c8dddefaa91fb46fbfa1fbb945e8d912a04c4cac784909e9e27",
+        "shape": [
+          32
+        ],
+        "dtype": "float64"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "reference_refinement",
+          "category": "correctness",
+          "measured": 1.0960219596671133e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "cubic_quadrature_refinement",
+          "category": "correctness",
+          "measured": 6.76792864178948e-19,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_quadrature_refinement",
+          "category": "correctness",
+          "measured": 3.3841252205324406e-17,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A6/fd_amplitude_0.2",
+      "metrics": {
+        "amplitude": 0.2,
+        "chi": 0.8067950075469567,
+        "min_initial": 0.11330091746408683,
+        "max_initial": 0.3132918374781344,
+        "df_rms": 3.399115661483182e-05,
+        "quadratic_rms": 9.756006943700228e-05,
+        "quadratic_cubic_rms": 0.00019081665570843222,
+        "residual_response_rms": 3.858793635048651e-06,
+        "teacher_disagreement": 3.888901834875137e-15,
+        "quadratic_GL32_GL64": 1.9101242139465457e-18,
+        "cubic_GL12_GL20": 4.349131576166062e-17,
+        "response_GL16_GL32": 2.9620788199832936e-17,
+        "teacher_wall_seconds": 0.00927787902764976,
+        "torch_df_single_wall_seconds": 0.000934473006054759,
+        "numpy_response_single_wall_seconds": 0.002614672004710883,
+        "timing_scope": "Observed probe timers, different implementations; not paired deployment timing",
+        "input_key": "A6_0.2",
+        "sha256": "9c35e911c113631546555854911b021751c7e38dcabfb9bb0a985e81b0071f49",
+        "shape": [
+          32
+        ],
+        "dtype": "float64"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "reference_refinement",
+          "category": "correctness",
+          "measured": 3.888901834875137e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "cubic_quadrature_refinement",
+          "category": "correctness",
+          "measured": 4.349131576166062e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_quadrature_refinement",
+          "category": "correctness",
+          "measured": 2.9620788199832936e-17,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A6/fd_amplitude_0.5",
+      "metrics": {
+        "amplitude": 0.5,
+        "chi": 2.0169875188673907,
+        "min_initial": 0.0582522936602171,
+        "max_initial": 0.5582295936953359,
+        "df_rms": 0.00024585010585650795,
+        "quadratic_rms": 0.0006330830662490799,
+        "quadratic_cubic_rms": 0.003871989689429232,
+        "residual_response_rms": 5.82830989754212e-05,
+        "teacher_disagreement": 6.137434987378955e-15,
+        "quadratic_GL32_GL64": 9.213634614742047e-18,
+        "cubic_GL12_GL20": 6.816845179338389e-16,
+        "response_GL16_GL32": 4.0895423059521674e-17,
+        "teacher_wall_seconds": 0.008581326983403414,
+        "torch_df_single_wall_seconds": 0.0006544789648614824,
+        "numpy_response_single_wall_seconds": 0.0022167820134200156,
+        "timing_scope": "Observed probe timers, different implementations; not paired deployment timing",
+        "input_key": "A6_0.5",
+        "sha256": "2e56718cbc19fca64d652381b3d941019674ed97d2dbcab454fd1ad5ac31968e",
+        "shape": [
+          32
+        ],
+        "dtype": "float64"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "reference_refinement",
+          "category": "correctness",
+          "measured": 6.137434987378955e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "cubic_quadrature_refinement",
+          "category": "correctness",
+          "measured": 6.816845179338389e-16,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_quadrature_refinement",
+          "category": "correctness",
+          "measured": 4.0895423059521674e-17,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A6/fd_amplitude_0.75",
+      "metrics": {
+        "amplitude": 0.75,
+        "chi": 3.0254812783010854,
+        "min_initial": 0.01237844049032566,
+        "max_initial": 0.7623443905430037,
+        "df_rms": 0.001220144916796446,
+        "quadratic_rms": 0.001693793470688628,
+        "quadratic_cubic_rms": 0.013876015614272942,
+        "residual_response_rms": 0.0004180419458644847,
+        "teacher_disagreement": 1.801615287119638e-14,
+        "quadratic_GL32_GL64": 1.9787544337212714e-17,
+        "cubic_GL12_GL20": 2.362907875291143e-15,
+        "response_GL16_GL32": 5.2710384912351183e-17,
+        "teacher_wall_seconds": 0.009042038989719003,
+        "torch_df_single_wall_seconds": 0.0007639509858563542,
+        "numpy_response_single_wall_seconds": 0.0021807990269735456,
+        "timing_scope": "Observed probe timers, different implementations; not paired deployment timing",
+        "input_key": "A6_0.75",
+        "sha256": "a283c4afa6c0d5d26556c958b74ac41e12d75959580ce95f74b6b3dc7910a9c3",
+        "shape": [
+          32
+        ],
+        "dtype": "float64"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "reference_refinement",
+          "category": "correctness",
+          "measured": 1.801615287119638e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "cubic_quadrature_refinement",
+          "category": "correctness",
+          "measured": 2.362907875291143e-15,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_quadrature_refinement",
+          "category": "correctness",
+          "measured": 5.2710384912351183e-17,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A6/finite_amplitude_counterexample",
+      "metrics": {
+        "cubic_worsens_count": 3,
+        "denominator": 4
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "counterexample_resolved",
+          "category": "math",
+          "measured": 3,
+          "target": 1,
+          "relation": "ge",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/3/0.0003/0.05",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 3.0,
+        "kappa": 0.0003,
+        "amplitude": 0.05,
+        "df_errors": [
+          3.543547287123363e-08,
+          8.846000132033385e-09,
+          2.2106974104540135e-09
+        ],
+        "response_rms": 1.5908250844102937e-10,
+        "ratios": [
+          0.0044893575716939815,
+          0.017983552573660418,
+          0.07196032694875162
+        ],
+        "teacher_disagreement": 1.960160768674992e-16,
+        "response_GL24_GL40": 3.934730284422998e-18,
+        "teacher_wall_seconds": 0.0019034380093216896,
+        "response_single_wall_seconds": 0.0029672140371985734,
+        "df_path_single_wall_seconds": [
+          8.392403833568096e-05,
+          0.00016362196765840054,
+          0.0003620669594965875
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.960160768674992e-16,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.934730284422998e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/3/0.0003/0.5",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 3.0,
+        "kappa": 0.0003,
+        "amplitude": 0.5,
+        "df_errors": [
+          1.4312091535990874e-06,
+          3.5715603421760056e-07,
+          8.924883765066584e-08
+        ],
+        "response_rms": 3.918357927505626e-08,
+        "ratios": [
+          0.027377954631243526,
+          0.10970997413187566,
+          0.4390374183743101
+        ],
+        "teacher_disagreement": 6.179804777740446e-16,
+        "response_GL24_GL40": 4.420646335307565e-18,
+        "teacher_wall_seconds": 0.001926551980432123,
+        "response_single_wall_seconds": 0.0032375240116380155,
+        "df_path_single_wall_seconds": [
+          0.0001249449560418725,
+          0.00016406294889748096,
+          0.00031142099760472775
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 6.179804777740446e-16,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 4.420646335307565e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/3/0.0003/0.75",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 3.0,
+        "kappa": 0.0003,
+        "amplitude": 0.75,
+        "df_errors": [
+          2.2545327396260684e-06,
+          5.628683162361526e-07,
+          1.4066940899316503e-07
+        ],
+        "response_rms": 9.670021794851139e-08,
+        "ratios": [
+          0.04289146759720591,
+          0.1717990072618346,
+          0.6874289061185289
+        ],
+        "teacher_disagreement": 5.274105006282423e-16,
+        "response_GL24_GL40": 4.060018389171701e-18,
+        "teacher_wall_seconds": 0.0018442010041326284,
+        "response_single_wall_seconds": 0.003050406987313181,
+        "df_path_single_wall_seconds": [
+          8.613802492618561e-05,
+          0.00016085797687992454,
+          0.00031384394969791174
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.274105006282423e-16,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 4.060018389171701e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/3/0.003/0.05",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 3.0,
+        "kappa": 0.003,
+        "amplitude": 0.05,
+        "df_errors": [
+          2.5185680001440694e-07,
+          6.29438253961608e-08,
+          1.5734651157484415e-08
+        ],
+        "response_rms": 1.010096812004357e-09,
+        "ratios": [
+          0.004010599721534525,
+          0.016047591731944002,
+          0.06419569152786014
+        ],
+        "teacher_disagreement": 1.5367731108738363e-16,
+        "response_GL24_GL40": 2.4071682559832344e-18,
+        "teacher_wall_seconds": 0.0018456830293871462,
+        "response_single_wall_seconds": 0.0028129550046287477,
+        "df_path_single_wall_seconds": [
+          8.517602691426873e-05,
+          0.00018329202430322766,
+          0.0003132239799015224
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.5367731108738363e-16,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.4071682559832344e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/3/0.003/0.5",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 3.0,
+        "kappa": 0.003,
+        "amplitude": 0.5,
+        "df_errors": [
+          1.2862079333145894e-05,
+          3.210520745814666e-06,
+          8.023186334598824e-07
+        ],
+        "response_rms": 6.895407825181561e-07,
+        "ratios": [
+          0.05361036615138834,
+          0.21477537044950196,
+          0.8594350844683886
+        ],
+        "teacher_disagreement": 1.2914057077253076e-14,
+        "response_GL24_GL40": 2.7905962583066305e-18,
+        "teacher_wall_seconds": 0.0019873030250892043,
+        "response_single_wall_seconds": 0.003389448975212872,
+        "df_path_single_wall_seconds": [
+          9.014300303533673e-05,
+          0.0002761189825832844,
+          0.00031445600325241685
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.2914057077253076e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.7905962583066305e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/3/0.003/0.75",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 3.0,
+        "kappa": 0.003,
+        "amplitude": 0.75,
+        "df_errors": [
+          2.7015279742408493e-05,
+          6.768247395190459e-06,
+          1.6930033771717868e-06
+        ],
+        "response_rms": 2.5899140468820297e-06,
+        "ratios": [
+          0.09586848892837455,
+          0.3826565277035281,
+          1.5297748851562005
+        ],
+        "teacher_disagreement": 9.86858108256401e-15,
+        "response_GL24_GL40": 5.33408903476632e-18,
+        "teacher_wall_seconds": 0.002672166039701551,
+        "response_single_wall_seconds": 0.002824512019287795,
+        "df_path_single_wall_seconds": [
+          8.281302871182561e-05,
+          0.00016052694991230965,
+          0.0003290270105935633
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 9.86858108256401e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 5.33408903476632e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/3/0.03/0.05",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 3.0,
+        "kappa": 0.03,
+        "amplitude": 0.05,
+        "df_errors": [
+          2.9729814056543295e-06,
+          8.361194983568615e-07,
+          2.1745087039766835e-07
+        ],
+        "response_rms": 1.723862766076501e-08,
+        "ratios": [
+          0.005798431038949241,
+          0.020617420948371958,
+          0.07927596532145154
+        ],
+        "teacher_disagreement": 2.7091471493473193e-15,
+        "response_GL24_GL40": 3.4038482528106604e-18,
+        "teacher_wall_seconds": 0.006751517008524388,
+        "response_single_wall_seconds": 0.0028409870574250817,
+        "df_path_single_wall_seconds": [
+          9.764399146661162e-05,
+          0.00018748699221760035,
+          0.0003093979903496802
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 2.7091471493473193e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.4038482528106604e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/3/0.03/0.5",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 3.0,
+        "kappa": 0.03,
+        "amplitude": 0.5,
+        "df_errors": [
+          0.0002810233386634072,
+          7.983294959580672e-05,
+          2.0846398989559727e-05
+        ],
+        "response_rms": 1.5490834336034996e-05,
+        "ratios": [
+          0.05512294605035983,
+          0.19404061123214045,
+          0.7430940156039947
+        ],
+        "teacher_disagreement": 2.9109704050423622e-15,
+        "response_GL24_GL40": 6.3213138771707576e-18,
+        "teacher_wall_seconds": 0.008771107997745275,
+        "response_single_wall_seconds": 0.002882278000470251,
+        "df_path_single_wall_seconds": [
+          8.364400127902627e-05,
+          0.0001576330396346748,
+          0.000336368044372648
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 2.9109704050423622e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 6.3213138771707576e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/3/0.03/0.75",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 3.0,
+        "kappa": 0.03,
+        "amplitude": 0.75,
+        "df_errors": [
+          0.0006123489302684862,
+          0.00017490008903428076,
+          4.5772098645300324e-05
+        ],
+        "response_rms": 4.929034261929473e-05,
+        "ratios": [
+          0.08049388213625723,
+          0.28181999729933654,
+          1.076864379788617
+        ],
+        "teacher_disagreement": 3.3040190969367318e-15,
+        "response_GL24_GL40": 9.132893752564493e-18,
+        "teacher_wall_seconds": 0.009098201990127563,
+        "response_single_wall_seconds": 0.003021855023689568,
+        "df_path_single_wall_seconds": [
+          8.793000597506762e-05,
+          0.00015760399401187897,
+          0.0003140050102956593
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 3.3040190969367318e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 9.132893752564493e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/25/0.0003/0.05",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 25.0,
+        "kappa": 0.0003,
+        "amplitude": 0.05,
+        "df_errors": [
+          2.2747480226903038e-07,
+          4.459674188310841e-08,
+          1.0961202994745256e-08
+        ],
+        "response_rms": 4.2350940006835576e-08,
+        "ratios": [
+          0.1861785990553269,
+          0.9496420190928014,
+          3.8637127719592823
+        ],
+        "teacher_disagreement": 1.0913448566827785e-14,
+        "response_GL24_GL40": 2.902489198339424e-17,
+        "teacher_wall_seconds": 0.008450703986454755,
+        "response_single_wall_seconds": 0.002891061012633145,
+        "df_path_single_wall_seconds": [
+          8.446496212854981e-05,
+          0.00015878502745181322,
+          0.00033449498005211353
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.0913448566827785e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.902489198339424e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/25/0.0003/0.5",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 25.0,
+        "kappa": 0.0003,
+        "amplitude": 0.5,
+        "df_errors": [
+          2.9205781878857092e-05,
+          6.139824282402444e-06,
+          1.4986747891520285e-06
+        ],
+        "response_rms": 6.649872279854494e-06,
+        "ratios": [
+          0.22769026720248597,
+          1.0830720838239485,
+          4.43716830895453
+        ],
+        "teacher_disagreement": 6.191111188889662e-15,
+        "response_GL24_GL40": 3.90316289461184e-17,
+        "teacher_wall_seconds": 0.00818924600025639,
+        "response_single_wall_seconds": 0.002890279982239008,
+        "df_path_single_wall_seconds": [
+          8.50760261528194e-05,
+          0.000179725990165025,
+          0.0003146969829685986
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 6.191111188889662e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.90316289461184e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/25/0.0003/0.75",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 25.0,
+        "kappa": 0.0003,
+        "amplitude": 0.75,
+        "df_errors": [
+          0.0001433723413680423,
+          3.227908955663848e-05,
+          7.908120905984216e-06
+        ],
+        "response_rms": 4.926058806385055e-05,
+        "ratios": [
+          0.3435850150301775,
+          1.5260835649473787,
+          6.229114178890992
+        ],
+        "teacher_disagreement": 2.3796549937844658e-14,
+        "response_GL24_GL40": 4.354464502517465e-17,
+        "teacher_wall_seconds": 0.008437053009402007,
+        "response_single_wall_seconds": 0.002984147984534502,
+        "df_path_single_wall_seconds": [
+          8.611800149083138e-05,
+          0.000158353999722749,
+          0.0004443880170583725
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 2.3796549937844658e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 4.354464502517465e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/25/0.003/0.05",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 25.0,
+        "kappa": 0.003,
+        "amplitude": 0.05,
+        "df_errors": [
+          1.850512511888263e-06,
+          3.622642123795564e-07,
+          8.936155094391305e-08
+        ],
+        "response_rms": 3.1692199406902063e-07,
+        "ratios": [
+          0.1712617407518274,
+          0.8748366060983435,
+          3.546514028924294
+        ],
+        "teacher_disagreement": 1.0960219596671133e-14,
+        "response_GL24_GL40": 2.5068538990309962e-17,
+        "teacher_wall_seconds": 0.009157889988273382,
+        "response_single_wall_seconds": 0.0029076659702695906,
+        "df_path_single_wall_seconds": [
+          8.509599138051271e-05,
+          0.00016040797345340252,
+          0.0003332530031912029
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.0960219596671133e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.5068538990309962e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/25/0.003/0.5",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 25.0,
+        "kappa": 0.003,
+        "amplitude": 0.5,
+        "df_errors": [
+          0.0002458501058565163,
+          5.250682437985834e-05,
+          1.2842809043835488e-05
+        ],
+        "response_rms": 5.828309897534853e-05,
+        "ratios": [
+          0.23706761797924086,
+          1.1100099780116577,
+          4.538189330419442
+        ],
+        "teacher_disagreement": 6.137434987378955e-15,
+        "response_GL24_GL40": 2.511534744501826e-17,
+        "teacher_wall_seconds": 0.009116438974160701,
+        "response_single_wall_seconds": 0.002974614966660738,
+        "df_path_single_wall_seconds": [
+          8.572702063247561e-05,
+          0.00015909498324617743,
+          0.00031241198303177953
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 6.137434987378955e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.511534744501826e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/25/0.003/0.75",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 25.0,
+        "kappa": 0.003,
+        "amplitude": 0.75,
+        "df_errors": [
+          0.0012201449167964292,
+          0.00027754354557970527,
+          6.80614510516306e-05
+        ],
+        "response_rms": 0.00041804194586444755,
+        "ratios": [
+          0.34261663521251573,
+          1.5062211048406233,
+          6.14212508556901
+        ],
+        "teacher_disagreement": 1.801615287119638e-14,
+        "response_GL24_GL40": 2.839625685468892e-17,
+        "teacher_wall_seconds": 0.009245569992344826,
+        "response_single_wall_seconds": 0.002921675972174853,
+        "df_path_single_wall_seconds": [
+          8.510600309818983e-05,
+          0.00015945598715916276,
+          0.0003131540142931044
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.801615287119638e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.839625685468892e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/25/0.03/0.05",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 25.0,
+        "kappa": 0.03,
+        "amplitude": 0.05,
+        "df_errors": [
+          2.738480508694067e-05,
+          4.306410493855244e-06,
+          9.769673621256846e-07
+        ],
+        "response_rms": 8.217298481735435e-07,
+        "ratios": [
+          0.030006780970860805,
+          0.1908154945623642,
+          0.8411026611837109
+        ],
+        "teacher_disagreement": 1.1764255649621682e-14,
+        "response_GL24_GL40": 2.611229221063709e-17,
+        "teacher_wall_seconds": 0.008685020031407475,
+        "response_single_wall_seconds": 0.0029280759626999497,
+        "df_path_single_wall_seconds": [
+          8.40339926071465e-05,
+          0.00015858496772125363,
+          0.00033420498948544264
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.1764255649621682e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.611229221063709e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/25/0.03/0.5",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 25.0,
+        "kappa": 0.03,
+        "amplitude": 0.5,
+        "df_errors": [
+          0.0014235313600364514,
+          0.00033562084601752797,
+          8.38424219764687e-05
+        ],
+        "response_rms": 0.00042579180409240184,
+        "ratios": [
+          0.29910953565610165,
+          1.2686691221503108,
+          5.078476910076679
+        ],
+        "teacher_disagreement": 9.414010427066832e-15,
+        "response_GL24_GL40": 3.182590398136542e-17,
+        "teacher_wall_seconds": 0.009620606026146561,
+        "response_single_wall_seconds": 0.002935696975328028,
+        "df_path_single_wall_seconds": [
+          8.410500595346093e-05,
+          0.00015859497943893075,
+          0.0003108200035057962
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 9.414010427066832e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.182590398136542e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/25/0.03/0.75",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 25.0,
+        "kappa": 0.03,
+        "amplitude": 0.75,
+        "df_errors": [
+          0.004694525743460915,
+          0.0011154705593424226,
+          0.0002744853768475378
+        ],
+        "response_rms": 0.0017081826968961334,
+        "ratios": [
+          0.3638669357124072,
+          1.5313561461479706,
+          6.223219307762756
+        ],
+        "teacher_disagreement": 7.973799066436856e-15,
+        "response_GL24_GL40": 3.2704700586690743e-17,
+        "teacher_wall_seconds": 0.011582740989979357,
+        "response_single_wall_seconds": 0.0034140049829147756,
+        "df_path_single_wall_seconds": [
+          8.39540152810514e-05,
+          0.00016095902537927032,
+          0.0003951149992644787
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 7.973799066436856e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.2704700586690743e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/60/0.0003/0.05",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 60.0,
+        "kappa": 0.0003,
+        "amplitude": 0.05,
+        "df_errors": [
+          1.284165575696562e-07,
+          1.5931333840369825e-08,
+          3.773916763996415e-09
+        ],
+        "response_rms": 7.31726188755199e-10,
+        "ratios": [
+          0.00569806731003744,
+          0.045930001598548695,
+          0.19389038882254853
+        ],
+        "teacher_disagreement": 3.875954584124818e-15,
+        "response_GL24_GL40": 4.1125732740921535e-17,
+        "teacher_wall_seconds": 0.018149165029171854,
+        "response_single_wall_seconds": 0.002986102015711367,
+        "df_path_single_wall_seconds": [
+          0.00010584603296592832,
+          0.00016621605027467012,
+          0.00031361397122964263
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 3.875954584124818e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 4.1125732740921535e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/60/0.0003/0.5",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 60.0,
+        "kappa": 0.0003,
+        "amplitude": 0.5,
+        "df_errors": [
+          5.486663639982498e-06,
+          7.491576165279656e-07,
+          1.8078618239608826e-07
+        ],
+        "response_rms": 2.146657779926056e-07,
+        "ratios": [
+          0.03912501149665708,
+          0.2865428759671327,
+          1.187401465905673
+        ],
+        "teacher_disagreement": 2.0835750310372635e-14,
+        "response_GL24_GL40": 4.7597072579380234e-17,
+        "teacher_wall_seconds": 0.02011990302708,
+        "response_single_wall_seconds": 0.0029500180389732122,
+        "df_path_single_wall_seconds": [
+          8.285301737487316e-05,
+          0.0001555100316181779,
+          0.0003061729948967695
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 2.0835750310372635e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 4.7597072579380234e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/60/0.0003/0.75",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 60.0,
+        "kappa": 0.0003,
+        "amplitude": 0.75,
+        "df_errors": [
+          1.6214489430174243e-05,
+          1.5265159802683712e-06,
+          4.519955558033712e-07
+        ],
+        "response_rms": 5.8865528798530905e-06,
+        "ratios": [
+          0.363042752915707,
+          3.856201281835384,
+          13.023475129949908
+        ],
+        "teacher_disagreement": 6.31504918210758e-15,
+        "response_GL24_GL40": 3.9546581697533964e-17,
+        "teacher_wall_seconds": 0.019626452994998544,
+        "response_single_wall_seconds": 0.003748510964214802,
+        "df_path_single_wall_seconds": [
+          0.00016349204815924168,
+          0.00020360102644190192,
+          0.00040995696326717734
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 6.31504918210758e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.9546581697533964e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/60/0.003/0.05",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 60.0,
+        "kappa": 0.003,
+        "amplitude": 0.05,
+        "df_errors": [
+          1.1553903641317358e-06,
+          1.449657741027994e-07,
+          3.373482774930485e-08
+        ],
+        "response_rms": 7.208380059354861e-09,
+        "ratios": [
+          0.0062389130835203786,
+          0.04972470297880927,
+          0.21367768980244456
+        ],
+        "teacher_disagreement": 3.7580885391619605e-15,
+        "response_GL24_GL40": 5.0508812247069165e-17,
+        "teacher_wall_seconds": 0.019020175037439913,
+        "response_single_wall_seconds": 0.003138357016723603,
+        "df_path_single_wall_seconds": [
+          8.671899558976293e-05,
+          0.00016017700545489788,
+          0.00031508697429671884
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 3.7580885391619605e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 5.0508812247069165e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/60/0.003/0.5",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 60.0,
+        "kappa": 0.003,
+        "amplitude": 0.5,
+        "df_errors": [
+          5.08390555922191e-05,
+          6.931511024974372e-06,
+          1.6853066113113745e-06
+        ],
+        "response_rms": 1.9265501908239113e-06,
+        "ratios": [
+          0.03789508220366645,
+          0.2779408679986965,
+          1.1431452163620361
+        ],
+        "teacher_disagreement": 2.016360904684313e-14,
+        "response_GL24_GL40": 2.4712840224012916e-17,
+        "teacher_wall_seconds": 0.01895686995703727,
+        "response_single_wall_seconds": 0.002934354997705668,
+        "df_path_single_wall_seconds": [
+          8.677801815792918e-05,
+          0.0001995550119318068,
+          0.0003137850435450673
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 2.016360904684313e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.4712840224012916e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/60/0.003/0.75",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 60.0,
+        "kappa": 0.003,
+        "amplitude": 0.75,
+        "df_errors": [
+          0.00015120236201647118,
+          1.4054225899183236e-05,
+          4.263229417469481e-06
+        ],
+        "response_rms": 4.9461923916880136e-05,
+        "ratios": [
+          0.32712401616776343,
+          3.519363092047256,
+          11.601985038431073
+        ],
+        "teacher_disagreement": 5.897423038388152e-15,
+        "response_GL24_GL40": 2.902678761164344e-17,
+        "teacher_wall_seconds": 0.01976690994342789,
+        "response_single_wall_seconds": 0.003438721993006766,
+        "df_path_single_wall_seconds": [
+          8.730002446100116e-05,
+          0.0003227079869247973,
+          0.0003321920521557331
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.897423038388152e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.902678761164344e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/60/0.03/0.05",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 60.0,
+        "kappa": 0.03,
+        "amplitude": 0.05,
+        "df_errors": [
+          6.298580103819987e-06,
+          9.712774956991454e-07,
+          1.8857719118542074e-07
+        ],
+        "response_rms": 6.243261828902026e-08,
+        "ratios": [
+          0.00991217342003095,
+          0.06427886836200193,
+          0.3310719493516724
+        ],
+        "teacher_disagreement": 6.142485097133943e-15,
+        "response_GL24_GL40": 2.768806101670092e-17,
+        "teacher_wall_seconds": 0.018887807964347303,
+        "response_single_wall_seconds": 0.003003177000209689,
+        "df_path_single_wall_seconds": [
+          8.66479822434485e-05,
+          0.00015929603250697255,
+          0.0003332340274937451
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 6.142485097133943e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.768806101670092e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/60/0.03/0.5",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 60.0,
+        "kappa": 0.03,
+        "amplitude": 0.5,
+        "df_errors": [
+          0.0003230237471834406,
+          4.9183122472506136e-05,
+          1.1783736806814644e-05
+        ],
+        "response_rms": 1.4282538640200849e-05,
+        "ratios": [
+          0.04421513515565157,
+          0.29039511771919185,
+          1.2120551294001343
+        ],
+        "teacher_disagreement": 2.412089671653089e-14,
+        "response_GL24_GL40": 3.567830746426372e-17,
+        "teacher_wall_seconds": 0.018592061009258032,
+        "response_single_wall_seconds": 0.0033212389680556953,
+        "df_path_single_wall_seconds": [
+          8.328398689627647e-05,
+          0.00018018699483945966,
+          0.00031547696562483907
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 2.412089671653089e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.567830746426372e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/1/60/0.03/0.75",
+      "metrics": {
+        "mean": 0.15,
+        "sign": 1,
+        "r": 60.0,
+        "kappa": 0.03,
+        "amplitude": 0.75,
+        "df_errors": [
+          0.0010866200394589836,
+          0.00011328353289162877,
+          3.161357482818096e-05
+        ],
+        "response_rms": 0.0001563926057644486,
+        "ratios": [
+          0.1439257514911236,
+          1.3805413882533093,
+          4.947007942456326
+        ],
+        "teacher_disagreement": 6.3094351530453316e-15,
+        "response_GL24_GL40": 6.957257856774337e-17,
+        "teacher_wall_seconds": 0.0193446550401859,
+        "response_single_wall_seconds": 0.0029428370180539787,
+        "df_path_single_wall_seconds": [
+          8.483603596687317e-05,
+          0.00018178904429078102,
+          0.0003305699792690575
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "peak"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 6.3094351530453316e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 6.957257856774337e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/3/0.0003/0.05",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 3.0,
+        "kappa": 0.0003,
+        "amplitude": 0.05,
+        "df_errors": [
+          2.1374293839201728e-08,
+          5.339940558820757e-09,
+          1.3347559908367132e-09
+        ],
+        "response_rms": 6.993485101767105e-11,
+        "ratios": [
+          0.0032719139890089077,
+          0.01309655983008078,
+          0.05239523290982291
+        ],
+        "teacher_disagreement": 1.2457585436942565e-15,
+        "response_GL24_GL40": 5.207399566305346e-18,
+        "teacher_wall_seconds": 0.0018144170171581209,
+        "response_single_wall_seconds": 0.002990198030602187,
+        "df_path_single_wall_seconds": [
+          8.404499385505915e-05,
+          0.00015879503916949034,
+          0.0003349360194988549
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.2457585436942565e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 5.207399566305346e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/3/0.0003/0.5",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 3.0,
+        "kappa": 0.0003,
+        "amplitude": 0.5,
+        "df_errors": [
+          1.3880746090719453e-06,
+          3.463829543295877e-07,
+          8.655626555393081e-08
+        ],
+        "response_rms": 3.9396475702461205e-08,
+        "ratios": [
+          0.0283821024064415,
+          0.11373676218771137,
+          0.4551545223253001
+        ],
+        "teacher_disagreement": 3.647456493207033e-15,
+        "response_GL24_GL40": 9.935177068610263e-18,
+        "teacher_wall_seconds": 0.0017904419801197946,
+        "response_single_wall_seconds": 0.002880455052945763,
+        "df_path_single_wall_seconds": [
+          8.653802797198296e-05,
+          0.0001573629560880363,
+          0.0003111810074187815
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 3.647456493207033e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 9.935177068610263e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/3/0.0003/0.75",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 3.0,
+        "kappa": 0.0003,
+        "amplitude": 0.75,
+        "df_errors": [
+          1.9064806045607206e-06,
+          4.76073910783807e-07,
+          1.189844597492684e-07
+        ],
+        "response_rms": 4.374628703059231e-08,
+        "ratios": [
+          0.022946096029480487,
+          0.09188969619983696,
+          0.36766387075066154
+        ],
+        "teacher_disagreement": 2.8953236386347386e-15,
+        "response_GL24_GL40": 9.608883233214814e-18,
+        "teacher_wall_seconds": 0.0017274579731747508,
+        "response_single_wall_seconds": 0.0028769500204361975,
+        "df_path_single_wall_seconds": [
+          0.00010300305439159274,
+          0.00015709304716438055,
+          0.00030654395231977105
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 2.8953236386347386e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 9.608883233214814e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/3/0.003/0.05",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 3.0,
+        "kappa": 0.003,
+        "amplitude": 0.05,
+        "df_errors": [
+          2.3801167193720071e-07,
+          5.96717074192699e-08,
+          1.4928477374594686e-08
+        ],
+        "response_rms": 9.009501089646919e-10,
+        "ratios": [
+          0.0037853190208352776,
+          0.015098446951322635,
+          0.06035110523045911
+        ],
+        "teacher_disagreement": 2.009357990855139e-15,
+        "response_GL24_GL40": 8.739279604321862e-18,
+        "teacher_wall_seconds": 0.0021503439638763666,
+        "response_single_wall_seconds": 0.002945291984360665,
+        "df_path_single_wall_seconds": [
+          8.745898958295584e-05,
+          0.00016135902842506766,
+          0.0003155169542878866
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 2.009357990855139e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 8.739279604321862e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/3/0.003/0.5",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 3.0,
+        "kappa": 0.003,
+        "amplitude": 0.5,
+        "df_errors": [
+          1.9296378041983188e-05,
+          4.816674461705366e-06,
+          1.2037039728264484e-06
+        ],
+        "response_rms": 7.852546965186237e-07,
+        "ratios": [
+          0.04069440880615744,
+          0.16302839288013676,
+          0.6523652943295907
+        ],
+        "teacher_disagreement": 1.1313572332291283e-14,
+        "response_GL24_GL40": 1.1169053494271373e-17,
+        "teacher_wall_seconds": 0.0018537549767643213,
+        "response_single_wall_seconds": 0.0033154700067825615,
+        "df_path_single_wall_seconds": [
+          8.52359808050096e-05,
+          0.0001593459746800363,
+          0.00031028897501528263
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.1313572332291283e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 1.1169053494271373e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/3/0.003/0.75",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 3.0,
+        "kappa": 0.003,
+        "amplitude": 0.75,
+        "df_errors": [
+          3.484245429655151e-05,
+          8.678936073258098e-06,
+          2.1677824813164296e-06
+        ],
+        "response_rms": 2.242372099673977e-06,
+        "ratios": [
+          0.0643574669163278,
+          0.25836946841713326,
+          1.0344082577474523
+        ],
+        "teacher_disagreement": 6.569201516195253e-15,
+        "response_GL24_GL40": 1.267660863399376e-17,
+        "teacher_wall_seconds": 0.002285354014020413,
+        "response_single_wall_seconds": 0.0030853989883325994,
+        "df_path_single_wall_seconds": [
+          8.877203799784184e-05,
+          0.00015850499039515853,
+          0.00030965800397098064
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 6.569201516195253e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 1.267660863399376e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/3/0.03/0.05",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 3.0,
+        "kappa": 0.03,
+        "amplitude": 0.05,
+        "df_errors": [
+          2.828839827976891e-06,
+          7.994663523011205e-07,
+          2.0810358474823727e-07
+        ],
+        "response_rms": 1.0179603032333263e-08,
+        "ratios": [
+          0.0035985080992066766,
+          0.01273299745890881,
+          0.04891603883060688
+        ],
+        "teacher_disagreement": 5.745605276274444e-15,
+        "response_GL24_GL40": 9.869232823698856e-18,
+        "teacher_wall_seconds": 0.02176536002662033,
+        "response_single_wall_seconds": 0.021332437987439334,
+        "df_path_single_wall_seconds": [
+          0.00033317296765744686,
+          0.0002708410029299557,
+          0.0005215220153331757
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.745605276274444e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 9.869232823698856e-18,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/3/0.03/0.5",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 3.0,
+        "kappa": 0.03,
+        "amplitude": 0.5,
+        "df_errors": [
+          0.00030467426644044626,
+          8.536282347985058e-05,
+          2.2137264072916283e-05
+        ],
+        "response_rms": 1.1491276035608298e-05,
+        "ratios": [
+          0.03771659539830044,
+          0.13461686911423157,
+          0.5190919707944958
+        ],
+        "teacher_disagreement": 1.3795903205885345e-14,
+        "response_GL24_GL40": 2.0775716081964353e-17,
+        "teacher_wall_seconds": 0.010594108025543392,
+        "response_single_wall_seconds": 0.004129615030251443,
+        "df_path_single_wall_seconds": [
+          0.00015560997417196631,
+          0.00023456703638657928,
+          0.0004605220165103674
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.3795903205885345e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.0775716081964353e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/3/0.03/0.75",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 3.0,
+        "kappa": 0.03,
+        "amplitude": 0.75,
+        "df_errors": [
+          0.0007155567637025786,
+          0.00019944598118947643,
+          5.1611062939752386e-05
+        ],
+        "response_rms": 4.159645982986054e-05,
+        "ratios": [
+          0.05813160037035178,
+          0.2085600300481529,
+          0.8059601461496292
+        ],
+        "teacher_disagreement": 1.2931119827902236e-14,
+        "response_GL24_GL40": 1.398617302494659e-17,
+        "teacher_wall_seconds": 0.01080872502643615,
+        "response_single_wall_seconds": 0.004336661018896848,
+        "df_path_single_wall_seconds": [
+          8.528702892363071e-05,
+          0.0001585549907758832,
+          0.00042497902177274227
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.2931119827902236e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 1.398617302494659e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/25/0.0003/0.05",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 25.0,
+        "kappa": 0.0003,
+        "amplitude": 0.05,
+        "df_errors": [
+          6.273530289531808e-08,
+          1.634209275953065e-08,
+          4.1061292611391544e-09
+        ],
+        "response_rms": 3.8922986027692007e-10,
+        "ratios": [
+          0.006204319455130393,
+          0.02381762642057717,
+          0.0947924031424517
+        ],
+        "teacher_disagreement": 1.6276876264804048e-14,
+        "response_GL24_GL40": 3.0998358226397e-17,
+        "teacher_wall_seconds": 0.007437733991537243,
+        "response_single_wall_seconds": 0.0028956180321983993,
+        "df_path_single_wall_seconds": [
+          8.553697261959314e-05,
+          0.00022371200611814857,
+          0.0003103289636783302
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.6276876264804048e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.0998358226397e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/25/0.0003/0.5",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 25.0,
+        "kappa": 0.0003,
+        "amplitude": 0.5,
+        "df_errors": [
+          1.129318363748392e-05,
+          2.6958530793889656e-06,
+          6.642334402884536e-07
+        ],
+        "response_rms": 8.908016066828282e-07,
+        "ratios": [
+          0.07887958216902737,
+          0.33043403347660727,
+          1.341097199647136
+        ],
+        "teacher_disagreement": 5.6156190139108084e-15,
+        "response_GL24_GL40": 2.6359632214841903e-17,
+        "teacher_wall_seconds": 0.006978143996093422,
+        "response_single_wall_seconds": 0.0028511419659480453,
+        "df_path_single_wall_seconds": [
+          0.00012860004790127277,
+          0.0001618099631741643,
+          0.0003109410172328353
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.6156190139108084e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.6359632214841903e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/25/0.0003/0.75",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 25.0,
+        "kappa": 0.0003,
+        "amplitude": 0.75,
+        "df_errors": [
+          4.0505002192152776e-05,
+          9.067856355877692e-06,
+          2.2217095149149835e-06
+        ],
+        "response_rms": 5.5401582476880455e-06,
+        "ratios": [
+          0.13677713733740685,
+          0.6109666971176678,
+          2.4936465413211533
+        ],
+        "teacher_disagreement": 9.562248982205757e-15,
+        "response_GL24_GL40": 3.8275554884275044e-17,
+        "teacher_wall_seconds": 0.00696568499552086,
+        "response_single_wall_seconds": 0.0033516129478812218,
+        "df_path_single_wall_seconds": [
+          8.580699795857072e-05,
+          0.00015669199638068676,
+          0.00038026401307433844
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 9.562248982205757e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.8275554884275044e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/25/0.003/0.05",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 25.0,
+        "kappa": 0.003,
+        "amplitude": 0.05,
+        "df_errors": [
+          5.641799600240134e-07,
+          1.4913989184286014e-07,
+          3.7607006022642715e-08
+        ],
+        "response_rms": 3.535642313476049e-09,
+        "ratios": [
+          0.006266869729519568,
+          0.02370688532616978,
+          0.094015522303139
+        ],
+        "teacher_disagreement": 1.6527682041416565e-14,
+        "response_GL24_GL40": 3.1260396671921964e-17,
+        "teacher_wall_seconds": 0.007771637989208102,
+        "response_single_wall_seconds": 0.0029654609970748425,
+        "df_path_single_wall_seconds": [
+          8.874200284481049e-05,
+          0.00015804398572072387,
+          0.0004219450056552887
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.6527682041416565e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.1260396671921964e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/25/0.003/0.5",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 25.0,
+        "kappa": 0.003,
+        "amplitude": 0.5,
+        "df_errors": [
+          0.0001013679526594539,
+          2.4569797300773764e-05,
+          6.061898242376719e-06
+        ],
+        "response_rms": 8.261978710652863e-06,
+        "ratios": [
+          0.08150483948718013,
+          0.33626564393319897,
+          1.3629358957060862
+        ],
+        "teacher_disagreement": 5.121712234646916e-15,
+        "response_GL24_GL40": 4.363803747595281e-17,
+        "teacher_wall_seconds": 0.007342392986174673,
+        "response_single_wall_seconds": 0.002919763035606593,
+        "df_path_single_wall_seconds": [
+          8.548598270863295e-05,
+          0.00016190001042559743,
+          0.00031745003070682287
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.121712234646916e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 4.363803747595281e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/25/0.003/0.75",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 25.0,
+        "kappa": 0.003,
+        "amplitude": 0.75,
+        "df_errors": [
+          0.00037384798222345086,
+          8.36144985725332e-05,
+          2.0452857223414187e-05
+        ],
+        "response_rms": 5.476510788173836e-05,
+        "ratios": [
+          0.14649031287001832,
+          0.6549714321880575,
+          2.6776262740955294
+        ],
+        "teacher_disagreement": 1.0458457789348499e-14,
+        "response_GL24_GL40": 3.666418408229467e-17,
+        "teacher_wall_seconds": 0.007558711979072541,
+        "response_single_wall_seconds": 0.0028958379989489913,
+        "df_path_single_wall_seconds": [
+          8.761999197304249e-05,
+          0.00016261101700365543,
+          0.00031030899845063686
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 1.0458457789348499e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.666418408229467e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/25/0.03/0.05",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 25.0,
+        "kappa": 0.03,
+        "amplitude": 0.05,
+        "df_errors": [
+          3.1051929214868796e-06,
+          9.81872934209926e-07,
+          2.6316518852346325e-07
+        ],
+        "response_rms": 1.9805963804181352e-08,
+        "ratios": [
+          0.006378336001969737,
+          0.020171616014773255,
+          0.07526057650446231
+        ],
+        "teacher_disagreement": 3.219902184359389e-14,
+        "response_GL24_GL40": 3.06364096188532e-17,
+        "teacher_wall_seconds": 0.007458834967110306,
+        "response_single_wall_seconds": 0.002946102002169937,
+        "df_path_single_wall_seconds": [
+          0.00011351797729730606,
+          0.00016149895964190364,
+          0.0003152870340272784
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 3.219902184359389e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.06364096188532e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/25/0.03/0.5",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 25.0,
+        "kappa": 0.03,
+        "amplitude": 0.5,
+        "df_errors": [
+          0.0005049056879652871,
+          0.00015351632564386512,
+          3.9807771946297676e-05
+        ],
+        "response_rms": 4.0513639589891076e-05,
+        "ratios": [
+          0.0802400142354436,
+          0.2639044376549023,
+          1.0177319053310907
+        ],
+        "teacher_disagreement": 2.2972455108483037e-14,
+        "response_GL24_GL40": 4.0480733399080734e-17,
+        "teacher_wall_seconds": 0.008897033985704184,
+        "response_single_wall_seconds": 0.0028974899905733764,
+        "df_path_single_wall_seconds": [
+          8.653802797198296e-05,
+          0.00016140897059813142,
+          0.0003200839855708182
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 2.2972455108483037e-14,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 4.0480733399080734e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/25/0.03/0.75",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 25.0,
+        "kappa": 0.03,
+        "amplitude": 0.75,
+        "df_errors": [
+          0.0016743882387463347,
+          0.0004905123274427513,
+          0.00012417297351521622
+        ],
+        "response_rms": 0.0002339837084446649,
+        "ratios": [
+          0.13974280458387334,
+          0.477019017370106,
+          1.8843368393363988
+        ],
+        "teacher_disagreement": 3.7568071308570715e-15,
+        "response_GL24_GL40": 3.1693604755622824e-17,
+        "teacher_wall_seconds": 0.010149129026103765,
+        "response_single_wall_seconds": 0.0034266640432178974,
+        "df_path_single_wall_seconds": [
+          8.731900015845895e-05,
+          0.00015837501268833876,
+          0.00031176203629001975
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 3.7568071308570715e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.1693604755622824e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/60/0.0003/0.05",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 60.0,
+        "kappa": 0.0003,
+        "amplitude": 0.05,
+        "df_errors": [
+          1.8134796931953742e-09,
+          5.971551148274986e-10,
+          1.6030166783488222e-10
+        ],
+        "response_rms": 4.609714319266132e-12,
+        "ratios": [
+          0.002541916701114947,
+          0.007719458822014359,
+          0.028756496308038046
+        ],
+        "teacher_disagreement": 5.924596493301052e-15,
+        "response_GL24_GL40": 3.093211381062617e-17,
+        "teacher_wall_seconds": 0.01421618100721389,
+        "response_single_wall_seconds": 0.0029114719945937395,
+        "df_path_single_wall_seconds": [
+          9.06839850358665e-05,
+          0.00016473396681249142,
+          0.00035290198866277933
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.924596493301052e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.093211381062617e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/60/0.0003/0.5",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 60.0,
+        "kappa": 0.0003,
+        "amplitude": 0.5,
+        "df_errors": [
+          4.1587113199121495e-07,
+          1.2268705779002733e-07,
+          2.9816295241678794e-08
+        ],
+        "response_rms": 1.387878433678127e-08,
+        "ratios": [
+          0.03337280053637975,
+          0.11312345887806768,
+          0.46547648607197756
+        ],
+        "teacher_disagreement": 6.284140604544309e-15,
+        "response_GL24_GL40": 4.149257916634062e-17,
+        "teacher_wall_seconds": 0.014182590995915234,
+        "response_single_wall_seconds": 0.0029385410016402602,
+        "df_path_single_wall_seconds": [
+          8.389400318264961e-05,
+          0.0001572929904796183,
+          0.00032863602973520756
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 6.284140604544309e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 4.149257916634062e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/60/0.0003/0.75",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 60.0,
+        "kappa": 0.0003,
+        "amplitude": 0.75,
+        "df_errors": [
+          2.2417824079639016e-06,
+          5.620609039519006e-07,
+          1.262493137037489e-07
+        ],
+        "response_rms": 1.3806588163311928e-07,
+        "ratios": [
+          0.06158754798977908,
+          0.24564220827736938,
+          1.0935970864530686
+        ],
+        "teacher_disagreement": 5.057725447999342e-15,
+        "response_GL24_GL40": 3.9308192017943e-17,
+        "teacher_wall_seconds": 0.014277312031481415,
+        "response_single_wall_seconds": 0.002857440966181457,
+        "df_path_single_wall_seconds": [
+          9.231700096279383e-05,
+          0.00016235001385211945,
+          0.00031378399580717087
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.057725447999342e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.9308192017943e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/60/0.003/0.05",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 60.0,
+        "kappa": 0.003,
+        "amplitude": 0.05,
+        "df_errors": [
+          1.6207388128521224e-08,
+          5.448420596095107e-09,
+          1.4749103982722953e-09
+        ],
+        "response_rms": 4.157088447971233e-11,
+        "ratios": [
+          0.0025649342232112815,
+          0.007629896361067693,
+          0.028185362669087093
+        ],
+        "teacher_disagreement": 5.683390419044337e-15,
+        "response_GL24_GL40": 3.767017584773969e-17,
+        "teacher_wall_seconds": 0.013812482997309417,
+        "response_single_wall_seconds": 0.003436699043959379,
+        "df_path_single_wall_seconds": [
+          8.31129727885127e-05,
+          0.00015802402049303055,
+          0.000310619012452662
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.683390419044337e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.767017584773969e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/60/0.003/0.5",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 60.0,
+        "kappa": 0.003,
+        "amplitude": 0.5,
+        "df_errors": [
+          3.618209442532147e-06,
+          1.11001172876906e-06,
+          2.7242795031017413e-07
+        ],
+        "response_rms": 1.2454212286613468e-07,
+        "ratios": [
+          0.03442092693754506,
+          0.1121989251449125,
+          0.4571561865232134
+        ],
+        "teacher_disagreement": 5.972062145367332e-15,
+        "response_GL24_GL40": 6.855934534263783e-17,
+        "teacher_wall_seconds": 0.013635370996780694,
+        "response_single_wall_seconds": 0.0028894180431962013,
+        "df_path_single_wall_seconds": [
+          8.474598871544003e-05,
+          0.00015584100037813187,
+          0.0003115309518761933
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.972062145367332e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 6.855934534263783e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/60/0.003/0.75",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 60.0,
+        "kappa": 0.003,
+        "amplitude": 0.75,
+        "df_errors": [
+          1.858945935302473e-05,
+          4.999460971894085e-06,
+          1.1224941523221415e-06
+        ],
+        "response_rms": 1.1996431123503782e-06,
+        "ratios": [
+          0.06453351275948656,
+          0.23995449091302418,
+          1.0687299438207638
+        ],
+        "teacher_disagreement": 4.618781311990051e-15,
+        "response_GL24_GL40": 3.6090099735813606e-17,
+        "teacher_wall_seconds": 0.014613378967624158,
+        "response_single_wall_seconds": 0.0029404539964161813,
+        "df_path_single_wall_seconds": [
+          8.438498480245471e-05,
+          0.00015732296742498875,
+          0.00031028897501528263
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 4.618781311990051e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.6090099735813606e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/60/0.03/0.05",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 60.0,
+        "kappa": 0.03,
+        "amplitude": 0.05,
+        "df_errors": [
+          8.62926723919825e-08,
+          3.535436440049533e-08,
+          1.0599988134233584e-08
+        ],
+        "response_rms": 2.5370177882429726e-10,
+        "ratios": [
+          0.0029400153198624176,
+          0.007175967751827063,
+          0.02393415686994453
+        ],
+        "teacher_disagreement": 5.5391325985241636e-15,
+        "response_GL24_GL40": 3.6773983758442446e-17,
+        "teacher_wall_seconds": 0.013823459972627461,
+        "response_single_wall_seconds": 0.0030998000293038785,
+        "df_path_single_wall_seconds": [
+          0.00010605697752907872,
+          0.0002173819812014699,
+          0.0003220670041628182
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 5.5391325985241636e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.6773983758442446e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/60/0.03/0.5",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 60.0,
+        "kappa": 0.03,
+        "amplitude": 0.5,
+        "df_errors": [
+          1.5938513919372402e-05,
+          6.5299844395509925e-06,
+          1.8271140946784039e-06
+        ],
+        "response_rms": 6.349785700438897e-07,
+        "ratios": [
+          0.03983925811754053,
+          0.09724044152355613,
+          0.34753088047063324
+        ],
+        "teacher_disagreement": 7.200312032054505e-15,
+        "response_GL24_GL40": 3.098700147622513e-17,
+        "teacher_wall_seconds": 0.01599343295674771,
+        "response_single_wall_seconds": 0.0029801730415783823,
+        "df_path_single_wall_seconds": [
+          0.00011195603292435408,
+          0.00016369298100471497,
+          0.00031487602973356843
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 7.200312032054505e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 3.098700147622513e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/-1/60/0.03/0.75",
+      "metrics": {
+        "mean": 0.85,
+        "sign": -1,
+        "r": 60.0,
+        "kappa": 0.03,
+        "amplitude": 0.75,
+        "df_errors": [
+          6.107050705357851e-05,
+          2.5068481065329978e-05,
+          6.5275049613352915e-06
+        ],
+        "response_rms": 4.563258687978721e-06,
+        "ratios": [
+          0.07472115278124795,
+          0.18203171847893745,
+          0.6990816115818383
+        ],
+        "teacher_disagreement": 7.0500801153439405e-15,
+        "response_GL24_GL40": 2.1614398852101193e-17,
+        "teacher_wall_seconds": 0.017275149992201477,
+        "response_single_wall_seconds": 0.003254419018048793,
+        "df_path_single_wall_seconds": [
+          8.65079928189516e-05,
+          0.00026597396936267614,
+          0.0003831670037470758
+        ],
+        "timing_scope": "Unpaired CPU diagnostic timers including unused path derivative; not deployment latency",
+        "independent_shape_template": "hole"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "teacher_refinement",
+          "category": "correctness",
+          "measured": 7.0500801153439405e-15,
+          "target": 1e-10,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "response_GL24_GL40",
+          "category": "correctness",
+          "measured": 2.1614398852101193e-17,
+          "target": 1e-09,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A7/designed_panel_summary",
+      "metrics": {
+        "designed_cases": 54,
+        "independent_shape_templates": 2,
+        "wins_vs_df_1_2_4": [
+          54,
+          45,
+          29
+        ],
+        "median_ratios_vs_df_1_2_4": [
+          0.04355330137642874,
+          0.2013003206401467,
+          0.8235314036666701
+        ],
+        "worst_ratio_vs_df": 0.3638669357124072,
+        "analytic_vs_autograd_derivative": 1.3102572085002173e-15,
+        "analytic_vs_central_derivative": 2.7602681930804075e-10,
+        "claim": "Designed numerical control; no trained model and no speedup claim"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "analytic_vs_autograd_path_derivative",
+          "category": "correctness",
+          "measured": 1.3102572085002173e-15,
+          "target": 1e-11,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "path_finite_difference",
+          "category": "correctness",
+          "measured": 2.7602681930804075e-10,
+          "target": 1e-08,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A8/true_variance_clock",
+      "metrics": {
+        "integral_z": 0.021654800172313454,
+        "quadrature_error_estimate": 2.4041657744959203e-16,
+        "effective_time": 0.09834519982768654,
+        "teacher_mean": 0.67349359944128,
+        "clock_mean": 0.6734935994412781,
+        "discrepancy": 1.887379141862766e-15,
+        "scope": "Uses future true variance; not available at deployment"
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "conditional_clock_identity",
+          "category": "correctness",
+          "measured": 1.887379141862766e-15,
+          "target": 1e-11,
+          "relation": "le",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    },
+    {
+      "probe": "A9/initialization",
+      "metrics": {
+        "all_zero_gradients": [
+          -0.0,
+          -0.0,
+          -0.0
+        ],
+        "final_gate_zero_gradients": [
+          -8.0,
+          -0.0,
+          -0.0
+        ],
+        "post_gate_update_gradients": [
+          -7.68,
+          -0.0768,
+          -0.0768
+        ]
+      },
+      "config": {},
+      "checks": [
+        {
+          "check_id": "dead_product_detected",
+          "category": "correctness",
+          "measured": 0.0,
+          "target": 0,
+          "relation": "eq",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "gate_live",
+          "category": "correctness",
+          "measured": 8.0,
+          "target": 0,
+          "relation": "gt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        },
+        {
+          "check_id": "trunk_awakes",
+          "category": "correctness",
+          "measured": 0.0768,
+          "target": 0,
+          "relation": "gt",
+          "units": "",
+          "required": true,
+          "applicable": true,
+          "verdict": "GOOD",
+          "score_1_100": 100,
+          "weight": 2,
+          "reason": "",
+          "evidence_kind": "numerical_test",
+          "nonfinite": false,
+          "proof_status": "NOT_A_PROOF"
+        }
+      ]
+    }
+  ],
+  "complete": true
+}

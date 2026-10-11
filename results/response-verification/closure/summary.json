@@ -1,0 +1,1778 @@
+{
+  "schema": "tdn.response-standalone-closure-verification/v1",
+  "verification_scope": "Standalone unsealed CPU development module probe; not native Fedora, not fresh confirmation, not an end-to-end DAG",
+  "actual_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python results/response-verification/closure/run_probe.py",
+  "protocol": {
+    "profile": "pilot",
+    "root_seed": 112010001,
+    "response": {
+      "closure": {
+        "train_parents": 32,
+        "validation_parents": 16,
+        "test_parents": 16,
+        "noise_levels": [
+          0.0,
+          0.0001,
+          0.001
+        ],
+        "rollout_steps": 32,
+        "coarse_cutoff": 6,
+        "shadow_cutoff": 12,
+        "fine_cutoff": 18,
+        "step": 0.01,
+        "kappa": 0.0005,
+        "reaction": 0.7,
+        "step_multipliers": [
+          1.0,
+          2.0
+        ],
+        "reaction_rates": [
+          0.7,
+          2.1
+        ],
+        "ridges": [
+          1e-05,
+          0.001,
+          0.1
+        ]
+      }
+    }
+  },
+  "source_hashes": {
+    "tdn/__init__.py": "223732eebd72d22003be3d9c44c76fc4af3fb241a1843932c7f1ccbdf15f3696",
+    "tdn/analysis/__init__.py": "4d5a5b2f79d242c2e9cedba4aa195e0a1444c2ae6cd7f8dfe14456bebc3995aa",
+    "tdn/numerics/types.py": "686ac3a165734367dbd1a6273e1a88225a012f49bfdc840bf09bd1667a9d81c7",
+    "tdn/numerics/operators.py": "a590a0debed272d6cfb0fe9a2ddd721e8e6c1e77caf36145d38805048ff2296d",
+    "tdn/numerics/subflows.py": "49f261759e67a406cb2e2b6fc079f722740f329a9eaf99ca2ecc63f6d9199e54",
+    "tdn/numerics/splitting.py": "747ab253542efbd8e172d10578cb2b9936dc81e9b806072e5fce28ff73429fae",
+    "tdn/numerics/invariants.py": "dc1c567a80ff1bda2c6e49d30888511cd79f7cf91091e7f0676ac341c79179bd",
+    "tdn/numerics/reference.py": "1cc2c2998c1be83a4e01a41c6fa8c95a1485a1b0f0bea5fcb5bbb47e80cf4ff2",
+    "tdn/numerics/__init__.py": "20ea4f1839c4056379eaf1041b70fa59781a2646a1083a9e983624c25fd40bf2",
+    "tdn/analysis/response/contracts.py": "f8e7e7487a230fa8a9bf2077a82ee882b4f37f3d1537cac4b2fae1fce09a77a7",
+    "tdn/analysis/response/__init__.py": "0629f0360baa3fa7f9769f642bf062baedb565719c0c296cedf231c84c0a9096",
+    "tdn/analysis/frontier/__init__.py": "52d7fdae8257786323353be778af89ca75b289801e0ce75a1a93584e26b72a80",
+    "tdn/research/__init__.py": "333bb0324554937b35b03dfed58e85375c80041acb89e592d78ba7d616a4c61d",
+    "tdn/research/protocol.py": "70ea868367a7f273eb9bd24fcb0dcbab245a2ecfb6fa8e0e71881f59f8139e43",
+    "tdn/analysis/frontier/core.py": "a755c72771c0b514985caf0b141c04049cf6c56d7241dab198fd31d01713f5cd",
+    "tdn/analysis/response/fields.py": "69e5a3217cefac587c82cb0d5c3c2f3c42515fa11d0af72df8702fd2c53246e5",
+    "tdn/analysis/response/closure.py": "72b974242439f260a12a1ebe85ab977f8b917e4e6b64968a7abe3b4332666be3"
+  },
+  "software": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.10.0+cpu",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41"
+  },
+  "result_sha256": "0d38c141228fc47d74a26ebcb79610faed012617a7c7e1176a23198e47e0e43a",
+  "module_results": {
+    "rows": 1152,
+    "shadow_rows": 256,
+    "independent_test_parents": 16,
+    "elapsed_seconds": 6.813861345988698
+  },
+  "source_artifact": ".runtime/response-module-checks/closure-verification/closure_results.json",
+  "cost": {
+    "elapsed_seconds": 6.813861345988698,
+    "fit_seconds": 0.018259607953950763,
+    "validation_selection_seconds": 2.011080979835242,
+    "onset_seconds": 0.011340807017404586,
+    "training_teacher_seconds": 0.1195057739969343,
+    "all_teacher_seconds": 0.7742875459953211
+  },
+  "onset": {
+    "reaction_only": [
+      {
+        "h": 0.0025,
+        "measured_rms": 3.366010494265043e-08,
+        "leading_h2_rms": 3.355995074772091e-08,
+        "coefficient_relative_error": 0.003088997449924347,
+        "reference_uncertainty_rms": 0.0
+      },
+      {
+        "h": 0.005,
+        "measured_rms": 1.350367959135817e-07,
+        "leading_h2_rms": 1.3423980299088364e-07,
+        "coefficient_relative_error": 0.00614839814288652,
+        "reference_uncertainty_rms": 0.0
+      },
+      {
+        "h": 0.01,
+        "measured_rms": 5.432664676647825e-07,
+        "leading_h2_rms": 5.369592119635346e-07,
+        "coefficient_relative_error": 0.012176960608624342,
+        "reference_uncertainty_rms": 0.0
+      },
+      {
+        "h": 0.02,
+        "measured_rms": 2.1971694339237427e-06,
+        "leading_h2_rms": 2.1478368478541382e-06,
+        "coefficient_relative_error": 0.02386330248854582,
+        "reference_uncertainty_rms": 0.0
+      }
+    ],
+    "observed_orders": [
+      2.0042409983072136,
+      2.0083074234889384,
+      2.01591422034585
+    ],
+    "initially_hidden": [
+      {
+        "h": 0.0005,
+        "measured_rms": 6.477965123602472e-06,
+        "first_order_relative_error": 0.00041296242455706925
+      },
+      {
+        "h": 0.001,
+        "measured_rms": 1.295962560475694e-05,
+        "first_order_relative_error": 0.0008253095544872967
+      },
+      {
+        "h": 0.002,
+        "measured_rms": 2.5933942511904315e-05,
+        "first_order_relative_error": 0.001648160527083269
+      }
+    ],
+    "physical_statement": "Initially resolved closure begins at h\u00b2 even when kappa=0; nonzero initial hidden state generally permits an h term"
+  },
+  "comparisons": [
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.5234906932373657,
+      "lower_error_parent_count": 15,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.2863590219127076,
+      "lower_error_parent_count": 16,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 6.316621015829005,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.8145130233418513,
+      "lower_error_parent_count": 14,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0894003138588115,
+      "lower_error_parent_count": 6,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 6.0645178037878615,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.7548994122564303,
+      "lower_error_parent_count": 13,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.008555714077199,
+      "lower_error_parent_count": 8,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.5931921927741417,
+      "lower_error_parent_count": 11,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.3677206134676675,
+      "lower_error_parent_count": 16,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 4.8725833018227585,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.8417171007618763,
+      "lower_error_parent_count": 14,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0686025096532052,
+      "lower_error_parent_count": 5,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 7.174149832212359,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.633619226701188,
+      "lower_error_parent_count": 16,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 0.7,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.9777899281440643,
+      "lower_error_parent_count": 10,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.4542617075862391,
+      "lower_error_parent_count": 16,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.49880238833990503,
+      "lower_error_parent_count": 16,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 3.705766852195216,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.8947742156555124,
+      "lower_error_parent_count": 11,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0140115800240812,
+      "lower_error_parent_count": 6,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 6.323662724171564,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.6960571191184638,
+      "lower_error_parent_count": 16,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.01,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.9679600514892571,
+      "lower_error_parent_count": 8,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.593488289278504,
+      "lower_error_parent_count": 12,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.5054653847048125,
+      "lower_error_parent_count": 16,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 3.555090793529179,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.9040408086706545,
+      "lower_error_parent_count": 8,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.0001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.013380901470026,
+      "lower_error_parent_count": 7,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_memory",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 5.790105330566483,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "clean_fitted_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "damped_secant",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.0,
+      "lower_error_parent_count": 0,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "deterministic_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 0.7339045537860933,
+      "lower_error_parent_count": 16,
+      "new_bound_violation_parents": 0,
+      "decision": "PROMISING_DEVELOPMENT_SIGNAL",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    },
+    {
+      "method": "noise_aware_observer",
+      "comparator": "coarse_rk4",
+      "noise": 0.001,
+      "reaction_rate": 2.1,
+      "h": 0.02,
+      "attempted_parents": 16,
+      "eligible_parents": 16,
+      "rollout_rms_geometric_ratio": 1.076520194028633,
+      "lower_error_parent_count": 4,
+      "new_bound_violation_parents": 0,
+      "decision": "NO_DECLARED_DEVELOPMENT_GAIN",
+      "interpretation": "descriptive independent-parent development effects; not fresh confirmation or adjusted inference"
+    }
+  ],
+  "selections": [
+    {
+      "noise": 0.0,
+      "method": "coarse_rk4",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": null,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.8345740951978713e-09,
+          "elapsed_seconds": 0.022030588996130973,
+          "gain": null,
+          "decay": null,
+          "ridge": null
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0,
+      "method": "deterministic_observer",
+      "selected_gain": 0.0,
+      "selected_decay": null,
+      "selected_ridge": null,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.8345740951978713e-09,
+          "elapsed_seconds": 0.021727271028794348,
+          "gain": 0.0,
+          "decay": null,
+          "ridge": null
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 1.888617793327446e-09,
+          "elapsed_seconds": 0.022234181000385433,
+          "gain": 0.25,
+          "decay": null,
+          "ridge": null
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 1.9436930338465995e-09,
+          "elapsed_seconds": 0.021796913992147893,
+          "gain": 0.5,
+          "decay": null,
+          "ridge": null
+        },
+        {
+          "candidate": 3,
+          "validation_mse": 1.9997998155437287e-09,
+          "elapsed_seconds": 0.021959735022392124,
+          "gain": 0.75,
+          "decay": null,
+          "ridge": null
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0,
+      "method": "damped_secant",
+      "selected_gain": 1.0,
+      "selected_decay": 1.0,
+      "selected_ridge": null,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.8345740951978713e-09,
+          "elapsed_seconds": 0.021711126959417015,
+          "gain": 0.0,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 1.8345740951978713e-09,
+          "elapsed_seconds": 0.020738507038913667,
+          "gain": 0.0,
+          "decay": 1.0,
+          "ridge": null
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 1.763905721767494e-09,
+          "elapsed_seconds": 0.04168452200246975,
+          "gain": 0.25,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 3,
+          "validation_mse": 1.7641196160000456e-09,
+          "elapsed_seconds": 0.042869794997386634,
+          "gain": 0.25,
+          "decay": 1.0,
+          "ridge": null
+        },
+        {
+          "candidate": 4,
+          "validation_mse": 1.6281310087847186e-09,
+          "elapsed_seconds": 0.04181629704544321,
+          "gain": 0.5,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 5,
+          "validation_mse": 1.6307630413920192e-09,
+          "elapsed_seconds": 0.04185092798434198,
+          "gain": 0.5,
+          "decay": 1.0,
+          "ridge": null
+        },
+        {
+          "candidate": 6,
+          "validation_mse": 2.3247270331490607e-10,
+          "elapsed_seconds": 0.04177084000548348,
+          "gain": 1.0,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 7,
+          "validation_mse": 1.6467647842866794e-10,
+          "elapsed_seconds": 0.04097229603212327,
+          "gain": 1.0,
+          "decay": 1.0,
+          "ridge": null
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0,
+      "method": "clean_fitted_observer",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": 1e-05,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.8345740951978713e-09,
+          "elapsed_seconds": 0.02333078399533406,
+          "gain": null,
+          "decay": null,
+          "ridge": 1e-05
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0,
+      "method": "noise_aware_observer",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": 1e-05,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.8345740951978713e-09,
+          "elapsed_seconds": 0.023018772015348077,
+          "gain": null,
+          "decay": null,
+          "ridge": 1e-05
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 1.8345740951978713e-09,
+          "elapsed_seconds": 0.023595876002218574,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.001
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 1.8345740951978713e-09,
+          "elapsed_seconds": 0.02277534198947251,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.1
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0,
+      "method": "clean_fitted_memory",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": 0.001,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 4.541091315040305e-10,
+          "elapsed_seconds": 0.05687478696927428,
+          "gain": null,
+          "decay": null,
+          "ridge": 1e-05
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 3.4643854914920627e-10,
+          "elapsed_seconds": 0.055349988979287446,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.001
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 1.5315844876475864e-09,
+          "elapsed_seconds": 0.05647928098915145,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.1
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0001,
+      "method": "coarse_rk4",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": null,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.235464193011788e-08,
+          "elapsed_seconds": 0.021238807996269315,
+          "gain": null,
+          "decay": null,
+          "ridge": null
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0001,
+      "method": "deterministic_observer",
+      "selected_gain": 0.5,
+      "selected_decay": null,
+      "selected_ridge": null,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.235464193011788e-08,
+          "elapsed_seconds": 0.02218044101027772,
+          "gain": 0.0,
+          "decay": null,
+          "ridge": null
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 8.591825085084032e-09,
+          "elapsed_seconds": 0.022998442000243813,
+          "gain": 0.25,
+          "decay": null,
+          "ridge": null
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 6.829064426766171e-09,
+          "elapsed_seconds": 0.022081054048612714,
+          "gain": 0.5,
+          "decay": null,
+          "ridge": null
+        },
+        {
+          "candidate": 3,
+          "validation_mse": 7.06636102199682e-09,
+          "elapsed_seconds": 0.021880527958273888,
+          "gain": 0.75,
+          "decay": null,
+          "ridge": null
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0001,
+      "method": "damped_secant",
+      "selected_gain": 0.0,
+      "selected_decay": 0.0,
+      "selected_ridge": null,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.235464193011788e-08,
+          "elapsed_seconds": 0.02101328398566693,
+          "gain": 0.0,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 1.235464193011788e-08,
+          "elapsed_seconds": 0.02180084999417886,
+          "gain": 0.0,
+          "decay": 1.0,
+          "ridge": null
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 2.0411268603821227e-08,
+          "elapsed_seconds": 0.04247861698968336,
+          "gain": 0.25,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 3,
+          "validation_mse": 2.0382595481007503e-08,
+          "elapsed_seconds": 0.042301314999349415,
+          "gain": 0.25,
+          "decay": 1.0,
+          "ridge": null
+        },
+        {
+          "candidate": 4,
+          "validation_mse": 4.6131187977304114e-08,
+          "elapsed_seconds": 0.043271078960970044,
+          "gain": 0.5,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 5,
+          "validation_mse": 4.5530310851967454e-08,
+          "elapsed_seconds": 0.04341160896001384,
+          "gain": 0.5,
+          "decay": 1.0,
+          "ridge": null
+        },
+        {
+          "candidate": 6,
+          "validation_mse": 6.170262458453697e-06,
+          "elapsed_seconds": 0.04227432404877618,
+          "gain": 1.0,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 7,
+          "validation_mse": 2.389624760131246e-06,
+          "elapsed_seconds": 0.041814454016275704,
+          "gain": 1.0,
+          "decay": 1.0,
+          "ridge": null
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0001,
+      "method": "clean_fitted_observer",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": 1e-05,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.235464193011788e-08,
+          "elapsed_seconds": 0.023620243009645492,
+          "gain": null,
+          "decay": null,
+          "ridge": 1e-05
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0001,
+      "method": "noise_aware_observer",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": 0.1,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 2.2573456945808403e-08,
+          "elapsed_seconds": 0.02428885200060904,
+          "gain": null,
+          "decay": null,
+          "ridge": 1e-05
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 2.2012017346892375e-08,
+          "elapsed_seconds": 0.02274277398828417,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.001
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 1.1759318063294529e-08,
+          "elapsed_seconds": 0.02369565499247983,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.1
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.0001,
+      "method": "clean_fitted_memory",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": 0.1,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 4.60174938981838e-06,
+          "elapsed_seconds": 0.05623309698421508,
+          "gain": null,
+          "decay": null,
+          "ridge": 1e-05
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 3.016806167892819e-06,
+          "elapsed_seconds": 0.055040019971784204,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.001
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 4.6741078376035957e-07,
+          "elapsed_seconds": 0.05517355800839141,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.1
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.001,
+      "method": "coarse_rk4",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": null,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.007695869405803e-06,
+          "elapsed_seconds": 0.0220008059986867,
+          "gain": null,
+          "decay": null,
+          "ridge": null
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.001,
+      "method": "deterministic_observer",
+      "selected_gain": 0.5,
+      "selected_decay": null,
+      "selected_ridge": null,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.007695869405803e-06,
+          "elapsed_seconds": 0.021197746973484755,
+          "gain": 0.0,
+          "decay": null,
+          "ridge": null
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 5.885987946868127e-07,
+          "elapsed_seconds": 0.02235179499257356,
+          "gain": 0.25,
+          "decay": null,
+          "ridge": null
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 4.261477235593804e-07,
+          "elapsed_seconds": 0.024053403991274536,
+          "gain": 0.5,
+          "decay": null,
+          "ridge": null
+        },
+        {
+          "candidate": 3,
+          "validation_mse": 5.20342978813327e-07,
+          "elapsed_seconds": 0.022645559976808727,
+          "gain": 0.75,
+          "decay": null,
+          "ridge": null
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.001,
+      "method": "damped_secant",
+      "selected_gain": 0.0,
+      "selected_decay": 0.0,
+      "selected_ridge": null,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.007695869405803e-06,
+          "elapsed_seconds": 0.02155990299070254,
+          "gain": 0.0,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 1.007695869405803e-06,
+          "elapsed_seconds": 0.02203363395528868,
+          "gain": 0.0,
+          "decay": 1.0,
+          "ridge": null
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 1.9554905828413825e-06,
+          "elapsed_seconds": 0.042474440997466445,
+          "gain": 0.25,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 3,
+          "validation_mse": 1.9520715697428704e-06,
+          "elapsed_seconds": 0.04259038303280249,
+          "gain": 0.25,
+          "decay": 1.0,
+          "ridge": null
+        },
+        {
+          "candidate": 4,
+          "validation_mse": 5.083283805483398e-06,
+          "elapsed_seconds": 0.04324468196136877,
+          "gain": 0.5,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 5,
+          "validation_mse": 5.009563489336452e-06,
+          "elapsed_seconds": 0.042368433030787855,
+          "gain": 0.5,
+          "decay": 1.0,
+          "ridge": null
+        },
+        {
+          "candidate": 6,
+          "validation_mse": 0.0007799084671343187,
+          "elapsed_seconds": 0.04259336699033156,
+          "gain": 1.0,
+          "decay": 0.0,
+          "ridge": null
+        },
+        {
+          "candidate": 7,
+          "validation_mse": 0.00030141868057607317,
+          "elapsed_seconds": 0.04288024199195206,
+          "gain": 1.0,
+          "decay": 1.0,
+          "ridge": null
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.001,
+      "method": "clean_fitted_observer",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": 1e-05,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 1.007695869405803e-06,
+          "elapsed_seconds": 0.022922150033991784,
+          "gain": null,
+          "decay": null,
+          "ridge": 1e-05
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.001,
+      "method": "noise_aware_observer",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": 0.1,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 2.3348884111234037e-06,
+          "elapsed_seconds": 0.02215047797653824,
+          "gain": null,
+          "decay": null,
+          "ridge": 1e-05
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 2.224427388518207e-06,
+          "elapsed_seconds": 0.024002458958420902,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.001
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 9.045034761984953e-07,
+          "elapsed_seconds": 0.02274542796658352,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.1
+        }
+      ],
+      "selection_split": "validation"
+    },
+    {
+      "noise": 0.001,
+      "method": "clean_fitted_memory",
+      "selected_gain": null,
+      "selected_decay": null,
+      "selected_ridge": 0.1,
+      "rows": [
+        {
+          "candidate": 0,
+          "validation_mse": 0.0005681835809888371,
+          "elapsed_seconds": 0.05621127301128581,
+          "gain": null,
+          "decay": null,
+          "ridge": 1e-05
+        },
+        {
+          "candidate": 1,
+          "validation_mse": 0.00035609628249142075,
+          "elapsed_seconds": 0.05981131305452436,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.001
+        },
+        {
+          "candidate": 2,
+          "validation_mse": 5.447171331923777e-05,
+          "elapsed_seconds": 0.05711664498085156,
+          "gain": null,
+          "decay": null,
+          "ridge": 0.1
+        }
+      ],
+      "selection_split": "validation"
+    }
+  ],
+  "hidden_ambiguity": [
+    {
+      "parent_id": "response-closure-development_test-00000-c0f7f43867c7e62",
+      "matched_coarse_initial_sha256": "83b31897c49ccbd1f1e3a086d88a547186260533914328b035e710fd5685f142",
+      "future_coarse_rms_separation": 9.777378136962038e-06,
+      "one_observation_conditional_rms_lower_bound": 4.888689068481019e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00001-bd21998c811183c",
+      "matched_coarse_initial_sha256": "263471eaee28e791f0c9c5f599415f925dd1e7f65776ed787cd3ad142ca20b13",
+      "future_coarse_rms_separation": 1.9322902518976987e-06,
+      "one_observation_conditional_rms_lower_bound": 9.661451259488493e-07,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00002-5fa0444951b2883",
+      "matched_coarse_initial_sha256": "5ebb2a962d61c1d7795e4aa47a23ca471688a0c2b155471f5622c818e50cc60a",
+      "future_coarse_rms_separation": 9.524751594590865e-07,
+      "one_observation_conditional_rms_lower_bound": 4.7623757972954327e-07,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00003-a3a0eef711bd572",
+      "matched_coarse_initial_sha256": "7d47648886438af70cbe9ab8bebb01ff9165bcc4dffa59e1e6cc781dbe43dae1",
+      "future_coarse_rms_separation": 6.450361481945106e-06,
+      "one_observation_conditional_rms_lower_bound": 3.225180740972553e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00004-601324ba82f8d3be",
+      "matched_coarse_initial_sha256": "d910d26fec43d4879cfd23263aff7f64f7b3de2f44d69daef6bc9f28df4b0d8b",
+      "future_coarse_rms_separation": 5.854341951785982e-06,
+      "one_observation_conditional_rms_lower_bound": 2.927170975892991e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00005-6bed28f7a6a4ad58",
+      "matched_coarse_initial_sha256": "c5d3b309bb56af4737e0f65f1c192123d6171f2006a39fac50b8a7dbc8d8d2fe",
+      "future_coarse_rms_separation": 7.476665420307818e-06,
+      "one_observation_conditional_rms_lower_bound": 3.738332710153909e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00006-5246390520ab542e",
+      "matched_coarse_initial_sha256": "14f9646b55573425f7b77258286fa518f28be19bdb35b2b3b7af8996cf1ec657",
+      "future_coarse_rms_separation": 1.1550916284742788e-06,
+      "one_observation_conditional_rms_lower_bound": 5.775458142371394e-07,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00007-593c9cd1eb876d7a",
+      "matched_coarse_initial_sha256": "099379e881a1132871cd19cee572b065550e2db9b2d37521c380c0bb4f447b80",
+      "future_coarse_rms_separation": 8.302970749591171e-06,
+      "one_observation_conditional_rms_lower_bound": 4.1514853747955855e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00008-9f271a3e752b23b",
+      "matched_coarse_initial_sha256": "1e47bd7a89977469b6ec693a0a31f2e986d32d62411b70a720127b4a9786813d",
+      "future_coarse_rms_separation": 4.0937127156311515e-07,
+      "one_observation_conditional_rms_lower_bound": 2.0468563578155758e-07,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00009-45db161573198499",
+      "matched_coarse_initial_sha256": "8c75b1d216030cbfbc36e31f7a08f2f77c8357b42d1dd3c13c18c5d2e0d81ec8",
+      "future_coarse_rms_separation": 1.1008131769590948e-06,
+      "one_observation_conditional_rms_lower_bound": 5.504065884795474e-07,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00010-5fe0fa0006caf5e5",
+      "matched_coarse_initial_sha256": "769e785282de502ae2e63bd7a7c4efc6d1e33310cbf41ebcdaeea20b4ce3b51f",
+      "future_coarse_rms_separation": 8.66591215364318e-06,
+      "one_observation_conditional_rms_lower_bound": 4.33295607682159e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00011-69e7b50d156b2957",
+      "matched_coarse_initial_sha256": "3e60052e7cb08f62f1a013c0cc552ef4e5957cfb665c7ea59346f283f52f09da",
+      "future_coarse_rms_separation": 5.914803066205526e-06,
+      "one_observation_conditional_rms_lower_bound": 2.957401533102763e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00012-592c4b5005270e4b",
+      "matched_coarse_initial_sha256": "feb7ba2fb97c83c2fd70b12656cef1ad8000d0ecfae31b3403fa14e17b39f8b7",
+      "future_coarse_rms_separation": 6.564543079592979e-06,
+      "one_observation_conditional_rms_lower_bound": 3.2822715397964893e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00013-52b126d1df013be0",
+      "matched_coarse_initial_sha256": "56197d48a5e5ee353f00560a80cdd3bf844fc29c8862440996bd131c129124ab",
+      "future_coarse_rms_separation": 1.176462922542841e-06,
+      "one_observation_conditional_rms_lower_bound": 5.882314612714205e-07,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00014-62fb23bc6a9e4bf6",
+      "matched_coarse_initial_sha256": "73f67aefa386feae24160cf4773c28c20b0d0035f6702bfc69392ea754681754",
+      "future_coarse_rms_separation": 3.3144586647207935e-06,
+      "one_observation_conditional_rms_lower_bound": 1.6572293323603967e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    },
+    {
+      "parent_id": "response-closure-development_test-00015-58bed8ce13ddf34e",
+      "matched_coarse_initial_sha256": "627ffbe5562104cb8d0a77118ca113be82600bcd6ccc0664e7727943db0d33e3",
+      "future_coarse_rms_separation": 8.104394417041158e-06,
+      "one_observation_conditional_rms_lower_bound": 4.052197208520579e-06,
+      "lower_bound_scope": "equiprobable hidden-phase twins with exactly identical coarse input; not a bound after two distinct observations",
+      "reference_uncertainty_rms": 0.0
+    }
+  ],
+  "independent_test_parents": 16,
+  "teacher_references": 224,
+  "unresolved_teacher_references": 0,
+  "maximum_reference_uncertainty": 2.01682542214545e-10,
+  "failed_predictions": 0,
+  "retained_raw_scope": "Concise comparisons and provenance only; original detailed arrays remain in project-local ignored runtime workspace"
+}

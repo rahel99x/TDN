@@ -50,13 +50,13 @@ COLUMNS = {
         "missing_stages", "failed_checks", "na_checks", "failed_checks_record", "na_checks_record", "gaps_record", "mathematical_significance"],
     "artifacts": ["source_path", "bytes", "kind", "sha256", "hash_status", "manifest_path"],
 }
-LEARNING_FIELDS = ("model_id", "family", "track", "seed", "train_count", "phase", "trial_id", "optimizer_control", "update",
+LEARNING_FIELDS = ("model_id", "family", "track", "target_kind", "variant_id", "method_id", "seed", "train_count", "data_count", "phase", "trial_id", "optimizer_control", "update",
     "train_loss", "validation_loss", "validation_rms", "validation_max", "validation_measured",
     "learning_rate", "gradient_norm", "elapsed_seconds", "update_seconds", "examples_seen",
     "parameters", "trainable_parameters", "device", "status", "error")
 COLUMNS["learning_curves"] = PREFIX + list(LEARNING_FIELDS)
 COLUMNS["metric_lineage"] = PREFIX + ["metric_ordinal", "phase", "step", "model_id", "family",
-    "track", "seed", "train_count", "trial_phase", "trial_id", "observation_kind", "timestamp_scope"]
+    "track", "target_kind", "variant_id", "method_id", "seed", "train_count", "data_count", "trial_phase", "trial_id", "observation_kind", "timestamp_scope"]
 _ASCII_CONTROLS = re.compile(r"[\x00-\x1f]")
 
 
@@ -130,7 +130,7 @@ def _candidates(root):
             document = _decode(path.read_bytes())
             protocol = document.get("scientific_protocol", document)
             units = protocol.get("units", {})
-            if (protocol.get("schema") == "tdn.resolve/v1" and isinstance(units, dict)
+            if (protocol.get("schema") in ("tdn.resolve/v1", "tdn.response/v1") and isinstance(units, dict)
                     and len(units) <= 1024 and all(isinstance(name,str) and
                         re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*",name) for name in units)):
                 resolve_units = [root/name for name in units]
@@ -145,6 +145,7 @@ def is_frontier_root(root):
     for candidate in _candidates(root):
         for name, token in (("rows.json", b'"tdn.frontier-rows/v1"'), ("protocol.json", b'"tdn.frontier/v1"'),
                             ("protocol.json", b'"tdn.resolve/v1"'),
+                            ("protocol.json", b'"tdn.response/v1"'),
                             ("rows.jsonl", b'"tdn.frontier-experiment/v1"')):
             path = candidate / name
             try:
@@ -282,20 +283,32 @@ def _source(root, report, budget, delegated):
         if "COMPLETED" in contents:
             protocol = documents.get("protocol.json", {})
             resolve = protocol.get("schema") == "tdn.resolve/v1"
-            if resolve:
+            response = protocol.get("schema") == "tdn.response/v1"
+            research = resolve or response
+            if research:
+                program = "response" if response else "resolve"
                 unit = protocol.get("units", {}).get(stage, {})
-                if (manifest.get("schema") != "tdn.resolve-science/v1" or manifest.get("stage") != stage
+                if (manifest.get("schema") != f"tdn.{program}-science/v1" or manifest.get("stage") != stage
                         or not unit or unit.get("id") != stage or manifest.get("kind") != unit.get("kind")
-                        or manifest.get("unit_sha256") != canonical_digest(unit)
-                        or protocol.get("scientific_scope") != "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS"
-                        or protocol.get("confirmation", {}).get("enabled") is not False):
-                    raise ValueError("Resolve science unit, development scope or protocol schema differs")
+                        or manifest.get("unit_sha256") != canonical_digest(unit)):
+                    raise ValueError("Research science unit or protocol schema differs")
+                confirm = protocol.get("confirmation", {}).get("enabled")
+                if resolve or protocol.get("profile") != "confirmation":
+                    if (protocol.get("scientific_scope") != "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS"
+                            or confirm is not False):
+                        raise ValueError("Development science must not claim confirmation")
+                elif (protocol.get("scientific_scope") != "FROZEN_CONFIRMATION" or confirm is not True
+                        or not isinstance(protocol.get("freeze"), dict)
+                        or not all(isinstance(protocol["freeze"].get(key), str) and
+                            re.fullmatch(r"[0-9a-f]{64}", protocol["freeze"][key])
+                            for key in ("sha256", "source_tree_sha256", "protocol_sha256"))):
+                    raise ValueError("Response confirmation requires its explicit frozen identity")
                 source_hash = manifest.get("source_tree_sha256")
                 if (not isinstance(source_hash, str) or not re.fullmatch(r"[0-9a-f]{64}", source_hash)
                         or manifest.get("software", {}).get("source_tree_sha256") != source_hash
                         or manifest.get("device") not in ("cpu","cuda")):
                     raise ValueError("Resolve scientific software/source identity differs")
-                expected_summary = {"schema": "tdn.resolve/v1", "stage": stage,
+                expected_summary = {"schema": f"tdn.{program}/v1", "stage": stage,
                     "protocol_sha256": manifest.get("protocol_sha256"), "source_tree_sha256": source_hash,
                     "device": manifest.get("device")}
                 if any(documents.get("summary.json", {}).get(k) != v for k,v in expected_summary.items()):
@@ -328,8 +341,8 @@ def _source(root, report, budget, delegated):
             if "execution.json" in documents:
                 seal = documents.get("workflow-seal.json", {})
                 expected_files = ("execution.json", "protocol.json", "stage.json", "science_manifest.json")
-                if (seal.get("schema") != ("tdn.resolve/v1" if resolve else "tdn.frontier/v1")
-                        or (not resolve and seal.get("schema_version") != 1)
+                if (seal.get("schema") != (protocol["schema"] if research else "tdn.frontier/v1")
+                        or (not research and seal.get("schema_version") != 1)
                         or seal.get("protocol_sha256") != manifest.get("protocol_sha256")
                         or set(seal.get("files", {})) != set(expected_files)):
                     raise ValueError("Wrapper protocol seal differs from scientific lineage")
@@ -375,7 +388,8 @@ def _source(root, report, budget, delegated):
             status, reason = "INVALID", str(error)
             budget.omit(root, reason)
     return rows, {"physical_stage": root.name if partition else stage,
-        "program": "resolve" if documents.get("protocol.json", {}).get("schema") == "tdn.resolve/v1" else "frontier",
+        "program": {"tdn.resolve/v1": "resolve", "tdn.response/v1": "response"}.get(
+            documents.get("protocol.json", {}).get("schema"), "frontier"),
         "scientific_scope": documents.get("protocol.json", {}).get("scientific_scope"),
         "coverage": "PARTITION_ONLY" if partition else "LOGICAL_STAGE", "source_dir": _relative(root, report), "source_path": source, "source_sha256": budget.hashes.get(root / name),
         "stage": stage, "seal_status": status, "reason": reason, "canonical_rows": len(rows),
@@ -460,7 +474,7 @@ def _learning_projection(root, report, source, declared, budget, delegated):
     """
     path = root / "learning_curves.jsonl"
     json_document = False
-    if not path.exists() and source.get("program") == "resolve":
+    if not path.exists() and source.get("program") in ("resolve", "response"):
         path = root / "learning_curves.json"
         json_document = True
     if not path.exists():
@@ -491,7 +505,7 @@ def _learning_projection(root, report, source, declared, budget, delegated):
             prefix = source.get("program", "frontier") + "/learning/"
             identity = prefix + model_id + "/" + phase
             trial = value.get("trial_id")
-            if source.get("program") == "resolve":
+            if source.get("program") in ("resolve", "response"):
                 if not isinstance(trial, str) or not trial or not trial.isprintable():
                     raise ValueError("Resolve learning observations require an optimizer trial identity")
                 identity += "/" + trial
@@ -503,11 +517,11 @@ def _learning_projection(root, report, source, declared, budget, delegated):
                 "evidence_status": "VERIFIED_CANONICAL" if valid else "UNVERIFIED_LEARNING",
                 "validation_error": "" if valid else "Unsealed learning observations cannot contribute affirmative metrics"}
             curves.append({**common, **{key:value.get(key) for key in LEARNING_FIELDS}})
-            numeric = {key:value[key] for key in LEARNING_FIELDS if key not in ("seed", "train_count")
+            numeric = {key:value[key] for key in LEARNING_FIELDS if key not in ("seed", "train_count", "data_count")
                 and isinstance(value.get(key), (int,float)) and not isinstance(value[key], bool)
                 and math.isfinite(value[key])} if valid else {}
             points.append({**common, "t": time.time(), "phase": identity, "step": update, "metrics": numeric,
-                **{key:value.get(key) for key in ("model_id", "family", "track", "seed", "train_count")},
+                **{key:value.get(key) for key in ("model_id", "family", "track", "target_kind", "variant_id", "method_id", "seed", "train_count", "data_count")},
                 "trial_phase": phase, "trial_id": trial, "observation_kind": "learning_curve",
                 "timestamp_scope": "report publication; observed elapsed_seconds/update_seconds remain measured metrics"})
     except (OSError, ValueError, TypeError) as error:
@@ -611,21 +625,23 @@ def publish_frontier_outputs(report_dir, source_dirs, *, delegated_sources=None)
             # Admit that exact layout only for its verified report stage and
             # after hashing image bytes against the frozen science seal.
             # Historical figures/ discovery and original artifacts stay intact.
-            resolve_panel = (source.get("program") == "resolve" and source["stage"] == "report"
-                             and path.parent == root and path.suffix in (".png", ".pdf"))
+            resolve_panel = (source.get("program") in ("resolve", "response") and source["stage"] == "report"
+                             and (path.parent == root or source.get("program") == "response" and
+                                  path.parent == root / "figures") and path.suffix in (".png", ".pdf"))
             if resolve_panel and (source["seal_status"] != "VERIFIED_CANONICAL"
                     or name not in declared or budget.hashes.get(path) != declared[name]):
-                budget.omit(relative, "Resolve report-root figure is unsealed, changed, or unavailable for hash verification")
+                budget.omit(relative, "Research figure is unsealed, changed, or unavailable for hash verification")
                 continue
             if resolve_panel or (path.parent.name == "figures" and path.suffix in (".png", ".pdf", ".html")):
                 figures.append({"path": relative, "format": "image" if path.suffix == ".png" else "pdf" if path.suffix == ".pdf" else "html",
                     "sha256": digest, "hash_status": "computed_projection" if resolve_panel else "declared_unverified", "source_stage": source["stage"],
                     "evidence_status": source["seal_status"], "label": path.stem})
-        if source.get("program") == "resolve" and source["stage"] == "report":
+        if source.get("program") in ("resolve", "response") and source["stage"] == "report":
             for name in declared:
                 panel = Path(name)
-                if len(panel.parts) == 1 and panel.suffix in (".png", ".pdf") and not (root/panel).is_file():
-                    budget.omit(_relative(root/panel, report), "Declared Resolve report-root figure is missing")
+                layout = len(panel.parts) == 1 or source.get("program") == "response" and panel.parent == Path("figures")
+                if layout and panel.suffix in (".png", ".pdf") and not (root/panel).is_file():
+                    budget.omit(_relative(root/panel, report), "Declared research figure is missing")
     output = report / "outputs/frontier"
     output.mkdir(parents=True, exist_ok=True)
     _directory(output)
@@ -686,7 +702,8 @@ def publish_frontier_outputs(report_dir, source_dirs, *, delegated_sources=None)
         "claim_scope": "Numerical evidence and scores retain gap/math/cost scope; no superiority inferred"}
     atomic_json(report / "outputs/frontier-results.json", results)
     registered = {entry.get("path") for entry in read_json(report / "logs.json").get("logs", [])}
-    display = "Resolve" if sources and all(s.get("program") == "resolve" for s in sources) else "Frontier"
+    programs = {source.get("program") for source in sources}
+    display = "Response" if programs == {"response"} else "Resolve" if programs == {"resolve"} else "Frontier"
     for name in ("frontier-tables.json", "frontier-results.json"):
         location = "outputs/" + name
         if location not in registered:

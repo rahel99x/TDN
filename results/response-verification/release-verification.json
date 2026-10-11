@@ -1,0 +1,55 @@
+{
+  "schema": "tdn.response-release-verification/v1",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "396ec801e475ad02342a51d9ac984864ece64269",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "8ac955c94f799421cd2ff68040d8d5719aa7d131ba3440d28786e401c1b0e85f",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "integration_source_tree_sha256": "3027a6d0cd9e3e4141be58c33ade389a457d1e59469d8d8d04ef0aacb324dbf3",
+  "release_source_tree_sha256": "8ac955c94f799421cd2ff68040d8d5719aa7d131ba3440d28786e401c1b0e85f",
+  "production_source_inventory_sha256": "f2be8be3d75ac0f1c3c31e07e126e09cda4dacbfed8fc4f3afd0762bca46f2df",
+  "production_sources_identical_to_complete_integration": true,
+  "post_integration_changes": [
+    {
+      "path": "tests/test_response_decomposition_report.py",
+      "before": "bc978a6f260782ae81049a10a291150909a55935bcc4114ffc76bdbfd4e406b5",
+      "after": "7faec36feebf22b84a1110666e1c2ed6cb7d20ad6ea20b407cc6c3bd76b032b5",
+      "reason": "Update caption-location assertion after moving the warning to prevent overlap; no production behavior changed"
+    }
+  ],
+  "regressions": {
+    "passed": 486,
+    "cuda_cases_excluded_not_verified": 51,
+    "seconds": 49.34,
+    "log_sha256": "beb989742222c644b7997045a0e15c1fc779ba237c3786d492e343d458c78bbe"
+  },
+  "integration": {
+    "verified_stages": 42,
+    "figure_count": 119,
+    "tower_reporting_complete": true,
+    "gate_passed": false,
+    "scope": "CPU two-update 8x8 implementation smoke; no GPU or scientific superiority claim"
+  },
+  "requirements_inventory_groups": 29,
+  "shell_syntax": "passed for three new Bash launchers",
+  "scientific_confirmation": "NOT_ESTABLISHED",
+  "native_gpu_verification": "REQUIRES_FEDORA_RTX4090",
+  "compact_export": "2646 exact retained files restored and originals rehashed unchanged; see compact-review-receipt.json",
+  "visual_review": [
+    "architecture",
+    "source-balance-000",
+    "decoder-quadrature-000",
+    "signed-decomposition-00"
+  ]
+}

@@ -1,0 +1,32 @@
+.............................................F.......................... [ 14%]
+........................................................................ [ 29%]
+........................................................................ [ 44%]
+........................................................................ [ 59%]
+........................................................................ [ 74%]
+........................................................................ [ 88%]
+......................................................                   [100%]
+=================================== FAILURES ===================================
+_____ test_signed_error_budget_keeps_negative_cross_terms_and_actual_total _____
+
+figures = [{'caption': 'Signed error identity · galerkin_same_grid · grid [8, 8] · h=0.04\nSame input: solver + spatial discreti..._same_grid', 'primary_total_uncertainty': {'uncertainty_rms': 1e-07}, ...}, 'source_id': 'stage/decomposition.json'}]}]
+tmp_path = PosixPath('/workspace/TDN/.runtime/pytest-response-release-final/test_signed_error_budget_keeps0')
+
+    def test_signed_error_budget_keeps_negative_cross_terms_and_actual_total(figures, tmp_path):
+        row = _decomposition_row()
+        report._decomposition(_data("decomposition.json", [row], grid=[8, 8], horizon=.04), tmp_path, [])
+        assert len(figures) == 1
+        ax = figures[0]["fig"].axes[0]
+        widths = [bar.get_width() for bar in ax.patches]
+        assert widths[3:] == pytest.approx([-.033, .022, -.06])
+        assert ax.collections[0].get_offsets()[0, 0] == pytest.approx(row["metrics"]["total_squared_norm"])
+        assert "galerkin_same_grid" in figures[0]["caption"]
+        assert "not CI" in figures[0]["caption"]
+        assert figures[0]["points"][0]["json_pointer"] == "/rows/0"
+>       assert any("not independent quality" in text.get_text() for text in ax.texts)
+E       assert False
+E        +  where False = any(<generator object test_signed_error_budget_keeps_negative_cross_terms_and_actual_total.<locals>.<genexpr> at 0x7fae0daf3440>)
+
+tests/test_response_decomposition_report.py:59: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_response_decomposition_report.py::test_signed_error_budget_keeps_negative_cross_terms_and_actual_total
+1 failed, 485 passed, 51 deselected in 49.96s

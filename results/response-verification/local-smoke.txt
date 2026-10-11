@@ -1,0 +1,398 @@
+TDN response audit: 1 experiments; latest A1/fd_same_grid/15: NA 45/100; evidence 44%
+TDN response audit: 2 experiments; latest A1/galerkin_same_grid/15: NA 45/100; evidence 44%
+TDN response audit: 3 experiments; latest A1/fd_same_grid/16: NA 45/100; evidence 44%
+TDN response audit: 25 experiments; latest A7/1/3/0.003/0.75: NA 45/100; evidence 44%
+TDN response audit: 50 experiments; latest A7/-1/3/0.003/0.05: NA 45/100; evidence 44%
+TDN response audit: 75 experiments; latest A8/true_variance_clock: NA 29/100; evidence 29%
+{
+  "status": "COMPLETED",
+  "stage": "audit",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/audit/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/audit-tower/tdn-20261011T194354503279Z-e30c1559c0ca"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/audit-tower/tdn-20261011T194354503279Z-e30c1559c0ca
+TDN response fields: 1 experiments; latest fields/parent-contract: NA 29/100; evidence 29%
+{
+  "status": "COMPLETED",
+  "stage": "fields",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/fields/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/fields-tower/tdn-20261011T194403362736Z-c27b1ba95946"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/fields-tower/tdn-20261011T194403362736Z-c27b1ba95946
+TDN response references-fd-train-000: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "references-fd-train-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/references-fd-train-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/references-fd-train-000-tower/tdn-20261011T194406152014Z-f915a127295e"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/references-fd-train-000-tower/tdn-20261011T194406152014Z-f915a127295e
+TDN response references-fd-train-001: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "references-fd-train-001",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/references-fd-train-001/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/references-fd-train-001-tower/tdn-20261011T194409168197Z-9d82f60c8bd7"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/references-fd-train-001-tower/tdn-20261011T194409168197Z-9d82f60c8bd7
+TDN response references-fd-validation-000: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "references-fd-validation-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/references-fd-validation-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/references-fd-validation-000-tower/tdn-20261011T194412251984Z-43ad69a0de75"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/references-fd-validation-000-tower/tdn-20261011T194412251984Z-43ad69a0de75
+TDN response references-fd-development_test-000: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "references-fd-development_test-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/references-fd-development_test-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/references-fd-development_test-000-tower/tdn-20261011T194415221483Z-ed41eceed5f9"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/references-fd-development_test-000-tower/tdn-20261011T194415221483Z-ed41eceed5f9
+TDN response references-gal-train-000: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "references-gal-train-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/references-gal-train-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/references-gal-train-000-tower/tdn-20261011T194418193389Z-5f9d3fb88326"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/references-gal-train-000-tower/tdn-20261011T194418193389Z-5f9d3fb88326
+TDN response references-gal-train-001: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "references-gal-train-001",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/references-gal-train-001/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/references-gal-train-001-tower/tdn-20261011T194422104535Z-b1c747ce54d3"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/references-gal-train-001-tower/tdn-20261011T194422104535Z-b1c747ce54d3
+TDN response references-gal-validation-000: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "references-gal-validation-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/references-gal-validation-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/references-gal-validation-000-tower/tdn-20261011T194425977725Z-155001533566"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/references-gal-validation-000-tower/tdn-20261011T194425977725Z-155001533566
+TDN response references-gal-development_test-000: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "references-gal-development_test-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/references-gal-development_test-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/references-gal-development_test-000-tower/tdn-20261011T194429684648Z-b883145e54b9"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/references-gal-development_test-000-tower/tdn-20261011T194429684648Z-b883145e54b9
+TDN response numerical-reference-fd_same_grid: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "numerical-reference-fd_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/numerical-reference-fd_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/numerical-reference-fd_same_grid-tower/tdn-20261011T194434292248Z-db3fc5523705"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/numerical-reference-fd_same_grid-tower/tdn-20261011T194434292248Z-db3fc5523705
+TDN response numerical-controls-fd_same_grid: 1 experiments; latest numerical-controls/0/df/steps-1: NA 58/100; evidence 57%
+TDN response numerical-controls-fd_same_grid: 2 experiments; latest numerical-controls/0/df/steps-2: NA 58/100; evidence 57%
+TDN response numerical-controls-fd_same_grid: 3 experiments; latest numerical-controls/0/df/steps-4: NA 58/100; evidence 57%
+TDN response numerical-controls-fd_same_grid: 25 experiments; latest numerical-controls/0/nested12/steps-1: NA 58/100; evidence 57%
+TDN response numerical-controls-fd_same_grid: 50 experiments; latest numerical-controls/1/lawson4/steps-8: NA 58/100; evidence 57%
+TDN response numerical-controls-fd_same_grid: 75 experiments; latest spectral-stress/broadband/shared_gl4/steps-4: NA 58/100; evidence 57%
+{
+  "status": "COMPLETED",
+  "stage": "numerical-controls-fd_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/numerical-controls-fd_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/numerical-controls-fd_same_grid-tower/tdn-20261011T194437326458Z-c4e30a54fc23"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/numerical-controls-fd_same_grid-tower/tdn-20261011T194437326458Z-c4e30a54fc23
+TDN response numerical-reference-galerkin_same_grid: 1 experiments; latest reference/preparation: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "numerical-reference-galerkin_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/numerical-reference-galerkin_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/numerical-reference-galerkin_same_grid-tower/tdn-20261011T194448405668Z-a3e5259cc787"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/numerical-reference-galerkin_same_grid-tower/tdn-20261011T194448405668Z-a3e5259cc787
+TDN response numerical-controls-galerkin_same_grid: 1 experiments; latest numerical-controls/0/df/steps-1: NA 58/100; evidence 57%
+TDN response numerical-controls-galerkin_same_grid: 2 experiments; latest numerical-controls/0/df/steps-2: NA 58/100; evidence 57%
+TDN response numerical-controls-galerkin_same_grid: 3 experiments; latest numerical-controls/0/df/steps-4: NA 58/100; evidence 57%
+TDN response numerical-controls-galerkin_same_grid: 25 experiments; latest numerical-controls/0/nested12/steps-1: NA 58/100; evidence 57%
+TDN response numerical-controls-galerkin_same_grid: 50 experiments; latest numerical-controls/1/lawson4/steps-8: NA 58/100; evidence 57%
+TDN response numerical-controls-galerkin_same_grid: 75 experiments; latest spectral-stress/grid_relative/df/steps-4: NA 58/100; evidence 57%
+{
+  "status": "COMPLETED",
+  "stage": "numerical-controls-galerkin_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/numerical-controls-galerkin_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/numerical-controls-galerkin_same_grid-tower/tdn-20261011T194452110351Z-1cc2c9ad9d4a"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/numerical-controls-galerkin_same_grid-tower/tdn-20261011T194452110351Z-1cc2c9ad9d4a
+TDN response trial-bb20e436325f2768-000: 1 experiments; latest trial/trial-bb20e436325f2768: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-bb20e436325f2768-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-bb20e436325f2768-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-bb20e436325f2768-000-tower/tdn-20261011T194543912380Z-84e0fbcc2dce"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-bb20e436325f2768-000-tower/tdn-20261011T194543912380Z-84e0fbcc2dce
+TDN response trial-c7ba182dbfbb9220-000: 1 experiments; latest trial/trial-c7ba182dbfbb9220: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-c7ba182dbfbb9220-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-c7ba182dbfbb9220-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-c7ba182dbfbb9220-000-tower/tdn-20261011T194550463486Z-3b90485a5d4c"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-c7ba182dbfbb9220-000-tower/tdn-20261011T194550463486Z-3b90485a5d4c
+TDN response trial-1ee003607b9d537b-000: 1 experiments; latest trial/trial-1ee003607b9d537b: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-1ee003607b9d537b-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-1ee003607b9d537b-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-1ee003607b9d537b-000-tower/tdn-20261011T194557409113Z-97296189476e"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-1ee003607b9d537b-000-tower/tdn-20261011T194557409113Z-97296189476e
+TDN response trial-796de78a78737ae2-000: 1 experiments; latest trial/trial-796de78a78737ae2: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-796de78a78737ae2-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-796de78a78737ae2-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-796de78a78737ae2-000-tower/tdn-20261011T194603767336Z-d77b3f80a03d"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-796de78a78737ae2-000-tower/tdn-20261011T194603767336Z-d77b3f80a03d
+TDN response trial-a13c9462a78bebb0-000: 1 experiments; latest trial/trial-a13c9462a78bebb0: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-a13c9462a78bebb0-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-a13c9462a78bebb0-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-a13c9462a78bebb0-000-tower/tdn-20261011T194610380514Z-7ac730c3ea9d"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-a13c9462a78bebb0-000-tower/tdn-20261011T194610380514Z-7ac730c3ea9d
+TDN response trial-f5c77f52190bb564-000: 1 experiments; latest trial/trial-f5c77f52190bb564: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-f5c77f52190bb564-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-f5c77f52190bb564-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-f5c77f52190bb564-000-tower/tdn-20261011T194615097416Z-8cd8c86c2219"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-f5c77f52190bb564-000-tower/tdn-20261011T194615097416Z-8cd8c86c2219
+TDN response trial-92d4b0c703648a0a-000: 1 experiments; latest trial/trial-92d4b0c703648a0a: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-92d4b0c703648a0a-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-92d4b0c703648a0a-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-92d4b0c703648a0a-000-tower/tdn-20261011T194620273888Z-b071cf0c7d89"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-92d4b0c703648a0a-000-tower/tdn-20261011T194620273888Z-b071cf0c7d89
+TDN response trial-038a5cef488bac4d-000: 1 experiments; latest trial/trial-038a5cef488bac4d: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-038a5cef488bac4d-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-038a5cef488bac4d-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-038a5cef488bac4d-000-tower/tdn-20261011T194625759171Z-1ba62179d454"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-038a5cef488bac4d-000-tower/tdn-20261011T194625759171Z-1ba62179d454
+TDN response optimizer-selection: 1 experiments; latest optimizer/selection: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "optimizer-selection",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/optimizer-selection/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/optimizer-selection-tower/tdn-20261011T194637396494Z-f8827ea80579"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/optimizer-selection-tower/tdn-20261011T194637396494Z-f8827ea80579
+TDN response gate: 1 experiments; latest M3/diverse-trainability: BAD 41/100; evidence 100%
+{
+  "status": "COMPLETED",
+  "stage": "gate",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/gate/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/gate-tower/tdn-20261011T194639934418Z-96c8d9bc7f64"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/gate-tower/tdn-20261011T194639934418Z-96c8d9bc7f64
+TDN response compression-fd_same_grid: 1 experiments; latest compression/fd_same_grid/n8x8: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "compression-fd_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/compression-fd_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/compression-fd_same_grid-tower/tdn-20261011T194642423820Z-ff169dd748f8"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/compression-fd_same_grid-tower/tdn-20261011T194642423820Z-ff169dd748f8
+TDN response compression-galerkin_same_grid: 1 experiments; latest compression/galerkin_same_grid/n8x8: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "compression-galerkin_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/compression-galerkin_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/compression-galerkin_same_grid-tower/tdn-20261011T194646200890Z-81bd0558a563"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/compression-galerkin_same_grid-tower/tdn-20261011T194646200890Z-81bd0558a563
+TDN response closure: 1 experiments; latest closure/onset: NA 41/100; evidence 40%
+TDN response closure: 2 experiments; latest closure/causal-observer: NA 41/100; evidence 40%
+TDN response closure: 3 experiments; latest closure/temporal-attribution/response-closure-development_test-00000-1916477eb0bebdc8/r0.7/h0.01/deterministic_shadow: BAD 58/100; evidence 100%
+TDN response closure: 25 experiments; latest closure/clean_fitted_memory/r0.7/h0.01/noise0.001: BAD 63/100; evidence 100%
+TDN response closure: 50 experiments; latest closure/clean_fitted_memory/r2.1/h0.01/noise0.0001: BAD 63/100; evidence 100%
+{
+  "status": "COMPLETED",
+  "stage": "closure",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/closure/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/closure-tower/tdn-20261011T194659896224Z-665985a696ec"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/closure-tower/tdn-20261011T194659896224Z-665985a696ec
+TDN response trial-70f99c7a9b94409d-000: 1 experiments; latest trial/trial-70f99c7a9b94409d: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-70f99c7a9b94409d-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-70f99c7a9b94409d-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-70f99c7a9b94409d-000-tower/tdn-20261011T194702526568Z-6d98590b42ae"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-70f99c7a9b94409d-000-tower/tdn-20261011T194702526568Z-6d98590b42ae
+TDN response trial-c781a48d50fda89a-000: 1 experiments; latest trial/trial-c781a48d50fda89a: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-c781a48d50fda89a-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-c781a48d50fda89a-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-c781a48d50fda89a-000-tower/tdn-20261011T194707433912Z-77d82ddafa1b"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-c781a48d50fda89a-000-tower/tdn-20261011T194707433912Z-77d82ddafa1b
+TDN response trial-8b190fcc331eaaef-000: 1 experiments; latest trial/trial-8b190fcc331eaaef: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-8b190fcc331eaaef-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-8b190fcc331eaaef-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-8b190fcc331eaaef-000-tower/tdn-20261011T194712653923Z-a902fb13f5f0"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-8b190fcc331eaaef-000-tower/tdn-20261011T194712653923Z-a902fb13f5f0
+TDN response trial-1b2bad4799bdae37-000: 1 experiments; latest trial/trial-1b2bad4799bdae37: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-1b2bad4799bdae37-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-1b2bad4799bdae37-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-1b2bad4799bdae37-000-tower/tdn-20261011T194717536410Z-f51832720391"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-1b2bad4799bdae37-000-tower/tdn-20261011T194717536410Z-f51832720391
+TDN response trial-4b49e23adb654f84-000: 1 experiments; latest trial/trial-4b49e23adb654f84: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-4b49e23adb654f84-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-4b49e23adb654f84-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-4b49e23adb654f84-000-tower/tdn-20261011T194723026858Z-7b7acc5faf78"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-4b49e23adb654f84-000-tower/tdn-20261011T194723026858Z-7b7acc5faf78
+TDN response trial-30f6f2e045d32126-000: 1 experiments; latest trial/trial-30f6f2e045d32126: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-30f6f2e045d32126-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-30f6f2e045d32126-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-30f6f2e045d32126-000-tower/tdn-20261011T194727857080Z-d37316f7fafb"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-30f6f2e045d32126-000-tower/tdn-20261011T194727857080Z-d37316f7fafb
+TDN response trial-1bcb286bd0fa5cdc-000: 1 experiments; latest trial/trial-1bcb286bd0fa5cdc: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-1bcb286bd0fa5cdc-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-1bcb286bd0fa5cdc-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-1bcb286bd0fa5cdc-000-tower/tdn-20261011T194733336257Z-2712e02d8faf"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-1bcb286bd0fa5cdc-000-tower/tdn-20261011T194733336257Z-2712e02d8faf
+TDN response trial-d7851b9a2f15709b-000: 1 experiments; latest trial/trial-d7851b9a2f15709b: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "trial-d7851b9a2f15709b-000",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/trial-d7851b9a2f15709b-000/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/trial-d7851b9a2f15709b-000-tower/tdn-20261011T194738811628Z-24d2ac4d0faf"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/trial-d7851b9a2f15709b-000-tower/tdn-20261011T194738811628Z-24d2ac4d0faf
+TDN response selection: 1 experiments; latest optimizer/selection: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "selection",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/selection/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/selection-tower/tdn-20261011T194750005739Z-858e8e2fbcce"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/selection-tower/tdn-20261011T194750005739Z-858e8e2fbcce
+TDN response evaluate-fd_same_grid: 1 experiments; latest evaluation/endpoints: NA 72/100; evidence 71%
+{
+  "status": "COMPLETED",
+  "stage": "evaluate-fd_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/evaluate-fd_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/evaluate-fd_same_grid-tower/tdn-20261011T194752786994Z-08e38c0a264d"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/evaluate-fd_same_grid-tower/tdn-20261011T194752786994Z-08e38c0a264d
+TDN response cost-fd_same_grid: 1 experiments; latest cost/paired: NA 29/100; evidence 29%
+{
+  "status": "COMPLETED",
+  "stage": "cost-fd_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/cost-fd_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/cost-fd_same_grid-tower/tdn-20261011T194807451204Z-39311d53d2b1"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/cost-fd_same_grid-tower/tdn-20261011T194807451204Z-39311d53d2b1
+TDN response evaluate-galerkin_same_grid: 1 experiments; latest evaluation/endpoints: NA 72/100; evidence 71%
+{
+  "status": "COMPLETED",
+  "stage": "evaluate-galerkin_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/evaluate-galerkin_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/evaluate-galerkin_same_grid-tower/tdn-20261011T194946328370Z-fbd7f5f9f413"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/evaluate-galerkin_same_grid-tower/tdn-20261011T194946328370Z-fbd7f5f9f413
+TDN response cost-galerkin_same_grid: 1 experiments; latest cost/paired: NA 29/100; evidence 29%
+{
+  "status": "COMPLETED",
+  "stage": "cost-galerkin_same_grid",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/cost-galerkin_same_grid/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/cost-galerkin_same_grid-tower/tdn-20261011T195030280033Z-91c911572f80"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/cost-galerkin_same_grid-tower/tdn-20261011T195030280033Z-91c911572f80
+TDN response aggregate: 1 experiments; latest aggregate/frozen-comparisons: BAD 29/100; evidence 71%
+{
+  "status": "COMPLETED",
+  "stage": "aggregate",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/aggregate/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/aggregate-tower/tdn-20261011T195407763606Z-3c52b25aaca9"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/aggregate-tower/tdn-20261011T195407763606Z-3c52b25aaca9
+TDN response report: 1 experiments; latest report/source-bound-atlas: NA 41/100; evidence 40%
+{
+  "status": "COMPLETED",
+  "stage": "report",
+  "summary": "/workspace/TDN/runs/response-local-release-20261011-a/report/summary.json",
+  "scientific_outcome": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS; SEE CLAIM-SPECIFIC CHECKS",
+  "tower": "/workspace/TDN/runs/response-local-release-20261011-a/report-tower/tdn-20261011T195411742851Z-03db2e0b6fe0"
+}
+TDN Tower report: /workspace/TDN/runs/response-local-release-20261011-a/report-tower/tdn-20261011T195411742851Z-03db2e0b6fe0
+Local CPU response complete (runtime failure=False): /workspace/TDN/runs/response-local-release-20261011-a

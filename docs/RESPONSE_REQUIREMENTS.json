@@ -1,0 +1,636 @@
+{
+  "schema": "tdn.response-requirements/v1",
+  "source_handout": "docs/TDN_NEXT_RESEARCH_HANDOUT.md",
+  "source_sha256": "61331bb2d5973081dc6acbff678fedc950752d5bd3b4ccc75e3ed87a39087245",
+  "budget_override": "User instruction 2026-10-11: work-proportional allowances supersede proposed campaign caps; at most35minutes per allocation",
+  "optional_extensions": "Mixed precision/compilation and additional neural families remain separately gated later implementation studies; not part of primary FP32 claims.",
+  "requirements": [
+    {
+      "id": "R01",
+      "handout": "1\u20133",
+      "requirement": "Separate representation, learned-operator, generalization and complete-cost claims",
+      "modules": [
+        "protocol.py",
+        "statistics.py",
+        "report.py"
+      ],
+      "test_modules": [
+        "tests/test_response_protocol.py",
+        "tests/test_response_statistics.py",
+        "tests/test_response_aggregate.py",
+        "tests/test_response_reporting.py"
+      ],
+      "mechanisms": [
+        "M0",
+        "M6",
+        "M7"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R02",
+      "handout": "4.1\u20134.3",
+      "requirement": "Three explicit target equations, physical norms, signed error decomposition",
+      "modules": [
+        "contracts.py",
+        "numerics.py",
+        "metrics.py",
+        "numerical_controls.py"
+      ],
+      "test_modules": [
+        "tests/test_response_numerics.py",
+        "tests/test_response_metrics.py",
+        "tests/test_response_numerical_controls.py",
+        "tests/test_response_sensitivity_norms.py"
+      ],
+      "mechanisms": [
+        "M1",
+        "M2"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R03",
+      "handout": "5.1\u20135.3",
+      "requirement": "Stable background; exact reference-defect and coupled mean/centered identities",
+      "modules": [
+        "kernels.py",
+        "trajectory.py",
+        "numerics.py",
+        "audit.py"
+      ],
+      "test_modules": [
+        "tests/test_response_numerics.py"
+      ],
+      "mechanisms": [
+        "M1"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R04",
+      "handout": "5.4",
+      "requirement": "Conditional bounded mean clock; unrestricted mean where its assumptions fail",
+      "modules": [
+        "models.py",
+        "trajectory.py",
+        "quadrature_audit.py"
+      ],
+      "test_modules": [
+        "tests/test_response_models.py",
+        "tests/test_response_numerics.py",
+        "tests/test_response_quadrature_audit.py"
+      ],
+      "mechanisms": [
+        "M1",
+        "M4"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R05",
+      "handout": "5.5\u20135.7",
+      "requirement": "Quadratic/cubic response, finite-amplitude failure, distinct closure onset",
+      "modules": [
+        "numerics.py",
+        "audit.py",
+        "closure.py"
+      ],
+      "test_modules": [
+        "tests/test_response_numerics.py",
+        "tests/test_response_closure.py"
+      ],
+      "mechanisms": [
+        "M1",
+        "MX"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R06",
+      "handout": "6.1\u20136.3",
+      "requirement": "Shared endpoint control and genuine learned coupled finite-time source",
+      "modules": [
+        "models.py",
+        "features.py",
+        "inspection.py",
+        "quadrature_audit.py"
+      ],
+      "test_modules": [
+        "tests/test_response_models.py",
+        "tests/test_response_gpu.py",
+        "tests/test_response_inspection.py",
+        "tests/test_response_quadrature_audit.py"
+      ],
+      "mechanisms": [
+        "M3",
+        "M4"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R07",
+      "handout": "6.4\u20136.5",
+      "requirement": "Temporal bases, physical nulls and phase-sensitive versus power-only inputs",
+      "modules": [
+        "models.py",
+        "features.py",
+        "fields.py",
+        "quadrature_audit.py"
+      ],
+      "test_modules": [
+        "tests/test_response_models.py",
+        "tests/test_response_references.py",
+        "tests/test_response_quadrature_audit.py"
+      ],
+      "mechanisms": [
+        "M3",
+        "M4"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R08",
+      "handout": "6.6",
+      "requirement": "Equal-rank source-energy, response-weighted and decoder-optimized compression",
+      "modules": [
+        "compression.py"
+      ],
+      "test_modules": [
+        "tests/test_response_compression.py"
+      ],
+      "mechanisms": [
+        "M4"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R09",
+      "handout": "6.7",
+      "requirement": "Shadow-state closure and autonomous two-observation noisy observer",
+      "modules": [
+        "closure.py"
+      ],
+      "test_modules": [
+        "tests/test_response_closure.py"
+      ],
+      "mechanisms": [
+        "MX"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R10",
+      "handout": "6.8",
+      "requirement": "Live initial gradients, differentiable state/time/physics, checked mean/source heads",
+      "modules": [
+        "models.py",
+        "training.py",
+        "inspection.py"
+      ],
+      "test_modules": [
+        "tests/test_response_models.py",
+        "tests/test_response_gpu.py",
+        "tests/test_response_training.py",
+        "tests/test_response_inspection.py"
+      ],
+      "mechanisms": [
+        "M1",
+        "M3"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R11",
+      "handout": "7.1\u20137.3",
+      "requirement": "Independent parents, paired descendants, physical/grid/horizon interventions",
+      "modules": [
+        "fields.py",
+        "protocol.py",
+        "references.py",
+        "interventions.py"
+      ],
+      "test_modules": [
+        "tests/test_response_references.py",
+        "tests/test_response_protocol.py",
+        "tests/test_response_interventions.py",
+        "tests/test_response_phase_twins.py"
+      ],
+      "mechanisms": [
+        "M2",
+        "M6"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R12",
+      "handout": "7.4\u20137.5",
+      "requirement": "Actual refinement and independent cross-check; quantized-input FP64 residual labels",
+      "modules": [
+        "references.py",
+        "numerics.py"
+      ],
+      "test_modules": [
+        "tests/test_response_references.py",
+        "tests/test_response_numerics.py"
+      ],
+      "mechanisms": [
+        "M2"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R13",
+      "handout": "8.1\u20138.3",
+      "requirement": "Train-only normalization, six resolved tiny regimes, eight optimizer opportunities",
+      "modules": [
+        "training.py",
+        "protocol.py"
+      ],
+      "test_modules": [
+        "tests/test_response_training.py",
+        "tests/test_response_protocol.py"
+      ],
+      "mechanisms": [
+        "M3"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R14",
+      "handout": "8.4\u20138.5",
+      "requirement": "Validation-only selection, three primary seeds, nested data counts, actual unroll",
+      "modules": [
+        "training.py",
+        "protocol.py"
+      ],
+      "test_modules": [
+        "tests/test_response_training.py",
+        "tests/test_response_protocol.py"
+      ],
+      "mechanisms": [
+        "M3",
+        "M4"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R15",
+      "handout": "9.1",
+      "requirement": "Strong numerical methods, equivalent schedules and sequential/shared parity",
+      "modules": [
+        "numerical_controls.py",
+        "numerics.py",
+        "evaluation.py",
+        "performance.py"
+      ],
+      "test_modules": [
+        "tests/test_response_numerics.py",
+        "tests/test_response_numerical_controls.py",
+        "tests/test_response_performance.py"
+      ],
+      "mechanisms": [
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R16",
+      "handout": "9.2",
+      "requirement": "Original temporal core, direct/residual local FNO, frozen random encoder/readout",
+      "modules": [
+        "models.py",
+        "training.py",
+        "protocol.py",
+        "quadrature_audit.py"
+      ],
+      "test_modules": [
+        "tests/test_response_models.py",
+        "tests/test_response_training.py",
+        "tests/test_response_protocol.py",
+        "tests/test_response_quadrature_audit.py"
+      ],
+      "mechanisms": [
+        "M3",
+        "M4"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R17",
+      "handout": "9.3",
+      "requirement": "Focused causal ablations; extra capacity and supervision explicitly charged",
+      "modules": [
+        "protocol.py",
+        "training.py",
+        "compression.py",
+        "closure.py"
+      ],
+      "test_modules": [
+        "tests/test_response_protocol.py",
+        "tests/test_response_training.py",
+        "tests/test_response_compression.py",
+        "tests/test_response_closure.py"
+      ],
+      "mechanisms": [
+        "M4",
+        "MX"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R18",
+      "handout": "10",
+      "requirement": "Independent mathematical checks, cache semantics, physical assumptions, native suite",
+      "modules": [
+        "audit.py",
+        "models.py",
+        "numerics.py"
+      ],
+      "test_modules": [
+        "tests/test_response_numerics.py",
+        "tests/test_response_models.py",
+        "tests/test_response_gpu.py"
+      ],
+      "mechanisms": [
+        "M1"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R19",
+      "handout": "11.1\u201311.3",
+      "requirement": "Endpoint/spectral/mean/tail, rollout, parameter sensitivity, frozen estimands",
+      "modules": [
+        "evaluation.py",
+        "metrics.py",
+        "statistics.py",
+        "diagnostics.py",
+        "inspection.py"
+      ],
+      "test_modules": [
+        "tests/test_response_metrics.py",
+        "tests/test_response_statistics.py",
+        "tests/test_response_aggregate.py",
+        "tests/test_response_diagnostics.py",
+        "tests/test_response_inspection.py",
+        "tests/test_response_sensitivity_norms.py"
+      ],
+      "mechanisms": [
+        "M6",
+        "M7"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R20",
+      "handout": "11.4\u201311.5",
+      "requirement": "Parent clustering, multiplicity, uncertainty sensitivity, explicit failures",
+      "modules": [
+        "statistics.py",
+        "report.py"
+      ],
+      "test_modules": [
+        "tests/test_response_statistics.py",
+        "tests/test_response_aggregate.py"
+      ],
+      "mechanisms": [
+        "M6",
+        "M7"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R21",
+      "handout": "12.1\u201312.2",
+      "requirement": "Randomized synchronized complete calls, batches, cold process, cache/dense opportunities",
+      "modules": [
+        "cost.py",
+        "performance.py"
+      ],
+      "test_modules": [
+        "tests/test_response_metrics.py",
+        "tests/test_response_performance.py"
+      ],
+      "mechanisms": [
+        "M5"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R22",
+      "handout": "12.3\u201312.4",
+      "requirement": "All attempted offline work, resources, memory and conditional break-even",
+      "modules": [
+        "cost.py",
+        "engine.py",
+        "report.py"
+      ],
+      "test_modules": [
+        "tests/test_response_metrics.py",
+        "tests/test_response_workflow.py"
+      ],
+      "mechanisms": [
+        "M5"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R23",
+      "handout": "13\u201314",
+      "requirement": "Sealed source/protocol/data, bounded units, exact optimizer and reference recovery",
+      "modules": [
+        "core.py",
+        "engine.py",
+        "protocol.py",
+        "training.py"
+      ],
+      "test_modules": [
+        "tests/test_response_training.py",
+        "tests/test_response_protocol.py",
+        "tests/test_response_workflow.py",
+        "tests/test_response_cli.py"
+      ],
+      "mechanisms": [
+        "M0",
+        "M7"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R24",
+      "handout": "15",
+      "requirement": "HD atlas, exact chart pointers, missing evidence, project-side Tower and compact restore",
+      "modules": [
+        "report.py",
+        "tdn/frontier_reporting.py"
+      ],
+      "test_modules": [
+        "tests/test_response_reporting.py",
+        "tests/test_response_aggregate.py",
+        "tests/test_response_decomposition_report.py",
+        "tests/test_compact_review.py"
+      ],
+      "mechanisms": [
+        "M6"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "R25",
+      "handout": "16\u201317",
+      "requirement": "Verified commands, environment distinction, implementation versus measured outcomes",
+      "modules": [
+        "protocol.py",
+        "engine.py"
+      ],
+      "test_modules": [
+        "tests/test_response_protocol.py",
+        "tests/test_response_workflow.py",
+        "tests/test_response_cli.py"
+      ],
+      "mechanisms": [
+        "M0"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "A1\u2013A9",
+      "handout": "Appendix A",
+      "requirement": "All nine independent handout probes with actual measured outcomes and saved inputs",
+      "modules": [
+        "audit.py"
+      ],
+      "test_modules": [
+        "tests/test_response_numerics.py"
+      ],
+      "mechanisms": [
+        "M1"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "B1",
+      "handout": "Appendix B1",
+      "requirement": "Additional source/trajectory supervision has matched controls and measured acquisition",
+      "modules": [
+        "training.py",
+        "references.py",
+        "protocol.py"
+      ],
+      "test_modules": [
+        "tests/test_response_training.py",
+        "tests/test_response_references.py"
+      ],
+      "mechanisms": [
+        "M4"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "B2\u2013B3",
+      "handout": "Appendix B2\u2013B3",
+      "requirement": "Time-query cache validity and source-channel identifiability",
+      "modules": [
+        "models.py",
+        "compression.py",
+        "performance.py",
+        "quadrature_audit.py"
+      ],
+      "test_modules": [
+        "tests/test_response_models.py",
+        "tests/test_response_compression.py",
+        "tests/test_response_performance.py",
+        "tests/test_response_quadrature_audit.py"
+      ],
+      "mechanisms": [
+        "M4",
+        "M5"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "B4\u2013B7",
+      "handout": "Appendix B4\u2013B7",
+      "requirement": "Separate objectives, no clipping-as-success, information loss and narrow claims",
+      "modules": [
+        "metrics.py",
+        "statistics.py",
+        "closure.py",
+        "report.py"
+      ],
+      "test_modules": [
+        "tests/test_response_metrics.py",
+        "tests/test_response_statistics.py",
+        "tests/test_response_closure.py",
+        "tests/test_response_sensitivity_norms.py"
+      ],
+      "mechanisms": [
+        "M6",
+        "MX"
+      ],
+      "implementation": "Executable program and controls; consult exact tests and release verification receipt",
+      "native_verification": "REQUIRES_USER_DESKTOP",
+      "scientific_confirmation": "NOT_ESTABLISHED"
+    }
+  ],
+  "module_path_base": "tdn/analysis/response/ unless an explicit repository-relative path is given"
+}

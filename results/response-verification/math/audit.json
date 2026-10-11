@@ -1,0 +1,35 @@
+{
+  "schema": "tdn.response-math-audit/v1",
+  "complete": true,
+  "probe_rows": 76,
+  "appendix_sections": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9"
+  ],
+  "designed_A7_cases": 54,
+  "independent_A7_shape_templates": 2,
+  "wall_seconds": 4.543740346969571,
+  "libraries": {
+    "python": "3.12.14",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.10.0+cpu"
+  },
+  "arithmetic": "CPU FP64/complex128; Torch autograd and independently coded NumPy/SciPy DOP853/convolution",
+  "scope": "Implementation and mathematical diagnostics, not a neural win, novelty claim or solver speedup",
+  "inputs": "probe_inputs.npz",
+  "source_files": [
+    "audit.py",
+    "contracts.py",
+    "numerics.py",
+    "trajectory.py",
+    "kernels.py"
+  ]
+}

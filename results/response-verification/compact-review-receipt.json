@@ -1,0 +1,23 @@
+{
+  "source_run": "response-local-release-20261011-a",
+  "archive_bytes": 4890424,
+  "archive_sha256": "37cbd7ccb57a690e4720e3e815254e872f36529a35c77ae5979f1f3f69bee55b",
+  "index_sha256": "ef615625c01048bf78ac0d6a219f6f41acf81bc9bcf4dcbda10ddd91a30d67e3",
+  "manifest_sha256": "8ba51cd63e806d9dee09fef8b2b164eb94f3708c3140b8bd33ed456130796c6f",
+  "statistics": {
+    "bytes_evidence_or_other": 36328814,
+    "bytes_rendered_figure": 34561696,
+    "bytes_replay_array_or_checkpoint": 2364129,
+    "deduplicated_bytes": 3687045,
+    "included_bytes": 36328814,
+    "included_files": 2646,
+    "omitted_bytes": 36925825,
+    "omitted_files": 552,
+    "source_bytes": 73254639,
+    "unique_payload_bytes": 32641769
+  },
+  "original_files_rehashed_unchanged": 3198,
+  "retained_files_restored_exactly": 2646,
+  "scope": "Transport integrity only; original science/software/source seals remain unchanged. Review omits listed replay arrays/checkpoints and rendered figures; it is not a complete replay bundle. Full retains all regular files outside declared disposable cache directories. No values, precision, line endings, failures or learning-curve samples are altered. Scheduler accounting is the saved snapshot, not a new sacct query.",
+  "elapsed_export_and_verification_seconds": 1.34878259699326
+}

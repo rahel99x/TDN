@@ -1,0 +1,30 @@
+{
+  "schema": "tdn.response-local-math-verification/v1",
+  "verification": "UNSEALED_LOCAL_CPU_MODULE_AND_PYTEST_PROBE",
+  "source_files_sha256": {
+    "tdn/analysis/response/audit.py": "a857abdd95c09cebd0253cc0103421d2a84b14e35999b5883a1360db9ac32418",
+    "tdn/analysis/response/contracts.py": "f8e7e7487a230fa8a9bf2077a82ee882b4f37f3d1537cac4b2fae1fce09a77a7",
+    "tdn/analysis/response/numerics.py": "93b1b3eca5227025461b89a7f78c3caccee1763ca34998e580a4de44430d83f0",
+    "tdn/analysis/response/kernels.py": "080a8b0c860e8b99116b54dd87b3367e1d58891c85ddc068821fc2eee8ffdc08",
+    "tdn/analysis/response/trajectory.py": "dd094a81762929f9817f50463aec7da8f47683ffc72cda823b0e4ab282ee0d77",
+    "tests/test_response_numerics.py": "1ef460d085f1ff3f5da503c2ba6b43081b3f59ba8157a8d3f8e1f3a76fd22bbe"
+  },
+  "artifacts_sha256": {
+    "audit.json": "69f397245c4e84d2f1aa64105cbfbe181696d708e9b15d3d8988b787478ca4ff",
+    "probes.json": "7164b5eacf34d434c3c426f011496823970c6ba25a2ce9356b84f16fb3f6896a",
+    "probe_inputs.npz": "51f23e8b46440e09e24a88c9153ef6957997366ba3b79526d80cddea7fd79dbd"
+  },
+  "source_binding": "Numerical-source hashes captured after the matching local module tests; not a sealed engine/native execution or a final full-tree source seal",
+  "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_response_numerics.py tests/test_response_numerical_controls.py tests/test_response_phase_twins.py --basetemp=.runtime/pytest-response-foundations",
+  "tests_passed": 43,
+  "tests_seconds": 8.86,
+  "origin": ".runtime/pytest-response-foundations/test_response_independent_appe0",
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.10.0+cpu"
+  },
+  "scope": "FP64 CPU mathematical/implementation evidence. No GPU, neural training or solver speedup established.",
+  "numerical_core_cases": 32
+}

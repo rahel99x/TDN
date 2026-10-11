@@ -1,0 +1,28 @@
+{
+  "schema": "tdn.response-local-panel-verification/v1",
+  "verification": "UNSEALED_LOCAL_CPU_PYTEST_FIXTURES",
+  "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_response_numerical_controls.py --basetemp=.runtime/pytest-response-numerical-controls",
+  "tests_passed": 6,
+  "tests_seconds": 3.86,
+  "source_files_sha256": {
+    "tdn/analysis/response/numerical_controls.py": "0261c78089e9a6f65fdb4296d7d4d9c7477321f43550d73898918b3090370b0e",
+    "tdn/analysis/response/numerics.py": "93b1b3eca5227025461b89a7f78c3caccee1763ca34998e580a4de44430d83f0",
+    "tdn/analysis/response/trajectory.py": "dd094a81762929f9817f50463aec7da8f47683ffc72cda823b0e4ab282ee0d77",
+    "tdn/analysis/response/kernels.py": "080a8b0c860e8b99116b54dd87b3367e1d58891c85ddc068821fc2eee8ffdc08",
+    "tdn/analysis/response/fields.py": "57073531b77851e03df20924d9ba9d7450bdc4fca93623f936d96b6f24606ac9",
+    "tdn/analysis/response/references.py": "89a929db24bae7321219c0c1f969d5d397cb239266e86e8f38d93bb4b634aabb",
+    "tdn/analysis/response/metrics.py": "ad2bb74d84bf0323b1bb1db8b422cf5bc17bd8eced77254172bdec2fe643586c",
+    "tests/test_response_numerical_controls.py": "d84a8d42dfa2191a89bc5d0d6121e43e5cba09d6d13c6a851f396b5916a58c3a",
+    "tests/test_response_phase_twins.py": "df3ecc66b80d42baecbc43e0ba5d0130474dce73b8dd10d6a059954638865aa1"
+  },
+  "artifacts_sha256": {
+    "numerical_control_summary.json": "d6b04d54ea90b3f6ae665a33cc030ca1b5cd0441910b88fe678e97208e4f2dc9",
+    "decomposition.json": "3164518d56c808b22bc50247085a90fa0d78a150a8cceb11b8e063d4b711d60e",
+    "spectral_stress.json": "795b5ce262a84dd66e97e66e19621b4a628f7b01f270d68072f68028891c7436",
+    "numerical_controls.json": "1a2f9063c10a2433a976727c10f790bdf3f1246ebd88c66c89cf51bed925554b",
+    "numerical_diagnostic_vectors.npz": "56324e2c2d6140a14edbce9120bb2cb48c0612f93ff88c6ee21e559d3363d8fc",
+    "numerical_predictions.npz": "efc5c58b9377fedb313bcbe1a58fa68ef0a536ca54c6efc558a3d2d638c50311"
+  },
+  "source_binding": "Hashes captured at preservation; shared development tree not sealed. Final integration validation is separate.",
+  "scope": "Actual one-dimensional 29-control timing fixture plus bounded 2D8 three-target signed decomposition and spectral stress. Designed inputs, not a native GPU campaign or population evidence."
+}

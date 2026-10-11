@@ -223,3 +223,40 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
   CPU development, native GPU verification and fresh scientific confirmation
   are separate statuses. Do not optimize/retune after inspecting confirmation
   and retain the same confirmation label.
+
+## Response learned finite-time dynamics
+
+- Read `docs/RESPONSE_RESEARCH.md`, `docs/RESPONSE_REQUIREMENTS.json` and
+  `docs/RESPONSE_RUNBOOK.md` before changing `tdn/analysis/response`. The supplied
+  `docs/TDN_NEXT_RESEARCH_HANDOUT.md` is the specification, not evidence of an
+  achieved result. Preserve Resolve and all historical programs and artifacts.
+- Use `scripts/fedora_response.sh` for native Slurm and the separate
+  `scripts/response_local.sh` for CPU implementation smoke. M0–M7 and protected
+  MX have distinct outcomes. A complete job, a mathematical check, trainability
+  and scientific benefit are not interchangeable.
+- The user's work-based budget instruction supersedes the handout's proposed
+  summed campaign ceilings. Measure RTX throughput, freeze requested work and
+  per-family allowances, and continue long trials exactly across allocations
+  of at most 35 minutes. Preserve the existing CPU/host/VRAM envelope, venv,
+  project-contained files, no pending-job cap and all-attempt accounting.
+- Preserve three target contracts: same-grid FD, same-grid dealiased Galerkin,
+  and projected fine dynamics. Galerkin physical norms include Nyquist weights.
+  Teachers target the actual FP32 input; subtract the actual FP32 deployed anchor
+  in FP64. Keep physical truncation and deployment-roundoff labels separate.
+- Parent fields are independent units; phases, horizons, grids and seeds are
+  paired descendants. Do not drop unresolved teachers or missing methods from
+  denominators. Explicit stress/intervention panels do not change primary
+  estimands. Normalized losses with different objective scales are not directly
+  comparable; retain common-objective controls and physical errors.
+- The endpoint corrector and identical residual-FNO implementation are shared
+  aliases, not independent competitors. Distinct Response claims concern learned
+  coupled mean/source dynamics and their full cost. Cached encodings are valid
+  only for the same current state, physics, model, geometry, device and dtype.
+- Freeze selected checkpoint bytes, source/software, target, data and estimands
+  before fresh confirmation. Keep source and venv unchanged during active jobs
+  or recovery; preserve original attempts. Never infer native CUDA readiness
+  from CPU tests, skipped CUDA cases or a previous program's readiness manifest.
+- Atlas panels retain source hashes, explicit missing measurements, Ours/Theirs
+  and analytic-control labels, thin lines and triangles for ours. Continuous
+  observed-range bands are not confidence intervals. Modify project exports
+  only, never Tower itself. Compact review is not full binary replay.

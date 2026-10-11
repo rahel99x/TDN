@@ -1,0 +1,3075 @@
+{
+  "schema": "tdn.response-spectral-stress/v1",
+  "rows": [
+    {
+      "kind": "broadband",
+      "method": "df/steps-1",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 1.4225550019781614e-07,
+        "error_max": 3.374723226423626e-07,
+        "rms": 1.4225550019781614e-07,
+        "maximum": 3.374723226423626e-07,
+        "mean_error": 1.0537433341520352e-07,
+        "centered_rms": 9.556608809526729e-08,
+        "relative_rms": 2.6421391358106245e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.0537433341520352e-07,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.5486956871837112,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.27420443296432495,
+        "prediction_max": 0.7486165761947632,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286991591565311,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362990510069794,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 1.4225543455506637e-07,
+          "upper": 1.4225556584056591e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 3.374721831983507e-07,
+          "upper": 3.374724620863745e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.2348354358820017e-14,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 4.877284176738816e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 3.010988800972034e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999829,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.268654257539662,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362990510069794,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.020774545873427253,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0006314159836620092,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "df/steps-2",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 8.509264632587273e-08,
+        "error_max": 2.0623675867081914e-07,
+        "rms": 8.509264632587273e-08,
+        "maximum": 2.0623675867081914e-07,
+        "mean_error": -1.2437972273654507e-08,
+        "centered_rms": 8.417871051792051e-08,
+        "relative_rms": 1.5804423077817274e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.2437972273654507e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.021365600739444858,
+        "mean_centered_decomposition_residual": 7.888609052210118e-31,
+        "prediction_min": 0.2742042541503906,
+        "prediction_max": 0.7486163377761841,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286990413442254,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362991021726385,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 8.509258068312296e-08,
+          "upper": 8.50927119686225e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 2.0623661922680725e-07,
+          "upper": 2.0623689811483104e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.1965629565903879e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 4.121356747515802e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 1.92283875463387e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999876,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2686541726722944,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362991021726385,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.020774461006059675,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0010018860339187086,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "df/steps-4",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 9.412985379961838e-08,
+        "error_max": 2.355991129965318e-07,
+        "rms": 9.412985379961838e-08,
+        "maximum": 2.355991129965318e-07,
+        "mean_error": -1.3369294848269986e-08,
+        "centered_rms": 9.317559407697679e-08,
+        "relative_rms": 1.7482921238634974e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.3369294848269986e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.020172616602228365,
+        "mean_centered_decomposition_residual": -1.5777218104420236e-30,
+        "prediction_min": 0.2742042541503906,
+        "prediction_max": 0.7486161589622498,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286990404129028,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362992868354293,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 9.41297881568686e-08,
+          "upper": 9.412991944236815e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 2.355989735525199e-07,
+          "upper": 2.355992524405437e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.8924156517591335e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 3.945996715542718e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 3.022017009035679e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.999999999999985,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2686541733262213,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362992868354293,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.020774461659986587,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.001791186979971826,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "df/steps-8",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 2.375670536759897e-07,
+        "error_max": 6.779769788911594e-07,
+        "rms": 2.375670536759897e-07,
+        "maximum": 6.779769788911594e-07,
+        "mean_error": -1.3397556826097445e-07,
+        "centered_rms": 1.9618524944918656e-07,
+        "relative_rms": 4.4123791981590583e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.3397556826097445e-07,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.3180378379696291,
+        "mean_centered_decomposition_residual": -6.310887241768095e-30,
+        "prediction_min": 0.2742043137550354,
+        "prediction_max": 0.748616099357605,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286989198066294,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362987789203899,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 2.3756698803323994e-07,
+          "upper": 2.3756711931873948e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 6.779768394471475e-07,
+          "upper": 6.779771183351713e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 2.170683458528126e-14,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 1.7766690421302456e-14,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 1.6964579985706866e-14,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999347,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26865408646076067,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362987789203899,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.02077437479452593,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0035299669834785163,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "etdrk4/steps-1",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 7.747962571514353e-08,
+        "error_max": 1.4036853457355392e-07,
+        "rms": 7.747962571514353e-08,
+        "maximum": 1.4036853457355392e-07,
+        "mean_error": -6.878298803789096e-08,
+        "centered_rms": 3.566501026970385e-08,
+        "relative_rms": 1.439044191931235e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 6.878298803789096e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.7881103816867895,
+        "mean_centered_decomposition_residual": -1.1832913578315177e-30,
+        "prediction_min": 0.27420419454574585,
+        "prediction_max": 0.7486162185668945,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286989849992096,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362994003339948,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 7.747956007239376e-08,
+          "upper": 7.74796913578933e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 1.4036839512954202e-07,
+          "upper": 1.403686740175658e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 4.783540497451248e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 7.525950545282254e-16,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 4.669568489792587e-16,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999976,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2686541317036886,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362994003339948,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.02077442003745389,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.001190797018352896,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "etdrk4/steps-2",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 8.947487842128512e-08,
+        "error_max": 1.992133479289393e-07,
+        "rms": 8.947487842128512e-08,
+        "maximum": 1.992133479289393e-07,
+        "mean_error": -7.204261704904513e-08,
+        "centered_rms": 5.306237082178277e-08,
+        "relative_rms": 1.6618343587421036e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 7.204261704904513e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.6483010540324526,
+        "mean_centered_decomposition_residual": 7.888609052210118e-31,
+        "prediction_min": 0.27420419454574585,
+        "prediction_max": 0.748616099357605,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286989817395806,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362994175912047,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 8.947481277853534e-08,
+          "upper": 8.947494406403489e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 1.992132084849274e-07,
+          "upper": 1.992134873729512e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 5.492085072695151e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 1.630092318985687e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 8.835764768229145e-16,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999948,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2686541293840552,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362994175912047,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.02077441771782046,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0018687719712033868,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "etdrk4/steps-4",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 1.4635878196502074e-07,
+        "error_max": 3.0162495601171457e-07,
+        "rms": 1.4635878196502074e-07,
+        "maximum": 3.0162495601171457e-07,
+        "mean_error": 4.716667250173612e-08,
+        "centered_rms": 1.3855034486928732e-07,
+        "relative_rms": 2.7183501879478966e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 4.716667250173612e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.10385631396566047,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.2742045521736145,
+        "prediction_max": 0.7486164569854736,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286991009488702,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362987685186287,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 1.4635871632227097e-07,
+          "upper": 1.463588476077705e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 3.016248165677027e-07,
+          "upper": 3.0162509545572647e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 3.3986715063944933e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 3.8745085686506126e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 1.4147712983239375e-14,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999662,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2686542160167041,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362987685186287,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.020774504350469347,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0036457179812714458,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "etdrk4/steps-8",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 1.1667778262429224e-07,
+        "error_max": 3.3911095809191494e-07,
+        "rms": 1.1667778262429224e-07,
+        "maximum": 3.3911095809191494e-07,
+        "mean_error": -2.4545165743655728e-08,
+        "centered_rms": 1.1406682162985896e-07,
+        "relative_rms": 2.1670792013142842e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 2.4545165743655728e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.04425431307912364,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.2742043733596802,
+        "prediction_max": 0.7486162781715393,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286990292370319,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.01036299128284869,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 1.1667771698154246e-07,
+          "upper": 1.1667784826704201e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 3.3911081864790305e-07,
+          "upper": 3.3911109753592683e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 2.1193048957038914e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 4.908092112197302e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 6.5863079502204e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999778,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2686541637987887,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.01036299128284869,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.020774452132553967,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.007145770010538399,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "shared_gl4/steps-1",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 9.516671128628706e-08,
+        "error_max": 2.265378710175625e-07,
+        "rms": 9.516671128628706e-08,
+        "maximum": 2.265378710175625e-07,
+        "mean_error": 1.410472110288663e-08,
+        "centered_rms": 9.411567233812496e-08,
+        "relative_rms": 1.767549880083651e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.410472110288663e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.021966399778490568,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.274204283952713,
+        "prediction_max": 0.7486164569854736,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286990678869188,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362992404022869,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 9.516664564353728e-08,
+          "upper": 9.516677692903683e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 2.2653773157355062e-07,
+          "upper": 2.265380104615744e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.5955083602885086e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 4.273799938325106e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 3.187394638433901e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999849,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2686541923958808,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362992404022869,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.02077448072964605,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0027424279833212495,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "shared_gl4/steps-2",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 8.562961695276684e-08,
+        "error_max": 2.086923558408671e-07,
+        "rms": 8.562961695276684e-08,
+        "maximum": 2.086923558408671e-07,
+        "mean_error": -1.8957230295962857e-08,
+        "centered_rms": 8.350481853751556e-08,
+        "relative_rms": 1.5904155679096297e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.8957230295962857e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.049011926033289535,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.27420416474342346,
+        "prediction_max": 0.7486163377761841,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286990348249674,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362991748760122,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 8.562955131001707e-08,
+          "upper": 8.562968259551662e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 2.086922163968552e-07,
+          "upper": 2.08692495284879e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 8.933546937585268e-16,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 5.495836941119417e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 9.432396645996308e-16,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999883,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2686541685881733,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362991748760122,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.020774456921938578,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0050319539732299745,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "shared_gl4/steps-4",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 9.412985379961838e-08,
+        "error_max": 2.355991129965318e-07,
+        "rms": 9.412985379961838e-08,
+        "maximum": 2.355991129965318e-07,
+        "mean_error": -1.3369294848269986e-08,
+        "centered_rms": 9.317559407697679e-08,
+        "relative_rms": 1.7482921238634974e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.3369294848269986e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.020172616602228365,
+        "mean_centered_decomposition_residual": -1.5777218104420236e-30,
+        "prediction_min": 0.2742042541503906,
+        "prediction_max": 0.7486161589622498,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286990404129028,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362992868354293,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 9.41297881568686e-08,
+          "upper": 9.412991944236815e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 2.355989735525199e-07,
+          "upper": 2.355992524405437e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.8924156517591335e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 3.945996715542718e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 3.022017009035679e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.999999999999985,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2686541733262213,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362992868354293,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.020774461659986587,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.008996616001240909,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "broadband",
+      "method": "shared_gl4/steps-8",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "regime": "broadband",
+        "tiny_regime": null,
+        "shape_regime": "broadband",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.564274977553527e-14,
+        "reference_uncertainty_maximum": 1.3944401189291966e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 2.375670536759897e-07,
+        "error_max": 6.779769788911594e-07,
+        "rms": 2.375670536759897e-07,
+        "maximum": 6.779769788911594e-07,
+        "mean_error": -1.3397556826097445e-07,
+        "centered_rms": 1.9618524944918656e-07,
+        "relative_rms": 4.4123791981590583e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.564274977553527e-14,
+        "uncertainty_maximum": 1.3944401189291966e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.3397556826097445e-07,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.3180378379696291,
+        "mean_centered_decomposition_residual": -6.310887241768095e-30,
+        "prediction_min": 0.2742043137550354,
+        "prediction_max": 0.748616099357605,
+        "reference_min": 0.2742043349142804,
+        "reference_max": 0.7486162610019138,
+        "prediction_mean": 0.5286989198066294,
+        "reference_mean": 0.5286990537821976,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.010362987789203899,
+        "reference_variance": 0.010362993149285358,
+        "rms_uncertainty_interval": {
+          "lower": 2.3756698803323994e-07,
+          "upper": 2.3756711931873948e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 6.779768394471475e-07,
+          "upper": 6.779771183351713e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 2.170683458528126e-14,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 1.7766690421302456e-14,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 1.6964579985706866e-14,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999347,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26865408646076067,
+        "reference_energy": -0.2686541810744881,
+        "prediction_physical_variance": 0.010362987789203899,
+        "reference_physical_variance": 0.010362993149285358,
+        "energy_change": -0.02077437479452593,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.017477255023550242,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012877703004051
+    },
+    {
+      "kind": "grid_relative",
+      "method": "df/steps-1",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 1.298188500720046e-07,
+        "error_max": 3.765100538011268e-07,
+        "rms": 1.298188500720046e-07,
+        "maximum": 3.765100538011268e-07,
+        "mean_error": 7.963444003528108e-08,
+        "centered_rms": 1.0252458141482379e-07,
+        "relative_rms": 2.413240087965293e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 7.963444003528108e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.37629317851662036,
+        "mean_centered_decomposition_residual": -3.1554436208840472e-30,
+        "prediction_min": 0.3305166959762573,
+        "prediction_max": 0.7715172171592712,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287581663578749,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798842353080619,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 1.2981878622473242e-07,
+          "upper": 1.2981891391927677e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 3.7650993145454947e-07,
+          "upper": 3.765101761477041e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 9.315177670863478e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 5.178927546663583e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 2.3588286164905483e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999808,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26809144416192787,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798842353080619,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.02092630783117544,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0005954829975962639,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "df/steps-2",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 8.98715043345591e-08,
+        "error_max": 2.454878479385414e-07,
+        "rms": 8.98715043345591e-08,
+        "maximum": 2.454878479385414e-07,
+        "mean_error": 2.1892440409121416e-08,
+        "centered_rms": 8.716426070523254e-08,
+        "relative_rms": 1.6706473436300688e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 2.1892440409121416e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.059339561117786474,
+        "mean_centered_decomposition_residual": -1.5777218104420236e-30,
+        "prediction_min": 0.3305166959762573,
+        "prediction_max": 0.7715169191360474,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287581086158752,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798841069793451,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 8.987144048728692e-08,
+          "upper": 8.987156818183129e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 2.454877255919641e-07,
+          "upper": 2.454879702851187e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.2921699303119005e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 3.845979443811574e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 2.938737917233202e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999866,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2680914036671651,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798841069793451,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020926267336412674,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.001113381003960967,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "df/steps-4",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 1.2139025478268375e-07,
+        "error_max": 3.5076716309312417e-07,
+        "rms": 1.2139025478268375e-07,
+        "maximum": 3.5076716309312417e-07,
+        "mean_error": 2.1892440409121416e-08,
+        "centered_rms": 1.193998115959064e-07,
+        "relative_rms": 2.2565584964541785e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 2.1892440409121416e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.03252525473295341,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.33051687479019165,
+        "prediction_max": 0.7715169191360474,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287581086158752,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798838110668673,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 1.2139019093541158e-07,
+          "upper": 1.2139031862995592e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 3.5076704074654685e-07,
+          "upper": 3.507672854397015e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.6321785436242298e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 8.477590522728591e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 4.625824889852053e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999747,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2680914052979063,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798838110668673,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020926268967153883,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0029809519764967263,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "df/steps-8",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 2.2810758618470072e-07,
+        "error_max": 6.597175866707161e-07,
+        "rms": 2.2810758618470072e-07,
+        "maximum": 6.597175866707161e-07,
+        "mean_error": -4.143749466473112e-08,
+        "centered_rms": 2.2431229326749134e-07,
+        "relative_rms": 4.240357783515974e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 4.143749466473112e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.032999512333496656,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.3305167555809021,
+        "prediction_max": 0.7715165615081787,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287580452859402,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798828494653036,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 2.2810752233742855e-07,
+          "upper": 2.281076500319729e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 6.597174643241388e-07,
+          "upper": 6.597177090172934e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 8.657233783710812e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 3.4605257589445564e-14,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 8.770579501854295e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999152,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26809136401407513,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798828494653036,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020926227683322696,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.003772065043449402,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "etdrk4/steps-1",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 5.0935922024948464e-08,
+        "error_max": 1.2634909740683042e-07,
+        "rms": 5.0935922024948464e-08,
+        "maximum": 1.2634909740683042e-07,
+        "mean_error": 1.5373182386813067e-08,
+        "centered_rms": 4.85606158922373e-08,
+        "relative_rms": 9.46862561792078e-08,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.5373182386813067e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.09109178560068615,
+        "mean_centered_decomposition_residual": 3.944304526105059e-31,
+        "prediction_min": 0.3305166959762573,
+        "prediction_max": 0.7715169787406921,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287581020966172,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798841340532894,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 5.0935858177676286e-08,
+          "upper": 5.093598587222064e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 1.263489750602531e-07,
+          "upper": 1.2634921975340774e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 3.9470763746449987e-16,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 1.542963654496592e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 6.567968605705377e-16,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999952,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26809139860535336,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798841340532894,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020926262274600926,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.001170836971141398,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "etdrk4/steps-2",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 6.881543754933603e-08,
+        "error_max": 1.9445606358470258e-07,
+        "rms": 6.881543754933603e-08,
+        "maximum": 1.9445606358470258e-07,
+        "mean_error": 2.7480375856814288e-08,
+        "centered_rms": 6.309035891382125e-08,
+        "relative_rms": 1.2792300384175287e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 2.7480375856814288e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.15946801400034324,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.3305167257785797,
+        "prediction_max": 0.7715170383453369,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287581142038107,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.0097988430646298,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 6.881537370206384e-08,
+          "upper": 6.881550139660821e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 1.9445594123812526e-07,
+          "upper": 1.944561859312799e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.5508900413032221e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 1.8624467131364517e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 1.3222276906668938e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999927,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26809140592769687,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.0097988430646298,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020926269596944436,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.0018641049973666668,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "etdrk4/steps-4",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 1.2743390045905486e-07,
+        "error_max": 3.0792387195610615e-07,
+        "rms": 1.2743390045905486e-07,
+        "maximum": 3.0792387195610615e-07,
+        "mean_error": 8.10314238972043e-08,
+        "centered_rms": 9.835297314977262e-08,
+        "relative_rms": 2.3689055709783125e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 8.10314238972043e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.40433095241916417,
+        "mean_centered_decomposition_residual": -3.1554436208840472e-30,
+        "prediction_min": 0.3305168151855469,
+        "prediction_max": 0.7715169787406921,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287581677548587,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.00979883901537991,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 1.274338366117827e-07,
+          "upper": 1.2743396430632703e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 3.0792374960952884e-07,
+          "upper": 3.0792399430268347e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 7.91806473559755e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 3.8419273245987555e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 4.4794069260119986e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999813,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2680914464936832,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.00979883901537991,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020926310162930783,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.00366602698341012,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "etdrk4/steps-8",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 4.267745741006131e-07,
+        "error_max": 7.083950317454679e-07,
+        "rms": 4.267745741006131e-07,
+        "maximum": 7.083950317454679e-07,
+        "mean_error": -3.972027181678439e-07,
+        "centered_rms": 1.5609784681037735e-07,
+        "relative_rms": 7.933435785116494e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 3.972027181678439e-07,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.8662182878462007,
+        "mean_centered_decomposition_residual": 1.262177448353619e-29,
+        "prediction_min": 0.3305166959762573,
+        "prediction_max": 0.7715164422988892,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287576895207167,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798832233370715,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 4.267745102533409e-07,
+          "upper": 4.267746379478853e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 7.083949093988906e-07,
+          "upper": 7.083951540920452e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.6594333552060214e-13,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 1.0679165468222048e-14,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 5.5140361099355255e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999645,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26809110373294565,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798832233370715,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020925967402193213,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.007208833005279303,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "shared_gl4/steps-1",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 9.1834998832934e-08,
+        "error_max": 2.5730076425034554e-07,
+        "rms": 9.1834998832934e-08,
+        "maximum": 2.5730076425034554e-07,
+        "mean_error": -1.4429140000882246e-08,
+        "centered_rms": 9.069435996510439e-08,
+        "relative_rms": 1.707147309801002e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.4429140000882246e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.024686779890914543,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.33051660656929016,
+        "prediction_max": 0.7715170383453369,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287580722942948,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798840201461585,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 9.183493498566181e-08,
+          "upper": 9.183506268020618e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 2.573006419037682e-07,
+          "upper": 2.5730088659692285e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.1166437794556148e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 4.8309402153125904e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 2.486083015876784e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999863,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26809137802161653,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798840201461585,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.0209262416908641,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.00240061100339517,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "shared_gl4/steps-2",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 8.020592610517908e-08,
+        "error_max": 2.288932331451221e-07,
+        "rms": 8.020592610517908e-08,
+        "maximum": 2.288932331451221e-07,
+        "mean_error": 1.5838843674120806e-08,
+        "centered_rms": 7.862646891127829e-08,
+        "relative_rms": 1.4909711190789582e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 1.5838843674120806e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.038997254188432966,
+        "mean_centered_decomposition_residual": -1.5777218104420236e-30,
+        "prediction_min": 0.3305166959762573,
+        "prediction_max": 0.7715168595314026,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287581025622785,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798841570657888,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 8.02058622579069e-08,
+          "upper": 8.020598995245126e-08,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 2.288931107985448e-07,
+          "upper": 2.2889335549169942e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 7.952112361630103e-16,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 3.5591427300261704e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 2.078636616200266e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999895,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26809139915714425,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798841570657888,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020926262826391817,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.004213531035929918,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "shared_gl4/steps-4",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 1.2139025478268375e-07,
+        "error_max": 3.5076716309312417e-07,
+        "rms": 1.2139025478268375e-07,
+        "maximum": 3.5076716309312417e-07,
+        "mean_error": 2.1892440409121416e-08,
+        "centered_rms": 1.193998115959064e-07,
+        "relative_rms": 2.2565584964541785e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 2.1892440409121416e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.03252525473295341,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.33051687479019165,
+        "prediction_max": 0.7715169191360474,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287581086158752,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798838110668673,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 1.2139019093541158e-07,
+          "upper": 1.2139031862995592e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 3.5076704074654685e-07,
+          "upper": 3.507672854397015e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 1.6321785436242298e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 8.477590522728591e-15,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 4.625824889852053e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999747,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.2680914052979063,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798838110668673,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020926268967153883,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.008700807054992765,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    },
+    {
+      "kind": "grid_relative",
+      "method": "shared_gl4/steps-8",
+      "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "metrics": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "regime": "grid_relative",
+        "tiny_regime": null,
+        "shape_regime": "grid_relative",
+        "phase_variant": "original",
+        "phase_scope": null,
+        "target_kind": "fd_same_grid",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "norm": "nodal_rms",
+        "maximum_norm": "sampled_nodal_maximum; not a continuous supremum certificate",
+        "precision_audit": null,
+        "phase_matching": null,
+        "reference_accepted": true,
+        "reference_uncertainty_rms": 6.384727218010613e-14,
+        "reference_uncertainty_maximum": 1.2234657731369225e-13,
+        "reference_status": "ACCEPTED",
+        "prediction_finite": true,
+        "target_finite": true,
+        "status": "COMPLETED",
+        "error_rms": 2.2810758618470072e-07,
+        "error_max": 6.597175866707161e-07,
+        "rms": 2.2810758618470072e-07,
+        "maximum": 6.597175866707161e-07,
+        "mean_error": -4.143749466473112e-08,
+        "centered_rms": 2.2431229326749134e-07,
+        "relative_rms": 4.240357783515974e-07,
+        "accuracy_qualification": "QUALIFIED",
+        "uncertainty_rms": 6.384727218010613e-14,
+        "uncertainty_maximum": 1.2234657731369225e-13,
+        "bound_violation": false,
+        "reference_bounded": true,
+        "absolute_mean_error": 4.143749466473112e-08,
+        "relative_denominator_floor": 1e-08,
+        "mean_fraction_squared_error": 0.032999512333496656,
+        "mean_centered_decomposition_residual": 0.0,
+        "prediction_min": 0.3305167555809021,
+        "prediction_max": 0.7715165615081787,
+        "reference_min": 0.3305167103312982,
+        "reference_max": 0.7715170884246357,
+        "prediction_mean": 0.5287580452859402,
+        "reference_mean": 0.5287580867234349,
+        "interval_violation": 0.0,
+        "reference_interval_violation": 0.0,
+        "prediction_variance": 0.009798828494653036,
+        "reference_variance": 0.009798844557026235,
+        "rms_uncertainty_interval": {
+          "lower": 2.2810752233742855e-07,
+          "upper": 2.281076500319729e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "max_uncertainty_interval": {
+          "lower": 6.597174643241388e-07,
+          "upper": 6.597177090172934e-07,
+          "status": "ESTIMATED_SENSITIVITY_NOT_CONFIDENCE_INTERVAL"
+        },
+        "spectral_bands": [
+          {
+            "lower_cycles_per_length": 0.0,
+            "upper_cycles_per_length": 2.0,
+            "coefficient_error_energy": 8.657233783710812e-15,
+            "modes": 9
+          },
+          {
+            "lower_cycles_per_length": 2.0,
+            "upper_cycles_per_length": 4.0,
+            "coefficient_error_energy": 3.4605257589445564e-14,
+            "modes": 36
+          },
+          {
+            "lower_cycles_per_length": 4.0,
+            "upper_cycles_per_length": 8.0,
+            "coefficient_error_energy": 8.770579501854295e-15,
+            "modes": 19
+          },
+          {
+            "lower_cycles_per_length": 8.0,
+            "upper_cycles_per_length": null,
+            "coefficient_error_energy": 0.0,
+            "modes": 0
+          }
+        ],
+        "spectral_complex_coherence": 0.9999999999999152,
+        "interpolant_error_rms": null,
+        "prediction_energy": -0.26809136401407513,
+        "reference_energy": -0.2680913858819597,
+        "prediction_physical_variance": 0.009798828494653036,
+        "reference_physical_variance": 0.009798844557026235,
+        "energy_change": -0.020926227683322696,
+        "energy_scope": "Compatible finite-equation energy; projected-fine coarse energy is a diagnostic, not exact projected dynamics"
+      },
+      "failure": null,
+      "cpu_execution_seconds": 0.018019499024376273,
+      "timing_scope": "Single CPU diagnostic call, not paired GPU deployment timing",
+      "teacher_seconds": 0.012986343004740775
+    }
+  ],
+  "fields": [
+    {
+      "parent": {
+        "generator": "tdn.response-fields/v1",
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "split": "validation",
+        "index": 2,
+        "seed": 2035304172151603957,
+        "regime": "broadband",
+        "tiny_regime": "large_amplitude",
+        "dimension": 2,
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "mean": 0.5,
+        "amplitude_bound": 0.35,
+        "terms": [
+          {
+            "mode": [
+              1,
+              0
+            ],
+            "amplitude": 0.06904192535605534,
+            "phase": -2.1404206967272223
+          },
+          {
+            "mode": [
+              2,
+              1
+            ],
+            "amplitude": 0.0652470226182117,
+            "phase": -3.0066429459663073
+          },
+          {
+            "mode": [
+              3,
+              -1
+            ],
+            "amplitude": 0.06932965236780446,
+            "phase": -0.4828432323553087
+          },
+          {
+            "mode": [
+              0,
+              1
+            ],
+            "amplitude": 0.06422076169412357,
+            "phase": -2.0463102597736107
+          },
+          {
+            "mode": [
+              0,
+              2
+            ],
+            "amplitude": 0.03178165022665837,
+            "phase": 2.989617862899663
+          },
+          {
+            "mode": [
+              0,
+              3
+            ],
+            "amplitude": 0.05037898773714652,
+            "phase": -3.046701996809373
+          }
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "shape_scope": "fixed physical Fourier modes; analytically bounded without clipping",
+        "rejected_draws": 0,
+        "bandwidth_max_mode": 3,
+        "translation_invariant_shape_hash": "f7d5b4ab767a2c3187a70a274eedad1eed90113994fc3ca2e013d9c90b95c35d",
+        "parent_sha256": "3eb95887007fa83a69c111c92c47209613605ee5f92d90e2eb387d05f55a8e16",
+        "frequency_scope": "declared coarse-grid-relative stress; fixed frequencies during reference refinement",
+        "declared_coarse_grid": 8,
+        "stress_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+        "independence_scope": "paired descendant workload; not an additional independent parent"
+      },
+      "record": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/broadband/n8",
+        "query_id": "215293f68c10d314d3ad629c",
+        "split": "validation",
+        "phase_variant": "original",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "target_kind": "fd_same_grid",
+        "reference": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 6.564274977553527e-14,
+          "uncertainty_maximum": 1.3944401189291966e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.0531904671756489e-12,
+                "maximum": 2.231215212589177e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.0531904671756489e-12,
+                "maximum": 2.231215212589177e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 6.564274977553527e-14,
+                "maximum": 1.3944401189291966e-13
+              },
+              "working_grid_difference": {
+                "rms": 6.564274977553527e-14,
+                "maximum": 1.3944401189291966e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 4.475844751974286e-15,
+              "maximum": 9.492406860545088e-15
+            },
+            "working_grid_difference": {
+              "rms": 4.475844751974286e-15,
+              "maximum": 9.492406860545088e-15
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.012864643998909742,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "input_sha256": "ab93a90e3e18ecd970611e28d19dea1148c36d7c8aaa1b755032bb18c55c9661",
+        "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+        "regime": "broadband",
+        "shape_regime": "broadband",
+        "parent_sha256": "3eb95887007fa83a69c111c92c47209613605ee5f92d90e2eb387d05f55a8e16"
+      },
+      "teacher_seconds": 0.012877703004051,
+      "teacher_options": {
+        "tolerance": 1e-08,
+        "max_steps": 256,
+        "initial_steps": 8,
+        "max_seconds_per_query": 30.0,
+        "max_grid": 32,
+        "spatial_factors": [
+          2,
+          4
+        ],
+        "crosscheck": true
+      },
+      "independent_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "scope": "Paired field intervention; not an additional independent observation"
+    },
+    {
+      "parent": {
+        "generator": "tdn.response-fields/v1",
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "split": "validation",
+        "index": 2,
+        "seed": 2035304172151603957,
+        "regime": "grid_relative",
+        "tiny_regime": "large_amplitude",
+        "dimension": 2,
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "mean": 0.5,
+        "amplitude_bound": 0.35,
+        "terms": [
+          {
+            "mode": [
+              3,
+              0
+            ],
+            "amplitude": 0.054290716029057086,
+            "phase": -1.3619038006658606
+          },
+          {
+            "mode": [
+              2,
+              1
+            ],
+            "amplitude": 0.05915825769566746,
+            "phase": 2.902142142064391
+          },
+          {
+            "mode": [
+              1,
+              -1
+            ],
+            "amplitude": 0.05480308449273788,
+            "phase": 2.090946817169514
+          },
+          {
+            "mode": [
+              1,
+              0
+            ],
+            "amplitude": 0.04893358015050497,
+            "phase": -1.6874353430772797
+          },
+          {
+            "mode": [
+              0,
+              3
+            ],
+            "amplitude": 0.06575033355606057,
+            "phase": 1.1433746464502441
+          },
+          {
+            "mode": [
+              1,
+              2
+            ],
+            "amplitude": 0.06706402807597205,
+            "phase": 1.2582707332390521
+          }
+        ],
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "shape_scope": "fixed physical Fourier modes; analytically bounded without clipping",
+        "rejected_draws": 0,
+        "bandwidth_max_mode": 3,
+        "translation_invariant_shape_hash": "15fd9a0d932f61deb92ec84f65194c737a5470ff1a17d3de33f4bb2fc5f9177c",
+        "parent_sha256": "afba625ce26861beb3e9c5a94a9be0d9737f9b0188a186f0dc2b735deca7127b",
+        "frequency_scope": "declared coarse-grid-relative stress; fixed frequencies during reference refinement",
+        "declared_coarse_grid": 8,
+        "stress_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+        "independence_scope": "paired descendant workload; not an additional independent parent"
+      },
+      "record": {
+        "parent_id": "response-validation-000002-1c3eda5c6ef782f5/grid_relative/n8",
+        "query_id": "59d24d4f7356f7b78012b289",
+        "split": "validation",
+        "phase_variant": "original",
+        "grid": [
+          8,
+          8
+        ],
+        "lengths": [
+          1.0,
+          1.0
+        ],
+        "horizon": 0.04,
+        "kappa": 0.003,
+        "reaction_rate": 3.0,
+        "target_kind": "fd_same_grid",
+        "reference": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 6.384727218010613e-14,
+          "uncertainty_maximum": 1.2234657731369225e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.0235889233577687e-12,
+                "maximum": 1.950439809661475e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.0235889233577687e-12,
+                "maximum": 1.950439809661475e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 6.384727218010613e-14,
+                "maximum": 1.2234657731369225e-13
+              },
+              "working_grid_difference": {
+                "rms": 6.384727218010613e-14,
+                "maximum": 1.2234657731369225e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 4.193721898582759e-15,
+              "maximum": 8.770761894538737e-15
+            },
+            "working_grid_difference": {
+              "rms": 4.193721898582759e-15,
+              "maximum": 8.770761894538737e-15
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.012970940966624767,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "input_sha256": "54ec526ba9de4dee577b6f789614a67e00c9e5017cd673f974e1c0a1e46c69e3",
+        "cluster_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+        "regime": "grid_relative",
+        "shape_regime": "grid_relative",
+        "parent_sha256": "afba625ce26861beb3e9c5a94a9be0d9737f9b0188a186f0dc2b735deca7127b"
+      },
+      "teacher_seconds": 0.012986343004740775,
+      "teacher_options": {
+        "tolerance": 1e-08,
+        "max_steps": 256,
+        "initial_steps": 8,
+        "max_seconds_per_query": 30.0,
+        "max_grid": 32,
+        "spatial_factors": [
+          2,
+          4
+        ],
+        "crosscheck": true
+      },
+      "independent_parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+      "scope": "Paired field intervention; not an additional independent observation"
+    }
+  ],
+  "scope": "Two paired spectral interventions, not neural evaluation or resolution transfer",
+  "complete": true
+}

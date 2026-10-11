@@ -1,0 +1,2681 @@
+{
+  "schema": "tdn.response-error-decomposition/v1",
+  "rows": [
+    {
+      "method": "df",
+      "norm_target": "fd_same_grid",
+      "reference_accepted": true,
+      "status": "MEASURED",
+      "metrics": {
+        "norm_target": "fd_same_grid",
+        "component_squared_norms": {
+          "discrete_solver_error": 1.415463058157901e-14,
+          "spatial_discretization": 2.9818006476033174e-09,
+          "unresolved_scale_closure": 6.681928376501275e-17
+        },
+        "component_norms": {
+          "discrete_solver_error": 1.1897323472772778e-07,
+          "spatial_discretization": 5.460586642113938e-05,
+          "unresolved_scale_closure": 8.174306317053011e-09
+        },
+        "cross_terms": [
+          {
+            "left": "discrete_solver_error",
+            "right": "spatial_discretization",
+            "inner_product": 5.2682964142005735e-12,
+            "signed_twice_inner_product": 1.0536592828401147e-11,
+            "cosine": 0.8109267561642257,
+            "estimated_twice_inner_product_sensitivity": 1.1729356699794831e-17
+          },
+          {
+            "left": "discrete_solver_error",
+            "right": "unresolved_scale_closure",
+            "inner_product": 4.9409694543072416e-18,
+            "signed_twice_inner_product": 9.881938908614483e-18,
+            "cosine": 0.005080564757667476,
+            "estimated_twice_inner_product_sensitivity": 7.829559079675533e-20
+          },
+          {
+            "left": "spatial_discretization",
+            "right": "unresolved_scale_closure",
+            "inner_product": -3.761266120312926e-15,
+            "signed_twice_inner_product": -7.522532240625851e-15,
+            "cosine": -0.00842643454576278,
+            "estimated_twice_inner_product_sensitivity": 3.5136870259318775e-17
+          }
+        ],
+        "total_squared_norm": 2.992343949231282e-09,
+        "sum_component_squared_norms": 2.9818148690531826e-09,
+        "sum_signed_cross_terms": 1.0529080178099429e-11,
+        "reconstructed_squared_norm": 2.992343949231282e-09,
+        "squared_identity_discrepancy": 1.6155871338926322e-27,
+        "vector_reconstruction_maximum": 0.0,
+        "interpretation": "Signed vector decomposition; component norms must not be added or interpreted as independent errors"
+      },
+      "component_uncertainty_sensitivity": {
+        "discrete_solver_error": {
+          "estimated_uncertainty": 1.0693436947523145e-13,
+          "lower": 1.1897312779335831e-07,
+          "upper": 1.1897334166209725e-07,
+          "exceeds_ten_times_estimated_uncertainty": true
+        },
+        "spatial_discretization": {
+          "estimated_uncertainty": 2.1378280334766706e-13,
+          "lower": 5.460586620735658e-05,
+          "upper": 5.460586663492218e-05,
+          "exceeds_ten_times_estimated_uncertainty": true
+        },
+        "unresolved_scale_closure": {
+          "estimated_uncertainty": 3.2169963936265143e-13,
+          "lower": 8.173984617413648e-09,
+          "upper": 8.174628016692373e-09,
+          "exceeds_ten_times_estimated_uncertainty": true
+        }
+      },
+      "reference_uncertainty": {
+        "fd_same_grid": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 1.0693436947523145e-13,
+          "uncertainty_maximum": 1.7899570714519086e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.716701762127054e-12,
+                "maximum": 2.8622382242105004e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.716701762127054e-12,
+                "maximum": 2.8622382242105004e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 1.0693436947523145e-13,
+                "maximum": 1.7899570714519086e-13
+              },
+              "working_grid_difference": {
+                "rms": 1.0693436947523145e-13,
+                "maximum": 1.7899570714519086e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 7.505345822337115e-15,
+              "maximum": 1.3766765505351941e-14
+            },
+            "working_grid_difference": {
+              "rms": 7.505345822337115e-15,
+              "maximum": 1.3766765505351941e-14
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.021961475955322385,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "galerkin_same_grid": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 1.068484338724356e-13,
+          "uncertainty_maximum": 1.7791323969618134e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.7151832452671868e-12,
+                "maximum": 2.8440583221822635e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.7151832452671868e-12,
+                "maximum": 2.8440583221822635e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 1.068484338724356e-13,
+                "maximum": 1.7791323969618134e-13
+              },
+              "working_grid_difference": {
+                "rms": 1.068484338724356e-13,
+                "maximum": 1.7791323969618134e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 7.466436853060586e-15,
+              "maximum": 1.3905543383430086e-14
+            },
+            "working_grid_difference": {
+              "rms": 7.466436853060586e-15,
+              "maximum": 1.3905543383430086e-14
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.05999937700107694,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "galerkin_projected_fine": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "SPACE_AND_TIME_REFINED",
+          "uncertainty_rms": 2.1485120549021585e-13,
+          "uncertainty_maximum": 3.5232019429873757e-13,
+          "spatial_refinements": [
+            {
+              "factor": 2,
+              "grid": [
+                16,
+                16
+              ],
+              "temporal": {
+                "accepted": true,
+                "status": "ACCEPTED",
+                "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+                "uncertainty_rms": 1.0715904285039338e-13,
+                "uncertainty_maximum": 1.7541648104968286e-13,
+                "temporal_refinements": [
+                  {
+                    "steps": 8,
+                    "difference": {
+                      "rms": null,
+                      "maximum": null
+                    },
+                    "working_grid_difference": null,
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 16,
+                    "difference": {
+                      "rms": 1.7158482373801343e-12,
+                      "maximum": 2.7965558958361566e-12
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.716357638527597e-12,
+                      "maximum": 2.8117508321656715e-12
+                    },
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 32,
+                    "difference": {
+                      "rms": 1.0715904285039338e-13,
+                      "maximum": 1.7541648104968286e-13
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.0719001007095779e-13,
+                      "maximum": 1.758593271006248e-13
+                    },
+                    "finite": true,
+                    "contracting": true
+                  }
+                ],
+                "cross_solver": {
+                  "method": "scipy-DOP853",
+                  "nfev": 29,
+                  "success": true,
+                  "difference": {
+                    "rms": 7.250803599559905e-15,
+                    "maximum": 1.2636302543808182e-14
+                  },
+                  "working_grid_difference": {
+                    "rms": 7.273187728772323e-15,
+                    "maximum": 1.3516965324811281e-14
+                  }
+                },
+                "cross_solver_required": true,
+                "elapsed_seconds": 0.06591382098849863,
+                "roundoff_floor": 2e-14,
+                "uncertainty_is_certificate": false,
+                "solver": "Lawson-RK4 with exact diffusion",
+                "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+                "observation_grid": [
+                  8,
+                  8
+                ],
+                "working_grid": [
+                  16,
+                  16
+                ]
+              },
+              "projected_difference": {
+                "rms": null,
+                "maximum": null
+              }
+            },
+            {
+              "factor": 4,
+              "grid": [
+                32,
+                32
+              ],
+              "temporal": {
+                "accepted": true,
+                "status": "ACCEPTED",
+                "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+                "uncertainty_rms": 1.0715790160360482e-13,
+                "uncertainty_maximum": 1.7579349022442958e-13,
+                "temporal_refinements": [
+                  {
+                    "steps": 8,
+                    "difference": {
+                      "rms": null,
+                      "maximum": null
+                    },
+                    "working_grid_difference": null,
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 16,
+                    "difference": {
+                      "rms": 1.7157095392085112e-12,
+                      "maximum": 2.795812368952075e-12
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.7162208401426577e-12,
+                      "maximum": 2.8105295868385838e-12
+                    },
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 32,
+                    "difference": {
+                      "rms": 1.0715790160360482e-13,
+                      "maximum": 1.7579349022442958e-13
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.0719101920986341e-13,
+                      "maximum": 1.767197499447093e-13
+                    },
+                    "finite": true,
+                    "contracting": true
+                  }
+                ],
+                "cross_solver": {
+                  "method": "scipy-DOP853",
+                  "nfev": 29,
+                  "success": true,
+                  "difference": {
+                    "rms": 7.482386608612813e-15,
+                    "maximum": 1.2863855469739329e-14
+                  },
+                  "working_grid_difference": {
+                    "rms": 7.506847266062556e-15,
+                    "maximum": 1.3739009929736312e-14
+                  }
+                },
+                "cross_solver_required": true,
+                "elapsed_seconds": 0.08398054499411955,
+                "roundoff_floor": 2e-14,
+                "uncertainty_is_certificate": false,
+                "solver": "Lawson-RK4 with exact diffusion",
+                "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+                "observation_grid": [
+                  8,
+                  8
+                ],
+                "working_grid": [
+                  32,
+                  32
+                ]
+              },
+              "projected_difference": {
+                "rms": 5.342610362176347e-16,
+                "maximum": 1.1102230246251565e-15
+              }
+            }
+          ],
+          "elapsed_seconds": 0.15053056896431372,
+          "uncertainty_is_certificate": false,
+          "initial_lifting": "Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients",
+          "continuum_claim": false
+        }
+      },
+      "primary_total_uncertainty": {
+        "accepted": true,
+        "status": "ACCEPTED",
+        "reason": "SPACE_AND_TIME_REFINED",
+        "uncertainty_rms": 2.1485120549021585e-13,
+        "uncertainty_maximum": 3.5232019429873757e-13,
+        "spatial_refinements": [
+          {
+            "factor": 2,
+            "grid": [
+              16,
+              16
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715904285039338e-13,
+              "uncertainty_maximum": 1.7541648104968286e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7158482373801343e-12,
+                    "maximum": 2.7965558958361566e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.716357638527597e-12,
+                    "maximum": 2.8117508321656715e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715904285039338e-13,
+                    "maximum": 1.7541648104968286e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719001007095779e-13,
+                    "maximum": 1.758593271006248e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.250803599559905e-15,
+                  "maximum": 1.2636302543808182e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.273187728772323e-15,
+                  "maximum": 1.3516965324811281e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.06591382098849863,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                16,
+                16
+              ]
+            },
+            "projected_difference": {
+              "rms": null,
+              "maximum": null
+            }
+          },
+          {
+            "factor": 4,
+            "grid": [
+              32,
+              32
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715790160360482e-13,
+              "uncertainty_maximum": 1.7579349022442958e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7157095392085112e-12,
+                    "maximum": 2.795812368952075e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.7162208401426577e-12,
+                    "maximum": 2.8105295868385838e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715790160360482e-13,
+                    "maximum": 1.7579349022442958e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719101920986341e-13,
+                    "maximum": 1.767197499447093e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.482386608612813e-15,
+                  "maximum": 1.2863855469739329e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.506847266062556e-15,
+                  "maximum": 1.3739009929736312e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.08398054499411955,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                32,
+                32
+              ]
+            },
+            "projected_difference": {
+              "rms": 5.342610362176347e-16,
+              "maximum": 1.1102230246251565e-15
+            }
+          }
+        ],
+        "elapsed_seconds": 0.15053056896431372,
+        "uncertainty_is_certificate": false,
+        "initial_lifting": "Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients",
+        "continuum_claim": false
+      },
+      "uncertainty_scope": "Shared uncertain reference vectors, not independent random errors; total target uses only projected-fine uncertainty"
+    },
+    {
+      "method": "df",
+      "norm_target": "galerkin_same_grid",
+      "reference_accepted": true,
+      "status": "MEASURED",
+      "metrics": {
+        "norm_target": "galerkin_same_grid",
+        "component_squared_norms": {
+          "discrete_solver_error": 1.4153909872891995e-14,
+          "spatial_discretization": 2.9818005656119376e-09,
+          "unresolved_scale_closure": 6.681337946029215e-17
+        },
+        "component_norms": {
+          "discrete_solver_error": 1.1897020582016321e-07,
+          "spatial_discretization": 5.4605865670383226e-05,
+          "unresolved_scale_closure": 8.173945158874762e-09
+        },
+        "cross_terms": [
+          {
+            "left": "discrete_solver_error",
+            "right": "spatial_discretization",
+            "inner_product": 5.2682888489578955e-12,
+            "signed_twice_inner_product": 1.0536577697915791e-11,
+            "cosine": 0.8109462484895884,
+            "estimated_twice_inner_product_sensitivity": 1.172935524417486e-17
+          },
+          {
+            "left": "discrete_solver_error",
+            "right": "unresolved_scale_closure",
+            "inner_product": 4.99463165321881e-18,
+            "signed_twice_inner_product": 9.98926330643762e-18,
+            "cosine": 0.0051361007306227405,
+            "estimated_twice_inner_product_sensitivity": 7.829356475936882e-20
+          },
+          {
+            "left": "spatial_discretization",
+            "right": "unresolved_scale_closure",
+            "inner_product": -3.760673030533269e-15,
+            "signed_twice_inner_product": -7.521346061066538e-15,
+            "cosine": -0.008425478207001078,
+            "estimated_twice_inner_product_sensitivity": 3.5136869621864e-17
+          }
+        ],
+        "total_squared_norm": 2.992343852676308e-09,
+        "sum_component_squared_norms": 2.98181478633519e-09,
+        "sum_signed_cross_terms": 1.052906634111803e-11,
+        "reconstructed_squared_norm": 2.992343852676308e-09,
+        "squared_identity_discrepancy": 6.623907248959792e-26,
+        "vector_reconstruction_maximum": 0.0,
+        "interpretation": "Signed vector decomposition; component norms must not be added or interpreted as independent errors"
+      },
+      "component_uncertainty_sensitivity": {
+        "discrete_solver_error": {
+          "estimated_uncertainty": 1.0693436947523145e-13,
+          "lower": 1.1897009888579374e-07,
+          "upper": 1.1897031275453268e-07,
+          "exceeds_ten_times_estimated_uncertainty": true
+        },
+        "spatial_discretization": {
+          "estimated_uncertainty": 2.1378280334766706e-13,
+          "lower": 5.4605865456600425e-05,
+          "upper": 5.460586588416603e-05,
+          "exceeds_ten_times_estimated_uncertainty": true
+        },
+        "unresolved_scale_closure": {
+          "estimated_uncertainty": 3.2169963936265143e-13,
+          "lower": 8.1736234592354e-09,
+          "upper": 8.174266858514125e-09,
+          "exceeds_ten_times_estimated_uncertainty": true
+        }
+      },
+      "reference_uncertainty": {
+        "fd_same_grid": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 1.0693436947523145e-13,
+          "uncertainty_maximum": 1.7899570714519086e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.716701762127054e-12,
+                "maximum": 2.8622382242105004e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.716701762127054e-12,
+                "maximum": 2.8622382242105004e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 1.0693436947523145e-13,
+                "maximum": 1.7899570714519086e-13
+              },
+              "working_grid_difference": {
+                "rms": 1.0693436947523145e-13,
+                "maximum": 1.7899570714519086e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 7.505345822337115e-15,
+              "maximum": 1.3766765505351941e-14
+            },
+            "working_grid_difference": {
+              "rms": 7.505345822337115e-15,
+              "maximum": 1.3766765505351941e-14
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.021961475955322385,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "galerkin_same_grid": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 1.068484338724356e-13,
+          "uncertainty_maximum": 1.7791323969618134e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.7151832452671868e-12,
+                "maximum": 2.8440583221822635e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.7151832452671868e-12,
+                "maximum": 2.8440583221822635e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 1.068484338724356e-13,
+                "maximum": 1.7791323969618134e-13
+              },
+              "working_grid_difference": {
+                "rms": 1.068484338724356e-13,
+                "maximum": 1.7791323969618134e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 7.466436853060586e-15,
+              "maximum": 1.3905543383430086e-14
+            },
+            "working_grid_difference": {
+              "rms": 7.466436853060586e-15,
+              "maximum": 1.3905543383430086e-14
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.05999937700107694,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "galerkin_projected_fine": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "SPACE_AND_TIME_REFINED",
+          "uncertainty_rms": 2.1485120549021585e-13,
+          "uncertainty_maximum": 3.5232019429873757e-13,
+          "spatial_refinements": [
+            {
+              "factor": 2,
+              "grid": [
+                16,
+                16
+              ],
+              "temporal": {
+                "accepted": true,
+                "status": "ACCEPTED",
+                "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+                "uncertainty_rms": 1.0715904285039338e-13,
+                "uncertainty_maximum": 1.7541648104968286e-13,
+                "temporal_refinements": [
+                  {
+                    "steps": 8,
+                    "difference": {
+                      "rms": null,
+                      "maximum": null
+                    },
+                    "working_grid_difference": null,
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 16,
+                    "difference": {
+                      "rms": 1.7158482373801343e-12,
+                      "maximum": 2.7965558958361566e-12
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.716357638527597e-12,
+                      "maximum": 2.8117508321656715e-12
+                    },
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 32,
+                    "difference": {
+                      "rms": 1.0715904285039338e-13,
+                      "maximum": 1.7541648104968286e-13
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.0719001007095779e-13,
+                      "maximum": 1.758593271006248e-13
+                    },
+                    "finite": true,
+                    "contracting": true
+                  }
+                ],
+                "cross_solver": {
+                  "method": "scipy-DOP853",
+                  "nfev": 29,
+                  "success": true,
+                  "difference": {
+                    "rms": 7.250803599559905e-15,
+                    "maximum": 1.2636302543808182e-14
+                  },
+                  "working_grid_difference": {
+                    "rms": 7.273187728772323e-15,
+                    "maximum": 1.3516965324811281e-14
+                  }
+                },
+                "cross_solver_required": true,
+                "elapsed_seconds": 0.06591382098849863,
+                "roundoff_floor": 2e-14,
+                "uncertainty_is_certificate": false,
+                "solver": "Lawson-RK4 with exact diffusion",
+                "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+                "observation_grid": [
+                  8,
+                  8
+                ],
+                "working_grid": [
+                  16,
+                  16
+                ]
+              },
+              "projected_difference": {
+                "rms": null,
+                "maximum": null
+              }
+            },
+            {
+              "factor": 4,
+              "grid": [
+                32,
+                32
+              ],
+              "temporal": {
+                "accepted": true,
+                "status": "ACCEPTED",
+                "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+                "uncertainty_rms": 1.0715790160360482e-13,
+                "uncertainty_maximum": 1.7579349022442958e-13,
+                "temporal_refinements": [
+                  {
+                    "steps": 8,
+                    "difference": {
+                      "rms": null,
+                      "maximum": null
+                    },
+                    "working_grid_difference": null,
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 16,
+                    "difference": {
+                      "rms": 1.7157095392085112e-12,
+                      "maximum": 2.795812368952075e-12
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.7162208401426577e-12,
+                      "maximum": 2.8105295868385838e-12
+                    },
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 32,
+                    "difference": {
+                      "rms": 1.0715790160360482e-13,
+                      "maximum": 1.7579349022442958e-13
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.0719101920986341e-13,
+                      "maximum": 1.767197499447093e-13
+                    },
+                    "finite": true,
+                    "contracting": true
+                  }
+                ],
+                "cross_solver": {
+                  "method": "scipy-DOP853",
+                  "nfev": 29,
+                  "success": true,
+                  "difference": {
+                    "rms": 7.482386608612813e-15,
+                    "maximum": 1.2863855469739329e-14
+                  },
+                  "working_grid_difference": {
+                    "rms": 7.506847266062556e-15,
+                    "maximum": 1.3739009929736312e-14
+                  }
+                },
+                "cross_solver_required": true,
+                "elapsed_seconds": 0.08398054499411955,
+                "roundoff_floor": 2e-14,
+                "uncertainty_is_certificate": false,
+                "solver": "Lawson-RK4 with exact diffusion",
+                "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+                "observation_grid": [
+                  8,
+                  8
+                ],
+                "working_grid": [
+                  32,
+                  32
+                ]
+              },
+              "projected_difference": {
+                "rms": 5.342610362176347e-16,
+                "maximum": 1.1102230246251565e-15
+              }
+            }
+          ],
+          "elapsed_seconds": 0.15053056896431372,
+          "uncertainty_is_certificate": false,
+          "initial_lifting": "Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients",
+          "continuum_claim": false
+        }
+      },
+      "primary_total_uncertainty": {
+        "accepted": true,
+        "status": "ACCEPTED",
+        "reason": "SPACE_AND_TIME_REFINED",
+        "uncertainty_rms": 2.1485120549021585e-13,
+        "uncertainty_maximum": 3.5232019429873757e-13,
+        "spatial_refinements": [
+          {
+            "factor": 2,
+            "grid": [
+              16,
+              16
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715904285039338e-13,
+              "uncertainty_maximum": 1.7541648104968286e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7158482373801343e-12,
+                    "maximum": 2.7965558958361566e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.716357638527597e-12,
+                    "maximum": 2.8117508321656715e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715904285039338e-13,
+                    "maximum": 1.7541648104968286e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719001007095779e-13,
+                    "maximum": 1.758593271006248e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.250803599559905e-15,
+                  "maximum": 1.2636302543808182e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.273187728772323e-15,
+                  "maximum": 1.3516965324811281e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.06591382098849863,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                16,
+                16
+              ]
+            },
+            "projected_difference": {
+              "rms": null,
+              "maximum": null
+            }
+          },
+          {
+            "factor": 4,
+            "grid": [
+              32,
+              32
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715790160360482e-13,
+              "uncertainty_maximum": 1.7579349022442958e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7157095392085112e-12,
+                    "maximum": 2.795812368952075e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.7162208401426577e-12,
+                    "maximum": 2.8105295868385838e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715790160360482e-13,
+                    "maximum": 1.7579349022442958e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719101920986341e-13,
+                    "maximum": 1.767197499447093e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.482386608612813e-15,
+                  "maximum": 1.2863855469739329e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.506847266062556e-15,
+                  "maximum": 1.3739009929736312e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.08398054499411955,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                32,
+                32
+              ]
+            },
+            "projected_difference": {
+              "rms": 5.342610362176347e-16,
+              "maximum": 1.1102230246251565e-15
+            }
+          }
+        ],
+        "elapsed_seconds": 0.15053056896431372,
+        "uncertainty_is_certificate": false,
+        "initial_lifting": "Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients",
+        "continuum_claim": false
+      },
+      "uncertainty_scope": "Shared uncertain reference vectors, not independent random errors; total target uses only projected-fine uncertainty"
+    },
+    {
+      "method": "shared_gl4",
+      "norm_target": "fd_same_grid",
+      "reference_accepted": true,
+      "status": "MEASURED",
+      "metrics": {
+        "norm_target": "fd_same_grid",
+        "component_squared_norms": {
+          "discrete_solver_error": 1.382041043573705e-14,
+          "spatial_discretization": 2.9818006476033174e-09,
+          "unresolved_scale_closure": 6.681928376501275e-17
+        },
+        "component_norms": {
+          "discrete_solver_error": 1.175602417305147e-07,
+          "spatial_discretization": 5.460586642113938e-05,
+          "unresolved_scale_closure": 8.174306317053011e-09
+        },
+        "cross_terms": [
+          {
+            "left": "discrete_solver_error",
+            "right": "spatial_discretization",
+            "inner_product": 5.328151016329348e-12,
+            "signed_twice_inner_product": 1.0656302032658696e-11,
+            "cosine": 0.8299974399073674,
+            "estimated_twice_inner_product_sensitivity": 1.1728752552586722e-17
+          },
+          {
+            "left": "discrete_solver_error",
+            "right": "unresolved_scale_closure",
+            "inner_product": 5.0275276116936385e-18,
+            "signed_twice_inner_product": 1.0055055223387277e-17,
+            "cosine": 0.005231703054910183,
+            "estimated_twice_inner_product_sensitivity": 7.738647212150453e-20
+          },
+          {
+            "left": "spatial_discretization",
+            "right": "unresolved_scale_closure",
+            "inner_product": -3.761266120312926e-15,
+            "signed_twice_inner_product": -7.522532240625851e-15,
+            "cosine": -0.00842643454576278,
+            "estimated_twice_inner_product_sensitivity": 3.5136870259318775e-17
+          }
+        ],
+        "total_squared_norm": 2.99246332438851e-09,
+        "sum_component_squared_norms": 2.981814534833037e-09,
+        "sum_signed_cross_terms": 1.0648789555473293e-11,
+        "reconstructed_squared_norm": 2.9924633243885105e-09,
+        "squared_identity_discrepancy": 2.100263274060422e-25,
+        "vector_reconstruction_maximum": 0.0,
+        "interpretation": "Signed vector decomposition; component norms must not be added or interpreted as independent errors"
+      },
+      "component_uncertainty_sensitivity": {
+        "discrete_solver_error": {
+          "estimated_uncertainty": 1.0693436947523145e-13,
+          "lower": 1.1756013479614523e-07,
+          "upper": 1.1756034866488417e-07,
+          "exceeds_ten_times_estimated_uncertainty": true
+        },
+        "spatial_discretization": {
+          "estimated_uncertainty": 2.1378280334766706e-13,
+          "lower": 5.460586620735658e-05,
+          "upper": 5.460586663492218e-05,
+          "exceeds_ten_times_estimated_uncertainty": true
+        },
+        "unresolved_scale_closure": {
+          "estimated_uncertainty": 3.2169963936265143e-13,
+          "lower": 8.173984617413648e-09,
+          "upper": 8.174628016692373e-09,
+          "exceeds_ten_times_estimated_uncertainty": true
+        }
+      },
+      "reference_uncertainty": {
+        "fd_same_grid": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 1.0693436947523145e-13,
+          "uncertainty_maximum": 1.7899570714519086e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.716701762127054e-12,
+                "maximum": 2.8622382242105004e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.716701762127054e-12,
+                "maximum": 2.8622382242105004e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 1.0693436947523145e-13,
+                "maximum": 1.7899570714519086e-13
+              },
+              "working_grid_difference": {
+                "rms": 1.0693436947523145e-13,
+                "maximum": 1.7899570714519086e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 7.505345822337115e-15,
+              "maximum": 1.3766765505351941e-14
+            },
+            "working_grid_difference": {
+              "rms": 7.505345822337115e-15,
+              "maximum": 1.3766765505351941e-14
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.021961475955322385,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "galerkin_same_grid": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 1.068484338724356e-13,
+          "uncertainty_maximum": 1.7791323969618134e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.7151832452671868e-12,
+                "maximum": 2.8440583221822635e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.7151832452671868e-12,
+                "maximum": 2.8440583221822635e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 1.068484338724356e-13,
+                "maximum": 1.7791323969618134e-13
+              },
+              "working_grid_difference": {
+                "rms": 1.068484338724356e-13,
+                "maximum": 1.7791323969618134e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 7.466436853060586e-15,
+              "maximum": 1.3905543383430086e-14
+            },
+            "working_grid_difference": {
+              "rms": 7.466436853060586e-15,
+              "maximum": 1.3905543383430086e-14
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.05999937700107694,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "galerkin_projected_fine": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "SPACE_AND_TIME_REFINED",
+          "uncertainty_rms": 2.1485120549021585e-13,
+          "uncertainty_maximum": 3.5232019429873757e-13,
+          "spatial_refinements": [
+            {
+              "factor": 2,
+              "grid": [
+                16,
+                16
+              ],
+              "temporal": {
+                "accepted": true,
+                "status": "ACCEPTED",
+                "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+                "uncertainty_rms": 1.0715904285039338e-13,
+                "uncertainty_maximum": 1.7541648104968286e-13,
+                "temporal_refinements": [
+                  {
+                    "steps": 8,
+                    "difference": {
+                      "rms": null,
+                      "maximum": null
+                    },
+                    "working_grid_difference": null,
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 16,
+                    "difference": {
+                      "rms": 1.7158482373801343e-12,
+                      "maximum": 2.7965558958361566e-12
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.716357638527597e-12,
+                      "maximum": 2.8117508321656715e-12
+                    },
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 32,
+                    "difference": {
+                      "rms": 1.0715904285039338e-13,
+                      "maximum": 1.7541648104968286e-13
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.0719001007095779e-13,
+                      "maximum": 1.758593271006248e-13
+                    },
+                    "finite": true,
+                    "contracting": true
+                  }
+                ],
+                "cross_solver": {
+                  "method": "scipy-DOP853",
+                  "nfev": 29,
+                  "success": true,
+                  "difference": {
+                    "rms": 7.250803599559905e-15,
+                    "maximum": 1.2636302543808182e-14
+                  },
+                  "working_grid_difference": {
+                    "rms": 7.273187728772323e-15,
+                    "maximum": 1.3516965324811281e-14
+                  }
+                },
+                "cross_solver_required": true,
+                "elapsed_seconds": 0.06591382098849863,
+                "roundoff_floor": 2e-14,
+                "uncertainty_is_certificate": false,
+                "solver": "Lawson-RK4 with exact diffusion",
+                "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+                "observation_grid": [
+                  8,
+                  8
+                ],
+                "working_grid": [
+                  16,
+                  16
+                ]
+              },
+              "projected_difference": {
+                "rms": null,
+                "maximum": null
+              }
+            },
+            {
+              "factor": 4,
+              "grid": [
+                32,
+                32
+              ],
+              "temporal": {
+                "accepted": true,
+                "status": "ACCEPTED",
+                "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+                "uncertainty_rms": 1.0715790160360482e-13,
+                "uncertainty_maximum": 1.7579349022442958e-13,
+                "temporal_refinements": [
+                  {
+                    "steps": 8,
+                    "difference": {
+                      "rms": null,
+                      "maximum": null
+                    },
+                    "working_grid_difference": null,
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 16,
+                    "difference": {
+                      "rms": 1.7157095392085112e-12,
+                      "maximum": 2.795812368952075e-12
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.7162208401426577e-12,
+                      "maximum": 2.8105295868385838e-12
+                    },
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 32,
+                    "difference": {
+                      "rms": 1.0715790160360482e-13,
+                      "maximum": 1.7579349022442958e-13
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.0719101920986341e-13,
+                      "maximum": 1.767197499447093e-13
+                    },
+                    "finite": true,
+                    "contracting": true
+                  }
+                ],
+                "cross_solver": {
+                  "method": "scipy-DOP853",
+                  "nfev": 29,
+                  "success": true,
+                  "difference": {
+                    "rms": 7.482386608612813e-15,
+                    "maximum": 1.2863855469739329e-14
+                  },
+                  "working_grid_difference": {
+                    "rms": 7.506847266062556e-15,
+                    "maximum": 1.3739009929736312e-14
+                  }
+                },
+                "cross_solver_required": true,
+                "elapsed_seconds": 0.08398054499411955,
+                "roundoff_floor": 2e-14,
+                "uncertainty_is_certificate": false,
+                "solver": "Lawson-RK4 with exact diffusion",
+                "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+                "observation_grid": [
+                  8,
+                  8
+                ],
+                "working_grid": [
+                  32,
+                  32
+                ]
+              },
+              "projected_difference": {
+                "rms": 5.342610362176347e-16,
+                "maximum": 1.1102230246251565e-15
+              }
+            }
+          ],
+          "elapsed_seconds": 0.15053056896431372,
+          "uncertainty_is_certificate": false,
+          "initial_lifting": "Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients",
+          "continuum_claim": false
+        }
+      },
+      "primary_total_uncertainty": {
+        "accepted": true,
+        "status": "ACCEPTED",
+        "reason": "SPACE_AND_TIME_REFINED",
+        "uncertainty_rms": 2.1485120549021585e-13,
+        "uncertainty_maximum": 3.5232019429873757e-13,
+        "spatial_refinements": [
+          {
+            "factor": 2,
+            "grid": [
+              16,
+              16
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715904285039338e-13,
+              "uncertainty_maximum": 1.7541648104968286e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7158482373801343e-12,
+                    "maximum": 2.7965558958361566e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.716357638527597e-12,
+                    "maximum": 2.8117508321656715e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715904285039338e-13,
+                    "maximum": 1.7541648104968286e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719001007095779e-13,
+                    "maximum": 1.758593271006248e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.250803599559905e-15,
+                  "maximum": 1.2636302543808182e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.273187728772323e-15,
+                  "maximum": 1.3516965324811281e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.06591382098849863,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                16,
+                16
+              ]
+            },
+            "projected_difference": {
+              "rms": null,
+              "maximum": null
+            }
+          },
+          {
+            "factor": 4,
+            "grid": [
+              32,
+              32
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715790160360482e-13,
+              "uncertainty_maximum": 1.7579349022442958e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7157095392085112e-12,
+                    "maximum": 2.795812368952075e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.7162208401426577e-12,
+                    "maximum": 2.8105295868385838e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715790160360482e-13,
+                    "maximum": 1.7579349022442958e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719101920986341e-13,
+                    "maximum": 1.767197499447093e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.482386608612813e-15,
+                  "maximum": 1.2863855469739329e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.506847266062556e-15,
+                  "maximum": 1.3739009929736312e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.08398054499411955,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                32,
+                32
+              ]
+            },
+            "projected_difference": {
+              "rms": 5.342610362176347e-16,
+              "maximum": 1.1102230246251565e-15
+            }
+          }
+        ],
+        "elapsed_seconds": 0.15053056896431372,
+        "uncertainty_is_certificate": false,
+        "initial_lifting": "Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients",
+        "continuum_claim": false
+      },
+      "uncertainty_scope": "Shared uncertain reference vectors, not independent random errors; total target uses only projected-fine uncertainty"
+    },
+    {
+      "method": "shared_gl4",
+      "norm_target": "galerkin_same_grid",
+      "reference_accepted": true,
+      "status": "MEASURED",
+      "metrics": {
+        "norm_target": "galerkin_same_grid",
+        "component_squared_norms": {
+          "discrete_solver_error": 1.3819689726799988e-14,
+          "spatial_discretization": 2.9818005656119376e-09,
+          "unresolved_scale_closure": 6.681337946029215e-17
+        },
+        "component_norms": {
+          "discrete_solver_error": 1.1755717641556379e-07,
+          "spatial_discretization": 5.4605865670383226e-05,
+          "unresolved_scale_closure": 8.173945158874762e-09
+        },
+        "cross_terms": [
+          {
+            "left": "discrete_solver_error",
+            "right": "spatial_discretization",
+            "inner_product": 5.328143451085199e-12,
+            "signed_twice_inner_product": 1.0656286902170398e-11,
+            "cosine": 0.8300179150706253,
+            "estimated_twice_inner_product_sensitivity": 1.1728751081400204e-17
+          },
+          {
+            "left": "discrete_solver_error",
+            "right": "unresolved_scale_closure",
+            "inner_product": 5.0811898387494006e-18,
+            "signed_twice_inner_product": 1.0162379677498801e-17,
+            "cosine": 0.005287916090146097,
+            "estimated_twice_inner_product_sensitivity": 7.738442265963192e-20
+          },
+          {
+            "left": "spatial_discretization",
+            "right": "unresolved_scale_closure",
+            "inner_product": -3.760673030533269e-15,
+            "signed_twice_inner_product": -7.521346061066538e-15,
+            "cosine": -0.008425478207001078,
+            "estimated_twice_inner_product_sensitivity": 3.5136869621864e-17
+          }
+        ],
+        "total_squared_norm": 2.9924632278335324e-09,
+        "sum_component_squared_norms": 2.981814452115044e-09,
+        "sum_signed_cross_terms": 1.064877571848901e-11,
+        "reconstructed_squared_norm": 2.992463227833533e-09,
+        "squared_identity_discrepancy": 5.686866711302065e-25,
+        "vector_reconstruction_maximum": 0.0,
+        "interpretation": "Signed vector decomposition; component norms must not be added or interpreted as independent errors"
+      },
+      "component_uncertainty_sensitivity": {
+        "discrete_solver_error": {
+          "estimated_uncertainty": 1.0693436947523145e-13,
+          "lower": 1.1755706948119432e-07,
+          "upper": 1.1755728334993326e-07,
+          "exceeds_ten_times_estimated_uncertainty": true
+        },
+        "spatial_discretization": {
+          "estimated_uncertainty": 2.1378280334766706e-13,
+          "lower": 5.4605865456600425e-05,
+          "upper": 5.460586588416603e-05,
+          "exceeds_ten_times_estimated_uncertainty": true
+        },
+        "unresolved_scale_closure": {
+          "estimated_uncertainty": 3.2169963936265143e-13,
+          "lower": 8.1736234592354e-09,
+          "upper": 8.174266858514125e-09,
+          "exceeds_ten_times_estimated_uncertainty": true
+        }
+      },
+      "reference_uncertainty": {
+        "fd_same_grid": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 1.0693436947523145e-13,
+          "uncertainty_maximum": 1.7899570714519086e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.716701762127054e-12,
+                "maximum": 2.8622382242105004e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.716701762127054e-12,
+                "maximum": 2.8622382242105004e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 1.0693436947523145e-13,
+                "maximum": 1.7899570714519086e-13
+              },
+              "working_grid_difference": {
+                "rms": 1.0693436947523145e-13,
+                "maximum": 1.7899570714519086e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 7.505345822337115e-15,
+              "maximum": 1.3766765505351941e-14
+            },
+            "working_grid_difference": {
+              "rms": 7.505345822337115e-15,
+              "maximum": 1.3766765505351941e-14
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.021961475955322385,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "galerkin_same_grid": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+          "uncertainty_rms": 1.068484338724356e-13,
+          "uncertainty_maximum": 1.7791323969618134e-13,
+          "temporal_refinements": [
+            {
+              "steps": 8,
+              "difference": {
+                "rms": null,
+                "maximum": null
+              },
+              "working_grid_difference": null,
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 16,
+              "difference": {
+                "rms": 1.7151832452671868e-12,
+                "maximum": 2.8440583221822635e-12
+              },
+              "working_grid_difference": {
+                "rms": 1.7151832452671868e-12,
+                "maximum": 2.8440583221822635e-12
+              },
+              "finite": true,
+              "contracting": false
+            },
+            {
+              "steps": 32,
+              "difference": {
+                "rms": 1.068484338724356e-13,
+                "maximum": 1.7791323969618134e-13
+              },
+              "working_grid_difference": {
+                "rms": 1.068484338724356e-13,
+                "maximum": 1.7791323969618134e-13
+              },
+              "finite": true,
+              "contracting": true
+            }
+          ],
+          "cross_solver": {
+            "method": "scipy-DOP853",
+            "nfev": 29,
+            "success": true,
+            "difference": {
+              "rms": 7.466436853060586e-15,
+              "maximum": 1.3905543383430086e-14
+            },
+            "working_grid_difference": {
+              "rms": 7.466436853060586e-15,
+              "maximum": 1.3905543383430086e-14
+            }
+          },
+          "cross_solver_required": true,
+          "elapsed_seconds": 0.05999937700107694,
+          "roundoff_floor": 2e-14,
+          "uncertainty_is_certificate": false,
+          "solver": "Lawson-RK4 with exact diffusion",
+          "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+          "observation_grid": [
+            8,
+            8
+          ],
+          "working_grid": [
+            8,
+            8
+          ]
+        },
+        "galerkin_projected_fine": {
+          "accepted": true,
+          "status": "ACCEPTED",
+          "reason": "SPACE_AND_TIME_REFINED",
+          "uncertainty_rms": 2.1485120549021585e-13,
+          "uncertainty_maximum": 3.5232019429873757e-13,
+          "spatial_refinements": [
+            {
+              "factor": 2,
+              "grid": [
+                16,
+                16
+              ],
+              "temporal": {
+                "accepted": true,
+                "status": "ACCEPTED",
+                "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+                "uncertainty_rms": 1.0715904285039338e-13,
+                "uncertainty_maximum": 1.7541648104968286e-13,
+                "temporal_refinements": [
+                  {
+                    "steps": 8,
+                    "difference": {
+                      "rms": null,
+                      "maximum": null
+                    },
+                    "working_grid_difference": null,
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 16,
+                    "difference": {
+                      "rms": 1.7158482373801343e-12,
+                      "maximum": 2.7965558958361566e-12
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.716357638527597e-12,
+                      "maximum": 2.8117508321656715e-12
+                    },
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 32,
+                    "difference": {
+                      "rms": 1.0715904285039338e-13,
+                      "maximum": 1.7541648104968286e-13
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.0719001007095779e-13,
+                      "maximum": 1.758593271006248e-13
+                    },
+                    "finite": true,
+                    "contracting": true
+                  }
+                ],
+                "cross_solver": {
+                  "method": "scipy-DOP853",
+                  "nfev": 29,
+                  "success": true,
+                  "difference": {
+                    "rms": 7.250803599559905e-15,
+                    "maximum": 1.2636302543808182e-14
+                  },
+                  "working_grid_difference": {
+                    "rms": 7.273187728772323e-15,
+                    "maximum": 1.3516965324811281e-14
+                  }
+                },
+                "cross_solver_required": true,
+                "elapsed_seconds": 0.06591382098849863,
+                "roundoff_floor": 2e-14,
+                "uncertainty_is_certificate": false,
+                "solver": "Lawson-RK4 with exact diffusion",
+                "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+                "observation_grid": [
+                  8,
+                  8
+                ],
+                "working_grid": [
+                  16,
+                  16
+                ]
+              },
+              "projected_difference": {
+                "rms": null,
+                "maximum": null
+              }
+            },
+            {
+              "factor": 4,
+              "grid": [
+                32,
+                32
+              ],
+              "temporal": {
+                "accepted": true,
+                "status": "ACCEPTED",
+                "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+                "uncertainty_rms": 1.0715790160360482e-13,
+                "uncertainty_maximum": 1.7579349022442958e-13,
+                "temporal_refinements": [
+                  {
+                    "steps": 8,
+                    "difference": {
+                      "rms": null,
+                      "maximum": null
+                    },
+                    "working_grid_difference": null,
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 16,
+                    "difference": {
+                      "rms": 1.7157095392085112e-12,
+                      "maximum": 2.795812368952075e-12
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.7162208401426577e-12,
+                      "maximum": 2.8105295868385838e-12
+                    },
+                    "finite": true,
+                    "contracting": false
+                  },
+                  {
+                    "steps": 32,
+                    "difference": {
+                      "rms": 1.0715790160360482e-13,
+                      "maximum": 1.7579349022442958e-13
+                    },
+                    "working_grid_difference": {
+                      "rms": 1.0719101920986341e-13,
+                      "maximum": 1.767197499447093e-13
+                    },
+                    "finite": true,
+                    "contracting": true
+                  }
+                ],
+                "cross_solver": {
+                  "method": "scipy-DOP853",
+                  "nfev": 29,
+                  "success": true,
+                  "difference": {
+                    "rms": 7.482386608612813e-15,
+                    "maximum": 1.2863855469739329e-14
+                  },
+                  "working_grid_difference": {
+                    "rms": 7.506847266062556e-15,
+                    "maximum": 1.3739009929736312e-14
+                  }
+                },
+                "cross_solver_required": true,
+                "elapsed_seconds": 0.08398054499411955,
+                "roundoff_floor": 2e-14,
+                "uncertainty_is_certificate": false,
+                "solver": "Lawson-RK4 with exact diffusion",
+                "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+                "observation_grid": [
+                  8,
+                  8
+                ],
+                "working_grid": [
+                  32,
+                  32
+                ]
+              },
+              "projected_difference": {
+                "rms": 5.342610362176347e-16,
+                "maximum": 1.1102230246251565e-15
+              }
+            }
+          ],
+          "elapsed_seconds": 0.15053056896431372,
+          "uncertainty_is_certificate": false,
+          "initial_lifting": "Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients",
+          "continuum_claim": false
+        }
+      },
+      "primary_total_uncertainty": {
+        "accepted": true,
+        "status": "ACCEPTED",
+        "reason": "SPACE_AND_TIME_REFINED",
+        "uncertainty_rms": 2.1485120549021585e-13,
+        "uncertainty_maximum": 3.5232019429873757e-13,
+        "spatial_refinements": [
+          {
+            "factor": 2,
+            "grid": [
+              16,
+              16
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715904285039338e-13,
+              "uncertainty_maximum": 1.7541648104968286e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7158482373801343e-12,
+                    "maximum": 2.7965558958361566e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.716357638527597e-12,
+                    "maximum": 2.8117508321656715e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715904285039338e-13,
+                    "maximum": 1.7541648104968286e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719001007095779e-13,
+                    "maximum": 1.758593271006248e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.250803599559905e-15,
+                  "maximum": 1.2636302543808182e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.273187728772323e-15,
+                  "maximum": 1.3516965324811281e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.06591382098849863,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                16,
+                16
+              ]
+            },
+            "projected_difference": {
+              "rms": null,
+              "maximum": null
+            }
+          },
+          {
+            "factor": 4,
+            "grid": [
+              32,
+              32
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715790160360482e-13,
+              "uncertainty_maximum": 1.7579349022442958e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7157095392085112e-12,
+                    "maximum": 2.795812368952075e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.7162208401426577e-12,
+                    "maximum": 2.8105295868385838e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715790160360482e-13,
+                    "maximum": 1.7579349022442958e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719101920986341e-13,
+                    "maximum": 1.767197499447093e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.482386608612813e-15,
+                  "maximum": 1.2863855469739329e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.506847266062556e-15,
+                  "maximum": 1.3739009929736312e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.08398054499411955,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                32,
+                32
+              ]
+            },
+            "projected_difference": {
+              "rms": 5.342610362176347e-16,
+              "maximum": 1.1102230246251565e-15
+            }
+          }
+        ],
+        "elapsed_seconds": 0.15053056896431372,
+        "uncertainty_is_certificate": false,
+        "initial_lifting": "Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients",
+        "continuum_claim": false
+      },
+      "uncertainty_scope": "Shared uncertain reference vectors, not independent random errors; total target uses only projected-fine uncertainty"
+    }
+  ],
+  "parent_id": "response-validation-000002-1c3eda5c6ef782f5",
+  "input_sha256": "70efd726f9eb83b54a96cc0de09856c3fa23114c991ab7d95c654a13dce595a7",
+  "grid": [
+    8,
+    8
+  ],
+  "horizon": 0.04,
+  "kappa": 0.003,
+  "reaction_rate": 3.0,
+  "input_contract": "Same actual saved FP32 observation cast to FP64 for all finite equations and known zero-hidden fine lift",
+  "teachers": {
+    "fd_same_grid": {
+      "meta": {
+        "accepted": true,
+        "status": "ACCEPTED",
+        "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+        "uncertainty_rms": 1.0693436947523145e-13,
+        "uncertainty_maximum": 1.7899570714519086e-13,
+        "temporal_refinements": [
+          {
+            "steps": 8,
+            "difference": {
+              "rms": null,
+              "maximum": null
+            },
+            "working_grid_difference": null,
+            "finite": true,
+            "contracting": false
+          },
+          {
+            "steps": 16,
+            "difference": {
+              "rms": 1.716701762127054e-12,
+              "maximum": 2.8622382242105004e-12
+            },
+            "working_grid_difference": {
+              "rms": 1.716701762127054e-12,
+              "maximum": 2.8622382242105004e-12
+            },
+            "finite": true,
+            "contracting": false
+          },
+          {
+            "steps": 32,
+            "difference": {
+              "rms": 1.0693436947523145e-13,
+              "maximum": 1.7899570714519086e-13
+            },
+            "working_grid_difference": {
+              "rms": 1.0693436947523145e-13,
+              "maximum": 1.7899570714519086e-13
+            },
+            "finite": true,
+            "contracting": true
+          }
+        ],
+        "cross_solver": {
+          "method": "scipy-DOP853",
+          "nfev": 29,
+          "success": true,
+          "difference": {
+            "rms": 7.505345822337115e-15,
+            "maximum": 1.3766765505351941e-14
+          },
+          "working_grid_difference": {
+            "rms": 7.505345822337115e-15,
+            "maximum": 1.3766765505351941e-14
+          }
+        },
+        "cross_solver_required": true,
+        "elapsed_seconds": 0.021961475955322385,
+        "roundoff_floor": 2e-14,
+        "uncertainty_is_certificate": false,
+        "solver": "Lawson-RK4 with exact diffusion",
+        "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+        "observation_grid": [
+          8,
+          8
+        ],
+        "working_grid": [
+          8,
+          8
+        ]
+      },
+      "origin": "reused sealed prerequisite teacher",
+      "input_sha256": "70efd726f9eb83b54a96cc0de09856c3fa23114c991ab7d95c654a13dce595a7"
+    },
+    "galerkin_same_grid": {
+      "meta": {
+        "accepted": true,
+        "status": "ACCEPTED",
+        "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+        "uncertainty_rms": 1.068484338724356e-13,
+        "uncertainty_maximum": 1.7791323969618134e-13,
+        "temporal_refinements": [
+          {
+            "steps": 8,
+            "difference": {
+              "rms": null,
+              "maximum": null
+            },
+            "working_grid_difference": null,
+            "finite": true,
+            "contracting": false
+          },
+          {
+            "steps": 16,
+            "difference": {
+              "rms": 1.7151832452671868e-12,
+              "maximum": 2.8440583221822635e-12
+            },
+            "working_grid_difference": {
+              "rms": 1.7151832452671868e-12,
+              "maximum": 2.8440583221822635e-12
+            },
+            "finite": true,
+            "contracting": false
+          },
+          {
+            "steps": 32,
+            "difference": {
+              "rms": 1.068484338724356e-13,
+              "maximum": 1.7791323969618134e-13
+            },
+            "working_grid_difference": {
+              "rms": 1.068484338724356e-13,
+              "maximum": 1.7791323969618134e-13
+            },
+            "finite": true,
+            "contracting": true
+          }
+        ],
+        "cross_solver": {
+          "method": "scipy-DOP853",
+          "nfev": 29,
+          "success": true,
+          "difference": {
+            "rms": 7.466436853060586e-15,
+            "maximum": 1.3905543383430086e-14
+          },
+          "working_grid_difference": {
+            "rms": 7.466436853060586e-15,
+            "maximum": 1.3905543383430086e-14
+          }
+        },
+        "cross_solver_required": true,
+        "elapsed_seconds": 0.05999937700107694,
+        "roundoff_floor": 2e-14,
+        "uncertainty_is_certificate": false,
+        "solver": "Lawson-RK4 with exact diffusion",
+        "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+        "observation_grid": [
+          8,
+          8
+        ],
+        "working_grid": [
+          8,
+          8
+        ]
+      },
+      "origin": "new CPU counterreference outside latency",
+      "input_sha256": "70efd726f9eb83b54a96cc0de09856c3fa23114c991ab7d95c654a13dce595a7"
+    },
+    "galerkin_projected_fine": {
+      "meta": {
+        "accepted": true,
+        "status": "ACCEPTED",
+        "reason": "SPACE_AND_TIME_REFINED",
+        "uncertainty_rms": 2.1485120549021585e-13,
+        "uncertainty_maximum": 3.5232019429873757e-13,
+        "spatial_refinements": [
+          {
+            "factor": 2,
+            "grid": [
+              16,
+              16
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715904285039338e-13,
+              "uncertainty_maximum": 1.7541648104968286e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7158482373801343e-12,
+                    "maximum": 2.7965558958361566e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.716357638527597e-12,
+                    "maximum": 2.8117508321656715e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715904285039338e-13,
+                    "maximum": 1.7541648104968286e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719001007095779e-13,
+                    "maximum": 1.758593271006248e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.250803599559905e-15,
+                  "maximum": 1.2636302543808182e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.273187728772323e-15,
+                  "maximum": 1.3516965324811281e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.06591382098849863,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                16,
+                16
+              ]
+            },
+            "projected_difference": {
+              "rms": null,
+              "maximum": null
+            }
+          },
+          {
+            "factor": 4,
+            "grid": [
+              32,
+              32
+            ],
+            "temporal": {
+              "accepted": true,
+              "status": "ACCEPTED",
+              "reason": "TIME_AND_INDEPENDENT_SOLVER_ACCEPTED",
+              "uncertainty_rms": 1.0715790160360482e-13,
+              "uncertainty_maximum": 1.7579349022442958e-13,
+              "temporal_refinements": [
+                {
+                  "steps": 8,
+                  "difference": {
+                    "rms": null,
+                    "maximum": null
+                  },
+                  "working_grid_difference": null,
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 16,
+                  "difference": {
+                    "rms": 1.7157095392085112e-12,
+                    "maximum": 2.795812368952075e-12
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.7162208401426577e-12,
+                    "maximum": 2.8105295868385838e-12
+                  },
+                  "finite": true,
+                  "contracting": false
+                },
+                {
+                  "steps": 32,
+                  "difference": {
+                    "rms": 1.0715790160360482e-13,
+                    "maximum": 1.7579349022442958e-13
+                  },
+                  "working_grid_difference": {
+                    "rms": 1.0719101920986341e-13,
+                    "maximum": 1.767197499447093e-13
+                  },
+                  "finite": true,
+                  "contracting": true
+                }
+              ],
+              "cross_solver": {
+                "method": "scipy-DOP853",
+                "nfev": 29,
+                "success": true,
+                "difference": {
+                  "rms": 7.482386608612813e-15,
+                  "maximum": 1.2863855469739329e-14
+                },
+                "working_grid_difference": {
+                  "rms": 7.506847266062556e-15,
+                  "maximum": 1.3739009929736312e-14
+                }
+              },
+              "cross_solver_required": true,
+              "elapsed_seconds": 0.08398054499411955,
+              "roundoff_floor": 2e-14,
+              "uncertainty_is_certificate": false,
+              "solver": "Lawson-RK4 with exact diffusion",
+              "uncertainty_norm": "normalized sampled RMS and maximum on observation grid; RMS conservatively dominates physical interpolant L2",
+              "observation_grid": [
+                8,
+                8
+              ],
+              "working_grid": [
+                32,
+                32
+              ]
+            },
+            "projected_difference": {
+              "rms": 5.342610362176347e-16,
+              "maximum": 1.1102230246251565e-15
+            }
+          }
+        ],
+        "elapsed_seconds": 0.15053056896431372,
+        "uncertainty_is_certificate": false,
+        "initial_lifting": "Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients",
+        "continuum_claim": false
+      },
+      "origin": "new CPU counterreference outside latency",
+      "input_sha256": "70efd726f9eb83b54a96cc0de09856c3fa23114c991ab7d95c654a13dce595a7"
+    }
+  },
+  "reference_seconds": {
+    "fd_same_grid": 2.0109990146011114e-05,
+    "galerkin_same_grid": 0.06005974701838568,
+    "galerkin_projected_fine": 0.15068188204895705
+  },
+  "reference_options": {
+    "tolerance": 1e-08,
+    "max_steps": 256,
+    "initial_steps": 8,
+    "max_seconds_per_query": 30.0,
+    "max_grid": 32,
+    "spatial_factors": [
+      2,
+      4
+    ],
+    "crosscheck": true
+  },
+  "physical_scope": "FD/nodal versus same-grid spectral/Galerkin versus projected refined Galerkin; includes both product and diffusion discretization",
+  "prediction_precision": "float64",
+  "inference_cost_includes_reference_generation": false,
+  "offline_counterreference_cost_is_charged": true
+}
