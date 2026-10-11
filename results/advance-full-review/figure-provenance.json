@@ -1,0 +1,35 @@
+{
+  "schema": "tdn.advance.review-figure-provenance/v1",
+  "matplotlib": "3.10.7",
+  "dpi": 300,
+  "pixel_dimensions": [
+    5400,
+    3900
+  ],
+  "files": {
+    "advance-full-primary-results.png": {
+      "sha256": "7aa935cfc39fd0c51852e06005962e021b6d8ac3150b7d84b66310b6a720f656",
+      "bytes": 1301376
+    },
+    "advance-full-primary-results.pdf": {
+      "sha256": "cbdfbf73dcdca1a0953fa587950898774034b08a32082535098e9804f47fdaaf",
+      "bytes": 61571
+    },
+    "primary-results-data.json": {
+      "sha256": "54cef4f278f5cf82dd9e82d26cdb3474958f86120bea7e888bfa3ee1cda16270",
+      "bytes": 71897
+    },
+    "claims.json": {
+      "sha256": "099720334510538689189c56ca0f3732c86cffec290516e1c9ca449fe97f8b9d",
+      "bytes": 47861
+    },
+    "plot_primary_results.py": {
+      "sha256": "a42b21370e25b34b214c21bade837700a0776af14b61e7f3ef274fab3978f47f",
+      "bytes": 9464
+    }
+  },
+  "inputs": "Source original-byte SHA-256 and byte counts are in primary-results-data.json/provenance. claims.json exactly preserves original aggregate/claims.json. Selected validation-frontier rows only explain absent-schedule coverage zeros.",
+  "statistics": "Ratios and verdicts are copied from sealed primary claims. Accuracy log intervals are exponentiated for display. No timing conditional-on-success ratios are plotted. No new pooling or inference is performed.",
+  "mathematical_note": "The original frozen 1.10 control/candidate error ratio threshold means 9.09% candidate error reduction, not literal 10% reduction.",
+  "verification": "Script asserts 20 one-per-scenario/control accuracy rows, 20 cost rows, verdict counts, candidate-coverage agreement across controls, and validates each open-marker zero against its frozen absent-schedule selection."
+}

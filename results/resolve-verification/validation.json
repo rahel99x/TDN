@@ -1,0 +1,96 @@
+{
+  "schema": "tdn.resolve-verification/v1",
+  "date_utc": "2026-10-11",
+  "software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+    "source_tree_sha256": "5d73ce536ff1bc8a354d68e641b83f4f5afa46481dadb6b853fb86b26480be2e"
+  },
+  "scope": "Implemented and cloud CPU verified; no native CUDA/Slurm execution or scientific confirmation",
+  "checks": [
+    {
+      "name": "Integrated Resolve suite before display-only fixes",
+      "command": ".venv/bin/python -m pytest -q tests/test_resolve_cli.py tests/test_resolve_engine.py tests/test_resolve_fairness.py tests/test_resolve_fit.py tests/test_resolve_gpu.py tests/test_resolve_interactions.py tests/test_resolve_kernels.py tests/test_resolve_memory.py tests/test_resolve_protocol.py tests/test_resolve_report.py tests/test_resolve_tower.py tests/test_resolve_workflow.py --basetemp=.runtime/pytest-resolve-integrated",
+      "passed": 169,
+      "skipped": 20,
+      "skip_reason": "No actual CUDA",
+      "seconds": 16.18
+    },
+    {
+      "name": "Revised plotting regression suite",
+      "tests": "tests/test_resolve_report.py",
+      "passed": 15,
+      "seconds": 4.63,
+      "note": "Includes narrow/wide/zero/signed numeric-axis checks and distinct fitted-arm colors; seven cases overlap initial integrated suite"
+    },
+    {
+      "name": "Shared exporter/Advance regressions",
+      "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q tests/test_compact_review.py tests/test_advance_workflow.py tests/test_advance_cli.py --basetemp=.runtime/pytest-resolve-shared -o cache_dir=.runtime/pytest-resolve-shared-cache",
+      "passed": 105,
+      "seconds": 5.91
+    },
+    {
+      "name": "Shared Tower publisher regressions",
+      "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q tests/test_frontier_reporting.py -k 'not complete_graph_export' --basetemp=.runtime/pytest-resolve-tower-regression -o cache_dir=.runtime/pytest-resolve-tower-cache",
+      "passed": 29,
+      "deselected": 1,
+      "seconds": 2.77,
+      "note": "Historical large complete-graph render excluded; publisher/provenance/learning/native Tower checks ran. Resolve all-path render tested and executed."
+    },
+    {
+      "name": "Shell syntax",
+      "command": "bash -n scripts/fedora_resolve.sh scripts/resolve_local.sh scripts/resolve_worker.sh",
+      "status": "PASSED"
+    },
+    {
+      "name": "Source whitespace",
+      "command": "git diff --cached --check -- AGENTS.md README.md docs scripts tdn tests",
+      "status": "PASSED",
+      "note": "Historical review exports preserve original CSV CRLF and bytes"
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "resolve-cloud-smoke-20261011",
+      "completed_stages": 12,
+      "expected_stages": 12,
+      "science_source_sha256": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+      "total_scientific_stage_seconds": 39.62721175694605,
+      "correctness_failures": 0,
+      "experiment_rows": 244,
+      "verified_tower_reports": 12
+    },
+    {
+      "run_id": "resolve-cloud-development-20261011",
+      "completed_stages": 12,
+      "expected_stages": 12,
+      "science_source_sha256": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+      "total_scientific_stage_seconds": 153.30612735607428,
+      "correctness_failures": 0,
+      "experiment_rows": 244,
+      "verified_tower_reports": 12
+    },
+    {
+      "run_id": "resolve-cloud-final-smoke-20261011",
+      "completed_stages": 12,
+      "expected_stages": 12,
+      "science_source_sha256": "5d73ce536ff1bc8a354d68e641b83f4f5afa46481dadb6b853fb86b26480be2e",
+      "total_scientific_stage_seconds": 40.68661861092551,
+      "correctness_failures": 0,
+      "experiment_rows": 244,
+      "verified_tower_reports": 12
+    }
+  ],
+  "native_cuda": "NOT_EXECUTED:20 mandatory tests must all pass without skips on Fedora",
+  "native_scheduler": "NOT_EXECUTED:launcher allocation/recovery behavior covered by tests",
+  "warnings": [
+    "PyTorch profiler warns about cycle event clearing; each trace intentionally uses one cycle. Profiling is outside deployment timings."
+  ],
+  "original_science_preserved": true
+}

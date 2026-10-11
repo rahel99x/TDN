@@ -134,7 +134,7 @@ def run_roots(value):
         if base in found:
             continue
         found.add(base)
-        workflows = [base / name for name in ("portfolio-workflow.json", "advance-workflow.json")
+        workflows = [base / name for name in ("portfolio-workflow.json", "advance-workflow.json", "resolve-workflow.json")
                      if (base / name).exists()]
         if not workflows:
             continue

@@ -1,0 +1,55 @@
+{
+  "schema": "tdn.resolve-presentation-revision/v1",
+  "scope": "Presentation only; original sealed scientific results remain intact",
+  "original_run": "/workspace/TDN/runs/resolve-cloud-development-20261011",
+  "original_science_source_tree_sha256": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+  "current_report_module_sha256": "4071917f5b834696d0a57923396c4d6516065f883b6e5aaa7b49c0efe2698c30",
+  "original_science_manifest_sha256": {
+    "audit": "851155702797ada590fd6a4e72ef36f49c0c1775f3020cf600f0002e404b09ba",
+    "prepare": "fcbf408983856df383b6b080a6f05dedf952a5942591a9e01fd3bbc33c59fc66",
+    "fit-discrete": "57a7b22c697b9f4f4d41de7f4423502998d9e1a8aca75ad5903c92622fd8285d",
+    "fit-continuum": "60edc10c838303d315ac84d5dab08f1ed5e15a90620a960ebc2391c9d02e3fef",
+    "interactions-discrete-n16-overlapping_triads": "5234097e8aa9e4202e554a065616bba3610bf3162c4a59bb10d99de9518d3104",
+    "interactions-continuum-n16-overlapping_triads": "572fb66c586d76713aa056ae3c9910171d96f116f9bd6656fd71aa62825db3a0",
+    "memory": "cd7359b1fff4f93dc5c2c4dbb1cc75d15b5a083d99e7cf365cc3f0ad0bd2fe04",
+    "fairness-discrete-000": "024dcc262db789ba908e2c60166f3c883fb1945351bfd02b97ebf9488ed008aa",
+    "fairness-continuum-000": "214956718beb00ba17259c0fc3e3344961177de7838fc490fd086612bf9571b1",
+    "kernels-discrete-n32": "be5d681b29f67b6f39301f9750f5c2da685d64ad4d15cff644fe7e7246b93ec6",
+    "kernels-continuum-n32": "e40ec3ffe3642826bd889a93ce2f7683022972c08c8753152ade64cf48e52c32",
+    "report": "53e642618d5011801a6a736dd6b8b845e81b40c6bc44771ff079fed3c47e3841"
+  },
+  "original_stage_source_tree_sha256": {
+    "audit": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "prepare": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "fit-discrete": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "fit-continuum": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "interactions-discrete-n16-overlapping_triads": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "interactions-continuum-n16-overlapping_triads": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "memory": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "fairness-discrete-000": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "fairness-continuum-000": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "kernels-discrete-n32": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "kernels-continuum-n32": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac",
+    "report": "61ff8dc73ef70eee96c64cc9b9c29e9522cc59ce88f73e7f3fea4b983d69e8ac"
+  },
+  "scientific_tables_unchanged": true,
+  "original_scientific_tables_sha256": "fd788abe561b9f5aec255381045d724f097f19d39d9b78d30c8b35c6d060ed3c",
+  "revised_scientific_tables_sha256": "fd788abe561b9f5aec255381045d724f097f19d39d9b78d30c8b35c6d060ed3c",
+  "stage_costs_unchanged": true,
+  "original_experiment_scores_unchanged": true,
+  "changes": [
+    "Quantitative ticks for narrow, wide, zero and signed numeric axes",
+    "Distinct saturated fitted-method colors",
+    "Unfused DF scope disclosure in kernel captions"
+  ],
+  "new_experiments": false,
+  "current_render_seconds": 24.216066363966092,
+  "report": {
+    "figures": 16,
+    "consumed_files": 53,
+    "report_bytes": 11076415,
+    "report": "index.html",
+    "chart_data": "chart-data.json.gz",
+    "scientific_outcome": "REPORT_ONLY; INSPECT SOURCE CHECKS"
+  }
+}

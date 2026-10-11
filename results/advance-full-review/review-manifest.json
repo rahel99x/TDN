@@ -1,0 +1,173 @@
+{
+  "schema": "tdn.independent-review-bundle/v1",
+  "run_id": "fedora-advance-full-20261011T001715",
+  "source_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+  "archive_sha256": "11e6edbf6fa709f17b5479ee9aa9f066dad05b1ce98950dddabe9c2932b6b3a0",
+  "scope": "Review of retained native evidence; no new science execution. Omitted original checkpoints and arrays cannot be replayed from this bundle. Primary claims copied unchanged; secondary analyses are descriptive/exploratory.",
+  "files": {
+    "docs/reviews/advance-full-native-20261011.md": {
+      "bytes": 26765,
+      "sha256": "0f464fe76241e11635d5915f078a714245843e3491c0f93742efd775c1296182"
+    },
+    "results/advance-full-review/README.md": {
+      "bytes": 5321,
+      "sha256": "31891bce369fa8b29400ef782aace97ce81b39a8306827a43b0b1d700b6b88ba"
+    },
+    "results/advance-full-review/advance-full-primary-results.pdf": {
+      "bytes": 61571,
+      "sha256": "cbdfbf73dcdca1a0953fa587950898774034b08a32082535098e9804f47fdaaf"
+    },
+    "results/advance-full-review/advance-full-primary-results.png": {
+      "bytes": 1301376,
+      "sha256": "7aa935cfc39fd0c51852e06005962e021b6d8ac3150b7d84b66310b6a720f656"
+    },
+    "results/advance-full-review/all-model-metrics.csv": {
+      "bytes": 16945,
+      "sha256": "acb818fc0dcd446bd30185628b38f07c42125d2132bcee1099b596a47b55b002"
+    },
+    "results/advance-full-review/all-model-metrics.md": {
+      "bytes": 5705,
+      "sha256": "0fc05bdfe2cfef4bc8cf43ce998362cfb6bc21dfee002470f96ac8da2659e885"
+    },
+    "results/advance-full-review/audit-scripts/costs-format.py": {
+      "bytes": 15047,
+      "sha256": "faddc3b001cf069d83ee1206b5d554a9df257ff99263327f08c5148bd94c0431"
+    },
+    "results/advance-full-review/audit-scripts/costs-review.py": {
+      "bytes": 11914,
+      "sha256": "07e1a106b2da9832c9c79d85d9c8103b3084bee795e05a204947f9fffaec0e17"
+    },
+    "results/advance-full-review/audit-scripts/extract.py": {
+      "bytes": 3128,
+      "sha256": "44aba5aaee818d48e45d76a069ae67e938827ae30f04fefb1a8db8d5dbb2c934"
+    },
+    "results/advance-full-review/audit-scripts/math-summary.py": {
+      "bytes": 4665,
+      "sha256": "a7219251dd0bbc2f9420bf14d6e61d33d192aca814d7e2c8118ae475ae9a2309"
+    },
+    "results/advance-full-review/audit-scripts/provenance-review.py": {
+      "bytes": 3132,
+      "sha256": "36746f073e8f216777cc804e80b1ea78243551249fc158dfeeda837604eceb38"
+    },
+    "results/advance-full-review/audit-scripts/references-audit.py": {
+      "bytes": 11973,
+      "sha256": "92e2e16b508dc0aa4cca9f1161273d6134b08980d11d0b489ad9b23cf97dfbc3"
+    },
+    "results/advance-full-review/audit-scripts/review_io.py": {
+      "bytes": 696,
+      "sha256": "bc3d3f037f1a0b629b4ce5e253797bfec0b98502b87f4d5a63f353de37207170"
+    },
+    "results/advance-full-review/audit-scripts/statistics-analysis.py": {
+      "bytes": 12625,
+      "sha256": "813376cfc7de39d14095f2be814c3f2297270905b8e75b526e7a27779794709a"
+    },
+    "results/advance-full-review/audit-scripts/statistics-publish-table.py": {
+      "bytes": 3054,
+      "sha256": "a89b37bb1526f4c896e8e1b180530a316e7000e393ebd18c09b0cfaacc6e040e"
+    },
+    "results/advance-full-review/audit-scripts/statistics-report.py": {
+      "bytes": 13854,
+      "sha256": "3e18315f2077c9720e35f13b12aa9b6ad1eb97c4abc49c18c0325a46da55e607"
+    },
+    "results/advance-full-review/audit-scripts/statistics-worst.py": {
+      "bytes": 2133,
+      "sha256": "b1f25e3f78164ce631f416a51845c9085cfcd447e50b1f1c58922e88aee65072"
+    },
+    "results/advance-full-review/audit-scripts/training-analysis.py": {
+      "bytes": 4636,
+      "sha256": "c993eb859596c7c1796bf2ad806d21c234717b10dc5e6d227b73eca3aff58c12"
+    },
+    "results/advance-full-review/claims.json": {
+      "bytes": 47861,
+      "sha256": "099720334510538689189c56ca0f3732c86cffec290516e1c9ca449fe97f8b9d"
+    },
+    "results/advance-full-review/costs.md": {
+      "bytes": 15869,
+      "sha256": "a0f83ae0e9092f16042b0b3a6abedfeceef0b6816e4f4bee30ea3081e5d9b0de"
+    },
+    "results/advance-full-review/data/aggregate-protocol.json.gz": {
+      "bytes": 22853,
+      "sha256": "fbd0d702e071db6c83b1a70f2153bced6d6623bf3502de3dfd1d7323863d4d33"
+    },
+    "results/advance-full-review/data/costs-review.json.gz": {
+      "bytes": 214236,
+      "sha256": "7bc61c7f49ebd8b294aaab700ac5ceac4a5cb446e88fadef4b3e0c5d5f81d647"
+    },
+    "results/advance-full-review/data/evidence-index.json.gz": {
+      "bytes": 44156,
+      "sha256": "8e98ffc9fff1a1adb54afd3375dcfd5697d011bd3529df1f334ab2432a77e827"
+    },
+    "results/advance-full-review/data/freeze-catalog.json.gz": {
+      "bytes": 2862476,
+      "sha256": "3908507889c2c4d552f471fda8a530164ae43ff33dc60b85140b67e52b70b7fa"
+    },
+    "results/advance-full-review/data/math-design-audit.json.gz": {
+      "bytes": 359,
+      "sha256": "caa4742aa421aea2c141413518974463c2a8471a6fea207875bd521c7198beaf"
+    },
+    "results/advance-full-review/data/math-summary.json.gz": {
+      "bytes": 9795,
+      "sha256": "227de8997c939f974ba356aab945c59123bee8826b6088dd39ed7141624d6573"
+    },
+    "results/advance-full-review/data/references-audit.json.gz": {
+      "bytes": 2969,
+      "sha256": "37fee0b57ea5f3beb654c85a5e9e16d52fe0441a7f6a87941a18c0edee012c74"
+    },
+    "results/advance-full-review/data/state-scheduler-accounting.json.gz": {
+      "bytes": 27437,
+      "sha256": "07b330ff2547828e8383fba6d718d9b2d46380d4a4382f556c2a040299d44dfe"
+    },
+    "results/advance-full-review/data/statistics-results.json.gz": {
+      "bytes": 31954,
+      "sha256": "96598c007e3132a5c320c45f8c5ecddc08c13ed3967c3e6299bf5654ed43bfb7"
+    },
+    "results/advance-full-review/data/statistics-worst-cases.json.gz": {
+      "bytes": 2040,
+      "sha256": "1bea4ba2b27b1ab7852e003bf2aebd08f85bef588744fc8dd215ae4f33324aa2"
+    },
+    "results/advance-full-review/data/training-analysis.json.gz": {
+      "bytes": 49742,
+      "sha256": "bec0b6335da3636441c2613668688dea29990d0c594d4de4ee5da3d84603035c"
+    },
+    "results/advance-full-review/data/upload-index.json.gz": {
+      "bytes": 1433,
+      "sha256": "cf3b2192aac63a7e488661573255a2a77fa8db475a491240e324246b5fdc38db"
+    },
+    "results/advance-full-review/data/upload-manifest.json.gz": {
+      "bytes": 585565,
+      "sha256": "fc3c630f92b4a34da597d5ab0a23460c06e1c23d861327605523cf3713ce611e"
+    },
+    "results/advance-full-review/figure-provenance.json": {
+      "bytes": 1764,
+      "sha256": "b1b5b7783d952cb15b19f5e205a41e83502503d39cf2e06dee333e80af2ca4e9"
+    },
+    "results/advance-full-review/mathematics.md": {
+      "bytes": 16688,
+      "sha256": "212cdcdbe5f3f51d583e3c2ec64c728e65fcc6d03ceb62c65e723c09aa32e0ca"
+    },
+    "results/advance-full-review/plot_primary_results.py": {
+      "bytes": 9464,
+      "sha256": "a42b21370e25b34b214c21bade837700a0776af14b61e7f3ef274fab3978f47f"
+    },
+    "results/advance-full-review/primary-results-data.json": {
+      "bytes": 71897,
+      "sha256": "54cef4f278f5cf82dd9e82d26cdb3474958f86120bea7e888bfa3ee1cda16270"
+    },
+    "results/advance-full-review/provenance-summary.json": {
+      "bytes": 21685,
+      "sha256": "8119346ab0e14f797875e14f430caf6088cbf56b43a243d7c9fbd8dfbeb06402"
+    },
+    "results/advance-full-review/references.md": {
+      "bytes": 10189,
+      "sha256": "8460390ab29335fc51d87f610a01a5c99ca14da1796dd53150784ea7d531e384"
+    },
+    "results/advance-full-review/statistics.md": {
+      "bytes": 14153,
+      "sha256": "97d8a705cfb520682da8a24d5332f30ecc1dae507b66fd145a0e94d6235c96e5"
+    },
+    "results/advance-full-review/training.md": {
+      "bytes": 14886,
+      "sha256": "ef1e639f045400ab10d0a1d81bf9e12a6b913cdec1d5cddcaa9907040c4b4f42"
+    }
+  }
+}

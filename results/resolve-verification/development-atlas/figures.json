@@ -1,0 +1,172 @@
+[
+  {
+    "name": "fit-discrete-fit",
+    "png": "fit-discrete-fit.png",
+    "pdf": "fit-discrete-fit.pdf",
+    "caption": "fit-discrete: attribution only; coefficient magnitude has no higher-is-better meaning",
+    "source_ids": [
+      "fit-discrete/fit_results.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "fit-continuum-fit",
+    "png": "fit-continuum-fit.png",
+    "pdf": "fit-continuum-fit.pdf",
+    "caption": "fit-continuum: attribution only; coefficient magnitude has no higher-is-better meaning",
+    "source_ids": [
+      "fit-continuum/fit_results.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "interactions-discrete-n16",
+    "png": "interactions-discrete-n16.png",
+    "pdf": "interactions-discrete-n16.pdf",
+    "caption": "discrete, 16\u00b2: independent diffusion/reaction sweeps; raw fields remain visible. Norms do not add: cross terms are in source data.",
+    "source_ids": [
+      "interactions-discrete-n16-overlapping_triads/interaction_rows.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "interactions-continuum-n16",
+    "png": "interactions-continuum-n16.png",
+    "pdf": "interactions-continuum-n16.pdf",
+    "caption": "continuum, 16\u00b2: independent diffusion/reaction sweeps; raw fields remain visible. Norms do not add: cross terms are in source data.",
+    "source_ids": [
+      "interactions-continuum-n16-overlapping_triads/interaction_rows.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "learning-discrete-fno_scaled",
+    "png": "learning-discrete-fno_scaled.png",
+    "pdf": "learning-discrete-fno_scaled.pdf",
+    "caption": "Theirs: fno_scaled, discrete. Continuous translucent display ranges retain raw extrema; no smoothing enters scores.",
+    "source_ids": [
+      "fairness-discrete-000/learning_curves.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "learning-discrete-fno_mean",
+    "png": "learning-discrete-fno_mean.png",
+    "pdf": "learning-discrete-fno_mean.pdf",
+    "caption": "Theirs: fno_mean, discrete. Continuous translucent display ranges retain raw extrema; no smoothing enters scores.",
+    "source_ids": [
+      "fairness-discrete-000/learning_curves.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "learning-discrete-two_basis",
+    "png": "learning-discrete-two_basis.png",
+    "pdf": "learning-discrete-two_basis.pdf",
+    "caption": "Ours: two_basis, discrete. Continuous translucent display ranges retain raw extrema; no smoothing enters scores.",
+    "source_ids": [
+      "fairness-discrete-000/learning_curves.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "learning-continuum-fno_scaled",
+    "png": "learning-continuum-fno_scaled.png",
+    "pdf": "learning-continuum-fno_scaled.pdf",
+    "caption": "Theirs: fno_scaled, continuum. Continuous translucent display ranges retain raw extrema; no smoothing enters scores.",
+    "source_ids": [
+      "fairness-continuum-000/learning_curves.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "learning-continuum-fno_mean",
+    "png": "learning-continuum-fno_mean.png",
+    "pdf": "learning-continuum-fno_mean.pdf",
+    "caption": "Theirs: fno_mean, continuum. Continuous translucent display ranges retain raw extrema; no smoothing enters scores.",
+    "source_ids": [
+      "fairness-continuum-000/learning_curves.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "learning-continuum-two_basis",
+    "png": "learning-continuum-two_basis.png",
+    "pdf": "learning-continuum-two_basis.pdf",
+    "caption": "Ours: two_basis, continuum. Continuous translucent display ranges retain raw extrema; no smoothing enters scores.",
+    "source_ids": [
+      "fairness-continuum-000/learning_curves.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "kernels-discrete-n32-cost",
+    "png": "kernels-discrete-n32-cost.png",
+    "pdf": "kernels-discrete-n32-cost.pdf",
+    "caption": "kernels-discrete-n32: frozen development schedules; DF is an unfused implementation, not a strongest-classical cost frontier. Accuracy qualification remains in raw records.",
+    "source_ids": [
+      "kernels-discrete-n32/kernel_rows.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "kernels-continuum-n32-cost",
+    "png": "kernels-continuum-n32-cost.png",
+    "pdf": "kernels-continuum-n32-cost.pdf",
+    "caption": "kernels-continuum-n32: frozen development schedules; DF is an unfused implementation, not a strongest-classical cost frontier. Accuracy qualification remains in raw records.",
+    "source_ids": [
+      "kernels-continuum-n32/kernel_rows.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "kernels-discrete-n32-profile",
+    "png": "kernels-discrete-n32-profile.png",
+    "pdf": "kernels-discrete-n32-profile.pdf",
+    "caption": "kernels-discrete-n32: profiler counts include scalar products and checks; instrumentation time is not solver latency.",
+    "source_ids": [
+      "kernels-discrete-n32/profiling.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "kernels-continuum-n32-profile",
+    "png": "kernels-continuum-n32-profile.png",
+    "pdf": "kernels-continuum-n32-profile.pdf",
+    "caption": "kernels-continuum-n32: profiler counts include scalar products and checks; instrumentation time is not solver latency.",
+    "source_ids": [
+      "kernels-continuum-n32/profiling.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "memory-rollouts",
+    "png": "memory-rollouts.png",
+    "pdf": "memory-rollouts.pdf",
+    "caption": "RX: fresh development parents, paired noise. Median and full observed range; no future teacher refresh.",
+    "source_ids": [
+      "memory/memory_results.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  },
+  {
+    "name": "stage-costs",
+    "png": "stage-costs.png",
+    "pdf": "stage-costs.pdf",
+    "caption": "Measured wall costs include failed attempts when supplied. Report/queue/accounting, power and dollar costs remain separate or unavailable.",
+    "source_ids": [
+      "audit/summary.json",
+      "fairness-continuum-000/summary.json",
+      "fairness-discrete-000/summary.json",
+      "fit-continuum/summary.json",
+      "fit-discrete/summary.json",
+      "interactions-continuum-n16-overlapping_triads/summary.json",
+      "interactions-discrete-n16-overlapping_triads/summary.json",
+      "kernels-continuum-n32/summary.json",
+      "kernels-discrete-n32/summary.json",
+      "memory/summary.json",
+      "prepare/summary.json"
+    ],
+    "guidance": "Ours: triangles/solid; Theirs: circles/dashed; analytic controls: squares/dash-dot. Thin curves and translucent low\u2013high observed bands; bands are not confidence intervals. Missing evidence is NA, never zero. No universal ranking or published FNO superiority."
+  }
+]

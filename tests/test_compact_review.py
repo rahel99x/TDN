@@ -535,7 +535,7 @@ def recovery_origin(exporter, run):
     return origin, bridge, descriptor
 
 
-@pytest.mark.parametrize('workflow_name', ['portfolio-workflow.json', 'advance-workflow.json'])
+@pytest.mark.parametrize('workflow_name', ['portfolio-workflow.json', 'advance-workflow.json', 'resolve-workflow.json'])
 def test_verified_recovery_closure_keeps_original_cost_and_failure_evidence(exporter, run, workflow_name):
     origin, bridge, descriptor = recovery_origin(exporter, run)
     if workflow_name != 'portfolio-workflow.json':

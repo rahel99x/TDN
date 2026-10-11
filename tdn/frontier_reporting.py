@@ -50,13 +50,13 @@ COLUMNS = {
         "missing_stages", "failed_checks", "na_checks", "failed_checks_record", "na_checks_record", "gaps_record", "mathematical_significance"],
     "artifacts": ["source_path", "bytes", "kind", "sha256", "hash_status", "manifest_path"],
 }
-LEARNING_FIELDS = ("model_id", "family", "track", "seed", "train_count", "phase", "update",
+LEARNING_FIELDS = ("model_id", "family", "track", "seed", "train_count", "phase", "trial_id", "optimizer_control", "update",
     "train_loss", "validation_loss", "validation_rms", "validation_max", "validation_measured",
     "learning_rate", "gradient_norm", "elapsed_seconds", "update_seconds", "examples_seen",
     "parameters", "trainable_parameters", "device", "status", "error")
 COLUMNS["learning_curves"] = PREFIX + list(LEARNING_FIELDS)
 COLUMNS["metric_lineage"] = PREFIX + ["metric_ordinal", "phase", "step", "model_id", "family",
-    "track", "seed", "train_count", "trial_phase", "observation_kind", "timestamp_scope"]
+    "track", "seed", "train_count", "trial_phase", "trial_id", "observation_kind", "timestamp_scope"]
 _ASCII_CONTROLS = re.compile(r"[\x00-\x1f]")
 
 
@@ -123,7 +123,20 @@ def _candidates(root):
     root = Path(root)
     parts = sorted(path for path in root.glob("confirm-part-*")
                    if re.fullmatch(r"confirm-part-[0-9]{3}", path.name))
-    return (root, *(root / stage for stage in STAGES), *parts)
+    resolve_units = []
+    path = root / "protocol.json"
+    try:
+        if not path.is_symlink() and path.is_file() and path.stat().st_size <= 2**20:
+            document = _decode(path.read_bytes())
+            protocol = document.get("scientific_protocol", document)
+            units = protocol.get("units", {})
+            if (protocol.get("schema") == "tdn.resolve/v1" and isinstance(units, dict)
+                    and len(units) <= 1024 and all(isinstance(name,str) and
+                        re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*",name) for name in units)):
+                resolve_units = [root/name for name in units]
+    except (OSError,ValueError,TypeError,AttributeError):
+        pass  # The canonical source parser reports malformed declarations.
+    return (root, *(root / stage for stage in STAGES), *parts, *resolve_units)
 
 
 def is_frontier_root(root):
@@ -131,6 +144,7 @@ def is_frontier_root(root):
     root = Path(root)
     for candidate in _candidates(root):
         for name, token in (("rows.json", b'"tdn.frontier-rows/v1"'), ("protocol.json", b'"tdn.frontier/v1"'),
+                            ("protocol.json", b'"tdn.resolve/v1"'),
                             ("rows.jsonl", b'"tdn.frontier-experiment/v1"')):
             path = candidate / name
             try:
@@ -266,8 +280,32 @@ def _source(root, report, budget, delegated):
         manifest = documents.get("science_manifest.json", {})
         files = _manifest_files(manifest)
         if "COMPLETED" in contents:
-            if (manifest.get("schema") != "tdn.frontier-science-manifest/v1" or stage not in STAGES
-                    or manifest.get("stage") != stage or documents.get("protocol.json", {}).get("schema") != "tdn.frontier/v1"):
+            protocol = documents.get("protocol.json", {})
+            resolve = protocol.get("schema") == "tdn.resolve/v1"
+            if resolve:
+                unit = protocol.get("units", {}).get(stage, {})
+                if (manifest.get("schema") != "tdn.resolve-science/v1" or manifest.get("stage") != stage
+                        or not unit or unit.get("id") != stage or manifest.get("kind") != unit.get("kind")
+                        or manifest.get("unit_sha256") != canonical_digest(unit)
+                        or protocol.get("scientific_scope") != "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS"
+                        or protocol.get("confirmation", {}).get("enabled") is not False):
+                    raise ValueError("Resolve science unit, development scope or protocol schema differs")
+                source_hash = manifest.get("source_tree_sha256")
+                if (not isinstance(source_hash, str) or not re.fullmatch(r"[0-9a-f]{64}", source_hash)
+                        or manifest.get("software", {}).get("source_tree_sha256") != source_hash
+                        or manifest.get("device") not in ("cpu","cuda")):
+                    raise ValueError("Resolve scientific software/source identity differs")
+                expected_summary = {"schema": "tdn.resolve/v1", "stage": stage,
+                    "protocol_sha256": manifest.get("protocol_sha256"), "source_tree_sha256": source_hash,
+                    "device": manifest.get("device")}
+                if any(documents.get("summary.json", {}).get(k) != v for k,v in expected_summary.items()):
+                    raise ValueError("Resolve summary identity differs from its scientific seal")
+                for row, _, _ in rows:
+                    if (not isinstance(row, dict) or not set(row.get("mechanism_ids", [])) <= set(protocol.get("mechanisms", {}))
+                            or row.get("combination_ids")):
+                        raise ValueError("Resolve experiments reference undeclared mechanisms or combinations")
+            elif (manifest.get("schema") != "tdn.frontier-science-manifest/v1" or stage not in STAGES
+                    or manifest.get("stage") != stage or protocol.get("schema") != "tdn.frontier/v1"):
                 raise ValueError("Science manifest family, stage or protocol schema differs")
             if canonical_digest(manifest) != contents["COMPLETED"].decode().strip():
                 raise ValueError("COMPLETED marker differs from science manifest")
@@ -290,7 +328,8 @@ def _source(root, report, budget, delegated):
             if "execution.json" in documents:
                 seal = documents.get("workflow-seal.json", {})
                 expected_files = ("execution.json", "protocol.json", "stage.json", "science_manifest.json")
-                if (seal.get("schema") != "tdn.frontier/v1" or seal.get("schema_version") != 1
+                if (seal.get("schema") != ("tdn.resolve/v1" if resolve else "tdn.frontier/v1")
+                        or (not resolve and seal.get("schema_version") != 1)
                         or seal.get("protocol_sha256") != manifest.get("protocol_sha256")
                         or set(seal.get("files", {})) != set(expected_files)):
                     raise ValueError("Wrapper protocol seal differs from scientific lineage")
@@ -336,6 +375,8 @@ def _source(root, report, budget, delegated):
             status, reason = "INVALID", str(error)
             budget.omit(root, reason)
     return rows, {"physical_stage": root.name if partition else stage,
+        "program": "resolve" if documents.get("protocol.json", {}).get("schema") == "tdn.resolve/v1" else "frontier",
+        "scientific_scope": documents.get("protocol.json", {}).get("scientific_scope"),
         "coverage": "PARTITION_ONLY" if partition else "LOGICAL_STAGE", "source_dir": _relative(root, report), "source_path": source, "source_sha256": budget.hashes.get(root / name),
         "stage": stage, "seal_status": status, "reason": reason, "canonical_rows": len(rows),
         "protocol_sha256": canonical_digest(documents.get("protocol.json")),
@@ -403,7 +444,7 @@ def _projection(rows, source, budget, now):
                  "parameters", "median_seconds", "wall_seconds", "training_seconds", "peak_allocated_bytes", "peak_reserved_bytes")
                  if isinstance(experiment.get(key), (int, float)) and not isinstance(experiment.get(key), bool)
                  and math.isfinite(experiment[key])}
-        metric_rows.append({"t": now, "phase": "frontier/" + str(experiment["stage"]) + "/canonical", "step": index,
+        metric_rows.append({"t": now, "phase": source.get("program", "frontier") + "/" + str(experiment["stage"]) + "/canonical", "step": index,
             "metrics": named, "source_path": common["source_path"], "source_record": pointer, "source_line": line,
             "source_sha256": common["source_sha256"], "row_sha256": common["row_sha256"],
             "evidence_status": common["evidence_status"], "timestamp_scope": "report publication; measured cost remains in metrics"})
@@ -418,6 +459,10 @@ def _learning_projection(root, report, source, declared, budget, delegated):
     metric-lineage and learning-curve tables.
     """
     path = root / "learning_curves.jsonl"
+    json_document = False
+    if not path.exists() and source.get("program") == "resolve":
+        path = root / "learning_curves.json"
+        json_document = True
     if not path.exists():
         return [], []
     curves, points = [], []
@@ -428,10 +473,14 @@ def _learning_projection(root, report, source, declared, budget, delegated):
         if not valid:
             budget.omit(path, "Learning observations are unsealed or differ from their science seal")
         delegated[path] = {"sha256": checksum, "signature": budget.snapshots[path], "schema": None}
-        for index, line in enumerate(raw.splitlines()):
-            if not line:
-                continue
-            value = _decode(line)
+        if json_document:
+            document = _decode(raw)
+            if not isinstance(document, dict) or not isinstance(document.get("rows"), list):
+                raise ValueError("Resolve learning curves require an explicit rows list")
+            observed = enumerate(document["rows"])
+        else:
+            observed = ((index, _decode(line)) for index, line in enumerate(raw.splitlines()) if line)
+        for index, value in observed:
             if not isinstance(value, dict):
                 raise ValueError("Learning observation must be a JSON object")
             model_id, phase, update = value.get("model_id"), value.get("phase"), value.get("update")
@@ -439,10 +488,17 @@ def _learning_projection(root, report, source, declared, budget, delegated):
                     or not isinstance(phase, str) or not phase or not phase.isprintable()
                     or type(update) is not int or not 0 <= update <= (1 << 63)-1):
                 raise ValueError("Learning observations require model/trial identity and a bounded update")
-            identity = "frontier/learning/" + model_id + "/" + phase
+            prefix = source.get("program", "frontier") + "/learning/"
+            identity = prefix + model_id + "/" + phase
+            trial = value.get("trial_id")
+            if source.get("program") == "resolve":
+                if not isinstance(trial, str) or not trial or not trial.isprintable():
+                    raise ValueError("Resolve learning observations require an optimizer trial identity")
+                identity += "/" + trial
             if len(identity) > 160:
-                identity = "frontier/learning/" + hashlib.sha256(identity.encode()).hexdigest()
-            common = {"source_path": _relative(path, report), "source_record": "", "source_line": index+1,
+                identity = prefix + hashlib.sha256(identity.encode()).hexdigest()
+            common = {"source_path": _relative(path, report), "source_record": f"/rows/{index}" if json_document else "",
+                "source_line": "" if json_document else index+1,
                 "source_sha256": checksum, "row_sha256": canonical_digest(value),
                 "evidence_status": "VERIFIED_CANONICAL" if valid else "UNVERIFIED_LEARNING",
                 "validation_error": "" if valid else "Unsealed learning observations cannot contribute affirmative metrics"}
@@ -452,7 +508,7 @@ def _learning_projection(root, report, source, declared, budget, delegated):
                 and math.isfinite(value[key])} if valid else {}
             points.append({**common, "t": time.time(), "phase": identity, "step": update, "metrics": numeric,
                 **{key:value.get(key) for key in ("model_id", "family", "track", "seed", "train_count")},
-                "trial_phase": phase, "observation_kind": "learning_curve",
+                "trial_phase": phase, "trial_id": trial, "observation_kind": "learning_curve",
                 "timestamp_scope": "report publication; observed elapsed_seconds/update_seconds remain measured metrics"})
     except (OSError, ValueError, TypeError) as error:
         budget.omit(path, error)
@@ -615,23 +671,24 @@ def publish_frontier_outputs(report_dir, source_dirs, *, delegated_sources=None)
         "claim_scope": "Numerical evidence and scores retain gap/math/cost scope; no superiority inferred"}
     atomic_json(report / "outputs/frontier-results.json", results)
     registered = {entry.get("path") for entry in read_json(report / "logs.json").get("logs", [])}
+    display = "Resolve" if sources and all(s.get("program") == "resolve" for s in sources) else "Frontier"
     for name in ("frontier-tables.json", "frontier-results.json"):
         location = "outputs/" + name
         if location not in registered:
-            register_log(report, "analytics." + name.replace(".json", ""), location, group="Frontier review",
-                         label="Frontier complete page index" if name == "frontier-tables.json" else "Frontier scores and evidence integrity")
+            register_log(report, "analytics." + name.replace(".json", ""), location, group=display+" review",
+                         label=display+" complete page index" if name == "frontier-tables.json" else display+" scores and evidence integrity")
     # Register first pages for convenient entry, keeping Tower's 256-log cap.
     # Every remaining page is reachable through exact catalog/contract paths.
     for kind in counts:
         page = next((p for p in pages if p["table"] == kind), None)
         if page and page["path"] not in registered:
-            register_log(report, "analytics.frontier." + kind, page["path"], group="Frontier review",
-                         label="Frontier " + kind + " (first page; complete catalog in index)")
+            register_log(report, "analytics.frontier." + kind, page["path"], group=display+" review",
+                         label=display+" " + kind + " (first page; complete catalog in index)")
     for index, figure in enumerate(figures):
         if figure["path"] not in registered:
             # Tower already supports source-relative image/PDF attachments.
             # HTML remains a portable browser artifact; no application change.
             register_log(report, "analytics.frontier.figure." + str(index), figure["path"],
-                         group="Frontier analytical figures", label=figure["label"][:150],
+                         group=display+" analytical figures", label=figure["label"][:150],
                          description="Canonical source chart; exact data and provenance in figures/manifest.json")
     return results

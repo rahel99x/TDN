@@ -198,3 +198,28 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
   software guards or mix unsealed partial measurements into new science. Reused
   training/reference costs and new part/merge allocations must remain distinguishable.
   Each native confirmation part and its aggregate require all 45 CUDA cases.
+
+## Resolve development after the full Advance review
+
+- Read `docs/RESOLVE_RESEARCH.md` before modifying `tdn/analysis/resolve`.
+  Use its separate Fedora/local launchers and manifests. Preserve Advance and
+  earlier protocols/results. Resolve `full` is comprehensive development, not
+  fresh confirmation; changes informed by it require a future frozen cohort.
+- Keep direct coefficient fitting, finite-step error decomposition, FNO
+  trainability, midpoint-null GL3 representation and batched GL4 execution
+  claims distinct. Every optimizer receives its declared long opportunity;
+  tiny-set checkpoints must never participate in validation selection.
+- Include omitted-cubic and strongest GL4/nested controls. Respect full GL3
+  weights, including the implicit zero midpoint; do not renormalize active
+  weights. Polynomial quadrature degree is not full-method/stiff order.
+- Unresolved references, optimization gaps, failed and initialization-selected
+  trials and zero-memory-gain selections remain visible. Signed cross terms
+  are required when decomposing vector errors. Teacher estimates are not bounds.
+- Preserve at most 35-minute jobs, 48 GiB host requests, four GPU CPUs/one
+  actual RTX 4090 and existing VRAM limits. Keep the protected RX allocation,
+  no pending-job cap, exact-source recovery, project-contained venv/caches and
+  the complete declared 20-case native CUDA readiness suite.
+- Use tests appropriate to each path plus workflow/CLI/Tower/report checks.
+  CPU development, native GPU verification and fresh scientific confirmation
+  are separate statuses. Do not optimize/retune after inspecting confirmation
+  and retain the same confirmation label.

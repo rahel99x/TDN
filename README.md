@@ -2,7 +2,20 @@
 
 A runnable research pipeline for learning the finite-time error of a symmetric split solver. It includes exact noncommuting linear controls, periodic logistic reaction–diffusion, refined FP64 coupled teachers, local-input learned models, deterministic datasets/training, checkpoint resume, and complete-solver accuracy/cost reports.
 
-The next [Advance campaign](docs/ADVANCE_RESEARCH.md) tests stronger FNO
+The current [Resolve development program](docs/RESOLVE_RESEARCH.md) implements
+the next steps from the [completed native Advance review](docs/reviews/advance-full-native-20261011.md):
+direct convex coefficient fitting, paired finite-step error attribution, equal
+long opportunities for tied FNO optimizers, midpoint-null GL3 and shared-transform
+GL4 kernels, and noise-aware memory against deterministic damping. Start with
+`bash scripts/fedora_resolve.sh plan --smoke`, then `run --smoke`. The full
+28-job portfolio is development evidence, not fresh confirmation; each job is
+at most 35 minutes. It retains source-bound recovery, exact-byte compact uploads,
+Tower sidecars and an analytical atlas. The
+[CPU development review](results/resolve-verification/README.md) records the
+implemented checks, measured improvements, negative findings and native tests
+still needed.
+
+The preceding [Advance campaign](docs/ADVANCE_RESEARCH.md) tests stronger FNO
 optimization controls, inexpensive cubic interaction corrections, and three
 protected formulation experiments: causal memory, rational temporal response,
 and tangent information. It keeps discrete and continuum targets separate,
@@ -13,7 +26,7 @@ Use the [automated Fedora runbook](docs/ADVANCE_RUNBOOK.md) and
 HD atlas and which conclusions remain unmeasured. The
 [local verification record](results/advance-verification/README.md) includes
 the complete CPU smoke, bounded 16² diagnostics and exact-byte evidence;
-native GPU performance remains to be measured.
+native results and their limitations are now covered by the review linked above.
 
 The [full native portfolio review](docs/PORTFOLIO_FULL_REVIEW.md) motivates this
 campaign; successful jobs alone do not establish a learned accuracy or cost gain.

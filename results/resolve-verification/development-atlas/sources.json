@@ -1,0 +1,320 @@
+[
+  {
+    "source_id": "audit/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/audit/science_manifest.json",
+    "sha256": "851155702797ada590fd6a4e72ef36f49c0c1775f3020cf600f0002e404b09ba",
+    "bytes": 1499
+  },
+  {
+    "source_id": "audit/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/audit/summary.json",
+    "sha256": "e7657840c4bb43e72e3000a37a6de39046c870598efaa08116c53f3451363c08",
+    "bytes": 1275
+  },
+  {
+    "source_id": "audit/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/audit/rows.jsonl",
+    "sha256": "b33f98109a80610236402a871b2dc93595fe8852d7f5af6a0b86b469090d1779",
+    "bytes": 99820
+  },
+  {
+    "source_id": "prepare/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/prepare/science_manifest.json",
+    "sha256": "fcbf408983856df383b6b080a6f05dedf952a5942591a9e01fd3bbc33c59fc66",
+    "bytes": 5528
+  },
+  {
+    "source_id": "prepare/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/prepare/summary.json",
+    "sha256": "3f947903c640ad52632cdabf1a3cfa54af6f34f1c3a2157065d612da2cdb9b15",
+    "bytes": 1357
+  },
+  {
+    "source_id": "prepare/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/prepare/rows.jsonl",
+    "sha256": "24b78e33efcb4a293a403f9ed17a1da4fe2c19f3638bc70f2069ad12f156cf46",
+    "bytes": 2322
+  },
+  {
+    "source_id": "fit-discrete/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-discrete/science_manifest.json",
+    "sha256": "57a7b22c697b9f4f4d41de7f4423502998d9e1a8aca75ad5903c92622fd8285d",
+    "bytes": 3073
+  },
+  {
+    "source_id": "fit-discrete/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-discrete/summary.json",
+    "sha256": "992b6caab59c71cc4613db13c06c74ba0b99ac15a644e9802d1f7848b5f960cb",
+    "bytes": 1353
+  },
+  {
+    "source_id": "fit-discrete/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-discrete/rows.jsonl",
+    "sha256": "609b30e5acebf6b89ce964443ad4f15a7a04f3d1253267e5bf329d10d48caa54",
+    "bytes": 10965
+  },
+  {
+    "source_id": "fit-discrete/fit_results.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-discrete/fit_results.json",
+    "sha256": "64e6d2ebfe0a3c096041efc69c4f07b76ec519f6718d377962639dc5aca68676",
+    "bytes": 62447
+  },
+  {
+    "source_id": "fit-discrete/fit_endpoints.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-discrete/fit_endpoints.json",
+    "sha256": "6078c19358bc2386d6e707d81159aed470032910c5ed77e51e6d49304d4088cb",
+    "bytes": 2052743
+  },
+  {
+    "source_id": "fit-continuum/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-continuum/science_manifest.json",
+    "sha256": "60edc10c838303d315ac84d5dab08f1ed5e15a90620a960ebc2391c9d02e3fef",
+    "bytes": 3074
+  },
+  {
+    "source_id": "fit-continuum/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-continuum/summary.json",
+    "sha256": "dfc729264479d8d52a167d83fa6680f377f89489eb2cc84ef6845bd44072bdeb",
+    "bytes": 1355
+  },
+  {
+    "source_id": "fit-continuum/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-continuum/rows.jsonl",
+    "sha256": "791159ac041778b46151ec47ea77ca89b4df1f50fae3ed7dbbb9bfcd9fc13b1b",
+    "bytes": 10899
+  },
+  {
+    "source_id": "fit-continuum/fit_results.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-continuum/fit_results.json",
+    "sha256": "44c1b5e49c9e9c7cccdf8aeec72fe7d07a371493c923c2ab41a9f333bcbeb2e1",
+    "bytes": 52380
+  },
+  {
+    "source_id": "fit-continuum/fit_endpoints.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fit-continuum/fit_endpoints.json",
+    "sha256": "a846357d47767e69be0568fe02a5eeca14cdc038f51689ef3b8e54f8bc588dd5",
+    "bytes": 2056991
+  },
+  {
+    "source_id": "interactions-discrete-n16-overlapping_triads/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-discrete-n16-overlapping_triads/science_manifest.json",
+    "sha256": "5234097e8aa9e4202e554a065616bba3610bf3162c4a59bb10d99de9518d3104",
+    "bytes": 1915
+  },
+  {
+    "source_id": "interactions-discrete-n16-overlapping_triads/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-discrete-n16-overlapping_triads/summary.json",
+    "sha256": "0c13ef2e8c911f0bc17cc9dda91309201a6396dde87ab98fc34c0864c980c015",
+    "bytes": 2002
+  },
+  {
+    "source_id": "interactions-discrete-n16-overlapping_triads/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-discrete-n16-overlapping_triads/rows.jsonl",
+    "sha256": "1c976b607c26a45399bcaae0004c88ebf833efde5a5f5a30134d9eabe266d949",
+    "bytes": 489754
+  },
+  {
+    "source_id": "interactions-discrete-n16-overlapping_triads/interaction_rows.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-discrete-n16-overlapping_triads/interaction_rows.json",
+    "sha256": "290ba6aeddd5d04327fa1bd984f464bc0380fcadfa1649c7bd3bdc666084bd58",
+    "bytes": 477949
+  },
+  {
+    "source_id": "interactions-discrete-n16-overlapping_triads/interaction_cases.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-discrete-n16-overlapping_triads/interaction_cases.json",
+    "sha256": "6326206df12036db0ddedb9920b5c4c902c059bbaee133fc68bc8396e1b59357",
+    "bytes": 72553
+  },
+  {
+    "source_id": "interactions-continuum-n16-overlapping_triads/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-continuum-n16-overlapping_triads/science_manifest.json",
+    "sha256": "572fb66c586d76713aa056ae3c9910171d96f116f9bd6656fd71aa62825db3a0",
+    "bytes": 1916
+  },
+  {
+    "source_id": "interactions-continuum-n16-overlapping_triads/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-continuum-n16-overlapping_triads/summary.json",
+    "sha256": "5934e13d105079c0d0025b65e22bc337d61a9a8588dc0d4a3d3469e6a030a1d7",
+    "bytes": 2004
+  },
+  {
+    "source_id": "interactions-continuum-n16-overlapping_triads/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-continuum-n16-overlapping_triads/rows.jsonl",
+    "sha256": "613743ecf4ad1c075e6d6efb1ce13455912586b3754513e622360f2ae24f6439",
+    "bytes": 487141
+  },
+  {
+    "source_id": "interactions-continuum-n16-overlapping_triads/interaction_rows.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-continuum-n16-overlapping_triads/interaction_rows.json",
+    "sha256": "3a944dc77cd42f7cba7890f4dfa8ac89a84a21e61d1c7b3076ccbb57a5c68596",
+    "bytes": 475307
+  },
+  {
+    "source_id": "interactions-continuum-n16-overlapping_triads/interaction_cases.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/interactions-continuum-n16-overlapping_triads/interaction_cases.json",
+    "sha256": "1910149a2c5f31f783f403cef84d215e292b2d2c6cd0c3e25cdb1a677915b866",
+    "bytes": 72585
+  },
+  {
+    "source_id": "memory/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/memory/science_manifest.json",
+    "sha256": "cd7359b1fff4f93dc5c2c4dbb1cc75d15b5a083d99e7cf365cc3f0ad0bd2fe04",
+    "bytes": 1863
+  },
+  {
+    "source_id": "memory/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/memory/summary.json",
+    "sha256": "507899a4ab4ac9b30aaee0a103da4afcb99237f8bf856fc26d9ada9afd85e76c",
+    "bytes": 1501
+  },
+  {
+    "source_id": "memory/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/memory/rows.jsonl",
+    "sha256": "78ee15e6c57987f408473071a2c318e1686886aade2eadd5fdc95f43d1c7ea3a",
+    "bytes": 131289
+  },
+  {
+    "source_id": "memory/memory_summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/memory/memory_summary.json",
+    "sha256": "4f8c98333e6d1526f0169de55cb821de47dd1584d9d3d7f61026a31df6612ca4",
+    "bytes": 28785
+  },
+  {
+    "source_id": "memory/memory_results.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/memory/memory_results.json",
+    "sha256": "10f05e93b6e456a5d10db4d97779cf73f4ccadbd0d915469fdc72d3bbca9a9b1",
+    "bytes": 3583687
+  },
+  {
+    "source_id": "fairness-discrete-000/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-discrete-000/science_manifest.json",
+    "sha256": "024dcc262db789ba908e2c60166f3c883fb1945351bfd02b97ebf9488ed008aa",
+    "bytes": 19426
+  },
+  {
+    "source_id": "fairness-discrete-000/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-discrete-000/summary.json",
+    "sha256": "eeeb08f69525d482290ba9953121488b41374b5b8df17e13b00f9e1b4f70bd46",
+    "bytes": 1375
+  },
+  {
+    "source_id": "fairness-discrete-000/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-discrete-000/rows.jsonl",
+    "sha256": "bd454208ef0895a778ca69f831f7c3c31e760a87dcd600438915274b88ce4c67",
+    "bytes": 13092
+  },
+  {
+    "source_id": "fairness-discrete-000/fairness_results.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-discrete-000/fairness_results.json",
+    "sha256": "3bc78cacc2d3d69343c810d46ead6636b10aa5533e268d824b68d41077c82b6b",
+    "bytes": 6349516
+  },
+  {
+    "source_id": "fairness-discrete-000/fairness_metrics.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-discrete-000/fairness_metrics.json",
+    "sha256": "637e7070e8046100c32d687131fd5f4bff0a3aa792b061888f81508b77c6b4a3",
+    "bytes": 1903016
+  },
+  {
+    "source_id": "fairness-discrete-000/learning_curves.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-discrete-000/learning_curves.json",
+    "sha256": "066605dbe499121dbdf0890760c1d16cbde36d35ebf6fef7daafadc8d5cfbbd8",
+    "bytes": 3993232
+  },
+  {
+    "source_id": "fairness-continuum-000/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-continuum-000/science_manifest.json",
+    "sha256": "214956718beb00ba17259c0fc3e3344961177de7838fc490fd086612bf9571b1",
+    "bytes": 19427
+  },
+  {
+    "source_id": "fairness-continuum-000/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-continuum-000/summary.json",
+    "sha256": "9e32b7a3e173acac30b6971ed1e2014573d51cacc97668da1d9a9abfc98cdbc4",
+    "bytes": 1378
+  },
+  {
+    "source_id": "fairness-continuum-000/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-continuum-000/rows.jsonl",
+    "sha256": "ff459a86990fa2178ecc3f376281671c66a2b7da5f4321f589b0f9102ac2579f",
+    "bytes": 13116
+  },
+  {
+    "source_id": "fairness-continuum-000/fairness_results.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-continuum-000/fairness_results.json",
+    "sha256": "ec171f814c5ad08b68b15105ec260181d8148eaf4dbd529edce4485d2d953339",
+    "bytes": 6352123
+  },
+  {
+    "source_id": "fairness-continuum-000/fairness_metrics.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-continuum-000/fairness_metrics.json",
+    "sha256": "b49274a6ec9da8f163f2f1a89558fa7bbfe2fd60dca32a66a406d346f57f432e",
+    "bytes": 1907292
+  },
+  {
+    "source_id": "fairness-continuum-000/learning_curves.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/fairness-continuum-000/learning_curves.json",
+    "sha256": "ae7fa7008d4fdf46232e055c0f46f6d539a44b7222b7bb918912a6786bbedb41",
+    "bytes": 1775390
+  },
+  {
+    "source_id": "kernels-discrete-n32/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-discrete-n32/science_manifest.json",
+    "sha256": "be5d681b29f67b6f39301f9750f5c2da685d64ad4d15cff644fe7e7246b93ec6",
+    "bytes": 1773
+  },
+  {
+    "source_id": "kernels-discrete-n32/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-discrete-n32/summary.json",
+    "sha256": "a6dd45bbaec1b7f923429d484d045a107038488a9bb5733d3f20130f30f72ce2",
+    "bytes": 1829
+  },
+  {
+    "source_id": "kernels-discrete-n32/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-discrete-n32/rows.jsonl",
+    "sha256": "1cfc5c5a2b9146a622361c9027e101753866efff72fcbc19087ee02402be8418",
+    "bytes": 382053
+  },
+  {
+    "source_id": "kernels-discrete-n32/kernel_rows.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-discrete-n32/kernel_rows.json",
+    "sha256": "10055280c4c52ccfc5c2cc4ee31089af5c077702ccb845953a509645a165bdca",
+    "bytes": 292702
+  },
+  {
+    "source_id": "kernels-discrete-n32/profiling.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-discrete-n32/profiling.json",
+    "sha256": "6ffc0cd6307e4177dc24c82faca5dd9f25a0801f11720da6cb73c5930bf36a63",
+    "bytes": 425992
+  },
+  {
+    "source_id": "kernels-continuum-n32/science_manifest.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-continuum-n32/science_manifest.json",
+    "sha256": "e40ec3ffe3642826bd889a93ce2f7683022972c08c8753152ade64cf48e52c32",
+    "bytes": 1774
+  },
+  {
+    "source_id": "kernels-continuum-n32/summary.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-continuum-n32/summary.json",
+    "sha256": "b01859bb26e0718c3d4ce2efd2023a362875311454aedb772b25ffab4352147a",
+    "bytes": 1830
+  },
+  {
+    "source_id": "kernels-continuum-n32/rows.jsonl",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-continuum-n32/rows.jsonl",
+    "sha256": "52e03c63e7aabb86deef1f809e5211ae5da2b564b11de70b45661196d2805c48",
+    "bytes": 382320
+  },
+  {
+    "source_id": "kernels-continuum-n32/kernel_rows.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-continuum-n32/kernel_rows.json",
+    "sha256": "c5b01603f6674ad2a173d81e01614478bbcb2126e3a862d0229caf3e3d20212e",
+    "bytes": 292940
+  },
+  {
+    "source_id": "kernels-continuum-n32/profiling.json",
+    "path": "/workspace/TDN/runs/resolve-cloud-development-20261011/kernels-continuum-n32/profiling.json",
+    "sha256": "f109591dfa5730ddcbeb9ca7e0fd74ef870744c7cefcf1eaa87b660b9aad287d",
+    "bytes": 809782
+  }
+]

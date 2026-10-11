@@ -1,0 +1,728 @@
+{
+  "run_id": "fedora-advance-full-20261011T001715",
+  "archive_sha256": "11e6edbf6fa709f17b5479ee9aa9f066dad05b1ce98950dddabe9c2932b6b3a0",
+  "parts": 12,
+  "retained_files": 7448,
+  "omitted_files": 1282,
+  "source_tree_sha256": "ae810a101203ddd4cb26dcd75253ef62ebb0cea19f5a36f15a8c347d81d01466",
+  "stages": {
+    "audit": {
+      "job_id": "708",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 8
+      },
+      "science_elapsed_seconds": 0.4156500030076131,
+      "verdict_counts": {
+        "NA": 36
+      }
+    },
+    "diagnose": {
+      "job_id": "709",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 12
+      },
+      "science_elapsed_seconds": 7.953638015955221,
+      "verdict_counts": {
+        "GOOD": 253,
+        "BAD": 3
+      }
+    },
+    "prepare": {
+      "job_id": "710",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 105,
+        "declared_omission_unavailable": 96
+      },
+      "science_elapsed_seconds": 173.84453250700608,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "explore-XH": {
+      "job_id": "711",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 10
+      },
+      "science_elapsed_seconds": 2.089421983982902,
+      "verdict_counts": {
+        "NA": 12,
+        "BAD": 18
+      }
+    },
+    "explore-XR": {
+      "job_id": "712",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 10
+      },
+      "science_elapsed_seconds": 0.8592695469851606,
+      "verdict_counts": {
+        "NA": 1,
+        "BAD": 3
+      }
+    },
+    "explore-XT": {
+      "job_id": "713",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 10
+      },
+      "science_elapsed_seconds": 0.3978835310554132,
+      "verdict_counts": {
+        "NA": 1,
+        "BAD": 1
+      }
+    },
+    "train-discrete-000": {
+      "job_id": "714",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 81,
+        "declared_omission_unavailable": 155
+      },
+      "science_elapsed_seconds": 370.00082340999506,
+      "verdict_counts": {
+        "NA": 15
+      }
+    },
+    "train-discrete-001": {
+      "job_id": "715",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 67,
+        "declared_omission_unavailable": 141
+      },
+      "science_elapsed_seconds": 289.2178377000382,
+      "verdict_counts": {
+        "NA": 8
+      }
+    },
+    "train-discrete-002": {
+      "job_id": "716",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 67,
+        "declared_omission_unavailable": 141
+      },
+      "science_elapsed_seconds": 295.29836446302943,
+      "verdict_counts": {
+        "NA": 8
+      }
+    },
+    "train-continuum-000": {
+      "job_id": "717",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 81,
+        "declared_omission_unavailable": 155
+      },
+      "science_elapsed_seconds": 1459.1603207229637,
+      "verdict_counts": {
+        "NA": 15
+      }
+    },
+    "train-continuum-001": {
+      "job_id": "718",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 67,
+        "declared_omission_unavailable": 141
+      },
+      "science_elapsed_seconds": 1005.0517507990007,
+      "verdict_counts": {
+        "NA": 8
+      }
+    },
+    "train-continuum-002": {
+      "job_id": "719",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 67,
+        "declared_omission_unavailable": 141
+      },
+      "science_elapsed_seconds": 1017.6655886869994,
+      "verdict_counts": {
+        "NA": 8
+      }
+    },
+    "freeze": {
+      "job_id": "720",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 10,
+        "declared_omission_unavailable": 62
+      },
+      "science_elapsed_seconds": 6.23167068901239,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-prepare-000": {
+      "job_id": "721",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 6.856156396039296,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-000": {
+      "job_id": "722",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 388.2713150680065,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-001": {
+      "job_id": "723",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 47.00023358099861,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-001": {
+      "job_id": "724",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 380.0733521570219,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-002": {
+      "job_id": "725",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 10.588100756984204,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-002": {
+      "job_id": "726",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 374.1058977749781,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-003": {
+      "job_id": "727",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 46.49746040900936,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-003": {
+      "job_id": "728",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 386.9971422700328,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-004": {
+      "job_id": "729",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 97.179785995977,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-004": {
+      "job_id": "730",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 382.4794314270257,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-005": {
+      "job_id": "731",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 91.24873414699687,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-005": {
+      "job_id": "732",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 388.31640176300425,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-006": {
+      "job_id": "733",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 6.637815351015888,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-006": {
+      "job_id": "734",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 372.75140242197085,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-007": {
+      "job_id": "735",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 44.816107390041,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-007": {
+      "job_id": "736",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 381.4912962800008,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-008": {
+      "job_id": "737",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 21.923530241008848,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-008": {
+      "job_id": "738",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 387.1190564609715,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-009": {
+      "job_id": "739",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 94.31150694796816,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-009": {
+      "job_id": "740",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 387.804231644026,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-010": {
+      "job_id": "741",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 47.1274683069787,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-010": {
+      "job_id": "742",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 384.67032949998975,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-011": {
+      "job_id": "743",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 98.40889439499006,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-011": {
+      "job_id": "744",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 390.1541466600029,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-012": {
+      "job_id": "745",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 6.544604380032979,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-012": {
+      "job_id": "746",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 370.4904261420015,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-013": {
+      "job_id": "747",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 29.650070168019738,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-013": {
+      "job_id": "748",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 379.1322295779828,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-014": {
+      "job_id": "749",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 10.960030937974807,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-014": {
+      "job_id": "750",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 393.1112691820017,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "confirm-prepare-015": {
+      "job_id": "751",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 13,
+        "declared_omission_unavailable": 4
+      },
+      "science_elapsed_seconds": 106.9143490230199,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "confirm-015": {
+      "job_id": "752",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 162
+      },
+      "science_elapsed_seconds": 395.13825399201596,
+      "verdict_counts": {
+        "NA": 152
+      }
+    },
+    "aggregate": {
+      "job_id": "753",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 12
+      },
+      "science_elapsed_seconds": 34.02244545496069,
+      "verdict_counts": {
+        "BAD": 20,
+        "GOOD": 14,
+        "NA": 6
+      }
+    },
+    "scaling-prepare": {
+      "job_id": "754",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 17,
+        "declared_omission_unavailable": 8
+      },
+      "science_elapsed_seconds": 103.29562957905,
+      "verdict_counts": {
+        "NA": 1
+      }
+    },
+    "scaling": {
+      "job_id": "755",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cuda",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 46
+      },
+      "science_elapsed_seconds": 58.82824683299987,
+      "verdict_counts": {
+        "NA": 36
+      }
+    },
+    "report": {
+      "job_id": "756",
+      "status": "COMPLETED",
+      "correctness_failures": 0,
+      "git_commit": "a7646702ff1061d78a722153ef2548d9d831de0d",
+      "device": "cpu",
+      "scientific_artifact_references": {
+        "retained_and_transport_verified": 11,
+        "declared_omission_unavailable": 178
+      },
+      "science_elapsed_seconds": 169.74069025198696,
+      "verdict_counts": {}
+    }
+  },
+  "mismatches": [],
+  "scope": "All included archive bytes were streamed and hashed first. This verifies consistency of stage/protocol/source/prerequisite seals and all original science artifact hashes with the verified export manifest. Omitted checkpoint/array/figure bytes cannot be rehashed or replayed from this review subset."
+}
