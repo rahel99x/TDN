@@ -38,8 +38,8 @@ def seal(source, protocol, manifest=None):
     return manifest
 
 
-def fixture(tmp_path):
-    protocol=build_protocol('smoke');stage='fairness-discrete-000'
+def fixture(tmp_path, *, stage='fairness-discrete-000', nested_figure=True):
+    protocol=build_protocol('smoke')
     source=tmp_path/stage;source.mkdir()
     ctx=Context(protocol,stage,source,{},'cpu',SimpleNamespace(check=lambda:None))
     ctx.record('synthetic/only',['R3'],metrics={'parameters':2,'median_seconds':.002},
@@ -56,8 +56,9 @@ def fixture(tmp_path):
         train_loss=.1/(update+1),validation_loss=.2 if update==0 else None,
         elapsed_seconds=.01+update) for trial in ('clipped','unclipped') for update in (0,1)]
     write_json(source/'learning_curves.json',dict(rows=curves,observed_range_is_confidence_interval=False))
-    (source/'figures').mkdir()
-    (source/'figures/fixture.pdf').write_bytes(b'%PDF-1.4\n%%EOF\n')
+    if nested_figure:
+        (source/'figures').mkdir()
+        (source/'figures/fixture.pdf').write_bytes(b'%PDF-1.4\n%%EOF\n')
     manifest=seal(source,protocol)
     report=Path(begin_report(source,name='TDN/resolve/fixture',script='scripts/resolve.py',
         parameters={'fixture_only':True},report_parent=tmp_path/'tower'))
@@ -146,3 +147,45 @@ def test_coordinator_discovers_only_declared_safe_resolve_unit_names(tmp_path):
     candidates=set(_candidates(tmp_path))
     assert tmp_path/'../escape' not in candidates
     assert tmp_path/'fairness-discrete-000' not in candidates
+
+
+def test_resolve_actual_report_root_layout_registers_png_and_pdf_without_source_edits(tmp_path):
+    source,report,protocol,manifest=fixture(tmp_path,stage='report',nested_figure=False)
+    (source/'fit-discrete-fit.png').write_bytes(bytes.fromhex('89504e470d0a1a0a'))
+    (source/'fit-discrete-fit.pdf').write_bytes(b'%PDF-1.4\n%%EOF\n')
+    write_json(source/'figures.json',[{'name':'fit-discrete-fit',
+        'png':'fit-discrete-fit.png','pdf':'fit-discrete-fit.pdf','caption':'Synthetic projection fixture'}])
+    seal(source,protocol,manifest)
+    before={p:p.read_bytes() for p in source.rglob('*') if p.is_file()}
+    result=publish_outputs(report,[source]);index,_=pages(report)
+    assert result['frontier']['reporting_complete']
+    assert result['frontier']['figure_count']==2
+    figures=index['figures']
+    assert {r['format'] for r in figures}=={'image','pdf'}
+    assert all(r['hash_status']=='computed_projection' and r['evidence_status']=='VERIFIED_CANONICAL' for r in figures)
+    for row in figures:
+        assert row['sha256']==hashlib.sha256((report/row['path']).read_bytes()).hexdigest()
+    logs=json.loads((report/'logs.json').read_text())['logs']
+    assert {r['path'] for r in figures}<={r['path'] for r in logs if r['group']=='Resolve analytical figures'}
+    assert before=={p:p.read_bytes() for p in source.rglob('*') if p.is_file()}
+
+
+@pytest.mark.parametrize('defect',['changed_bytes','undeclared','unsealed_source','missing_file'])
+def test_resolve_report_root_figures_need_verified_content_and_source(tmp_path,defect):
+    source,report,protocol,manifest=fixture(tmp_path,stage='report',nested_figure=False)
+    panel=source/'stage-costs.png';panel.write_bytes(bytes.fromhex('89504e470d0a1a0a'))
+    if defect!='undeclared':seal(source,protocol,manifest)
+    if defect=='changed_bytes':panel.write_bytes(b'changed image')
+    if defect=='unsealed_source':(source/'COMPLETED').unlink()
+    if defect=='missing_file':panel.unlink()
+    result=publish_outputs(report,[source]);index,_=pages(report)
+    assert result['frontier']['figure_count']==0 and index['figures']==[]
+    assert not result['frontier']['reporting_complete']
+
+
+def test_resolve_report_root_discovery_does_not_expand_to_other_stages(tmp_path):
+    source,report,protocol,manifest=fixture(tmp_path,nested_figure=False)
+    (source/'incidental.png').write_bytes(bytes.fromhex('89504e470d0a1a0a'))
+    seal(source,protocol,manifest)
+    result=publish_outputs(report,[source])
+    assert result['frontier']['reporting_complete'] and result['frontier']['figure_count']==0

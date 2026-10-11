@@ -1,0 +1,5 @@
+Verifying compressed parts: 0.0% (0.0/82.5 MiB); 0.0s; 0.0 MiB/s
+Verifying compressed parts: 100.0% (82.5/82.5 MiB); 0.1s; 748.4 MiB/s; file=fedora-resolve-20261011T052313346218Z-review.tar.gz.part004
+Verifying exact files: 0.0% (0.0/609.5 MiB); 0.0s; 0.0 MiB/s
+Verifying exact files: 100.0% (609.5/609.5 MiB); 1.6s; 388.1 MiB/s; file=runs/fedora-resolve-20261011T052313346218Z/report/workflow-seal.json
+VERIFIED: 86,547,084 compressed bytes; 3716 exact files; mode review. Transport integrity only.

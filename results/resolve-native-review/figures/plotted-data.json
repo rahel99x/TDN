@@ -1,0 +1,857 @@
+{
+  "schema": "tdn.resolve-review-figure/v1",
+  "sources": {
+    "fit-review.json": {
+      "path": ".runtime/resolve-native-analysis/fit-review.json",
+      "sha256": "5cf174fea7d2e61b47be776568ebde815d7ea0c4c18a97985ca9ed742fd87930"
+    },
+    "fairness-review.json": {
+      "path": ".runtime/resolve-native-analysis/fairness-review.json",
+      "sha256": "4a669fe25c488091c38e39381c0441198dcb67b10e3d389363ff1e359b55d8e0"
+    },
+    "memory-review.json": {
+      "path": ".runtime/resolve-native-analysis/memory-review.json",
+      "sha256": "71db2f54b1ea8a3c6437232785f249f6093fd2d1c325df37d98e393510e34176"
+    },
+    "kernels-review.json": {
+      "path": ".runtime/resolve-native-analysis/kernels-review.json",
+      "sha256": "9dc3fc582f4fedf514d14da3b61a0edf070bb3537f1d60ebf53484590cdd0d76"
+    },
+    "fit-discrete/fit_results.json": {
+      "sha256": "87dc5aff9bd77bfd52693f731b50b462b7ad6aefe5d6d9417ee0d8b2bf46a566",
+      "bytes": 231434,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/fit-discrete/fit_results.json"
+    },
+    "fit-continuum/fit_results.json": {
+      "sha256": "3c2b3c50c4bbcd5e62ca2c891144b95eb14a2948d3bb5067671b631e034021d9",
+      "bytes": 229065,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/fit-continuum/fit_results.json"
+    },
+    "fairness-continuum-000/fairness_results.json": {
+      "sha256": "b5643dfbfd77b0dd7216f3009070dcc97d89912476f9c2616c47cff14ec9e2f4",
+      "bytes": 9964864,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/fairness-continuum-000/fairness_results.json"
+    },
+    "fairness-continuum-001/fairness_results.json": {
+      "sha256": "d1b1b9fb48bebd278c11d6c7ecee9f0056f5e652361e6cb02beef9c269ab128c",
+      "bytes": 9964565,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/fairness-continuum-001/fairness_results.json"
+    },
+    "fairness-continuum-002/fairness_results.json": {
+      "sha256": "3aae1dbcb4917b780f1609abcf007bbf7e7c5717da9b0ed8160f2f220d190c65",
+      "bytes": 9965984,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/fairness-continuum-002/fairness_results.json"
+    },
+    "fairness-discrete-000/fairness_results.json": {
+      "sha256": "7098c48e39f328ae37aa9af7b4428ba8d280dfbbda8ab2895cdf8e1e26fb0887",
+      "bytes": 9950986,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/fairness-discrete-000/fairness_results.json"
+    },
+    "fairness-discrete-001/fairness_results.json": {
+      "sha256": "3fb42d87d73ed5c4fbfa91a6b4a3ee2b0a3fe49dcef4ad911b4f4409ec8652f0",
+      "bytes": 9952741,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/fairness-discrete-001/fairness_results.json"
+    },
+    "fairness-discrete-002/fairness_results.json": {
+      "sha256": "b0b6f3e763ab65e5e5a6dd194c351790a8e6d3a28be81e7160b668b59161df08",
+      "bytes": 9950808,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/fairness-discrete-002/fairness_results.json"
+    },
+    "memory/memory_results.json": {
+      "sha256": "3f8c1269b8e88abc7c1f287bc734195e8d36e3b7e9de74fcba43c309b88743b7",
+      "bytes": 49733164,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/memory/memory_results.json"
+    },
+    "memory/memory_summary.json": {
+      "sha256": "719bcc8a9f507f26c92ba8f28bb097d51f20cd8e81a1a26a715dfab377ad3e86",
+      "bytes": 28804,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/memory/memory_summary.json"
+    },
+    "memory/memory_selection.json": {
+      "sha256": "2239b7769de855924fc7c703e18c8d18a2b41ac0fe5979698d8e0ed17c84855b",
+      "bytes": 11946,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/memory/memory_selection.json"
+    },
+    "memory/summary.json": {
+      "sha256": "c6634a2a9bb074b61ffe397f1b54f6d3e3d85a73fb21b243c84f77ca1fd732ab",
+      "bytes": 1500,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/memory/summary.json"
+    },
+    "memory/stage.json": {
+      "sha256": "2509f4f10aa272468047ed9f01b5669aeaafef2832c490d4715d0d0b88a30b42",
+      "bytes": 1708,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/memory/stage.json"
+    },
+    "memory/execution.json": {
+      "sha256": "a87789c8d85325f97160a0c48375eb1f6a4b015a9c2251b31a1d828626305b2e",
+      "bytes": 1586,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/memory/execution.json"
+    },
+    "memory/rows.jsonl": {
+      "sha256": "14dcb56d6c30acd92df357348e38ad53bad5be72f895ac0b3752cfe47db448a4",
+      "bytes": 131067,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/memory/rows.jsonl"
+    },
+    "state/scheduler-accounting.json": {
+      "sha256": "c971b35bfac48a095eaa625201ad1e07cf5efa9693579a8ec27ce62cd6590a8c",
+      "bytes": 322558,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/state/scheduler-accounting.json"
+    },
+    "kernels-discrete-n64/kernel_rows.json": {
+      "sha256": "30999720de16dd9d1ed43a42ec95490f94d8d7cd3702982364fe5a80657c2130",
+      "bytes": 635517,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/kernels-discrete-n64/kernel_rows.json"
+    },
+    "kernels-discrete-n128/kernel_rows.json": {
+      "sha256": "e1350e4970166d7e3c4e39906df2028c3b1a48826f3faa6c0a1033bd6fb2127d",
+      "bytes": 636014,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/kernels-discrete-n128/kernel_rows.json"
+    },
+    "kernels-continuum-n64/kernel_rows.json": {
+      "sha256": "8c7d3c84f907f27651e45846b6f45a92a364a88cd26bfc67f845db03767e5acb",
+      "bytes": 634631,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/kernels-continuum-n64/kernel_rows.json"
+    },
+    "kernels-continuum-n128/kernel_rows.json": {
+      "sha256": "3c048871c43b23e0306e1613133509610b1d4e0a4bb7248da9b4af528dc552a5",
+      "bytes": 634115,
+      "original_path": "runs/fedora-resolve-20261011T052313346218Z/kernels-continuum-n128/kernel_rows.json"
+    }
+  },
+  "title": "TDN Resolve: what the native run established",
+  "evidence_status": "Development evidence; no untouched confirmation cohort.",
+  "fit": [
+    {
+      "track": "discrete",
+      "method": "fixed_unit",
+      "rms": 1.075741007417639e-05,
+      "fields": 32,
+      "queries": 128,
+      "trace": "fit-review.json/discrete/models/fixed_unit/mean_rms"
+    },
+    {
+      "track": "discrete",
+      "method": "two_gain_direct",
+      "rms": 9.912777278942462e-06,
+      "fields": 32,
+      "queries": 128,
+      "trace": "fit-review.json/discrete/models/two_gain_direct/mean_rms"
+    },
+    {
+      "track": "discrete",
+      "method": "quad4_full",
+      "rms": 3.15531642876862e-06,
+      "fields": 32,
+      "queries": 128,
+      "trace": "fit-review.json/discrete/models/quad4_full/mean_rms"
+    },
+    {
+      "track": "discrete",
+      "method": "analytic_quad_cubic",
+      "rms": 1.698855395136803e-06,
+      "fields": 32,
+      "queries": 128,
+      "trace": "fit-review.json/discrete/models/analytic_quad_cubic/mean_rms"
+    },
+    {
+      "track": "continuum",
+      "method": "fixed_unit",
+      "rms": 1.1690999334711792e-05,
+      "fields": 32,
+      "queries": 128,
+      "trace": "fit-review.json/continuum/models/fixed_unit/mean_rms"
+    },
+    {
+      "track": "continuum",
+      "method": "two_gain_direct",
+      "rms": 1.0406574183493288e-05,
+      "fields": 32,
+      "queries": 128,
+      "trace": "fit-review.json/continuum/models/two_gain_direct/mean_rms"
+    },
+    {
+      "track": "continuum",
+      "method": "quad4_full",
+      "rms": 3.698655502953924e-06,
+      "fields": 32,
+      "queries": 128,
+      "trace": "fit-review.json/continuum/models/quad4_full/mean_rms"
+    },
+    {
+      "track": "continuum",
+      "method": "analytic_quad_cubic",
+      "rms": 2.7204690463960724e-06,
+      "fields": 32,
+      "queries": 128,
+      "trace": "fit-review.json/continuum/models/analytic_quad_cubic/mean_rms"
+    }
+  ],
+  "kernels": [
+    {
+      "track": "discrete",
+      "grid": 64,
+      "median": 2.1233587422705025,
+      "minimum": 2.0286309431089578,
+      "maximum": 2.255621450032451,
+      "conditions": 8,
+      "accuracy_qualified_conditions": 8,
+      "max_parity_error": 8.940696716308594e-08,
+      "paired_rounds_per_condition": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "condition_measurements": [
+        {
+          "parent_id": "resolve-kernel-discrete-64-95520000-low",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 2.150767844986187,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-64-95520000-low",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 2.0286309431089578,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-64-95520001-low",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 2.1058460925926243,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-64-95520001-low",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 2.255621450032451,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-64-95520002-high_pair",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 2.148760138995483,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-64-95520002-high_pair",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 2.072623861164554,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-64-95520003-high_pair",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 2.0865403048421545,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-64-95520003-high_pair",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 2.1408713919483806,
+          "both_accuracy_eligible": true
+        }
+      ],
+      "trace": "kernels-discrete-n64/kernel_rows.json/comparisons[candidate=quad4_batched]"
+    },
+    {
+      "track": "discrete",
+      "grid": 128,
+      "median": 2.096126951439628,
+      "minimum": 2.0165878508527624,
+      "maximum": 2.120977735908426,
+      "conditions": 8,
+      "accuracy_qualified_conditions": 6,
+      "max_parity_error": 1.1920928955078125e-07,
+      "paired_rounds_per_condition": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "condition_measurements": [
+        {
+          "parent_id": "resolve-kernel-discrete-128-95520000-low",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 2.1012273458665547,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-128-95520000-low",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 2.120977735908426,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-128-95520001-low",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 2.040512814459283,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-128-95520001-low",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 2.0165878508527624,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-128-95520002-high_pair",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 2.091026557012701,
+          "both_accuracy_eligible": false
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-128-95520002-high_pair",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 2.1187764197159615,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-128-95520003-high_pair",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 2.087823486749704,
+          "both_accuracy_eligible": false
+        },
+        {
+          "parent_id": "resolve-kernel-discrete-128-95520003-high_pair",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 2.1032107908050692,
+          "both_accuracy_eligible": true
+        }
+      ],
+      "trace": "kernels-discrete-n128/kernel_rows.json/comparisons[candidate=quad4_batched]"
+    },
+    {
+      "track": "continuum",
+      "grid": 64,
+      "median": 1.495131648574527,
+      "minimum": 1.480971813192547,
+      "maximum": 1.5071647447161158,
+      "conditions": 8,
+      "accuracy_qualified_conditions": 8,
+      "max_parity_error": 1.7881393432617188e-07,
+      "paired_rounds_per_condition": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "condition_measurements": [
+        {
+          "parent_id": "resolve-kernel-continuum-64-95520000-low",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 1.480971813192547,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-64-95520000-low",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 1.4938867713089565,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-64-95520001-low",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 1.491244955927184,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-64-95520001-low",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 1.5005067766980646,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-64-95520002-high_pair",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 1.4933817840693433,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-64-95520002-high_pair",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 1.5071647447161158,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-64-95520003-high_pair",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 1.4984322897462445,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-64-95520003-high_pair",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 1.4963765258400974,
+          "both_accuracy_eligible": true
+        }
+      ],
+      "trace": "kernels-continuum-n64/kernel_rows.json/comparisons[candidate=quad4_batched]"
+    },
+    {
+      "track": "continuum",
+      "grid": 128,
+      "median": 1.4800858135958777,
+      "minimum": 1.4727555168258732,
+      "maximum": 1.4828551696392678,
+      "conditions": 8,
+      "accuracy_qualified_conditions": 8,
+      "max_parity_error": 1.1920928955078125e-07,
+      "paired_rounds_per_condition": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "condition_measurements": [
+        {
+          "parent_id": "resolve-kernel-continuum-128-95520000-low",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 1.4806122645294333,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-128-95520000-low",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 1.4792871552004858,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-128-95520001-low",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 1.4779588873430152,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-128-95520001-low",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 1.480349330298584,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-128-95520002-high_pair",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 1.4727555168258732,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-128-95520002-high_pair",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 1.4798222968931716,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-128-95520003-high_pair",
+          "schedule_steps": 1,
+          "median_paired_speed_ratio": 1.4827595681240913,
+          "both_accuracy_eligible": true
+        },
+        {
+          "parent_id": "resolve-kernel-continuum-128-95520003-high_pair",
+          "schedule_steps": 2,
+          "median_paired_speed_ratio": 1.4828551696392678,
+          "both_accuracy_eligible": true
+        }
+      ],
+      "trace": "kernels-continuum-n128/kernel_rows.json/comparisons[candidate=quad4_batched]"
+    }
+  ],
+  "fairness": [
+    {
+      "track": "continuum",
+      "method": "fno_scaled",
+      "rms": {
+        "minimum": 3.618941546807462e-05,
+        "median": 3.6203492904974864e-05,
+        "maximum": 3.757100963196711e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=continuum,family=fno_scaled]/validation/field_mean_rms"
+    },
+    {
+      "track": "continuum",
+      "method": "fno_mean",
+      "rms": {
+        "minimum": 3.654619499034584e-05,
+        "median": 3.772407764720714e-05,
+        "maximum": 3.772407764720714e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=continuum,family=fno_mean]/validation/field_mean_rms"
+    },
+    {
+      "track": "continuum",
+      "method": "two_basis",
+      "rms": {
+        "minimum": 1.0497364506638843e-05,
+        "median": 1.0582975854484732e-05,
+        "maximum": 1.0629808886826063e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=continuum,family=two_basis]/validation/field_mean_rms"
+    },
+    {
+      "track": "continuum",
+      "method": "df",
+      "rms": {
+        "minimum": 3.772407764720714e-05,
+        "median": 3.772407764720714e-05,
+        "maximum": 3.772407764720714e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=continuum,family=df]/validation/field_mean_rms"
+    },
+    {
+      "track": "continuum",
+      "method": "quad2_full",
+      "rms": {
+        "minimum": 1.1180956912523242e-05,
+        "median": 1.1180956912523242e-05,
+        "maximum": 1.1180956912523242e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=continuum,family=quad2_full]/validation/field_mean_rms"
+    },
+    {
+      "track": "continuum",
+      "method": "quad4_full",
+      "rms": {
+        "minimum": 3.698167668968931e-06,
+        "median": 3.698167668968931e-06,
+        "maximum": 3.698167668968931e-06
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=continuum,family=quad4_full]/validation/field_mean_rms"
+    },
+    {
+      "track": "discrete",
+      "method": "fno_scaled",
+      "rms": {
+        "minimum": 3.714219731952705e-05,
+        "median": 3.738298359763856e-05,
+        "maximum": 3.8933938468222026e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=discrete,family=fno_scaled]/validation/field_mean_rms"
+    },
+    {
+      "track": "discrete",
+      "method": "fno_mean",
+      "rms": {
+        "minimum": 3.753760957878338e-05,
+        "median": 3.7795634062224566e-05,
+        "maximum": 3.8933938468222026e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=discrete,family=fno_mean]/validation/field_mean_rms"
+    },
+    {
+      "track": "discrete",
+      "method": "two_basis",
+      "rms": {
+        "minimum": 9.982835008529459e-06,
+        "median": 1.0073193701549026e-05,
+        "maximum": 1.019060419248771e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=discrete,family=two_basis]/validation/field_mean_rms"
+    },
+    {
+      "track": "discrete",
+      "method": "df",
+      "rms": {
+        "minimum": 3.8933938468222026e-05,
+        "median": 3.8933938468222026e-05,
+        "maximum": 3.8933938468222026e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=discrete,family=df]/validation/field_mean_rms"
+    },
+    {
+      "track": "discrete",
+      "method": "quad2_full",
+      "rms": {
+        "minimum": 1.030161603245643e-05,
+        "median": 1.030161603245643e-05,
+        "maximum": 1.030161603245643e-05
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=discrete,family=quad2_full]/validation/field_mean_rms"
+    },
+    {
+      "track": "discrete",
+      "method": "quad4_full",
+      "rms": {
+        "minimum": 3.1571749480734e-06,
+        "median": 3.1571749480734e-06,
+        "maximum": 3.1571749480734e-06
+      },
+      "training_seeds": 3,
+      "trace": "fairness-review.json/model_summary[track=discrete,family=quad4_full]/validation/field_mean_rms"
+    }
+  ],
+  "memory": [
+    {
+      "scenario": "reaction-1/noise-0",
+      "method": "clean_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 0.1283670744032036,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0,method=clean_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0",
+      "method": "coarse_rk4",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0,method=coarse_rk4]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0",
+      "method": "noise_aware_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 12.056606859258432,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0,method=noise_aware_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0",
+      "method": "plain_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 0.3247185536454435,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0,method=plain_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0",
+      "method": "validated_damped_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0,method=validated_damped_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.0001",
+      "method": "clean_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 29.074505821795924,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.0001,method=clean_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.0001",
+      "method": "coarse_rk4",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.0001,method=coarse_rk4]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.0001",
+      "method": "noise_aware_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 6.549003261497009,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.0001,method=noise_aware_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.0001",
+      "method": "plain_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 37.26698823563766,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.0001,method=plain_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.0001",
+      "method": "validated_damped_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.0001,method=validated_damped_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.001",
+      "method": "clean_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 39.21068462741968,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.001,method=clean_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.001",
+      "method": "coarse_rk4",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.001,method=coarse_rk4]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.001",
+      "method": "noise_aware_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.1954181214450297,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.001,method=noise_aware_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.001",
+      "method": "plain_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 47.34018147975762,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.001,method=plain_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-1/noise-0.001",
+      "method": "validated_damped_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-1/noise-0.001,method=validated_damped_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0",
+      "method": "clean_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 0.23622567297835625,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0,method=clean_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0",
+      "method": "coarse_rk4",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0,method=coarse_rk4]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0",
+      "method": "noise_aware_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 5.0928255652186625,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0,method=noise_aware_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0",
+      "method": "plain_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 0.6367010975906802,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0,method=plain_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0",
+      "method": "validated_damped_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0,method=validated_damped_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.0001",
+      "method": "clean_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 18.84396456719641,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.0001,method=clean_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.0001",
+      "method": "coarse_rk4",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.0001,method=coarse_rk4]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.0001",
+      "method": "noise_aware_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 5.367150421418417,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.0001,method=noise_aware_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.0001",
+      "method": "plain_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 22.762213080724965,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.0001,method=plain_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.0001",
+      "method": "validated_damped_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.0001,method=validated_damped_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.001",
+      "method": "clean_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 45.550076461956344,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.001,method=clean_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.001",
+      "method": "coarse_rk4",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.001,method=coarse_rk4]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.001",
+      "method": "noise_aware_fitted_memory",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.4328080409044803,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.001,method=noise_aware_fitted_memory]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.001",
+      "method": "plain_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 54.46543551355712,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.001,method=plain_secant]/native_median_paired_ratio"
+    },
+    {
+      "scenario": "reaction-3/noise-0.001",
+      "method": "validated_damped_secant",
+      "independent_parents": 16,
+      "endpoint_queries": 32,
+      "native_median_paired_ratio": 1.0,
+      "trace": "memory-review.json/results[scenario=reaction-3/noise-0.001,method=validated_damped_secant]/native_median_paired_ratio"
+    }
+  ],
+  "scopes": {
+    "fit": "Each track: 32 validation fields, 4 horizons per field (128 queries); equal-field mean RMS. Fits use development training data. Point estimates; no interval shown.",
+    "kernels": "Each track/grid: 2 development regimes \u00d7 2 phase fields \u00d7 2 schedules = 8 conditions; 20 randomized paired warm timing rounds per condition. Point: median condition speedup; whisker: observed condition min\u2013max, not CI. Same mathematical GL4 rule, complete-call cost. Reference track here is same-grid, temporally refined; no continuum spatial certification.",
+    "fairness": "Each track: the same 32 validation fields \u00d7 4 horizons, 3 training seeds. Validation-selected family checkpoints; point: median seed field-mean RMS; whisker: seed min\u2013max, not CI. Frozen analytic controls repeat the same outputs across seeds. Adapted split FNO implementations, not published-paper benchmark claims.",
+    "memory": "16 independent development test parents per scenario, 2 noise draws each (32 endpoint queries), 32 autonomous steps. Points: median paired endpoint RMS / coarse RK4 RMS. Fields reused across noise levels and reaction multipliers. No uncertainty interval shown; connecting lines only guide the eye. Reaction multipliers 1 and 3 correspond to rates 0.7 and 2.1."
+  }
+}

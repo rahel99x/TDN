@@ -2,6 +2,8 @@
 
 This program implements every next experiment in the [full Advance review](reviews/advance-full-native-20261011.md). It preserves historical protocols and results. `full` means the complete **development** portfolio; it does not mean fresh scientific confirmation. Model and optimizer changes informed by this program require a separately frozen future confirmation cohort.
 
+The completed RTX 4090 campaign is assessed in the [full native Resolve review](reviews/resolve-full-native-20261011.md), with [auditable tables and figures](../results/resolve-native-review/README.md). It establishes a shared-transform GL4 implementation improvement and diagnoses remaining representation and neural-conditioning limitations. It does not establish a learned solver advantage or a published-FNO comparison.
+
 Use `scripts/fedora_resolve.sh` on the existing Fedora project at `/home/rahel/TDN`. All files remain inside the checkout, using its Python venv. The desktop partition is `local`, with eight physical CPU cores, 110000 MiB Slurm memory and a single RTX 4090. Requests use at most 48 GiB host memory and one GPU; the existing 18 GiB/75% soft and 90% hard VRAM policies remain unchanged. No allocation exceeds **35 minutes**, below the user's 45-minute maximum. No pending-job cap or automatic budget expansion is introduced.
 
 ## Questions, controls and stopping rules

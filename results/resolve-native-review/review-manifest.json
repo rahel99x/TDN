@@ -1,0 +1,151 @@
+{
+  "schema": "tdn.derivative-native-review/v1",
+  "run_id": "fedora-resolve-20261011T052313346218Z",
+  "native_commit": "f07f9d56ccaee85b73b8d090aec3bc22ac067cf9",
+  "native_source_tree_sha256": "5d73ce536ff1bc8a354d68e641b83f4f5afa46481dadb6b853fb86b26480be2e",
+  "archive_sha256": "a0db3b400425d6f0ca02072e024927e192fc863bf88ff7709f2deccbbaa9bbb2",
+  "scientific_scope": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS",
+  "review_scope": "Post-hoc audit of retained measurements and metadata; omitted arrays, checkpoints and native images not independently replayed or verified.",
+  "main_review": {
+    "path": "docs/reviews/resolve-full-native-20261011.md",
+    "sha256": "7023d63bcf83e261d1fe69cc8420656e49e57bfee031f86dc2e9b16c0460f3ff"
+  },
+  "files": {
+    "README.md": {
+      "bytes": 6046,
+      "sha256": "fd0fd9a13bb53585713ff6b217e25a91c04b3c08d7f1aea1b213c5eb7b79b209"
+    },
+    "audit-scripts/extract.py": {
+      "bytes": 3159,
+      "sha256": "669e6b860241be218385ee4046377d9327175c3ff92c71ecb8793da53059f03a"
+    },
+    "audit-scripts/fairness-analysis.py": {
+      "bytes": 12725,
+      "sha256": "f27b363d573fa2211e9400cf862503e44d537322ea7b795764cbfb400f1cca5c"
+    },
+    "audit-scripts/fit-analysis.py": {
+      "bytes": 7453,
+      "sha256": "a2d96dddc44a1496c6add6fd15d93759f006d42dfa629e7ee0b5772812b60295"
+    },
+    "audit-scripts/fit-render.py": {
+      "bytes": 14235,
+      "sha256": "e6cdb7b09c1625ad462462176b00326aecc41d5c38b008b5f5e31edca2372030"
+    },
+    "audit-scripts/interactions-review.py": {
+      "bytes": 14656,
+      "sha256": "0d007a29e624015a0e39341fca5dc731bbeb0beaad82f306597a07faf0d6a64d"
+    },
+    "audit-scripts/kernels-review.py": {
+      "bytes": 26955,
+      "sha256": "8c66fbbb07e549f159212310207ce0d43f3502602cb214867f833d0d51410e9e"
+    },
+    "audit-scripts/memory-review.py": {
+      "bytes": 20059,
+      "sha256": "25cea1dbe4879c11e086646ffb8ac28fe9816dc18563f7deff15a8ad8e45e194"
+    },
+    "audit-scripts/provenance-costs-report.py": {
+      "bytes": 11621,
+      "sha256": "aa7c4f52749870ca4ff6b96a48f1f11a39eaddd0f0bd9312f5bcc1da45a76629"
+    },
+    "audit-scripts/provenance-costs.py": {
+      "bytes": 23516,
+      "sha256": "f7f51e3732f50961b492a676db86a1dc95de87eba5625fd77379005d620ef333"
+    },
+    "audit-scripts/review_io.py": {
+      "bytes": 696,
+      "sha256": "bc3d3f037f1a0b629b4ce5e253797bfec0b98502b87f4d5a63f353de37207170"
+    },
+    "data/fairness-review.json.gz": {
+      "bytes": 61910,
+      "sha256": "bcd29ed402de8065133e8de19cc92433d1f860a59db410d848319f3920d9afde"
+    },
+    "data/fit-review.json.gz": {
+      "bytes": 72053,
+      "sha256": "a3b45a3f8f7bc91616fcb74a131ed0487a299d1c151c89d187f382b2a151275f"
+    },
+    "data/interactions-review.json.gz": {
+      "bytes": 62130,
+      "sha256": "120cbdebe036082d86180c92603273e0b91def0283503680911c7990b6bf2c5e"
+    },
+    "data/kernels-review.json.gz": {
+      "bytes": 27834,
+      "sha256": "d30453ab9034cffc663a273e1ecf5ced62ce5455be1b190171260e12325e7190"
+    },
+    "data/memory-review.json.gz": {
+      "bytes": 8082,
+      "sha256": "d68c06c031a48f562d577717640612bf87f73c5a1d0f3b5069cb465f4698bac9"
+    },
+    "data/provenance-costs.json.gz": {
+      "bytes": 11992,
+      "sha256": "0fb0d5bab9c166c278d4713015a046ab9f6b4e9a9453de3a028b829bb6a4107a"
+    },
+    "details/fairness-review.md": {
+      "bytes": 15606,
+      "sha256": "0eea40dfe89ff1f96eba8f266ffd8ed2b5c3d9647354d3906ab36e05e01e7504"
+    },
+    "details/fit-review.md": {
+      "bytes": 13808,
+      "sha256": "b985619d5b219d7542290aa94a54fcb354dd5c9a62a72867a0705308662ed215"
+    },
+    "details/interactions-review.md": {
+      "bytes": 16333,
+      "sha256": "854d81b781b3bc73168c9deadaac0833bab525dd0e62c97adf229da122c704d7"
+    },
+    "details/kernels-review.md": {
+      "bytes": 12351,
+      "sha256": "2c5c921600dca6fb6873da7123c84d19d9d338994fed7945c5042b8b8a74a78f"
+    },
+    "details/memory-review.md": {
+      "bytes": 10266,
+      "sha256": "c4855d84e23f8b6343832cf114a1caaa4a9133c271a96b0ec46b8ba1e96938c4"
+    },
+    "details/provenance-costs.md": {
+      "bytes": 10699,
+      "sha256": "11bca07f156701a5ae12a3e23a5ea6bd28ea9b6f3c37b3ede79f286998b63cb9"
+    },
+    "figures/make_overview.py": {
+      "bytes": 13343,
+      "sha256": "44cc98ec1204b5b1c4cced778c2cc358fea5f7283b37b179c64b3f69e8646a9e"
+    },
+    "figures/plotted-data.json": {
+      "bytes": 32969,
+      "sha256": "e2351fc799ece4b44b1f0b41fb55e2fa72cc37fefd20602a4274cea5e656b8f3"
+    },
+    "figures/resolve-native-overview.pdf": {
+      "bytes": 38130,
+      "sha256": "4cdabdf2676ecec1557e718ac83889a48ffa82a580bff1d6644c5db27cbbe0cf"
+    },
+    "figures/resolve-native-overview.png": {
+      "bytes": 1121170,
+      "sha256": "0104a7d349922c2c345d1762e6e4f30f7ae991831ebef1e79d58b7b54ef478e5"
+    },
+    "provenance/evidence-index.json.gz": {
+      "bytes": 34298,
+      "sha256": "726b36c3fbe95115b9fe860a25e099f199b2d582761471c7e600e6b012b0d779"
+    },
+    "provenance/native-metadata.json.gz": {
+      "bytes": 18158,
+      "sha256": "faf9383f43dbc5585e8b475063e62b3c168772000a8815d4c47d5fb14dadb43b"
+    },
+    "provenance/tower-figure-fix-validation.json.gz": {
+      "bytes": 719,
+      "sha256": "db3a684eb9ee2389991da2e3f7a406af5cccadcaa4ae28831e84a08894206ddc"
+    },
+    "provenance/transport-verification.log": {
+      "bytes": 500,
+      "sha256": "5f5f7f145bd051c290468f1b8e0c2d4b488f1e73e95a2a0c2155f9c5fa644508"
+    },
+    "provenance/upload-README.txt.gz": {
+      "bytes": 268,
+      "sha256": "fc54c6ab46fcf4b01654fbd4aefe64810fb1af6ec828771dfbc6461d02b4f46f"
+    },
+    "provenance/upload-index.json.gz": {
+      "bytes": 1067,
+      "sha256": "d6e1684ce0da706aced1187a58e70837626ec937dcf594adb9822d230fb657b5"
+    },
+    "provenance/upload-manifest.json.gz": {
+      "bytes": 234278,
+      "sha256": "cdf87a1c24edb5916e7fc6227cc382ed7d81d48c623aa8cfa52ffd3296c4f801"
+    }
+  }
+}

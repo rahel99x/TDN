@@ -607,10 +607,25 @@ def publish_frontier_outputs(report_dir, source_dirs, *, delegated_sources=None)
             tables["artifacts"].append(dict(source_path=relative, bytes=path.stat().st_size, kind=path.suffix,
                 sha256=digest, hash_status="computed_projection" if path in budget.hashes else "declared_unverified" if digest else "not_read",
                 manifest_path=_relative(root / "science_manifest.json", report) if name in declared else ""))
-            if path.parent.name == "figures" and path.suffix in (".png", ".pdf", ".html"):
+            # Resolve's atlas writes its PNG/PDF panels directly into report/.
+            # Admit that exact layout only for its verified report stage and
+            # after hashing image bytes against the frozen science seal.
+            # Historical figures/ discovery and original artifacts stay intact.
+            resolve_panel = (source.get("program") == "resolve" and source["stage"] == "report"
+                             and path.parent == root and path.suffix in (".png", ".pdf"))
+            if resolve_panel and (source["seal_status"] != "VERIFIED_CANONICAL"
+                    or name not in declared or budget.hashes.get(path) != declared[name]):
+                budget.omit(relative, "Resolve report-root figure is unsealed, changed, or unavailable for hash verification")
+                continue
+            if resolve_panel or (path.parent.name == "figures" and path.suffix in (".png", ".pdf", ".html")):
                 figures.append({"path": relative, "format": "image" if path.suffix == ".png" else "pdf" if path.suffix == ".pdf" else "html",
-                    "sha256": digest, "hash_status": "declared_unverified", "source_stage": source["stage"],
+                    "sha256": digest, "hash_status": "computed_projection" if resolve_panel else "declared_unverified", "source_stage": source["stage"],
                     "evidence_status": source["seal_status"], "label": path.stem})
+        if source.get("program") == "resolve" and source["stage"] == "report":
+            for name in declared:
+                panel = Path(name)
+                if len(panel.parts) == 1 and panel.suffix in (".png", ".pdf") and not (root/panel).is_file():
+                    budget.omit(_relative(root/panel, report), "Declared Resolve report-root figure is missing")
     output = report / "outputs/frontier"
     output.mkdir(parents=True, exist_ok=True)
     _directory(output)
