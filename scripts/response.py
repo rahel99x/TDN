@@ -35,7 +35,10 @@ def ancestors(protocol,stage):
         for parent in protocol['units'][unit]['dependencies']:
             if parent not in found: found.add(parent);visit(parent)
     visit(stage)
-    return tuple(name for name in protocol['units'] if name in found)
+    # Native coordinator JSON sorts object keys.  Unit dictionary order is
+    # therefore not execution order ("selection" sorts before "trial-*").
+    # The validated stages array is the frozen topological order on both hosts.
+    return tuple(name for name in protocol['stages'] if name in found)
 
 
 def parse_prerequisites(values,protocol,stage):

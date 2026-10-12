@@ -6,7 +6,16 @@ Fedora / Python 3.13.13 / RTX 4090; this environment uses Python 3.12.14 and
 PyTorch 2.10.0+cpu. Each receipt records its source identity. Intermediate
 receipts are retained when the implementation changes.
 
-Final regression result: **486 passed, 51 CUDA cases excluded**, in 49.34 seconds.
+Native-smoke failure correction: **502 passed, 54 CUDA cases excluded**, in
+65.50 seconds. See `pytest-native-smoke-fixes.txt` and `native-smoke-fixes.json`.
+The corrected local smoke uses the native controller's sorted JSON format and
+completed all 42 stages with verified execution/science seals. All 16 training
+checkpoints reproduced exactly in fresh processes. The three new native CUDA
+tests exercise fresh-process direct-FNO reload for each target; their desktop
+execution remains pending. This correction preserves exact parity and source
+checks rather than relaxing them.
+
+Original release regression result: **486 passed, 51 CUDA cases excluded**, in 49.34 seconds.
 See `pytest-final.txt` and `release-verification.json`.
 
 The release validation includes the Response regression suite, adjacent export

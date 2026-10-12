@@ -117,6 +117,20 @@ def test_response_cuda_reload_cache_and_precision(dtype_name):
     assert not torch.backends.cuda.matmul.allow_tf32
 
 
+@pytest.mark.parametrize('target', TARGETS)
+def test_response_cuda_direct_fno_fresh_process_reload(tmp_path, target):
+    from test_response_checkpoint_reload import checkpoint_fixture
+    from tdn.analysis.response.training import checkpoint_reload_probe
+    # Native-sized 32² FP32 convolutions with a trained nonzero output head;
+    # same-process state_dict copies and FP64 parity cannot expose this failure.
+    sample = checkpoint_fixture(tmp_path, target, device='cuda')
+    result = checkpoint_reload_probe(tmp_path, sample, device='cuda')
+    assert result['status'] == 'PASS', result
+    assert result['independent_process'] and result['exact_equal']
+    assert result['maximum_difference'] == 0.
+    assert result['runtime_equal'] and result['state_equal'] and result['checkpoint_equal']
+
+
 def test_response_cuda_clock_and_physical_nulls():
     u=field().cuda();eq=Physics(.013,2.4);geom=Geometry((7,7),(1.,1.))
     model=make('coupled_source').cuda();activate(model)

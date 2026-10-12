@@ -22,6 +22,7 @@ GPU_TEST_CASES = ([f"test_response_cuda_real_odd_even_parity[{n}-{f}-{t}]" for n
     + [f"test_response_cuda_head_and_trunk_gradients[{f}-{t}]" for f in GPU_FAMILIES for t in GPU_TARGETS]
     + [f"test_response_cuda_tensor_physics_and_query_parity[{t}]" for t in GPU_TARGETS]
     + [f"test_response_cuda_reload_cache_and_precision[{d}]" for d in ("float32","float64")]
+    + [f"test_response_cuda_direct_fno_fresh_process_reload[{t}]" for t in GPU_TARGETS]
     + ["test_response_cuda_clock_and_physical_nulls","test_response_cuda_actual_allocation"]
     + [f"test_response_cuda_cached_classical_dense_and_batch[{t}]" for t in GPU_TARGETS]
     + ["test_response_cuda_competitor_auxiliary_source"]

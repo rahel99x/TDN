@@ -160,6 +160,33 @@ arrays/checkpoints and rendered figures. That compact package is not a full
 binary replay package. Upload the printed `index.json` and every numbered part; do not
 use XZ-9 for a routine multi-gigabyte review.
 
+### Rerun after the initial native smoke fixes
+
+The initial `response-smoke-a` exposed two implementation defects: dependency
+verification used JSON object order instead of the declared stage order, and
+the fresh checkpoint-check process omitted the parent's TF32-off setting.
+These were execution defects, not training-budget or VRAM failures. The fix
+retains exact checkpoint-output parity and the source/protocol seal checks.
+The mandatory CUDA suite now has 54 cases, including a fresh-process direct-FNO
+checkpoint check for each target. `checkpoint_reload.json` records both
+processes' arithmetic settings and checkpoint/model hashes.
+
+After all old jobs are terminal, pull the fix and use a fresh smoke ID:
+
+```bash
+cd /home/rahel/TDN
+git pull --ff-only
+bash scripts/fedora_response.sh plan --smoke --run-id response-smoke-b \
+  --targets fd_same_grid galerkin_same_grid galerkin_projected_fine
+bash scripts/fedora_response.sh run --smoke --run-id response-smoke-b \
+  --targets fd_same_grid galerkin_same_grid galerkin_projected_fine
+```
+
+Keep `response-smoke-a` unchanged. Exact-source `recover` cannot reuse its
+artifacts with revised code. Once the new smoke finishes, run `validate
+response-smoke-b` and use `--calibration response-smoke-b` for the pilot. Do not
+use the failed smoke as calibration for the revised source.
+
 ## Local implementation verification
 
 These commands are appropriate for a separate cloud checkout without Slurm.

@@ -79,7 +79,7 @@ def test_scope_and_resource_tampering_refused(mutation):
 def test_native_mandatory_gpu_cases_match_actual_collection():
  result=subprocess.run([sys.executable,'-m','pytest','--collect-only','-q','tests/test_response_gpu.py'],cwd=ROOT,text=True,capture_output=True,check=True)
  cases=[line.split('::',1)[1] for line in result.stdout.splitlines() if line.startswith('tests/test_response_gpu.py::')]
- assert len(cases)==51 and cases==GPU_TEST_CASES
+ assert len(cases)==54 and cases==GPU_TEST_CASES
 
 
 def test_json_key_sorting_preserves_declared_dag_order():

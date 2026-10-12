@@ -26,6 +26,7 @@ import torch
 from tdn.research.experiment import atomic_torch_save
 from tdn.research.protocol import digest, file_digest
 from tdn.runtime.metadata import write_json, software_metadata
+from tdn.runtime.precision import reference_precision
 from tdn.analysis.frontier.core import check, clean
 
 SCHEMA = "tdn.response-training/v1"
@@ -414,9 +415,8 @@ def train_trial(model, train, validation, config, normalization, path, *,
         raise ValueError("Training requires nonempty accepted train and validation references")
     root = Path(path); root.mkdir(parents=True, exist_ok=True)
     device = next(model.parameters(), torch.empty((), device=train[0]["u0"].device)).device
+    reference_precision()
     if device.type == "cuda":
-        torch.backends.cuda.matmul.allow_tf32 = False
-        torch.backends.cudnn.allow_tf32 = False
         torch.cuda.reset_peak_memory_stats(device)
     setting = config["setting"]
     seed = int(config.get("seed", 0))
@@ -793,6 +793,11 @@ def fit_frozen_encoder(model, samples, normalization, *, ridge=0., rcond=1e-10):
 
 def load_model(path, device="cpu"):
     from .models import create_model
+    # This is also an entry point in fresh Python processes. Backend settings
+    # do not travel with a state_dict or the subprocess environment: cuDNN
+    # defaults to allowing TF32 even though the training worker disables it.
+    # Reapply the declared IEEE FP32 policy before constructing/invoking a model.
+    reference_precision()
     root = Path(path)
     checkpoint = root/"selected.pt" if root.is_dir() else root
     saved = torch.load(checkpoint, map_location="cpu", weights_only=True)
@@ -801,6 +806,36 @@ def load_model(path, device="cpu"):
     model.load_state_dict(saved["state_dict"])
     model.eval()
     return model, {k: v for k, v in saved.items() if k != "state_dict"}
+
+
+def _checkpoint_runtime():
+    """Record the arithmetic/execution settings used by both reload processes."""
+    if hasattr(torch.backends, "fp32_precision"):
+        precision = dict(api="fp32_precision", global_fp32=torch.backends.fp32_precision,
+            cuda_matmul=torch.backends.cuda.matmul.fp32_precision,
+            cudnn_convolution=torch.backends.cudnn.conv.fp32_precision)
+    else:
+        precision = dict(api="allow_tf32", cuda_matmul=torch.backends.cuda.matmul.allow_tf32,
+            cudnn_convolution=torch.backends.cudnn.allow_tf32)
+    return dict(precision=precision, threads=torch.get_num_threads(),
+        interop_threads=torch.get_num_interop_threads(), cudnn_benchmark=torch.backends.cudnn.benchmark,
+        cudnn_deterministic=torch.backends.cudnn.deterministic,
+        deterministic_algorithms=torch.are_deterministic_algorithms_enabled())
+
+
+def _checkpoint_reload_child(directory, destination, *, threads, interop_threads):
+    directory = Path(directory)
+    torch.set_num_threads(threads)
+    torch.set_num_interop_threads(interop_threads)
+    loaded, _ = load_model(directory, destination)
+    probe = torch.load(directory/"reload-input.pt", weights_only=True, map_location="cpu")
+    probe["u0"] = probe["u0"].to(destination)
+    with torch.no_grad():
+        output = predict(loaded, probe).cpu()
+    atomic_torch_save(output, directory/"reload-output.pt")
+    write_json(directory/"reload-runtime.json", dict(runtime=_checkpoint_runtime(),
+        checkpoint_sha256=file_digest(directory/"selected.pt"),
+        state_sha256=_state_hash(loaded.state_dict())))
 
 
 def checkpoint_reload_probe(path, sample, *, device="cpu"):
@@ -814,16 +849,27 @@ def checkpoint_reload_probe(path, sample, *, device="cpu"):
     probe_path = root/"reload-input.pt"
     atomic_torch_save(stripped, probe_path)
     output_path = root/"reload-output.pt"
-    command = [sys.executable, "-m", "tdn.analysis.response.training", "reload", str(root.resolve()), str(device)]
+    runtime = _checkpoint_runtime()
+    command = [sys.executable, "-m", "tdn.analysis.response.training", "reload", str(root.resolve()), str(device),
+               str(runtime["threads"]), str(runtime["interop_threads"])]
     started = time.perf_counter()
     child = subprocess.run(command, capture_output=True, text=True, check=False, timeout=120)
     if child.returncode:
         raise RuntimeError("Fresh-process checkpoint reload failed: "+child.stderr[-4000:])
     actual = torch.load(output_path, weights_only=True, map_location="cpu")
+    receipt = json.loads((root/"reload-runtime.json").read_text())
     difference = float((actual.double()-expected.double()).abs().max())
-    result = dict(status="PASS" if torch.equal(actual, expected) else "FAIL", maximum_difference=difference,
-                  exact_equal=torch.equal(actual, expected), elapsed_seconds=time.perf_counter()-started,
-                  checkpoint_sha256=file_digest(root/"selected.pt"), input_sha256=file_digest(probe_path),
+    exact_equal = torch.equal(actual, expected)
+    runtime_equal = runtime == receipt["runtime"]
+    checkpoint_sha256 = file_digest(root/"selected.pt")
+    state_equal = _state_hash(model.state_dict()) == receipt["state_sha256"]
+    checkpoint_equal = checkpoint_sha256 == receipt["checkpoint_sha256"]
+    result = dict(status="PASS" if exact_equal and runtime_equal and state_equal and checkpoint_equal else "FAIL",
+                  maximum_difference=difference, exact_equal=exact_equal,
+                  runtime_equal=runtime_equal, state_equal=state_equal, checkpoint_equal=checkpoint_equal,
+                  parent_runtime=runtime, child_runtime=receipt["runtime"],
+                  elapsed_seconds=time.perf_counter()-started,
+                  checkpoint_sha256=checkpoint_sha256, input_sha256=file_digest(probe_path),
                   independent_process=True, device=str(device))
     write_json(root/"checkpoint_reload.json", result)
     return result
@@ -1005,8 +1051,12 @@ def run_training(ctx):
     if row["status"] == "COMPLETED_UPDATES":
         reload = checkpoint_reload_probe(ctx.path, train[0], device=ctx.device)
         row["checkpoint_reload"] = reload
-        if not reload["exact_equal"]:
-            raise ValueError("Selected checkpoint fails fresh-process output parity")
+        if reload["status"] != "PASS":
+            raise ValueError("Selected checkpoint fails fresh-process output parity: "
+                f"maximum_difference={reload['maximum_difference']:.9g}, "
+                f"runtime_equal={reload['runtime_equal']}, state_equal={reload['state_equal']}, "
+                f"checkpoint_equal={reload['checkpoint_equal']}; inspect "
+                f"{Path(ctx.path)/'checkpoint_reload.json'}")
     row["accepted_training_queries"] = len(train)
     row["requested_training_queries"] = sum(_record(s)["split"] == "train" for s in samples)
     row["accepted_validation_queries"] = len(validation)
@@ -1232,12 +1282,6 @@ def run(ctx):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4 or sys.argv[1] != "reload":
-        raise SystemExit("Internal checkpoint probe: reload PATH DEVICE")
-    directory = Path(sys.argv[2]); destination = sys.argv[3]
-    loaded, _ = load_model(directory, destination)
-    probe = torch.load(directory/"reload-input.pt", weights_only=True, map_location="cpu")
-    probe["u0"] = probe["u0"].to(destination)
-    with torch.no_grad():
-        output = predict(loaded, probe).cpu()
-    atomic_torch_save(output, directory/"reload-output.pt")
+    if len(sys.argv) != 6 or sys.argv[1] != "reload":
+        raise SystemExit("Internal checkpoint probe: reload PATH DEVICE THREADS INTEROP_THREADS")
+    _checkpoint_reload_child(sys.argv[2], sys.argv[3], threads=int(sys.argv[4]), interop_threads=int(sys.argv[5]))

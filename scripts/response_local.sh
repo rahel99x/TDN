@@ -42,7 +42,9 @@ from pathlib import Path
 from tdn.analysis.response.protocol import build_protocol,plan_units
 from tdn.runtime.metadata import write_json
 root=Path(sys.argv[3]);run=Path(sys.argv[2]);protocol=build_protocol(sys.argv[1],local_smoke=True);run.mkdir(parents=True,exist_ok=False)
-write_json(run/'local-protocol.json',protocol)
+# Match the native controller's canonical JSON serialization. Consumers must
+# use the explicit stage order, never the insertion order of this object.
+(run/'local-protocol.json').write_text(json.dumps(protocol,sort_keys=True,indent=2)+'\n')
 failed=False;states={}
 for unit in plan_units(protocol):
     stage=unit['id']; prior=set()

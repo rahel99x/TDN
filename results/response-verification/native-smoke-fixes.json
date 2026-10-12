@@ -1,0 +1,252 @@
+{
+  "schema": "tdn.response-native-smoke-fix-verification/v1",
+  "scope": "CPU implementation validation; corrected CUDA path awaits native execution",
+  "source_tree_sha256": "178e6e2382cfdd34345987f60ddc072914a1fde64aaa61a925b4ccea68e6305a",
+  "base_git_commit": "45b9247ebf7cefa37715b598060a56df5e1272c1",
+  "python": "3.12.14",
+  "torch": "2.10.0+cpu",
+  "reported_native_failures": {
+    "checkpoint_reload_jobs": [
+      899,
+      903,
+      907
+    ],
+    "dependency_order_jobs": [
+      930,
+      931,
+      932,
+      933,
+      934,
+      935
+    ]
+  },
+  "pytest": {
+    "passed": 502,
+    "cuda_deselected": 54,
+    "elapsed_seconds": 65.5,
+    "log": "pytest-native-smoke-fixes.txt"
+  },
+  "local_integration": {
+    "command": "bash scripts/response_local.sh --smoke --run-dir runs/response-local-native-fixes",
+    "run_dir": "/workspace/TDN/runs/response-local-native-fixes",
+    "sorted_protocol_object_keys": true,
+    "stage_count": 42,
+    "stages": {
+      "audit": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "3fed16d0524342462e60923e68a749e8df1c48dba9d4a55210e39eaa3b308669"
+      },
+      "fields": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "4c9d2e1041063678bbe4a052349fe50a3742d7d0d90da391ae6ebefb739b54d1"
+      },
+      "references-fd-train-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "d68d1ed56a50f97bc0abb15d73a2f02c0de2bb1367c79bbdab8aaaea8fe8c569"
+      },
+      "references-fd-train-001": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "1b6d64f28e1a03a679c97c5782c7e88cb92de1f1d0feaeadd335166411b2d0cf"
+      },
+      "references-fd-validation-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "4854b0e6e07d12a85713b13afb59f1e5e2bcc960243a1c3c3b9d49c057c9c071"
+      },
+      "references-fd-development_test-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "66889427dfa790ab6a35ab21b7e030f139e14c8d4736179296d7890dbdcae256"
+      },
+      "references-gal-train-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "51d0ee8ce9aa2b21e2597d18cd648dc6a20687afe68a212c02db612ef47dd59e"
+      },
+      "references-gal-train-001": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "f59e2acd2b59094bf1f269b9bc1406c5d38d25b70540eacc26773e2261fcf94b"
+      },
+      "references-gal-validation-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "70d41d348e8e54523b97486480ba85ddf9538413640a3703c6e815fe5c7ed6ed"
+      },
+      "references-gal-development_test-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "5590401a69a3231be29886c7778902e2023058320661132d9dafa76fb04ff505"
+      },
+      "numerical-reference-fd_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "c19a75710f37b0583d34479c47857f34528291fbbba5e3c43cc6de21d000d583"
+      },
+      "numerical-controls-fd_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "f17bd57ba92a2b12d98ca66d00d31b600351e9eeb2385d292c98e3c31c5890ad"
+      },
+      "numerical-reference-galerkin_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "6bf8f2954b14556de8d6db37d5b69935f03b75a1600ad945d5a8ab3e425c44dc"
+      },
+      "numerical-controls-galerkin_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "9aae195bee15af0ca7ea4b02891ff46123e7ad996384a3858439368446dffa39"
+      },
+      "trial-bb20e436325f2768-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "543691e0482e38bdff87f6d27b03e54a3bb71019131eae28a353e1cb929e1992"
+      },
+      "trial-c7ba182dbfbb9220-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "f718e507c8ecb346ec04b5d25b500cabd681e51fc355b5c8dd0ee2c4927ac889"
+      },
+      "trial-1ee003607b9d537b-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "948bfd6ddaeb763bd2d60fe0b622df751c2e57fb4646b16f7c865d10da49ee9f"
+      },
+      "trial-796de78a78737ae2-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "41c43f349305073b273f740fa6ce608a90946bf9219a227da69727bed1c1cbca"
+      },
+      "trial-a13c9462a78bebb0-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "a38f6b151c02c80018c2a70917a67babea0dacb18d78c2fecf026b6d77e66475"
+      },
+      "trial-f5c77f52190bb564-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "754585c9e1430f7cf47de51745f871ed93adf3e6692e106ec7ad1013c813ed44"
+      },
+      "trial-92d4b0c703648a0a-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "6ee956d15eab02194baefabea5e17494e7ec15d26350b505cf4b7b2a11c9b7b1"
+      },
+      "trial-038a5cef488bac4d-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "1f30eb76285a26063d5450e8cc70473456ffaf1b28dcb857c3fb4b0315d48e50"
+      },
+      "optimizer-selection": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "24327505195f2f71d749082d6d8996d7dcf02cb661935c80acb7651fd0e7986a"
+      },
+      "gate": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "5dfc1051fb25f413bb21740ba784b8dd85c3de6b4dd3429569e254008fb218db"
+      },
+      "compression-fd_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "0267af2ac871e23948bf05639b67dfe83c413df04f7f1d25f362a7173bb2ea5d"
+      },
+      "compression-galerkin_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "766f4f3a9cae000af186514588584176f4008410d4f0676d58b7528d83969ee5"
+      },
+      "closure": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "6c4f273ca4b390f5cbd4329f7085e60ca09584348402365bc76946a42cf67037"
+      },
+      "trial-70f99c7a9b94409d-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "3c1da61a072995e46c3c26733d35023702297a62557276a7c89fea175849ca33"
+      },
+      "trial-c781a48d50fda89a-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "70cf86e8e82d84ebae4af166a66c3e48518a0ff3d0709bf9bb49c02c05f1fb8b"
+      },
+      "trial-8b190fcc331eaaef-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "b339424ddcd38c8ebf807e8beda8ba7c47846179bce64daee598907edad3784a"
+      },
+      "trial-1b2bad4799bdae37-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "2118ab591f408686a3fd9d0013380146ac1e2262d8fcd51c3b73b993f4fb058e"
+      },
+      "trial-4b49e23adb654f84-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "43650254da71116ff0c2da6200a19096a8941e3e106d61fdd28f1446c8b3caef"
+      },
+      "trial-30f6f2e045d32126-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "a1d2315a890347b894880225bc2baf34b0e6dd3e8174dce926f9cfe2121338a9"
+      },
+      "trial-1bcb286bd0fa5cdc-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "6ae4532859a06416c9e4f99e86f2c7420e7dce335ae14248d75a36f92e3668b3"
+      },
+      "trial-d7851b9a2f15709b-000": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "67488c3a1b524903b6a153dba00fd0fbaa9b867bea8aba92c2075aba6a1260aa"
+      },
+      "selection": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "a1e1c80a5c2333ff4928f53b2fee78e47834e9d04f3aa01392dd30ced4b8b92e"
+      },
+      "evaluate-fd_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "da93e29a79181dfeb5da2cad16945a6578d3d04a8fbf78d7b8d2fb0a568a5fa5"
+      },
+      "cost-fd_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "fd5548a07bcd6c6ba92ecd06599a4e12461816d02df29d39f2b06cbc995daf30"
+      },
+      "evaluate-galerkin_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "a8a9b2ade7b82e54ed6576704e04f0131c739ebc27181f160600d9bdbcc351e9"
+      },
+      "cost-galerkin_same_grid": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "c718a65c290d6034d6b74eb9b34d73c4f5dd20dfe1cc0cde302881bd4b0dbf35"
+      },
+      "aggregate": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "cbec524bd0338fef245469c21a70b76d7a4bb9c0b1ae8979ba9ad94064e14ad9"
+      },
+      "report": {
+        "status": "COMPLETED",
+        "verification": "VERIFIED",
+        "workflow_seal_sha256": "325b6b49ed48171cd63a42222737668c0bd7180deb6f302c18a04e7471464bc9"
+      }
+    },
+    "exact_fresh_process_reload_count": 16,
+    "figure_png_count": 119,
+    "figure_pdf_count": 119
+  },
+  "native_cuda_validation": "NOT_RUN_IN_CPU_CLOUD; 54 mandatory cases prepared",
+  "scientific_conclusion": "No scientific superiority claim; tiny development integration only"
+}
