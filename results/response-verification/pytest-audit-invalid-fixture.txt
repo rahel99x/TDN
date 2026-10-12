@@ -1,0 +1,110 @@
+........................................................................ [ 15%]
+........................................................................ [ 31%]
+........................................................................ [ 46%]
+........................................................................ [ 62%]
+........FFF............................................................. [ 78%]
+........................................................................ [ 93%]
+............................                                             [100%]
+=================================== FAILURES ===================================
+_______ test_tower_recognizes_response_units_and_nested_verified_figures _______
+
+tmp_path = PosixPath('/workspace/TDN/.runtime/response-audit-isolation-check/audit-pytest-work/test_tower_recognizes_response0')
+
+    def test_tower_recognizes_response_units_and_nested_verified_figures(tmp_path):
+>       source,tower,p=tower_fixture(tmp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_response_reporting.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_response_reporting.py:45: in tower_fixture
+    tower=Path(begin_report(source,name="TDN/response/synthetic",script="scripts/response.py",report_parent=tmp_path/"tower"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tdn/reporting.py:486: in begin_report
+    actual_job = scheduler_job_id()
+                 ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def scheduler_job_id():
+        """Return only an actual declared Slurm scheduling identity, never a step."""
+        parent, task = os.environ.get("SLURM_ARRAY_JOB_ID"), os.environ.get("SLURM_ARRAY_TASK_ID")
+        if parent and task:
+            value = f"{parent}_{task}"
+        else:
+            value = os.environ.get("SLURM_JOB_ID")
+        if value is not None and not re.fullmatch(r"[1-9][0-9]*(?:_[0-9]+)?", value):
+>           raise ValueError("invalid actual Slurm job identity")
+E           ValueError: invalid actual Slurm job identity
+
+tdn/reporting.py:439: ValueError
+----------------------------- Captured stdout call -----------------------------
+TDN response report: 1 experiments; latest synthetic: NA 41/100; evidence 40%
+____________________ test_tower_changed_figure_not_credited ____________________
+
+tmp_path = PosixPath('/workspace/TDN/.runtime/response-audit-isolation-check/audit-pytest-work/test_tower_changed_figure_not_0')
+
+    def test_tower_changed_figure_not_credited(tmp_path):
+>       source,tower,_=tower_fixture(tmp_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_response_reporting.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_response_reporting.py:45: in tower_fixture
+    tower=Path(begin_report(source,name="TDN/response/synthetic",script="scripts/response.py",report_parent=tmp_path/"tower"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tdn/reporting.py:486: in begin_report
+    actual_job = scheduler_job_id()
+                 ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def scheduler_job_id():
+        """Return only an actual declared Slurm scheduling identity, never a step."""
+        parent, task = os.environ.get("SLURM_ARRAY_JOB_ID"), os.environ.get("SLURM_ARRAY_TASK_ID")
+        if parent and task:
+            value = f"{parent}_{task}"
+        else:
+            value = os.environ.get("SLURM_JOB_ID")
+        if value is not None and not re.fullmatch(r"[1-9][0-9]*(?:_[0-9]+)?", value):
+>           raise ValueError("invalid actual Slurm job identity")
+E           ValueError: invalid actual Slurm job identity
+
+tdn/reporting.py:439: ValueError
+----------------------------- Captured stdout call -----------------------------
+TDN response report: 1 experiments; latest synthetic: NA 41/100; evidence 40%
+_______________ test_atlas_source_hash_change_and_exact_pointers _______________
+
+tmp_path = PosixPath('/workspace/TDN/.runtime/response-audit-isolation-check/audit-pytest-work/test_atlas_source_hash_change_0')
+
+    def test_atlas_source_hash_change_and_exact_pointers(tmp_path):
+>       source,_,p=tower_fixture(tmp_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_response_reporting.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_response_reporting.py:45: in tower_fixture
+    tower=Path(begin_report(source,name="TDN/response/synthetic",script="scripts/response.py",report_parent=tmp_path/"tower"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tdn/reporting.py:486: in begin_report
+    actual_job = scheduler_job_id()
+                 ^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def scheduler_job_id():
+        """Return only an actual declared Slurm scheduling identity, never a step."""
+        parent, task = os.environ.get("SLURM_ARRAY_JOB_ID"), os.environ.get("SLURM_ARRAY_TASK_ID")
+        if parent and task:
+            value = f"{parent}_{task}"
+        else:
+            value = os.environ.get("SLURM_JOB_ID")
+        if value is not None and not re.fullmatch(r"[1-9][0-9]*(?:_[0-9]+)?", value):
+>           raise ValueError("invalid actual Slurm job identity")
+E           ValueError: invalid actual Slurm job identity
+
+tdn/reporting.py:439: ValueError
+----------------------------- Captured stdout call -----------------------------
+TDN response report: 1 experiments; latest synthetic: NA 41/100; evidence 40%
+- generated xml file: /workspace/TDN/.runtime/response-audit-isolation-check/reporter-tests/audit/tests.xml -
+=========================== short test summary info ============================
+FAILED tests/test_response_reporting.py::test_tower_recognizes_response_units_and_nested_verified_figures
+FAILED tests/test_response_reporting.py::test_tower_changed_figure_not_credited
+FAILED tests/test_response_reporting.py::test_atlas_source_hash_change_and_exact_pointers
+3 failed, 457 passed, 54 deselected in 42.58s

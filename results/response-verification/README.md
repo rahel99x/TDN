@@ -6,6 +6,20 @@ Fedora / Python 3.13.13 / RTX 4090; this environment uses Python 3.12.14 and
 PyTorch 2.10.0+cpu. Each receipt records its source identity. Intermediate
 receipts are retained when the implementation changes.
 
+Audit test-isolation correction after native job 938: **460 passed, 54 CUDA
+cases excluded**, in 42.39 seconds. See `pytest-audit-isolation.txt` and
+`audit-isolation.json`. This uses the native worker's exact CPU audit selection
+and environment-preparation helper with synthetic Slurm job/step/account
+metadata confined to the test subprocess. The 12 dependency-order cases now
+isolate all inherited Slurm/TDN variables, including the account variable that
+caused the native failure. Production runtime guards are unchanged. This is
+CPU infrastructure verification; the corrected native CUDA run remains pending.
+
+`pytest-audit-invalid-fixture.txt` retains an initial verification invocation
+with a nonnumeric synthetic job ID: 457 passed and three reporting tests
+correctly rejected that invalid identity. Using numeric synthetic IDs corrected
+the invocation; no production reporting checks were changed.
+
 Native-smoke failure correction: **502 passed, 54 CUDA cases excluded**, in
 65.50 seconds. See `pytest-native-smoke-fixes.txt` and `native-smoke-fixes.json`.
 The corrected local smoke uses the native controller's sorted JSON format and
@@ -73,6 +87,6 @@ OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
 ```
 
 Native CUDA cases are deliberately excluded from this CPU command. The Fedora
-worker requires all 51 declared CUDA cases, without skipped or duplicate cases,
+worker requires all 54 declared CUDA cases, without skipped or duplicate cases,
 before native calibration. Use the [runbook](../../docs/RESPONSE_RUNBOOK.md).
 Fresh confirmation remains a separate frozen protocol after development.

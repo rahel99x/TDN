@@ -4,6 +4,7 @@ These are CPU infrastructure tests, not native CUDA or scientific validation.
 """
 import importlib.util
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -68,8 +69,13 @@ def test_serialized_smoke_verifies_selected_trials_before_consumers(tmp_path, mo
         dispatched.append(name)
         raise RuntimeError("TEST_STOP_AFTER_PREREQUISITE_VERIFICATION")
 
-    for name in ("SLURM_JOB_ID", "SLURM_STEP_ID", "TDN_EXECUTION_MODE"):
-        monkeypatch.delenv(name, raising=False)
+    # CPU audits inherit scheduler account metadata even when their execution
+    # mode is cleared. This mocked local CLI must isolate the entire ambient
+    # runtime identity, including JOB_ACCOUNT, rather than weaken storage guards.
+    monkeypatch.setenv("SLURM_JOB_ACCOUNT", "response-test-account")
+    for name in tuple(os.environ):
+        if name.startswith(("SLURM_", "TDN_")):
+            monkeypatch.delenv(name, raising=False)
     monkeypatch.setattr(preflight, "execution_mode", lambda: "local-cpu")
     monkeypatch.setattr(preflight, "verify_runtime", lambda *args: None)
     monkeypatch.setattr(storage, "configure_storage", lambda: None)

@@ -160,7 +160,7 @@ arrays/checkpoints and rendered figures. That compact package is not a full
 binary replay package. Upload the printed `index.json` and every numbered part; do not
 use XZ-9 for a routine multi-gigabyte review.
 
-### Rerun after the initial native smoke fixes
+### Rerun after the native smoke fixes
 
 The initial `response-smoke-a` exposed two implementation defects: dependency
 verification used JSON object order instead of the declared stage order, and
@@ -171,21 +171,31 @@ The mandatory CUDA suite now has 54 cases, including a fresh-process direct-FNO
 checkpoint check for each target. `checkpoint_reload.json` records both
 processes' arithmetic settings and checkpoint/model hashes.
 
+The next attempt, `response-smoke-b`, stopped at audit job 938: all 12 new
+dependency-order test cases inherited `SLURM_JOB_ACCOUNT` after clearing the
+job/step IDs and execution mode. The real storage guard then rejected their
+mocked local CLI as a CARC invocation. The test now isolates inherited Slurm
+and TDN variables and explicitly seeds an account to cover this regression.
+Production runtime checks are unchanged. The failed audit blocked the scientific
+successor jobs before they could exercise the corrected CUDA path; the final
+report still ran.
+
 After all old jobs are terminal, pull the fix and use a fresh smoke ID:
 
 ```bash
 cd /home/rahel/TDN
 git pull --ff-only
-bash scripts/fedora_response.sh plan --smoke --run-id response-smoke-b \
+bash scripts/fedora_response.sh plan --smoke --run-id response-smoke-c \
   --targets fd_same_grid galerkin_same_grid galerkin_projected_fine
-bash scripts/fedora_response.sh run --smoke --run-id response-smoke-b \
+bash scripts/fedora_response.sh run --smoke --run-id response-smoke-c \
   --targets fd_same_grid galerkin_same_grid galerkin_projected_fine
 ```
 
-Keep `response-smoke-a` unchanged. Exact-source `recover` cannot reuse its
-artifacts with revised code. Once the new smoke finishes, run `validate
-response-smoke-b` and use `--calibration response-smoke-b` for the pilot. Do not
-use the failed smoke as calibration for the revised source.
+Keep `response-smoke-a` and `response-smoke-b` unchanged. Exact-source `recover`
+cannot reuse their artifacts with revised code. Once the new smoke finishes,
+run `bash scripts/fedora_response.sh validate response-smoke-c` and use
+`--calibration response-smoke-c` for the pilot. Do not use a failed smoke as
+calibration for the revised source.
 
 ## Local implementation verification
 
