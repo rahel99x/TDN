@@ -1,0 +1,20 @@
+{
+  "scope": "Hashes of exact uploaded decisions/transport records and explicitly derived review, plot and cloud reporting-verification artifacts; no original numerical/native outcomes modified",
+  "sha256": {
+    "A-decision.json": "3d3a518e332019ee23e2de52cee707be9ef57877b715583f05c001b9c7ad5d7c",
+    "B-decision.json": "e5ae0dc594c45c67e3ce953bcd1dab8927c7e508e51a25dd21607a19e19e3f38",
+    "README.md": "d884d1e85d1f939b297bc70a929d44287cad28a96c07318e2529420334b4327d",
+    "compression-review.png": "2d67bb786f29efe8a7ed0fc5a9f3d322b6ac4288e4c9a4400c761fd8dc46b093",
+    "formula-audit.json": "11419c8e9b053e330fc33607a176dc39f82d75d35463f5f2bbcb5dffc7ce6ebe",
+    "native-evidence-audit.json": "727e784b814b39a60e1e59b74fb3b140c24056ab7484ffd921be631d37c9bdb1",
+    "reporting-scale-verification.json": "d04f3a18db161c93dfd1b439410d8bd7138eda212dd7262648bca9ac4f3a39b6",
+    "reporting-tests.xml": "08759b7d95aab6ffb5f464611a7663148245648a47f1a3e17f83c594e6be8ace",
+    "scientific-audit.json": "a9f70a6be8231e28090ef936245eda7b275a43bf45b6de7028d47368d9e40774",
+    "transport-check.json": "680180aabee969fdc837053e818ee7ef6a25fb8038f92645eac3a53c15496e16",
+    "upload-index.json": "60e3cb790b133bb62a662e6dd76fe37bb512b60b6e0c17bfe2cf947aeeeb3377",
+    "verification-programs/tangent-native-large-science-default-output-checks.py": "f344d0f5d037ff81dd4aa292cf57c50132a1047aac3156c6821c82baf28ee733",
+    "verification-programs/tangent-native-large-science-name-projection.py": "b4bb06d67fe7616c19d5bff8777e8cbe42b49d9326d72da7d5849990235f4116",
+    "verification-programs/tangent-native-large-science-observer.py": "c92e653684d442af7eb19298c59d43712bf81528544e808d9c19b0000925acef",
+    "verification.json": "9e971272577c4379b55e7f27375bb6c0759875267044ef9e68b774af23ba599a"
+  }
+}

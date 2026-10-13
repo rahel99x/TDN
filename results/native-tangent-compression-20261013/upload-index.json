@@ -1,0 +1,67 @@
+{
+  "archive": "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1-review.tar.gz",
+  "bytes": 160485809,
+  "compression": "gzip",
+  "export_and_verification_seconds": 12.054346765042283,
+  "gzip_level": 1,
+  "included_workflow_directories": [
+    "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1",
+    "tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c"
+  ],
+  "manifest_sha256": "bfa142ec0d9d0407864eafea9970e8e917615f9a5bba6fd479f4a460d7ce4d03",
+  "mode": "review",
+  "parts": [
+    {
+      "bytes": 25165824,
+      "path": "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1-review.tar.gz.part001",
+      "sha256": "25a05bf38bea80eb4480627e609d048660997f57588a3915ea5ed4b61f21838f"
+    },
+    {
+      "bytes": 25165824,
+      "path": "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1-review.tar.gz.part002",
+      "sha256": "4bd34afc2b897ea4a7e1e70994d22cef74106a1d907ba626bd1ace1b87d645c8"
+    },
+    {
+      "bytes": 25165824,
+      "path": "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1-review.tar.gz.part003",
+      "sha256": "f4dfd1e0c0c3a0025d7ac23ebe6c47cee78666b622aeac79d704518f90bcade3"
+    },
+    {
+      "bytes": 25165824,
+      "path": "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1-review.tar.gz.part004",
+      "sha256": "ab95008f68f91afacb36156c124962ef49b9fde122313484dd30c335a50c3947"
+    },
+    {
+      "bytes": 25165824,
+      "path": "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1-review.tar.gz.part005",
+      "sha256": "11996f24306a79a35742bc3e292f40f497971aab004627e2a705aa12c44f0673"
+    },
+    {
+      "bytes": 25165824,
+      "path": "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1-review.tar.gz.part006",
+      "sha256": "c5078904c5241a9464718cac93f0e9676af16a8dba0ae1629c48731957f3b14d"
+    },
+    {
+      "bytes": 9490865,
+      "path": "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1-review.tar.gz.part007",
+      "sha256": "c202ebd4fc4a88c38a5d2f73f6fbd1aeb6a8a2acb01455ea5dc8aeeac56eaf4e"
+    }
+  ],
+  "reassemble": "Concatenate parts in the listed order; verify SHA-256. Or use compact_review.sh unpack.",
+  "schema": "tdn.compact-review/v1",
+  "scope": "Transport integrity only; original science/software/source seals remain unchanged. Review omits listed replay arrays/checkpoints and rendered figures; it is not a complete replay bundle. Full retains all regular files outside declared disposable cache directories. No values, precision, line endings, failures or learning-curve samples are altered. Scheduler accounting is the saved snapshot, not a new sacct query.",
+  "sha256": "89f8f26bb9d12d0423960f4c6a92a10c5a0eae56d801f20884c7b06eef70ee93",
+  "statistics": {
+    "bytes_evidence_or_other": 1320078101,
+    "bytes_rendered_figure": 3204602,
+    "bytes_replay_array_or_checkpoint": 88251172,
+    "deduplicated_bytes": 529708182,
+    "included_bytes": 1320078101,
+    "included_files": 24944,
+    "omitted_bytes": 91455774,
+    "omitted_files": 622,
+    "source_bytes": 1411533875,
+    "unique_payload_bytes": 790369919
+  },
+  "xz_preset": null
+}

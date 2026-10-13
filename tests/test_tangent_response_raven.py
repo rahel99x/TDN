@@ -296,10 +296,14 @@ def test_bounded_artifact_pages_preserve_every_row_and_large_utf8_source(tmp_pat
     assert len(complete)==len(rows)
     assert [(r["query_id"],r["rms"],r["note"]) for r in complete]==[(r["query_id"],r["rms"],r["note"]) for r in rows]
     source=report_artifacts.read_section(output,index,"sources")[0]
-    assert (output/source["path"]).read_bytes()==raw
-    segments=index["raw_source_segments"][source["path"]]
+    assert source["representation"]=="exact-segments"
+    assert b"".join(report_artifacts.source_bytes(output,source))==raw
+    descriptor=json.loads((output/source["path"]).read_text())
+    segments=descriptor["segments"]
+    assert index["raw_source_segments"][source["path"]]["segments"]==len(segments)
     assert b"".join((output/part["path"]).read_bytes() for part in segments)==raw
     assert all((output/part["path"]).read_bytes().decode("utf-8") for part in segments)
+    assert max(file.stat().st_size for file in output.rglob("*") if file.is_file())<=report_artifacts.PAGE_BYTES
     for page in index["artifact_projects"]:
         root=output/page["path"];discovered=projects.discover_project(str(root));assert not discovered["warnings"]
         for record in discovered["runs"]:

@@ -1,0 +1,98 @@
+{
+  "schema": "tdn.tangent-response-decision/v1",
+  "gate": "A",
+  "decision": "PASS",
+  "eligible": true,
+  "stage": "mechanism",
+  "status": "PASS",
+  "eligible_next": true,
+  "thresholds": {
+    "maximum_regression": 2.0,
+    "minimum_signal_uncertainty_ratio": 10.0,
+    "parent_improvement_fraction": 0.75,
+    "rms_ratio": 1.5,
+    "uncertainty_fraction_of_improvement": 0.1
+  },
+  "evidence": {
+    "E_G": 5.56351893671356e-07,
+    "E_U": 3.877041156162573e-10,
+    "rms_ratio": 1434.9909409319332,
+    "zero_oracle_error": false,
+    "ratio_definition": "ratio of parent-weighted arithmetic mean RMS, not mean per-query ratios",
+    "separated_parent_fraction": 1.0,
+    "parent_rows": [
+      {
+        "parent_id": "tr-parent-b815ea7bbc04ac591a1e",
+        "gain": 5.163250009130996e-07,
+        "uncertainty": 6.170853761257473e-12,
+        "separated": true
+      },
+      {
+        "parent_id": "tr-parent-f51c36ddbd2a37f86cbe",
+        "gain": 4.154739125599172e-08,
+        "uncertainty": 9.05431610362528e-12,
+        "separated": true
+      },
+      {
+        "parent_id": "tr-parent-40dfcfaf8ae8a25661f8",
+        "gain": 2.630348514530216e-08,
+        "uncertainty": 2.702281332229633e-12,
+        "separated": true
+      },
+      {
+        "parent_id": "tr-parent-e72c0c8eda002e413ae3",
+        "gain": 1.951918299363765e-06,
+        "uncertainty": 2.849266547430909e-12,
+        "separated": true
+      },
+      {
+        "parent_id": "tr-parent-3262d826d376b5e170d3",
+        "gain": 5.661600441111474e-07,
+        "uncertainty": 9.103920526370033e-12,
+        "separated": true
+      },
+      {
+        "parent_id": "tr-parent-eab677ca14457a7854a6",
+        "gain": 6.489819612706576e-07,
+        "uncertainty": 9.801200356842707e-12,
+        "separated": true
+      },
+      {
+        "parent_id": "tr-parent-767632356f882d8af468",
+        "gain": 4.0864801832346235e-07,
+        "uncertainty": 9.726139860500553e-12,
+        "separated": true
+      },
+      {
+        "parent_id": "tr-parent-1b4f331c6d50f06ec1b2",
+        "gain": 2.878293160624925e-07,
+        "uncertainty": 1.0505283186059652e-11,
+        "separated": true
+      }
+    ],
+    "maximum_regressions": [],
+    "missing_queries": [],
+    "unresolved_queries": [],
+    "duplicate_queries": [],
+    "precision_limited": [],
+    "nonprimary_rows_reported": 120
+  },
+  "denominators": {
+    "requested_queries": 24,
+    "eligible_queries": 24,
+    "requested_parents": 8,
+    "eligible_parents": 8,
+    "precision_limited_queries": 0
+  },
+  "uncertainties": {
+    "parent_mean_combined_rms": 7.48915770928953e-12,
+    "aggregate_improvement_separated": true
+  },
+  "reason": "Full requested primary bank retained; paired refinements and interventions never rescue primary promotion",
+  "profile": "pilot",
+  "execution_scope": "NATIVE_RESEARCH",
+  "underlying_scientific_decision": null,
+  "evidence_scope": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS",
+  "uncertainty_is_certificate": false,
+  "protocol_sha256": "aa5aced2486c57b92da1062bd73dc046cb2481eafff9b0f5b2ecd47552887a16"
+}

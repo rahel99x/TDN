@@ -87,7 +87,16 @@ identities and conditional bounds; the [literature audit](TANGENT_RESPONSE_LITER
 states the established comparisons and limits any novelty claim. The handout's
 [legend](TANGENT_RESPONSE_RESEARCH_HANDOUT.md#18-legend) defines the terms.
 
-The next numerical action is the primary **native same-grid FD mechanism
-pilot**, after doctor and the actual allocated CUDA checks pass. Its measured
-A gate determines whether compression is justified. CPU completion does not
-authorize a broader experiment or establish a learned speedup.
+The uploaded [native FD pilot review](../results/native-tangent-compression-20261013/README.md)
+records **A PASS and B STOP** under source `582c06e4`. Both exact 29-case CUDA
+audits passed, all 292 mechanism units have native seals, and compression
+recorded its negative scientific decision. Two compression-phase reporting
+failures leave only 146/148 native seals, so the entire phase is not a verified
+completed campaign. This evidence does not validate later source revisions.
+
+The next scientific work is a bounded diagnosis of the recorded compression
+representation, coefficient conditioning and exact state/physics grouping,
+using the retained training labels. Preserve B STOP and its thresholds; no
+automatic learned calibration, training or utility expansion follows. A's
+oracle improvement does not establish a learned model or practical solver
+speedup. CPU implementation completion never substitutes for native promotion.

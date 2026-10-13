@@ -1,0 +1,349 @@
+{
+  "schema": "tdn.native-tangent-evidence-audit/v1",
+  "created_at": "2026-10-13T11:31:59.117486+00:00",
+  "audit_scope": "Read-only independent JSON/XML/text and SHA-256 review of restored compact evidence; no uploaded code imports, checkpoints/arrays loaded, numerical reruns, live Slurm queries, native allocations or native reruns.",
+  "restored_root": "/workspace/TDN/.runtime/native-compression-review-20261013-3e51c6f1/restored",
+  "original_native_project_root": "/home/rahel/TDN",
+  "evidence_path_base": "All evidence_paths are relative to restored_root.",
+  "summary": {
+    "total_registered_units": 440,
+    "mechanism_units": 292,
+    "compression_units": 148,
+    "worker_completed": 438,
+    "worker_failed": 2,
+    "science_seals_and_completed_markers_verified": 439,
+    "final_native_workflow_seals_verified": 438,
+    "retained_sha256_comparisons": 11689,
+    "omitted_replay_array_or_checkpoint_recorded_hash_comparisons": 577,
+    "retained_artifact_hash_mismatches": 0,
+    "frozen_identity_or_prerequisite_binding_mismatches": 0,
+    "mechanism_gate": "PASS",
+    "compression_gate": "STOP",
+    "full_compression_phase_verified": false,
+    "learning_promotion_authorized": false
+  },
+  "phases": {
+    "compression": {
+      "run_id": "tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1",
+      "campaign_run_id": "tangent-response-pilot-20261013T085856-8a44d33a",
+      "profile": "pilot",
+      "target": "fd_same_grid",
+      "registered_units": 148,
+      "recorded_jobs": 148,
+      "first_recorded_job_id": "2746",
+      "last_recorded_job_id": "2893",
+      "frozen_identities": {
+        "source_sha256": "7a9266be2d6907c9423d9213acc3c7bdd81321678fcb40d6b3a0b28cc575487d",
+        "source_tree_sha256": "add29d2765520b56db76c1e400e9c437272dd29ef00a8ce88a38bef194bdabdf",
+        "protocol_sha256": "0393d86758e0d823de4c61514f66698bba4239a572441c3387ce5dd15dd5829b",
+        "slurm_profile_sha256": "0b97641be43e45be1abf4517a76feed439a16eabfe95833214ae91c66fe159bd"
+      },
+      "submission_software_raw_sha256": "4375156288501ee63299714756d0f834842b9be9cac2b19d61e420573685c9ac",
+      "native_cuda_audit": {
+        "job_id": "2746",
+        "step_id": "0",
+        "worker_status": "COMPLETED",
+        "required_cases": 29,
+        "observed_passed_cases": 29,
+        "case_groups": {
+          "numerical": 17,
+          "training": 12
+        },
+        "missing_cases": 0,
+        "duplicate_cases": 0,
+        "skips": 0,
+        "errors": 0,
+        "failures": 0,
+        "readiness_receipt": {
+          "verified": true,
+          "source_tree_sha256": "add29d2765520b56db76c1e400e9c437272dd29ef00a8ce88a38bef194bdabdf",
+          "job_id": "2746",
+          "mandatory_cuda_cases": 29,
+          "junit_sha256": "2e92874cc6b225a48788ecf19ffba4a8ef2eea0f88ca83bfc42638447a13c7c7"
+        },
+        "junit_suite_seconds": 28.023,
+        "native_worker_seconds": 43.621,
+        "hardware": {
+          "name": "NVIDIA GeForce RTX 4090",
+          "compute_capability": "8.9",
+          "driver_version": "580.159.03"
+        },
+        "software": {
+          "python": "3.13.13",
+          "torch": "2.10.0+cu126",
+          "numpy": "2.2.6",
+          "scipy": "1.15.3",
+          "torch_cuda_runtime": "12.6",
+          "git_commit": "582c06e4bace5faa785d2abcf50e5a717dda92a0",
+          "tracked_or_untracked_changes": false
+        },
+        "test_source_sha256": {
+          "tests/test_tangent_response_gpu.py": "d99028517b2c2d633c5929ce2e4e462a340671889e936ad9cdc9720f42b0b127",
+          "tests/test_tangent_response_models.py": "7108871170c8ed7b5bae5aeec0aafbb57a265836cc4a27034944c6c94a163d1d",
+          "tests/test_tangent_response_numerics.py": "8db99d69ef8821f16b26b318de988f3c7eff06601aacf184d80d2945d1eb35f5",
+          "tests/test_tangent_response_training.py": "59aeb64e256f91b164db09d18348fda129542cdb2bf41bab95c551280b23cdcf",
+          "tests/test_tangent_response_training_gpu.py": "1c6719ae4f83fcbe4cc61471dd17f2509721b2f4bf21c5e9e94ae1106f6bbc50"
+        },
+        "evidence_paths": {
+          "execution": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/audit/execution.json",
+          "junit": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/reporter-tests/audit/tests.xml",
+          "preflight": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/audit-gpu-preflight.json",
+          "worker": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/state/audit.json",
+          "native_seal": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/audit/workflow-seal.json"
+        },
+        "body_metadata_limitation": "audit summary/details native_readiness=false is unconditional body metadata; authoritative recorded readiness is execution.native_readiness corroborated by exact JUnit and preflight. CUDA audits do not establish learned-training or utility campaign execution.",
+        "telemetry_limitation": "Audit observer status PARTIAL reflects CPU-memory partial samples; GPU samples complete. Telemetry is not CUDA readiness proof."
+      },
+      "science_and_native_completion": {
+        "worker_completed": 146,
+        "worker_failed": 2,
+        "science_seals_and_completed_markers": 147,
+        "final_native_workflow_seals": 146
+      },
+      "scientific_decision": {
+        "gate": "B",
+        "decision": "STOP",
+        "eligible": false,
+        "denominators": {
+          "requested_probes": 4128,
+          "requested_primary_endpoints": 24
+        },
+        "thresholds": {
+          "action_relative_error": 0.1,
+          "probe_fraction": 0.9,
+          "rank_cap": 8,
+          "retained_oracle_gain": 0.8,
+          "worst_action_relative_error": 0.3
+        },
+        "decision_path": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/decision/decision.json",
+        "science_seal_path": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/decision/science_manifest.json",
+        "native_seal_path": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/decision/workflow-seal.json",
+        "candidate_status_counts": {
+          "STOP": 12,
+          "NOT_APPLICABLE": 3
+        },
+        "selected": null,
+        "missing_or_unresolved_requested_probes_or_endpoints": false
+      },
+      "evidence_paths": {
+        "workflow": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/tangent-response-workflow.json",
+        "protocol": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/protocol.json",
+        "profile": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/slurm-profile.json",
+        "jobs": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/jobs.json",
+        "submission": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/state/submission.json",
+        "submission_software": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/state/submission-software.json"
+      }
+    },
+    "mechanism": {
+      "run_id": "tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c",
+      "campaign_run_id": "tangent-response-pilot-20261013T085856-8a44d33a",
+      "profile": "pilot",
+      "target": "fd_same_grid",
+      "registered_units": 292,
+      "recorded_jobs": 292,
+      "first_recorded_job_id": "2452",
+      "last_recorded_job_id": "2743",
+      "frozen_identities": {
+        "source_sha256": "7a9266be2d6907c9423d9213acc3c7bdd81321678fcb40d6b3a0b28cc575487d",
+        "source_tree_sha256": "add29d2765520b56db76c1e400e9c437272dd29ef00a8ce88a38bef194bdabdf",
+        "protocol_sha256": "aa5aced2486c57b92da1062bd73dc046cb2481eafff9b0f5b2ecd47552887a16",
+        "slurm_profile_sha256": "0b97641be43e45be1abf4517a76feed439a16eabfe95833214ae91c66fe159bd"
+      },
+      "submission_software_raw_sha256": "4375156288501ee63299714756d0f834842b9be9cac2b19d61e420573685c9ac",
+      "native_cuda_audit": {
+        "job_id": "2452",
+        "step_id": "0",
+        "worker_status": "COMPLETED",
+        "required_cases": 29,
+        "observed_passed_cases": 29,
+        "case_groups": {
+          "numerical": 17,
+          "training": 12
+        },
+        "missing_cases": 0,
+        "duplicate_cases": 0,
+        "skips": 0,
+        "errors": 0,
+        "failures": 0,
+        "readiness_receipt": {
+          "verified": true,
+          "source_tree_sha256": "add29d2765520b56db76c1e400e9c437272dd29ef00a8ce88a38bef194bdabdf",
+          "job_id": "2452",
+          "mandatory_cuda_cases": 29,
+          "junit_sha256": "d59eec5736aa30e6b21af9b3773421a011e6c8c37bd3f5fedc3d682f2e2cc356"
+        },
+        "junit_suite_seconds": 27.614,
+        "native_worker_seconds": 36.028,
+        "hardware": {
+          "name": "NVIDIA GeForce RTX 4090",
+          "compute_capability": "8.9",
+          "driver_version": "580.159.03"
+        },
+        "software": {
+          "python": "3.13.13",
+          "torch": "2.10.0+cu126",
+          "numpy": "2.2.6",
+          "scipy": "1.15.3",
+          "torch_cuda_runtime": "12.6",
+          "git_commit": "582c06e4bace5faa785d2abcf50e5a717dda92a0",
+          "tracked_or_untracked_changes": false
+        },
+        "test_source_sha256": {
+          "tests/test_tangent_response_gpu.py": "d99028517b2c2d633c5929ce2e4e462a340671889e936ad9cdc9720f42b0b127",
+          "tests/test_tangent_response_models.py": "7108871170c8ed7b5bae5aeec0aafbb57a265836cc4a27034944c6c94a163d1d",
+          "tests/test_tangent_response_numerics.py": "8db99d69ef8821f16b26b318de988f3c7eff06601aacf184d80d2945d1eb35f5",
+          "tests/test_tangent_response_training.py": "59aeb64e256f91b164db09d18348fda129542cdb2bf41bab95c551280b23cdcf",
+          "tests/test_tangent_response_training_gpu.py": "1c6719ae4f83fcbe4cc61471dd17f2509721b2f4bf21c5e9e94ae1106f6bbc50"
+        },
+        "evidence_paths": {
+          "execution": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/audit/execution.json",
+          "junit": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/reporter-tests/audit/tests.xml",
+          "preflight": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/audit-gpu-preflight.json",
+          "worker": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/state/audit.json",
+          "native_seal": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/audit/workflow-seal.json"
+        },
+        "body_metadata_limitation": "audit summary/details native_readiness=false is unconditional body metadata; authoritative recorded readiness is execution.native_readiness corroborated by exact JUnit and preflight. CUDA audits do not establish learned-training or utility campaign execution.",
+        "telemetry_limitation": "Audit observer status PARTIAL reflects CPU-memory partial samples; GPU samples complete. Telemetry is not CUDA readiness proof."
+      },
+      "science_and_native_completion": {
+        "worker_completed": 292,
+        "worker_failed": 0,
+        "science_seals_and_completed_markers": 292,
+        "final_native_workflow_seals": 292
+      },
+      "scientific_decision": {
+        "gate": "A",
+        "decision": "PASS",
+        "eligible": true,
+        "denominators": {
+          "requested_queries": 24,
+          "eligible_queries": 24,
+          "requested_parents": 8,
+          "eligible_parents": 8,
+          "precision_limited_queries": 0
+        },
+        "thresholds": {
+          "maximum_regression": 2.0,
+          "minimum_signal_uncertainty_ratio": 10.0,
+          "parent_improvement_fraction": 0.75,
+          "rms_ratio": 1.5,
+          "uncertainty_fraction_of_improvement": 0.1
+        },
+        "decision_path": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/decision/decision.json",
+        "science_seal_path": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/decision/science_manifest.json",
+        "native_seal_path": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/decision/workflow-seal.json",
+        "evidence": {
+          "E_G": 5.56351893671356e-07,
+          "E_U": 3.877041156162573e-10,
+          "rms_ratio": 1434.9909409319332,
+          "separated_parent_fraction": 1.0,
+          "maximum_regressions": [],
+          "missing_queries": [],
+          "unresolved_queries": [],
+          "duplicate_queries": [],
+          "precision_limited": []
+        }
+      },
+      "evidence_paths": {
+        "workflow": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/tangent-response-workflow.json",
+        "protocol": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/protocol.json",
+        "profile": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/slurm-profile.json",
+        "jobs": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/jobs.json",
+        "submission": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/state/submission.json",
+        "submission_software": "runs/tangent-response-pilot-20261013T085856-8a44d33a-mechanism-20261013T085857-f577e97c/state/submission-software.json"
+      }
+    }
+  },
+  "infrastructure_failures": [
+    {
+      "stage": "compression",
+      "job_id": "2891",
+      "step_id": "0",
+      "worker": {
+        "status": "FAILED",
+        "exit_code": 2,
+        "error": "Terminal native reporting/seal failed: Diagnostic metadata must be a bounded regular file",
+        "updated_at": "2026-10-13T10:58:47.436596+00:00",
+        "source_sha256": "7a9266be2d6907c9423d9213acc3c7bdd81321678fcb40d6b3a0b28cc575487d",
+        "protocol_sha256": "0393d86758e0d823de4c61514f66698bba4239a572441c3387ce5dd15dd5829b",
+        "software_sha256": "4375156288501ee63299714756d0f834842b9be9cac2b19d61e420573685c9ac"
+      },
+      "science_body": {
+        "status": "COMPLETED",
+        "elapsed_seconds": 86.11135262995958,
+        "scientific_outcome": null,
+        "error": null
+      },
+      "science_manifest_present": true,
+      "completed_marker_present": true,
+      "final_native_workflow_seal_present": false,
+      "evidence_paths": {
+        "worker": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/state/compression.json",
+        "science_summary": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/compression/summary.json",
+        "execution": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/compression/execution.json",
+        "stderr": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/logs/compression-2891.err"
+      }
+    },
+    {
+      "stage": "report",
+      "job_id": "2893",
+      "step_id": "0",
+      "worker": {
+        "status": "FAILED",
+        "exit_code": 2,
+        "error": "Tangent-response report/experiment failed with exit code 2",
+        "updated_at": "2026-10-13T10:59:35.278056+00:00",
+        "source_sha256": "7a9266be2d6907c9423d9213acc3c7bdd81321678fcb40d6b3a0b28cc575487d",
+        "protocol_sha256": "0393d86758e0d823de4c61514f66698bba4239a572441c3387ce5dd15dd5829b",
+        "software_sha256": "4375156288501ee63299714756d0f834842b9be9cac2b19d61e420573685c9ac"
+      },
+      "science_body": {
+        "status": "FAILED",
+        "elapsed_seconds": 23.783764641964808,
+        "scientific_outcome": "UNRESOLVED",
+        "error": {
+          "type": "ValueError",
+          "message": "Portable Raven declaration points to missing content"
+        }
+      },
+      "science_manifest_present": false,
+      "completed_marker_present": false,
+      "final_native_workflow_seal_present": false,
+      "evidence_paths": {
+        "worker": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/state/report.json",
+        "science_summary": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/report/summary.json",
+        "execution": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/report/execution.json",
+        "stderr": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/logs/report-2893.err"
+      }
+    }
+  ],
+  "source_and_prerequisite_audit": {
+    "worker_and_execution_records_checked": 440,
+    "all_recorded_source_identities_match": true,
+    "recorded_source_drift_failures": 0,
+    "recorded_git_commit": "582c06e4bace5faa785d2abcf50e5a717dda92a0",
+    "recorded_checkout_dirty": false,
+    "mechanism_prerequisite_native_seals_checked": 292,
+    "mechanism_prerequisite_stage_paths_checked": 292,
+    "compression_binding_matches_original_workflow_protocol_profile_source_raw_software_and_A_decision": true,
+    "all_five_test_source_hashes_agree_across_all_440_stage_protocols_and_trusted_test_bytes": true,
+    "historical_review_requires_current_checkout_source_hash": false,
+    "limitation": "Agreement is evidence from saved guarded execution records; it does not assert continuous filesystem history or independently reproduce original source bytes."
+  },
+  "transport_and_omissions": {
+    "review_manifest_path": "REVIEW-MANIFEST.json",
+    "review_manifest_raw_sha256": "bfa142ec0d9d0407864eafea9970e8e917615f9a5bba6fd479f4a460d7ce4d03",
+    "mode": "review",
+    "retained_files_verified_by_root_restore": 24944,
+    "omitted_manifest_entries": 622,
+    "omitted_replay_array_or_checkpoint_entries": 577,
+    "omitted_rendered_figures": 45,
+    "hash_comparison_limitation": "11,689 counts retained SHA comparisons across science/native seals, not distinct files. The 577 omitted hashes agree with original compact-manifest records only; absent bytes cannot be independently hashed or replayed here. Root separately verified transport parts/archive/manifest and 24,944 retained files."
+  },
+  "gate_and_campaign_limits": {
+    "A": "Literal sealed A PASS permits the declared compression experiment under its frozen binding.",
+    "B": "Literal sealed B STOP is ineligible and blocks learning; all twelve promotion-eligible candidates STOP and three task-residual candidates NOT_APPLICABLE.",
+    "infrastructure": "Compression body science completed, but final worker reporting/seal failed; report body and final native seal failed separately. Scientific STOP and infrastructure failure are retained as separate findings.",
+    "export_scope": "Only mechanism and compression child run roots are included. No parent campaign receipt or fit_prepare/calibration/learning/utility run root is included; whole-campaign finalization and the current live queue are not established."
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schema": "tdn.tangent-response-native-large-artifact-verification/v1",
+  "source_sha256": "9347dfc8abb4ebcbc2dc72b427f0e9166dd3e000d45dbd2add115a55bfb2d8db",
+  "source_bytes": 539255609,
+  "original_science_manifest_sha256": "4672801912d3d478e50a5374785f816027c1d1d969307f687811909c67d7d89a",
+  "source_tree_sha256": "add29d2765520b56db76c1e400e9c437272dd29ef00a8ce88a38bef194bdabdf",
+  "protocol_sha256": "0393d86758e0d823de4c61514f66698bba4239a572441c3387ce5dd15dd5829b",
+  "compiled_records": 534984,
+  "table_json_bytes": 692893254,
+  "table_csv_bytes": 392776321,
+  "uncompressed_project_bytes": 1626364441,
+  "projected_with_whole_original_export_bytes": 1962234687,
+  "unchanged_transport_bound_bytes": 2147483648,
+  "portable_sha256": "9ea1f673399256955e05fffe475f1b541313a3a2a4bbd9de7431a7e5cbbf9e8b",
+  "portable_bytes": 194282906,
+  "portable_members": 3247,
+  "default_raven_budget_bytes": 8388608,
+  "counts": {
+    "metric_records": 229,
+    "attempts": 229,
+    "contracts": 229,
+    "projects": 2,
+    "artifact_outputs": 1867
+  },
+  "relocated_whole_source_sha256": "9347dfc8abb4ebcbc2dc72b427f0e9166dd3e000d45dbd2add115a55bfb2d8db",
+  "elapsed_seconds": 145.37918574400828,
+  "issues": [],
+  "original_gate_b": "STOP",
+  "scope": "Fresh posthoc lossless encoding audit. Original native SCI COMPLETED and worker FAILED remain unchanged; gate B STOP remains unchanged.",
+  "native_campaign_long_name_additional_bytes_upper": 67236848,
+  "projected_native_campaign_with_original_export_bytes_upper": 2029471535,
+  "native_campaign_naming_scope": "Conservative rebased-citation projection for the actual long native campaign name; raw native source bytes remain verified, unchanged. Adds8MiB for headers, catalog and page metadata.",
+  "default_native_check_counts": {
+    "presence": 1867,
+    "regular_file": 1867,
+    "min_bytes": 1867,
+    "sha256": 1867,
+    "format": 1867
+  },
+  "default_native_output_status_counts": {
+    "valid": 1867
+  },
+  "trusted_raven_commit": "c34f0892d7bddc685c5af10489ecb114fd6adab6",
+  "original_worker_status": "FAILED",
+  "original_worker_job_id": "2891",
+  "original_worker_state_sha256": "86cf213a7839aa7c322101112c3228352bc96b5586aaf50104336125a2a797d3",
+  "original_raven_inventory_state": "RUNNING",
+  "original_raven_inventory_sha256": "23b9ddb3c535cf17cf61006d8e1d6686d6217e304e0c0f819431481bd36320f8",
+  "reporting_sources_sha256": {
+    "tdn/analysis/tangent_response/report.py": "f523ec62e224eb34fb94ef0c6a90fdc0e0fc03fe97b49fdb9ff53238ebfeb739",
+    "tdn/analysis/tangent_response/report_artifacts.py": "314772036a61386aef0d4ab394d5a70ef1ccf84a7bfad9efcf5a69eb29aca148",
+    "tests/test_tangent_response_large_artifacts.py": "f457944a1990f7630a531036611ffb0ea7ba7a8028b359163bbbf9ccf43d45dd",
+    "tests/test_tangent_response_raven.py": "6186d2048af72677f4ec6ee999ac97075e4c3d80c49a4ceeae1ed6b3a4e6ce93"
+  },
+  "audit_program_sha256": "c92e653684d442af7eb19298c59d43712bf81528544e808d9c19b0000925acef",
+  "commands": {
+    "audit": "PYTHONPATH=/workspace/TDN .venv/bin/python .runtime/onboarding/tangent-native-large-science-observer.py",
+    "regression": ".venv/bin/python -m pytest -q tests/test_tangent_response_raven.py tests/test_tangent_response_large_artifacts.py tests/test_tangent_response_telemetry.py tests/test_response_raven.py tests/test_response_diagnostic_raven_launch.py --junitxml=.runtime/onboarding/tangent-native-reporting-repair-junit.xml"
+  },
+  "regression": {
+    "passed": 86,
+    "failed": 0,
+    "junit_sha256": "08759b7d95aab6ffb5f464611a7663148245648a47f1a3e17f83c594e6be8ace",
+    "suite_timestamp": "2026-10-13T11:55:12.642066+00:00",
+    "source_files_modified_before_suite": true
+  },
+  "coverage_limitations": [
+    "This observer audits lossless encoding, complete compiled tables and default Raven contracts; it does not rerun the scientific native campaign or repair the original failed inventories.",
+    "Physically incomplete UTF-8 codepoints in an unsealed partial source are outside the demonstrated portable failure-evidence scope; the original bytes remain in their native file and FAILED lifecycle is written first."
+  ],
+  "supplementary_audit_programs": {
+    ".runtime/onboarding/tangent-native-large-science-observer.py": {
+      "sha256": "c92e653684d442af7eb19298c59d43712bf81528544e808d9c19b0000925acef",
+      "executed_as": "Observer was executed as a file; supplementary programs are exact preserved bodies of the executed .venv/bin/python heredocs, not reruns."
+    },
+    ".runtime/onboarding/tangent-native-large-science-name-projection.py": {
+      "sha256": "b4bb06d67fe7616c19d5bff8777e8cbe42b49d9326d72da7d5849990235f4116",
+      "executed_as": "Observer was executed as a file; supplementary programs are exact preserved bodies of the executed .venv/bin/python heredocs, not reruns."
+    },
+    ".runtime/onboarding/tangent-native-large-science-default-output-checks.py": {
+      "sha256": "f344d0f5d037ff81dd4aa292cf57c50132a1047aac3156c6821c82baf28ee733",
+      "executed_as": "Observer was executed as a file; supplementary programs are exact preserved bodies of the executed .venv/bin/python heredocs, not reruns."
+    }
+  }
+}

@@ -1,0 +1,874 @@
+{
+  "analysis_scope": "JSON-only independent recomputation of recorded statistics; no solver, teacher, uploaded code, model checkpoint or replay-array execution",
+  "caveats": [
+    "All independently withheld directions have novelty relative to same-node local fit span at least0.962; failure is not caused by deliberately duplicated directions. This does not certify independence from every aggregate time/state design coordinate.",
+    "Large relative extremes occur for small, resolved actions under strong-diffusion interventions, but their absolute prediction errors are also gross (0.910 for shared action POD;505.917 for endpoint-weighted POD).",
+    "FP64 errors precede FP32 deployment: worst shared-action FP32 sensitivity is1.83e-7 versus absolute fitting error0.910. Roundoff does not explain these failures.",
+    "Shared maps pool fields without state/physics-conditioned factors. Two parent-level state oracles also pool12 distinct input/physics states each; they are not clean per-state rank upper-bound oracles.",
+    "Rank8 still discards43.84% shared action energy and median14.40% per-parent energy on coarse grids; insufficient spatial representation coexists with ill-conditioned input regression. Neither statistic alone proves the underlying tangent operator is intrinsically uncompressible.",
+    "Endpoint-weighted fits assign zero quadrature weight to independent directions; they are residual-focused fits evaluated against a broad operator-probe contract. Poor reusable action outcomes do not establish task-only impossibility.",
+    "Task-residual methods remain NOT_APPLICABLE for operator promotion; their own primary endpoint errors are nevertheless poor in this implementation.",
+    "No learned model training occurred in this stopped compression phase; these findings do not diagnose Adam, a learned encoder or a trained neural capacity limit.",
+    "Full endpoint inventory includes nonprimary unresolved source-quadrature/time-refinement comparisons; the24 primary diagnostic endpoint gate queries are resolved and complete. Preserve those unresolved ancillary outcomes."
+  ],
+  "coverage": {
+    "action_rows": 86400,
+    "all_raw_nontrivial_probes": 5633,
+    "all_raw_probes_resolved": 5760,
+    "endpoint_rows": 2160,
+    "gate_nontrivial_count": 4075,
+    "gate_null_count": 53,
+    "gate_probe_count": 4128,
+    "methods": 15,
+    "parents": 32,
+    "primary_diagnostic_parents": 8,
+    "primary_diagnostic_queries": 24,
+    "probe_kinds": {
+      "fourier_band": 2304,
+      "residual": 1152,
+      "signed_random": 2304
+    },
+    "probe_splits": {
+      "diagnostic": 1960,
+      "train": 2720,
+      "validation": 1080
+    },
+    "queries": 144,
+    "query_splits": {
+      "diagnostic": 49,
+      "train": 68,
+      "validation": 27
+    }
+  },
+  "definitions": {
+    "FP32_sensitivity": "Recorded FP32 factor application minus recorded FP64 factor prediction; neither replayed",
+    "basis_energy": "Discarded weighted training snapshot squared physical norm energy, not a held-out error or uniform operator-rank bound",
+    "conditioning": "Largest retained weighted-design singular value divided by smallest retained; not spatial correction rank",
+    "heldout_direction_gate": "train-parent probes tagged heldout_direction; 1088 requested",
+    "heldout_parent_gate": "ALL validation and diagnostic probes, including locally fitted directions for state oracles; 3040 requested/2987 nontrivial",
+    "nontrivial_action": "signal exceeds max(1e-9,1e-8*source_RMS,10*action_refinement_uncertainty); independent unit-norm probes therefore use at least1e-8",
+    "relative_action_error": "physical RMS of predicted minus recorded (U-G)z divided by physical RMS of (U-G)z, only on prospectively nontrivial actions",
+    "retained_endpoint_gain": "(E_G-E_L)/(E_G-E_U), errors are equal-parent means of equal within-parent physical RMS on24 primary diagnostic queries/8 parents"
+  },
+  "direction_independence": {
+    "diagnostic": {
+      "independent": 784,
+      "novelty": {
+        "maximum": 0.9999989996353434,
+        "median": 0.9958516945294877,
+        "minimum": 0.9678448255326586,
+        "n": 784,
+        "p10": 0.9869258493294475,
+        "p90": 0.9992309888158779,
+        "p99": 0.9999141935822893
+      },
+      "requested": 784
+    },
+    "train": {
+      "independent": 1088,
+      "novelty": {
+        "maximum": 0.999998828677456,
+        "median": 0.9958216041598544,
+        "minimum": 0.9654587930797847,
+        "n": 1088,
+        "p10": 0.9878830560512372,
+        "p90": 0.9992823130069522,
+        "p99": 0.9998940388859003
+      },
+      "requested": 1088
+    },
+    "validation": {
+      "independent": 432,
+      "novelty": {
+        "maximum": 0.9999804296792624,
+        "median": 0.9959818569481467,
+        "minimum": 0.9620198441637927,
+        "n": 432,
+        "p10": 0.9883299918626594,
+        "p90": 0.9993395480753492,
+        "p99": 0.9999212720058673
+      },
+      "requested": 432
+    }
+  },
+  "gate_B": {
+    "missing_unresolved_duplicate_evidence": "None recorded across declared reusable candidates; independently reconciled complete probe and endpoint coverage",
+    "promotion_eligible": false,
+    "status": "STOP",
+    "thresholds": {
+      "action_relative_error": 0.1,
+      "probe_fraction": 0.9,
+      "rank_cap": 8,
+      "retained_oracle_gain": 0.8,
+      "worst_action_relative_error": 0.3
+    }
+  },
+  "independent_coverage_assertions": {
+    "action_rows_per_method": 5760,
+    "all_declared_probes_present": true,
+    "all_nontrivial_relative_errors_recomputed_from_absolute_physical_rms": true,
+    "all_primary_diagnostic_endpoints_resolved": true,
+    "all_raw_actions_resolved": true,
+    "endpoint_rows_per_method": 144,
+    "endpoint_status_counts": {
+      "RESOLVED": 2100,
+      "UNRESOLVED": 60
+    },
+    "methods": 15,
+    "nonprimary_unresolved_endpoint_queries": [
+      {
+        "combined_uncertainty": 4.8077818038780764e-11,
+        "horizon": 0.12,
+        "parent_id": "tr-parent-b815ea7bbc04ac591a1e",
+        "quadrature_check": {
+          "independent_forced_time_refinements": {
+            "mean": {
+              "centered_rms": 1.2553638844178611e-11,
+              "maximum": 6.451046576268216e-11,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 1.030306761256369e-11,
+              "mse": 2.6374705045912896e-22,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 1.6240290959805152e-11
+            },
+            "tangent": {
+              "centered_rms": 2.117123620017639e-11,
+              "maximum": 1.2217499950097077e-10,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 1.3979117422824395e-11,
+              "mse": 6.436369661647718e-22,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 2.5370001303996258e-11
+            }
+          },
+          "source_quadrature_differences": {
+            "mean": {
+              "centered_rms": 9.34840302941319e-13,
+              "maximum": 5.516108782851331e-12,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 7.667511336539106e-13,
+              "mse": 1.4618336929629745e-24,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 1.2090631468053993e-12
+            },
+            "tangent": {
+              "centered_rms": 1.3519355164746166e-12,
+              "maximum": 7.503256262836322e-12,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 1.1209578664976396e-12,
+              "mse": 3.0842761791684275e-24,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 1.7562107445202662e-12
+            }
+          },
+          "status": "UNRESOLVED",
+          "tolerance": 1e-10,
+          "uncertainty_is_certificate": false,
+          "uncertainty_maximum": 1.9970483030934058e-10,
+          "uncertainty_rms": 4.4575566155127076e-11,
+          "uncertainty_scope": "independent forced-solve/action-quadrature comparison plus forced time refinement"
+        },
+        "query_id": "tr-query-7c6d8decf9d1ef114c019d8e",
+        "split": "diagnostic",
+        "status": "UNRESOLVED",
+        "target_kind": "fd_same_grid",
+        "uncertainty": 4.474062989180205e-11
+      },
+      {
+        "combined_uncertainty": 1.6125233538576912e-10,
+        "horizon": 0.12,
+        "parent_id": "tr-parent-b815ea7bbc04ac591a1e",
+        "quadrature_check": {
+          "independent_forced_time_refinements": {
+            "mean": {
+              "centered_rms": 3.4405423246321307e-12,
+              "maximum": 7.664324985215062e-11,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 7.126576572679352e-11,
+              "mse": 5.090646696113803e-21,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 7.134876800697965e-11
+            },
+            "tangent": {
+              "centered_rms": 4.555420248730973e-12,
+              "maximum": 7.960422260060683e-11,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 7.154681910401753e-11,
+              "mse": 5.139699177545556e-21,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 7.169169531783689e-11
+            }
+          },
+          "source_quadrature_differences": {
+            "mean": {
+              "centered_rms": 2.392847993617873e-13,
+              "maximum": 5.5114829258622045e-12,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 5.1418483615326525e-12,
+              "mse": 2.649586178820163e-23,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 5.147413116139177e-12
+            },
+            "tangent": {
+              "centered_rms": 3.108924815979951e-13,
+              "maximum": 5.642264325027291e-12,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 5.097639175787048e-12,
+              "mse": 2.6082579301633016e-23,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 5.107110660797651e-12
+            }
+          },
+          "status": "UNRESOLVED",
+          "tolerance": 1e-10,
+          "uncertainty_is_certificate": false,
+          "uncertainty_maximum": 1.6740121970364695e-10,
+          "uncertainty_rms": 1.5329498710175336e-10,
+          "uncertainty_scope": "independent forced-solve/action-quadrature comparison plus forced time refinement"
+        },
+        "query_id": "tr-query-7d3df566ad249704014e21db",
+        "split": "diagnostic",
+        "status": "UNRESOLVED",
+        "target_kind": "fd_same_grid",
+        "uncertainty": 1.5330736328467343e-10
+      },
+      {
+        "combined_uncertainty": 7.478836687983528e-11,
+        "horizon": 0.12,
+        "parent_id": "tr-parent-b815ea7bbc04ac591a1e",
+        "quadrature_check": {
+          "independent_forced_time_refinements": {
+            "mean": {
+              "centered_rms": 2.266710000702718e-11,
+              "maximum": 1.0792256628297525e-10,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 1.3564929662420088e-11,
+              "mse": 6.97804739474976e-22,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 2.6415994008838207e-11
+            },
+            "tangent": {
+              "centered_rms": 3.1007903791820576e-11,
+              "maximum": 1.4355563330951948e-10,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 1.989475032535814e-11,
+              "mse": 1.357291188071139e-21,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 3.684143303498303e-11
+            }
+          },
+          "source_quadrature_differences": {
+            "mean": {
+              "centered_rms": 2.1289447095107126e-12,
+              "maximum": 9.756645239443994e-12,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 1.0335475510931672e-12,
+              "mse": 5.6006261165243345e-24,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 2.366564200803421e-12
+            },
+            "tangent": {
+              "centered_rms": 2.4419330463020996e-12,
+              "maximum": 1.1073628667680746e-11,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 2.545202539865388e-12,
+              "mse": 1.2441092971559474e-23,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 3.5271933561345164e-12
+            }
+          },
+          "status": "UNRESOLVED",
+          "tolerance": 1e-10,
+          "uncertainty_is_certificate": false,
+          "uncertainty_maximum": 2.7230847349961947e-10,
+          "uncertainty_rms": 6.915118460075918e-11,
+          "uncertainty_scope": "independent forced-solve/action-quadrature comparison plus forced time refinement"
+        },
+        "query_id": "tr-query-cbb5e82397f23a0b9220fe33",
+        "split": "diagnostic",
+        "status": "UNRESOLVED",
+        "target_kind": "fd_same_grid",
+        "uncertainty": 6.964496387305496e-11
+      },
+      {
+        "combined_uncertainty": 1.1392741398642569e-10,
+        "horizon": 0.12,
+        "parent_id": "tr-parent-f51c36ddbd2a37f86cbe",
+        "quadrature_check": {
+          "independent_forced_time_refinements": {
+            "mean": {
+              "centered_rms": 2.6032862896475933e-12,
+              "maximum": 4.7591282531598417e-11,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 4.353324474249085e-11,
+              "mse": 1.901920497315474e-21,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 4.3611013486451724e-11
+            },
+            "tangent": {
+              "centered_rms": 2.7649176311773086e-12,
+              "maximum": 4.801973690915246e-11,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 4.358349846032721e-11,
+              "mse": 1.907166107548539e-21,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 4.3671112964390307e-11
+            }
+          },
+          "source_quadrature_differences": {
+            "mean": {
+              "centered_rms": 1.8966347290960194e-13,
+              "maximum": 3.6007398234935706e-12,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 3.297628151502968e-12,
+              "mse": 1.0910323658541011e-23,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 3.3030779068228184e-12
+            },
+            "tangent": {
+              "centered_rms": 1.8846946425887345e-13,
+              "maximum": 3.5509538018341225e-12,
+              "maximum_scope": "FD nodal maximum",
+              "mean_rms": 3.2492204406488355e-12,
+              "mse": 1.059295421088824e-23,
+              "norm": "normalized physical L2; Galerkin Nyquist masses included",
+              "rms": 3.2546818908901435e-12
+            }
+          },
+          "status": "UNRESOLVED",
+          "tolerance": 1e-10,
+          "uncertainty_is_certificate": false,
+          "uncertainty_maximum": 1.0276271306607857e-10,
+          "uncertainty_rms": 9.383988624855499e-11,
+          "uncertainty_scope": "independent forced-solve/action-quadrature comparison plus forced time refinement"
+        },
+        "query_id": "tr-query-816c5fa16ed8f687e29fbeb3",
+        "split": "diagnostic",
+        "status": "UNRESOLVED",
+        "target_kind": "fd_same_grid",
+        "uncertainty": 9.384264088230307e-11
+      }
+    ],
+    "unique_declared_probes": 5760,
+    "unique_method_probe_pairs": 86400,
+    "unique_method_query_pairs": 2160,
+    "unique_raw_measurements": 5760
+  },
+  "method_table": [
+    {
+      "deployable": true,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.0,
+      "method": "shared_endpoint_weighted_pod_rank2",
+      "primary_endpoint_E_L": 0.0010662550978561682,
+      "primary_retained_gain": -1916.847835757457,
+      "promotion_eligible": true,
+      "rank": 2,
+      "worst_relative_action_error": 37178401931.05691
+    },
+    {
+      "deployable": true,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.0,
+      "method": "shared_endpoint_weighted_pod_rank4",
+      "primary_endpoint_E_L": 0.001131391462075515,
+      "primary_retained_gain": -2034.0071167042859,
+      "promotion_eligible": true,
+      "rank": 4,
+      "worst_relative_action_error": 37735670230.72482
+    },
+    {
+      "deployable": true,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.0,
+      "method": "shared_endpoint_weighted_pod_rank8",
+      "primary_endpoint_E_L": 0.0011914520881542577,
+      "primary_retained_gain": -2142.036784140219,
+      "promotion_eligible": true,
+      "rank": 8,
+      "worst_relative_action_error": 38139995254.20732
+    },
+    {
+      "deployable": true,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.0,
+      "method": "shared_response_action_pod_rank2",
+      "primary_endpoint_E_L": 1.353761688457395e-06,
+      "primary_retained_gain": -1.4342826677213445,
+      "promotion_eligible": true,
+      "rank": 2,
+      "worst_relative_action_error": 26161655.80496384
+    },
+    {
+      "deployable": true,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.0,
+      "method": "shared_response_action_pod_rank4",
+      "primary_endpoint_E_L": 1.949735992442954e-06,
+      "primary_retained_gain": -2.5062479478619846,
+      "promotion_eligible": true,
+      "rank": 4,
+      "worst_relative_action_error": 36311757.273677476
+    },
+    {
+      "deployable": true,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.0,
+      "method": "shared_response_action_pod_rank8",
+      "primary_endpoint_E_L": 2.0132065308688638e-06,
+      "primary_retained_gain": -2.620410946248667,
+      "promotion_eligible": true,
+      "rank": 8,
+      "worst_relative_action_error": 41251244.931606546
+    },
+    {
+      "deployable": true,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.0,
+      "method": "shared_source_energy_pod_rank2",
+      "primary_endpoint_E_L": 8.252662676667963e-07,
+      "primary_retained_gain": -0.483690103558432,
+      "promotion_eligible": true,
+      "rank": 2,
+      "worst_relative_action_error": 12548537.221649688
+    },
+    {
+      "deployable": true,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.0,
+      "method": "shared_source_energy_pod_rank4",
+      "primary_endpoint_E_L": 8.356378037295726e-07,
+      "primary_retained_gain": -0.5023451470505288,
+      "promotion_eligible": true,
+      "rank": 4,
+      "worst_relative_action_error": 12588006.849141648
+    },
+    {
+      "deployable": true,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.0,
+      "method": "shared_source_energy_pod_rank8",
+      "primary_endpoint_E_L": 9.0749516073348e-07,
+      "primary_retained_gain": -0.6315933232147248,
+      "promotion_eligible": true,
+      "rank": 8,
+      "worst_relative_action_error": 12920790.107810998
+    },
+    {
+      "deployable": false,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.051891529963173755,
+      "method": "state_oracle_response_pod_rank2",
+      "primary_endpoint_E_L": 2.903849245199894e-07,
+      "primary_retained_gain": 0.4783886723450707,
+      "promotion_eligible": true,
+      "rank": 2,
+      "worst_relative_action_error": 2878170128.491423
+    },
+    {
+      "deployable": false,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.06160026782725142,
+      "method": "state_oracle_response_pod_rank4",
+      "primary_endpoint_E_L": 2.696900627994726e-07,
+      "primary_retained_gain": 0.5156120443820019,
+      "promotion_eligible": true,
+      "rank": 4,
+      "worst_relative_action_error": 3106968206.2486024
+    },
+    {
+      "deployable": false,
+      "gate_status": "STOP",
+      "heldout_directions_fraction": 0.0,
+      "heldout_parents_fraction": 0.08972212922664881,
+      "method": "state_oracle_response_pod_rank8",
+      "primary_endpoint_E_L": 2.5736033979754746e-07,
+      "primary_retained_gain": 0.5377892337061501,
+      "promotion_eligible": true,
+      "rank": 8,
+      "worst_relative_action_error": 3471765688.37242
+    },
+    {
+      "deployable": null,
+      "gate_status": "NOT_APPLICABLE",
+      "heldout_directions_fraction": null,
+      "heldout_parents_fraction": null,
+      "method": "task_residual_response_pod_rank2",
+      "primary_endpoint_E_L": 0.0010338857238591757,
+      "primary_retained_gain": -1858.6257868660607,
+      "promotion_eligible": false,
+      "rank": 2,
+      "worst_relative_action_error": null
+    },
+    {
+      "deployable": null,
+      "gate_status": "NOT_APPLICABLE",
+      "heldout_directions_fraction": null,
+      "heldout_parents_fraction": null,
+      "method": "task_residual_response_pod_rank4",
+      "primary_endpoint_E_L": 0.00183531408629449,
+      "primary_retained_gain": -3300.136558900022,
+      "promotion_eligible": false,
+      "rank": 4,
+      "worst_relative_action_error": null
+    },
+    {
+      "deployable": null,
+      "gate_status": "NOT_APPLICABLE",
+      "heldout_directions_fraction": null,
+      "heldout_parents_fraction": null,
+      "method": "task_residual_response_pod_rank8",
+      "primary_endpoint_E_L": 0.002106574407886378,
+      "primary_retained_gain": -3788.0462635327476,
+      "promotion_eligible": false,
+      "rank": 8,
+      "worst_relative_action_error": null
+    }
+  ],
+  "native_source_tree_sha256": "add29d2765520b56db76c1e400e9c437272dd29ef00a8ce88a38bef194bdabdf",
+  "per_parent_oracle_state_physics_mixtures": [
+    {
+      "distinct_input_physics": 12,
+      "distinct_inputs": 3,
+      "distinct_physics": 10,
+      "grid": [
+        16,
+        16
+      ],
+      "parent_id": "tr-parent-b815ea7bbc04ac591a1e",
+      "queries": 14,
+      "split": "diagnostic"
+    },
+    {
+      "distinct_input_physics": 12,
+      "distinct_inputs": 3,
+      "distinct_physics": 10,
+      "grid": [
+        16,
+        16
+      ],
+      "parent_id": "tr-parent-f51c36ddbd2a37f86cbe",
+      "queries": 14,
+      "split": "diagnostic"
+    }
+  ],
+  "primary_endpoint_common": {
+    "E_G": 5.563518931498163e-07,
+    "E_U": 3.877075305131548e-10,
+    "combined_uncertainty_parent_mean": 4.443215924402549e-12,
+    "oracle_improvement": 5.559641856193031e-07
+  },
+  "protocol_sha256": "0393d86758e0d823de4c61514f66698bba4239a572441c3387ce5dd15dd5829b",
+  "rank8_basis_and_design_metrics": [
+    {
+      "coefficient_norm": 22.784710606963415,
+      "design_cutoff": 1.8956389073691234e-11,
+      "discarded_fitting_energy_fraction": 0.46805416629242647,
+      "fitting_snapshots": 1536,
+      "grid": [
+        16,
+        16
+      ],
+      "largest_temporal_beta_rms": 13.322725552235207,
+      "method": "shared_source_energy_pod_rank8",
+      "rcond": 1e-10,
+      "retained_design_condition": 9791270035.70163,
+      "retained_input_design_rank": 658,
+      "ridge": 0.0
+    },
+    {
+      "coefficient_norm": 49.93882904496779,
+      "design_cutoff": 1.8956389073691234e-11,
+      "discarded_fitting_energy_fraction": 0.4384134838514627,
+      "fitting_snapshots": 1536,
+      "grid": [
+        16,
+        16
+      ],
+      "largest_temporal_beta_rms": 15.846583284581193,
+      "method": "shared_response_action_pod_rank8",
+      "rcond": 1e-10,
+      "retained_design_condition": 9791270035.70163,
+      "retained_input_design_rank": 658,
+      "ridge": 0.0
+    },
+    {
+      "coefficient_norm": 16478.265051695522,
+      "design_cutoff": 1.0973536257530263e-14,
+      "discarded_fitting_energy_fraction": 0.0309571240681833,
+      "fitting_snapshots": 1536,
+      "grid": [
+        16,
+        16
+      ],
+      "largest_temporal_beta_rms": 10289.68921725196,
+      "method": "shared_endpoint_weighted_pod_rank8",
+      "rcond": 1e-10,
+      "retained_design_condition": 9699495673.634901,
+      "retained_input_design_rank": 235,
+      "ridge": 0.0
+    },
+    {
+      "coefficient_norm": 30566.08248395515,
+      "design_cutoff": 5.079948876374178e-15,
+      "discarded_fitting_energy_fraction": 0.033359922993843535,
+      "fitting_snapshots": 512,
+      "grid": [
+        16,
+        16
+      ],
+      "largest_temporal_beta_rms": 13736.964392054051,
+      "method": "task_residual_response_pod_rank8",
+      "rcond": 1e-10,
+      "retained_design_condition": 9274178749.7839,
+      "retained_input_design_rank": 251,
+      "ridge": 0.0
+    },
+    {
+      "coefficient_norm": 0.5381567562832125,
+      "design_cutoff": 1.88782698186717e-11,
+      "discarded_fitting_energy_fraction": 0.3996257929258194,
+      "fitting_snapshots": 96,
+      "grid": [
+        32,
+        32
+      ],
+      "largest_temporal_beta_rms": 0.23361486711771054,
+      "method": "shared_source_energy_pod_rank8",
+      "rcond": 1e-10,
+      "retained_design_condition": 7203965184.598049,
+      "retained_input_design_rank": 54,
+      "ridge": 0.0
+    },
+    {
+      "coefficient_norm": 9.416311517668053,
+      "design_cutoff": 1.88782698186717e-11,
+      "discarded_fitting_energy_fraction": 0.03899113876472879,
+      "fitting_snapshots": 96,
+      "grid": [
+        32,
+        32
+      ],
+      "largest_temporal_beta_rms": 6.425114168733407,
+      "method": "shared_response_action_pod_rank8",
+      "rcond": 1e-10,
+      "retained_design_condition": 7203965184.598049,
+      "retained_input_design_rank": 54,
+      "ridge": 0.0
+    },
+    {
+      "coefficient_norm": 517.6261937076109,
+      "design_cutoff": 6.369172907433707e-15,
+      "discarded_fitting_energy_fraction": 7.51186191493351e-12,
+      "fitting_snapshots": 96,
+      "grid": [
+        32,
+        32
+      ],
+      "largest_temporal_beta_rms": 270.1802330499112,
+      "method": "shared_endpoint_weighted_pod_rank8",
+      "rcond": 1e-10,
+      "retained_design_condition": 3200272027.510388,
+      "retained_input_design_rank": 15,
+      "ridge": 0.0
+    },
+    {
+      "coefficient_norm": 25540.873998903626,
+      "design_cutoff": 3.0100139063117292e-15,
+      "discarded_fitting_energy_fraction": 3.480385814539332e-11,
+      "fitting_snapshots": 32,
+      "grid": [
+        32,
+        32
+      ],
+      "largest_temporal_beta_rms": 12046.436222631663,
+      "method": "task_residual_response_pod_rank8",
+      "rcond": 1e-10,
+      "retained_design_condition": 6816502776.024605,
+      "retained_input_design_rank": 17,
+      "ridge": 0.0
+    }
+  ],
+  "representative_worst_rows": [
+    {
+      "action_rms": 2.206654028813199e-08,
+      "error_rms": 0.9102722582188963,
+      "fp32_sensitivity_rms": 1.8301232521060456e-07,
+      "geometry": [
+        16,
+        16
+      ],
+      "horizon": 0.12,
+      "method": "shared_response_action_pod_rank8",
+      "nontrivial_threshold": 1e-08,
+      "parent_id": "tr-parent-f51c36ddbd2a37f86cbe",
+      "physics": {
+        "diffusion_number": 5.0,
+        "kappa": 0.22053439033341277,
+        "panel": "physics_intervention",
+        "phase_shift": null,
+        "reaction_number": 0.1,
+        "reaction_rate": 0.8333333333333334,
+        "regime": "mid_mean"
+      },
+      "probe_id": "4c8ef82a0b8dbb5e9e17ed54",
+      "probe_kind": "fourier_band",
+      "probe_role": "heldout_direction",
+      "query_id": "tr-query-b3feb0e169e6b01d37290782",
+      "relative_error": 41251244.931606546,
+      "source_fraction": 0.0,
+      "source_linearly_independent_of_fit": true,
+      "source_novelty_relative_to_fit": 0.9943820903855856,
+      "source_rms": 1.0,
+      "source_time": 0.0,
+      "split": "diagnostic",
+      "uncertainty": 3.1955948800674563e-13
+    },
+    {
+      "action_rms": 1.3264748776001945e-08,
+      "error_rms": 505.91745536496654,
+      "fp32_sensitivity_rms": 6.045482300805915e-05,
+      "geometry": [
+        16,
+        16
+      ],
+      "horizon": 0.12,
+      "method": "shared_endpoint_weighted_pod_rank8",
+      "nontrivial_threshold": 1e-08,
+      "parent_id": "tr-parent-b815ea7bbc04ac591a1e",
+      "physics": {
+        "diffusion_number": 5.0,
+        "kappa": 0.22053439033341277,
+        "panel": "physics_intervention",
+        "phase_shift": null,
+        "reaction_number": 0.1,
+        "reaction_rate": 0.8333333333333334,
+        "regime": "low_mean"
+      },
+      "probe_id": "ce544240483df2197bfaf6c6",
+      "probe_kind": "fourier_band",
+      "probe_role": "fit",
+      "query_id": "tr-query-94607695054f7aa63132243b",
+      "relative_error": 38139995254.20732,
+      "source_fraction": 0.0,
+      "source_linearly_independent_of_fit": false,
+      "source_novelty_relative_to_fit": 6.282956734600528e-16,
+      "source_rms": 1.0,
+      "source_time": 0.0,
+      "split": "diagnostic",
+      "uncertainty": 1.6921908298929374e-13
+    },
+    {
+      "action_rms": 3.573080259696874e-08,
+      "error_rms": 124.04897447416421,
+      "fp32_sensitivity_rms": 9.710081322550253e-06,
+      "geometry": [
+        16,
+        16
+      ],
+      "horizon": 0.12,
+      "method": "state_oracle_response_pod_rank8",
+      "nontrivial_threshold": 1e-08,
+      "parent_id": "tr-parent-b815ea7bbc04ac591a1e",
+      "physics": {
+        "diffusion_number": 5.0,
+        "kappa": 0.22053439033341277,
+        "panel": "physics_intervention",
+        "phase_shift": null,
+        "reaction_number": 0.1,
+        "reaction_rate": 0.8333333333333334,
+        "regime": "low_mean"
+      },
+      "probe_id": "45af30d1a32749ff8f97099d",
+      "probe_kind": "fourier_band",
+      "probe_role": "heldout_direction",
+      "query_id": "tr-query-94607695054f7aa63132243b",
+      "relative_error": 3471765688.37242,
+      "source_fraction": 0.0,
+      "source_linearly_independent_of_fit": true,
+      "source_novelty_relative_to_fit": 0.9956003067537563,
+      "source_rms": 1.0,
+      "source_time": 0.0,
+      "split": "diagnostic",
+      "uncertainty": 5.585432858548186e-13
+    }
+  ],
+  "schema": "tdn.tangent-response-native-compression-scientific-audit/v1",
+  "sources": [
+    {
+      "path": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/compression/compression_results.json",
+      "sha256": "9347dfc8abb4ebcbc2dc72b427f0e9166dd3e000d45dbd2add115a55bfb2d8db"
+    },
+    {
+      "path": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/decision/decision.json",
+      "sha256": "e5ae0dc594c45c67e3ce953bcd1dab8927c7e508e51a25dd21607a19e19e3f38"
+    },
+    {
+      "path": "runs/tangent-response-pilot-20261013T085856-8a44d33a-compression-20261013T094550-3e51c6f1/compression/protocol.json",
+      "sha256": "741fe4c2cf0d7c3608321b7f0633b3ef64bef9f87eda71a1ac9036a3fc0ba9d0"
+    }
+  ],
+  "state_oracle_coarse_rank8": {
+    "discarded_training_energy_fraction_max": 0.21759924155970786,
+    "discarded_training_energy_fraction_median": 0.144040161269593,
+    "discarded_training_energy_fraction_min": 0.06359729709388613,
+    "parents": 32,
+    "retained_condition_max": 9937025247.379173,
+    "retained_condition_median": 4780927644.660457
+  },
+  "state_oracle_rank8_holdout": {
+    "genuinely_withheld_directions": {
+      "nontrivial": 2304,
+      "passed": 0,
+      "requested": 2304,
+      "stratified": {
+        "diagnostic_heldout_direction": {
+          "median_absolute_error": 1.3428767611121857,
+          "median_relative_error": 160.43727132975636,
+          "passed": 0,
+          "requested": 784
+        },
+        "train_heldout_direction": {
+          "median_absolute_error": 0.024296347539762835,
+          "median_relative_error": 1.4188482443365125,
+          "passed": 0,
+          "requested": 1088
+        },
+        "validation_heldout_direction": {
+          "median_absolute_error": 0.018262373333247824,
+          "median_relative_error": 1.0431269973071828,
+          "passed": 0,
+          "requested": 432
+        }
+      }
+    },
+    "locally_fitted_nontrain_directions": {
+      "diagnostic_nontrivial": 1143,
+      "diagnostic_passed": 95,
+      "validation_nontrivial": 628,
+      "validation_passed": 173
+    },
+    "nontrain_parent_probes": {
+      "fraction": 0.08972212922664881,
+      "nontrivial": 2987,
+      "passed": 268
+    },
+    "state_conditioning_scope": "Locally fitted on each parent including validation/diagnostic action labels; not deployable held-out-parent generalization",
+    "train_fit": {
+      "median_relative_error": 0.4712949285423904,
+      "nontrivial": 1558,
+      "passed": 336
+    }
+  }
+}

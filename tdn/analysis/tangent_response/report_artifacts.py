@@ -5,13 +5,80 @@ import csv
 import hashlib
 import io
 import json
+import math
+import os
 from pathlib import Path
+import stat
 
 from tdn.analysis.response import diagnostic_metrics as shared
 from tdn.runtime.metadata import write_json
 
 PAGE_BYTES = 7 << 20
 CHUNK_BYTES = 1 << 20
+SCIENCE_PAYLOAD_BYTES = 1 << 30
+
+
+class ScientificPayload:
+    """A separately bounded, science-sealed payload; never generic metadata.
+
+    The 1 GiB JSON bound permits the native 48 GiB reporting allocation to
+    decode its declared aggregate. Raw export is streamed into small members.
+    """
+    def __init__(self,path,root,expected):
+        self.path=shared._inside(root,path);self.root=Path(root)
+        if not isinstance(expected,str) or not shared._HASH.fullmatch(expected):raise ValueError("Scientific payload requires its sealed SHA256")
+        self.sha256=expected;self.bytes=self.path.stat().st_size
+        if not stat.S_ISREG(self.path.stat().st_mode) or self.bytes>SCIENCE_PAYLOAD_BYTES:
+            raise ValueError("Scientific payload exceeds its separate 1 GiB regular-file bound")
+        for _ in self.chunks():pass
+
+    def __len__(self):return self.bytes
+
+    def chunks(self):
+        shared._inside(self.root,self.path)
+        with self.path.open("rb") as stream:
+            before=os.fstat(stream.fileno());checksum=hashlib.sha256();size=0;offset=0;pending=b""
+            if not stat.S_ISREG(before.st_mode) or before.st_size!=self.bytes:raise ValueError("Scientific payload changed before export")
+            while True:
+                block=stream.read(CHUNK_BYTES)
+                if not block:break
+                size+=len(block)
+                if size>SCIENCE_PAYLOAD_BYTES:raise ValueError("Scientific payload grew beyond its bounded scope")
+                checksum.update(block);pending+=block
+                end=len(pending)
+                # Defer an incomplete trailing UTF-8 codepoint to the next part.
+                while end and pending[end-1]&0xC0==0x80:end-=1
+                if end and pending[end-1]>=0xC0:
+                    lead=pending[end-1];needed=2 if lead<0xE0 else 3 if lead<0xF0 else 4
+                    if len(pending)-(end-1)<needed:end-=1
+                    else:end=len(pending)
+                else:end=len(pending)
+                if end:yield offset,pending[:end];offset+=end;pending=pending[end:]
+            if pending:pending.decode("utf-8");yield offset,pending
+            after=os.fstat(stream.fileno())
+        signature=lambda s:(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
+        if (size!=self.bytes or signature(before)!=signature(after)
+                or signature(after)!=signature(self.path.stat(follow_symlinks=False)) or checksum.hexdigest()!=self.sha256):
+            raise ValueError("Scientific payload changed or differs from its sealed SHA256")
+
+    def json(self):
+        raw=b"".join(part for _,part in self.chunks())
+        def unique(pairs):
+            value={}
+            for key,child in pairs:
+                if key in value:raise ValueError("Duplicate scientific payload JSON key")
+                value[key]=child
+            return value
+        def reject(value):raise ValueError("Nonfinite scientific payload constant: "+value)
+        result=json.loads(raw,object_pairs_hook=unique,parse_constant=reject)
+        pending=[iter((result,))]
+        while pending:
+            try:value=next(pending[-1])
+            except StopIteration:pending.pop();continue
+            if isinstance(value,float) and not math.isfinite(value):raise ValueError("Nonfinite scientific payload number")
+            if isinstance(value,dict):pending.append(iter(value.values()))
+            elif isinstance(value,list):pending.append(iter(value))
+        return result
 
 
 def _json(value):
@@ -48,8 +115,9 @@ class Pages:
         group=self.current;pointer=group["path"]+"/outputs/"+name
         file=self.output/pointer;file.parent.mkdir(parents=True,exist_ok=True);file.write_bytes(raw)
         record=dict(path=pointer,bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest())
-        group["files"].append(dict(path="outputs/"+name,required=True,min_bytes=min(1,len(raw)),
-            sha256=record["sha256"],format=format));group["bytes"]+=len(raw)
+        entry=dict(path="outputs/"+name,required=True,min_bytes=min(1,len(raw)),sha256=record["sha256"])
+        if format is not None:entry["format"]=format
+        group["files"].append(entry);group["bytes"]+=len(raw)
         return record
 
     def finish(self):
@@ -75,10 +143,14 @@ class Pages:
             path_base="Research overview outputs; register each page as an independent Raven project") for project in sorted(self.projects)]
 
 
-def _mapped(value, mapping):
+def _mapped(value,mapping):
+    # These are reporting-owned rows, never the original scientific JSON. Avoid
+    # duplicating a large aggregate just to rebase its citation strings.
     if isinstance(value,str):return mapping.get(value,value)
-    if isinstance(value,list):return [_mapped(child,mapping) for child in value]
-    if isinstance(value,dict):return {key:_mapped(child,mapping) for key,child in value.items()}
+    if isinstance(value,list):
+        for index,child in enumerate(value):value[index]=_mapped(child,mapping)
+    elif isinstance(value,dict):
+        for key,child in value.items():value[key]=_mapped(child,mapping)
     return value
 
 
@@ -102,6 +174,18 @@ def _byte_chunks(raw):
         yield start,raw[start:end];start=end
 
 
+def source_segments(pages,pointer,raw):
+    parts=raw.chunks() if isinstance(raw,ScientificPayload) else _byte_chunks(raw)
+    original_sha=raw.sha256 if isinstance(raw,ScientificPayload) else hashlib.sha256(raw).hexdigest()
+    records=[dict(pages.add("source-segments/"+Path(pointer).name+".part"+f"{i:04d}"+".txt",part,"text"),byte_offset=start)
+             for i,(start,part) in enumerate(parts)]
+    descriptor=dict(schema="tdn.tangent-response-source-segments/v1",source_sha256=original_sha,source_bytes=len(raw),
+        original_name=Path(pointer).name,representation="Exact ordered UTF-8 byte segments; concatenate to recover the original scientific JSON",
+        segments=records)
+    index=pages.add("source-segments/"+Path(pointer).name+".index.json",_json(descriptor),"json")
+    return index,descriptor
+
+
 def publish(output, data, copies, config, campaign):
     """Preserve every row/byte; only the standard overview becomes a catalog."""
     output=Path(output)
@@ -110,17 +194,23 @@ def publish(output, data, copies, config, campaign):
     for pointer,raw in copies.items():
         if pointer.startswith("lineage/"):
             file=output/pointer;file.parent.mkdir(parents=True,exist_ok=True);file.write_bytes(raw);continue
-        suffix=Path(pointer).suffix;format="json" if suffix==".json" else "text"
+        suffix=Path(pointer).suffix;format="json" if suffix==".json" else "csv" if suffix==".csv" else None if suffix in (".png",".jpg") else "text"
         if len(raw)<=PAGE_BYTES:
-            record=pages.add(pointer,raw,format);mapping[pointer]=record["path"]
+            content=b"".join(part for _,part in raw.chunks()) if isinstance(raw,ScientificPayload) else raw
+            record=pages.add(pointer,content,format);mapping[pointer]=record["path"]
         else:
-            # The exact original JSON is also retained for ordinary tools. The
-            # default Raven browser sees its ordered, byte-exact text segments.
-            canonical="raw-sources/"+Path(pointer).name
-            file=output/canonical;file.parent.mkdir(exist_ok=True);file.write_bytes(raw);mapping[pointer]=canonical
-            raw_segments[canonical]=[dict(pages.add("source-segments/"+Path(pointer).name+".part"+f"{i:04d}"+".txt",
-                part,"text"),byte_offset=start) for i,(start,part) in enumerate(_byte_chunks(raw))]
+            record,descriptor=source_segments(pages,pointer,raw);mapping[pointer]=record["path"]
+            raw_segments[record["path"]]=dict(index_sha256=record["sha256"],source_sha256=descriptor["source_sha256"],
+                source_bytes=descriptor["source_bytes"],segments=len(descriptor["segments"]))
     data=_mapped(data,mapping)
+    for source in data["sources"]:
+        if source["path"] in raw_segments:source.update(representation="exact-segments",source_descriptor_sha256=raw_segments[source["path"]]["index_sha256"])
+    for attempt in data.get("incomplete_attempts",[]):
+        for source in attempt["files"]:
+            if source["path"] in raw_segments:source.update(representation="exact-segments",source_descriptor_sha256=raw_segments[source["path"]]["index_sha256"])
+    for rows in data["tables"].values():
+        for row in rows:
+            if row.get("source_path") in raw_segments:row["source_representation"]="exact-segments"
     tables={}
     for name,rows in data["tables"].items():
         columns=sorted({key for row in rows for key in row}) or ["status"]
@@ -133,15 +223,15 @@ def publish(output, data, copies, config, campaign):
             chunks.append(dict(start_row=start,rows=len(part),json=json_record,csv=csv_record));start+=len(part)
         tables[name]=dict(rows=len(rows),columns=columns,chunks=chunks)
     sections={}
-    for name in ("sources","omissions","decisions","lineage_projects"):
-        rows=data[name];chunks=[];start=0
+    for name in ("sources","omissions","decisions","lineage_projects","incomplete_attempts"):
+        rows=data.get(name,[]);chunks=[];start=0
         for index,part in enumerate(_row_chunks(rows)):
             payload=dict(schema="tdn.tangent-response-section-chunk/v1",section=name,start_record=start,total_records=len(rows),records=part)
             record=pages.add("catalogs/"+name+"-"+f"{index:04d}"+".json",_json(payload),"json")
             chunks.append(dict(start_record=start,records=len(part),**record));start+=len(part)
         sections[name]=dict(records=len(rows),chunks=chunks)
     artifact_projects=pages.finish()
-    index={key:value for key,value in data.items() if key not in ("tables","sources","omissions","decisions","lineage_projects")}
+    index={key:value for key,value in data.items() if key not in ("tables","sources","omissions","decisions","lineage_projects","incomplete_attempts")}
     index.update(schema="tdn.tangent-response-research-index/v1",research_schema=data["schema"],tables=tables,sections=sections,
         decisions=[{key:decision[key] for key in ("gate","decision","eligible","stage","source_path","source_sha256") if key in decision} for decision in data["decisions"]],
         artifact_projects=artifact_projects,raw_source_segments=raw_segments,
@@ -171,3 +261,35 @@ def read_section(output,index,section):
         rows.extend(payload["records"])
     if len(rows)!=index["sections"][section]["records"]:raise ValueError("Research section pages changed their complete denominator")
     return rows
+
+
+def source_bytes(output,source):
+    """Recover source bytes from a citation, verifying each part and the whole."""
+    root=Path(output);path=shared._inside(root,root/shared.relative_path(source["path"]))
+    if source.get("representation")!="exact-segments":
+        with path.open("rb") as stream:
+            before=os.fstat(stream.fileno())
+            if not stat.S_ISREG(before.st_mode) or before.st_size>PAGE_BYTES:raise ValueError("Source citation exceeds its bounded regular-file scope")
+            raw=stream.read(PAGE_BYTES+1);after=os.fstat(stream.fileno())
+        signature=lambda s:(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
+        if (signature(before)!=signature(after) or signature(after)!=signature(path.stat(follow_symlinks=False))
+                or len(raw)!=before.st_size or len(raw)!=source["bytes"] or len(raw)>PAGE_BYTES
+                or hashlib.sha256(raw).hexdigest()!=source["sha256"]):raise ValueError("Source citation differs from its original bytes")
+        yield raw;return
+    descriptor,_,_=shared.read_metadata(path,root=root,expected=source["source_descriptor_sha256"])
+    if (descriptor.get("schema")!="tdn.tangent-response-source-segments/v1"
+            or descriptor["source_sha256"]!=source["sha256"] or descriptor["source_bytes"]!=source["bytes"]
+            or descriptor["source_bytes"]>SCIENCE_PAYLOAD_BYTES):raise ValueError("Scientific source segment identity differs")
+    checksum=hashlib.sha256();size=0
+    for part in descriptor["segments"]:
+        if part["byte_offset"]!=size or not 0<part["bytes"]<=CHUNK_BYTES+4:raise ValueError("Scientific source segments have a byte gap or exceed their bound")
+        file=shared._inside(root,root/shared.relative_path(part["path"]))
+        with file.open("rb") as stream:
+            before=os.fstat(stream.fileno())
+            if not stat.S_ISREG(before.st_mode) or before.st_size!=part["bytes"]:raise ValueError("Scientific source segment size changed")
+            raw=stream.read(CHUNK_BYTES+5);after=os.fstat(stream.fileno())
+        signature=lambda s:(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
+        if (signature(before)!=signature(after) or signature(after)!=signature(file.stat(follow_symlinks=False))
+                or len(raw)!=part["bytes"] or hashlib.sha256(raw).hexdigest()!=part["sha256"]):raise ValueError("Scientific source segment hash changed")
+        checksum.update(raw);size+=len(raw);yield raw
+    if size!=source["bytes"] or checksum.hexdigest()!=source["sha256"]:raise ValueError("Scientific source whole hash differs")

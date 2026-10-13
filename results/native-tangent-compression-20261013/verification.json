@@ -1,0 +1,80 @@
+{
+  "schema": "tdn.tangent-response-native-review-verification/v1",
+  "scope": "Cloud CPU inspection and reporting verification of original native evidence; no scientific stages or native jobs executed",
+  "review_date_utc": "2026-10-13",
+  "native_commit": "582c06e4bace5faa785d2abcf50e5a717dda92a0",
+  "native_source_tree_sha256": "add29d2765520b56db76c1e400e9c437272dd29ef00a8ce88a38bef194bdabdf",
+  "reporting_software": {
+    "python": "3.12.14",
+    "executable": "/workspace/TDN/.venv/bin/python",
+    "venv": true,
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "git_commit": "489732d02c58f935690c71b6f2ffe3e4283f7c39",
+    "git_available": true,
+    "tracked_or_untracked_changes": true,
+    "source_tree_sha256": "3419bd3ee5c2184437b0da9c1f4548502c30e2cc343e8c2baa86248c9cd44235",
+    "execution_mode": "carc_or_local_cpu",
+    "slurm_job_id": null,
+    "cuda_available": false
+  },
+  "reporting_source_sha256": {
+    "tdn/analysis/tangent_response/report.py": "f523ec62e224eb34fb94ef0c6a90fdc0e0fc03fe97b49fdb9ff53238ebfeb739",
+    "tdn/analysis/tangent_response/report_artifacts.py": "314772036a61386aef0d4ab394d5a70ef1ccf84a7bfad9efcf5a69eb29aca148",
+    "tests/test_tangent_response_large_artifacts.py": "f457944a1990f7630a531036611ffb0ea7ba7a8028b359163bbbf9ccf43d45dd",
+    "tests/test_tangent_response_raven.py": "6186d2048af72677f4ec6ee999ac97075e4c3d80c49a4ceeae1ed6b3a4e6ce93"
+  },
+  "regression": {
+    "tests": 86,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suite_timestamp": "2026-10-13T11:55:12.642066+00:00",
+    "source_files_modified_before_suite": true
+  },
+  "commands": {
+    "audit": "PYTHONPATH=/workspace/TDN .venv/bin/python .runtime/onboarding/tangent-native-large-science-observer.py",
+    "regression": ".venv/bin/python -m pytest -q tests/test_tangent_response_raven.py tests/test_tangent_response_large_artifacts.py tests/test_tangent_response_telemetry.py tests/test_response_raven.py tests/test_response_diagnostic_raven_launch.py --junitxml=.runtime/onboarding/tangent-native-reporting-repair-junit.xml"
+  },
+  "command_working_directory": "/workspace/TDN",
+  "exact_scale_receipt": "reporting-scale-verification.json",
+  "exact_junit_receipt": "reporting-tests.xml",
+  "scientific_reruns": 0,
+  "native_jobs_submitted": 0,
+  "original_decisions_modified": false,
+  "original_worker_seals_modified": false,
+  "evidence_scopes": {
+    "A-decision.json": "Original uploaded science decision, byte unchanged",
+    "B-decision.json": "Original uploaded science decision, byte unchanged",
+    "native-evidence-audit.json": "Independent hash/identity checks of recorded native execution; omitted binaries not replayed",
+    "scientific-audit.json": "Independent analysis of recorded JSON and denominators",
+    "formula-audit.json": "Read-only inspection of recorded fits and implementation; no refits",
+    "compression-review.png": "Plot from unchanged original JSON; not new scientific measurements",
+    "reporting-tests.xml": "Cloud CPU regression, no native CUDA validation",
+    "reporting-scale-verification.json": "Post-hoc complete-source encoding and relocated default Raven reader audit; original failure/gate preserved"
+  },
+  "preserved_audit_programs": {
+    ".runtime/onboarding/tangent-native-large-science-observer.py": {
+      "snapshot": "verification-programs/tangent-native-large-science-observer.py",
+      "sha256": "c92e653684d442af7eb19298c59d43712bf81528544e808d9c19b0000925acef",
+      "executed_as": "Observer was executed as a file; supplementary programs are exact preserved bodies of the executed .venv/bin/python heredocs, not reruns."
+    },
+    ".runtime/onboarding/tangent-native-large-science-name-projection.py": {
+      "snapshot": "verification-programs/tangent-native-large-science-name-projection.py",
+      "sha256": "b4bb06d67fe7616c19d5bff8777e8cbe42b49d9326d72da7d5849990235f4116",
+      "executed_as": "Observer was executed as a file; supplementary programs are exact preserved bodies of the executed .venv/bin/python heredocs, not reruns."
+    },
+    ".runtime/onboarding/tangent-native-large-science-default-output-checks.py": {
+      "snapshot": "verification-programs/tangent-native-large-science-default-output-checks.py",
+      "sha256": "f344d0f5d037ff81dd4aa292cf57c50132a1047aac3156c6821c82baf28ee733",
+      "executed_as": "Observer was executed as a file; supplementary programs are exact preserved bodies of the executed .venv/bin/python heredocs, not reruns."
+    }
+  },
+  "audit_program_execution_order": [
+    "tangent-native-large-science-observer.py",
+    "tangent-native-large-science-name-projection.py",
+    "tangent-native-large-science-default-output-checks.py"
+  ]
+}

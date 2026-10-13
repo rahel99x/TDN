@@ -10,6 +10,13 @@ See the [implementation overview](TANGENT_RESPONSE_RESEARCH.md) and
 [verification record](../results/tangent-response-verification/README.md) for
 the delivered interfaces, completed checks and pending native evidence.
 
+The [uploaded native FD pilot](../results/native-tangent-compression-20261013/README.md)
+has A `PASS`, B `STOP`, and two reporting failures. Preserve that original run
+and its source-bound decisions. It does not authorize learned calibration or
+training; reporting repair does not change a scientific gate or make an old
+failed worker complete. Use the review's conditioning/state diagnostics before
+proposing further numerical work.
+
 The configured Fedora checkout uses its own standalone Python `.venv`, actual
 Slurm allocations and the RTX 4090. CPU jobs request at most eight cores and
 48 GiB; GPU jobs request four cores, 32/48 GiB and one GPU. Allocations are at most
@@ -181,6 +188,16 @@ chunks; the HTML overview links them directly. Worker pages describe actual
 allocations, while artifact pages carry data. Both page families are included
 in the portable zip.
 
+Declared compression aggregates larger than a page are verified against their
+science seal and retained once as ordered source segments. Worker pages carry
+small provenance descriptors that explicitly identify the original native-only
+source; they do not promise a completed report. The producer page limit remains
+7 MiB, Raven's default reader limit 8 MiB, generic metadata 256 MiB and portable
+transport 2 GiB. The compression-only scientific payload limit is 1 GiB.
+Incomplete attempts with missing declared content are preserved in the overview's
+`incomplete_attempts` evidence section and excluded from live portable discovery.
+Their original inventory bytes and native failure states remain visible.
+
 The report unit produces `report/tangent-response-raven.zip` and
 `report/tangent-response-raven.manifest.json`. Extract the zip to any directory
 and register its root, or open `runs/<child-id>-analysis/outputs/index.html` in a
@@ -212,6 +229,12 @@ once its submitted jobs and coordinator are terminal. Pulling updated code does
 not replace Slurm's already captured script or authorize recovery under a changed
 source fingerprint. Omit `--run-id` on the new Raven launch to generate a fresh
 ID; the campaign's prospective scientific gates remain in force.
+
+For the uploaded A PASS/B STOP pilot, the reviewed scientific measurements are
+already sufficient to stop expansion. Its reporting-only repair does not require
+a fresh numerical campaign, validate exact recovery under changed source, or
+retroactively seal jobs 2891/2893. Read the saved review and verification receipts;
+freeze a bounded compression diagnosis before proposing additional numerical work.
 
 If exactly one child failed, the parent recovery command resolves that child and
 prints the literal replacement phase. Its execute form has the same guards:

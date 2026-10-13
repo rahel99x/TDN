@@ -34,6 +34,7 @@ RESEARCH_NAMES = {"mechanism_results.json", "compression_results.json", "trainin
     "learning_curves.jsonl", "query_plan.json", "query_registry.json", "reference_summary.json",
     "data_manifest.json", "fit_screen.json", "screening.json", "mathematical_bound.json", "work.json", "summary.json"}
 METHODS = ("anchor", "G", "U", "fixed_shared_basis", "learned_response", "residual_fno")
+LARGE_SCIENCE_KINDS = {"compression_results.json": "compression"}
 DEFINITIONS = {
     "RMS / MSE": "Physical root-mean-square / mean-squared field error. FD uses nodal weighting; Galerkin uses its physical interpolant and Nyquist weights. Paired descendants are not independent parents.",
     "maximum": "Largest sampled absolute physical error; not a continuous supremum certificate.",
@@ -58,8 +59,30 @@ def start_attempt(ctx, job_id=None, sourcehash=None, *, worker_managed=False):
 
 
 def finish_attempt(ctx, summary):
+    from . import report_artifacts as artifacts
     ctx._raven_config = CONFIG
-    path = shared.finish_attempt(ctx, summary, metadata_files=RESEARCH_NAMES|{"summary.json", "execution.json", "protocol.json"})
+    names=RESEARCH_NAMES|{"summary.json", "execution.json", "protocol.json"}
+    unit=getattr(ctx,"unit",ctx.protocol["units"][ctx.stage])
+    large={name for name,kind in LARGE_SCIENCE_KINDS.items() if unit.get("kind")==kind
+           and (Path(ctx.path)/name).is_file() and (Path(ctx.path)/name).stat().st_size>artifacts.PAGE_BYTES}
+    # Publish truthful worker/body status before the optional bulk export. In
+    # particular, a failed body without a science seal must still end FAILED.
+    path = shared.finish_attempt(ctx, summary, metadata_files=names-large)
+    large_index=[]
+    if path is not None and large:
+        try:large_index=_finish_large_science(ctx,large)
+        except (OSError,ValueError,KeyError,TypeError) as error:
+            if summary.get("status") not in ("FAILED","CANCELLED","TIMEOUT"):raise
+            large_index=_finish_unsealed_science(ctx,large,str(error))
+    if path is not None and large_index:
+        source_index,_,_=shared.read_metadata(path/"outputs/source_index.json",root=path)
+        source_index["sources"].extend(large_index);source_index["scope"]="Research metadata and explicit bulk-source descriptors; sealed bulk bytes remain native-only here and are retained once by the final research overview; unsealed failure evidence is separately named; binary replay is not included"
+        write_json(path/"outputs/source_index.json",source_index)
+        contract,_,_=shared.read_metadata(path/"outputs/contract.json",root=path)
+        entries={row["path"]:row for row in contract["outputs"]}
+        for source in large_index:
+            entries[source["path"]]=dict(path=source["path"],required=True,min_bytes=1,sha256=source["sha256"],format="json")
+        write_json(path/"outputs/contract.json",dict(version=1,outputs=list(entries.values())))
     if path is not None and (summary.get("native_worker_finalized") or not ctx.protocol.get("execution_scope") == "NATIVE_RESEARCH"):
         # The terminal observer has stopped. Never hash a still-recording stream
         # in a science CLI's deferred native completion.
@@ -68,6 +91,79 @@ def finish_attempt(ctx, summary):
             # Optional collector publication cannot reverse a scientific result.
             print("TDN worker telemetry publication warning: "+str(error)[:512], file=sys.stderr)
     return path
+
+
+def _finish_large_science(ctx,names):
+    """Verify bulk science without duplicating its bytes in a worker export."""
+    from . import report_artifacts as artifacts
+    path=shared.attempt_path(ctx)
+    if not (path/"run.json").is_file():return []
+    manifest,manifest_hash,_=shared.read_metadata(Path(ctx.path)/"science_manifest.json",root=ctx.path)
+    marker=shared._inside(ctx.path,Path(ctx.path)/"COMPLETED")
+    if (manifest.get("schema")!="tdn.tangent-response-science/v1" or manifest.get("stage")!=ctx.stage
+            or manifest.get("profile")!=ctx.protocol["profile"] or manifest.get("protocol_sha256")!=digest(ctx.protocol)
+            or not stat.S_ISREG(marker.stat().st_mode) or marker.stat().st_size>128 or marker.read_text().strip()!=manifest_hash
+            or manifest.get("source_tree_sha256")!=(getattr(ctx,"_raven_sourcehash",None) or getattr(ctx,"sourcehash",None))):
+        raise ValueError("Large science export requires its exact completed science seal")
+    directory=path/"outputs/large-science";directory.mkdir(parents=True,exist_ok=True)
+    records=[]
+    for name in sorted(names):
+        payload=artifacts.ScientificPayload(Path(ctx.path)/name,ctx.path,manifest["artifacts"][name])
+        descriptor=dict(schema="tdn.tangent-response-native-source/v1",source_name=name,source_sha256=payload.sha256,
+            source_bytes=len(payload),science_manifest_sha256=manifest_hash,science_seal_status="VERIFIED",
+            source_tree_sha256=manifest["source_tree_sha256"],protocol_sha256=manifest["protocol_sha256"],
+            native_stage=ctx.stage,native_source_token=name,availability="ORIGINAL_NATIVE_PROJECT_ONLY",
+            scope="Provenance token, not a local artifact pointer. Original sealed bytes remain in the native science stage. A successful final research overview retains the complete source once in verified lossless segments; this descriptor does not assert that a report has completed.")
+        target=directory/(name+".descriptor.json")
+        if target.exists():
+            prior,_,_=shared.read_metadata(target,root=path)
+            if prior!=descriptor:raise ValueError("Large scientific descriptor changed after publication")
+        else:write_json(target,descriptor)
+        _,checksum,_=shared.read_metadata(target,root=path)
+        records.append(dict(path=target.relative_to(path).as_posix(),source_name=name,
+            sha256=checksum,source_sha256=payload.sha256,bytes=len(payload),representation="native-source-descriptor",
+            availability="ORIGINAL_NATIVE_PROJECT_ONLY",
+            science_manifest_sha256=manifest_hash,science_seal_status="VERIFIED"))
+    return records
+
+
+def _finish_unsealed_science(ctx,names,reason):
+    """Retain partial bytes as failure evidence, never as sealed science."""
+    from . import report_artifacts as artifacts
+    path=shared.attempt_path(ctx);directory=path/"outputs/unsealed-science"
+    directory.mkdir(parents=True,exist_ok=True)
+    records=[];payloads={}
+    for name in sorted(names):
+        file=shared._inside(ctx.path,Path(ctx.path)/name)
+        with file.open("rb") as stream:
+            info=os.fstat(stream.fileno())
+            if not stat.S_ISREG(info.st_mode) or info.st_size>artifacts.SCIENCE_PAYLOAD_BYTES:
+                raise ValueError("Unsealed scientific evidence exceeds its bounded regular-file scope")
+            checksum=hashlib.sha256()
+            for block in iter(lambda:stream.read(artifacts.CHUNK_BYTES),b""):
+                checksum.update(block)
+                if stream.tell()>artifacts.SCIENCE_PAYLOAD_BYTES:raise ValueError("Unsealed evidence grew beyond its bounded scope")
+        payloads[name]=artifacts.ScientificPayload(file,ctx.path,checksum.hexdigest())
+    catalog=directory/"sources.json"
+    if catalog.exists():
+        prior,_,_=shared.read_metadata(catalog,root=path)
+        if {r["source_name"]:r["source_sha256"] for r in prior["sources"]}!={name:payload.sha256 for name,payload in payloads.items()}:
+            raise ValueError("Unsealed failure evidence changed after publication")
+        for source in prior["sources"]:
+            for _ in artifacts.source_bytes(directory,dict(path=source["local_path"],representation="exact-segments",
+                    source_descriptor_sha256=source["sha256"],sha256=source["source_sha256"],bytes=source["bytes"])):pass
+        return prior["sources"]
+    pages=artifacts.Pages(directory,shared.stable_id(path.name+"-unsealed"),CONFIG,
+        dict(source_tree_sha256=getattr(ctx,"sourcehash",None),protocol_sha256=digest(ctx.protocol)))
+    for name,payload in payloads.items():
+        index,_=artifacts.source_segments(pages,name,payload)
+        records.append(dict(path="outputs/unsealed-science/"+index["path"],local_path=index["path"],source_name=name,
+            sha256=index["sha256"],source_sha256=payload.sha256,bytes=len(payload),representation="exact-segments",
+            science_manifest_sha256=None,science_seal_status="UNSEALED_FAILURE_EVIDENCE",reason=reason[:2048]))
+    projects=pages.finish()
+    write_json(catalog,dict(schema="tdn.tangent-response-unsealed-science/v1",sources=records,artifact_projects=projects,
+        scope="Exact observed failure bytes only; no valid science seal or successful worker outcome is inferred"))
+    return records
 
 
 def _finish_telemetry(ctx, path, summary):
@@ -289,6 +385,71 @@ def _attempt_metadata(ctx, worker, stage, tables, copies, seen):
                 tables[group].append(dict(_flat(source),**base,stream_path=stream_pointer))
 
 
+def _incomplete_attempts(ctx,project):
+    """Preserve failed/unfinalized evidence without presenting a broken run."""
+    records=[];copies={}
+    for stage in ctx.protocol["stages"]:
+        if stage==ctx.stage:continue
+        probe=SimpleNamespace(path=Path(ctx.path).parent/stage,stage=stage,protocol=ctx.protocol)
+        worker=shared.attempt_path(probe);inventory=worker/"run.json"
+        if not inventory.is_file():continue
+        run,_,_=shared.read_metadata(inventory,root=project)
+        metadata=run.get("metadata",{})
+        if (run.get("schema")!="raven.run/v1" or run.get("project_id")!=CONFIG["project_id"]
+                or run.get("run_id")!=worker.name or metadata.get("stage")!=stage
+                or metadata.get("protocol_sha256")!=digest(ctx.protocol)
+                or getattr(ctx,"sourcehash",None) and metadata.get("source_tree_sha256")!=ctx.sourcehash):
+            raise ValueError("Incomplete worker inventory differs from its declared source/stage")
+        missing=[]
+        for key,value in run.get("paths",{}).items():
+            target=shared._inside(worker,worker/shared.relative_path(value))
+            exists=target.is_dir() and any(target.iterdir()) if key in ("outputs","logs","passports") else target.is_file()
+            if not exists:missing.append(value)
+        log_index=run.get("paths",{}).get("log_index")
+        if log_index and (worker/log_index).is_file():
+            logs,_,_=shared.read_metadata(worker/log_index,root=worker)
+            if logs.get("schema")!="raven.logs/v1" or logs.get("run_id")!=worker.name or len(logs.get("logs",[]))>256:
+                raise ValueError("Incomplete worker log index differs from its exact identity")
+            for log in logs.get("logs",[]):
+                target=shared._inside(worker,worker/shared.relative_path(log["path"]))
+                if not target.is_file():missing.append(log["path"])
+        unfinished=run.get("state") in ("RUNNING","PENDING","CREATED","SUBMITTED")
+        if not missing and not unfinished:continue
+        prefix="incomplete-evidence/"+worker.name;files=[]
+        owned=list(worker.rglob("*"))
+        if len(owned)>4096:raise ValueError("Incomplete native attempt exceeds its bounded evidence inventory")
+        for file in owned:
+            shared._inside(worker,file)
+            if not file.is_file():continue
+            relative=file.relative_to(worker).as_posix()
+            renamed=relative.rsplit("/",1)
+            basename={"run.json":"inventory.raw.json","logs.json":"log-index.raw.json"}.get(renamed[-1],renamed[-1])
+            relative=(renamed[0]+"/" if len(renamed)==2 else "")+basename
+            pointer=prefix+"/"+relative
+            if file.stat().st_size>shared.MAX_METADATA_BYTES:
+                from .report_artifacts import ScientificPayload
+                checksum=hashlib.sha256()
+                with file.open("rb") as stream:
+                    for block in iter(lambda:stream.read(1<<20),b""):checksum.update(block)
+                raw=ScientificPayload(file,worker,checksum.hexdigest())
+            else:raw=file.read_bytes()
+            checksum=raw.sha256 if hasattr(raw,"sha256") else hashlib.sha256(raw).hexdigest()
+            copies[pointer]=raw;files.append(dict(original_name=file.relative_to(worker).as_posix(),path=pointer,sha256=checksum,bytes=len(raw)))
+        worker_state=Path(ctx.path).parent/"state"/(stage+".json");actual_state="UNAVAILABLE"
+        if worker_state.is_file():
+            state,checksum,raw=shared.read_metadata(worker_state,root=Path(ctx.path).parent)
+            if ("slurm_job_id" in state and state["slurm_job_id"]!=run.get("job_id")
+                    or "protocol_sha256" in state and state["protocol_sha256"]!=digest(ctx.protocol)):
+                raise ValueError("Incomplete worker state differs from its declared allocation/protocol")
+            actual_state=state.get("status","UNKNOWN");pointer=prefix+"/native-worker-state.raw.json";copies[pointer]=raw
+            files.append(dict(original_name="native-worker-state",path=pointer,sha256=checksum,bytes=len(raw)))
+        records.append(dict(stage=stage,attempt=worker.name,job_id=run.get("job_id"),original_raven_state=run.get("state"),
+            actual_native_worker_state=actual_state,missing_declared_paths=missing,files=files,
+            excluded_inventory_path=worker.relative_to(project).as_posix(),
+            scope="Original failed/unfinished metadata retained unchanged as evidence; not a completed portable attempt"))
+    return records,copies
+
+
 def _lineage_attempts(ctx, tables, copies, seen):
     workflows, errors = _workflow_lineage(ctx);projects=[];total_jobs=0
     for workflow in workflows:
@@ -415,7 +576,10 @@ def collect(ctx):
                         omissions.append(dict(stage=stage, path=name, sha256=expected, bytes=file.stat().st_size,
                             reason="Retained in native science run; compact review omits binary replay and repeated infrastructure metadata"))
                         continue
-                    payload, checksum, raw = shared.read_metadata(file, root=path, expected=expected)
+                    from .report_artifacts import PAGE_BYTES,ScientificPayload
+                    if LARGE_SCIENCE_KINDS.get(name)==unit["kind"] and file.stat().st_size>PAGE_BYTES:
+                        raw=ScientificPayload(file,path,expected);payload=raw.json();checksum=raw.sha256
+                    else:payload, checksum, raw = shared.read_metadata(file, root=path, expected=expected)
                     copy = "sources/"+checksum+file.suffix
                     raw_copies[copy] = raw
                     source = dict(stage=stage, name=name, path=copy, sha256=checksum, bytes=len(raw),
@@ -456,16 +620,18 @@ def collect(ctx):
         recorded_rows=sum(row.get("method", row.get("arm", row.get("control"))) == method for table in tables.values() for row in table),
         status="RECORDED" if any(row.get("method", row.get("arm", row.get("control"))) == method for table in tables.values() for row in table) else "NOT_RUN_OR_MISSING",
         scope="Requested/observed methods; raw rows retain paired query denominators, not independent replicate counts") for method in sorted(methods)]
+    incomplete,extra_copies=_incomplete_attempts(ctx,shared.raven_root(ctx));raw_copies.update(extra_copies)
     return dict(schema=SCHEMA, profile=ctx.protocol["profile"], protocol_sha256=digest(ctx.protocol),
         source_tree_sha256=next(iter(source_hashes), getattr(ctx, "sourcehash", None)),
         independent_unit="Parent field; phases/horizons/grids/seeds/probes are paired descendants",
         native_gpu_verification="NOT_INFERRED_FROM_REPORTING", decisions=decisions, sources=sources,
         lineage_projects=lineage_projects,lineage_costs=lineage_costs,
+        incomplete_attempts=incomplete,
         unsupported_targets=ctx.protocol.get("unsupported_targets", {}),
         omissions=omissions, tables=dict(tables),
         summary=dict(registered_units=len(units), completed_science_units=sum(r["status"] == "COMPLETED" for r in units),
             missing_units=sum(r["status"] == "NOT_RUN_OR_MISSING" for r in units), unresolved_source_units=sum(r["status"] == "UNRESOLVED_SOURCE" for r in units),
-            declared_methods=len(methods), recorded_source_files=len(sources))), raw_copies
+            declared_methods=len(methods), recorded_source_files=len(sources), incomplete_portable_attempts=len(incomplete))), raw_copies
 
 
 def _plots(output, tables):
@@ -571,8 +737,11 @@ def run(ctx):
     (attempt/"logs/research.log").write_text(json.dumps(data["summary"])+"\n")
     (attempt/"metrics.jsonl").write_text(json.dumps(shared.metric_record(data["summary"], phase="research_overview", t=time.time()))+"\n")
     current = shared.attempt_path(ctx).relative_to(project).as_posix()
-    receipt = portable.portable_export(project, Path(ctx.path)/BUNDLE, exclude_attempts=[current])
+    exclusions=[current]+[entry["excluded_inventory_path"] for entry in data["incomplete_attempts"]]
+    receipt = portable.portable_export(project, Path(ctx.path)/BUNDLE, exclude_attempts=exclusions)
     write_json(Path(ctx.path)/"research_summary.json", dict(data["summary"], portable=receipt,
-        decisions=data["decisions"], exclusions="Current reporter worker has not yet finalized; its native attempt is excluded from the transport"))
+        decisions=data["decisions"], exclusions=dict(reporter="Current reporter worker has not yet finalized",
+            incomplete_attempts=index["sections"]["incomplete_attempts"],
+            scope="Unfinished or structurally incomplete live inventories are excluded; unchanged original metadata, logs and actual failure states are retained as explicit evidence")))
     return dict(status="COMPLETED_RESEARCH_REPORT", scientific_decisions=data["decisions"], research=data["summary"],
                 portable_research_bundle=BUNDLE, native_gpu_verification="NOT_INFERRED_FROM_REPORTING")

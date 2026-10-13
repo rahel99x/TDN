@@ -144,3 +144,35 @@ The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implem
 - Diagnosed older Response job 2080 from the subsequently supplied stderr and native checkpoint-reload receipt. Predictions, loaded state and checkpoint bytes matched exactly; runtime comparison failed because only the child recorded `deterministic_warn_only: false`. This indicates an older parent schema and newer child schema; the user subsequently confirmed an update during the running jobs. Preserved the original FAIL without defaulting missing metadata or relaxing comparisons. Added engine-frozen source checks before parent reload/child launch, independent child checks and exact source receipts. All 104 focused CPU reload/training/CLI/dependency/workflow checks passed, including real child-process stale-source rejection and corruption checks. No models, formulas, scientific thresholds, datasets or historical numerical outputs changed, and no campaign or native CUDA work was rerun. See results/response-runtime-reload-2080/ and both native runbooks; source-changed attempts require fresh IDs/calibration after all related jobs and coordinators are terminal.
 
 - Added the explicitly requested standalone cancellation helper for the old Response batch containing failed job 2080. The posted queue shows 74 pending/held old Response allocations alongside progressing newer Tangent work and unrelated jobs; cancellation targets only the exact recorded run, verified against live allocation ownership, full names and frozen comments. Finished submission metadata and the short controller lock exclude concurrent submissions; original artifacts remain preserved, terminal accounting is verified for requested cancellation IDs, and missing accounting leaves UNVERIFIED. All 36 focused CPU recorder/lock/evidence-preservation checks passed. No actual native jobs were cancelled or numerical campaigns rerun in cloud. The detached helper runs under .runtime without pulling source into the active Tangent checkout; see docs/RESPONSE_BATCH_CANCELLATION.md and results/response-batch-cancellation/.
+
+- Reviewed the uploaded native FD Tangent mechanism/compression pilot under its
+  original clean source 582c06e4, preserving all seven archive parts, decisions
+  and failed-worker evidence. Transport verified 24,944 retained files; native
+  identity/seal checks cover 440 recorded executions and both exact 29/29 CUDA
+  audit rosters. Stage A passed with 1,434.99-fold parent-weighted physical RMS
+  improvement; stage B stopped for every reusable rank-2/4/8 candidate. The
+  rank-eight parent oracle retained only 53.78% endpoint gain and passed none of
+  2,304 genuinely withheld directions. Recorded conditioning near 1e10,
+  state/physics pooling and basis projection loss require distinct bounded
+  diagnoses; no sign/scaling bug, learned advantage or repair by regularization
+  was established. Ancillary unresolved endpoints, all denominators, thresholds
+  and original A PASS/B STOP remain visible.
+
+- Fixed two reporting defects exposed by that upload: job 2891's completed
+  539,255,609-byte compression science payload exceeded the generic 256 MiB
+  metadata reader; job 2893's portable archive advertised a RUNNING attempt
+  with a missing summary. Compression-only sealed payload handling now streams
+  lossless source segments under a separate 1 GiB bound, while worker pages
+  hold native-source provenance descriptors. Terminal failure is published
+  before bulk work, and broken attempts retain original metadata/log/state as
+  explicit evidence outside live portable discovery. Generic metadata, page,
+  Raven reader and 2 GiB transport limits remain unchanged. All 86 focused
+  CPU reporting/telemetry/native-launch tests passed without skips. Actual-size
+  post-hoc encoding retained 534,984 compiled records and reconstructed the
+  original source SHA after ZIP relocation; trusted Raven c34f0892 validated
+  229 contracts and every one of 1,867 outputs without unchecked entries.
+  Conservative native-name/full-original-export projection remains below
+  2 GiB. No scientific stages, model fitting/training, new native jobs or source
+  guard bypasses ran; original jobs remain FAILED and unsealed. See
+  results/native-tangent-compression-20261013/ for the review, plot, legend,
+  exact decisions and reporting verification receipts.

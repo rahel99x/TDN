@@ -1,0 +1,112 @@
+{
+  "scope": "Read-only code and verified JSON evidence audit; no imported uploaded code, checkpoints, numerical arrays, teacher reacquisition, model refit or campaign expansion",
+  "source": "tdn/analysis/tangent_response/compression.py",
+  "proved_code_findings": [
+    {
+      "finding": "Shared context pools every parent and physics setting at the same target/grid/lengths; prediction receives source and times only",
+      "lines": [
+        196,
+        215,
+        600,
+        705,
+        715
+      ]
+    },
+    {
+      "finding": "A constant probe at the same times has identical shared-model inputs across different states, although the leading true response correction is -2*r*(h-s)*center(a_s)",
+      "lines": [
+        222,
+        234,
+        340,
+        355,
+        600
+      ],
+      "meaning": "This is a structural limitation of the fixed shared control; it does not test the eventual state-conditioned encoder"
+    },
+    {
+      "finding": "The source regression uses a raw weighted SVD, rcond1e-10 and ridge0; the separate conditional_fit equilibrates columns but is not this code path",
+      "lines": [
+        112,
+        273,
+        274,
+        277,
+        717
+      ]
+    },
+    {
+      "finding": "Endpoint weights are zero for every independent source-fraction probe; the endpoint-weighted map therefore fits residual opportunities only under this native menu",
+      "lines": [
+        331,
+        355,
+        497,
+        501,
+        716
+      ],
+      "meaning": "Huge independent-direction errors are extrapolation, and this changes the decoder objective in addition to the spatial POD basis"
+    },
+    {
+      "finding": "Per-state oracle keys factors by parent only, pooling changed input fields and physics into one local fit",
+      "lines": [
+        727,
+        730,
+        738,
+        743
+      ],
+      "meaning": "The two designed diagnostic parents each pool12 input/physics states; other fixed-context parents still fail truly unseen directions"
+    },
+    {
+      "finding": "Fit/apply physical whitening, temporal reshape, and the negative residual endpoint assembly are algebraically consistent by inspection; no proven sign, transpose or missing grid-factor bug",
+      "lines": [
+        35,
+        51,
+        205,
+        215,
+        218,
+        257,
+        265,
+        271,
+        278,
+        279,
+        280,
+        775,
+        776,
+        777
+      ]
+    }
+  ],
+  "recorded_conditioning": {
+    "shared_rank8_16": {
+      "retained_source_condition_ratio": 9791270035.70163,
+      "coefficient_norm": 49.93882904496779,
+      "source_effective_rank": 658,
+      "fit_snapshots": 1536,
+      "discarded_energy_fraction": 0.4384134838514627
+    },
+    "shared_min_retained_singular_value": 1.9360500736442863e-11,
+    "task_rank8_16": {
+      "retained_source_condition_ratio": 9274178749.7839,
+      "coefficient_norm": 30566.08248395515,
+      "source_effective_rank": 251,
+      "fit_snapshots": 512,
+      "discarded_energy_fraction": 0.033359922993843535
+    },
+    "task_min_retained_singular_value": 5.477518833128537e-15,
+    "state_oracle_condition_min": 959146858.2747413,
+    "state_oracle_condition_max": 9937025247.379173,
+    "joint_training_action_projection_relative_RMS_lower_bound": 0.6621279965772953,
+    "rank_interpretation": "This lower bound concerns one fixed shared output basis across the sampled operator family, not the rank of each individual state/time operator"
+  },
+  "inferences_not_proofs": [
+    "Near-cutoff inverse gains likely magnify uncertainty and incompatible pooled labels into poor extrapolation; a regularized refit has not been performed",
+    "The four time channels and sparse fit-direction coverage may limit time/physics interpolation even after conditioning repair",
+    "Correct grouping and normalization can improve qualification but cannot guarantee rank8 compression or scientific superiority"
+  ],
+  "bounded_next_diagnostic": [
+    "Preserve original B STOP and thresholds; keep further native learning gated",
+    "Use only existing sealed training labels to compare original and train-selected equilibrated/truncated or ridge-regularized coefficient fits at one declared rank",
+    "Separate spatial action projection error from source-to-coefficient regression error; report source singular values, coefficient movement and FP32 sensitivity",
+    "Group representation oracles by actual input hash, physics, geometry and target; distinguish fixed-time operator headroom from a shared time family",
+    "Keep reusable-direction and residual-endpoint objectives separate; label zero-weight probes as untrained directions",
+    "Select conditioning/time treatments using training evidence and retain validation/diagnostic roles; no automatic extra teachers, rank expansion or width sweep"
+  ]
+}
