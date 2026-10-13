@@ -197,6 +197,51 @@ run `bash scripts/fedora_response.sh validate response-smoke-c` and use
 `--calibration response-smoke-c` for the pilot. Do not use a failed smoke as
 calibration for the revised source.
 
+### Rerun after the cost allowance and Tower attachment fixes
+
+At `3c092e1`, `response-smoke-c` passed the complete 54-case CUDA suite in
+both Galerkin cost allocations, then hit their internal 240-second research
+allowances. Those failures did not report CUDA or VRAM errors. Native smoke
+cost allocations now allow 1800 seconds of scientific work plus reporting
+headroom, for a 33-minute Slurm limit. This is a ceiling, not a completion-time
+forecast. The declared models, schedules, fresh-process probes, query/batch
+panels and correctness tests remain required. Local CPU smoke keeps its
+240-second cost allowance.
+
+The final report sealed its scientific atlas before its Tower export failed:
+the adapter attempted to register more than Tower's 256 permitted log
+attachments. Direct attachments are now capped, with the remaining entries
+explicitly counted and accessible through the complete figure/table catalog.
+The Tower application and scientific artifact seals are unchanged.
+
+Keep all three earlier smoke attempts. An unchanged-source recovery would
+retain the same cost allowances; the fixes change source and protocol identity,
+so use a fresh smoke and calibration after the revised code is available in
+the native checkout and all old jobs are terminal:
+
+```bash
+cd /home/rahel/TDN
+git pull --ff-only
+git rev-parse HEAD
+bash scripts/fedora_response.sh plan --smoke --run-id response-smoke-d \
+  --targets fd_same_grid galerkin_same_grid galerkin_projected_fine
+bash scripts/fedora_response.sh run --smoke --run-id response-smoke-d \
+  --targets fd_same_grid galerkin_same_grid galerkin_projected_fine
+```
+
+After every job is terminal, check both scheduler completion and artifact
+validation:
+
+```bash
+bash scripts/fedora_response.sh status response-smoke-d
+bash scripts/fedora_response.sh validate response-smoke-d
+bash scripts/fedora_response.sh paths response-smoke-d
+```
+
+Use `--calibration response-smoke-d` for the pilot only after the revised
+native smoke completes successfully. Local regression tests cannot establish
+that the expanded allowance completes on the RTX 4090.
+
 ## Local implementation verification
 
 These commands are appropriate for a separate cloud checkout without Slurm.

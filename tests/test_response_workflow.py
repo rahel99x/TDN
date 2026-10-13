@@ -90,6 +90,23 @@ def test_resource_serialization_does_not_propagate_unrelated_failure(controller)
     assert controller.job_dependency(workflow,'audit',[]) is None
 
 
+def test_native_smoke_cost_plan_schedules_bounded_complete_work(controller):
+    targets=['fd_same_grid','galerkin_same_grid','galerkin_projected_fine']
+    workflow=controller.prepare(controller.parser().parse_args(['plan','--smoke','--run-id','cost-budget','--targets',*targets]))
+    rows=controller.units(workflow)
+    costs=[name for name,row in rows.items() if row['kind']=='cost']
+    assert len(costs)==3
+    for name in costs:
+        res=controller.resource_for(workflow,name)
+        args=controller.scheduler_args(workflow,name)
+        assert rows[name]['seconds']==1800 and res['walltime']=='00:33:00'
+        assert controller.wall_seconds(res['walltime'])-rows[name]['seconds']==180
+        assert '--time=00:33:00' in args and '--signal=USR1@120' in args
+        assert '--cpus-per-task=4' in args and '--mem=32G' in args and '--gres=gpu:1' in args
+    assert controller.scientific_protocol(workflow)['gpu_test_cases']==controller.scientific_protocol('smoke')['gpu_test_cases']
+    assert not (controller.ROOT/'runs').exists()
+
+
 def test_submission_preserves_complete_dag_and_afterany_report(controller,monkeypatch):
     calls=runner(controller,monkeypatch)
     assert controller.main(['run','--smoke','--run-id','submitted'])==0

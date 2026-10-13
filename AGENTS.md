@@ -260,3 +260,27 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
   and analytic-control labels, thin lines and triangles for ours. Continuous
   observed-range bands are not confidence intervals. Modify project exports
   only, never Tower itself. Compact review is not full binary replay.
+
+## Response diagnostics and Raven
+
+- Read `docs/RESPONSE_DIAGNOSTIC_RESEARCH.md` and its runbook before changing
+  the diagnostic profiles. Use `scripts/response_diagnostic_campaign.sh` for
+  fresh native calibration followed by diagnostics; the separate local launcher
+  exercises reduced CPU work only. Preserve the original Response pilot gate.
+- Keep native calibration and full trials bound to the same screened six-regime
+  parent layout and exact variant workload. Require all 97 declared CUDA cases
+  and measured native work before full submission. A teacher, precision or fit
+  failure remains research evidence; it never grants confirmation eligibility.
+- Retain explicit physical-objective, gain, batching, warmup and optimizer
+  treatments. Validation selects deployment checkpoints; criterion-training
+  checkpoints are separately named diagnostics. Full-parent updates count both
+  optimizer commits and all endpoint/source/rollout work.
+- Publish project-owned Raven contracts under the run's `raven/` directory,
+  with exact native job identities, epoch metrics and relative portable paths.
+  Page campaigns above 255 units into independent detail projects; keep every
+  registered method and missing result in the root overview. Read the pinned
+  Raven standards linked in the runbook. Do not modify the Raven application.
+- Preserve completed observer reports, but rerun failure-aware metrics and
+  reports during recovery. Keep source/venv guards, all-attempt costs and the
+  existing 35-minute CPU/host/VRAM envelope. A resident-input timing panel does
+  not establish matched-tolerance solver utility or deployment economics.

@@ -36,6 +36,29 @@ def test_native_calibration_has_real_work_and_no_duplicate_family():
  assert len(trials)==8 and {t['updates'] for t in trials}=={64} and p['train_grid']==32
  assert len(TINY_REGIMES)==6 and 'precision_floor' not in TINY_REGIMES
 
+
+@pytest.mark.parametrize('local_smoke,seconds,walltime',[(False,1800,'00:33:00'),(True,240,'00:07:00')])
+def test_smoke_cost_allows_complete_work_with_shutdown_headroom(local_smoke,seconds,walltime):
+ targets=['fd_same_grid','galerkin_same_grid','galerkin_projected_fine']
+ p=build_protocol('smoke',local_smoke=local_smoke,targets=targets)
+ validate_protocol(p)
+ cost_units=[u for u in p['units'].values() if u['kind']=='cost']
+ assert {u['target_kind'] for u in cost_units}==set(targets)
+ for u in cost_units:
+  assert u['seconds']==seconds and u['walltime']==walltime
+  assert u['device']=='cuda' and u['cpus']==4 and u['mem_gib']==32
+  assert u['cost_workload']=='all' and len(u['cost_models'])==4
+  assert {r['family'] for r in u['cost_models']}==set((*FAMILIES,'coupled_source'))
+  assert u['warm_horizon']==p['validation_horizons'][0] and u['data_stages']
+  assert u['id'] in p['units']['report']['dependencies']
+ assert p['cost']['repeats']==2 and p['cost']['warmup']==1
+ assert p['cost']['fresh_process'] and p['cost']['synchronize'] and p['cost']['transfers_separate']
+ assert p['cost']['batch_sizes']==[1] and p['evaluation']['frozen_schedules']==[1,2,4,8]
+ assert p['gpu_test_cases']==GPU_TEST_CASES and len(p['gpu_test_cases'])==54
+ factorial=[t for t in p['trials'].values() if t['phase']=='factorial']
+ assert {t['updates'] for t in factorial}==({2} if local_smoke else {64})
+ assert {t['total_seconds'] for t in factorial}==({120} if local_smoke else {600})
+
 @pytest.mark.parametrize('profile',['pilot','development','confirmation'])
 def test_unbound_research_cannot_submit(profile):
  with pytest.raises(ValueError):validate_protocol(build_protocol(profile))

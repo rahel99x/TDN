@@ -9,7 +9,7 @@ import pytest
 from tdn.analysis.response.core import Context, check, write_reviews
 from tdn.analysis.response.protocol import build_protocol, digest
 from tdn.analysis.response import report as atlas
-from tdn.reporting import begin_report
+from tdn.reporting import MAX_LOGS, begin_report, finish_report, register_log
 from tdn.runtime.metadata import write_json
 from tdn.tower_analytics import publish_outputs
 
@@ -29,7 +29,7 @@ def seal(path, protocol, artifacts):
     return manifest
 
 
-def tower_fixture(tmp_path):
+def tower_fixture(tmp_path, logs=None):
     p = build_protocol("smoke", local_smoke=True)
     source=tmp_path/"report";source.mkdir()
     ctx=Context(p,"report",source,{},"cpu",SimpleNamespace(check=lambda:None))
@@ -42,7 +42,7 @@ def tower_fixture(tmp_path):
         experiment_count=1,protocol_sha256=digest(p),source_tree_sha256="a"*64,device="cpu"),
         "learning_curves.json":{"rows":[dict(model_id="residual_fno",family="residual_fno",track="fd_same_grid",
             phase="factorial",trial_id=t,seed=1,update=0,train_loss=.1,elapsed_seconds=.1) for t in ("clip","no-clip")]}})
-    tower=Path(begin_report(source,name="TDN/response/synthetic",script="scripts/response.py",report_parent=tmp_path/"tower"))
+    tower=Path(begin_report(source,name="TDN/response/synthetic",script="scripts/response.py",report_parent=tmp_path/"tower", logs=logs))
     return source,tower,p
 
 
@@ -62,6 +62,66 @@ def test_tower_changed_figure_not_credited(tmp_path):
     result=publish_outputs(tower,[source])
     assert not result["frontier"]["reporting_complete"]
     assert result["frontier"]["figure_count"]==0
+
+
+def test_tower_large_response_atlas_keeps_complete_catalog_with_bounded_attachments(tmp_path):
+    scheduler_logs=[dict(id=f"scheduler.{kind}",path=f"../{kind}.log",group="Scheduler")
+                    for kind in ("stdout","stderr")]
+    source,tower,p=tower_fixture(tmp_path,logs=scheduler_logs)
+    for i in range(200):
+        for suffix,raw in (("pdf",b"%PDF-1.4\n%%EOF\n"),("png",b"\x89PNG\r\n\x1a\n")):
+            (source/f"figures/chart-{i:03d}.{suffix}").write_bytes(raw)
+    seal(source,p,{})
+    before={str(path.relative_to(source)):hashlib.sha256(path.read_bytes()).hexdigest()
+            for path in source.rglob("*") if path.is_file()}
+
+    result=publish_outputs(tower,[source])
+    index=json.loads((tower/"outputs/frontier-tables.json").read_text())
+    logs=json.loads((tower/"logs.json").read_text())["logs"]
+    assert result["frontier"]["reporting_complete"]
+    assert len(index["figures"])==401
+    assert len(logs)==MAX_LOGS
+    assert len({entry["id"] for entry in logs})==MAX_LOGS
+    assert len({str((tower/entry["path"]).resolve()) for entry in logs})==MAX_LOGS
+    direct={entry["path"] for entry in logs if entry.get("group")=="Response analytical figures"}
+    catalog={figure["path"] for figure in index["figures"]}
+    attachments=index["log_attachments"]
+    assert attachments["catalog_only_count"]==len(catalog-direct)>0
+    assert attachments["catalog_only_list_truncated"]
+    assert all(row["path"] in catalog-direct and "capacity" in row["reason"]
+               for row in attachments["catalog_only"])
+    for figure in index["figures"]:
+        assert figure["sha256"]==hashlib.sha256((tower/figure["path"]).read_bytes()).hexdigest()
+    assert before=={str(path.relative_to(source)):hashlib.sha256(path.read_bytes()).hexdigest()
+                   for path in source.rglob("*") if path.is_file()}
+
+    # A retry after an earlier partial export must reuse the existing entries.
+    original=(tower/"logs.json").read_bytes()
+    repeated=publish_outputs(tower,[source])
+    assert repeated["frontier"]["reporting_complete"]
+    assert repeated["frontier"]["log_attachments"]==result["frontier"]["log_attachments"]
+    assert (tower/"logs.json").read_bytes()==original
+    summary=finish_report(tower,state="COMPLETED",exit_code=0,results=repeated)
+    assert summary["state"]=="COMPLETED"
+    assert summary["results"]["frontier"]["figure_count"]==401
+    with pytest.raises(ValueError,match="bounded tower.logs"):
+        register_log(tower,"extra","outputs/extra.log")
+
+
+@pytest.mark.parametrize("existing",[MAX_LOGS-1,MAX_LOGS])
+def test_tower_response_catalog_remains_available_when_existing_logs_fill_index(tmp_path,existing):
+    source,tower,_=tower_fixture(tmp_path,logs=[dict(id=f"existing.{i}",path=f"../existing-{i}.log")
+        for i in range(existing)])
+    result=publish_outputs(tower,[source])
+    index=json.loads((tower/"outputs/frontier-tables.json").read_text())
+    logs=json.loads((tower/"logs.json").read_text())["logs"]
+    assert len(logs)==MAX_LOGS
+    assert result["frontier"]["reporting_complete"]
+    assert index["figures"][0]["path"].endswith("chart.pdf")
+    assert index["log_attachments"]["catalog_only_count"]>0
+    assert any(row["path"]=="outputs/frontier-results.json"
+               for row in index["log_attachments"]["catalog_only"])
+    assert (tower/"outputs/frontier-results.json").is_file()
 
 
 def test_atlas_source_hash_change_and_exact_pointers(tmp_path):

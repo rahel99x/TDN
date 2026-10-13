@@ -2,6 +2,16 @@
 
 A runnable research pipeline for learning the finite-time error of a symmetric split solver. It includes exact noncommuting linear controls, periodic logistic reaction–diffusion, refined FP64 coupled teachers, local-input learned models, deterministic datasets/training, checkpoint resume, and complete-solver accuracy/cost reports.
 
+The [Response diagnostic program](docs/RESPONSE_DIAGNOSTIC_RESEARCH.md) adds
+conditioned temporal and spatial models, deterministic physical-objective
+training, prospective teacher/precision screening and source-bound continuation.
+Run `bash scripts/response_diagnostic_campaign.sh` on the configured Fedora
+Slurm checkout to verify native CUDA, calibrate every variant, execute the
+diagnostic matrix and export its research evidence. The
+[runbook](docs/RESPONSE_DIAGNOSTIC_RUNBOOK.md) covers the separate CPU smoke,
+Raven logging, paged projects and portable HTML/CSV/plot bundle. These diagnostics
+preserve the completed pilot's negative gate and do not authorize confirmation.
+
 The current [Resolve development program](docs/RESOLVE_RESEARCH.md) implements
 the next steps from the [completed native Advance review](docs/reviews/advance-full-native-20261011.md):
 direct convex coefficient fitting, paired finite-step error attribution, equal

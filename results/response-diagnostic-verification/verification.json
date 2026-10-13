@@ -1,0 +1,178 @@
+{
+  "schema": "tdn.response-diagnostic-implementation-verification/v1",
+  "verified_at": "2026-10-13T02:40:00.921642+00:00",
+  "scope": "CPU implementation and artifact integrity; native CUDA and scientific benefit unverified",
+  "final_source_tree_sha256": "642ab7db7c2350121aaf58266921da623f04463564a3ba4c97d07b8c086dcc36",
+  "software": {
+    "python": "3.12.14",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch_cuda_runtime": null,
+    "cuda_available": false
+  },
+  "base_commit": "3c092e12a2d8695c4d7547d60d57b23aa4288dad",
+  "native_gpu_verified": false,
+  "final_regression": {
+    "passed": 715,
+    "skipped": 2,
+    "cuda_cases_deselected": 97,
+    "seconds": 86.97,
+    "command": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 TDN_LOCAL_TEST_ROOT=/workspace/TDN .venv/bin/python -m pytest -q tests/test_response*.py tests/test_frontier_reporting.py tests/test_desktop_slurm_runtime.py tests/test_tower_reporting.py -m 'not gpu' --basetemp .runtime/onboarding/diagnostic-final-regression-tests -o cache_dir=.runtime/onboarding/diagnostic-pytest-cache",
+    "optional_skips": [
+      "Unchanged optional Tower checkout unavailable",
+      "Optional schema validation development dependency"
+    ],
+    "source_changed_after_regression": false
+  },
+  "additional_checks": [
+    "Python compilation",
+    "Bash syntax",
+    "git diff --check",
+    "mocked complete native worker lifecycle; no CUDA evidence"
+  ],
+  "cpu_workflows": [
+    {
+      "run": "response-diagnostic-verification-20261013-a",
+      "execution_mode": "local-cpu",
+      "native_gpu_verified": false,
+      "source_tree_sha256": "38154bfbc9ca02d2c1627aa081b8af391961118671410a1bbeb99d9df7e3d189",
+      "verification_scope": "unchanged historical execution/science artifact digests; earlier measurement contract",
+      "verified_execution_seals": 138,
+      "declared_units": 138,
+      "trial_count": 97,
+      "trial_status_counts": {
+        "COMPLETED_UPDATES": 97
+      },
+      "correction_diagnostic_status_counts": {
+        "NA": 97
+      },
+      "inference_measured": 97,
+      "portable_zip_bytes": 51527733,
+      "portable_zip_sha256": "9ba4c74593d1d9985eb75a70f44de86716c4edae8de247554f3e8e21e7ff0bff",
+      "completed_logical_updates": 194
+    },
+    {
+      "run": "response-diagnostic-verification-20261013-b",
+      "execution_mode": "local-cpu",
+      "native_gpu_verified": false,
+      "source_tree_sha256": "90b9da7d51c12e39eb878293cb2cf1d7bf48e47d07ec9d890ca1c54e39ea2d66",
+      "verification_scope": "final-contract execution/science seals",
+      "verified_execution_seals": 51,
+      "declared_units": 51,
+      "trial_count": 34,
+      "trial_status_counts": {
+        "COMPLETED_UPDATES": 34
+      },
+      "correction_diagnostic_status_counts": {
+        "MEASURED": 34
+      },
+      "inference_measured": 34,
+      "portable_zip_bytes": 10689206,
+      "portable_zip_sha256": "5455ccf63a863afec6b22d64fe1e65608eb2e7ea1b254f40dd340299b6f2ad1a",
+      "completed_logical_updates": 68
+    }
+  ],
+  "raven_transport_and_reader_verification": {
+    "schema": "tdn.response-raven-final-verification/v1",
+    "status": "PASSED_WITH_DOCUMENTED_PREVIEW_BUDGET",
+    "campaign": "response-diagnostic-verification-20261013-b",
+    "raven_checkout_head": "c34f0892d7bddc685c5af10489ecb114fd6adab6",
+    "source_tree_sha256": "90b9da7d51c12e39eb878293cb2cf1d7bf48e47d07ec9d890ca1c54e39ea2d66",
+    "protocol_sha256": "92566d846334b4d1e2068178dd44a967a24b5031df8f0fa6cf374ced655758eb",
+    "archive": {
+      "path": "response-diagnostic-verification-20261013-b/report/response-diagnostic-raven.zip",
+      "bytes": 10689206,
+      "sha256": "5455ccf63a863afec6b22d64fe1e65608eb2e7ea1b254f40dd340299b6f2ad1a",
+      "checksummed_members": 1287,
+      "excluded_attempts": 1
+    },
+    "original_attempts": 52,
+    "relocated_attempts": 51,
+    "checks": {
+      "projects": 2,
+      "attempts": 103,
+      "inventories": 103,
+      "summaries": 103,
+      "selected_bindings": 103,
+      "metric_records": 546,
+      "log_indices": 103,
+      "log_paths": 305,
+      "output_contracts": 103,
+      "declared_outputs": 28,
+      "source_index_hashes": 877,
+      "csv_files": 22,
+      "csv_rows": 11732,
+      "csv_pages": 116,
+      "maximum_csv_cell_chars": 32431,
+      "csv_preview_status": {
+        "partial": 8,
+        "ready": 14
+      },
+      "maximum_csv_cell_location": {
+        "file": "outputs/trial_metrics.csv",
+        "column": "correction_diagnostics",
+        "row": 29
+      }
+    },
+    "csv_field_limit": 131072,
+    "full_contract_validation_budget_bytes": 67108864,
+    "default_budget_limits": [
+      {
+        "scope": "original",
+        "run_id": "response-diagnostic-verification-20261013-b-analysis",
+        "status": "incomplete",
+        "summary": "1 not_checked, 13 valid",
+        "max_bytes": 8388608,
+        "not_checked": [
+          "outputs/diagnostic_metrics.json"
+        ]
+      },
+      {
+        "scope": "relocated",
+        "run_id": "response-diagnostic-verification-20261013-b-analysis",
+        "status": "incomplete",
+        "summary": "1 not_checked, 13 valid",
+        "max_bytes": 8388608,
+        "not_checked": [
+          "outputs/diagnostic_metrics.json"
+        ]
+      }
+    ],
+    "scope": "Actual completed CPU implementation smoke and relocated research metadata; no checkpoint loaded, no scientific job repeated, no CUDA readiness inferred"
+  },
+  "compiled_metadata_size_projection": {
+    "scope": "Metadata shape projection, not native scientific evidence",
+    "cpu_template_trials": 87,
+    "trials": 669,
+    "public_curve_points": 34788,
+    "fitted_endpoint_rows": 51832,
+    "compiled_bytes": 186148182,
+    "compiled_mib": 177.5247402191162,
+    "limit_mib": 256,
+    "margin_mib": 78.47525978088379,
+    "safety_margin_included_mib": 8,
+    "query_plan_compaction_fields": [
+      "horizons",
+      "parent_ids",
+      "phase_variants",
+      "query_ids",
+      "query_visits",
+      "query_weights"
+    ]
+  },
+  "native_default": {
+    "arms": 34,
+    "primary_arms": 7,
+    "calibration_trials": 97,
+    "calibration_updates_per_trial": 64,
+    "full_trials": 669,
+    "full_updates_per_trial": 2000,
+    "full_requested_logical_updates": 1338000,
+    "mandatory_cuda_cases": 97,
+    "maximum_allocation_seconds": 2100,
+    "native_executed_in_cloud": false
+  },
+  "historical_pilot_gate_modified": false,
+  "confirmation_or_deployment_authorized_by_checks": false
+}

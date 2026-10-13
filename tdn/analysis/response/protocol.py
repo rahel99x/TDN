@@ -14,7 +14,7 @@ import math
 import re
 
 SCHEMA = "tdn.response/v1"
-PROFILES = ("smoke", "pilot", "development", "confirmation")
+PROFILES = ("smoke", "pilot", "development", "confirmation", "diagnostic-smoke", "diagnostic")
 TARGETS = ("fd_same_grid", "galerkin_same_grid")
 GPU_TARGETS = (*TARGETS,"galerkin_projected_fine")
 GPU_FAMILIES = ("residual_fno","direct_fno","temporal","coupled_source")
@@ -30,7 +30,7 @@ GPU_TEST_CASES = ([f"test_response_cuda_real_odd_even_parity[{n}-{f}-{t}]" for n
     + ["test_response_cuda_remainder_and_assembly"])
 FAMILIES = ("direct_fno", "residual_fno", "temporal")
 TINY_REGIMES = ("low_mean", "high_mean", "large_amplitude", "strong_diffusion", "strong_reaction", "phase_twin")
-KINDS = {"audit", "fields", "references", "train", "select", "gate", "compression", "closure", "evaluate", "cost", "aggregate", "report", "numerical_controls"}
+KINDS = {"audit", "fields", "references", "train", "select", "gate", "compression", "closure", "evaluate", "cost", "aggregate", "report", "numerical_controls", "screening", "diagnostic_metrics"}
 MECHANISMS = {key: {"name": name} for key, name in {
     "M0": "Frozen target and execution contracts", "M1": "Mathematical identities and independent probes",
     "M2": "Resolved references and precision labels", "M3": "Diverse trainability and credible competitors",
@@ -65,6 +65,10 @@ def parent_declarations(seed, counts):
 
 def build_protocol(profile="smoke", *, trial_seconds=None, chunk_seconds=1500, selected=None, freeze=None,
                    calibration=None, counts=None, targets=None, local_smoke=False, updates=None):
+    if profile in ("diagnostic-smoke", "diagnostic"):
+        from .diagnostic_protocol import build_diagnostic_protocol
+        return build_diagnostic_protocol(profile, trial_seconds=trial_seconds, chunk_seconds=chunk_seconds,
+            calibration=calibration, targets=targets, local_smoke=local_smoke, updates=updates)
     if profile not in PROFILES:
         raise ValueError("Response profile must be smoke, pilot, development or confirmation")
     smoke = profile == "smoke"
@@ -354,7 +358,10 @@ def _build_units(p):
                 evaluated.append(add("evaluate-"+_safe(target),"evaluate",[selected,ref],300,gpu=True,
                     mechanism="M6",target_kind=target,data_stages=[ref],selection_stage=selected))
                 ref=references[(target,"validation")][0]
-                add("cost-"+_safe(target),"cost",[selected,ref],240,gpu=True,mechanism="M5",
+                # Native complete-call, cold-start and dense-query panels share
+                # this unit; retain their work inside a bounded 33-minute job.
+                cost_seconds=240 if p["execution_scope"]=="CPU_IMPLEMENTATION_SMOKE" else 1800
+                add("cost-"+_safe(target),"cost",[selected,ref],cost_seconds,gpu=True,mechanism="M5",
                     target_kind=target,grid=p["train_grid"],data_stages=[ref],selection_stage=selected,
                     cost_workload="all",cost_models=dense_representatives(p,target),cost_aliases=[],
                     phase_variants=["original"],warm_horizon=p["validation_horizons"][0])
@@ -537,6 +544,9 @@ def resource_for(p, unit): return {k:p["units"][unit][k] for k in ("cpus","mem_g
 def validate_protocol(p, *, require_binding=True):
     if not isinstance(p,dict) or p.get("schema")!=SCHEMA or p.get("profile") not in PROFILES:
         raise ValueError("Invalid Response declaration")
+    if p["profile"] in ("diagnostic-smoke", "diagnostic"):
+        from .diagnostic_protocol import validate_diagnostic
+        validate_diagnostic(p, require_binding)
     if p["profile"] in ("pilot","development") and require_binding:
         calibration=p.get("allowance",{}).get("calibrated_forecast")
         if not calibration or calibration.get("execution_mode")!="desktop-slurm" or not calibration.get("verified_native_gpu"):

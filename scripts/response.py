@@ -158,13 +158,13 @@ def verify_native_binding(stage, profile, device):
             state.get("slurm_step_id") != os.environ.get("SLURM_STEP_ID")):
         raise ValueError("Native CLI must execute inside its current recorded experiment task")
     if device == "cuda":
-        controller.check_gpu_tests(controller.junit_path(workflow, stage))
+        controller.check_gpu_tests(controller.junit_path(workflow, stage), protocol=workflow['scientific_protocol'])
     return workflow
 
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--stage',required=True);parser.add_argument('--profile',choices=('smoke','pilot','development','confirmation'),default='smoke')
+    parser.add_argument('--stage',required=True);parser.add_argument('--profile',choices=('smoke','pilot','development','confirmation','diagnostic-smoke','diagnostic'),default='smoke')
     parser.add_argument('--run-dir',type=Path,required=True);parser.add_argument('--prerequisite-dir',action='append',default=[])
     parser.add_argument('--device',choices=('cpu','cuda'),default='cpu');parser.add_argument('--local-root',type=Path)
     parser.add_argument('--resume-from',type=Path)
@@ -177,10 +177,10 @@ def main(argv=None):
         if args.local_root is not None:
             if args.local_root.resolve()!=ROOT or ROOT==CARC_ROOT or any(os.environ.get(key) for key in ('SLURM_JOB_ID','SLURM_STEP_ID','TDN_EXECUTION_MODE')):
                 raise ValueError('Local response requires this CPU checkout without scheduler overrides')
-            if args.device!='cpu' or args.profile!='smoke':
+            if args.device!='cpu' or args.profile not in ('smoke','diagnostic-smoke'):
                 raise ValueError('Local response supports CPU implementation smoke; research requires Fedora Slurm')
         mode=execution_mode()
-        if mode not in ('local-cpu','desktop-slurm') or (mode=='local-cpu' and (args.local_root is None or args.profile!='smoke' or args.device!='cpu')):
+        if mode not in ('local-cpu','desktop-slurm') or (mode=='local-cpu' and (args.local_root is None or args.profile not in ('smoke','diagnostic-smoke') or args.device!='cpu')):
             raise ValueError('Response requires allocated Fedora or explicit local CPU development')
         from tdn.analysis.response.protocol import build_protocol,validate_protocol
         protocol=build_protocol(args.profile,local_smoke=args.local_root is not None)
@@ -214,6 +214,7 @@ def main(argv=None):
         if candidate.exists(): raise ValueError('Preserve prior results; select a fresh stage directory')
         paths={key:contained_path(value) for key,value in parse_prerequisites(args.prerequisite_dir,protocol,args.stage).items()}
         lineage={};verified_paths={}
+        observes_failures=protocol['units'][args.stage]['kind'] in ('report','diagnostic_metrics')
         for name in ancestors(protocol,args.stage):
             path=paths[name]
             if candidate==path or candidate.is_relative_to(path) or path.is_relative_to(candidate):
@@ -230,7 +231,7 @@ def main(argv=None):
                 lineage[name]={'run_dir':str(path),'workflow_seal_sha256':file_digest(path/'workflow-seal.json')}
                 verified_paths[name]=path
             except (ValueError,OSError,KeyError,TypeError) as error:
-                if args.stage!='report': raise
+                if not observes_failures: raise
                 lineage[name]=failed_stage_diagnostic(path,error)
         origin=None;origin_hash=None
         if args.resume_from:
@@ -266,7 +267,7 @@ def main(argv=None):
         emit({'stage_started':1},phase='response/'+args.stage)
         with StopRequest() as stop:
             result=run_stage(protocol,args.stage,run_dir,prerequisites=verified_paths,device=args.device,stop=stop,resume=origin is not None,
-                **({'stage_failures':{name:details for name,details in lineage.items() if name not in verified_paths}} if args.stage=='report' else {}))
+                **({'stage_failures':{name:details for name,details in lineage.items() if name not in verified_paths}} if observes_failures else {}))
             if stop.requested: raise InterruptedError('Stop requested before sealing evidence')
         if result.get('status')!='COMPLETED':
             if result.get('status') in ('INCOMPLETE','INTERRUPTED'): raise InterruptedError('Unit stopped; partial evidence retained')
@@ -300,6 +301,19 @@ def main(argv=None):
         finally:
             if previous_tower is None: os.environ.pop('TDN_TOWER_DIR',None)
             else: os.environ['TDN_TOWER_DIR']=previous_tower
+            if run_dir is not None and args.profile.startswith('diagnostic'):
+                try:
+                    from types import SimpleNamespace
+                    from tdn.analysis.response.diagnostic_metrics import finish_attempt
+                    summary=json.loads((run_dir/'summary.json').read_text()) if (run_dir/'summary.json').is_file() else {'status':'FAILED'}
+                    if exit_code: summary={**summary,'status':'FAILED' if exit_code!=75 else 'INTERRUPTED','cli_exit_code':exit_code}
+                    finish_attempt(SimpleNamespace(path=run_dir,protocol=protocol,stage=args.stage,
+                        unit=protocol['units'][args.stage],device=args.device),summary)
+                except Exception as raven_error:
+                    print(f'TDN Raven reporting: {type(raven_error).__name__}: {raven_error}',file=sys.stderr)
+                    exit_code=exit_code or 1
+                finally:
+                    os.environ.pop('TDN_RESPONSE_RAVEN_DIR',None)
     return exit_code
 
 

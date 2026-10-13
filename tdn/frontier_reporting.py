@@ -20,7 +20,7 @@ import time
 import uuid
 
 from tdn.premix_reporting import _cell as _legacy_cell, _directory, _relative
-from tdn.reporting import atomic_json, read_json, register_log
+from tdn.reporting import MAX_LOGS, atomic_json, read_json, register_log
 from tdn.research.protocol import digest as canonical_digest
 
 SCHEMA = "tdn.frontier-rows/v1"
@@ -692,7 +692,6 @@ def publish_frontier_outputs(report_dir, source_dirs, *, delegated_sources=None)
         "scientific_scope": "Scores report required-evidence attainment; mathematical tests are finite numerical evidence, never a proof",
         "reporting_complete": complete, "omission_count": budget.omission_count, "omissions": budget.omissions,
         "omissions_list_truncated": budget.omission_count > len(budget.omissions)}
-    atomic_json(report / "outputs/frontier-tables.json", index)
     results = {"schema": "tdn.frontier.tower-results/v1", "reporting_complete": complete,
         "reporting_omission_count": budget.omission_count, "table_rows": counts, "page_count": len(pages),
         "sources": sources, "application_completion_is_scientific_success": False, "science_sources_mutated": False,
@@ -700,27 +699,49 @@ def publish_frontier_outputs(report_dir, source_dirs, *, delegated_sources=None)
         "verdicts": dict(Counter(row["verdict"] for row in tables["experiments"])),
         "index": "outputs/frontier-tables.json", "figure_count": len(figures),
         "claim_scope": "Numerical evidence and scores retain gap/math/cost scope; no superiority inferred"}
-    atomic_json(report / "outputs/frontier-results.json", results)
-    registered = {entry.get("path") for entry in read_json(report / "logs.json").get("logs", [])}
+    registered = {os.path.abspath(report / entry["path"])
+                  for entry in read_json(report / "logs.json").get("logs", [])}
+    catalog_only = []
+    catalog_only_count = 0
+
+    def attach(ident, location, **kwargs):
+        nonlocal catalog_only_count
+        resolved = os.path.abspath(report / location)
+        if resolved in registered:
+            return
+        if len(registered) >= MAX_LOGS:
+            catalog_only_count += 1
+            if len(catalog_only) < MAX_OMISSIONS:
+                catalog_only.append({"path": location, "reason": "Tower log index capacity reached; retained in output catalog"})
+            return
+        register_log(report, ident, location, **kwargs)
+        registered.add(resolved)
+
     programs = {source.get("program") for source in sources}
     display = "Response" if programs == {"response"} else "Resolve" if programs == {"resolve"} else "Frontier"
     for name in ("frontier-tables.json", "frontier-results.json"):
         location = "outputs/" + name
-        if location not in registered:
-            register_log(report, "analytics." + name.replace(".json", ""), location, group=display+" review",
-                         label=display+" complete page index" if name == "frontier-tables.json" else display+" scores and evidence integrity")
+        attach("analytics." + name.replace(".json", ""), location, group=display+" review",
+               label=display+" complete page index" if name == "frontier-tables.json" else display+" scores and evidence integrity")
     # Register first pages for convenient entry, keeping Tower's 256-log cap.
     # Every remaining page is reachable through exact catalog/contract paths.
     for kind in counts:
         page = next((p for p in pages if p["table"] == kind), None)
-        if page and page["path"] not in registered:
-            register_log(report, "analytics.frontier." + kind, page["path"], group=display+" review",
-                         label=display+" " + kind + " (first page; complete catalog in index)")
-    for index, figure in enumerate(figures):
-        if figure["path"] not in registered:
-            # Tower already supports source-relative image/PDF attachments.
-            # HTML remains a portable browser artifact; no application change.
-            register_log(report, "analytics.frontier.figure." + str(index), figure["path"],
-                         group=display+" analytical figures", label=figure["label"][:150],
-                         description="Canonical source chart; exact data and provenance in figures/manifest.json")
+        if page:
+            attach("analytics.frontier." + kind, page["path"], group=display+" review",
+                   label=display+" " + kind + " (first page; complete catalog in index)")
+    for figure in figures:
+        # Stable path-derived IDs survive adding sources or retrying a partial
+        # export. Every figure remains in the catalog after attachments fill.
+        ident = "analytics.frontier.figure." + hashlib.sha256(figure["path"].encode()).hexdigest()[:20]
+        attach(ident, figure["path"], group=display+" analytical figures", label=figure["label"][:150],
+               description="Canonical source chart; exact data and provenance in figures/manifest.json")
+    attachment_summary = {"limit": MAX_LOGS, "registered_log_count": len(registered),
+        "catalog_only_count": catalog_only_count,
+        "scope": "Direct Tower attachments are bounded; complete figure and table paths remain in this output catalog"}
+    index["log_attachments"] = {**attachment_summary, "catalog_only": catalog_only,
+        "catalog_only_list_truncated": catalog_only_count > len(catalog_only)}
+    results["log_attachments"] = attachment_summary
+    atomic_json(report / "outputs/frontier-tables.json", index)
+    atomic_json(report / "outputs/frontier-results.json", results)
     return results

@@ -80,7 +80,7 @@ def verify_science(protocol, path, *, source_tree_sha256=None):
         raise ValueError("Only completed correctly bound science satisfies a prerequisite")
     expected_prior = set(unit["dependencies"])
     actual_prior = set(manifest.get("prerequisites", {}))
-    if not (actual_prior <= expected_prior if unit["kind"] == "report" else actual_prior == expected_prior):
+    if not (actual_prior <= expected_prior if unit["kind"] in ("report", "diagnostic_metrics") else actual_prior == expected_prior):
         raise ValueError("Response prerequisite scope differs")
     rows = [validate_row(json.loads(line)) for line in (path / "rows.jsonl").read_text().splitlines() if line]
     if json.loads((path / "rows.json").read_text()).get("rows") != rows:
@@ -95,6 +95,9 @@ def verify_science(protocol, path, *, source_tree_sha256=None):
 
 def _dispatch(ctx):
     kind = ctx.unit["kind"]
+    if kind == "report" and ctx.protocol["profile"].startswith("diagnostic"):
+        from .diagnostic_report import run
+        return run(ctx)
     if kind == "audit":
         from . import audit
         return audit.run(ctx)
@@ -153,7 +156,7 @@ def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=N
         raise ValueError("Worker and engine protocol differ")
     prior = {key: _inside(value) for key, value in (prerequisites or {}).items()}
     required = set(ancestors(protocol,stage))
-    if not (set(prior) <= required if unit["kind"] == "report" else set(prior) == required):
+    if not (set(prior) <= required if unit["kind"] in ("report", "diagnostic_metrics") else set(prior) == required):
         raise ValueError("Missing or unexpected response prerequisites")
     software = software_metadata(); source = software["source_tree_sha256"]
     stable_software = software_identity(software)
@@ -188,6 +191,9 @@ def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=N
     start = time.monotonic(); budget = _RunBudget(unit["seconds"], stop, device)
     ctx = Context(protocol, stage, path, prior, device, budget, resume=resume, stage_failures=stage_failures)
     try:
+        if protocol["profile"].startswith("diagnostic"):
+            from .diagnostic_metrics import start_attempt
+            start_attempt(ctx, job_id=os.environ.get("SLURM_JOB_ID"), sourcehash=source)
         extras = _dispatch(ctx)
         correctness = sum(c["required"] and c["category"] in ("correctness", "math") and c["verdict"] == "BAD"
                           for row in ctx.rows for c in row["checks"])

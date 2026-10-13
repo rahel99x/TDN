@@ -19,10 +19,13 @@ from . import numerics as n
 from .features import FrozenNormalization, FEATURE_CHANNELS, FEATURE_NAMES, PHYSICAL_BAND_EDGES, build_features, correction_gate
 from .trajectory import source_response, homogeneous_residual_response, mean_propagator
 from .kernels import background
+from .temporal_basis import endpoint_basis, target_time_order, correction_gains
 
 ALIASES = {'endpoint': 'residual_fno', 'endpoint_tdn': 'residual_fno',
            'original_tdn': 'temporal'}
 FAMILIES = ('direct_fno', 'residual_fno', 'temporal', 'coupled_source', 'linear_response')
+DIAGNOSTIC_FAMILIES = ('adaptive_temporal', 'spatial_temporal')
+ALL_FAMILIES = FAMILIES+DIAGNOSTIC_FAMILIES
 
 
 class Spectral1D(nn.Module):
@@ -55,6 +58,21 @@ class SpatialEncoder(nn.Module):
         for local, spectral in zip(self.local, self.spectral):
             z = F.gelu(local(z)+spectral(z))
         return z
+
+
+class LocalEncoder(nn.Module):
+    """Horizon-independent pixelwise MLP with a spatial channel convention."""
+    def __init__(self, channels, width, depth, ndim):
+        super().__init__()
+        conv = nn.Conv1d if ndim == 1 else nn.Conv2d
+        layers = []
+        for _ in range(depth):
+            layers.extend((conv(channels, width, 1), nn.SiLU()))
+            channels = width
+        self.body = nn.Sequential(*layers)
+
+    def forward(self, features):
+        return self.body(features)
 
 
 def zero_head(head):
@@ -108,7 +126,7 @@ class ResponseModel(nn.Module):
         self.config = copy.deepcopy(config)
         self.requested_family = str(config.get('family', 'coupled_source'))
         self.family = ALIASES.get(self.requested_family, self.requested_family)
-        if self.family not in FAMILIES:
+        if self.family not in ALL_FAMILIES:
             raise ValueError(f'Unsupported Response family {self.requested_family}')
         self.ndim = int(config.get('ndim', 2))
         self.width = int(config.get('width', 16)); self.depth = int(config.get('depth', 2))
@@ -127,10 +145,20 @@ class ResponseModel(nn.Module):
         self.assembly = config.get('assembly', 'ordinary')
         self.auxiliary_source_head = bool(config.get('auxiliary_source_head', False))
         self.source_order = int(config['source_order']) if 'source_order' in config else None
+        self.gain_normalization = config.get('gain_normalization', 'legacy')
+        self.temporal_basis = config.get('temporal_basis', 'mixed')
+        self.time_order = config.get('time_order', 'target' if self.family in DIAGNOSTIC_FAMILIES else 'legacy')
         self.nodes = int(config.get('quadrature_nodes', 4)); self.mean_nodes = int(config.get('mean_nodes', 4))
         self.reaction_substeps = int(config.get('reaction_substeps', 8))
         if self.ndim not in (1, 2) or min(self.width, self.depth, self.modes) < 1 or self.rank not in (2, 4, 8):
             raise ValueError('Expected ndim 1/2, positive sizes, source rank 2/4/8')
+        if self.family in DIAGNOSTIC_FAMILIES and self.rank not in (4, 8):
+            raise ValueError('Adaptive endpoint dictionaries require rank 4 or 8')
+        if self.gain_normalization not in ('legacy', 'frozen'):
+            raise ValueError('Gain normalization must be legacy or frozen')
+        if self.temporal_basis not in ('mixed', 'response'):
+            raise ValueError('Temporal basis must be mixed or response')
+        target_time_order('fd_same_grid', self.time_order)
         if self.mean_modes < 1 or self.mean_modes > 8:
             raise ValueError('Mean trajectory requires one to eight temporal coefficients')
         if not math.isfinite(self.t_ref) or self.t_ref <= 0:
@@ -153,10 +181,22 @@ class ResponseModel(nn.Module):
             raise ValueError('Assembly must be ordinary or fp64')
         if self.learned_time_rates and (self.source_time_basis == 'polynomial' or self.source_representation == 'direct_interpolation'):
             raise ValueError('Learned rates require rational/exponential basis channels')
-        if self.family != 'coupled_source' and (self.numerical_remainder or self.source_decoder != 'quadrature' or self.source_representation != 'learned_basis' or self.learned_time_rates or self.assembly != 'ordinary'):
-            raise ValueError('Source decoder and numerical-remainder controls require coupled_source')
+        if self.family != 'coupled_source' and (self.source_decoder != 'quadrature' or self.source_representation != 'learned_basis' or self.learned_time_rates):
+            raise ValueError('Source decoder controls require coupled_source')
+        if self.family == 'linear_response' and (self.numerical_remainder or self.assembly != 'ordinary' or self.gain_normalization != 'legacy'):
+            raise ValueError('Learned assembly/remainder/gain controls are not defined for linear_response')
         quadrature(self.nodes); quadrature(self.mean_nodes)
         self.normalization = FrozenNormalization(config.get('normalization'))
+        # No additional persistent buffers in historical defaults. Explicit new
+        # variants bind their finite, train-frozen gains to checkpoint bytes.
+        if self.gain_normalization == 'frozen':
+            normalization = config.get('normalization', {})
+            for key in ('mean_gain', 'centered_gain'):
+                value = float(normalization.get(key, float('nan')))
+                fp32 = torch.tensor(value, dtype=torch.float32)
+                if not math.isfinite(value) or value <= 0 or not bool(torch.isfinite(fp32)) or not bool(fp32 > 0):
+                    raise ValueError('Frozen gain normalization requires positive finite '+key)
+                self.register_buffer(key, torch.tensor(value, dtype=torch.float64))
         conv = nn.Conv1d if self.ndim == 1 else nn.Conv2d
         if self.family in ('direct_fno', 'residual_fno'):
             self.encoder = SpatialEncoder(FEATURE_CHANNELS+1, self.width, self.depth, self.modes, self.ndim)
@@ -171,6 +211,14 @@ class ResponseModel(nn.Module):
         elif self.family == 'temporal':
             self.temporal_core = TemporalMLP(FEATURE_CHANNELS, modes=self.rank, width=self.width,
                 hidden_layers=self.depth, t_ref=self.t_ref, U_ref=1.)
+        elif self.family in DIAGNOSTIC_FAMILIES:
+            encoder = LocalEncoder if self.family == 'adaptive_temporal' else SpatialEncoder
+            self.encoder = (encoder(FEATURE_CHANNELS, self.width, self.depth, self.ndim)
+                            if self.family == 'adaptive_temporal' else
+                            encoder(FEATURE_CHANNELS, self.width, self.depth, self.modes, self.ndim))
+            self.spatial_head = conv(self.width, self.rank, 1, bias=False)
+            self.mean_head = nn.Linear(self.width, self.rank)
+            zero_head(self.spatial_head); zero_head(self.mean_head)
         elif self.family == 'coupled_source':
             self.encoder = SpatialEncoder(FEATURE_CHANNELS, self.width, self.depth, self.modes, self.ndim)
             # Nonzero random spatial features; only final temporal amplitudes
@@ -194,6 +242,9 @@ class ResponseModel(nn.Module):
             self.register_buffer('source_rates', torch.logspace(-1, 1, self.rank))
             if self.learned_time_rates:
                 self.source_rate_logits = nn.Parameter(torch.logit((self.source_rates-.01)/19.99))
+        if self.numerical_remainder and self.family != 'coupled_source':
+            self.remainder_head = (nn.Linear(self.width, 1) if self.family == 'temporal' else conv(self.width, 1, 1))
+            zero_head(self.remainder_head)
         if config.get('frozen_encoder', False):
             encoder = getattr(self, 'encoder', None)
             if encoder is None:
@@ -229,7 +280,13 @@ class ResponseModel(nn.Module):
             propagation='learned mean trajectory' if self.source_feedback == 'full' else 'frozen homogeneous logistic background; coupled-source ablation, not exact linear dynamics',
             phase_blind_limitation='Centered learned correction is identically zero from constant power-only features' if self.feature_mode == 'power' else None,
             original_temporal_core='tdn.models.temporal.TemporalMLP; adapted physical inputs and frozen channel scales' if self.family == 'temporal' else None,
-            reusable_encoding=self.family in ('temporal', 'coupled_source'),
+            reusable_encoding=self.family in ('temporal', 'coupled_source', *DIAGNOSTIC_FAMILIES),
+            gain_normalization=self.gain_normalization,
+            frozen_gains={key: float(getattr(self, key).detach().cpu()) for key in ('mean_gain', 'centered_gain')} if self.gain_normalization == 'frozen' else None,
+            endpoint_temporal_basis=self.temporal_basis if self.family in DIAGNOSTIC_FAMILIES else None,
+            endpoint_time_order=self.time_order if self.family in DIAGNOSTIC_FAMILIES else 'legacy cubic' if self.family == 'temporal' else None,
+            endpoint_time_dictionary_rank=self.rank if self.family in DIAGNOSTIC_FAMILIES else None,
+            gain_scope='Positive train-frozen scalar basis rescaling; no pointwise division by gate, time or labels',
             query_contract='scalar, per-parent [B], or per-parent query table [B,Q]; never silent spatial broadcasting',
             cache_validation='Tensor version checks; explicit value comparison for unversioned inference tensors',
             null_contract='h=0,r=0; constant and kappa=0 correction nulls only FD exact-subflow splitting; Galerkin numerical reaction remainder retained',
@@ -253,9 +310,20 @@ class ResponseModel(nn.Module):
         state = (u.to(next(self.parameters()).dtype) if self.assembly == 'fp64' else u).clone()
         features, stats = build_features(state, eq, geom, target, self.normalization,
                                          t_ref=self.t_ref, mode=self.feature_mode)
-        latent = self.encoder(features) if self.family == 'coupled_source' else None
+        latent = self.encoder(features) if self.family in ('coupled_source', *DIAGNOSTIC_FAMILIES) else None
         temporal = self.temporal_core.encode(features.movedim(1, -1)) if self.family == 'temporal' else None
         fields = coeff = pooled = mean_coefficients = spectra = symbol = remainder = None
+        if self.family in DIAGNOSTIC_FAMILIES:
+            pooled = latent.mean(tuple(range(2, latent.ndim)))
+            temporal = dict(spatial=n.center(self.spatial_head(latent)),
+                            mean=self.mean_head(pooled).reshape(u.shape[0], self.rank, *([1]*self.ndim)))
+            if self.numerical_remainder:
+                remainder = self.remainder_head(latent)
+        elif self.family == 'temporal' and self.numerical_remainder:
+            # The historical core remains unchanged. This explicit diagnostic
+            # arm charges its extra local feature pass for the separate readout.
+            local = self.temporal_core.body(features.movedim(1, -1))
+            remainder = self.remainder_head(local).movedim(-1, 1)
         if self.family == 'coupled_source':
             pooled = latent.mean(tuple(range(2, latent.ndim)))
             if self.source_representation == 'direct_interpolation':
@@ -288,6 +356,13 @@ class ResponseModel(nn.Module):
     def _anchor(self, encoded, h):
         return n.anchor(encoded.u, h, encoded.eq, encoded.geom, encoded.target,
                         name=self.anchor_name, reaction_substeps=self.reaction_substeps)
+
+    def _gain(self, channel, like):
+        return getattr(self, channel+'_gain').to(like) if self.gain_normalization == 'frozen' else 1.
+
+    def _output_scales(self, like):
+        return (self.normalization.mean_scale/self._gain('mean', like),
+                self.normalization.centered_scale/self._gain('centered', like))
 
     def _envelope(self, t, encoded):
         tau = n.scalar(t, encoded.u)/self.t_ref
@@ -345,7 +420,7 @@ class ResponseModel(nn.Module):
         return basis
 
     def _source_weights(self, encoded, s):
-        return encoded.source_coefficients*self._time_basis(encoded,s)*self.normalization.centered_scale/self.t_ref*self._envelope(s,encoded)*correction_gate(encoded.stats,encoded.target)
+        return encoded.source_coefficients*self._time_basis(encoded,s)*self.normalization.centered_scale/self._gain('centered', encoded.u)/self.t_ref*self._envelope(s,encoded)*correction_gate(encoded.stats,encoded.target)
 
     def source_components(self, encoded, s):
         self._check(encoded)
@@ -386,7 +461,59 @@ class ResponseModel(nn.Module):
         time=tau.expand(encoded.u.shape[0],1,*([1]*self.ndim)).reshape(encoded.u.shape[0],1)
         powers=(time/(1+time))**torch.arange(self.mean_modes,dtype=time.dtype,device=time.device)[None]
         raw=(encoded.mean_coefficients*powers).sum(1).reshape(encoded.u.shape[0],1,*([1]*self.ndim))
-        return self.normalization.mean_scale*raw*tau*self._envelope(t,encoded)*correction_gate(encoded.stats,encoded.target)
+        return self.normalization.mean_scale/self._gain('mean', encoded.u)*raw*tau*self._envelope(t,encoded)*correction_gate(encoded.stats,encoded.target)
+
+    def _endpoint_parts(self, encoded, t):
+        """Assemble endpoint terms once; retain historical arithmetic ordering."""
+        mean_scale, centered_scale = self._output_scales(encoded.u)
+        remainder_raw = encoded.remainder
+        if self.family in ('direct_fno', 'residual_fno'):
+            time = (t/self.t_ref).expand_as(encoded.u)
+            latent = self.encoder(torch.cat((encoded.features, time/(1+time)), dim=1))
+            raw_centered = n.center(self.spatial_head(latent))
+            raw_mean = self.mean_head(latent.mean(tuple(range(2, latent.ndim)))).reshape(encoded.u.shape[0], 1, *([1]*self.ndim))
+            if self.numerical_remainder:
+                remainder_raw = self.remainder_head(latent)
+            if self.family == 'direct_fno':
+                base = encoded.u
+                factor = t/self.t_ref
+                mean_scale = self.normalization.full_scale/self._gain('mean', encoded.u)
+                centered_scale = self.normalization.full_scale/self._gain('centered', encoded.u)
+                if self.gain_normalization == 'legacy':
+                    physical = factor*self.normalization.full_scale*(raw_centered+raw_mean)
+                else:
+                    physical = factor*(centered_scale*raw_centered+mean_scale*raw_mean)
+            else:
+                base = self._anchor(encoded, t)
+                factor = (t/self.t_ref)*self._envelope(t, encoded)*correction_gate(encoded.stats, encoded.target)
+                physical = factor*(centered_scale*raw_centered+mean_scale*raw_mean)
+            mean_correction, centered_correction = factor*mean_scale*raw_mean, factor*centered_scale*raw_centered
+        elif self.family == 'temporal':
+            step = t.reshape(encoded.u.shape[0] if t.numel() > 1 else 1, *([1]*(self.ndim+2)))
+            raw = self.temporal_core.decode(encoded.temporal, step).movedim(-1, 1)
+            raw_mean, raw_centered = n.mean(raw), n.center(raw)
+            factor = correction_gate(encoded.stats, encoded.target)
+            physical = (mean_scale*raw_mean+centered_scale*raw_centered)*factor
+            mean_correction, centered_correction = factor*mean_scale*raw_mean, factor*centered_scale*raw_centered
+            base = self._anchor(encoded, t)
+        elif self.family in DIAGNOSTIC_FAMILIES:
+            tau = (t/self.t_ref).expand(encoded.u.shape[0], 1, *([1]*self.ndim))
+            basis = endpoint_basis(tau, order=target_time_order(encoded.target, self.time_order), rank=self.rank, kind=self.temporal_basis)
+            raw_mean, raw_centered = encoded.temporal['mean'], encoded.temporal['spatial']
+            factor = correction_gate(encoded.stats, encoded.target)
+            mean_correction = factor*mean_scale*(raw_mean*basis).sum(1, keepdim=True)
+            centered_correction = factor*centered_scale*n.center((raw_centered*basis).sum(1, keepdim=True))
+            physical = mean_correction+centered_correction
+            base = self._anchor(encoded, t)
+        else:
+            raise ValueError('Endpoint terms are unavailable for this family')
+        # Arithmetic/subflow discrepancies do not inherit ideal splitting
+        # nulls. The separate branch still vanishes smoothly at h=0.
+        remainder = (torch.zeros_like(base) if remainder_raw is None else
+                     (t/(self.t_ref+t))*(self.normalization.mean_scale*n.mean(remainder_raw)+self.normalization.centered_scale*n.center(remainder_raw)))
+        return dict(base=base, physical=physical, mean_correction=mean_correction,
+                    centered_correction=centered_correction, numerical_remainder=remainder,
+                    raw_mean=raw_mean, raw_centered=raw_centered)
 
     def mean_path(self, encoded, s):
         self._check(encoded)
@@ -434,25 +561,19 @@ class ResponseModel(nn.Module):
                 encoded.eq, encoded.geom, encoded.target, name=self.anchor_name,
                 nodes=self.nodes, reaction_substeps=self.reaction_substeps,
                 create_graph=torch.is_grad_enabled())
-        if self.family in ('direct_fno', 'residual_fno'):
-            time = (t/self.t_ref).expand_as(encoded.u)
-            z = self.encoder(torch.cat((encoded.features, time/(1+time)), dim=1))
-            spatial = n.center(self.spatial_head(z))
-            avg = self.mean_head(z.mean(tuple(range(2, z.ndim)))).reshape(encoded.u.shape[0], 1, *([1]*self.ndim))
-            if self.family == 'direct_fno':
-                # Identity skip, with no analytic dynamics/backbone. This is
-                # a direct time-conditioned neural operator, not an FNO paper
-                # reproduction. Its full-target scale is train-frozen.
-                return encoded.u+(t/self.t_ref)*self.normalization.full_scale*(spatial+avg)
-            scale = (t/self.t_ref)*self._envelope(t, encoded)*correction_gate(encoded.stats, encoded.target)
-            return self._anchor(encoded, t)+scale*(self.normalization.centered_scale*spatial+self.normalization.mean_scale*avg)
-        if self.family == 'temporal':
-            # TemporalMLP has pixel prefix and channel/mode suffix; preserve
-            # scalar-per-parent broadcasting rather than confusing B with x.
-            step = t.reshape(encoded.u.shape[0] if t.numel() > 1 else 1, *([1]*(self.ndim+2)))
-            raw = self.temporal_core.decode(encoded.temporal, step).movedim(-1, 1)
-            correction = self.normalization.mean_scale*n.mean(raw)+self.normalization.centered_scale*n.center(raw)
-            return self._anchor(encoded, t)+correction*correction_gate(encoded.stats, encoded.target)
+        if self.family in ('direct_fno', 'residual_fno', 'temporal', *DIAGNOSTIC_FAMILIES):
+            parts = self._endpoint_parts(encoded, t)
+            value = self._assemble(parts['base'], parts['physical'])
+            if self.numerical_remainder:
+                value = self._assemble(value, parts['numerical_remainder'])
+            if self.family in DIAGNOSTIC_FAMILIES or self.gain_normalization != 'legacy' or self.assembly != 'ordinary' or self.numerical_remainder:
+                value = torch.where(t == 0, encoded.input_ref.to(value.dtype), value)
+            return value
+        parts = self._coupled_parts(encoded, t)
+        value = self._assemble(parts['base'], parts['mean_correction'], parts['centered_correction'], parts['numerical_remainder'])
+        return torch.where(t == 0, encoded.input_ref.to(value.dtype), value)
+
+    def _coupled_parts(self, encoded, t):
         mean_for_propagator = (lambda s: self.mean_path(encoded, s)) if self.source_feedback == 'full' else (
             lambda s: background(encoded.stats['mean'], s, encoded.eq.reaction_rate)['c'])
         if self.source_decoder == 'cached_spectral':
@@ -467,11 +588,49 @@ class ResponseModel(nn.Module):
         # and re-adding its mean first could introduce a spurious FP32 ULP.
         remainder = torch.zeros_like(base) if encoded.remainder is None else (t/(self.t_ref+t))*(self.normalization.mean_scale*n.mean(encoded.remainder)+self.normalization.centered_scale*n.center(encoded.remainder))
         mean_delta = self._unrestricted_mean_correction(encoded,t) if self.mean_parameterization == 'unrestricted' else self.mean_path(encoded,t)-n.mean(base)
-        value = self._assemble(base,mean_delta,d,remainder)
-        # Literal identity is structural, including optional numerical-remainder
-        # channels. The exactly-zero branch has derivative zero with respect to
-        # h; right-hand derivative studies use positive approaching horizons.
-        return torch.where(t == 0,encoded.input_ref.to(value.dtype),value)
+        return dict(base=base, mean_correction=mean_delta, centered_correction=d,
+                    numerical_remainder=remainder, raw_mean=encoded.mean_coefficients,
+                    raw_centered=encoded.source_fields*encoded.source_coefficients)
+
+    def correction_diagnostics(self, u, h, eq, geom, target):
+        """Detached pre-addition terms; post-hoc work, never a training target.
+
+        One scalar/per-parent query is supported. Dictionary raw channels are
+        reported before time/gate scaling; historical temporal raw output
+        already contains its analytic time response. Assembly impact compares
+        final addition only, retaining the same network and deployed anchor.
+        """
+        if self.family == 'linear_response':
+            raise ValueError('Learned correction diagnostics exclude linear_response')
+        with torch.no_grad():
+            encoded = self.encode(u, eq, geom, target)
+            if torch.as_tensor(h).ndim > 1:
+                raise ValueError('Correction diagnostics require scalar or per-parent horizons')
+            t = n.validate(encoded.u, h, geom, target)
+            if self.family == 'coupled_source':
+                parts = self._coupled_parts(encoded, t)
+                corrections = (parts['mean_correction'], parts['centered_correction'], parts['numerical_remainder'])
+            else:
+                parts = self._endpoint_parts(encoded, t)
+                corrections = ((parts['physical'], parts['numerical_remainder']) if self.numerical_remainder else (parts['physical'],))
+            ordinary = parts['base']
+            high = ordinary.double()
+            for correction in corrections:
+                ordinary = ordinary+correction
+                high = high+correction.double()
+            output = high if self.assembly == 'fp64' else ordinary
+            if self.family in (*DIAGNOSTIC_FAMILIES, 'coupled_source') or self.gain_normalization != 'legacy' or self.assembly != 'ordinary' or self.numerical_remainder:
+                output = torch.where(t == 0, u.to(output.dtype), output)
+            gains = correction_gains(encoded.u, t, eq, geom, target, family=self.family,
+                                     config={**self.config, 'normalization': self.normalization.metadata()})
+            total = parts['mean_correction']+parts['centered_correction']+parts['numerical_remainder']
+            return {key: value.detach() for key, value in dict(
+                raw_mean=parts['raw_mean'], raw_centered=parts['raw_centered'],
+                mean_correction=parts['mean_correction'], centered_correction=parts['centered_correction'],
+                numerical_remainder=parts['numerical_remainder'], total_correction=total,
+                mean_gain=gains['mean_gain']/self._gain('mean', encoded.u),
+                centered_gain=gains['centered_gain']/self._gain('centered', encoded.u),
+                assembly_difference=high-ordinary.double(), output=output).items()}
 
     def decode(self, encoded, h):
         self._check(encoded)
@@ -494,29 +653,35 @@ class ResponseModel(nn.Module):
         applied to the coupled decoder, whose mean propagator is nonlinear in
         learned parameters. Feature extraction and anchor costs still apply.
         """
-        if self.family not in ('direct_fno', 'residual_fno') or any(p.requires_grad for p in self.encoder.parameters()):
+        if self.family not in ('direct_fno', 'residual_fno') or self.numerical_remainder or any(p.requires_grad for p in self.encoder.parameters()):
             raise ValueError('Affine features require a frozen direct/residual FNO encoder')
         encoded = self.encode(u, eq, geom, target)
-        t = n.validate(u, h, geom, target)
-        time = (t/self.t_ref).expand_as(u)
+        state = encoded.u
+        t = n.validate(state, h, geom, target)
+        time = (t/self.t_ref).expand_as(state)
         z = self.encoder(torch.cat((encoded.features, time/(1+time)), dim=1))
         pooled = z.mean(tuple(range(2, z.ndim)), keepdim=True)
         spatial = z-pooled
         if self.family == 'direct_fno':
-            base = u
-            spatial_scale = mean_scale = (t/self.t_ref)*self.normalization.full_scale
+            base = state
+            spatial_scale = (t/self.t_ref)*self.normalization.full_scale/self._gain('centered', state)
+            mean_scale = (t/self.t_ref)*self.normalization.full_scale/self._gain('mean', state)
         else:
             base = self._anchor(encoded, t)
             scale = (t/self.t_ref)*self._envelope(t, encoded)*correction_gate(encoded.stats, target)
-            spatial_scale = scale*self.normalization.centered_scale
-            mean_scale = scale*self.normalization.mean_scale
+            spatial_scale = scale*self.normalization.centered_scale/self._gain('centered', state)
+            mean_scale = scale*self.normalization.mean_scale/self._gain('mean', state)
         bases = [(spatial[:, j:j+1]*spatial_scale) for j in range(self.width)]
-        bases += [(pooled[:, j:j+1]*mean_scale).expand_as(u) for j in range(self.width)]
-        bases += [mean_scale.expand_as(u)]
-        return base, torch.stack(bases)
+        bases += [(pooled[:, j:j+1]*mean_scale).expand_as(state) for j in range(self.width)]
+        bases += [mean_scale.expand_as(state)]
+        if self.assembly == 'fp64':
+            base = base.double()
+        if self.gain_normalization != 'legacy' or self.assembly != 'ordinary':
+            base = torch.where(t == 0, u.to(base.dtype), base)
+        return (base, torch.stack(bases).double()) if self.assembly == 'fp64' else (base, torch.stack(bases))
 
     def set_affine_coefficients(self, vector):
-        if self.family not in ('direct_fno', 'residual_fno') or any(p.requires_grad for p in self.encoder.parameters()):
+        if self.family not in ('direct_fno', 'residual_fno') or self.numerical_remainder or any(p.requires_grad for p in self.encoder.parameters()):
             raise ValueError('Coefficient assignment requires a frozen direct/residual FNO encoder')
         value = torch.as_tensor(vector, dtype=self.spatial_head.weight.dtype, device=self.spatial_head.weight.device)
         if value.shape != (2*self.width+1,) or not bool(torch.isfinite(value).all()):

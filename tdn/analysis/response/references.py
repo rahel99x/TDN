@@ -19,6 +19,44 @@ def _norms(x):
     if not bool(torch.isfinite(x).all()):return {'rms':None,'maximum':None}
     return {'rms':float(x.double().square().mean().sqrt()),'maximum':float(x.double().abs().max())}
 
+def _physical_norms(x, geometry, target):
+    """Physical interpolant L2, with sampled maximum kept explicitly separate."""
+    from .numerics import inner
+    if not bool(torch.isfinite(x).all()):return {'rms':None,'maximum':None}
+    return {'rms':float(inner(x.double(),x.double(),geometry,target).mean().clamp_min(0).sqrt()),
+        'maximum':float(x.double().abs().max())}
+
+def projected_error_budget(options):
+    """Validate an optional component allocation without relaxing acceptance.
+
+    The historical default uses the total tolerance for each temporal solve.
+    New diagnostic protocols may allocate separate temporal tolerances for each
+    declared fine grid and a spatial tolerance. Every adjacent pair must fit
+    within the unchanged total uncertainty allowance.
+    """
+    allocation=options.get('projected_error_budget')
+    if allocation is None:return None
+    if not isinstance(allocation,dict):raise ValueError('Projected error budget must be a mapping')
+    factors=list(options.get('spatial_factors',[2,4]))
+    temporal=allocation.get('temporal_tolerances')
+    if not isinstance(temporal,(list,tuple)) or len(temporal)!=len(factors) or len(factors)<2:
+        raise ValueError('Temporal component tolerances must match at least two spatial factors')
+    if any(type(f) is not int or f<2 for f in factors) or any(b<=a for a,b in zip(factors,factors[1:])):
+        raise ValueError('Projected spatial factors must be strictly increasing integers >=2')
+    def positive(value):
+        if isinstance(value,bool):raise ValueError('Reference budgets must be positive finite numbers')
+        try:value=float(value)
+        except (TypeError,ValueError):raise ValueError('Reference budgets must be positive finite numbers') from None
+        if not math.isfinite(value) or value<=0:raise ValueError('Reference budgets must be positive finite numbers')
+        return value
+    total=positive(options.get('tolerance',1e-10));spatial=positive(allocation.get('spatial_tolerance'))
+    temporal=[positive(x) for x in temporal]
+    if any(math.fsum([a,b,spatial])>total for a,b in zip(temporal,temporal[1:])):
+        raise ValueError('Adjacent temporal and spatial budgets must sum to at most total tolerance')
+    return dict(total_tolerance=total,temporal_tolerances=temporal,spatial_tolerance=spatial,
+        adjacent_combined_tolerances=[math.fsum([a,b,spatial]) for a,b in zip(temporal,temporal[1:])],
+        policy='Separate component tolerances; combined uncertainty acceptance remains unchanged')
+
 def _lawson(initial,h,equation,geometry,target,steps,check):
     """Exact-linear-flow RK4, separate from deployed anchors and ETDRK4."""
     from .numerics import diffusion_symbol,product
@@ -72,7 +110,7 @@ def temporal_reference(initial,h,equation,geometry,target,options=None,budget=No
     tolerance=float(options.get('tolerance',1e-10));cap=int(options.get('max_steps',options.get('max_substeps',2048)))
     steps=max(int(options.get('initial_steps',options.get('substeps',8))),math.ceil(h*float(equation.reaction_rate)),1)
     seconds=float(options.get('max_seconds_per_query',120));floor=float(options.get('roundoff_floor',2e-14))
-    if not math.isfinite(h) or h<0 or tolerance<=0 or cap<1:raise ValueError('Invalid teacher contract')
+    if not math.isfinite(h) or h<0 or not math.isfinite(tolerance) or tolerance<=0 or cap<1:raise ValueError('Invalid teacher contract')
     def check():
         if budget is not None:budget.check()
         if time.monotonic()-start>seconds:raise TimeoutError('Per-query teacher runtime cap')
@@ -116,22 +154,43 @@ def generate_reference(u0,h,equation,geometry,target,options=None,budget=None):
     if target!='galerkin_projected_fine':return temporal_reference(initial,h,equation,geometry,target,options,budget)
     start=time.monotonic();hist=[];previous=None;answer=initial.clone();unc={'rms':None,'maximum':None};accepted=False
     factors=list(options.get('spatial_factors',[2,4]));tol=float(options.get('tolerance',1e-10));max_grid=int(options.get('max_grid',512))
-    for factor in factors:
-        if factor<2 or any(n*factor>max_grid for n in geometry.grid):break
+    allocation=projected_error_budget(options);attempts=[]
+    if not math.isfinite(tol) or tol<=0:raise ValueError('Invalid projected reference total tolerance')
+    for index,factor in enumerate(factors):
+        if factor<2 or any(n*factor>max_grid for n in geometry.grid):
+            attempts.extend(dict(factor=f,attempted=False,status='GRID_CAP_OR_INVALID_FACTOR',
+                grid=[n*f for n in geometry.grid]) for f in factors[index:]);break
         # Lift the actual FP32 coarse field, not a fresh sampling of its parent.
         fine_grid=tuple(n*factor for n in geometry.grid);fine=resample(initial,fine_grid)
         opt=dict(options,observation_grid=list(geometry.grid),max_seconds_per_query=max(.001,float(options.get('max_seconds_per_query',120))-(time.monotonic()-start)))
+        if allocation is not None:opt['tolerance']=allocation['temporal_tolerances'][index]
         ref,meta=temporal_reference(fine,h,equation,Geometry(fine_grid,geometry.lengths),'galerkin_same_grid',opt,budget)
         answer=resample(ref,geometry.grid);difference=_norms(answer-previous) if previous is not None else {'rms':None,'maximum':None}
         hist.append(dict(factor=factor,grid=list(fine_grid),temporal=meta,projected_difference=difference))
+        attempts.append(dict(factor=factor,grid=list(fine_grid),attempted=True,status=meta['status'],
+            temporal_tolerance=float(opt.get('tolerance',tol)),temporal_uncertainty_rms=meta['uncertainty_rms'],
+            temporal_uncertainty_maximum=meta['uncertainty_maximum'],projected_difference=difference))
         if previous is not None and hist[-2]['temporal']['accepted'] and meta['accepted']:
             unc={k:None if difference[k] is None else difference[k]+meta['uncertainty_'+k]+hist[-2]['temporal']['uncertainty_'+k] for k in difference}
             accepted=all(v is not None and v<=tol for v in unc.values())
-            if accepted:break
+            if allocation is not None:
+                temporal_budget_satisfied=all(
+                    m['uncertainty_'+k] is not None and m['uncertainty_'+k]<=allocation['temporal_tolerances'][j]
+                    for j,m in ((index,meta),(index-1,hist[-2]['temporal'])) for k in difference)
+                spatial_budget_satisfied=all(v is not None and v<=allocation['spatial_tolerance'] for v in difference.values())
+                attempts[-1].update(temporal_pair_budget_satisfied=temporal_budget_satisfied,
+                    spatial_budget_satisfied=spatial_budget_satisfied)
+                accepted=accepted and temporal_budget_satisfied and spatial_budget_satisfied
+            attempts[-1]['combined_uncertainty']=dict(unc);attempts[-1]['combined_accepted']=accepted
+            if accepted:
+                attempts.extend(dict(factor=f,grid=[n*f for n in geometry.grid],attempted=False,
+                    status='NOT_NEEDED_AFTER_ACCEPTED_PAIR') for f in factors[index+1:]);break
         previous=answer
     return answer,dict(accepted=accepted,status='ACCEPTED' if accepted else 'UNRESOLVED_REFERENCE',
         reason='SPACE_AND_TIME_REFINED' if accepted else 'SPATIAL_OR_TEMPORAL_REFINEMENT_UNRESOLVED',
         uncertainty_rms=unc['rms'],uncertainty_maximum=unc['maximum'],spatial_refinements=hist,
+        component_error_budget=allocation,resolution_attempts=attempts,requested_spatial_factors=factors,
+        total_uncertainty_tolerance=tol,combined_acceptance='projected spatial difference + both temporal estimates <= total tolerance',
         elapsed_seconds=time.monotonic()-start,uncertainty_is_certificate=False,
         initial_lifting='Fourier interpolation of actual deployed FP32 coarse input; zero additional hidden coefficients',
         continuum_claim=False)
@@ -241,6 +300,13 @@ def prepare_dataset(protocol,path,split,parents=None,unit=None,budget=None):
                 teacher_output_rounding=_norms(rounding),deployment_defect=_norms(deployment),physical_defect=_norms(physical),
                 naive_fp32_subtraction_error=_norms((answer.float()-a32).double()-deployment),
                 assembly_rounding_floor=_norms((a32+deployment.float()).double()-answer))
+            record['precision'].update(physical_norm_components=dict(
+                deployment_defect=_physical_norms(deployment,geom,target),physical_defect=_physical_norms(physical,geom,target),
+                teacher_output_rounding=_physical_norms(rounding,geom,target),
+                assembly_rounding_floor=_physical_norms((a32+deployment.float()).double()-answer,geom,target)),
+                target_absolute_maximum=float(answer.abs().max()) if bool(torch.isfinite(answer).all()) else None,
+                state_scale=max(1.,float(answer.abs().max())) if bool(torch.isfinite(answer).all()) else None,
+                output_quantization_scope='Coordinatewise nearest FP32 output; exact nodal representability optimum for FD; benchmark, not global physical-L2 optimum for Galerkin')
             record['endpoint_preparation_seconds']=time.monotonic()-start;record['array_file']=f'query-{qid}.npz'
             np.savez_compressed(root/record['array_file'],u0=u0.numpy(),sampled_fp64=sampled.numpy(),target=answer.numpy(),
                 anchor_fp32=a32.numpy(),anchor_fp64=a64.numpy(),deployment_label=deployment.numpy(),physical_label=physical.numpy())

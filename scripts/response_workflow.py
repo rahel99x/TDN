@@ -28,7 +28,7 @@ from tdn.runtime.desktop_slurm import load_profile, validate_profile, verify_all
 
 MANIFEST = 'response-workflow.json'
 POINTER = '.fedora-response-latest.json'
-PROFILES = ('smoke', 'pilot', 'development', 'confirmation')
+PROFILES = ('smoke', 'pilot', 'development', 'confirmation', 'diagnostic-smoke', 'diagnostic')
 SCHEDULER_MEMORY_CAP_MIB = 110000
 ARCHIVE_PART_BYTES = 28 * 2**20
 ACCOUNTING_FIELDS = ('JobIDRaw', 'State', 'ExitCode', 'ElapsedRaw', 'TotalCPU', 'AllocTRES', 'MaxRSS', 'CPUTimeRAW')
@@ -144,7 +144,10 @@ def validate(workflow):
 
 def workflow_path(value):
     if value == 'latest':
-        value = cw.read_json(ROOT/'runs'/POINTER)['run_id']
+        pointer = os.environ.get('TDN_RESPONSE_POINTER', POINTER)
+        if pointer not in (POINTER, '.fedora-response-diagnostic-latest.json'):
+            raise ValueError('Unknown Response latest pointer')
+        value = cw.read_json(ROOT/'runs'/pointer)['run_id']
     return cw.inside(ROOT/'runs'/pw.identifier(value)/MANIFEST)
 
 
@@ -192,7 +195,11 @@ def prepare(args):
     run_id = pw.identifier(args.run_id or 'fedora-response-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
     base = cw.inside(ROOT/'runs'/run_id)
     if base.exists(): raise ValueError('Run directory exists; preserve it and select a fresh run ID')
-    profile = 'confirmation' if getattr(args,'confirmation',False) else 'development' if getattr(args,'development',False) else 'pilot' if getattr(args,'pilot',None) else 'smoke'
+    profile = ('diagnostic' if getattr(args,'diagnostic',False) else 'diagnostic-smoke' if getattr(args,'diagnostic_smoke',False)
+        else 'confirmation' if getattr(args,'confirmation',False) else 'development' if getattr(args,'development',False)
+        else 'pilot' if getattr(args,'pilot',None) else 'smoke')
+    if profile.startswith('diagnostic') and (getattr(args,'pilot',None) or getattr(args,'freeze',None)):
+        raise ValueError('Diagnostics are independent of the historical pilot/development/confirmation bindings')
     overrides={}
     for item in getattr(args,'trial_seconds',[]) or []:
         family,sep,seconds=item.partition('=')
@@ -230,6 +237,8 @@ def prepare_from_protocol(protocol,run_id,*,site=None):
 
 def read_calibration(run):
     origin=load(workflow_path(run))
+    if origin['profile']=='diagnostic-smoke':
+        return read_diagnostic_calibration(origin)
     if origin['profile']!='smoke': raise ValueError('Calibration must be a completed native Response smoke')
     measurements={}; sources={}
     for name,unit in units(origin).items():
@@ -254,6 +263,48 @@ def read_calibration(run):
         'source_tree_sha256':origin['source_tree_sha256'],'seconds_per_update':measurements,'sources':sources,
         'train_grid':scientific_protocol(origin)['train_grid'],
         'estimator':'conservative observed total64-update walltime/update; includes recorded validation and checkpoint work; forecast =2*updates*rate*declared capacity/rank/objective/cohort operation factors +120seconds; not a confidence guarantee'}
+
+
+def read_diagnostic_calibration(origin):
+    """Bind every exact architecture/objective/batch workload to real CUDA work."""
+    protocol=scientific_protocol(origin); measurements={}; sources={}
+    for trial_id, declared in protocol['trials'].items():
+        stages=[name for name,unit in units(origin).items() if unit.get('trial_id')==trial_id]
+        stage=max(stages,key=lambda name:units(origin)[name]['chunk_index'])
+        verify_stage(origin,stage)
+        path=stage_path(origin,stage); row=cw.read_json(path/'trial.json'); execution=cw.read_json(path/'execution.json')
+        if execution.get('execution_mode')!='desktop-slurm' or execution.get('device')!='cuda':
+            raise ValueError('Diagnostic calibration needs real native CUDA execution')
+        check_gpu_tests(junit_path(origin,stage),protocol=protocol)
+        if row.get('status')!='COMPLETED_UPDATES' or row.get('updates',0)<64:
+            raise ValueError('Every diagnostic architecture needs at least64 completed native updates')
+        if any(row.get('accepted_'+s+'_queries')!=row.get('requested_'+s+'_queries') for s in ('training','validation')):
+            raise ValueError('Calibration with unresolved teacher queries cannot measure the complete declared workload')
+        expected_counts={'training':6*len(protocol['train_horizons'])*len(protocol['phase_variants']),
+                         'validation':6*len(protocol['validation_horizons'])*len(protocol['phase_variants'])}
+        if any(row.get('accepted_'+split+'_queries')!=count for split,count in expected_counts.items()):
+            raise ValueError('Calibration differs from its declared six-parent query layout')
+        correction=row.get('correction_diagnostics',{})
+        if (correction.get('status')!='MEASURED' or correction.get('queries')!=row.get('accepted_training_queries')
+                or correction.get('requested_queries')!=row.get('accepted_training_queries')):
+            raise ValueError('Calibration requires complete requested correction measurements')
+        if row.get('inference_cost',{}).get('status')!='MEASURED':
+            raise ValueError('Calibration requires the measured selected-checkpoint inference panel')
+        seconds=row.get('total_cost_including_postprocessing_seconds',row.get('cost',{}).get('total_seconds'))
+        if not isinstance(seconds,(float,int)) or not math.isfinite(seconds) or seconds<=0:
+            raise ValueError('Diagnostic measured complete workload time is unavailable')
+        key=declared['calibration_key']
+        if key in measurements: raise ValueError('Diagnostic smoke must measure each variant/target once')
+        measurements[key]={'seconds_per_update':seconds/row['updates'],'updates':row['updates'],
+            'workload_sha256':declared['calibration_workload_sha256'],'seconds':seconds,
+            'accepted_training_queries':row['accepted_training_queries'],'accepted_validation_queries':row['accepted_validation_queries']}
+        sources[key]={'stage':stage,'trial_sha256':cw.digest(path/'trial.json'),
+            'execution_sha256':cw.digest(path/'execution.json'),'workflow_seal_sha256':cw.digest(path/'workflow-seal.json')}
+    if not measurements: raise ValueError('Diagnostic calibration contains no measured architectures')
+    return {'execution_mode':'desktop-slurm','verified_native_gpu':True,'run_id':origin['run_id'],
+        'workflow_path':str(Path(origin['run_dir'])/MANIFEST),'workflow_sha256':cw.digest(Path(origin['run_dir'])/MANIFEST),
+        'source_tree_sha256':origin['source_tree_sha256'],'variant_measurements':measurements,'sources':sources,
+        'train_grid':protocol['train_grid'],'estimator':'2*declared updates*observed exact-variant seconds/update +120 seconds; individual full batches use a declared six-parent work ratio; not measured future runtime'}
 
 
 def gate_results(workflow):
@@ -404,6 +455,8 @@ def job_dependency(workflow, stage, jobs):
         return None
     if stage=='report':
         return 'afterany:'+':'.join(row['job_id'] for row in jobs)
+    if units(workflow)[stage]['kind']=='diagnostic_metrics':
+        return 'afterany:'+':'.join(row['job_id'] for row in jobs)
     by_stage = {row['stage']:row['job_id'] for row in jobs}
     required = [by_stage[name] for name in units(workflow)[stage]['dependencies'] if name in by_stage]
     # Physical eight-core desktop: resource serialization is independent of scientific success.
@@ -499,7 +552,8 @@ def submit(workflow, *, plan_only=False, bridge=None):
         cw.atomic_json(base/'state/slurm-policy.json',policies)
         cw.atomic_json(base/'state/submission-software.json',software)
         jobs=[];cw.atomic_json(base/'jobs.json',jobs)
-        cw.atomic_json(ROOT/'runs'/POINTER,{'run_id':workflow['run_id']})
+        pointer='.fedora-response-diagnostic-latest.json' if workflow['profile'].startswith('diagnostic') else POINTER
+        cw.atomic_json(ROOT/'runs'/pointer,{'run_id':workflow['run_id']})
         def queue(stage):
             load(base/MANIFEST)
             dependency=job_dependency(workflow,stage,jobs)
@@ -591,7 +645,7 @@ def worker_commands(workflow,stage):
     if stage=='report':
         commands.append(('accounting',[python,str(ROOT/'scripts/response_workflow.py'),'snapshot-accounting','--workflow',str(base/MANIFEST)]))
     if stage=='audit' or gpu:
-        tests=[ROOT/'tests/test_response_gpu.py'] if gpu else sorted((ROOT/'tests').glob('test_response*.py'))+[ROOT/'tests/test_desktop_slurm_runtime.py']
+        tests=[ROOT/relative for relative in scientific_protocol(workflow).get('gpu_test_files',['tests/test_response_gpu.py'])] if gpu else sorted((ROOT/'tests').glob('test_response*.py'))+[ROOT/'tests/test_desktop_slurm_runtime.py']
         if not tests or any(not path.is_file() for path in tests):
             raise ValueError('Response mandatory correctness tests are missing')
         if gpu:
@@ -599,7 +653,7 @@ def worker_commands(workflow,stage):
         commands.append(('gpu-tests' if gpu else 'tests',[python,'-m','pytest','-q','-m','gpu' if gpu else 'not gpu',*map(str,tests),
             '--basetemp',str(base/f'{stage}-pytest-work'),'-o',f"cache_dir={base/(stage+'-pytest-cache')}",'--junitxml',str(junit_path(workflow,stage))]))
         if gpu:
-            commands.append(('check-gpu-tests',[python,str(ROOT/'scripts/response_workflow.py'),'check-gpu-tests','--junit',str(junit_path(workflow,stage))]))
+            commands.append(('check-gpu-tests',[python,str(ROOT/'scripts/response_workflow.py'),'check-gpu-tests','--junit',str(junit_path(workflow,stage)), '--protocol',workflow['protocol_path']]))
     command=[python,str(ROOT/'scripts/response.py'),'--stage',stage,'--profile',workflow['profile'],'--protocol',workflow['protocol_path'],'--run-dir',str(base/stage),'--device','cuda' if gpu else 'cpu']
     for prior in ancestors(workflow,stage):
         command += ['--prerequisite-dir',f'{prior}={stage_path(workflow,prior)}']
@@ -618,11 +672,32 @@ def workflow_environment(workflow,stage):
 def worker(workflow,stage):
     if stage not in pending_stages(workflow):
         raise ValueError('Unknown or inherited response unit cannot run')
+    native_ctx=None; native_runtime=None; native_started=None
+    previous_raven=os.environ.get('TDN_RESPONSE_RAVEN_DIR')
     backend=SimpleNamespace(**{name:globals()[name] for name in ('verify_allocation','load','begin_report','worker_commands',
         'verify_stage','prepare_test_environment','workflow_environment','finish_report','verify_software')},
         gpu_junit_path=lambda workflow:junit_path(workflow,stage),workflow_filename=MANIFEST,workflow_label='response',
         stage_variable='TDN_RESPONSE_STAGE',prerequisite_stages=tuple(name for name in physical_stages(workflow) if name not in ('audit','report')),
         verify_prerequisites=lambda workflow,software:verify_prerequisites(workflow,software,stage))
+    if workflow['profile'].startswith('diagnostic'):
+        def begin_native_report(bound,unit):
+            nonlocal native_ctx,native_started
+            import time
+            from tdn.analysis.response.diagnostic_metrics import start_attempt
+            from tdn.runtime.metadata import software_metadata
+            # The shared worker verifies the real allocation before this callback.
+            native_ctx=SimpleNamespace(path=Path(bound['run_dir'])/unit,stage=unit,
+                protocol=scientific_protocol(bound),unit=units(bound)[unit],device=units(bound)[unit]['device'])
+            native_started=time.monotonic()
+            start_attempt(native_ctx,job_id=os.environ['SLURM_JOB_ID'],
+                sourcehash=software_metadata()['source_tree_sha256'],worker_managed=True)
+            return begin_report(bound,unit)
+        def finish_native_report(bound,unit,report,**kwargs):
+            nonlocal native_runtime
+            native_runtime=kwargs.get('runtime_seconds')
+            return finish_report(bound,unit,report,**kwargs)
+        backend.begin_report=begin_native_report
+        backend.finish_report=finish_native_report
     try:
         return pw.worker(workflow,stage,backend=backend)
     except BaseException as error:
@@ -632,6 +707,32 @@ def worker(workflow,stage):
                 'source_sha256':workflow['source_sha256'],'protocol_sha256':workflow['protocol_sha256'],
                 'updated_at':cw.now(),'slurm_job_id':os.environ.get('SLURM_JOB_ID'),'slurm_step_id':os.environ.get('SLURM_STEP_ID')})
         raise
+    finally:
+        if native_ctx is not None:
+            try:
+                import time
+                from tdn.analysis.response.diagnostic_metrics import finish_attempt
+                state=cw.read_json(pw.state_path(workflow,stage))
+                body_path=native_ctx.path/'summary.json'
+                body=cw.read_json(body_path) if body_path.is_file() else {}
+                if state.get('status') not in ('COMPLETED','FAILED','INTERRUPTED'):
+                    raise ValueError('Native Raven finalization requires the recorded terminal worker state')
+                finish_attempt(native_ctx,{**body,'status':state['status'],
+                    'science_body_status':body.get('status','NOT_STARTED'),
+                    'science_body_elapsed_seconds':body.get('elapsed_seconds'),
+                    'native_worker_finalized':True,'native_worker_exit_code':state.get('exit_code'),
+                    'native_worker_runtime_seconds':native_runtime if native_runtime is not None else time.monotonic()-native_started,
+                    'native_worker_error':state.get('error')})
+            except Exception as raven_error:
+                terminal=cw.read_json(pw.state_path(workflow,stage))
+                print(f'Native Raven finalization failed: {raven_error}',file=sys.stderr)
+                if terminal.get('status')=='COMPLETED':
+                    cw.atomic_json(pw.state_path(workflow,stage),{**terminal,'status':'FAILED','exit_code':2,
+                        'error':'Native Raven finalization failed: '+str(raven_error),'updated_at':cw.now()})
+                    raise ValueError('Native Raven finalization failed') from raven_error
+            finally:
+                if previous_raven is None:os.environ.pop('TDN_RESPONSE_RAVEN_DIR',None)
+                else:os.environ['TDN_RESPONSE_RAVEN_DIR']=previous_raven
 
 
 def require_terminal_origin(workflow):
@@ -680,7 +781,7 @@ def recover(args):
         raise ValueError('Recovery software differs')
     completed,resume,seals,fingerprints={},{},{},{}
     for stage in physical_stages(origin):
-        if stage=='report': continue
+        if units(origin)[stage]['kind'] in ('report','diagnostic_metrics'): continue
         path=stage_path(origin,stage)
         if not path.exists(): continue
         if (path/'workflow-seal.json').exists():
@@ -718,7 +819,34 @@ def paths(workflow):
             print(f"{row['stage']} job {row['job_id']}\nTDN_TOWER_DIR={report}\nTDN_TOWER_METRICS={report/'metrics.jsonl'}")
 
 
-def status(workflow):
+def status(workflow, *, json_output=False):
+    if json_output:
+        base=Path(workflow['run_dir']);jobs={row['stage']:row for row in cw.read_json(base/'jobs.json')}
+        result={'run_id':workflow['run_id'],'profile':workflow['profile'],'units':{},'failed_units':[],
+            'terminal':True,'completed':True,'report_complete':False}
+        for stage in physical_stages(workflow):
+            inherited=stage in workflow.get('recovery',{}).get('stage_paths',{})
+            job=jobs.get(stage);state='COMPLETED' if inherited else 'NOT_SUBMITTED'
+            if job:
+                try:state=cw.scheduler_state(job['job_id']).split()[0].rstrip('+')
+                except (OSError,ValueError):state='UNKNOWN'
+                if state not in TERMINAL_JOB_STATES:result['terminal']=False
+            worker_path=pw.state_path(workflow,stage)
+            worker=cw.read_json(worker_path) if worker_path.is_file() else {}
+            path=stage_path(workflow,stage);summary_path=path/'summary.json'
+            summary=cw.read_json(summary_path) if summary_path.is_file() else {}
+            has_seal=(path/'workflow-seal.json').is_file() and (path/'COMPLETED').is_file()
+            complete=state=='COMPLETED' and (inherited or worker.get('status')=='COMPLETED') and has_seal
+            result['completed'] &= complete
+            if state in TERMINAL_JOB_STATES-{'COMPLETED'} or state=='NOT_SUBMITTED' or (state=='COMPLETED' and not complete):
+                result['failed_units'].append(stage)
+            result['units'][stage]={'job_id':job['job_id'] if job else None,'scheduler_state':state,
+                'worker_status':worker.get('status','INHERITED' if inherited else 'UNKNOWN'),
+                'artifact_validation':'SEALED_UNVERIFIED' if has_seal else 'MISSING',
+                'scientific_outcome':summary.get('scientific_outcome','NA')}
+            if stage=='report':result['report_complete']=complete
+        print(json.dumps(result,sort_keys=True,allow_nan=False))
+        return result
     base=Path(workflow['run_dir']);jobs={row['stage']:row for row in cw.read_json(base/'jobs.json')}
     print(f"Fedora response {workflow['run_id']} ({workflow['profile']})\nRun: {base}")
     for stage in physical_stages(workflow):
@@ -784,6 +912,7 @@ def parser():
         item=commands.add_parser(name);item.add_argument('--run-id')
         group=item.add_mutually_exclusive_group()
         group.add_argument('--smoke',action='store_true');group.add_argument('--development',action='store_true');group.add_argument('--confirmation',action='store_true')
+        group.add_argument('--diagnostic-smoke',action='store_true');group.add_argument('--diagnostic',action='store_true')
         item.add_argument('--pilot',nargs='?',const=True,default=None,help='Pilot profile, or explicit pilot ID with --development')
         item.add_argument('--calibration',help='Completed native smoke ID with64-update workload calibration')
         item.add_argument('--freeze',type=Path);item.add_argument('--trial-seconds',action='append',default=[],metavar='FAMILY=SECONDS')
@@ -791,13 +920,14 @@ def parser():
         item.add_argument('--updates',action='append',default=[],metavar='FAMILY=COUNT')
         item.add_argument('--targets',nargs='+',choices=('fd_same_grid','galerkin_same_grid','galerkin_projected_fine'))
     item=commands.add_parser('recover');item.add_argument('run');item.add_argument('--run-id');item.add_argument('--plan',action='store_true')
-    for name in ('status','logs','paths','validate','collect','gate'):
+    for name in ('status','logs','paths','validate','collect','gate','decision'):
         item=commands.add_parser(name);item.add_argument('run')
         if name=='logs':item.add_argument('--lines',type=int,default=200)
         if name=='collect':item.add_argument('--no-accounting',action='store_true')
+        if name=='status':item.add_argument('--json',action='store_true',dest='json_output')
     item=commands.add_parser('freeze');item.add_argument('run');item.add_argument('--output-dir',type=Path,required=True)
     item=commands.add_parser('worker');item.add_argument('--workflow',type=Path,required=True);item.add_argument('--stage',required=True)
-    item=commands.add_parser('check-gpu-tests');item.add_argument('--junit',type=Path,required=True)
+    item=commands.add_parser('check-gpu-tests');item.add_argument('--junit',type=Path,required=True);item.add_argument('--protocol',type=Path)
     item=commands.add_parser('snapshot-accounting');item.add_argument('--workflow',type=Path,required=True)
     return result
 
@@ -810,13 +940,22 @@ def main(argv=None):
         elif args.command=='recover': recover(args)
         elif args.command=='freeze': freeze_results(load(workflow_path(args.run)),args.output_dir)
         elif args.command=='worker': return worker(load(args.workflow,verify=False),args.stage)
-        elif args.command=='check-gpu-tests': print(json.dumps(check_gpu_tests(args.junit),sort_keys=True))
+        elif args.command=='check-gpu-tests':
+            protocol=cw.read_json(cw.inside(args.protocol)) if args.protocol else None
+            protocol=protocol.get('scientific_protocol',protocol) if protocol else None
+            print(json.dumps(check_gpu_tests(args.junit,protocol=protocol),sort_keys=True))
         elif args.command=='snapshot-accounting': scheduler_accounting(load(args.workflow,verify=False))
         else:
             workflow=load(workflow_path(args.run),verify=False)
             if args.command=='logs': logs(workflow,args.lines)
             elif args.command=='collect': collect(workflow,accounting=not args.no_accounting)
             elif args.command=='validate': validate_results(workflow)
+            elif args.command=='status': status(workflow,json_output=args.json_output)
+            elif args.command=='decision':
+                if not workflow['profile'].startswith('diagnostic'):
+                    raise ValueError('Decision command requires the separate diagnostic workflow')
+                verify_stage(workflow,'diagnostic-metrics')
+                print(json.dumps(cw.read_json(stage_path(workflow,'diagnostic-metrics')/'diagnostic_decision.json'),indent=2))
             elif args.command=='gate':
                 result=gate_results(workflow);print(json.dumps(result,indent=2))
                 if not result['eligible_for_development']:return 3
@@ -853,7 +992,7 @@ def memory_mib(value):
     amount = int(match.group(1))
     return amount * {"": 1, "K": 1 / 1024, "M": 1, "G": 1024, "T": 1024**2}[match.group(2)]
 
-def check_gpu_tests(path):
+def check_gpu_tests(path, *, protocol=None):
     """Require every declared response CUDA case; no skips or filtered suites."""
     from collections import Counter
     from xml.etree import ElementTree
@@ -865,6 +1004,12 @@ def check_gpu_tests(path):
     cases = tree.findall(".//testcase")
     identities = [(case.get("classname"), case.get("name")) for case in cases]
     expected = [("tests.test_response_gpu", name) for name in GPU_TEST_CASES]
+    if protocol is not None and protocol['profile'].startswith('diagnostic'):
+        from tdn.analysis.response.protocol import validate_protocol
+        from tdn.analysis.response.diagnostic_protocol import DIAGNOSTIC_GPU_CASES
+        validate_protocol(protocol,require_binding=False)
+        expected += [("tests.test_response_diagnostic_gpu",name) for name in DIAGNOSTIC_GPU_CASES]
+        GPU_TEST_CASES = [*GPU_TEST_CASES,*DIAGNOSTIC_GPU_CASES]
     if not expected or Counter(identities) != Counter(expected) or len(set(identities)) != len(identities):
         raise ValueError("Response GPU readiness requires every unique mandatory declared CUDA case; filtered suites are invalid")
     if any(case.find(tag) is not None for case in cases for tag in ("failure", "error", "skipped")):

@@ -28,10 +28,13 @@ from tdn.research.protocol import digest, file_digest
 from tdn.runtime.metadata import write_json, software_metadata
 from tdn.runtime.precision import reference_precision
 from tdn.analysis.frontier.core import check, clean
+from .training_control import (control_config, learning_rate, full_parent_plan, is_head,
+                               reporting_control, whole_history_summary, sampled_curve_rows)
 
 SCHEMA = "tdn.response-training/v1"
 CORE_REGIMES = ("low_mean", "high_mean", "large_amplitude", "strong_diffusion", "strong_reaction", "phase_twin")
-TERMINAL = ("COMPLETED_UPDATES", "TIME_CENSORED", "FAILED_NONFINITE")
+TERMINAL = ("COMPLETED_UPDATES", "TIME_CENSORED", "FAILED_NONFINITE", "UNRESOLVED_SCREEN")
+TINY_PHASES = ("tiny_individual", "tiny_joint", "diagnostic_individual", "diagnostic_joint")
 
 
 def factorial_settings():
@@ -194,9 +197,11 @@ def configure_objective(normalization, family, mode="family"):
     aliases = {"family":"full_target" if family == "direct_fno" else "residual_channels",
                "shared_residual":"shared_physical"}
     selected = aliases.get(mode, mode)
-    if selected not in ("full_target", "residual_channels", "shared_physical"):
+    if selected not in ("full_target", "residual_channels", "shared_physical", "physical"):
         raise ValueError("Unknown Response training objective normalization")
-    if selected == "full_target":
+    if selected == "physical":
+        mean_scale = centered_scale = 1.
+    elif selected == "full_target":
         mean_scale = centered_scale = result["full_scale"]
     else:
         mean_scale, centered_scale = result["mean_scale"], result["centered_scale"]
@@ -240,6 +245,12 @@ def endpoint_row(prediction, sample, normalization):
     rms = float(_physical_mse(error, record).sqrt())
     maximum = float(error.abs().max())
     defect = float(_physical_mse(delta, record).sqrt())
+    physical_defect = sample["target"].double()-sample["anchor_fp64"].double()
+    roundoff = sample["anchor_fp32"].double()-sample["anchor_fp64"].double()
+    quantization = sample["target"].double()-sample["target"].float().double()
+    # Physical Galerkin L2 is not the separable nodal norm: pointwise rounding
+    # gives an attainable reference approximation there, not a physical bound.
+    nearest_fp32_sampled_rms = float(quantization.square().mean().sqrt())
     return dict(parent_id=_parent(sample), query_id=record.get("query_id"), regime=record.get("regime", "unspecified"),
                 tiny_regime=record.get("tiny_regime"),
                 target_kind=record["target_kind"], horizon=record["horizon"], split=record["split"],
@@ -247,6 +258,13 @@ def endpoint_row(prediction, sample, normalization):
                 sampled_rms=float(error.square().mean().sqrt()), maximum_scope="sampled nodal maximum",
                 norm_contract="nodal L2" if record["target_kind"] == "fd_same_grid" else "physical interpolant L2; Nyquist mass weighting",
                 mse=rms*rms, objective=float(physical_loss(prediction, sample["target"], normalization, record)),
+                anchor_rms=defect, anchor_maximum=float(delta.abs().max()), anchor_mse=defect*defect,
+                candidate_over_anchor_rms=rms/defect if defect > 0 else None,
+                physical_defect_rms=float(_physical_mse(physical_defect, record).sqrt()),
+                deployment_roundoff_rms=float(_physical_mse(roundoff, record).sqrt()),
+                deployment_roundoff_maximum=float(roundoff.abs().max()),
+                nearest_fp32_sampled_rms=nearest_fp32_sampled_rms,
+                fp32_resolution_scope="minimum nodal RMS for FP32 output; Galerkin physical norm is not a separable rounding bound",
                 target_defect_rms=defect, floor_limited=defect <= normalization["floor"],
                 floor=normalization["floor"], reference_accepted=_accepted(sample),
                 uncertainty_rms=uncertainty, uncertainty_maximum=maximum_uncertainty,
@@ -254,7 +272,7 @@ def endpoint_row(prediction, sample, normalization):
                 finite=bool(torch.isfinite(prediction).all()))
 
 
-def evaluate_training(model, samples, normalization, budget=None):
+def evaluate_training(model, samples, normalization, budget=None, criteria=None):
     was_training = model.training
     model.eval()
     rows = []
@@ -264,7 +282,19 @@ def evaluate_training(model, samples, normalization, budget=None):
                 budget.check()
             rows.append(endpoint_row(predict(model, sample), sample, normalization))
     model.train(was_training)
+    limits = criteria or {}
+    rms_limit, max_limit = float(limits.get("rms", 2e-5)), float(limits.get("maximum", 2e-5))
+    if rms_limit <= 0 or max_limit <= 0:
+        raise ValueError("Physical accuracy criteria must be positive")
+    criterion = dict(rms_target=rms_limit, maximum_target=max_limit,
+        all_queries_passed=bool(rows) and all(r["reference_accepted"] and r["conservative_rms"] <= rms_limit
+                                           and r["conservative_maximum"] <= max_limit for r in rows),
+        passed_queries=sum(r["reference_accepted"] and r["conservative_rms"] <= rms_limit
+                           and r["conservative_maximum"] <= max_limit for r in rows),
+        worst_tolerance_ratio=max((max(r["conservative_rms"]/rms_limit,
+                                      r["conservative_maximum"]/max_limit) for r in rows), default=None))
     return dict(rows=rows, queries=len(rows), parents=len({_parent(s) for s in samples}),
+                physical_criterion=criterion,
                 objective=_parent_mean([(r["parent_id"], r["objective"]) for r in rows]),
                 rms=_parent_mean([(r["parent_id"], r["rms"]) for r in rows]),
                 maximum=max((r["maximum"] for r in rows), default=None),
@@ -311,8 +341,8 @@ def _restore_rng(state, sampler):
 def _gradient_norm(model, *, head=None):
     values = []
     for name, parameter in model.named_parameters():
-        is_head = any(word in name.lower() for word in ("head", "readout", "gate", "output", "amplitude"))
-        if parameter.grad is not None and (head is None or head == is_head):
+        parameter_is_head = is_head(name)
+        if parameter.grad is not None and (head is None or head == parameter_is_head):
             values.append(parameter.grad.detach().abs().double().square().sum())
     return float(torch.stack(values).sum().sqrt()) if values else 0.
 
@@ -320,8 +350,8 @@ def _gradient_norm(model, *, head=None):
 def _movement(model, initial, *, head=None):
     values = []
     for name, parameter in model.named_parameters():
-        is_head = any(word in name.lower() for word in ("head", "readout", "gate", "output", "amplitude"))
-        if head is None or head == is_head:
+        parameter_is_head = is_head(name)
+        if head is None or head == parameter_is_head:
             values.append((parameter.detach()-initial[name].to(parameter.device)).abs().double().square().sum())
     return float(torch.stack(values).sum().sqrt()) if values else 0.
 
@@ -333,8 +363,13 @@ def _rollout_loss(model, sample, normalization, steps):
         raise ValueError("Autonomous coarse rollout training is a separate closure experiment")
     eq, geom = equation_geometry(record)
     u = sample["u0"]
-    for _ in range(steps):
+    parameter_dtype = next(model.parameters(), sample["u0"]).dtype
+    for index in range(steps):
         u = model(u, float(record["horizon"])/steps, eq, geom, record["target_kind"])
+        if index+1 < steps:
+            # FP64 assembly is an endpoint arithmetic control. Autonomous
+            # re-encoding returns to network precision without detaching.
+            u = u.to(dtype=parameter_dtype)
     return physical_loss(u, sample["target"], normalization, record)
 
 
@@ -394,6 +429,114 @@ def _jsonl(path, rows):
     temporary.replace(target)
 
 
+def _emit_live(row, config, *, force=False, phase="training"):
+    if not __import__("os").environ.get("TDN_RESPONSE_RAVEN_DIR"):
+        return
+    from .diagnostic_metrics import emit_live
+    policy = reporting_control(config)
+    if (policy["enabled"] and not force and row["update"] != 0
+        and row["update"] % policy["live_every"] != 0 and row.get("validation_loss") is None):
+        return
+    names = ("train_loss", "train_rms", "train_maximum", "endpoint_loss", "full_train_mse", "full_train_rms",
+             "full_train_maximum", "full_train_worst_tolerance_ratio", "validation_loss", "validation_rms",
+             "validation_maximum", "validation_mean_absolute", "validation_centered_rms", "gradient_norm",
+             "gradient_norm_after_clip", "head_gradient_norm", "trunk_gradient_norm", "learning_rate", "examples_seen",
+             "parameter_movement", "trunk_movement", "optimization_seconds")
+    emit_live({name:row.get(name) for name in names}, phase=phase, step=row["update"],
+              progress=dict(completed=row["update"], total=int(config["updates"]), unit="logical updates"))
+
+
+def fit_correction_gains(samples, normalization, config, *, minimum_gain=1e-8):
+    """Freeze parent-weighted RMS complete-basis gains using training inputs only."""
+    from .references import equation_geometry
+    from .temporal_basis import correction_gains
+    if not math.isfinite(minimum_gain) or minimum_gain <= 0:
+        raise ValueError("Minimum correction gain must be positive and finite")
+    _assert_development(samples)
+    rows = [sample for sample in samples if _record(sample)["split"] == "train" and _accepted(sample)]
+    if not rows:
+        raise ValueError("Gain normalization requires accepted training inputs")
+    result = copy.deepcopy(normalization)
+    gains = {key: [] for key in ("mean_gain", "centered_gain")}
+    with torch.no_grad():
+        for sample in rows:
+            record = _record(sample)
+            eq, geom = equation_geometry(record)
+            value = correction_gains(sample["u0"], record["horizon"], eq, geom, record["target_kind"],
+                                    family=config["family"], config={**config.get("model", {}), "normalization":normalization})
+            for key in gains:
+                tensor = torch.as_tensor(value[key]).double()
+                if not bool(torch.isfinite(tensor).all()):
+                    raise ValueError("Nonfinite complete correction gain")
+                gains[key].append((_parent(sample), float(tensor.square().mean())))
+    result.update({key:max(float(minimum_gain), math.sqrt(_parent_mean(values))) for key, values in gains.items()})
+    result["gain_normalization"] = dict(estimator="parent-weighted train RMS of complete input-only basis gain before channel scales",
+        minimum_gain=float(minimum_gain), training_parent_ids=sorted({_parent(s) for s in rows}),
+        accepted_training_queries=len(rows), fit_access="accepted training input/physics/horizons only; no validation or teacher values",
+        coupled_source_gain_scope="nominal physical gate/time envelope; not the learned-source Jacobian")
+    return result
+
+
+def _correction_summary(model, samples, budget=None):
+    """Budgeted selected-checkpoint instrumentation, retaining actual partial work."""
+    if not hasattr(model, "correction_diagnostics"):
+        return dict(status="NA", reason="Model does not expose correction diagnostics")
+    from .references import equation_geometry
+    family = getattr(model, "family", None)
+    if family == "temporal":
+        raw_scope = "Historical temporal decoded raw response includes its analytic time response; not a pre-basis coefficient"
+    elif family in ("adaptive_temporal", "spatial_temporal"):
+        raw_scope = "Raw endpoint dictionary coefficients before time basis and physical channel scaling"
+    elif family == "coupled_source":
+        raw_scope = "Encoded mean coefficients and centered source field-times-coefficients before time integration/physical source scaling"
+    else:
+        raw_scope = "Raw endpoint readouts before time and physical channel scaling"
+    rows = []
+    status, reason = "MEASURED", None
+    was_training = model.training
+    model.eval()
+    try:
+        with torch.no_grad():
+            for sample in samples:
+                if budget is not None:
+                    budget.check()
+                record = _record(sample)
+                eq, geom = equation_geometry(record)
+                values = model.correction_diagnostics(sample["u0"], record["horizon"], eq, geom, record["target_kind"])
+                row = dict(parent_id=_parent(sample), query_id=record.get("query_id"), horizon=record["horizon"],
+                    raw_units_scope=raw_scope)
+                for key, value in values.items():
+                    if torch.is_tensor(value):
+                        row[key] = dict(rms=float(value.detach().double().square().mean().sqrt()),
+                                        maximum=float(value.detach().abs().max()), finite=bool(torch.isfinite(value).all()))
+                    elif isinstance(value, (str, float, int, bool)):
+                        row[key] = value
+                correction, output = values.get("total_correction"), values.get("output")
+                if torch.is_tensor(correction) and torch.is_tensor(output):
+                    output32 = output.float()
+                    infinity = torch.full_like(output32, float("inf"))
+                    spacing = (torch.nextafter(output32, infinity)-output32).double().abs()
+                    row["sub_ulp_correction_fraction"] = float((correction.double().abs() < spacing).double().mean())
+                    row["fp32_output_spacing_rms"] = float(spacing.square().mean().sqrt())
+                    row["resolution_scope"] = "Adjacent FP32 output-spacing proxy; sub-ULP fraction is not an erasure rate"
+                rows.append(row)
+    except (TimeoutError, InterruptedError) as exc:
+        status, reason = "UNRESOLVED", "Bounded correction diagnostic incomplete: "+str(exc)
+    finally:
+        model.train(was_training)
+    return dict(status=status, reason=reason, rows=rows, queries=len(rows), requested_queries=len(samples),
+                raw_units_scope=raw_scope, cross_family_raw_comparison="Raw magnitudes are not comparable across families/scaling contracts",
+                scope="selected checkpoint, training inputs only; raw heads/pre-addition correction/assembly resolution")
+
+
+def _components(model, sample, normalization, config):
+    endpoint = physical_loss(predict(model, sample), sample["target"], normalization, _record(sample))
+    rollout = _rollout_loss(model, sample, normalization, int(config.get("rollout_steps", 2))) if config.get("rollout_weight", 0.) else endpoint.new_zeros(())
+    source = _source_loss(model, sample, normalization) if config.get("source_aux_weight", 0.) else endpoint.new_zeros(())
+    consistency = _consistency_loss(model, sample, normalization) if config.get("consistency_weight", 0.) else endpoint.new_zeros(())
+    return endpoint, rollout, source, consistency
+
+
 def train_trial(model, train, validation, config, normalization, path, *,
                 identity, resume=None, budget=None, max_chunk_updates=None,
                 chunk_seconds=None, final_chunk=True):
@@ -407,6 +550,9 @@ def train_trial(model, train, validation, config, normalization, path, *,
     # TorchVersion is a str subclass that weights_only deliberately rejects.
     # Persist only plain JSON metadata, never arbitrary configuration objects.
     identity = json.loads(json.dumps(identity, sort_keys=True, allow_nan=False))
+    controls = control_config(config)
+    reporting = reporting_control(config)
+    accuracy_criteria = config.get("physical_criteria", {})
     normalization = configure_objective(normalization, config.get("family"), config.get("objective_mode", "family"))
     _assert_development(train+validation)
     if any(_record(s)["split"] != "train" for s in train) or any(_record(s)["split"] != "validation" for s in validation):
@@ -424,6 +570,8 @@ def train_trial(model, train, validation, config, normalization, path, *,
     parameters = [p for p in model.parameters() if p.requires_grad]
     if not parameters:
         raise ValueError("Trainable trial has no trainable parameters")
+    if controls["head_warmup_updates"] and not any(is_head(name) and parameter.requires_grad for name, parameter in model.named_parameters()):
+        raise ValueError("Head warmup requires an explicitly named trainable correction head")
     optimizer = torch.optim.AdamW(parameters, lr=float(setting["lr"]),
         betas=tuple(setting.get("betas", [.9, .999])), eps=float(setting.get("eps", 1e-8)),
         weight_decay=float(setting.get("weight_decay", 0.)))
@@ -434,14 +582,20 @@ def train_trial(model, train, validation, config, normalization, path, *,
     saved = torch.load(resume, weights_only=True, map_location="cpu") if resume is not None else None
     if saved is not None and saved["identity"] != identity:
         raise ValueError("Training continuation source/config/software/data identity changed")
+    if saved is not None and saved.get("training_controls", control_config(config)) != controls:
+        raise ValueError("Training continuation logical update controls changed")
+    if saved is not None and saved.get("reporting_controls", reporting) != reporting:
+        raise ValueError("Training continuation reporting cadence changed")
     if saved is None:
         initial_state = copy.deepcopy(model.state_dict())
         history, completed, examples, selected_update = [], 0, 0, 0
         selected_state = copy.deepcopy(initial_state)
         initial = best = initial_train = None
         attainable_train = None; attainable_update = 0
+        criterion_train = None; criterion_update = 0; criterion_state = copy.deepcopy(initial_state)
         cumulative = dict(total_seconds=0., optimization_seconds=0., validation_seconds=0.,
                           checkpoint_seconds=0., diagnostic_seconds=0.)
+        work_counters = dict(optimization_query_attempts=0, backward_calls=0, optimizer_step_attempts=0, committed_optimizer_updates=0)
         pending_validation = False
     else:
         model.load_state_dict(saved["model"])
@@ -452,7 +606,12 @@ def train_trial(model, train, validation, config, normalization, path, *,
         initial, best, initial_train = saved["initial"], saved["best"], saved["initial_train"]
         attainable_train = saved.get("attainable_train", initial_train)
         attainable_update = saved.get("attainable_update", 0)
+        criterion_train = saved.get("criterion_train", initial_train)
+        criterion_update = saved.get("criterion_update", 0)
+        criterion_state = saved.get("criterion_state", initial_state)
         cumulative = saved["cost"]
+        work_counters = saved.get("work_counters", dict(optimization_query_attempts=examples,
+            backward_calls=completed, optimizer_step_attempts=completed, committed_optimizer_updates=completed))
         pending_validation = saved["pending_validation"]
         _restore_rng(saved["rng"], sampler)
     start = time.perf_counter(); previous_seconds = cumulative["total_seconds"]
@@ -478,14 +637,18 @@ def train_trial(model, train, validation, config, normalization, path, *,
             normalization=normalization, update=completed, examples=examples, selected_update=selected_update,
             initial=initial, best=best, initial_train=initial_train, history=history,
             attainable_train=attainable_train, attainable_update=attainable_update,
+            criterion_train=criterion_train, criterion_update=criterion_update, criterion_state=criterion_state,
+            work_counters=work_counters,
+            training_controls=controls, reporting_controls=reporting, scheduler_state=dict(completed_updates=completed,
+                next_learning_rate=learning_rate(controls, completed)),
             pending_validation=pending_validation, rng=_rng_state(sampler), cost=cumulative,
             attempts=attempts), root/"journal.pt")
         cumulative["checkpoint_seconds"] += time.perf_counter()-tick
 
     def validate():
-        nonlocal best, selected_state, selected_update, pending_validation, attainable_train, attainable_update
+        nonlocal best, selected_state, selected_update, pending_validation, attainable_train, attainable_update, criterion_train, criterion_update, criterion_state
         tick = time.perf_counter(); _sync(device)
-        value = evaluate_training(model, validation, normalization, budget)
+        value = evaluate_training(model, validation, normalization, budget, accuracy_criteria)
         _sync(device); cumulative["validation_seconds"] += time.perf_counter()-tick
         if not math.isfinite(value["objective"]):
             raise FloatingPointError("Nonfinite validation objective")
@@ -493,27 +656,33 @@ def train_trial(model, train, validation, config, normalization, path, *,
         # chunk boundaries affect model selection.
         if best is None or value["objective"] < best["objective"]:
             best, selected_state, selected_update = value, copy.deepcopy(model.state_dict()), completed
-        if completed > 0 and config.get("phase") in ("tiny_individual", "tiny_joint"):
+        if completed > 0 and config.get("phase") in TINY_PHASES:
             tick = time.perf_counter()
-            fit = evaluate_training(model, train, normalization, budget)
+            fit = evaluate_training(model, train, normalization, budget, accuracy_criteria)
             cumulative["diagnostic_seconds"] += time.perf_counter()-tick
             if attainable_train is None or fit["mse"] < attainable_train["mse"]:
                 attainable_train, attainable_update = fit, completed
+            if criterion_train is None or fit["physical_criterion"]["worst_tolerance_ratio"] < criterion_train["physical_criterion"]["worst_tolerance_ratio"]:
+                criterion_train, criterion_update = fit, completed
+                criterion_state = copy.deepcopy(model.state_dict())
             history[-1].update(full_train_mse=fit["mse"], full_train_loss=fit["objective"],
                                full_train_rms=fit["rms"], full_train_maximum=fit["maximum"])
+            history[-1]["full_train_worst_tolerance_ratio"] = fit["physical_criterion"]["worst_tolerance_ratio"]
         history[-1].update(validation_loss=value["objective"], validation_rms=value["rms"],
                            validation_maximum=value["maximum"], validation_mean_absolute=value["mean_absolute"],
                            validation_centered_rms=value["centered_rms"])
+        _emit_live(history[-1], config)
         pending_validation = False
         checkpoint()
         return value
 
-    status = "CONTINUATION_REQUIRED"; failure = None
+    status = "CONTINUATION_REQUIRED"; failure = None; optimization_tick = None
     try:
         if initial is None:
             tick = time.perf_counter()
-            initial_train = evaluate_training(model, train, normalization, budget)
+            initial_train = evaluate_training(model, train, normalization, budget, accuracy_criteria)
             attainable_train = initial_train
+            criterion_train = initial_train
             cumulative["diagnostic_seconds"] += time.perf_counter()-tick
             history.append(dict(update=0, train_loss=initial_train["objective"],
                 train_rms=initial_train["rms"], train_maximum=initial_train["maximum"], elapsed_seconds=elapsed(),
@@ -531,13 +700,32 @@ def train_trial(model, train, validation, config, normalization, path, *,
                 break
             if max_chunk_updates is not None and completed-chunk_start_update >= max_chunk_updates:
                 break
-            indices = [sampler.choice(parent_samples[sampler.choice(parent_ids)])
-                       for _ in range(int(config.get("batch_size", 1)))]
+            plan = full_parent_plan(parent_samples) if controls["batch_mode"] == "full_parent" else [
+                (sampler.choice(parent_samples[sampler.choice(parent_ids)]), 1./int(config.get("batch_size", 1)))
+                for _ in range(int(config.get("batch_size", 1)))]
+            indices = [index for index, _ in plan]
             _sync(device); tick = time.perf_counter()
+            optimization_tick = tick
+            current_lr = learning_rate(controls, completed)
+            for group in optimizer.param_groups:
+                group["lr"] = current_lr
             optimizer.zero_grad(set_to_none=True)
             endpoint_losses, rollout_losses, source_losses, consistency_losses = [], [], [], []
-            for index in indices:
+            full_values = [0., 0., 0., 0.]
+            for index, weight in plan:
                 sample = train[index]
+                work_counters["optimization_query_attempts"] += 1
+                if controls["batch_mode"] == "full_parent":
+                    components = _components(model, sample, normalization, config)
+                    sample_loss = components[0]+float(config.get("rollout_weight", 0.))*components[1]+float(config.get("source_aux_weight", 0.))*components[2]+float(config.get("consistency_weight", 0.))*components[3]
+                    scaled_sample = sample_loss*(weight*float(setting.get("loss_multiplier", 1.)))
+                    if not torch.isfinite(scaled_sample):
+                        raise FloatingPointError("Nonfinite training loss")
+                    scaled_sample.backward()
+                    work_counters["backward_calls"] += 1
+                    for position, value in enumerate(components):
+                        full_values[position] += weight*float(value.detach())
+                    continue
                 endpoint_losses.append(physical_loss(predict(model, sample), sample["target"], normalization, _record(sample)))
                 if float(config.get("rollout_weight", 0.)):
                     rollout_losses.append(_rollout_loss(model, sample, normalization, int(config.get("rollout_steps", 2))))
@@ -545,10 +733,13 @@ def train_trial(model, train, validation, config, normalization, path, *,
                     source_losses.append(_source_loss(model, sample, normalization))
                 if float(config.get("consistency_weight", 0.)):
                     consistency_losses.append(_consistency_loss(model, sample, normalization))
-            endpoint = torch.stack(endpoint_losses).mean()
-            auxiliary = torch.stack(rollout_losses).mean() if rollout_losses else endpoint.new_zeros(())
-            source = torch.stack(source_losses).mean() if source_losses else endpoint.new_zeros(())
-            consistency = torch.stack(consistency_losses).mean() if consistency_losses else endpoint.new_zeros(())
+            if controls["batch_mode"] == "full_parent":
+                endpoint, auxiliary, source, consistency = [torch.tensor(value, dtype=torch.float64, device=device) for value in full_values]
+            else:
+                endpoint = torch.stack(endpoint_losses).mean()
+                auxiliary = torch.stack(rollout_losses).mean() if rollout_losses else endpoint.new_zeros(())
+                source = torch.stack(source_losses).mean() if source_losses else endpoint.new_zeros(())
+                consistency = torch.stack(consistency_losses).mean() if consistency_losses else endpoint.new_zeros(())
             loss = (endpoint+float(config.get("rollout_weight", 0.))*auxiliary
                     +float(config.get("source_aux_weight", 0.))*source
                     +float(config.get("consistency_weight", 0.))*consistency)
@@ -559,34 +750,52 @@ def train_trial(model, train, validation, config, normalization, path, *,
             auxiliary_gradient = _loss_gradient_norm(auxiliary, parameters) if rollout_losses else None
             source_gradient = _loss_gradient_norm(source, parameters) if source_losses else None
             consistency_gradient = _loss_gradient_norm(consistency, parameters) if consistency_losses else None
-            scaled.backward()
+            if controls["batch_mode"] != "full_parent":
+                scaled.backward()
+                work_counters["backward_calls"] += 1
             pre = _gradient_norm(model)
             head, trunk = _gradient_norm(model, head=True), _gradient_norm(model, head=False)
             if not math.isfinite(pre):
                 raise FloatingPointError("Nonfinite training gradient")
+            head_only = completed < controls["head_warmup_updates"]
+            if head_only:
+                for name, parameter in model.named_parameters():
+                    if not is_head(name):
+                        parameter.grad = None
+            optimizer_gradient = _gradient_norm(model)
             clip = setting.get("clip")
             if clip is not None:
                 torch.nn.utils.clip_grad_norm_(parameters, float(clip), error_if_nonfinite=True)
             post = _gradient_norm(model)
+            work_counters["optimizer_step_attempts"] += 1
             optimizer.step()
             if not all(bool(torch.isfinite(p).all()) for p in parameters):
                 raise FloatingPointError("Nonfinite optimizer parameter")
             _sync(device); cumulative["optimization_seconds"] += time.perf_counter()-tick
+            optimization_tick = None
             completed += 1; examples += len(indices)
+            work_counters["committed_optimizer_updates"] += 1
             pending_validation = completed in validation_indices
             history.append(dict(update=completed, train_loss=float(loss.detach()), endpoint_loss=float(endpoint.detach()),
-                rollout_loss=float(auxiliary.detach()) if rollout_losses else None,
-                source_aux_loss=float(source.detach()) if source_losses else None,
-                consistency_loss=float(consistency.detach()) if consistency_losses else None,
+                rollout_loss=float(auxiliary.detach()) if config.get("rollout_weight", 0.) else None,
+                source_aux_loss=float(source.detach()) if config.get("source_aux_weight", 0.) else None,
+                consistency_loss=float(consistency.detach()) if config.get("consistency_weight", 0.) else None,
                 endpoint_gradient_norm=endpoint_gradient, rollout_gradient_norm=auxiliary_gradient,
                 source_gradient_norm=source_gradient, consistency_gradient_norm=consistency_gradient,
                 scaled_objective=float(scaled.detach()), gradient_norm=pre, gradient_norm_after_clip=post,
                 head_gradient_norm=head, trunk_gradient_norm=trunk,
-                clipped=clip is not None and pre > float(clip), learning_rate=float(setting["lr"]),
+                optimizer_gradient_norm=optimizer_gradient,
+                clipped=clip is not None and optimizer_gradient > float(clip), learning_rate=current_lr,
+                batch_mode=controls["batch_mode"], head_only_warmup=head_only,
+                logical_updates=completed, query_visits=len(indices), query_weights=[weight for _, weight in plan],
                 parent_ids=[_parent(train[i]) for i in indices], horizons=[_record(train[i])["horizon"] for i in indices],
+                query_ids=[_record(train[i]).get("query_id") for i in indices],
+                phase_variants=[_record(train[i]).get("phase_variant", "original") for i in indices],
                 examples_seen=examples, elapsed_seconds=elapsed(), optimization_seconds=cumulative["optimization_seconds"],
                 parameter_movement=_movement(model, initial_state), trunk_movement=_movement(model, initial_state, head=False)))
             checkpoint()  # Commit sampler/RNG exactly with this completed update.
+            if not reporting["enabled"] or not pending_validation:
+                _emit_live(history[-1], config)
             if pending_validation:
                 validate()
         if completed >= updates:
@@ -600,6 +809,8 @@ def train_trial(model, train, validation, config, normalization, path, *,
         status = "FAILED_NONFINITE"
         failure = dict(type=type(exc).__name__, message=str(exc), scientific_failure=True)
     finally:
+        if optimization_tick is not None:
+            cumulative["optimization_seconds"] += time.perf_counter()-optimization_tick
         attempt.update(status=status, end_update=completed, finished_unix=time.time(),
                        elapsed_seconds=time.perf_counter()-start)
         checkpoint()
@@ -607,12 +818,16 @@ def train_trial(model, train, validation, config, normalization, path, *,
     last_state = copy.deepcopy(model.state_dict())
     tick = time.perf_counter()
     try:
-        final_train = evaluate_training(model, train, normalization, budget)
+        final_train = evaluate_training(model, train, normalization, budget, accuracy_criteria)
     except (TimeoutError, InterruptedError) as exc:
         final_train = _unavailable_metrics(type(exc).__name__+": bounded final training diagnostic incomplete")
     if (status != "CONTINUATION_REQUIRED" and final_train["mse"] is not None
         and (attainable_train is None or final_train["mse"] < attainable_train["mse"])):
         attainable_train, attainable_update = final_train, completed
+    if (status != "CONTINUATION_REQUIRED" and final_train["mse"] is not None
+        and (criterion_train is None or final_train["physical_criterion"]["worst_tolerance_ratio"] < criterion_train["physical_criterion"]["worst_tolerance_ratio"])):
+        criterion_train, criterion_update = final_train, completed
+        criterion_state = copy.deepcopy(last_state)
     cumulative["diagnostic_seconds"] += time.perf_counter()-tick
     model.load_state_dict(selected_state)
     # Diagnostics are separate from the optimizer clock but included in total
@@ -624,16 +839,24 @@ def train_trial(model, train, validation, config, normalization, path, *,
         selected_train = attainable_train
     else:
         try:
-            selected_train = evaluate_training(model, train, normalization, budget)
+            selected_train = evaluate_training(model, train, normalization, budget, accuracy_criteria)
         except (TimeoutError, InterruptedError) as exc:
             selected_train = _unavailable_metrics(type(exc).__name__+": bounded selected training diagnostic incomplete")
     selected_validation = best if best is not None else _unavailable_metrics("No completed validation observation")
+    try:
+        correction_diagnostics = _correction_summary(model, train, budget=budget) if config.get("record_correction_diagnostics", False) else dict(status="NA", reason="Not requested")
+    except (TimeoutError, InterruptedError) as exc:
+        correction_diagnostics = dict(status="UNRESOLVED", reason=str(exc))
     cumulative["diagnostic_seconds"] += time.perf_counter()-tick
     selected = dict(schema=SCHEMA, identity=identity, config=config.get("model", {}), normalization=normalization,
                     state_dict=selected_state, update=selected_update, family=config.get("family"),
                     target_kind=config.get("target_kind"), seed=seed,
                     architecture_metadata=model.architecture_metadata() if hasattr(model, "architecture_metadata") else None)
     atomic_torch_save(selected, root/"selected.pt")
+    if config.get("phase") in TINY_PHASES:
+        atomic_torch_save({**selected, "state_dict":criterion_state, "update":criterion_update,
+            "checkpoint_role":"criterion-aware training diagnostic only; never deployment or validation selection"},
+            root/"criterion-diagnostic.pt")
     model.load_state_dict(last_state)
     cumulative["total_seconds"] = elapsed()
     attempt.update(finished_unix=time.time(), elapsed_seconds=time.perf_counter()-start)
@@ -653,11 +876,27 @@ def train_trial(model, train, validation, config, normalization, path, *,
         selected_train=selected_train, final_train=final_train,
         attainable_train=attainable_train or _unavailable_metrics("No completed training diagnostic"), attainable_update=attainable_update,
         attainable_selection="minimum full-training parent-mean MSE at declared validation updates plus final iterate; diagnostic only",
+        criterion_train=criterion_train or _unavailable_metrics("No completed training criterion diagnostic"),
+        criterion_update=criterion_update,
+        criterion_state_sha256=_state_hash(criterion_state),
+        criterion_checkpoint="criterion-diagnostic.pt" if config.get("phase") in TINY_PHASES else None,
+        criterion_checkpoint_sha256=file_digest(root/"criterion-diagnostic.pt") if config.get("phase") in TINY_PHASES else None,
+        criterion_selection="minimum worst conservative RMS/max tolerance ratio across the entire training bank at declared observations; one checkpoint, diagnostic only",
+        correction_diagnostics=correction_diagnostics, training_controls=controls,
+        effective_updates=completed, examples_seen=examples,
+        work=dict(logical_optimizer_updates=completed, endpoint_forward_queries=examples,
+            **work_counters,
+            optimizer_backward_queries=examples if controls["batch_mode"] == "full_parent" else completed,
+            rollout_forward_queries=examples*int(config.get("rollout_steps", 2)) if config.get("rollout_weight", 0.) else 0,
+            full_parent_weighting="each independent parent total weight one, queries averaged within parent" if controls["batch_mode"] == "full_parent" else None,
+            validation_queries=sum(r.get("validation_loss") is not None for r in history)*len(validation),
+            diagnostic_scope="includes initialization, full-train scheduled diagnostics, final/selected checks and optional correction instrumentation"),
         initial_validation=initial,
         selected_validation=selected_validation, normalization=normalization, setting=setting,
         cost=cumulative, chunk_seconds=time.perf_counter()-start, attempts=attempts,
         total_parameters=sum(p.numel() for p in model.parameters()), trainable_parameters=sum(p.numel() for p in parameters),
         gradient_norm_scope="scaled objective, pre-clipping; heads identified by readout/head/gate/output/amplitude names",
+        component_gradient_norm_scope="NA in full_parent accumulation; aggregate head/trunk/total gradients remain measured" if controls["batch_mode"] == "full_parent" else "unscaled component objectives when auxiliary supervision is enabled",
         clipped_fraction=float(np.mean([r["clipped"] for r in history if "clipped" in r])) if completed else None,
         maximum_trunk_gradient=max((r.get("trunk_gradient_norm", 0.) for r in history), default=0.),
         trunk_movement=_movement(model, initial_state, head=False),
@@ -679,15 +918,53 @@ def train_trial(model, train, validation, config, normalization, path, *,
         row.update(objective_mode=normalization["objective_mode"],
                    objective_mean_scale=normalization["objective_mean_scale"],
                    objective_centered_scale=normalization["objective_centered_scale"])
-    # The journal contains full history. Each stage's public curve contains
-    # only its own commits, avoiding duplicate observations across chunks.
-    retained = {int(row["update"]):row for row in
-        (json.loads(line) for line in (root/"learning_curves.jsonl").read_text().splitlines())} if (root/"learning_curves.jsonl").exists() else {}
-    retained.update({row["update"]:row for row in history if row["update"] > chunk_start_update or chunk_start_update == 0})
-    _jsonl(root/"learning_curves.jsonl", [retained[key] for key in sorted(retained)])
+    # Exact private history/checkpoint cadence is independent of reporting.
+    prior_curves = [json.loads(line) for line in (root/"learning_curves.jsonl").read_text().splitlines()] if (root/"learning_curves.jsonl").exists() else []
+    if reporting["enabled"]:
+        public_rows, plans, export = sampled_curve_rows(history, reporting,
+            chunk_start_update=chunk_start_update, prior_rows=prior_curves, pending_validation=pending_validation)
+        result["learning_curve_export"] = export
+        result["optimization_history_summary"] = whole_history_summary(history)
+        if reporting["compact_public_query_plan"]:
+            write_json(root/"query_plan.json", plans)
+            result["learning_curve_export"]["query_plan_file_sha256"] = file_digest(root/"query_plan.json")
+        _jsonl(root/"learning_curves.jsonl", public_rows)
+        if history:
+            _emit_live(history[-1], config, force=True, phase="training-terminal")
+    else:
+        # Legacy public exports retain every observation and their query arrays.
+        retained = {int(row["update"]):row for row in prior_curves}
+        retained.update({row["update"]:row for row in history if row["update"] > chunk_start_update or chunk_start_update == 0})
+        _jsonl(root/"learning_curves.jsonl", [retained[key] for key in sorted(retained)])
     write_json(root/"trial.json", clean(result))
     write_json(root/"training_results.json", clean(dict(schema=SCHEMA, trials=[result])))
     return result
+
+
+def _conditioned_affine_solve(a, b, *, ridge, rcond):
+    """Normalize columns before a truncated FP64 SVD, then undo that scaling."""
+    if not math.isfinite(ridge) or ridge < 0 or not math.isfinite(rcond) or not 0 < rcond < 1:
+        raise ValueError("Affine ridge/rcond must be finite, nonnegative/strictly between zero and one")
+    column_norms = a.square().sum(0).sqrt()
+    nonzero = column_norms > 0
+    safe_norms = torch.where(nonzero, column_norms, torch.ones_like(column_norms))
+    standardized = a/safe_norms
+    u, singular, vh = torch.linalg.svd(standardized, full_matrices=False)
+    keep = singular > (singular[0]*rcond if len(singular) else 0.)
+    denominator = singular.square()+ridge
+    inverse = torch.zeros_like(singular)
+    inverse[keep] = singular[keep]/denominator[keep]
+    scaled = vh.T@(inverse*(u.T@b))
+    coefficients = scaled/safe_norms
+    coefficients[~nonzero] = 0.
+    raw_singular = torch.linalg.svdvals(a)
+    rank = int(keep.sum())
+    return coefficients, dict(column_scales=column_norms.tolist(), singular_values=singular.tolist(),
+        raw_singular_values=raw_singular.tolist(), rank=rank, discarded_singular_directions=int(len(singular)-rank),
+        condition_number=float(singular[0]/singular[-1]) if rank == a.shape[1] else None,
+        retained_condition_number=float(singular[0]/singular[keep][-1]) if rank else None,
+        solve_contract="parent-weighted objective; unit-column FP64 truncated SVD; ridge applies in normalized coordinates",
+        raw_coefficient_l2=float(coefficients.norm()), normalized_coefficient_l2=float(scaled.norm()))
 
 
 def fit_fixed_features(samples, normalization, *, ridge=0., rcond=1e-10):
@@ -726,22 +1003,17 @@ def fit_fixed_features(samples, normalization, *, ridge=0., rcond=1e-10):
     for sample in train:
         a, b = design(sample); matrices.append(a); targets.append(b)
     a, b = torch.cat(matrices), torch.cat(targets)
-    u, singular, vh = torch.linalg.svd(a, full_matrices=False)
-    keep = singular > (singular[0]*rcond if len(singular) else 0.)
-    inverse = torch.where(keep, singular/(singular.square()+ridge), torch.zeros_like(singular))
-    coefficients = vh.T@(inverse*(u.T@b))
+    coefficients, solve = _conditioned_affine_solve(a, b, ridge=ridge, rcond=rcond)
     rows = []
     for sample in samples:
         if not _accepted(sample):
             continue
         prediction = sample["anchor_fp32"].double()+torch.einsum("k,k...->...", coefficients.to(sample["u0"].device), features(sample))
         rows.append(endpoint_row(prediction, sample, normalization))
-    rank = int(keep.sum())
     return clean(dict(schema=SCHEMA, control="fixed_analytic_features_affine_readout", precision="FP64 assembly oracle; deployed FP32 addition is separate",
         affine=True, mean_propagator_learned=False, ridge=ridge, rcond=rcond,
         feature_names=["h", "h*v", "h*center(v²)", "h*center(v³)", "h²", "h²*v"],
-        coefficients=coefficients.tolist(), singular_values=singular.tolist(), rank=rank,
-        condition_number=float(singular[0]/singular[-1]) if rank == a.shape[1] else None,
+        coefficients=coefficients.tolist(), **solve,
         gram=(a.T@a).tolist(), train_objective=float((a@coefficients-b).square().sum()*.5),
         rows=rows, training_parent_ids=sorted(parent_counts), target_access="train-only fit; validation diagnostic only"))
 
@@ -754,6 +1026,10 @@ def fit_frozen_encoder(model, samples, normalization, *, ridge=0., rcond=1e-10):
     """
     from .references import equation_geometry
     _assert_development(samples)
+    if (not hasattr(model, "affine_features") or not hasattr(model, "set_affine_coefficients")
+        or getattr(model, "family", None) not in ("direct_fno", "residual_fno") or getattr(model, "numerical_remainder", False)):
+        return dict(schema=SCHEMA, control="frozen_random_neural_encoder_affine_head", status="NA",
+                    family=getattr(model, "family", None), reason="Architecture has no exact affine coefficient interface")
     train = [s for s in samples if _record(s)["split"] == "train" and _accepted(s)]
     if not train:
         raise ValueError("No accepted training labels for frozen encoder")
@@ -775,17 +1051,20 @@ def fit_frozen_encoder(model, samples, normalization, *, ridge=0., rcond=1e-10):
             labels.append(torch.cat([residual.mean()[None]/mean_scale,
                 _physical_coordinates(residual-residual.mean(), _record(sample)).flatten()/centered_scale])*factor)
         a, b = torch.cat(design), torch.cat(labels)
-        u, singular, vh = torch.linalg.svd(a, full_matrices=False)
-        keep = singular > singular[0]*rcond
-        inverse = torch.where(keep, singular/(singular.square()+ridge), torch.zeros_like(singular))
-        coefficients = vh.T@(inverse*(u.T@b))
+        coefficients, solve = _conditioned_affine_solve(a, b, ridge=ridge, rcond=rcond)
+        fp64_rows = []
+        for sample in samples:
+            if not _accepted(sample):
+                continue
+            eq, geom = equation_geometry(_record(sample))
+            base, basis = model.affine_features(sample["u0"], _record(sample)["horizon"], eq, geom, _record(sample)["target_kind"])
+            design_prediction = base.double()+torch.einsum("k,k...->...", coefficients.to(basis.device), basis.double())
+            fp64_rows.append(endpoint_row(design_prediction, sample, normalization))
         model.set_affine_coefficients(coefficients)
         rows = [endpoint_row(predict(model, sample), sample, normalization) for sample in samples if _accepted(sample)]
-    rank = int(keep.sum())
     return clean(dict(schema=SCHEMA, control="frozen_random_neural_encoder_affine_head", family=model.family,
         affine=True, fitted_mean_propagator=False, ridge=ridge, rcond=rcond, coefficients=coefficients.tolist(),
-        rank=rank, singular_values=singular.tolist(), gram=(a.T@a).tolist(),
-        condition_number=float(singular[0]/singular[-1]) if rank == a.shape[1] else None,
+        **solve, gram=(a.T@a).tolist(), fp64_design_rows=fp64_rows,
         fp64_affine_train_objective=float(.5*(a@coefficients-b).square().sum()),
         rows=rows, deployed_assembly="Actual model FP32 output, distinct from FP64 affine design optimum",
         training_parent_ids=sorted(counts), target_access="training-only solve; validation diagnostic only"))
@@ -897,7 +1176,11 @@ def _trial_config(ctx):
     result.setdefault("model", {**ctx.protocol.get("model_config", {}), "family": result["family"]})
     result["model"].setdefault("family", result["family"])
     settings = ctx.protocol.get("training", {})
-    for key in ("batch_size", "validation_every", "rollout_weight", "rollout_steps"):
+    result.setdefault("screen_stage", ctx.unit.get("screen_stage"))
+    result.setdefault("physical_criteria", dict(rms=float(settings.get("target_rms", 2e-5)), maximum=float(settings.get("target_max", 2e-5))))
+    for key in ("batch_size", "batch_mode", "validation_every", "rollout_weight", "rollout_steps", "lr_schedule",
+                "head_warmup_updates", "record_correction_diagnostics", "inference_benchmark",
+                "public_curve_every", "live_every", "compact_public_query_plan"):
         if key in settings:
             result.setdefault(key, settings[key])
     if result.get("phase") == "rollout":
@@ -916,6 +1199,28 @@ def _data(ctx, config):
     samples = [sample for stage in stages for sample in load_samples(ctx.prerequisites[stage], ctx.device)]
     _assert_development(samples)
     samples = [s for s in samples if _record(s)["target_kind"] == config["target_kind"]]
+    screen_stage = config.get("screen_stage")
+    if screen_stage:
+        if screen_stage not in ctx.prerequisites:
+            raise ValueError("Screening must be a sealed training prerequisite")
+        screen_path = Path(ctx.prerequisites[screen_stage])/"screening.json"
+        screen = json.loads(screen_path.read_text())
+        if screen.get("schema") != "tdn.response-screening/v1":
+            raise ValueError("Unsupported Response screening schema")
+        target = config["target_kind"]
+        selected = screen.get("selected_parents", {}).get(target, {})
+        regimes = [config["regime"]] if config.get("phase") in ("tiny_individual", "diagnostic_individual") else list(CORE_REGIMES)
+        requested = [(split, regime, selected.get(split, {}).get(regime)) for split in ("train", "validation") for regime in regimes]
+        missing = [dict(split=split, regime=regime, reason="No screen-eligible parent") for split, regime, pid in requested if not pid]
+        choices = {(split, pid):regime for split, regime, pid in requested if pid}
+        observed = {(_record(s)["split"], _parent(s)) for s in samples}
+        missing += [dict(split=split, regime=regime, parent_id=pid, reason="Screen-selected parent missing from prepared datasets")
+                    for split, regime, pid in requested if pid and (split, pid) not in observed]
+        config["screening"] = dict(stage=screen_stage, sha256=file_digest(screen_path),
+            status="UNRESOLVED_SCREEN" if missing else "ELIGIBLE", requested_regimes=regimes,
+            selected_parents=selected, missing=missing, target_group=screen.get("target_groups", {}).get(target, {}))
+        samples = [dict(s, record={**_record(s), "tiny_regime":choices[(_record(s)["split"], _parent(s))]})
+                   for s in samples if (_record(s)["split"], _parent(s)) in choices]
     seen = set()
     for sample in samples:
         record = _record(sample)
@@ -924,10 +1229,10 @@ def _data(ctx, config):
         if key in seen:
             raise ValueError("Duplicated prepared training query")
         seen.add(key)
-    if config.get("phase") in ("tiny_individual", "tiny_joint"):
+    if config.get("phase") in TINY_PHASES:
         samples = [s for s in samples if _record(s)["split"] != "train" or
                    _record(s).get("tiny_regime", _record(s).get("regime")) in CORE_REGIMES]
-    if config.get("phase") == "tiny_individual":
+    if config.get("phase") in ("tiny_individual", "diagnostic_individual"):
         samples = [s for s in samples if _record(s)["split"] != "train" or
                    _record(s).get("tiny_regime", _record(s).get("regime")) == config["regime"]]
     count = config.get("data_count")
@@ -946,7 +1251,7 @@ def _data(ctx, config):
             raise ValueError("Declared training-parent count exceeds prepared parent coverage")
         selected = set(ordered[:int(count)])
         samples = [s for s in samples if _record(s)["split"] != "train" or _parent(s) in selected]
-    if config.get("phase") == "tiny_individual":
+    if config.get("phase") in ("tiny_individual", "diagnostic_individual"):
         ids = sorted({_parent(s) for s in samples if _record(s)["split"] == "train"})
         if ids:
             samples = [s for s in samples if _record(s)["split"] != "train" or _parent(s) == ids[0]]
@@ -989,6 +1294,48 @@ def _stage_record(ctx, identity, metrics, gap=None, correct=True):
               reason="Training gate is distinct from held-out scientific advantage")])
 
 
+def _postfit_inference_benchmark(path, validation, config, trial, *, device, budget=None):
+    """Time only the generated validation-selected checkpoint, with a fixed query."""
+    declaration = config.get("inference_benchmark")
+    if not declaration:
+        return None
+    if not isinstance(declaration, dict):
+        raise ValueError("inference_benchmark must declare bounded repeats and warmup")
+    repeats, warmup = int(declaration.get("repeats", 2)), int(declaration.get("warmup", 1))
+    if repeats <= 0 or warmup < 0:
+        raise ValueError("Inference repeats must be positive and warmup nonnegative")
+    tick = time.perf_counter()
+    unavailable = dict(schema="tdn.response-diagnostic-performance/v1", status="NA", requested_repeats=repeats,
+        requested_warmup=warmup, checkpoint_role="validation-selected checkpoint",
+        fresh_process="NOT_MEASURED", transfers="NOT_INCLUDED", p99=None,
+        scientific_claim="Inference timing alone does not establish utility or amortization")
+    if trial["status"] != "COMPLETED_UPDATES":
+        result = {**unavailable, "reason":"Trial has not completed its declared optimization budget"}
+    elif not validation:
+        result = {**unavailable, "reason":"No accepted validation query"}
+    else:
+        # Selection uses immutable identifiers, never measured quality or speed.
+        sample = min(validation, key=lambda value:(str(_record(value).get("query_id", "")), _parent(value),
+            tuple(_record(value)["grid"]), float(_record(value)["horizon"]), str(_record(value).get("phase_variant", "original"))))
+        try:
+            if budget is not None:
+                budget.check()
+            from .diagnostic_performance import benchmark_model
+            # This file was just generated by this trial. Uploaded or external
+            # historical checkpoint payloads are never used by this hook.
+            selected_model, selected = load_model(path, device=device)
+            result = benchmark_model(selected_model, [sample], selected["normalization"],
+                repeats=repeats, warmup=warmup, budget=budget)
+            result.update(checkpoint_role="validation-selected checkpoint", selected_update=selected["update"],
+                checkpoint_sha256=file_digest(Path(path)/"selected.pt"),
+                query_selection="minimum canonical accepted validation query identifier; independent of quality and timing")
+        except (TimeoutError, InterruptedError) as exc:
+            result = {**unavailable, "status":"UNRESOLVED", "reason":"Bounded post-fit benchmark incomplete: "+str(exc)}
+    result["postprocessing_seconds"] = time.perf_counter()-tick
+    write_json(Path(path)/"inference_cost.json", clean(result))
+    return result
+
+
 def run_training(ctx):
     from .models import create_model
     setup_start = time.perf_counter()
@@ -998,7 +1345,7 @@ def run_training(ctx):
         previous_path = Path(ctx.prerequisites[previous])
         prior = json.loads((previous_path/"trial.json").read_text())
         if prior["status"] in TERMINAL:
-            for name in ("selected.pt", "journal.pt", "trial.json", "fixed_features.json", "fixed_encoder.json", "fixed_encoder.pt", "checkpoint_reload.json"):
+            for name in ("selected.pt", "journal.pt", "trial.json", "fixed_features.json", "fixed_encoder.json", "fixed_encoder.pt", "checkpoint_reload.json", "criterion-diagnostic.pt", "inference_cost.json", "query_plan.json"):
                 if (previous_path/name).exists():
                     shutil.copy2(previous_path/name, Path(ctx.path)/name)
             prior["continuation_noop"] = True
@@ -1011,10 +1358,43 @@ def run_training(ctx):
                           dict(trial_status=prior["status"], previous=previous, seconds=prior["continuation_noop_seconds"]))
             return dict(trial_id=prior["trial_id"], trial_status=prior["status"], continuation_noop=True)
     samples, data_stages = _data(ctx, config)
+    if config.get("screening", {}).get("status") == "UNRESOLVED_SCREEN":
+        unavailable = _unavailable_metrics("No complete declared resolvable screening bank")
+        row = dict(schema=SCHEMA, trial_id=config.get("id"), family=config["family"], target_kind=config["target_kind"],
+            phase=config.get("phase"), seed=config["seed"], regime=config.get("regime"), variant_id=config.get("variant_id", "base"),
+            status="UNRESOLVED_SCREEN", updates=0, requested_updates=config["updates"], requested_seconds=config.get("total_seconds"),
+            selected_update=0, selected_initialization=True, screening=config["screening"], initial_train=unavailable,
+            selected_train=unavailable, final_train=unavailable, attainable_train=unavailable, initial_validation=unavailable,
+            selected_validation=unavailable, criterion_train=unavailable, setting=config["setting"], attempts=[],
+            model_config=config.get("model", {}), cost=dict(total_seconds=time.perf_counter()-setup_start),
+            failure=dict(scientific_failure=False, type="UNRESOLVED_SCREEN", message="Required teacher coverage or headroom unavailable"),
+            scientific_claim="No optimizer or model fit attempted; missing screening regimes retain denominator weight")
+        inference = _postfit_inference_benchmark(ctx.path, [], config, row, device=ctx.device)
+        if inference is not None:
+            row["inference_cost"] = inference
+            row["postprocessing_cost"] = dict(inference_benchmark_seconds=inference["postprocessing_seconds"])
+        row["stage_total_seconds"] = time.perf_counter()-setup_start
+        row["total_cost_including_postprocessing_seconds"] = row["stage_total_seconds"]
+        write_json(Path(ctx.path)/"trial.json", row)
+        write_json(Path(ctx.path)/"training_results.json", dict(schema=SCHEMA, trials=[row]))
+        (Path(ctx.path)/"learning_curves.jsonl").write_text("")
+        _stage_record(ctx, "trial/"+str(row["trial_id"]), dict(status=row["status"], screening=row["screening"]), gap=None)
+        return dict(trial_id=row["trial_id"], trial_status=row["status"], updates=0, continuation_required=False)
     samples = _anchor_labels(samples, config)
     normalization = training_normalization(samples, minimum_floor=float(ctx.protocol.get("training", {}).get("normalization_floor", 1e-8)))
+    screen_floor = config.get("screening", {}).get("target_group", {}).get("normalization_floor")
+    if screen_floor is not None:
+        screen_floor = float(screen_floor)
+        if not math.isfinite(screen_floor) or screen_floor <= 0:
+            raise ValueError("Screening normalization floor must be positive and finite")
+        normalization["floor"] = max(normalization["floor"], screen_floor)
+        for key in ("mean_scale", "centered_scale", "full_scale", "within_field_centered_scale"):
+            normalization[key] = max(normalization[key], normalization["floor"])
+        normalization["screening_floor"] = screen_floor
     normalization = apply_normalization_mode(normalization, config.get("normalization_mode", "separate"))
     normalization = configure_objective(normalization, config["family"], config.get("objective_mode", "family"))
+    if config.get("model", {}).get("gain_mode", config.get("model", {}).get("gain_normalization", "legacy")) == "frozen":
+        normalization = fit_correction_gains(samples, normalization, config)
     config["model"]["normalization"] = normalization
     torch.manual_seed(int(config["seed"])); random.seed(int(config["seed"])); np.random.seed(int(config["seed"]) % (2**32))
     model = create_model(config["model"]).to(device=ctx.device, dtype=torch.float32)
@@ -1025,6 +1405,8 @@ def run_training(ctx):
                     for name in data_stages}, source=ctx.protocol.get("source_tree_sha256"),
                     software={key:metadata.get(key) for key in ("source_tree_sha256", "python", "torch", "numpy", "scipy", "torch_cuda_runtime")},
                     torch=str(torch.__version__), device_type=torch.device(ctx.device).type)
+    if config.get("screen_stage"):
+        identity["screening"] = config["screening"]["sha256"]
     resume = Path(ctx.prerequisites[previous])/"journal.pt" if previous else None
     if (Path(ctx.path)/"journal.pt").exists():
         resume = Path(ctx.path)/"journal.pt"
@@ -1032,12 +1414,12 @@ def run_training(ctx):
     setup_seconds = time.perf_counter()-setup_start
     row = train_trial(model, train, validation, config, normalization, ctx.path, identity=identity,
         resume=resume, budget=ctx.budget, chunk_seconds=ctx.unit.get("seconds"), final_chunk=final)
-    if row["status"] != "CONTINUATION_REQUIRED" and config.get("phase") in ("tiny_individual", "tiny_joint"):
+    if row["status"] != "CONTINUATION_REQUIRED" and config.get("phase") in TINY_PHASES:
         tick = time.perf_counter()
         fixed = fit_fixed_features(samples, normalization)
         fixed["elapsed_seconds"] = time.perf_counter()-tick
         write_json(Path(ctx.path)/"fixed_features.json", fixed)
-        if config["family"] in ("direct_fno", "residual_fno"):
+        if config["family"] in ("direct_fno", "residual_fno") and not config["model"].get("numerical_remainder", False):
             tick = time.perf_counter()
             # Recreate the exact initial random encoder, not the trained one.
             torch.manual_seed(int(config["seed"]))
@@ -1048,6 +1430,10 @@ def run_training(ctx):
             atomic_torch_save(dict(config={**config["model"], "frozen_encoder":True}, state_dict=frozen.state_dict(),
                 normalization=normalization, family=config["family"], target_kind=config["target_kind"], seed=config["seed"]),
                 Path(ctx.path)/"fixed_encoder.pt")
+        else:
+            fixed_encoder = dict(schema=SCHEMA, control="frozen_random_neural_encoder_affine_head", status="NA",
+                family=config["family"], reason="Architecture has no exact affine coefficient interface", elapsed_seconds=0.)
+            write_json(Path(ctx.path)/"fixed_encoder.json", fixed_encoder)
     if row["status"] == "COMPLETED_UPDATES":
         reload = checkpoint_reload_probe(ctx.path, train[0], device=ctx.device)
         row["checkpoint_reload"] = reload
@@ -1061,9 +1447,18 @@ def run_training(ctx):
     row["requested_training_queries"] = sum(_record(s)["split"] == "train" for s in samples)
     row["accepted_validation_queries"] = len(validation)
     row["requested_validation_queries"] = sum(_record(s)["split"] == "validation" for s in samples)
+    row["reference_coverage_rows"] = [dict(parent_id=_parent(s), query_id=_record(s).get("query_id"),
+        split=_record(s)["split"], tiny_regime=_record(s).get("tiny_regime"), horizon=_record(s)["horizon"],
+        reference_accepted=_accepted(s), reference_status=_reference(s).get("status")) for s in samples]
+    if config.get("screening"):
+        row["screening"] = config["screening"]
+    inference = _postfit_inference_benchmark(ctx.path, validation, config, row, device=ctx.device, budget=ctx.budget)
+    if inference is not None:
+        row["inference_cost"] = inference
     postprocessing = dict(fixed_features_seconds=fixed["elapsed_seconds"] if "fixed" in locals() else 0.,
         fixed_encoder_seconds=fixed_encoder["elapsed_seconds"] if "fixed_encoder" in locals() else 0.,
-        checkpoint_reload_seconds=row.get("checkpoint_reload", {}).get("elapsed_seconds", 0.))
+        checkpoint_reload_seconds=row.get("checkpoint_reload", {}).get("elapsed_seconds", 0.),
+        inference_benchmark_seconds=inference["postprocessing_seconds"] if inference is not None else 0.)
     row["postprocessing_cost"] = postprocessing
     row["stage_setup_seconds"] = setup_seconds
     row["stage_total_seconds"] = time.perf_counter()-setup_start
@@ -1139,12 +1534,12 @@ def run_select(ctx):
         groups = defaultdict(list)
         expected = defaultdict(list)
         for spec in declarations:
-            if spec["phase"] not in ("factorial", "tiny_individual", "tiny_joint"):
+            if spec["phase"] not in ("factorial", *TINY_PHASES):
                 key = (spec["target_kind"], spec["family"], spec.get("variant_id", "base"), int(spec.get("data_count") or 0), spec["seed"])
                 expected[key].append(spec["id"])
                 groups[key] = []
         for row in rows:
-            if row["phase"] not in ("factorial", "tiny_individual", "tiny_joint"):
+            if row["phase"] not in ("factorial", *TINY_PHASES):
                 groups[(row["target_kind"], row["family"], row.get("variant_id", "base"),
                         int(row.get("data_count") or 0), row["seed"])].append(row)
         selected = []; missing = []
@@ -1180,7 +1575,7 @@ def run_select(ctx):
 def trainability_gate(rows, *, seeds, regimes=CORE_REGIMES, rms_target=2e-5, max_target=2e-5, profile="pilot", expected_groups=None):
     if len(set(seeds)) != len(seeds) or len(set(regimes)) != 6:
         raise ValueError("M3 requires distinct seeds and exactly six declared resolvable regimes")
-    individual = [r for r in rows if r["phase"] == "tiny_individual"]
+    individual = [r for r in rows if r["phase"] in ("tiny_individual", "diagnostic_individual")]
     groups = sorted(set(expected_groups or ()) | {(r["target_kind"], r["family"]) for r in individual})
     outcomes = []; cells = []
     for target, family in groups:
@@ -1193,6 +1588,9 @@ def trainability_gate(rows, *, seeds, regimes=CORE_REGIMES, rms_target=2e-5, max
                     raise ValueError("Gate requires one preselected tiny trial per family/seed/regime")
                 row = matches[0] if matches else None
                 cell = dict(target_kind=target, family=family, seed=seed, regime=regime, status="MISSING", passed=False)
+                if row and row["status"] == "UNRESOLVED_SCREEN":
+                    cell.update(status="UNRESOLVED_SCREEN", trial_id=row["trial_id"], screening=row.get("screening"))
+                    row = None
                 if row and row["status"] == "FAILED_NONFINITE":
                     cell.update(status="FAILED_NONFINITE", trial_id=row["trial_id"])
                     row = None
@@ -1219,9 +1617,9 @@ def trainability_gate(rows, *, seeds, regimes=CORE_REGIMES, rms_target=2e-5, max
                     cell["attainable_update"] = row.get("attainable_update", row.get("updates"))
                     floors += int(floor)
                 successes += int(cell["passed"])
-                unresolved += int(cell["status"] in ("MISSING", "TIME_CENSORED", "CONTINUATION_REQUIRED", "FLOOR_LIMITED", "UNMEASURED_TRAINING_DIAGNOSTIC"))
+                unresolved += int(cell["status"] in ("MISSING", "TIME_CENSORED", "CONTINUATION_REQUIRED", "FLOOR_LIMITED", "UNMEASURED_TRAINING_DIAGNOSTIC", "UNRESOLVED_SCREEN"))
                 cells.append(cell)
-            joint = [r for r in rows if r["phase"] == "tiny_joint" and
+            joint = [r for r in rows if r["phase"] in ("tiny_joint", "diagnostic_joint") and
                      (r["target_kind"], r["family"], r["seed"]) == (target, family, seed)]
             if len(joint) > 1:
                 raise ValueError("Gate requires one preselected joint tiny trial per family/seed")
@@ -1230,6 +1628,8 @@ def trainability_gate(rows, *, seeds, regimes=CORE_REGIMES, rms_target=2e-5, max
                 item = dict(regime=regime, status="MISSING", passed=False)
                 if joint:
                     trial = joint[0]
+                    if trial["status"] == "UNRESOLVED_SCREEN":
+                        item.update(status="UNRESOLVED_SCREEN", screening=trial.get("screening"))
                     initial_rows = [e for e in trial["initial_train"]["rows"] if e.get("tiny_regime", e.get("regime")) == regime]
                     achieved = trial.get("attainable_train", trial.get("final_train", trial["selected_train"]))
                     final_rows = [e for e in achieved["rows"] if e.get("tiny_regime", e.get("regime")) == regime]
@@ -1244,7 +1644,7 @@ def trainability_gate(rows, *, seeds, regimes=CORE_REGIMES, rms_target=2e-5, max
                             and trial["status"] == "COMPLETED_UPDATES", attainable_update=trial.get("attainable_update"))
                 joint_passes += int(item["passed"])
                 joint_cells.append(item)
-            joint_unresolved = sum(r["status"] in ("MISSING", "TIME_CENSORED", "CONTINUATION_REQUIRED", "FLOOR_LIMITED") for r in joint_cells)
+            joint_unresolved = sum(r["status"] in ("MISSING", "TIME_CENSORED", "CONTINUATION_REQUIRED", "FLOOR_LIMITED", "UNRESOLVED_SCREEN") for r in joint_cells)
             seed_rows.append(dict(seed=seed, passed_regimes=successes, joint_passed_regimes=joint_passes,
                 joint_regimes=joint_cells, required=5, total_regimes=len(regimes),
                 unresolved=unresolved+joint_unresolved, floor_limited=floors,
@@ -1257,7 +1657,7 @@ def trainability_gate(rows, *, seeds, regimes=CORE_REGIMES, rms_target=2e-5, max
         criterion="100-fold training MSE reduction and conservative physical RMS/max targets in >=5/6 resolved regimes for all 3 seeds, both individual and joint fits",
         floor_policy="separate absolute checks; floor cases do not replace six resolvable cases",
         scientific_claim="Attainable training fit diagnostic only; deployment checkpoint remains validation-selected; not held-out superiority",
-        joint_trials=[r["trial_id"] for r in rows if r["phase"] == "tiny_joint"])
+        joint_trials=[r["trial_id"] for r in rows if r["phase"] in ("tiny_joint", "diagnostic_joint")])
 
 
 def run_gate(ctx):
