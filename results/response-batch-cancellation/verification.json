@@ -1,0 +1,29 @@
+{
+  "schema": "tdn.response-batch-cancellation-verification/v1",
+  "baseline_commit": "423ebf97c0b669b35b2880f6d16ecd46f36745df",
+  "verified_source_tree_sha256": "115b9f61905140d7512bb012fb5f5d05c55997bd1e0f2d7c784bef6b403864ca",
+  "helper_sha256": "9e9afc62496a76a6cda6e6b007810784a0644ab7b02de53b4baeb2f592c5cacc",
+  "test_junit_sha256": "8de3d592f86e7cf6e366f0843513591a960ffe34638f31f4de67646aa6b0b1e1",
+  "command": ".venv/bin/python -m pytest -q tests/test_cancel_response_batch.py --basetemp=.runtime/onboarding/cancel-response-batch-final-tests --junitxml=.runtime/onboarding/cancel-response-batch-final-tests.xml",
+  "cwd": "/workspace/TDN",
+  "environment": "Inherited managed cloud environment with project CPU venv; no command-specific environment overrides",
+  "exit_code": 0,
+  "passed": 36,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "console_elapsed_seconds": 0.26,
+  "junit_elapsed_seconds": 0.251,
+  "junit_timestamp": "2026-10-13T09:50:48.911650+00:00",
+  "test_classes": {
+    "tests.test_cancel_response_batch": 36
+  },
+  "independent_read_only_review": "APPROVED",
+  "verification_scope": "Private scheduler recorders and real local flock checks; no actual Slurm allocation or CUDA execution",
+  "native_cancellation_performed": false,
+  "native_run_identity_verification": "PENDING_ON_USER_MACHINE",
+  "selected_native_run_for_published_commands": "response-diagnostic-smoke-20261013T032059-fd157c33d389",
+  "user_queue_observation": "74 old Response allocations pending or held; newer Tangent work progressing and unrelated interactive/samso allocations present",
+  "protected_scope": "All non-selected jobs and original run files; existing numerical/protocol/model sources unchanged",
+  "deployment": "Detached stdlib helper downloaded under .runtime; no active-checkout git pull required"
+}

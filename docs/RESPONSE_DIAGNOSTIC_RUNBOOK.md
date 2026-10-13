@@ -132,6 +132,12 @@ The allowance is a ceiling, not a runtime prediction or evidence of optimality.
 
 ## Archive a cancelled attempt before a fresh launch
 
+To stop remaining jobs from one old batch, use the
+[exact-batch cancellation helper](RESPONSE_BATCH_CANCELLATION.md). It checks
+the frozen allocation registry against live ownership and preserves the run.
+Its detached `.runtime` invocation lets another active TDN campaign keep its
+source unchanged; do not pull merely to obtain this helper during active work.
+
 If a previous campaign was cancelled, allow its foreground coordinator to
 finish or interrupt it with Ctrl-C, then use the separate
 [archive command](RESPONSE_DIAGNOSTIC_ARCHIVE.md). It verifies actual terminal
