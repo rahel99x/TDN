@@ -50,6 +50,8 @@ Previously submitted jobs retain their old Slurm script snapshots.
 
 For the older Response trial, retain
 `runs/<run-id>/logs/trial-9b2cb697421ddc9a-000-2080.{err,out}` and its worker state.
-Its actual traceback is needed to distinguish training, checkpoint reload,
-software identity, resource or other failures. This bootstrap repair does not
-claim to diagnose or repair that separate trial.
+The subsequently supplied traceback and reload receipt identify an unequal
+parent/child runtime schema despite exact output/state/checkpoint equality.
+See the separate [Response reload diagnosis and source guard](../../response-runtime-reload-2080/README.md).
+This bootstrap repair addresses the Tangent shell entry point; both incidents
+retain their original failed evidence.

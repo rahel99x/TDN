@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "maximum_difference": 0.0,
+  "exact_equal": true,
+  "runtime_equal": true,
+  "state_equal": true,
+  "checkpoint_equal": true,
+  "source_equal": true,
+  "parent_source_tree_sha256": "12f847cd132fc425b1ecf88c176b7a9c63e34e915653e34bd562aed200356003",
+  "child_source_tree_sha256": "12f847cd132fc425b1ecf88c176b7a9c63e34e915653e34bd562aed200356003",
+  "parent_runtime": {
+    "precision": {
+      "api": "fp32_precision",
+      "global_fp32": "ieee",
+      "cuda_matmul": "ieee",
+      "cudnn_convolution": "ieee"
+    },
+    "threads": 1,
+    "interop_threads": 5,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "deterministic_algorithms": false,
+    "deterministic_warn_only": false
+  },
+  "child_runtime": {
+    "precision": {
+      "api": "fp32_precision",
+      "global_fp32": "ieee",
+      "cuda_matmul": "ieee",
+      "cudnn_convolution": "ieee"
+    },
+    "threads": 1,
+    "interop_threads": 5,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "deterministic_algorithms": false,
+    "deterministic_warn_only": false
+  },
+  "elapsed_seconds": 3.1610703359910985,
+  "checkpoint_sha256": "038653d09e6410d50fed68c7baeeaf8d76c3ba247d781b4bcd4b624927e20b13",
+  "input_sha256": "c63ec90a7fa8e1a2eff4b1be04c75d4fb502e3d5349141f8260131b7d2cb703a",
+  "parent_runtime_sha256": "84312d1ef3132e34d88e37417897a564eb5fd711b738c15806d00c653e19bb8e",
+  "independent_process": true,
+  "device": "cpu"
+}

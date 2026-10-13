@@ -1,0 +1,68 @@
+{
+  "schema": "tdn.response-reload-incident-verification/v1",
+  "baseline_commit": "582c06e4bace5faa785d2abcf50e5a717dda92a0",
+  "verified_source_tree_sha256": "12f847cd132fc425b1ecf88c176b7a9c63e34e915653e34bd562aed200356003",
+  "native_evidence": {
+    "receipt_origin": "Transcription of user-pasted checkpoint_reload.json; native checkpoint/tensors/allocation unavailable in cloud",
+    "job_id": "2080",
+    "run_id": "response-diagnostic-smoke-20261013T032059-fd157c33d389",
+    "stage": "trial-9b2cb697421ddc9a-000",
+    "reported_device": "cuda",
+    "original_status_retained": "FAIL",
+    "parent_only_runtime_fields": [],
+    "child_only_runtime_fields": [
+      "deterministic_warn_only"
+    ],
+    "different_shared_runtime_values": {},
+    "user_confirmed_update_during_running_jobs": true,
+    "exact_original_parent_and_child_source_trees": "UNRECORDED"
+  },
+  "cpu_checks": {
+    "command": ".venv/bin/python -m pytest -q tests/test_response_checkpoint_reload.py tests/test_response_training.py tests/test_response_cli.py tests/test_response_dependency_order.py tests/test_response_workflow.py --basetemp=.runtime/onboarding/response-reload-source-guard-tests --junitxml=.runtime/onboarding/response-reload-source-guard-tests.xml",
+    "cwd": "/workspace/TDN",
+    "command_specific_environment_overrides": [],
+    "environment": "Inherited managed cloud environment and project CPU venv; no separate environment snapshot captured during the test run",
+    "exit_code": 0,
+    "passed": 104,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "console_elapsed_seconds": 43.09,
+    "junit_elapsed_seconds": 43.073,
+    "junit_timestamp": "2026-10-13T09:19:33.187471+00:00",
+    "test_classes": {
+      "tests.test_response_checkpoint_reload": 11,
+      "tests.test_response_cli": 14,
+      "tests.test_response_dependency_order": 12,
+      "tests.test_response_training": 21,
+      "tests.test_response_workflow": 46
+    },
+    "actual_child_process_pass_receipts": 5,
+    "matching_parent_child_source_sha256": "12f847cd132fc425b1ecf88c176b7a9c63e34e915653e34bd562aed200356003",
+    "deliberate_corruption_fail_receipts": 4,
+    "example_receipt": "cpu-probe-example.json"
+  },
+  "review": {
+    "independent_read_only_source_review": "APPROVED",
+    "original_exact_output_runtime_state_checkpoint_checks": "RETAINED",
+    "source_consistency_checks": "ADDED",
+    "legacy_internal_cli_argument_counts": [
+      6,
+      7
+    ],
+    "new_internal_cli_argument_count": 8,
+    "missing_runtime_defaults_added": false,
+    "numerical_tolerances_changed": false
+  },
+  "scope": {
+    "numerical_campaigns_rerun": false,
+    "cuda_workloads_executed_in_cloud": false,
+    "native_revalidation": "PENDING",
+    "original_runs_and_numerical_artifacts": "PRESERVED"
+  },
+  "sha256": {
+    "native-receipt.json": "d46adb0909c22d6196bc8a3f3324538728c7a762eea47495d197d2579371c85b",
+    "source-guard-tests.xml": "df24d03fbf3456f1ab5dd960206d445587cda45764d44994ce44d3b23b380552",
+    "cpu-probe-example.json": "82f25227a8efdfc5c5b580aafa6a8afd5808fae74ad87b8be356c8cd4309af84"
+  }
+}

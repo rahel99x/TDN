@@ -1103,8 +1103,25 @@ def _checkpoint_runtime():
         deterministic_warn_only=torch.is_deterministic_algorithms_warn_only_enabled())
 
 
-def _checkpoint_reload_child(directory, destination, *, threads, interop_threads, runtime_path=None):
+class SourceChangedError(RuntimeError):
+    """A checkpoint probe cannot mix a frozen parent with changed source."""
+
+
+def _reload_source_identity(expected_source_tree_sha256=None, *, phase):
+    if expected_source_tree_sha256 is not None and (not isinstance(expected_source_tree_sha256, str)
+            or len(expected_source_tree_sha256) != 64
+            or any(c not in "0123456789abcdef" for c in expected_source_tree_sha256)):
+        raise ValueError("Checkpoint probe source identity must be a SHA256 digest")
+    actual = software_metadata()["source_tree_sha256"]
+    if expected_source_tree_sha256 is not None and actual != expected_source_tree_sha256:
+        raise SourceChangedError(f"Executable source changed {phase}: expected {expected_source_tree_sha256}, found {actual}; preserve this attempt and use a fresh campaign")
+    return actual
+
+
+def _checkpoint_reload_child(directory, destination, *, threads, interop_threads, runtime_path=None,
+                             expected_source_tree_sha256=None):
     directory = Path(directory)
+    source = _reload_source_identity(expected_source_tree_sha256, phase="before checkpoint reload child")
     torch.set_num_threads(threads)
     torch.set_num_interop_threads(interop_threads)
     if runtime_path is not None:
@@ -1121,15 +1138,18 @@ def _checkpoint_reload_child(directory, destination, *, threads, interop_threads
     probe["u0"] = probe["u0"].to(destination)
     with torch.no_grad():
         output = predict(loaded, probe).cpu()
+    _reload_source_identity(source, phase="during checkpoint reload child")
     atomic_torch_save(output, directory/"reload-output.pt")
     write_json(directory/"reload-runtime.json", dict(runtime=_checkpoint_runtime(),
+        source_tree_sha256=source,
         checkpoint_sha256=file_digest(directory/"selected.pt"),
         state_sha256=_state_hash(loaded.state_dict())))
 
 
-def checkpoint_reload_probe(path, sample, *, device="cpu"):
+def checkpoint_reload_probe(path, sample, *, device="cpu", expected_source_tree_sha256=None):
     """Actually reload project state-dict bytes in another Python process."""
     root = Path(path)
+    source = _reload_source_identity(expected_source_tree_sha256, phase="before checkpoint reload")
     model, _ = load_model(root, device)
     stripped = dict(u0=sample["u0"].detach().cpu(), record={k: v for k, v in _record(sample).items()
         if k not in ("reference", "target", "teacher", "anchor_fp32", "anchor_fp64")})
@@ -1141,12 +1161,14 @@ def checkpoint_reload_probe(path, sample, *, device="cpu"):
     runtime = _checkpoint_runtime()
     runtime_path = root/"reload-parent-runtime.json"
     write_json(runtime_path, runtime)
+    _reload_source_identity(source, phase="before launching checkpoint reload child")
     command = [sys.executable, "-m", "tdn.analysis.response.training", "reload", str(root.resolve()), str(device),
-               str(runtime["threads"]), str(runtime["interop_threads"]), str(runtime_path.resolve())]
+               str(runtime["threads"]), str(runtime["interop_threads"]), str(runtime_path.resolve()), source]
     started = time.perf_counter()
     child = subprocess.run(command, capture_output=True, text=True, check=False, timeout=120)
     if child.returncode:
         raise RuntimeError("Fresh-process checkpoint reload failed: "+child.stderr[-4000:])
+    _reload_source_identity(source, phase="during checkpoint reload")
     actual = torch.load(output_path, weights_only=True, map_location="cpu")
     receipt = json.loads((root/"reload-runtime.json").read_text())
     difference = float((actual.double()-expected.double()).abs().max())
@@ -1155,9 +1177,12 @@ def checkpoint_reload_probe(path, sample, *, device="cpu"):
     checkpoint_sha256 = file_digest(root/"selected.pt")
     state_equal = _state_hash(model.state_dict()) == receipt["state_sha256"]
     checkpoint_equal = checkpoint_sha256 == receipt["checkpoint_sha256"]
-    result = dict(status="PASS" if exact_equal and runtime_equal and state_equal and checkpoint_equal else "FAIL",
+    source_equal = source == receipt.get("source_tree_sha256")
+    result = dict(status="PASS" if exact_equal and runtime_equal and state_equal and checkpoint_equal and source_equal else "FAIL",
                   maximum_difference=difference, exact_equal=exact_equal,
                   runtime_equal=runtime_equal, state_equal=state_equal, checkpoint_equal=checkpoint_equal,
+                  source_equal=source_equal, parent_source_tree_sha256=source,
+                  child_source_tree_sha256=receipt.get("source_tree_sha256"),
                   parent_runtime=runtime, child_runtime=receipt["runtime"],
                   elapsed_seconds=time.perf_counter()-started,
                   checkpoint_sha256=checkpoint_sha256, input_sha256=file_digest(probe_path),
@@ -1448,13 +1473,14 @@ def run_training(ctx):
                 family=config["family"], reason="Architecture has no exact affine coefficient interface", elapsed_seconds=0.)
             write_json(Path(ctx.path)/"fixed_encoder.json", fixed_encoder)
     if row["status"] == "COMPLETED_UPDATES":
-        reload = checkpoint_reload_probe(ctx.path, train[0], device=ctx.device)
+        reload = checkpoint_reload_probe(ctx.path, train[0], device=ctx.device,
+            expected_source_tree_sha256=getattr(ctx, "source_tree_sha256", metadata["source_tree_sha256"]))
         row["checkpoint_reload"] = reload
         if reload["status"] != "PASS":
             raise ValueError("Selected checkpoint fails fresh-process output parity: "
                 f"maximum_difference={reload['maximum_difference']:.9g}, "
                 f"runtime_equal={reload['runtime_equal']}, state_equal={reload['state_equal']}, "
-                f"checkpoint_equal={reload['checkpoint_equal']}; inspect "
+                f"checkpoint_equal={reload['checkpoint_equal']}, source_equal={reload['source_equal']}; inspect "
                 f"{Path(ctx.path)/'checkpoint_reload.json'}")
     row["accepted_training_queries"] = len(train)
     row["requested_training_queries"] = sum(_record(s)["split"] == "train" for s in samples)
@@ -1695,7 +1721,8 @@ def run(ctx):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) not in (6, 7) or sys.argv[1] != "reload":
-        raise SystemExit("Internal checkpoint probe: reload PATH DEVICE THREADS INTEROP_THREADS [RUNTIME_JSON]")
+    if len(sys.argv) not in (6, 7, 8) or sys.argv[1] != "reload":
+        raise SystemExit("Internal checkpoint probe: reload PATH DEVICE THREADS INTEROP_THREADS [RUNTIME_JSON [EXPECTED_SOURCE_SHA256]]")
     _checkpoint_reload_child(sys.argv[2], sys.argv[3], threads=int(sys.argv[4]), interop_threads=int(sys.argv[5]),
-                             runtime_path=sys.argv[6] if len(sys.argv) == 7 else None)
+                             runtime_path=sys.argv[6] if len(sys.argv) >= 7 else None,
+                             expected_source_tree_sha256=sys.argv[7] if len(sys.argv) == 8 else None)

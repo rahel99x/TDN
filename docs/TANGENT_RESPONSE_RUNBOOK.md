@@ -19,6 +19,15 @@ teachers/path/subtraction, FP32 models/deployment and TF32 off. No aggregate
 campaign time ceiling, pending-job cap, driver change, automatic retry or silent
 CPU fallback is introduced.
 
+Keep the source and venv unchanged while related workers or their coordinator
+are active. The source fingerprint covers executable code across TDN, including
+the earlier Response program; updating another program can invalidate this
+campaign too. Wait for terminal jobs before pulling fixes, preserve the old
+attempt and use a fresh campaign when source changes. The
+[Response reload incident](../results/response-runtime-reload-2080/README.md)
+illustrates why running parents and newly started interpreters must share the
+same frozen source.
+
 ## Verify the reduced CPU implementation
 
 Run outside any Slurm allocation in a checkout with its own standalone `.venv`:

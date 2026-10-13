@@ -96,6 +96,16 @@ decision remain in the checkout. The script never automatically retries an
 ambiguous or failed submission and never replaces native execution with CPU.
 Source and venv changes invalidate the active calibration/recovery contracts.
 
+Keep that checkout and venv unchanged until all related workers and the
+coordinator are terminal. A running Python parent keeps imported code, while a
+fresh checkpoint-reload child reads files from disk. Job 2080 demonstrated
+unequal runtime schemas despite exact output/state/checkpoint parity; see the
+[incident receipt and diagnosis](../results/response-runtime-reload-2080/README.md).
+Reload now checks the engine's frozen source fingerprint in both processes and
+rejects source changes explicitly. After a code fix, preserve the failed attempt
+and launch a fresh campaign with new IDs and calibration. Do not repair a
+receipt by filling missing settings, or rerun a probe in the original directory.
+
 A negative scientific decision can finish with verified artifacts and a
 `COMPLETED` coordinator receipt. This is complete evidence of that declared
 experiment, not a scientific passing result. Failed jobs, missing units, invalid

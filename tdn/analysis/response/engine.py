@@ -190,6 +190,7 @@ def run_stage(protocol, stage, path, *, prerequisites=None, device="cpu", stop=N
     (path / "rows.jsonl").touch()
     start = time.monotonic(); budget = _RunBudget(unit["seconds"], stop, device)
     ctx = Context(protocol, stage, path, prior, device, budget, resume=resume, stage_failures=stage_failures)
+    ctx.source_tree_sha256 = source
     try:
         if protocol["profile"].startswith("diagnostic"):
             from .diagnostic_metrics import start_attempt

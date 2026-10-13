@@ -1,0 +1,40 @@
+{
+  "status": "FAIL",
+  "maximum_difference": 0.0,
+  "exact_equal": true,
+  "runtime_equal": false,
+  "state_equal": true,
+  "checkpoint_equal": true,
+  "parent_runtime": {
+    "precision": {
+      "api": "fp32_precision",
+      "global_fp32": "ieee",
+      "cuda_matmul": "ieee",
+      "cudnn_convolution": "ieee"
+    },
+    "threads": 1,
+    "interop_threads": 1,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "deterministic_algorithms": false
+  },
+  "child_runtime": {
+    "precision": {
+      "api": "fp32_precision",
+      "global_fp32": "ieee",
+      "cuda_matmul": "ieee",
+      "cudnn_convolution": "ieee"
+    },
+    "threads": 1,
+    "interop_threads": 1,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "deterministic_algorithms": false,
+    "deterministic_warn_only": false
+  },
+  "elapsed_seconds": 2.10583651997149,
+  "checkpoint_sha256": "d477e521514c3b6095d4e7b00ff0582e99c09a992b9cb3765f372c3adfc84d8c",
+  "input_sha256": "cb662297028ac4712d0f7bb8006148155d471d587ac637e3ce21a4168fcf5a89",
+  "independent_process": true,
+  "device": "cuda"
+}
