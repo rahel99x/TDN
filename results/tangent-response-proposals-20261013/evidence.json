@@ -1,0 +1,95 @@
+{
+  "scope": "Derived scalar calculations from unchanged recorded JSON for a research proposal; no refit or new scientific measurement",
+  "original_review_sources": {
+    "results/native-tangent-compression-20261013/A-decision.json": "3d3a518e332019ee23e2de52cee707be9ef57877b715583f05c001b9c7ad5d7c",
+    "results/native-tangent-compression-20261013/B-decision.json": "e5ae0dc594c45c67e3ce953bcd1dab8927c7e508e51a25dd21607a19e19e3f38",
+    "results/native-tangent-compression-20261013/scientific-audit.json": "a9f70a6be8231e28090ef936245eda7b275a43bf45b6de7028d47368d9e40774",
+    "results/native-tangent-compression-20261013/formula-audit.json": "11419c8e9b053e330fc33607a176dc39f82d75d35463f5f2bbcb5dffc7ce6ebe",
+    "results/native-tangent-compression-20261013/native-evidence-audit.json": "727e784b814b39a60e1e59b74fb3b140c24056ab7484ffd921be631d37c9bdb1"
+  },
+  "A": {
+    "E_G": 5.56351893671356e-07,
+    "E_U": 3.877041156162573e-10,
+    "rms_ratio": 1434.9909409319332,
+    "separated_parent_fraction": 1.0
+  },
+  "B": {
+    "status": "STOP",
+    "thresholds": {
+      "action_relative_error": 0.1,
+      "probe_fraction": 0.9,
+      "rank_cap": 8,
+      "retained_oracle_gain": 0.8,
+      "worst_action_relative_error": 0.3
+    },
+    "representative_rank8_parent_oracle": {
+      "E_G": 5.563518931498163e-07,
+      "E_U": 3.877075305131548e-10,
+      "E_L": 2.5736033979754746e-07,
+      "retained_gain": 0.5377892337061501,
+      "probe_fractions": {
+        "heldout_direction": 0.0,
+        "heldout_parent": 0.08972212922664881
+      }
+    },
+    "endpoint_rms_ceiling_for_80_percent_gain": 1.1158054465437378e-07,
+    "parent_oracle_rms_divided_by_ceiling": 2.3064983290297945
+  },
+  "fixed_shared_basis_training_snapshot_projection": {
+    "discarded_energy_fraction": 0.4384134838514627,
+    "aggregate_relative_rms_lower_bound": 0.6621279965772953,
+    "scope": "Frozen pooled rank8 action basis; aggregate weighted TRAIN energy, not individual operator rank or 90% gate fraction"
+  },
+  "proposals_executed": false,
+  "scientific_gate_modified": false,
+  "static_cost_derivations": {
+    "scope": "Stored parameter and naive operator-call counts derived from trusted source/mathematical layout; not timing or measured utility",
+    "parameter_formula_encoder": "198*W**2+27*W",
+    "parameter_formula_diagonal_heads": "2*J*(W+1)+J*T*(W+1)",
+    "parameter_formula_full_core_heads": "2*J*(W+1)+J**2*T*(W+1)",
+    "counts": [
+      {
+        "width": 16,
+        "rank": 4,
+        "temporal_channels": 4,
+        "full_core": false,
+        "stored_parameters": 51528
+      },
+      {
+        "width": 16,
+        "rank": 8,
+        "temporal_channels": 4,
+        "full_core": false,
+        "stored_parameters": 51936
+      },
+      {
+        "width": 16,
+        "rank": 4,
+        "temporal_channels": 4,
+        "full_core": true,
+        "stored_parameters": 52344
+      },
+      {
+        "width": 32,
+        "rank": 4,
+        "temporal_channels": 4,
+        "full_core": false,
+        "stored_parameters": 204408
+      }
+    ],
+    "naive_heat_call_layout": {
+      "endpoint_source_nodes": 8,
+      "interaction_nodes": 4,
+      "Q1_heat_applications": 72,
+      "G_heat_applications": 8,
+      "not_a_minimum": true
+    }
+  },
+  "source_files_read": {
+    "tdn/analysis/tangent_response/compression.py": "2261474b561f8c74f74953aa2101d5f8609f565c550ece3938269e67cd886e70",
+    "tdn/analysis/tangent_response/models.py": "98f5eeaf185247b18e7af4f96badfc5eaefa4f2d46521272239abc197c803012",
+    "tdn/analysis/tangent_response/training.py": "5c49a3de602bb1dda8d01a1935a12b95178b4f68f267ef49c93ea72b5cc13998",
+    "tdn/analysis/tangent_response/gates.py": "b54a8384a2d4b8f05b39cb264519f40c721a52243bf017b28d045659b154236a",
+    "tdn/analysis/response/features.py": "4e6d71e18537565ae7e0f32bd72bc7dcd3300e50c989784eed274a60e6e26e80"
+  }
+}

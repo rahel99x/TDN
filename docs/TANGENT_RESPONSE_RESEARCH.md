@@ -100,3 +100,10 @@ using the retained training labels. Preserve B STOP and its thresholds; no
 automatic learned calibration, training or utility expansion follows. A's
 oracle improvement does not establish a learned model or practical solver
 speedup. CPU implementation completion never substitutes for native promotion.
+
+The [13 October diagnosis and proposal draft](TANGENT_RESPONSE_PROPOSALS_20261013.md)
+separates output-space capacity, coefficient recovery and missing state/physics
+information. It proposes bounded training-label diagnostics followed by a
+structured spatial-feedback response with a compact learned remainder, subject
+to a newly frozen gate and complete-cost checks. Its novelty hypotheses and
+targeted literature comparison are proposals, not implemented or measured gains.

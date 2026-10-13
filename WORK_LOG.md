@@ -176,3 +176,24 @@ The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implem
   guard bypasses ran; original jobs remain FAILED and unsealed. See
   results/native-tangent-compression-20261013/ for the review, plot, legend,
   exact decisions and reporting verification receipts.
+
+- Drafted the requested deep diagnosis and staged proposals after the native
+  Tangent A PASS/B STOP review. Independent mathematical, architecture, evidence
+  and literature reviews separate missing state/physics information, physical
+  output-basis projection and unstable coefficient recovery; distinguish the
+  stopped fitted controls from the untrained conditioned encoder; and identify
+  prospective amplitude/time-gate and objective-scaling concerns. Proposed a
+  finite four-solver training-only menu, exact state/time oracles, disentangled
+  basis/decoder weighting, and known spatial-feedback structure plus a compact
+  learned remainder, with a separately frozen FD potential-splitting alternative.
+  Preserved Galerkin product/mass restrictions, full mean coupling, source
+  linearity, complete costs, factor-gauge constraints, unidentifiable fine-grid
+  folds, oracle/deployable qualification roles and all original thresholds.
+  Derived scalar gate ceilings and static parameter/heat-call counts from
+  unchanged records/source; these are not new measurements. Verified thirteen
+  cached primary-source files and eight exact excerpts for eight close prior-art
+  references; full-text/metadata limits and the absence of a priority guarantee
+  are explicit. Checked evidence hashes and local links. No source/model/gate
+  changes, tests, fits, teacher acquisitions, training or native jobs ran for
+  this documentation-only proposal. See docs/TANGENT_RESPONSE_PROPOSALS_20261013.md
+  and results/tangent-response-proposals-20261013/.

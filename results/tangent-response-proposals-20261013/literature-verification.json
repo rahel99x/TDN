@@ -1,0 +1,297 @@
+{
+  "schema": "tdn.tangent-response-targeted-novelty-review/v1",
+  "created_at": "2026-10-13T19:36:18.781867+00:00",
+  "memo": "related-work.md",
+  "path_base": "Cached-file names refer to .runtime/native-compression-review-20261013-3e51c6f1/proposals/literature in the cloud workspace; these external source bytes are not republished in this compact proposal. URLs, source hashes, quotes and verification scopes are retained.",
+  "primary_references": [
+    {
+      "id": 1,
+      "title": "The Magnus expansion and some of its applications",
+      "authors": [
+        "S. Blanes",
+        "F. Casas",
+        "J.A. Oteo",
+        "J. Ros"
+      ],
+      "year": 2009,
+      "doi": "10.1016/j.physrep.2008.11.001",
+      "sources": [
+        {
+          "url": "https://api.crossref.org/works/10.1016%2Fj.physrep.2008.11.001",
+          "bytes": 67539,
+          "sha256": "1e33051b4e1c72f8127e91e164a2fc3a17ffacf608ce27df4919f50afd4654d9",
+          "scope": "literal bibliographic metadata",
+          "cached_file": "magnus.json",
+          "included_in_proposal_bundle": false
+        },
+        {
+          "url": "https://arxiv.org/html/0810.5488",
+          "bytes": 2588766,
+          "sha256": "3c6539beb0a0ed5877f342a85128aa70924e92adf7720ad5071f80f100a28f5b",
+          "scope": "accessible primary author manuscript, targeted sections2.4/4.1",
+          "cached_file": "magnus_full.html",
+          "included_in_proposal_bundle": false
+        }
+      ],
+      "quotes": [
+        {
+          "text": "It is not difficult to establish a connection between Magnus series and Dyson perturbative series",
+          "source": "magnus_full.html",
+          "location": "Section2.4",
+          "verified_substring": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Rank-Deficient and Discrete Ill-Posed Problems",
+      "authors": [
+        "Per Christian Hansen"
+      ],
+      "year": 1998,
+      "doi": "10.1137/1.9780898719697",
+      "sources": [
+        {
+          "url": "https://api.crossref.org/works/10.1137%2F1.9780898719697",
+          "bytes": 1654,
+          "sha256": "c27398f58a260ac011f11e01062e8e6fd6384cd8872744129159fa950a3ae76a",
+          "scope": "literal bibliographic metadata only; book not inspected",
+          "cached_file": "hansen_verified.json",
+          "included_in_proposal_bundle": false
+        },
+        {
+          "url": "https://www.imm.dtu.dk/~pcha/Regutools/",
+          "bytes": 3368,
+          "sha256": "579fcaf2bfa3f83718d02ae20d8f5cff4fcd1b4184a876be3be8f8f2ae1a7543",
+          "scope": "author Regularization Tools page",
+          "cached_file": "hansen_author.html",
+          "included_in_proposal_bundle": false
+        }
+      ],
+      "quotes": [
+        {
+          "text": "experiment with different regularization strategies, compare them",
+          "source": "hansen_author.html",
+          "location": "Background",
+          "verified_substring": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+      "year": 2021,
+      "identifier": "arXiv:2010.08895 / ICLR2021",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2010.08895",
+          "bytes": 44142,
+          "sha256": "76099a7e1289b7d2dbcce73a96f373cb2f8a39d90247fff38be7dfecc94270d7",
+          "scope": "accessible author abstract",
+          "cached_file": "fno_arxiv.html",
+          "included_in_proposal_bundle": false
+        }
+      ],
+      "quotes": [
+        {
+          "text": "parameterizing the integral kernel directly in Fourier space",
+          "source": "fno_arxiv.html",
+          "location": "Abstract",
+          "verified_substring": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Learning nonlinear operators via DeepONet based on the universal approximation theorem of operators",
+      "authors": [
+        "Lu Lu",
+        "Pengzhan Jin",
+        "Guofei Pang",
+        "Zhongqiang Zhang",
+        "George Em Karniadakis"
+      ],
+      "year": 2021,
+      "doi": "10.1038/s42256-021-00302-5",
+      "sources": [
+        {
+          "url": "https://api.crossref.org/works/10.1038%2Fs42256-021-00302-5",
+          "bytes": 20056,
+          "sha256": "08f57158167c5467f27c3e762f6d42499a1b69bf6a8d1c705764e7e2ef9973e4",
+          "scope": "literal bibliographic metadata",
+          "cached_file": "deeponet.json",
+          "included_in_proposal_bundle": false
+        },
+        {
+          "url": "https://raw.githubusercontent.com/lululxvi/deeponet/master/README.md",
+          "bytes": 7777,
+          "sha256": "db7972511014b7cd85307bc114c3dcc5816cbf9a147e8acdfa7379cfe4f471b5",
+          "scope": "authors README fetched by audit child",
+          "cached_file": "deeponet_readme.txt",
+          "included_in_proposal_bundle": false
+        },
+        {
+          "url": "https://raw.githubusercontent.com/lululxvi/deepxde/master/deepxde/nn/pytorch/deeponet.py",
+          "bytes": 16573,
+          "sha256": "1a745a5756b4be3becb0ec5955f57f63070fca698ab496481fb678b8a21a796d",
+          "scope": "authors implementation TEXT ONLY; not executed; unpinned master savedSHA",
+          "cached_file": "deepxde_deeponet_source.txt",
+          "included_in_proposal_bundle": false
+        }
+      ],
+      "quotes": [
+        {
+          "text": "torch.einsum(\"bi,bi->b\", x_func, x_loc)",
+          "source": "deepxde_deeponet_source.txt",
+          "location": "DeepONet.merge_branch_trunk",
+          "verified_substring": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Neural Operator: Learning Maps Between Function Spaces With Applications to PDEs",
+      "year": 2023,
+      "identifier": "JMLR24(89)",
+      "sources": [
+        {
+          "url": "https://jmlr.org/papers/v24/21-1524.html",
+          "bytes": 6589,
+          "sha256": "0cafe17f4220f3c0db6f657c0368678808abe7a880b730b2b31d4855882f854f",
+          "scope": "earlier verified official-page cache; re-read",
+          "cached_file": "neuraloperator_jmlr.html",
+          "included_in_proposal_bundle": false
+        }
+      ],
+      "quotes": [
+        {
+          "text": "composition of linear integral operators and nonlinear activation functions",
+          "source": "neuraloperator_jmlr.html",
+          "location": "Abstract",
+          "verified_substring": true
+        },
+        {
+          "text": "low-rank neural operators, and Fourier neural operators",
+          "source": "neuraloperator_jmlr.html",
+          "location": "Abstract",
+          "verified_substring": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "BCR-Net: A neural network based on the nonstandard wavelet form",
+      "authors": [
+        "Yuwei Fan",
+        "Cindy Orozco Bohorquez",
+        "Lexing Ying"
+      ],
+      "year": 2019,
+      "doi": "10.1016/j.jcp.2019.02.002",
+      "sources": [
+        {
+          "url": "https://api.crossref.org/works/10.1016%2Fj.jcp.2019.02.002",
+          "bytes": 13483,
+          "sha256": "0a8cbb82155bf5d62dc6dada27fcc093a5c25f038a6b555e28177fbc28a0cb3e",
+          "scope": "literal metadata only; no fullpaper or author implementation inspected",
+          "cached_file": "bcr_verified.json",
+          "included_in_proposal_bundle": false
+        }
+      ],
+      "quotes": [],
+      "limitation": "Guessed authors README paths404; no theorem-level pseudodifferential/local-compact claims verified"
+    },
+    {
+      "id": 7,
+      "title": "Algorithm919: A Krylov Subspace Algorithm for Evaluating the phi-Functions Appearing in Exponential Integrators",
+      "authors": [
+        "Jitse Niesen",
+        "Will M. Wright"
+      ],
+      "year": 2012,
+      "doi": "10.1145/2168773.2168781",
+      "sources": [
+        {
+          "url": "https://api.crossref.org/works/10.1145%2F2168773.2168781",
+          "bytes": 10244,
+          "sha256": "22431b3f007895a9c07969662d16627341a1f4fa573091753f14a56453e8c282",
+          "scope": "literal metadata/deposited abstract",
+          "cached_file": "phi_krylov.json",
+          "included_in_proposal_bundle": false
+        },
+        {
+          "url": "https://arxiv.org/abs/0907.4631",
+          "bytes": 43811,
+          "sha256": "5492dfaefd9a68d262cc07a32b849bbf4910f0171e5ba7e44518164b6dff94c5",
+          "scope": "accessible author abstract",
+          "cached_file": "niesen_arxiv.html",
+          "included_in_proposal_bundle": false
+        }
+      ],
+      "quotes": [
+        {
+          "text": "constructing a Krylov subspace using Arnoldi or Lanczos iteration",
+          "source": "niesen_arxiv.html",
+          "location": "Abstract",
+          "verified_substring": true
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Rational Krylov approximation of matrix functions: Numerical methods and optimal pole selection",
+      "authors": [
+        "Stefan G\u00fcttel"
+      ],
+      "year": 2013,
+      "doi": "10.1002/gamm.201310002",
+      "sources": [
+        {
+          "url": "https://api.crossref.org/works/10.1002%2Fgamm.201310002",
+          "bytes": 18456,
+          "sha256": "e950c009dc3d518358a7f89930dc1b0993cc569820933b390b8245bb8e5af4f9",
+          "scope": "literal metadata and author-deposited abstract only",
+          "cached_file": "rational_krylov_verified.json",
+          "included_in_proposal_bundle": false
+        }
+      ],
+      "quotes": [
+        {
+          "text": "the extended Krylov subspace method and the shift\u2010and\u2010invert Arnoldi method",
+          "source": "rational_krylov_verified.json",
+          "location": "Crossref-deposited abstract",
+          "verified_substring": true
+        }
+      ],
+      "rejected_candidate": "10.1002/gamm.201310008 is unrelated crystal plasticity; not cited"
+    }
+  ],
+  "quote_verification": "Exact substrings checked in saved source text, with HTML whitespace normalized; no paraphrase passed off as literal quote. Implementation text was never executed.",
+  "no_exhaustive_novelty_claim": true,
+  "no_priority_claim": true,
+  "scope": "Eight closest constructions selected for proposed nativeB follow-up; metadata/abstract/fulltext checks are individually labeled. No numerical reruns or project source changes.",
+  "network": "Inherited proxy and normal TLS verification retained; actual bounded responses recorded; runtime HTTP enforcement observation unknown, no bypass.",
+  "retrieval_logs": [
+    {
+      "archived_cloud_file": "literature/retrieval.json",
+      "sha256": "7b16cd3769c8fdb504aeb05fd169be5c6c105ac449b49c29ee3a3e5ec912b4aa"
+    },
+    {
+      "archived_cloud_file": "literature/retrieval-extra.json",
+      "sha256": "5d36d34edf12bdae82a6488b3882a3a9e0a9fff441b16a7a6bf2485b29273658"
+    },
+    {
+      "archived_cloud_file": "literature/retrieval-corrected.json",
+      "sha256": "a09ec5b23597844a5f9577266749c925897067862d6e203527a9e0f5b7c5851f"
+    }
+  ],
+  "limitations": [
+    "Book and BCR fullpapers not inspected.",
+    "Rational Krylov fullpaper not inspected; only metadata/deposited abstract.",
+    "First Tikhonov literal request429; no unseen source claims.",
+    "Main/master source URLs not pinned; savedSHA identifies read bytes.",
+    "Magnus HTML initially exceeded1MiB then retrieved within separate8MiB bound.",
+    "No comprehensive bibliographic databases/citation graph/patents/theorem novelty search."
+  ],
+  "original_receipt_sha256": "cc20635ea51d6288844967325fb60371e70799697f93a1be27871afbc3e9eadd"
+}

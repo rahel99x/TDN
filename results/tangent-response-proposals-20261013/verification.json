@@ -1,0 +1,35 @@
+{
+  "schema": "tdn.tangent-response-proposal-verification/v1",
+  "scope": "Documentation, unchanged-evidence checks, scalar/static derivations and targeted literature verification; no new scientific runs",
+  "date_utc": "2026-10-13",
+  "source_commit_before_proposal": "d02f5ef9c60fc1751a143ecf5aca873a7c6c0c00",
+  "unchanged_source_tree_sha256": "3419bd3ee5c2184437b0da9c1f4548502c30e2cc343e8c2baa86248c9cd44235",
+  "original_review_artifact_hashes": "UNCHANGED",
+  "original_handout_sha256": "10b181143de34f4e6698d6095c04196469a77c512b1f20273f7e1a520cc17545",
+  "local_links_checked": 30,
+  "primary_reference_identities": 8,
+  "cached_primary_files_hash_checked": 13,
+  "exact_excerpts_checked": 8,
+  "calculated_parameter_counts": [
+    51528,
+    51936,
+    52344,
+    204408
+  ],
+  "peer_review": {
+    "mathematics": "Reviewed equations, FD/Galerkin restrictions, remainder counterexample, scale transforms and conditional bounds; corrections integrated",
+    "architecture": "Reviewed source conditioning, amplitude/time structure, full-core gauge, fine-grid fold coverage and static costs; corrections integrated",
+    "evidence": "Reviewed role/leakage/coverage, train-only selection and original metrics; corrections integrated",
+    "literature": "Reviewed eight references and stated access scope, established ingredients and hypothetical claim; corrections integrated"
+  },
+  "executed_work": {
+    "coefficient_refits": 0,
+    "new_teacher_or_action_acquisitions": 0,
+    "optimizer_updates": 0,
+    "native_jobs_submitted": 0,
+    "numerical_verification_tests": 0
+  },
+  "original_gate_B": "STOP",
+  "proposals_implemented": false,
+  "publication_claim_is_hypothesis": true
+}
