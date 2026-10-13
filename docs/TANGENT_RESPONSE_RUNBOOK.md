@@ -81,6 +81,12 @@ science. Direct `bash scripts/tangent_response_campaign.sh --profile pilot
 the validated original project context selects the actual TDN checkout.
 Native workers receive no outer `RAVEN_*` environment or synthetic job IDs.
 Raven owns the outer attempt, while TDN owns each allocated worker.
+Slurm executes a private copy of the batch script from its spool directory.
+Worker modes therefore use the controller's matching, canonical absolute
+`TDN_PROJECT_ROOT` and `TDN_REPO_ROOT`, then invoke the original checkout's
+task script. Their actual allocation, step, workflow, source and software checks
+remain mandatory. Controller commands still derive their root from the original
+script location.
 
 The additive `tangent-response` recipe in `.raven/automation.json` selects
 Experiment, Evidence and Artifacts. It does not collect misleading coordinator
@@ -186,6 +192,17 @@ outer attempt are terminal, then reconcile its receipt:
 bash scripts/fedora_tangent_response.sh reconcile tangent-response-pilot-a --plan
 bash scripts/fedora_tangent_response.sh reconcile tangent-response-pilot-a
 ```
+
+For a failure before Python starts, the Slurm `logs/<stage>-<job-id>.err` and
+`.out` files are authoritative even when no worker state or Raven attempt exists.
+A `00:00:00` failure is insufficient evidence of a model or CUDA problem.
+The [worker bootstrap repair](../results/tangent-response-verification/native-bootstrap-fix/README.md)
+documents the original copied-script path failure and its transport regression.
+After any source fix, preserve the failed campaign and start a fresh campaign
+once its submitted jobs and coordinator are terminal. Pulling updated code does
+not replace Slurm's already captured script or authorize recovery under a changed
+source fingerprint. Omit `--run-id` on the new Raven launch to generate a fresh
+ID; the campaign's prospective scientific gates remain in force.
 
 If exactly one child failed, the parent recovery command resolves that child and
 prints the literal replacement phase. Its execute form has the same guards:

@@ -1,0 +1,88 @@
+{
+  "schema": "tdn.tangent-response-bootstrap-verification/v1",
+  "scope": "Shell transport fixtures only; no native allocation/GPU/science verification",
+  "original_source_commit": "9bbc5b8",
+  "before_script_sha256": "2134baf5f12345e7791b20e2fa8188016342fcd9cc57cd3fa5b26ae30f7c01fc",
+  "after_script_sha256": "614536cbdfea2ef49c004a987b0863711f65a3ca7c38a380aadf8faa6d41169d",
+  "changes": "Canonical exported checkout root used only for worker bootstrap; numerical/engine/default sources unchanged",
+  "source_tree_sha256": "add29d2765520b56db76c1e400e9c437272dd29ef00a8ce88a38bef194bdabdf",
+  "junit": [
+    {
+      "path": ".runtime/onboarding/tangent-spool-bootstrap-fix.xml",
+      "passed": 185
+    },
+    {
+      "path": ".runtime/onboarding/tangent-spool-bootstrap-shared.xml",
+      "passed": 96
+    }
+  ],
+  "native_validation": "PENDING actual Fedora Slurm/CUDA rerun with fresh campaign; old source-bound results remain preserved",
+  "rows": [
+    {
+      "stage": "audit",
+      "requested_device": "cuda",
+      "revision": "before",
+      "shell_exit_code": 1,
+      "stderr": "/workspace/TDN/.runtime/onboarding/tangent-spool-bootstrap-reproduction/audit-before/project with spaces/spool/job-fixture/slurm_script: line 13: /workspace/TDN/.runtime/onboarding/tangent-spool-bootstrap-reproduction/audit-before/project with spaces/spool/scripts/common.sh: No such file or directory",
+      "srun_recorder_called": false,
+      "python_recorder_called": false,
+      "native_verifier_executed": false,
+      "science_executed": false
+    },
+    {
+      "stage": "audit",
+      "requested_device": "cuda",
+      "revision": "after",
+      "shell_exit_code": 0,
+      "stderr": "",
+      "srun_recorder_called": true,
+      "python_recorder_called": true,
+      "native_verifier_executed": false,
+      "science_executed": false
+    },
+    {
+      "stage": "decision",
+      "requested_device": "cpu",
+      "revision": "before",
+      "shell_exit_code": 1,
+      "stderr": "/workspace/TDN/.runtime/onboarding/tangent-spool-bootstrap-reproduction/decision-before/project with spaces/spool/job-fixture/slurm_script: line 13: /workspace/TDN/.runtime/onboarding/tangent-spool-bootstrap-reproduction/decision-before/project with spaces/spool/scripts/common.sh: No such file or directory",
+      "srun_recorder_called": false,
+      "python_recorder_called": false,
+      "native_verifier_executed": false,
+      "science_executed": false
+    },
+    {
+      "stage": "decision",
+      "requested_device": "cpu",
+      "revision": "after",
+      "shell_exit_code": 0,
+      "stderr": "",
+      "srun_recorder_called": true,
+      "python_recorder_called": true,
+      "native_verifier_executed": false,
+      "science_executed": false
+    },
+    {
+      "stage": "report",
+      "requested_device": "cpu",
+      "revision": "before",
+      "shell_exit_code": 1,
+      "stderr": "/workspace/TDN/.runtime/onboarding/tangent-spool-bootstrap-reproduction/report-before/project with spaces/spool/job-fixture/slurm_script: line 13: /workspace/TDN/.runtime/onboarding/tangent-spool-bootstrap-reproduction/report-before/project with spaces/spool/scripts/common.sh: No such file or directory",
+      "srun_recorder_called": false,
+      "python_recorder_called": false,
+      "native_verifier_executed": false,
+      "science_executed": false
+    },
+    {
+      "stage": "report",
+      "requested_device": "cpu",
+      "revision": "after",
+      "shell_exit_code": 0,
+      "stderr": "",
+      "srun_recorder_called": true,
+      "python_recorder_called": true,
+      "native_verifier_executed": false,
+      "science_executed": false
+    }
+  ]
+}

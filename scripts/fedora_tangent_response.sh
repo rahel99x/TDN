@@ -1,7 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
-root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 if [[ $# == 0 ]]; then set -- plan; fi
+# Slurm runs its private copy of the batch script from its spool directory.
+# Worker modes must use the controller's declared checkout, never that copy's
+# ancestry. Ordinary controller commands retain source-relative root selection.
+case "$1" in
+    _worker-batch|_worker-task)
+        : "${TDN_PROJECT_ROOT:?Use scripts/fedora_tangent_response.sh run}" "${TDN_REPO_ROOT:?}"
+        [[ "$TDN_PROJECT_ROOT" == /* && "$TDN_PROJECT_ROOT" == "$TDN_REPO_ROOT" ]] || {
+            printf 'Tangent response: worker project roots must be matching absolute paths.\n' >&2; exit 2;
+        }
+        root="$(cd -- "$TDN_PROJECT_ROOT" && pwd -P)"
+        [[ "$root" == "$TDN_PROJECT_ROOT" ]] || {
+            printf 'Tangent response: worker project root must be canonical without symlink aliases.\n' >&2; exit 2;
+        } ;;
+    *) root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)" ;;
+esac
 case "$1" in
     doctor|configure|setup) exec bash "$root/scripts/fedora_setup.sh" "$@" ;;
     _worker-batch|_worker-task)

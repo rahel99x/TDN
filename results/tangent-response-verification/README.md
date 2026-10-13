@@ -1,6 +1,10 @@
 # Tangent Response implementation verification
 
 Verified in the managed Linux CPU environment on **13 October 2026 UTC**.
+These are the preserved initial delivery records for commit `9bbc5b8`.
+The subsequent [native worker bootstrap repair](native-bootstrap-fix/README.md)
+has its own verification record; it changes transport, not the numerical models,
+datasets, scientific gates or observations recorded here.
 This record accompanies the [implemented framework](../../docs/TANGENT_RESPONSE_RESEARCH.md),
 [native runbook](../../docs/TANGENT_RESPONSE_RUNBOOK.md),
 [analysis and terminology](../../docs/TANGENT_RESPONSE_ANALYSIS.md) and
@@ -16,7 +20,7 @@ The original uploaded handout is unchanged: SHA256
 | Final export CLI adapter | **92 affected checks passed**, no failures or skips. | Actual campaign/child argument forwarding, replay/full transport, failures and workflow controls after the full suite. |
 | Final FD CPU rehearsal | **76/76 units sealed and independently verified**. | Reduced six-parent mechanism cohort and a separate six-parent fit cohort; two updates per learned arm. |
 | Final Galerkin CPU rehearsal | **76/76 units sealed and independently verified**. | Separate same-grid physical norm/product contract; CPU implementation evidence. |
-| Model deployment | Both arms output FP32, retain FP64 attribution, pass production fresh-process inference and complete 2/4/8-step autonomous rollouts. | CPU behavior under the delivered source hash, including final rounding. |
+| Model deployment | Both arms output FP32, retain FP64 attribution, pass production fresh-process inference and complete 2/4/8-step autonomous rollouts. | CPU behavior under the initial delivery's recorded producer hash, including final rounding. |
 | Raven launch contract | Actual `--check` and captured `--help` launches succeeded; drained logs and source/plan identities were checked. | Pinned Raven source CLI, local coordinator; **no Slurm science submitted**. |
 | Portable reports | Both final exports were checksum-verified, relocated and read with Raven's default contracts/budgets. | Actual scientific citations, tables, logs and CPU/RSS streams; GPU samples are zero. |
 | Required native CUDA roster | **29 skipped because CUDA is unavailable**. | Not native GPU verification; native workers reject missing/skipped required cases. |
@@ -32,10 +36,10 @@ The [JUnit receipts](tangent-full-regression-delivery.xml),
 [structured verification record](verification.json) retain exact counts and
 source identities. `python -m pip check` found no broken dependencies.
 
-Final producer source fingerprint:
+Initial delivery's final producer source fingerprint:
 `aa12fea81573c181602ccf49a0aa3642df65a2c37374cc387c0ecf2134bb2dde`.
 The working-tree runs record their base Git commit before publication; their
-byte fingerprint identifies the delivered source. No checkpoints or calibration
+byte fingerprint identifies that initial delivery. No checkpoints or calibration
 from these CPU runs can authorize native work.
 
 ## Final research records
