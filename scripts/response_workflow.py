@@ -494,7 +494,7 @@ def check_capacity(workflow):
 
 
 def clean_environment():
-    return {key:value for key,value in os.environ.items() if not key.startswith(('SBATCH_','SRUN_','TDN_PREMIX_','TDN_CONSISTENCY_','TDN_AGENDA_','TDN_ROADMAP_','TDN_FRONTIER_','TDN_PORTFOLIO_','TDN_ADVANCE_','TDN_RESOLVE_','TDN_RESPONSE_'))
+    return {key:value for key,value in os.environ.items() if not key.startswith(('SBATCH_','SRUN_','RAVEN_','TDN_PREMIX_','TDN_CONSISTENCY_','TDN_AGENDA_','TDN_ROADMAP_','TDN_FRONTIER_','TDN_PORTFOLIO_','TDN_ADVANCE_','TDN_RESOLVE_','TDN_RESPONSE_'))
         and not key.startswith('TDN_REQUIRE_')
         and key not in ('CARC_ACCOUNT','TORCH_CUDA_ARCH_LIST','TDN_TOWER_DIR')}
 

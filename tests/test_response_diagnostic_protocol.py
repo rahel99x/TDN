@@ -33,6 +33,20 @@ def test_cpu_matrix_covers_every_variant_and_target_without_native_claim():
         assert set(p['units'][name]['dependencies']) <= set(ancestors(p,name))
 
 
+def test_native_submission_has_its_own_raven_context(controller,monkeypatch):
+    workflow=plan(controller,'raven-environment',profile='diagnostic-smoke')
+    monkeypatch.setenv('RAVEN_RUN_DIR','outer-coordinator')
+    monkeypatch.setenv('RAVEN_REPORT_HELPER','outer-helper')
+    monkeypatch.setenv('RAVEN_SOURCE_SCRIPT','outer-source')
+    monkeypatch.setenv('RAVEN_LAUNCH_PLAN','outer-plan')
+    monkeypatch.setenv('RESPONSE_CONTEXT_TEST','preserved')
+    env=controller.submission_environment(workflow,'audit')
+    assert not any(key.startswith('RAVEN_') for key in env)
+    assert env['RESPONSE_CONTEXT_TEST']=='preserved'
+    assert env['TDN_EXECUTION_MODE']=='desktop-slurm'
+    assert env['TDN_RESPONSE_STAGE']=='audit'
+
+
 def test_native_exact_workload_calibration_and_changed_basis_rejected():
     smoke=build_protocol('diagnostic-smoke',targets=['fd_same_grid'])
     assert {t['updates'] for t in smoke['trials'].values()}=={64}

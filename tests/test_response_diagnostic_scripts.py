@@ -63,7 +63,7 @@ tdn_inside() { local resolved; resolved="$(realpath -m -- "$1")"; [[ "$resolved"
     sleeper.chmod(0o755)
     env = dict(os.environ)
     for name in tuple(env):
-        if name.startswith(("TDN_", "SLURM_", "STUB_")):
+        if name.startswith(("TDN_", "SLURM_", "RAVEN_", "STUB_")):
             env.pop(name)
     env.update(PATH=str(root / "stub-bin") + os.pathsep + env["PATH"], STUB_SLEEP_LOG=str(root / "sleep.log"))
     return root, env
@@ -194,3 +194,17 @@ def test_campaign_failed_plan_stops_before_submission_with_receipt(shell_project
     assert not [r for r in calls(shell_project) if r["script"] == "response_workflow.py" and r["args"][0] == "run"]
     receipt = next((shell_project[0] / "runs/.response-diagnostic-campaigns").glob("*/receipt.json"))
     assert json.loads(receipt.read_text())["status"] == "FAILED"
+
+
+def test_campaign_rejects_allocated_coordinator_before_writes(shell_project):
+    result=launch(shell_project,SCRIPTS[2],SLURM_JOB_ID='allocated-fixture')
+    assert result.returncode==2 and '--local' in result.stderr
+    assert not calls(shell_project)
+    assert not (shell_project[0]/'runs').exists()
+
+
+def test_campaign_rejects_incomplete_raven_snapshot_context(shell_project):
+    result=launch(shell_project,SCRIPTS[2],RAVEN_LAUNCH_PLAN='incomplete')
+    assert result.returncode==2 and 'original source script' in result.stderr
+    assert not calls(shell_project)
+    assert not (shell_project[0]/'runs').exists()

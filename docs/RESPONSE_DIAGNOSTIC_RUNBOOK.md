@@ -17,12 +17,49 @@ projects.
 
 ## Run the native sequence with one command
 
-From the configured Fedora checkout, after applying the diagnostic implementation:
+From the configured Fedora checkout, use Raven's existing-script launch contract:
 
 ```bash
 cd /home/rahel/TDN
-bash scripts/response_diagnostic_campaign.sh
+raven launch scripts/response_diagnostic_campaign.sh \
+  --local --project "$PWD" --recipe response-diagnostic
 ```
+
+`--local` runs the lightweight foreground coordinator on the submission host.
+It submits every scientific stage through the existing native Slurm workflow;
+it does not run the numerical campaign locally. Raven's default launch mode is
+an outer `sbatch` allocation, which is inappropriate for this coordinator and
+is rejected. The opt-in recipe selects Experiment, Evidence and Artifacts,
+without collecting coordinator GPU traces, CPU telemetry or unrelated research
+panels. Explicit Raven CLI choices take precedence over the recipe.
+
+Place campaign arguments after `--`, preserving Raven's argument boundary:
+
+```bash
+raven launch scripts/response_diagnostic_campaign.sh \
+  --local --project "$PWD" --recipe response-diagnostic \
+  -- --targets fd_same_grid galerkin_same_grid galerkin_projected_fine
+```
+
+Add `--check` before that boundary for Raven's read-only launch preview. The
+preview does not execute the campaign or verify native CUDA readiness. Direct
+`bash scripts/response_diagnostic_campaign.sh` remains supported.
+
+Raven executes an immutable captured copy of the shell script. The campaign
+validates Raven's original-script and launch-plan context to locate the actual
+TDN checkout; it continues executing the captured bytes. Source and venv
+fingerprints still guard the native scientific workers. Raven owns the outer
+coordinator's start/finish records; TDN owns each allocated worker's lifecycle.
+The outer `RAVEN_*` context is removed before native worker submission.
+
+The coordinator retains its own stdout/stderr under the Raven attempt's
+`logs/`, live infrastructure progress in `metrics.jsonl`, and small copies of
+the campaign receipt, research paths and final decision under `outputs/`.
+Its job-completion counters describe infrastructure, not scientific passing
+results. Full scientific curves, failed/censored fits and query metrics remain
+in the exact child research projects described below. The coordinator has no
+invented Slurm job ID. Register `/home/rahel/TDN` in Raven and select the printed
+`launch-...-a1` attempt to inspect this outer record.
 
 The foreground coordinator prints two new run IDs and a project-contained
 campaign receipt under `runs/.response-diagnostic-campaigns/`. It saves that
@@ -69,8 +106,9 @@ failed, preserving the available final report.
 Choose a target subset or declare work overrides explicitly:
 
 ```bash
-bash scripts/response_diagnostic_campaign.sh \
-  --targets fd_same_grid galerkin_same_grid galerkin_projected_fine \
+raven launch scripts/response_diagnostic_campaign.sh \
+  --local --project "$PWD" --recipe response-diagnostic \
+  -- --targets fd_same_grid galerkin_same_grid galerkin_projected_fine \
   --updates temporal=2000 \
   --trial-seconds temporal=7200 \
   --chunk-seconds 1500
@@ -81,6 +119,16 @@ diagnostic plan and submission receive the same overrides; native calibration
 retains its declared 64-update opportunities. The printed plan is the authority
 for actual trial counts, variants, work, resource requests, and allowance ceilings.
 The allowance is a ceiling, not a runtime prediction or evidence of optimality.
+
+## Archive a cancelled attempt before a fresh launch
+
+If a previous campaign was cancelled, allow its foreground coordinator to
+finish or interrupt it with Ctrl-C, then use the separate
+[archive command](RESPONSE_DIAGNOSTIC_ARCHIVE.md). It verifies actual terminal
+jobs and preserves the exact runs and receipt in a project-contained archive.
+It never deletes checkpoints, cancels jobs, or clears another program's runs.
+The Raven launch above always creates new IDs and new calibration; partial
+training from the archived attempt is not resumed or used for calibration.
 
 ## Inspect or run individual steps
 

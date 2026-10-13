@@ -2,7 +2,14 @@
 # One foreground coordinator: fresh native calibration, diagnostic, sealed review.
 # Interrupting this coordinator preserves submitted jobs and its receipt.
 set -euo pipefail
-root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+source_entry="${BASH_SOURCE[0]}"
+if [[ -n "${RAVEN_LAUNCH_PLAN:-}" ]]; then
+    [[ "${RAVEN_SOURCE_SCRIPT:-}" == /* && -f "$RAVEN_SOURCE_SCRIPT" ]] || {
+        printf 'TDN diagnostic: Raven must provide its original source script path.\n' >&2; exit 2;
+    }
+    source_entry="$RAVEN_SOURCE_SCRIPT"
+fi
+root="$(cd -- "$(dirname -- "$source_entry")/.." && pwd -P)"
 launcher="$root/scripts/fedora_response_diagnostic.sh"
 if [[ "${1:-}" == --help || "${1:-}" == -h ]]; then
     cat <<'HELP'
@@ -11,6 +18,8 @@ Usage: bash scripts/response_diagnostic_campaign.sh [--targets TARGET ...]
 Submits fresh native diagnostic smoke, waits for terminal jobs and verified
 artifacts, then submits its calibrated diagnostic. Polls every 30 seconds.
 Preserves partial reports; never retries, cancels jobs, or falls back to CPU.
+Raven: raven launch scripts/response_diagnostic_campaign.sh --local
+       --recipe response-diagnostic -- [campaign options]
 HELP
     exit 0
 fi
@@ -28,11 +37,21 @@ while [[ $# -gt 0 ]]; do
         *) printf 'TDN diagnostic: unknown campaign option %s.\n' "$1" >&2; exit 2 ;;
     esac
 done
+if [[ -n "${SLURM_JOB_ID:-}${SLURM_STEP_ID:-}${SLURM_JOB_ACCOUNT:-}" ]]; then
+    printf 'TDN diagnostic: Run the campaign coordinator outside Slurm; use raven launch with --local. Scientific workers retain their native Slurm allocations.\n' >&2
+    exit 2
+fi
 python="${TDN_PYTHON:-}"
 if [[ -z "$python" ]]; then
     if [[ -x "$root/.venv/bin/python" ]]; then python="$root/.venv/bin/python"; else python=python3; fi
 fi
 cd "$root"
+raven_active=0
+raven_logging=0
+if [[ -n "${RAVEN_LAUNCH_PLAN:-}" ]]; then
+    "$python" "$root/scripts/response_diagnostic_raven.py" check --snapshot "${BASH_SOURCE[0]}"
+    raven_active=1
+fi
 token="$("$python" - <<'PY'
 from datetime import datetime,timezone
 import uuid
@@ -46,7 +65,7 @@ mkdir -p -- "$receipt_dir"
 receipt="$receipt_dir/receipt.json"
 "$python" - "$receipt" "$root" "$smoke_id" "$diagnostic_id" "${#targets[@]}" "${targets[@]}" "${overrides[@]}" <<'PY'
 from datetime import datetime,timezone
-import json,sys
+import json,os,sys
 from pathlib import Path
 path,root,smoke,diagnostic,n=sys.argv[1:6];n=int(n)
 value={'schema':'tdn.response-diagnostic-campaign/v1','created_at':datetime.now(timezone.utc).isoformat(),
@@ -54,6 +73,11 @@ value={'schema':'tdn.response-diagnostic-campaign/v1','created_at':datetime.now(
        'targets':sys.argv[6:6+n],'diagnostic_overrides':sys.argv[6+n:],
        'status':'RUNNING','phase':'CREATED','events':[],
        'poll_interval_seconds':30,'automatic_retries':False,'cpu_fallback':False}
+if os.environ.get('RAVEN_LAUNCH_PLAN'):
+    plan=json.loads(Path(os.environ['RAVEN_LAUNCH_PLAN']).read_text())
+    run=Path(os.environ['RAVEN_RUN_DIR'])
+    value['raven_launch']={'project_root':root,'coordinator_run_id':run.name,
+        'coordinator_run_dir':run.relative_to(Path(root)).as_posix(),'launch_token':plan['token']}
 with Path(path).open('x') as stream:json.dump(value,stream,indent=2);stream.write('\n')
 PY
 receipt_update() {
@@ -67,15 +91,37 @@ value.update(phase=phase,status=status,updated_at=now)
 value['events'].append({'time':now,'phase':phase,'status':status,'detail':detail})
 partial=path.with_suffix('.json.partial');partial.write_text(json.dumps(value,indent=2)+'\n');os.replace(partial,path)
 PY
+    if [[ "$raven_active" == 1 ]]; then
+        "$python" "$root/scripts/response_diagnostic_raven.py" publish --receipt "$receipt"
+    fi
 }
 on_exit() {
-    local code="$1"
+    local code="$1" original_code="$1"
     trap - EXIT
     if [[ "$code" != 0 ]]; then receipt_update "${phase:-CREATED}" FAILED "Coordinator exit $code; submitted jobs were preserved" || true; fi
+    if [[ "$raven_logging" == 1 ]]; then
+        exec 1>&"$raven_stdout" 2>&"$raven_stderr"
+        exec {raven_stdout}>&- {raven_stderr}>&-
+        wait "$raven_out_pid" || { [[ "$code" != 0 ]] || code=2; }
+        wait "$raven_err_pid" || { [[ "$code" != 0 ]] || code=2; }
+        if [[ "$code" != "$original_code" ]]; then
+            receipt_update "${phase:-CREATED}" FAILED "Coordinator exit $code; submitted jobs and log evidence were preserved" || true
+        fi
+    fi
+    exit "$code"
 }
 trap 'on_exit "$?"' EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
+if [[ "$raven_active" == 1 ]]; then
+    "$python" "$root/scripts/response_diagnostic_raven.py" initialize --receipt "$receipt" --snapshot "${BASH_SOURCE[0]}"
+    exec {raven_stdout}>&1 {raven_stderr}>&2
+    exec > >(tee -- "$RAVEN_RUN_DIR/logs/campaign.stdout.log")
+    raven_out_pid=$!
+    exec 2> >(tee -- "$RAVEN_RUN_DIR/logs/campaign.stderr.log" >&2)
+    raven_err_pid=$!
+    raven_logging=1
+fi
 printf 'Calibration run: %s\nDiagnostic run: %s\nCampaign receipt: %s\n' "$smoke_id" "$diagnostic_id" "$receipt"
 wait_terminal() {
     local run_id="$1" snapshot="$receipt_dir/$1-status.json" state
@@ -93,6 +139,9 @@ if not isinstance(value.get('units'),dict) or not isinstance(value.get('failed_u
 print('terminal' if value['terminal'] else 'pending')
 PY
 )"
+        if [[ "$raven_active" == 1 ]]; then
+            "$python" "$root/scripts/response_diagnostic_raven.py" publish --receipt "$receipt" --status-file "$snapshot"
+        fi
         printf 'TDN diagnostic: %s %s; status snapshot %s\n' "$run_id" "$state" "$snapshot"
         if [[ "$state" == terminal ]]; then return 0; fi
         sleep 30

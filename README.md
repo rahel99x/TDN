@@ -5,11 +5,12 @@ A runnable research pipeline for learning the finite-time error of a symmetric s
 The [Response diagnostic program](docs/RESPONSE_DIAGNOSTIC_RESEARCH.md) adds
 conditioned temporal and spatial models, deterministic physical-objective
 training, prospective teacher/precision screening and source-bound continuation.
-Run `bash scripts/response_diagnostic_campaign.sh` on the configured Fedora
-Slurm checkout to verify native CUDA, calibrate every variant, execute the
+Run `raven launch scripts/response_diagnostic_campaign.sh --local --recipe response-diagnostic`
+on the configured Fedora Slurm checkout to verify native CUDA, calibrate every variant, execute the
 diagnostic matrix and export its research evidence. The
 [runbook](docs/RESPONSE_DIAGNOSTIC_RUNBOOK.md) covers the separate CPU smoke,
-Raven logging, paged projects and portable HTML/CSV/plot bundle. These diagnostics
+Raven coordinator/worker logging, cancelled-run archival, paged projects and
+the portable HTML/CSV/plot bundle. These diagnostics
 preserve the completed pilot's negative gate and do not authorize confirmation.
 
 The current [Resolve development program](docs/RESOLVE_RESEARCH.md) implements

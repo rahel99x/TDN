@@ -267,6 +267,15 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
   the diagnostic profiles. Use `scripts/response_diagnostic_campaign.sh` for
   fresh native calibration followed by diagnostics; the separate local launcher
   exercises reduced CPU work only. Preserve the original Response pilot gate.
+- Raven launch of the campaign uses `--local --recipe response-diagnostic` on
+  the submission host, with application options after `--`. Validate its
+  captured-script/original-checkout context; Raven owns the coordinator
+  lifecycle, while TDN owns native allocated worker records. Strip outer
+  `RAVEN_*` context before worker submission. Keep telemetry scopes explicit.
+- Archive cancelled diagnostic campaigns only through the terminal-job checks
+  in `scripts/response_diagnostic_archive.sh`; preserve every original artifact
+  and unrelated run. A new launch uses fresh IDs and fresh calibration rather
+  than resuming partially completed scientific work.
 - Keep native calibration and full trials bound to the same screened six-regime
   parent layout and exact variant workload. Require all 97 declared CUDA cases
   and measured native work before full submission. A teacher, precision or fit

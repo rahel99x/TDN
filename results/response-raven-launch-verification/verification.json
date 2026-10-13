@@ -1,0 +1,71 @@
+{
+  "schema": "tdn.response-raven-launch-verification/v1",
+  "verified_at": "2026-10-13T03:18:30.854756+00:00",
+  "scope": "Raven launch/campaign orchestration and native archive metadata safety; controlled scientific/scheduler fixtures",
+  "base_commit": "afc30e4a46924e144e0c67d55dda722a1a57f966",
+  "source_tree_sha256": "7288e0d29c5c9fb8c58b57f75642777f48de4775cc139a6eb1b2a29d02f6529e",
+  "raven_source_ref": "c34f0892d7bddc685c5af10489ecb114fd6adab6",
+  "combined_regression": {
+    "passed": 129,
+    "seconds": 61.96,
+    "command": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 TDN_LOCAL_TEST_ROOT=/workspace/TDN TDN_RAVEN_TEST_ROOT=/workspace/Raven .venv/bin/python -m pytest -q tests/test_response_diagnostic_scripts.py tests/test_response_diagnostic_protocol.py tests/test_response_workflow.py tests/test_response_diagnostic_archive.py tests/test_response_diagnostic_raven_launch.py --basetemp .runtime/onboarding/response-raven-final-tests -o cache_dir=.runtime/onboarding/diagnostic-pytest-cache",
+    "subsequent_changes": "Two archive race/rollback refinements verified separately below; coordinator/launch source remained unchanged"
+  },
+  "final_archive_regression": {
+    "passed": 24,
+    "seconds": 0.43,
+    "command": "OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 TDN_LOCAL_TEST_ROOT=/workspace/TDN .venv/bin/python -m pytest -q tests/test_response_diagnostic_archive.py --basetemp .runtime/onboarding/response-archive-final-tests -o cache_dir=.runtime/onboarding/diagnostic-pytest-cache",
+    "archive_helper_sha256": "8b968f72cedd38981ca515665b57cbaf4ee40715ce0a06b84a6a1f59e1f93ad5"
+  },
+  "actual_cli_readonly_preview": {
+    "execution": "local",
+    "script_relative": "scripts/response_diagnostic_campaign.sh",
+    "project_root": "/workspace/TDN",
+    "workdir": "/workspace/TDN",
+    "features": [
+      "experiment",
+      "evidence",
+      "artifacts"
+    ],
+    "gpu": false,
+    "trace": false,
+    "mutations": 0,
+    "script_args": [
+      "--targets",
+      "fd_same_grid",
+      "galerkin_same_grid",
+      "galerkin_projected_fine"
+    ]
+  },
+  "recipe": {
+    "features": [
+      "experiment",
+      "evidence",
+      "artifacts"
+    ],
+    "gpu": false,
+    "trace": false,
+    "cpu_memory": false,
+    "auto_export": false
+  },
+  "checks": [
+    "Captured original/snapshot/runtime source membership",
+    "Actual Raven runtime executes retained campaign bytes",
+    "Exact campaign argv and calibration binding",
+    "Retained stdout/stderr tee drain",
+    "Native Raven inventory/summary/log/metric/artifact readers",
+    "Negative science leaves completed infrastructure distinguishable",
+    "Native infrastructure failures preserve exit status",
+    "Final infrastructure progress and source hash retention",
+    "Outer coordinator context stripped from native worker submissions",
+    "Terminal ownership and orphan-queue archive guards",
+    "Absent accounting comment coverage",
+    "No-overwrite atomic archival and interrupted rollback",
+    "Bash syntax, Python compilation, git diff --check"
+  ],
+  "native_scientific_jobs_executed": false,
+  "native_gpu_verified": false,
+  "actual_user_machine_cleaned": false,
+  "existing_cancelled_runs_reused": false,
+  "raven_application_modified": false
+}
