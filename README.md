@@ -2,6 +2,22 @@
 
 A runnable research pipeline for learning the finite-time error of a symmetric split solver. It includes exact noncommuting linear controls, periodic logistic reaction–diffusion, refined FP64 coupled teachers, local-input learned models, deterministic datasets/training, checkpoint resume, and complete-solver accuracy/cost reports.
 
+The [Tangent Response framework](docs/TANGENT_RESPONSE_RESEARCH.md) tests
+spatially varying finite-time responses through prospective mechanism,
+compression, fitting and complete-cost gates. Its separate namespace preserves
+earlier experiments. The [runbook](docs/TANGENT_RESPONSE_RUNBOOK.md) provides the
+native `raven launch scripts/tangent_response_campaign.sh --local --project "$PWD"
+--recipe tangent-response -- ...` command, exact recovery, safe archival and
+portable research/worker-resource graphs. Start with its reduced CPU smoke;
+native expansion requires sealed passing evidence and actual CUDA calibration.
+The [analysis and terminology](docs/TANGENT_RESPONSE_ANALYSIS.md) and
+[verified literature](docs/TANGENT_RESPONSE_LITERATURE.md) explain its estimands
+and mathematical limits.
+The [verification record](results/tangent-response-verification/README.md)
+distinguishes the completed CPU implementation checks from pending native CUDA
+and scientific evidence; the [original assignment](docs/TANGENT_RESPONSE_RESEARCH_HANDOUT.md)
+is preserved verbatim.
+
 The [Response diagnostic program](docs/RESPONSE_DIAGNOSTIC_RESEARCH.md) adds
 conditioned temporal and spatial models, deterministic physical-objective
 training, prospective teacher/precision screening and source-bound continuation.

@@ -134,14 +134,46 @@ def run_roots(value):
         if base in found:
             continue
         found.add(base)
-        workflows = [base / name for name in ("portfolio-workflow.json", "advance-workflow.json", "resolve-workflow.json", "response-workflow.json")
+        # New tangent campaigns declare exact child identities. Keep historical
+        # default-pointer routing and old recovery traversal unchanged.
+        campaign = base / "tangent-response-campaign.json"
+        if campaign.is_file():
+            descriptor = read_json(campaign)
+            receipt_path = inside(descriptor["receipt_path"])
+            if descriptor.get("run_id") != base.name or receipt_path.parent.parent != ROOT / "runs/.tangent-response-campaigns":
+                raise ValueError("Tangent campaign receipt is outside its exact inventory")
+            receipt = read_json(receipt_path)
+            if receipt.get("schema") != "tdn.tangent-response-campaign/v1" or receipt.get("run_id") != base.name:
+                raise ValueError("Tangent campaign receipt identity differs")
+            children = list(receipt.get("run_ids", {}).values())
+            for names in receipt.get("replaced_run_ids", {}).values():
+                children.extend(names)
+            for child in children:
+                path = inside(ROOT / "runs" / safe_name(child))
+                if path.is_dir():
+                    pending.append(resolve_run(path))
+        workflows = [base / name for name in ("portfolio-workflow.json", "advance-workflow.json", "resolve-workflow.json", "response-workflow.json", "tangent-response-workflow.json")
                      if (base / name).exists()]
         if not workflows:
             continue
         if len(workflows) != 1:
             raise ValueError("Ambiguous workflow manifests in one run directory")
         workflow = workflows[0]
-        descriptor = read_json(workflow).get("recovery")
+        stored = read_json(workflow)
+        if workflow.name == "tangent-response-workflow.json":
+            for binding in stored.get("scientific_protocol", {}).get("prerequisites", {}).values():
+                origin = inside(binding["workflow_path"])
+                if digest(origin) != binding["workflow_sha256"]:
+                    raise ValueError("Tangent upstream workflow binding changed")
+                pending.append(resolve_run(origin.parent))
+            recovery = stored.get("recovery")
+            if recovery:
+                origin = inside(recovery["origin_workflow"])
+                if digest(origin) != recovery["origin_workflow_sha256"]:
+                    raise ValueError("Tangent recovery origin changed")
+                pending.append(resolve_run(origin.parent))
+            continue
+        descriptor = stored.get("recovery")
         if not descriptor:
             continue
         bridge_path = inside(descriptor["manifest_path"])

@@ -1,0 +1,120 @@
+{
+  "schema": "tdn.tangent-raven-verification/v1",
+  "run_id": "tangent-response-cpu-fd-20261013-d",
+  "target": "fd",
+  "raven_source_revision": "c34f0892d7bddc685c5af10489ecb114fd6adab6",
+  "source_tree_sha256": "aa12fea81573c181602ccf49a0aa3642df65a2c37374cc387c0ecf2134bb2dde",
+  "protocol_sha256": "ccef8bbd128a3c8157a137eebb112c6547a77a6c0ed1b3fe06414dd41429cd5a",
+  "portable_sha256": "766ef3cd811a2634231a6d1bf7da7bbcaf0b5be1700af2d3d7ed09f12b5a4297",
+  "relocated_path": ".runtime/onboarding/tangent-relocated-fd-d",
+  "index_bytes": 212821,
+  "counts": {
+    "portable_files": 1964,
+    "projects": 2,
+    "runs": 83,
+    "selected_runs": 83,
+    "contracts_default_valid": 83,
+    "metric_records": 174,
+    "logs": 158,
+    "csv_files": 135,
+    "csv_rows": 12966,
+    "csv_pages": 135,
+    "cpu_streams": 75,
+    "cpu_samples": 140,
+    "cpu_utilization_samples": 65,
+    "gpu_samples": 0,
+    "source_citations": 248,
+    "original_science_seals": 75,
+    "table_rows": 12826,
+    "table_source_pointers": 12576,
+    "html_links": 161
+  },
+  "warnings": {},
+  "issues": [],
+  "scientific_decision": "IMPLEMENTATION_ONLY",
+  "eligible": false,
+  "underlying_scientific_decisions": {
+    "A": "PASS",
+    "B": "UNRESOLVED",
+    "C0": "PASS",
+    "CALIBRATION": "PASS",
+    "C": "STOP",
+    "D": "STOP"
+  },
+  "curve_rows": 12,
+  "fit_work_records": {
+    "calibration": 2,
+    "research": 2,
+    "independent_research_seed_count": 1
+  },
+  "fresh_process": {
+    "learned_response": {
+      "status": "MEASURED",
+      "observations": 1,
+      "returncodes": [
+        0
+      ],
+      "p99_seconds": null
+    },
+    "residual_fno": {
+      "status": "MEASURED",
+      "observations": 1,
+      "returncodes": [
+        0
+      ],
+      "p99_seconds": null
+    }
+  },
+  "producer_recorded_fp32_model_rows": 14,
+  "final_rounding_available": true,
+  "autonomous_rollouts": {
+    "records": 18,
+    "complete_records": 15,
+    "model_records": 6,
+    "model_records_complete": true,
+    "requested_step_counts": [
+      2,
+      4,
+      8
+    ],
+    "missing_records": [
+      {
+        "method": "fixed_shared_basis",
+        "requested_steps": 2,
+        "measured_steps": 0,
+        "missing_steps": [
+          1,
+          2
+        ]
+      },
+      {
+        "method": "fixed_shared_basis",
+        "requested_steps": 4,
+        "measured_steps": 0,
+        "missing_steps": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "method": "fixed_shared_basis",
+        "requested_steps": 8,
+        "measured_steps": 0,
+        "missing_steps": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    ],
+    "source": "evaluation/evaluation_results.json#/auxiliary/rollouts"
+  },
+  "scope": "Actual source-bound CPU producer/export/native-reader verification; checkpoint/input bytes were hashed without deserialization. Missing fixed-basis evidence is retained. No CUDA readiness, scientific promotion, p99, energy or monetary cost inferred."
+}

@@ -1,0 +1,623 @@
+{
+  "schema": "tdn.tangent-response-decision/v1",
+  "gate": "ALL",
+  "decision": "IMPLEMENTATION_ONLY",
+  "status": "IMPLEMENTATION_ONLY",
+  "stage": "all",
+  "eligible": false,
+  "eligible_next": false,
+  "profile": "cpu-smoke",
+  "underlying_decisions": {
+    "A": {
+      "schema": "tdn.tangent-response-decision/v1",
+      "gate": "A",
+      "decision": "IMPLEMENTATION_ONLY",
+      "eligible": false,
+      "stage": "mechanism",
+      "status": "IMPLEMENTATION_ONLY",
+      "eligible_next": false,
+      "thresholds": {
+        "rms_ratio": 1.5,
+        "parent_improvement_fraction": 0.75,
+        "maximum_regression": 2.0,
+        "uncertainty_fraction_of_improvement": 0.1,
+        "minimum_signal_uncertainty_ratio": 10.0
+      },
+      "evidence": {
+        "E_G": 3.3945216910955175e-08,
+        "E_U": 1.4655159701302428e-12,
+        "rms_ratio": 23162.638690275347,
+        "zero_oracle_error": false,
+        "ratio_definition": "ratio of parent-weighted arithmetic mean RMS, not mean per-query ratios",
+        "separated_parent_fraction": 1.0,
+        "parent_rows": [
+          {
+            "parent_id": "tr-parent-6e5851231f094f697f22",
+            "gain": 5.625472712154521e-08,
+            "uncertainty": 1.2926035050459119e-11,
+            "separated": true
+          },
+          {
+            "parent_id": "tr-parent-29ca7fcf3d381776b313",
+            "gain": 1.1632775668424885e-08,
+            "uncertainty": 2.6060506807739138e-11,
+            "separated": true
+          }
+        ],
+        "maximum_regressions": [],
+        "missing_queries": [],
+        "unresolved_queries": [],
+        "duplicate_queries": [],
+        "precision_limited": [],
+        "nonprimary_rows_reported": 13
+      },
+      "denominators": {
+        "requested_queries": 2,
+        "eligible_queries": 2,
+        "requested_parents": 2,
+        "eligible_parents": 2,
+        "precision_limited_queries": 0
+      },
+      "uncertainties": {
+        "parent_mean_combined_rms": 1.9493270929099128e-11,
+        "aggregate_improvement_separated": true
+      },
+      "reason": "Full requested primary bank retained; paired refinements and interventions never rescue primary promotion",
+      "profile": "cpu-smoke",
+      "execution_scope": "CPU_IMPLEMENTATION_SMOKE",
+      "underlying_scientific_decision": "PASS",
+      "evidence_scope": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS",
+      "uncertainty_is_certificate": false,
+      "protocol_sha256": "ff9f04be816ad1a8417f83dfe57b5b21be3835808d0b158f5381d021a1682523"
+    },
+    "B": {
+      "schema": "tdn.tangent-response-decision/v1",
+      "gate": "B",
+      "decision": "IMPLEMENTATION_ONLY",
+      "eligible": false,
+      "stage": "compression",
+      "status": "IMPLEMENTATION_ONLY",
+      "eligible_next": false,
+      "thresholds": {
+        "rank_cap": 8,
+        "action_relative_error": 0.1,
+        "probe_fraction": 0.9,
+        "worst_action_relative_error": 0.3,
+        "retained_oracle_gain": 0.8
+      },
+      "evidence": {
+        "candidates": [
+          {
+            "method": "shared_endpoint_weighted_pod_rank2",
+            "rank": 2,
+            "status": "UNRESOLVED",
+            "passed": false,
+            "promotion_eligible": true,
+            "compression_object": "reusable_operator",
+            "probe_fractions": {
+              "heldout_direction": 0.0,
+              "heldout_parent": 0.0
+            },
+            "worst_relative_error": 17.309117618769427,
+            "retained_gain": null,
+            "E_G": null,
+            "E_U": null,
+            "E_L": null,
+            "requested_probes": 126,
+            "nontrivial_probes": 124,
+            "null_probes": 2,
+            "missing_probes": [],
+            "unresolved_probes": [],
+            "missing_endpoints": [],
+            "unresolved_endpoints": [
+              "tr-query-a6ee446ce912e08f96e99a32",
+              "tr-query-6d85c1b438eb7dab200794c8"
+            ],
+            "deployable": true,
+            "generalization_scope": "training-only fitted reusable factors",
+            "combined_uncertainty": null
+          },
+          {
+            "method": "shared_response_action_pod_rank2",
+            "rank": 2,
+            "status": "UNRESOLVED",
+            "passed": false,
+            "promotion_eligible": true,
+            "compression_object": "reusable_operator",
+            "probe_fractions": {
+              "heldout_direction": 0.0,
+              "heldout_parent": 0.0
+            },
+            "worst_relative_error": 22.24169804651414,
+            "retained_gain": null,
+            "E_G": null,
+            "E_U": null,
+            "E_L": null,
+            "requested_probes": 126,
+            "nontrivial_probes": 124,
+            "null_probes": 2,
+            "missing_probes": [],
+            "unresolved_probes": [],
+            "missing_endpoints": [],
+            "unresolved_endpoints": [
+              "tr-query-a6ee446ce912e08f96e99a32",
+              "tr-query-6d85c1b438eb7dab200794c8"
+            ],
+            "deployable": true,
+            "generalization_scope": "training-only fitted reusable factors",
+            "combined_uncertainty": null
+          },
+          {
+            "method": "shared_source_energy_pod_rank2",
+            "rank": 2,
+            "status": "UNRESOLVED",
+            "passed": false,
+            "promotion_eligible": true,
+            "compression_object": "reusable_operator",
+            "probe_fractions": {
+              "heldout_direction": 0.0,
+              "heldout_parent": 0.0
+            },
+            "worst_relative_error": 4.667826022376531,
+            "retained_gain": null,
+            "E_G": null,
+            "E_U": null,
+            "E_L": null,
+            "requested_probes": 126,
+            "nontrivial_probes": 124,
+            "null_probes": 2,
+            "missing_probes": [],
+            "unresolved_probes": [],
+            "missing_endpoints": [],
+            "unresolved_endpoints": [
+              "tr-query-a6ee446ce912e08f96e99a32",
+              "tr-query-6d85c1b438eb7dab200794c8"
+            ],
+            "deployable": true,
+            "generalization_scope": "training-only fitted reusable factors",
+            "combined_uncertainty": null
+          },
+          {
+            "method": "state_oracle_response_pod_rank2",
+            "rank": 2,
+            "status": "UNRESOLVED",
+            "passed": false,
+            "promotion_eligible": true,
+            "compression_object": "reusable_operator_state_oracle",
+            "probe_fractions": {
+              "heldout_direction": 0.0,
+              "heldout_parent": 0.18518518518518517
+            },
+            "worst_relative_error": 863.8115041399351,
+            "retained_gain": null,
+            "E_G": null,
+            "E_U": null,
+            "E_L": null,
+            "requested_probes": 126,
+            "nontrivial_probes": 124,
+            "null_probes": 2,
+            "missing_probes": [],
+            "unresolved_probes": [],
+            "missing_endpoints": [],
+            "unresolved_endpoints": [
+              "tr-query-a6ee446ce912e08f96e99a32",
+              "tr-query-6d85c1b438eb7dab200794c8"
+            ],
+            "deployable": false,
+            "generalization_scope": "state oracle is representation headroom, not deployable held-out-parent generalization",
+            "combined_uncertainty": null
+          },
+          {
+            "method": "task_residual_response_pod_rank2",
+            "rank": 2,
+            "status": "NOT_APPLICABLE",
+            "passed": false,
+            "promotion_eligible": false,
+            "compression_object": "task_residual_family",
+            "reported_action_rows": 150,
+            "reported_residual_action_rows": 30,
+            "reported_endpoint_rows": 15,
+            "diagnostic_panels": {
+              "actions": "action_rows",
+              "endpoints": "endpoint_rows"
+            },
+            "generalization_scope": "Residual-family diagnostics only; reusable-operator promotion requires independent held-out directions and parents"
+          }
+        ],
+        "selected": null
+      },
+      "denominators": {
+        "requested_probes": 126,
+        "requested_primary_endpoints": 2
+      },
+      "uncertainties": {},
+      "reason": "Lowest passing reusable-operator rank/method; residual-family panels are retained separately without operator promotion",
+      "profile": "cpu-smoke",
+      "execution_scope": "CPU_IMPLEMENTATION_SMOKE",
+      "underlying_scientific_decision": "UNRESOLVED",
+      "evidence_scope": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS",
+      "uncertainty_is_certificate": false,
+      "protocol_sha256": "ff9f04be816ad1a8417f83dfe57b5b21be3835808d0b158f5381d021a1682523"
+    },
+    "C0": {
+      "schema": "tdn.tangent-response-decision/v1",
+      "gate": "C0",
+      "decision": "IMPLEMENTATION_ONLY",
+      "eligible": false,
+      "stage": "fit_data",
+      "status": "IMPLEMENTATION_ONLY",
+      "eligible_next": false,
+      "thresholds": {},
+      "evidence": {
+        "selected_counts": {
+          "train": 2,
+          "validation": 2,
+          "diagnostic": 2
+        },
+        "required_counts": {
+          "train": 2,
+          "validation": 2,
+          "diagnostic": 2
+        },
+        "screening": {
+          "schema": "tdn.tangent-response-screening/v1",
+          "status": "ACCEPTED",
+          "requested_parent_slots": 6,
+          "accepted_parent_slots": 6,
+          "candidates": [
+            {
+              "parent_id": "tr-parent-93f499b33e1a91389a7d",
+              "split": "train",
+              "slot": 0,
+              "candidate": 0,
+              "requested_queries": 1,
+              "observed_queries": 1,
+              "eligible": true,
+              "selected": true,
+              "reasons": []
+            },
+            {
+              "parent_id": "tr-parent-bbae407b1ebada586d61",
+              "split": "train",
+              "slot": 1,
+              "candidate": 0,
+              "requested_queries": 1,
+              "observed_queries": 1,
+              "eligible": true,
+              "selected": true,
+              "reasons": []
+            },
+            {
+              "parent_id": "tr-parent-06108063ae2d5e22e86e",
+              "split": "validation",
+              "slot": 0,
+              "candidate": 0,
+              "requested_queries": 1,
+              "observed_queries": 1,
+              "eligible": true,
+              "selected": true,
+              "reasons": []
+            },
+            {
+              "parent_id": "tr-parent-d0b0570fea32d9552451",
+              "split": "validation",
+              "slot": 1,
+              "candidate": 0,
+              "requested_queries": 1,
+              "observed_queries": 1,
+              "eligible": true,
+              "selected": true,
+              "reasons": []
+            },
+            {
+              "parent_id": "tr-parent-b0d8d8bcdb4e0f46eed3",
+              "split": "diagnostic",
+              "slot": 0,
+              "candidate": 0,
+              "requested_queries": 4,
+              "observed_queries": 4,
+              "eligible": true,
+              "selected": true,
+              "reasons": []
+            },
+            {
+              "parent_id": "tr-parent-6e66bf602224863a2dfe",
+              "split": "diagnostic",
+              "slot": 1,
+              "candidate": 0,
+              "requested_queries": 1,
+              "observed_queries": 1,
+              "eligible": true,
+              "selected": true,
+              "reasons": []
+            }
+          ],
+          "selected_parent_ids": [
+            "tr-parent-06108063ae2d5e22e86e",
+            "tr-parent-6e66bf602224863a2dfe",
+            "tr-parent-93f499b33e1a91389a7d",
+            "tr-parent-b0d8d8bcdb4e0f46eed3",
+            "tr-parent-bbae407b1ebada586d61",
+            "tr-parent-d0b0570fea32d9552451"
+          ],
+          "selection": "First prospectively declared eligible candidate; no trained loss or speed"
+        }
+      },
+      "denominators": {
+        "requested_candidates": 6,
+        "selected_parents": 6
+      },
+      "uncertainties": {},
+      "reason": "Reference/signal/deployment screening only; trained loss and speed cannot select this bank",
+      "profile": "cpu-smoke",
+      "execution_scope": "CPU_IMPLEMENTATION_SMOKE",
+      "underlying_scientific_decision": "PASS",
+      "evidence_scope": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS",
+      "uncertainty_is_certificate": false,
+      "protocol_sha256": "ff9f04be816ad1a8417f83dfe57b5b21be3835808d0b158f5381d021a1682523"
+    },
+    "CALIBRATION": {
+      "schema": "tdn.tangent-response-decision/v1",
+      "gate": "CALIBRATION",
+      "decision": "IMPLEMENTATION_ONLY",
+      "eligible": false,
+      "stage": "calibration",
+      "status": "IMPLEMENTATION_ONLY",
+      "eligible_next": false,
+      "thresholds": {},
+      "evidence": {
+        "missing_arms": [],
+        "invalid_arms": [],
+        "native": false,
+        "source_bound": true,
+        "measurements": {
+          "learned_response": {
+            "arm": "learned_response",
+            "status": "COMPLETED_UPDATES",
+            "native": false,
+            "device": "cpu",
+            "execution_mode": "local_cpu",
+            "completed_updates": 2,
+            "workload_sha256": "821afc9271c6d1cc8ea4799ab12cc9501d0a12423155ce1b216f2e351b225263",
+            "seconds_per_update": 2.491212070999609,
+            "source_tree_sha256": "aa12fea81573c181602ccf49a0aa3642df65a2c37374cc387c0ecf2134bb2dde",
+            "requested_updates": 2,
+            "fit_bank_query_ids": [
+              "tr-query-adc6154e76e5a57e5397cd8c",
+              "tr-query-6290c49327fce624bf2752b0",
+              "tr-query-a631ef33dac741dc86d5d657",
+              "tr-query-b0fc4d856952c89322e23458"
+            ],
+            "data_sha256": "9f68553559dbf756862e785363fd639005184deee979efffc66c7d532ace0189",
+            "query_plan_sha256": "605cc4ec00fcef50cbc696f732c3328baeb0a48643480d2d021a426978dfc125",
+            "rate_scope": "Complete fit including preparation, forward/backward, validation, journals and declared conditional controls per committed update"
+          },
+          "residual_fno": {
+            "arm": "residual_fno",
+            "status": "COMPLETED_UPDATES",
+            "native": false,
+            "device": "cpu",
+            "execution_mode": "local_cpu",
+            "completed_updates": 2,
+            "workload_sha256": "7fdecf018b3073629f1580f6dd310247ee54f4e4283bf8d76ade66e81aaf2648",
+            "seconds_per_update": 0.400636336999014,
+            "source_tree_sha256": "aa12fea81573c181602ccf49a0aa3642df65a2c37374cc387c0ecf2134bb2dde",
+            "requested_updates": 2,
+            "fit_bank_query_ids": [
+              "tr-query-adc6154e76e5a57e5397cd8c",
+              "tr-query-6290c49327fce624bf2752b0",
+              "tr-query-a631ef33dac741dc86d5d657",
+              "tr-query-b0fc4d856952c89322e23458"
+            ],
+            "data_sha256": "9f68553559dbf756862e785363fd639005184deee979efffc66c7d532ace0189",
+            "query_plan_sha256": "605cc4ec00fcef50cbc696f732c3328baeb0a48643480d2d021a426978dfc125",
+            "rate_scope": "Complete fit including preparation, forward/backward, validation, journals and declared conditional controls per committed update"
+          }
+        }
+      },
+      "denominators": {
+        "requested_arms": 2,
+        "measured_arms": 2
+      },
+      "uncertainties": {},
+      "reason": "Actual stage layout/rank/dtype/gradients/validation workload must match source-bound native calibration",
+      "profile": "cpu-smoke",
+      "execution_scope": "CPU_IMPLEMENTATION_SMOKE",
+      "underlying_scientific_decision": "PASS",
+      "evidence_scope": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS",
+      "uncertainty_is_certificate": false,
+      "protocol_sha256": "ff9f04be816ad1a8417f83dfe57b5b21be3835808d0b158f5381d021a1682523"
+    },
+    "C": {
+      "schema": "tdn.tangent-response-decision/v1",
+      "gate": "C",
+      "decision": "IMPLEMENTATION_ONLY",
+      "eligible": false,
+      "stage": "learning",
+      "status": "IMPLEMENTATION_ONLY",
+      "eligible_next": false,
+      "thresholds": {
+        "C1": {
+          "relative_oracle_correction_error": 0.05,
+          "query_fraction": 0.9
+        },
+        "C2": {
+          "retained_oracle_gain": 0.8
+        }
+      },
+      "evidence": {
+        "C1_passed": true,
+        "C2_passed": false,
+        "training_criterion": [
+          {
+            "family": "learned_response",
+            "seed": 1521988738,
+            "completed_work": true,
+            "requested_queries": 2,
+            "eligible_queries": 2,
+            "precision_limited_queries": 0,
+            "passed_queries": 2,
+            "fraction": 1.0,
+            "passed": true,
+            "criterion_update": 0,
+            "selected_update": 2,
+            "invalid_queries": []
+          }
+        ],
+        "selected_heldout": [
+          {
+            "seed": 1521988738,
+            "requested_queries": 2,
+            "eligible_queries": 2,
+            "missing_queries": [],
+            "unresolved_queries": [],
+            "retained_gain": -0.6252258098278711,
+            "E_G": 3.234579937666301e-08,
+            "E_U": 2.226028434593123e-12,
+            "E_L": 5.256783621603627e-08,
+            "uncertainty": 2.0280310922282877e-11,
+            "passed": false,
+            "complete": true,
+            "aggregate_headroom": true
+          }
+        ],
+        "candidate_failures": [],
+        "baseline_adequacy": [
+          {
+            "family": "residual_fno",
+            "seed": 1521988738,
+            "status": "COMPLETED_UPDATES",
+            "updates": 2,
+            "requested_updates": 2
+          }
+        ],
+        "duplicate_trials": false,
+        "screened_manifest_valid": true
+      },
+      "denominators": {
+        "declared_candidate_trials": 1,
+        "observed_candidate_trials": 1,
+        "requested_primary_diagnostic_queries": 2
+      },
+      "uncertainties": {},
+      "reason": "Training-fit diagnostic and validation-selected held-out gain are distinct; FNO adequacy does not silently redefine candidate success",
+      "profile": "cpu-smoke",
+      "execution_scope": "CPU_IMPLEMENTATION_SMOKE",
+      "underlying_scientific_decision": "STOP",
+      "evidence_scope": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS",
+      "uncertainty_is_certificate": false,
+      "protocol_sha256": "ff9f04be816ad1a8417f83dfe57b5b21be3835808d0b158f5381d021a1682523"
+    },
+    "D": {
+      "schema": "tdn.tangent-response-decision/v1",
+      "gate": "D",
+      "decision": "IMPLEMENTATION_ONLY",
+      "eligible": false,
+      "stage": "utility",
+      "status": "IMPLEMENTATION_ONLY",
+      "eligible_next": false,
+      "thresholds": {
+        "primary_tolerance": 2e-05,
+        "cost_ratio": 1.0
+      },
+      "evidence": {
+        "comparison": {
+          "candidate": "learned_response",
+          "controls": [
+            "G",
+            "adaptive_dop853",
+            "anchor",
+            "residual_fno",
+            "shared_gl4"
+          ],
+          "declared_candidates": [
+            {
+              "checkpoint_sha256": "54f40ce837f83db73e3466850c95444be798e58bb81e6bc32984df230286a7fb",
+              "method": "learned_response",
+              "seed": 1521988738
+            }
+          ],
+          "frozen_sha256": "fc5b15890531cfcf063ac76d1e6f6c89a71f80c0779c5cc8b2c03ff18c538e71",
+          "outcomes": [
+            {
+              "candidate": "learned_response",
+              "methods": {
+                "G": {
+                  "coverage": 1.0,
+                  "parent_mean_seconds": 0.13343289674958214,
+                  "qualified": true,
+                  "qualified_queries": 2,
+                  "requested_queries": 2
+                },
+                "adaptive_dop853": {
+                  "coverage": 1.0,
+                  "parent_mean_seconds": 0.005365961747884285,
+                  "qualified": true,
+                  "qualified_queries": 2,
+                  "requested_queries": 2
+                },
+                "anchor": {
+                  "coverage": 1.0,
+                  "parent_mean_seconds": 0.007276531996467384,
+                  "qualified": true,
+                  "qualified_queries": 2,
+                  "requested_queries": 2
+                },
+                "learned_response": {
+                  "coverage": 1.0,
+                  "parent_mean_seconds": 0.14858860574531718,
+                  "qualified": true,
+                  "qualified_queries": 2,
+                  "requested_queries": 2
+                },
+                "residual_fno": {
+                  "coverage": 1.0,
+                  "parent_mean_seconds": 0.01986183125700336,
+                  "qualified": true,
+                  "qualified_queries": 2,
+                  "requested_queries": 2
+                },
+                "shared_gl4": {
+                  "coverage": 1.0,
+                  "parent_mean_seconds": 0.010738022996520158,
+                  "qualified": true,
+                  "qualified_queries": 2,
+                  "requested_queries": 2
+                }
+              },
+              "passed": false,
+              "seconds_saved": -0.1432226439974329,
+              "seed": 1521988738,
+              "status": "STOP",
+              "strongest_qualifying_control": "adaptive_dop853",
+              "target_kind": "galerkin_same_grid",
+              "tolerance": 2e-05
+            }
+          ],
+          "policy_scope": "Every selected seed evaluated; no favorable seed selection",
+          "requested_targets": [
+            "galerkin_same_grid"
+          ]
+        },
+        "complete_cost": true,
+        "candidate_registration_valid": true,
+        "missing_candidate_targets": []
+      },
+      "denominators": {
+        "targets": 1,
+        "declared_candidate_seeds": 1,
+        "requested_candidate_targets": 1,
+        "observed_candidate_targets": 1
+      },
+      "uncertainties": {},
+      "reason": "Requires every declared seed's actual candidate method and validation-frozen accuracy-qualified full-cost coverage; no energy or monetary inference",
+      "profile": "cpu-smoke",
+      "execution_scope": "CPU_IMPLEMENTATION_SMOKE",
+      "underlying_scientific_decision": "STOP",
+      "evidence_scope": "DEVELOPMENT_ONLY_NO_CONFIRMATORY_CLAIMS",
+      "uncertainty_is_certificate": false,
+      "protocol_sha256": "ff9f04be816ad1a8417f83dfe57b5b21be3835808d0b158f5381d021a1682523"
+    }
+  },
+  "reason": "CPU software rehearsal cannot promote native numerical work"
+}

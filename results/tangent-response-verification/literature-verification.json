@@ -1,0 +1,264 @@
+{
+  "schema": "tdn.tangent-response-literature-verification/v1",
+  "bibliographic_verification_only": true,
+  "no_exhaustive_novelty_claim": true,
+  "sources": {
+    "10.1017/s0962492910000048": {
+      "title": "Exponential integrators",
+      "authors": [
+        {
+          "given": "Marlis",
+          "family": "Hochbruck"
+        },
+        {
+          "given": "Alexander",
+          "family": "Ostermann"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2010,
+            5
+          ]
+        ]
+      },
+      "metadata_sha256": "cf5c19f7cd349a8fd38d02835caa7ebbc8f9a140800743571b1e38289b1d4ab9",
+      "metadata_file": ".runtime/tangent-response-literature/crossref.txt",
+      "source_url": "https://api.crossref.org/works/10.1017/s0962492910000048",
+      "verification": "official Crossref HTTP200 TLS verification retained"
+    },
+    "10.2514/2.1570": {
+      "title": "Balanced Model Reduction via the Proper Orthogonal Decomposition",
+      "authors": [
+        {
+          "given": "K.",
+          "family": "Willcox"
+        },
+        {
+          "given": "J.",
+          "family": "Peraire"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2002,
+            11
+          ]
+        ]
+      },
+      "metadata_sha256": "c026aef08711926216f751ef9aef18376a736f3eceb51b4290f4a3e9841626b9",
+      "metadata_file": ".runtime/tangent-response-literature/balanced_pod.json",
+      "source_url": "https://api.crossref.org/works/10.2514/2.1570",
+      "verification": "official Crossref HTTP200 TLS verification retained"
+    },
+    "10.1016/j.jcp.2018.02.037": {
+      "title": "Non-intrusive reduced order modeling of nonlinear problems using neural networks",
+      "authors": [
+        {
+          "given": "J.S.",
+          "family": "Hesthaven"
+        },
+        {
+          "given": "S.",
+          "family": "Ubbiali"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2018,
+            6
+          ]
+        ]
+      },
+      "metadata_sha256": "f9f3ae274a12aa6c348a1915c28a39c99902c42aede4ae63891c89c5d799b8e5",
+      "metadata_file": ".runtime/tangent-response-literature/neural_rom.json",
+      "source_url": "https://api.crossref.org/works/10.1016/j.jcp.2018.02.037",
+      "verification": "official Crossref HTTP200 TLS verification retained"
+    },
+    "10.1023/a:1022338906936": {
+      "title": "Spectral Deferred Correction Methods for Ordinary Differential Equations",
+      "authors": [
+        {
+          "given": "Alok",
+          "family": "Dutt"
+        },
+        {
+          "given": "Leslie",
+          "family": "Greengard"
+        },
+        {
+          "given": "Vladimir",
+          "family": "Rokhlin"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2000,
+            6
+          ]
+        ]
+      },
+      "metadata_sha256": "5aadefa13a420460752282ba5fd20de173675b2b9cf972c5d536d5ba89c90306",
+      "metadata_file": ".runtime/tangent-response-literature/deferred_correction.json",
+      "source_url": "https://api.crossref.org/works/10.1023/a:1022338906936",
+      "verification": "official Crossref HTTP200 TLS verification retained"
+    },
+    "10.1007/978-3-642-05221-7": {
+      "title": "Solving Ordinary Differential Equations II",
+      "authors": [
+        {
+          "given": "Ernst",
+          "family": "Hairer"
+        },
+        {
+          "given": "Gerhard",
+          "family": "Wanner"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            1996
+          ]
+        ]
+      },
+      "metadata_sha256": "26fc520adae0f9aea0d6e3b15226257eb2c225dceed779bf11d97b2e85760760",
+      "metadata_file": ".runtime/tangent-response-literature/stiff_ode.json",
+      "source_url": "https://api.crossref.org/works/10.1007/978-3-642-05221-7",
+      "verification": "official Crossref HTTP200 TLS verification retained"
+    },
+    "10.1088/0266-5611/19/2/201": {
+      "title": "Separable nonlinear least squares: the variable projection method and its applications",
+      "authors": [
+        {
+          "given": "Gene",
+          "family": "Golub"
+        },
+        {
+          "given": "Victor",
+          "family": "Pereyra"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2003,
+            2,
+            14
+          ]
+        ]
+      },
+      "metadata_sha256": "c1695ece8a0f74c2c224fe85476fcc8eb39ce813baf5279b27905e8d5882c8d4",
+      "metadata_file": ".runtime/tangent-response-literature/variable_projection.json",
+      "source_url": "https://api.crossref.org/works/10.1088/0266-5611/19/2/201",
+      "verification": "official Crossref HTTP200 TLS verification retained"
+    },
+    "10.1137/090766498": {
+      "title": "Nonlinear Model Reduction via Discrete Empirical Interpolation",
+      "authors": [
+        {
+          "given": "Saifon",
+          "family": "Chaturantabut"
+        },
+        {
+          "given": "Danny C.",
+          "family": "Sorensen"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2010,
+            1
+          ]
+        ]
+      },
+      "metadata_sha256": "360b49da9cf446829e54cb9145780b20a7ba9f713c9b3c41fa07642b2a657eeb",
+      "metadata_file": ".runtime/tangent-response-literature/deim.json",
+      "source_url": "https://api.crossref.org/works/10.1137/090766498",
+      "verification": "official Crossref HTTP200 TLS verification retained"
+    },
+    "10.1016/j.jcp.2013.02.028": {
+      "title": "The GNAT method for nonlinear model reduction: Effective implementation and application to computational fluid dynamics and turbulent flows",
+      "authors": [
+        {
+          "given": "Kevin",
+          "family": "Carlberg"
+        },
+        {
+          "given": "Charbel",
+          "family": "Farhat"
+        },
+        {
+          "given": "Julien",
+          "family": "Cortial"
+        },
+        {
+          "given": "David",
+          "family": "Amsallem"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2013,
+            6
+          ]
+        ]
+      },
+      "metadata_sha256": "920371e7e5ebec83b195826961008792989a551cfd3b1883bccbb378f03d17e4",
+      "metadata_file": ".runtime/tangent-response-literature/gnat.json",
+      "source_url": "https://api.crossref.org/works/10.1016/j.jcp.2013.02.028",
+      "verification": "official Crossref HTTP200 TLS verification retained"
+    },
+    "10.1137/0729014": {
+      "title": "Analysis of Some Krylov Subspace Approximations to the Matrix Exponential Operator",
+      "authors": [
+        {
+          "given": "Y.",
+          "family": "Saad"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            1992,
+            2
+          ]
+        ]
+      },
+      "metadata_sha256": "904e01340757bc6bf7f88cd7f9c60f6691e542add50b08ba74bed33bb3033380",
+      "metadata_file": ".runtime/tangent-response-literature/saad.json",
+      "source_url": "https://api.crossref.org/works/10.1137/0729014",
+      "verification": "official Crossref HTTP200 TLS verification retained"
+    },
+    "https://jmlr.org/papers/v24/21-1524.html": {
+      "metadata_sha256": "0cafe17f4220f3c0db6f657c0368678808abe7a880b730b2b31d4855882f854f",
+      "metadata_file": ".runtime/tangent-response-literature/neuraloperator_jmlr.html",
+      "source_url": "https://jmlr.org/papers/v24/21-1524.html",
+      "verification": "official journal/proceedings or author source HTTP200 TLS verification retained"
+    },
+    "https://proceedings.mlr.press/v97/greenfeld19a.html": {
+      "metadata_sha256": "1d3e9a25b06c5ba60b77a06c0b592777d3baffd851decd28729e5954fbbf9d37",
+      "metadata_file": ".runtime/tangent-response-literature/learned_multigrid.html",
+      "source_url": "https://proceedings.mlr.press/v97/greenfeld19a.html",
+      "verification": "official journal/proceedings or author source HTTP200 TLS verification retained"
+    },
+    "https://raw.githubusercontent.com/neuraloperator/neuraloperator/main/README.rst": {
+      "metadata_sha256": "b05da95483cb73cc965b2d3ee793d7d9de678cac8e1a086fa0c3fa6cea1012c4",
+      "metadata_file": ".runtime/tangent-response-literature/neuraloperator_readme.txt",
+      "source_url": "https://raw.githubusercontent.com/neuraloperator/neuraloperator/main/README.rst",
+      "verification": "official journal/proceedings or author source HTTP200 TLS verification retained"
+    }
+  },
+  "retrieval_notes": [
+    "DEIM first request HTTP429; bounded later retry HTTP200",
+    "NeuralOperator CITATION.cff HTTP404; actual README.rst and official JMLR page verified",
+    "Proxy and certificate verification unchanged"
+  ],
+  "scope": "Metadata, accessible abstracts and author source; full-text theorem/reproduction audit not completed"
+}

@@ -293,3 +293,24 @@ When editing, run tests appropriate to the change. Windows launcher syntax and a
   reports during recovery. Keep source/venv guards, all-attempt costs and the
   existing 35-minute CPU/host/VRAM envelope. A resident-input timing panel does
   not establish matched-tolerance solver utility or deployment economics.
+
+## Staged Tangent Response
+
+- Read `docs/TANGENT_RESPONSE_RESEARCH_HANDOUT.md` completely, then its analysis
+  and native runbook before changing this separate program. Preserve earlier
+  experiments, targets, gates, calibrations and results.
+- Use the immutable protocol and matrix-free same-grid FD/Galerkin operators.
+  Full-field tangent actions retain mean coupling. Match the anchor/residual
+  for G and U; projected-fine targets require a separately implemented closure.
+- Require literal native A/B/C0/calibration/C/D evidence at each expansion.
+  CPU all-stage work is `IMPLEMENTATION_ONLY`. Do not relax thresholds or
+  uncertainty budgets, hide failed/null slots, or infer operator rank from one
+  response vector. Calibration binds the actual screened bank and work layout.
+- Launch the local Raven coordinator with the `tangent-response` recipe and
+  collect resource telemetry inside actual allocated workers. Preserve exact
+  source/software, journals and all-attempt costs during continuation; use
+  fresh roots and terminal ownership checks for recovery and archive.
+- Keep validation-selected deployment distinct from training-criterion,
+  initialization and final checkpoints. Charge paths, residuals, precision
+  bridges and complete inference. Retain source citations, missing coverage,
+  negative gates and portable Raven paths; no native claim from CPU/stubs.

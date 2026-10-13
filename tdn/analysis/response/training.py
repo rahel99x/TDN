@@ -1099,13 +1099,23 @@ def _checkpoint_runtime():
     return dict(precision=precision, threads=torch.get_num_threads(),
         interop_threads=torch.get_num_interop_threads(), cudnn_benchmark=torch.backends.cudnn.benchmark,
         cudnn_deterministic=torch.backends.cudnn.deterministic,
-        deterministic_algorithms=torch.are_deterministic_algorithms_enabled())
+        deterministic_algorithms=torch.are_deterministic_algorithms_enabled(),
+        deterministic_warn_only=torch.is_deterministic_algorithms_warn_only_enabled())
 
 
-def _checkpoint_reload_child(directory, destination, *, threads, interop_threads):
+def _checkpoint_reload_child(directory, destination, *, threads, interop_threads, runtime_path=None):
     directory = Path(directory)
     torch.set_num_threads(threads)
     torch.set_num_interop_threads(interop_threads)
+    if runtime_path is not None:
+        declared = json.loads(Path(runtime_path).read_text())
+        keys = ("deterministic_algorithms", "deterministic_warn_only", "cudnn_benchmark", "cudnn_deterministic")
+        if any(type(declared.get(key)) is not bool for key in keys):
+            raise ValueError("Checkpoint probe requires declared boolean backend settings")
+        torch.use_deterministic_algorithms(declared["deterministic_algorithms"], warn_only=declared["deterministic_warn_only"])
+        torch.backends.cudnn.benchmark = declared["cudnn_benchmark"]
+        torch.backends.cudnn.deterministic = declared["cudnn_deterministic"]
+    # load_model still enforces IEEE FP32, irrespective of this execution policy.
     loaded, _ = load_model(directory, destination)
     probe = torch.load(directory/"reload-input.pt", weights_only=True, map_location="cpu")
     probe["u0"] = probe["u0"].to(destination)
@@ -1129,8 +1139,10 @@ def checkpoint_reload_probe(path, sample, *, device="cpu"):
     atomic_torch_save(stripped, probe_path)
     output_path = root/"reload-output.pt"
     runtime = _checkpoint_runtime()
+    runtime_path = root/"reload-parent-runtime.json"
+    write_json(runtime_path, runtime)
     command = [sys.executable, "-m", "tdn.analysis.response.training", "reload", str(root.resolve()), str(device),
-               str(runtime["threads"]), str(runtime["interop_threads"])]
+               str(runtime["threads"]), str(runtime["interop_threads"]), str(runtime_path.resolve())]
     started = time.perf_counter()
     child = subprocess.run(command, capture_output=True, text=True, check=False, timeout=120)
     if child.returncode:
@@ -1149,6 +1161,7 @@ def checkpoint_reload_probe(path, sample, *, device="cpu"):
                   parent_runtime=runtime, child_runtime=receipt["runtime"],
                   elapsed_seconds=time.perf_counter()-started,
                   checkpoint_sha256=checkpoint_sha256, input_sha256=file_digest(probe_path),
+                  parent_runtime_sha256=file_digest(runtime_path),
                   independent_process=True, device=str(device))
     write_json(root/"checkpoint_reload.json", result)
     return result
@@ -1682,6 +1695,7 @@ def run(ctx):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 6 or sys.argv[1] != "reload":
-        raise SystemExit("Internal checkpoint probe: reload PATH DEVICE THREADS INTEROP_THREADS")
-    _checkpoint_reload_child(sys.argv[2], sys.argv[3], threads=int(sys.argv[4]), interop_threads=int(sys.argv[5]))
+    if len(sys.argv) not in (6, 7) or sys.argv[1] != "reload":
+        raise SystemExit("Internal checkpoint probe: reload PATH DEVICE THREADS INTEROP_THREADS [RUNTIME_JSON]")
+    _checkpoint_reload_child(sys.argv[2], sys.argv[3], threads=int(sys.argv[4]), interop_threads=int(sys.argv[5]),
+                             runtime_path=sys.argv[6] if len(sys.argv) == 7 else None)

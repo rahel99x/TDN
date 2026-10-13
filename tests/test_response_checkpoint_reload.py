@@ -30,10 +30,18 @@ def checkpoint_fixture(path, target="fd_same_grid", device="cpu"):
     return sample
 
 
-def test_reload_uses_ieee_in_both_processes_and_matches_thread_settings(tmp_path):
+@pytest.mark.parametrize("deterministic", (False, True))
+@pytest.mark.parametrize("cudnn_benchmark,cudnn_deterministic", ((False, False), (True, True)))
+def test_reload_uses_ieee_in_both_processes_and_matches_thread_settings(tmp_path, deterministic, cudnn_benchmark, cudnn_deterministic):
     old_threads = torch.get_num_threads()
+    old_deterministic = torch.are_deterministic_algorithms_enabled()
+    old_warn_only = torch.is_deterministic_algorithms_warn_only_enabled()
+    old_cudnn = torch.backends.cudnn.benchmark, torch.backends.cudnn.deterministic
     torch.set_num_threads(1)
     try:
+        torch.use_deterministic_algorithms(deterministic, warn_only=deterministic)
+        torch.backends.cudnn.benchmark = cudnn_benchmark
+        torch.backends.cudnn.deterministic = cudnn_deterministic
         sample = checkpoint_fixture(tmp_path)
         # Set the backend's actual fresh-process default that caused the CUDA
         # direct-FNO failures. This CPU check verifies policy, not CUDA arithmetic.
@@ -47,6 +55,10 @@ def test_reload_uses_ieee_in_both_processes_and_matches_thread_settings(tmp_path
         assert result["runtime_equal"] and result["state_equal"] and result["checkpoint_equal"]
         for runtime in (result["parent_runtime"], result["child_runtime"]):
             assert runtime["threads"] == 1
+            assert runtime["deterministic_algorithms"] == deterministic
+            assert runtime["deterministic_warn_only"] == deterministic
+            assert runtime["cudnn_benchmark"] == cudnn_benchmark
+            assert runtime["cudnn_deterministic"] == cudnn_deterministic
             settings = runtime["precision"]
             expected = "ieee" if settings["api"] == "fp32_precision" else False
             assert settings["cuda_matmul"] == expected
@@ -54,6 +66,8 @@ def test_reload_uses_ieee_in_both_processes_and_matches_thread_settings(tmp_path
         assert json.loads((tmp_path/"checkpoint_reload.json").read_text()) == result
     finally:
         torch.set_num_threads(old_threads)
+        torch.use_deterministic_algorithms(old_deterministic, warn_only=old_warn_only)
+        torch.backends.cudnn.benchmark, torch.backends.cudnn.deterministic = old_cudnn
         tr.reference_precision()
 
 

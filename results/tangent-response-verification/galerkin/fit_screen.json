@@ -1,0 +1,83 @@
+{
+  "schema": "tdn.tangent-response-screening/v1",
+  "status": "ACCEPTED",
+  "requested_parent_slots": 6,
+  "accepted_parent_slots": 6,
+  "candidates": [
+    {
+      "parent_id": "tr-parent-93f499b33e1a91389a7d",
+      "split": "train",
+      "slot": 0,
+      "candidate": 0,
+      "requested_queries": 1,
+      "observed_queries": 1,
+      "eligible": true,
+      "selected": true,
+      "reasons": []
+    },
+    {
+      "parent_id": "tr-parent-bbae407b1ebada586d61",
+      "split": "train",
+      "slot": 1,
+      "candidate": 0,
+      "requested_queries": 1,
+      "observed_queries": 1,
+      "eligible": true,
+      "selected": true,
+      "reasons": []
+    },
+    {
+      "parent_id": "tr-parent-06108063ae2d5e22e86e",
+      "split": "validation",
+      "slot": 0,
+      "candidate": 0,
+      "requested_queries": 1,
+      "observed_queries": 1,
+      "eligible": true,
+      "selected": true,
+      "reasons": []
+    },
+    {
+      "parent_id": "tr-parent-d0b0570fea32d9552451",
+      "split": "validation",
+      "slot": 1,
+      "candidate": 0,
+      "requested_queries": 1,
+      "observed_queries": 1,
+      "eligible": true,
+      "selected": true,
+      "reasons": []
+    },
+    {
+      "parent_id": "tr-parent-b0d8d8bcdb4e0f46eed3",
+      "split": "diagnostic",
+      "slot": 0,
+      "candidate": 0,
+      "requested_queries": 4,
+      "observed_queries": 4,
+      "eligible": true,
+      "selected": true,
+      "reasons": []
+    },
+    {
+      "parent_id": "tr-parent-6e66bf602224863a2dfe",
+      "split": "diagnostic",
+      "slot": 1,
+      "candidate": 0,
+      "requested_queries": 1,
+      "observed_queries": 1,
+      "eligible": true,
+      "selected": true,
+      "reasons": []
+    }
+  ],
+  "selected_parent_ids": [
+    "tr-parent-06108063ae2d5e22e86e",
+    "tr-parent-6e66bf602224863a2dfe",
+    "tr-parent-93f499b33e1a91389a7d",
+    "tr-parent-b0d8d8bcdb4e0f46eed3",
+    "tr-parent-bbae407b1ebada586d61",
+    "tr-parent-d0b0570fea32d9552451"
+  ],
+  "selection": "First prospectively declared eligible candidate; no trained loss or speed"
+}

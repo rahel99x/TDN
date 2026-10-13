@@ -1,0 +1,20 @@
+usage: tangent_response_workflow.py campaign [-h]
+                                             [--profile {pilot,mechanism,compression,fit-pilot,development}]
+                                             [--target {fd_same_grid,galerkin_same_grid}]
+                                             [--run-id RUN_ID]
+                                             [--prerequisite PREREQUISITE]
+                                             [--calibration CALIBRATION]
+                                             [--worker-telemetry WORKER_TELEMETRY]
+                                             [--no-worker-telemetry]
+                                             [--sampling-seconds SAMPLING_SECONDS]
+
+options:
+  -h, --help            show this help message and exit
+  --profile {pilot,mechanism,compression,fit-pilot,development}
+  --target {fd_same_grid,galerkin_same_grid}
+  --run-id RUN_ID
+  --prerequisite PREREQUISITE
+  --calibration CALIBRATION
+  --worker-telemetry WORKER_TELEMETRY
+  --no-worker-telemetry
+  --sampling-seconds SAMPLING_SECONDS

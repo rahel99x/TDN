@@ -127,6 +127,10 @@ def attempt_path(ctx):
     return raven_project(ctx) / "runs" / stable_id(root.name + "-" + ctx.stage)
 
 
+def _reporting_config(ctx):
+    return getattr(ctx, "_raven_config", {})
+
+
 def _project_catalog(ctx):
     root = raven_root(ctx)
     stages = list(ctx.protocol.get("stages", ctx.protocol["units"]))
@@ -138,21 +142,21 @@ def _project_catalog(ctx):
         rows.append(dict(stage=stage, kind=unit["kind"], trial_id=unit.get("trial_id"),
             page=page, attempt=attempt,
             inventory_path=(page+"/" if page else "")+"runs/"+attempt+"/run.json"))
-    write_json(root/"project_catalog.json", dict(schema="tdn.response-raven-catalog/v1",
+    write_json(root/"project_catalog.json", dict(schema=_reporting_config(ctx).get("catalog_schema", "tdn.response-raven-catalog/v1"),
         protocol_sha256=digest(ctx.protocol), source_tree_sha256=getattr(ctx,"_raven_sourcehash",None) or ctx.protocol.get("source_tree_sha256"),
         path_base="Raven overview project root; page directories are independent standard projects",
         declared_attempts=len(rows), page_capacity=255, attempts=rows,
         guidance="Select the overview project for complete research metrics; register the named page project for an exact native job attempt"))
 
 
-def _project_files(root):
+def _project_files(root, config=None):
     root = Path(root)
     (root / ".raven" / "contracts").mkdir(parents=True, exist_ok=True)
     (root / "runs").mkdir(exist_ok=True)
     _inside(root, root / ".raven" / "contracts")
-    config = dict(logs={"manifest_file": "logs.json"}, research={"metrics_file": "metrics.jsonl",
+    settings = dict(logs={"manifest_file": "logs.json"}, research={"metrics_file": "metrics.jsonl",
         "contract": ".raven/contracts/outputs.v1.json", "interval": 5})
-    write_json(root / ".raven" / "config.json", config)
+    write_json(root / ".raven" / "config.json", settings)
     # Each attempt has its own exact output contract; shared empty declarations
     # cannot falsely mark an absent scientific output as present.
     write_json(root / ".raven" / "contracts" / "outputs.v1.json",
@@ -173,14 +177,19 @@ def _project_files(root):
         "are observed histories, not confidence intervals. This diagnostic "
         "does not revise the historical pilot or authorize development.\n",
         encoding="utf-8")
+    if config and config.get("readme"):
+        (root / "README.md").write_text(config["readme"], encoding="utf-8")
 
 
-def start_attempt(ctx, job_id=None, sourcehash=None, *, worker_managed=False):
+def start_attempt(ctx, job_id=None, sourcehash=None, *, worker_managed=False, config=None):
     """Publish identity after allocation checks, before the worker's preflight.
 
     A native worker owns its terminal state. Its numerical CLI reuses this
     attempt without resetting the start, progress or attached logs.
     """
+    if config is not None:
+        ctx._raven_config = dict(config)
+    config = _reporting_config(ctx)
     project, path = raven_project(ctx), attempt_path(ctx)
     sourcehash = sourcehash or ctx.protocol.get("source_tree_sha256")
     if sourcehash is not None and (not isinstance(sourcehash,str) or not _HASH.fullmatch(sourcehash)):
@@ -191,8 +200,8 @@ def start_attempt(ctx, job_id=None, sourcehash=None, *, worker_managed=False):
     if worker_managed and job_id is None:
         raise ValueError("A native worker-managed attempt requires its actual scheduler job identity")
     ctx._raven_sourcehash = sourcehash
-    _project_files(raven_root(ctx))
-    _project_files(project)
+    _project_files(raven_root(ctx), config)
+    _project_files(project, config)
     _project_catalog(ctx)
     path.mkdir(parents=True, exist_ok=True)
     _inside(project, path)
@@ -231,15 +240,15 @@ def start_attempt(ctx, job_id=None, sourcehash=None, *, worker_managed=False):
             raise ValueError("A worker-managed attempt must start before the numerical CLI")
     started = existing.get("start") if existing else time.time()
     trial = ctx.protocol.get("trials", {}).get(unit.get("trial_id"), {})
-    run = dict(schema="raven.run/v1", project_id="TDN-response-diagnostic", run_id=identity,
-        experiment_id="response-diagnostic/" + ctx.stage, attempt=1,
-        name="TDN/response-diagnostic/" + unit["kind"], state="RUNNING", job_id=job_id,
+    run = dict(schema="raven.run/v1", project_id=config.get("project_id", "TDN-response-diagnostic"), run_id=identity,
+        experiment_id=config.get("experiment_prefix", "response-diagnostic")+"/"+ctx.stage, attempt=1,
+        name=config.get("name_prefix", "TDN/response-diagnostic")+"/"+unit["kind"], state="RUNNING", job_id=job_id,
         start=started, paths=dict(metrics="metrics.jsonl", summary="summary.json", log_index="logs.json",
             outputs="outputs", logs="logs", contract="outputs/contract.json"),
-        parameters={k:trial[k] for k in ("family", "target_kind", "seed", "variant_id", "phase") if k in trial},
+        parameters={k:trial[k] for k in config.get("parameter_keys", ("family", "target_kind", "seed", "variant_id", "phase")) if k in trial},
         metadata=dict(stage=ctx.stage, profile=ctx.protocol["profile"], source_tree_sha256=sourcehash,
             protocol_sha256=digest(ctx.protocol), device=str(ctx.device),
-            metric_scope="Relevant registered Response diagnostic research only",
+            metric_scope=config.get("metric_scope", "Relevant registered Response diagnostic research only"),
             native_worker_managed=bool(worker_managed), science_body_started=not worker_managed,
             device_scope="Requested execution device; reporting does not verify allocation or CUDA",
             source_identity_scope="Supplied source provenance; reporting does not verify executable readiness",
@@ -366,7 +375,7 @@ def _copy_metadata(source, destination, names):
     return entries
 
 
-def finish_attempt(ctx, summary):
+def finish_attempt(ctx, summary, *, metadata_files=None):
     """Record science separately from the final native worker lifecycle.
 
     Unflagged numerical-CLI completion leaves a worker-managed attempt RUNNING.
@@ -415,7 +424,8 @@ def finish_attempt(ctx, summary):
         raise ValueError("Worker exit code must be an integer")
     run["metadata"]["native_worker_finalized"] = bool(finalized)
     source_dir = path / "outputs" / "science"
-    entries = _copy_metadata(ctx.path, source_dir, METADATA_FILES | {"summary.json", "rows.jsonl"})
+    entries = _copy_metadata(ctx.path, source_dir,
+        (METADATA_FILES if metadata_files is None else set(metadata_files)) | {"summary.json", "rows.jsonl"})
     # Hashes are provenance tokens; portable pointers refer to copied bytes.
     manifest = Path(ctx.path) / "science_manifest.json"
     if manifest.exists():

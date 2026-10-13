@@ -110,7 +110,7 @@ def identity(value, label):
     return value
 
 
-def context(snapshot=None):
+def context(snapshot=None, *, script=SCRIPT):
     """Validate Raven's frozen launch, original checkout and current attempt."""
     if not os.environ.get("RAVEN_LAUNCH_PLAN"):
         return None
@@ -120,7 +120,8 @@ def context(snapshot=None):
     expected_root = str(root)
     if os.environ.get("RAVEN_PROJECT_ROOT") != expected_root:
         raise ValueError("Raven project root must be the exact TDN checkout")
-    source = confined(root/SCRIPT, root)
+    relative(script)
+    source = confined(root/script, root)
     if os.environ.get("RAVEN_SOURCE_SCRIPT") != str(source):
         raise ValueError("Raven original source script does not belong to this campaign")
     plan_path = confined(os.environ["RAVEN_LAUNCH_PLAN"], root)
@@ -133,7 +134,7 @@ def context(snapshot=None):
         raise ValueError("Raven launch plan has a different project membership")
     if (plan.get("schema") != "raven.launch-plan/v1" or plan.get("execution") != "local"
             or plan.get("project_root") != expected_root or plan.get("script") != str(source)
-            or plan.get("script_relative") != SCRIPT):
+            or plan.get("script_relative") != script):
         raise ValueError("The diagnostic coordinator requires its exact local Raven launch plan")
     checksum = plan.get("script_sha256")
     if not isinstance(checksum, str) or not SHA256.fullmatch(checksum):

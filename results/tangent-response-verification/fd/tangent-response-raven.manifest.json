@@ -1,0 +1,11 @@
+{
+  "schema": "tdn.response-raven-export-receipt/v1",
+  "path": "tangent-response-raven.zip",
+  "bytes": 10155465,
+  "sha256": "766ef3cd811a2634231a6d1bf7da7bbcaf0b5be1700af2d3d7ed09f12b5a4297",
+  "included_files": 1964,
+  "excluded_attempts": [
+    "runs/tangent-response-cpu-fd-20261013-d-report"
+  ],
+  "replay_scope": "Relevant research metadata, chart data and plots; no checkpoints or replay arrays"
+}
