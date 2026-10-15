@@ -51,6 +51,69 @@ def test_native_script_syntax():
     subprocess.run(["bash", "-n", str(SHELL)], check=True)
 
 
+def metadata_fixture(site, version="25.0", name="pip", directory=None):
+    metadata = site / (directory or f"{name}-{version}.dist-info")
+    metadata.mkdir(parents=True)
+    (metadata / "METADATA").write_text(f"Metadata-Version: 2.1\nName: {name}\nVersion: {version}\n")
+    return metadata
+
+
+def discover_only(native, monkeypatch, paths):
+    discover = native.importlib.metadata.distributions
+    monkeypatch.setattr(native.importlib.metadata, "distributions",
+                        lambda: discover(path=[str(path) for path in paths]))
+
+
+@pytest.mark.parametrize("alias", ["repeated", "lib64_symlink"])
+def test_distribution_discovery_aliases_preserve_inventory(native, tmp_path, monkeypatch, alias):
+    site = tmp_path / "lib/python3.13/site-packages"
+    metadata_fixture(site)
+    metadata_fixture(site, version="1.0", name="other-package")
+    other = site
+    if alias == "lib64_symlink":
+        (tmp_path / "lib64").symlink_to(tmp_path / "lib", target_is_directory=True)
+        other = tmp_path / "lib64/python3.13/site-packages"
+    discover_only(native, monkeypatch, [site, other])
+    # This is real stdlib discovery, including METADATA without a RECORD file.
+    assert len(list(native.importlib.metadata.distributions())) == 4
+    assert native.installed_packages() == {"other-package": "1.0", "pip": "25.0"}
+
+
+@pytest.mark.parametrize("version", ["25.0", "25.1"])
+def test_distribution_distinct_metadata_rejected(native, tmp_path, monkeypatch, version):
+    site = tmp_path / "site-packages"
+    first = metadata_fixture(site)
+    second = metadata_fixture(site, version=version, directory="pip-second.dist-info")
+    discover_only(native, monkeypatch, [site])
+    with pytest.raises(ValueError, match="Duplicate installed distribution: pip") as error:
+        native.installed_packages()
+    assert str(first) in str(error.value) and str(second) in str(error.value)
+
+
+def test_distribution_inconsistent_version_same_location_rejected(native, tmp_path, monkeypatch):
+    location = metadata_fixture(tmp_path)
+    # Simulate an inconsistent provider or metadata changing during discovery.
+    class Distribution:
+        metadata = {"Name": "pip"}
+        _path = location
+        def __init__(self, version):
+            self.version = version
+    monkeypatch.setattr(native.importlib.metadata, "distributions",
+                        lambda: iter([Distribution("25.0"), Distribution("25.1")]))
+    with pytest.raises(ValueError, match="Duplicate installed distribution: pip"):
+        native.installed_packages()
+
+
+def test_distribution_unverified_duplicate_location_rejected(native, monkeypatch):
+    class Distribution:
+        metadata = {"Name": "pip"}
+        version = "25.0"
+    monkeypatch.setattr(native.importlib.metadata, "distributions",
+                        lambda: iter([Distribution(), Distribution()]))
+    with pytest.raises(ValueError, match="unverified metadata location"):
+        native.installed_packages()
+
+
 def test_recipe_and_native_plan_preserve_bounded_cpu_request(raven, tmp_path):
     root = tmp_path / "TDN checkout with spaces"
     (root / "scripts").mkdir(parents=True)

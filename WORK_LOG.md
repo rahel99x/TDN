@@ -231,3 +231,16 @@ The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implem
   fixture. No native jobs, numerical code, model, thresholds or prior evidence
   changed. The user's underlying preparation error remains unknown until its
   actual stderr is available. See results/response-preconditioner-terminal-exit-20261015.json.
+
+- Fixed the native response-preconditioner package inventory after the user
+  supplied `Duplicate installed distribution: pip`. Real metadata discovery
+  reproduces one installation appearing twice through repeated search paths
+  and lib/lib64 aliases. The launcher now deduplicates only matching normalized
+  names, versions and canonical metadata directories, preserving rejection of
+  distinct/unverified installations with actionable version/location errors.
+  No installed packages were modified. All 184 mandatory CPU checks and 33
+  overlapping launch checks passed; actual Python 3.12 venv inventory and
+  Python 3.13 metadata fixtures verified the repair. Package snapshot shape,
+  numerical methods and historical gates remain unchanged. Existing source
+  contracts require fresh preparation after updating; actual Fedora native
+  retry is pending. See results/response-preconditioner-package-identity-20261015/.

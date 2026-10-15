@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "python": "3.13.5",
+  "checks": [
+    "lib_lib64_alias_deduplicated",
+    "distinct_same_version_metadata_rejected"
+  ],
+  "package_installation_changed": false,
+  "native_execution": false
+}

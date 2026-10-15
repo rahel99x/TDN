@@ -168,6 +168,7 @@ finishes successfully.
 | 2026-10-15 | Keep derivative-reference status separate from endpoint-reference acceptance | An independent variational solve without a refined uncertainty estimate is a diagnostic |
 | 2026-10-15 | Retain the classical eight-panel advantage and poor coefficient conditioning | Passing software checks does not establish capacity, utility or novelty |
 | 2026-10-15 | Guard interactive preparation and submission instead of using a bare shell exit | A preparation failure must remain visible without closing the user's terminal or submitting an empty contract; numerical code and evidence remain unchanged |
+| 2026-10-15 | Deduplicate only identical installed-package metadata discoveries | Fedora path aliases may enumerate one package twice; distinct metadata locations or versions still fail preflight. See the [verification receipt](../results/response-preconditioner-package-identity-20261015/README.md); prepare a fresh source-bound contract after updating |
 
 ## Maintenance rule
 

@@ -1,0 +1,70 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "afb90336e3ffd9fc486b69e2e3e9bd57bad44b29d85985f5a188077e5328ad42",
+      "bytes": 2658
+    },
+    {
+      "path": "actual-venv-alias.json",
+      "sha256": "26417de7f69e1d04b58a6ef42a21868a0695d842cb12edd41fdfb6bd90a04d9e",
+      "bytes": 216
+    },
+    {
+      "path": "checks.json",
+      "sha256": "614c37dbb9a4b608da8f64c6444bee5b73c6ff46f7a3b3b7f87eda70a9c23e4e",
+      "bytes": 65
+    },
+    {
+      "path": "command.json",
+      "sha256": "b9431912cbf59d1ff46cb96cf9de9b1fd080c7bfed4338265c4c7dede42c28a1",
+      "bytes": 2284
+    },
+    {
+      "path": "launch-tests.xml",
+      "sha256": "7f4f9aa0e84f131ccb830df9e5e154a5a6cf278b529285fe928817446766995b",
+      "bytes": 4979
+    },
+    {
+      "path": "python313.json",
+      "sha256": "2c80233eec60a204a28e3f91bd5bc4e28324482e70cc9a8811e045c3e2cbd859",
+      "bytes": 216
+    },
+    {
+      "path": "software.json",
+      "sha256": "33192c8512689626225635595b978f51aad55c433ee6d3f96132b01bcdef51f4",
+      "bytes": 383
+    },
+    {
+      "path": "source.json",
+      "sha256": "bb0fc58f6a651bc5106ca80472d01c28d27f683cecf2d15202697433107a58f1",
+      "bytes": 35097
+    },
+    {
+      "path": "source_after.json",
+      "sha256": "bb0fc58f6a651bc5106ca80472d01c28d27f683cecf2d15202697433107a58f1",
+      "bytes": 35097
+    },
+    {
+      "path": "summary.json",
+      "sha256": "cd27df299c7934a003fc17dd619d9573249f35b098dd72ae52e9112f6abc0122",
+      "bytes": 620
+    },
+    {
+      "path": "verification.json",
+      "sha256": "9b60c5c7b132c3c0906a0f812f0620cd255963e1745eb2f1c331cc4dadd7ef45",
+      "bytes": 1154
+    },
+    {
+      "path": "verification.log",
+      "sha256": "bedec4f926eb638340e8988c8f44c7aa0c5fcb7cec11fa7f85619ed5713c05a8",
+      "bytes": 379
+    },
+    {
+      "path": "verification.xml",
+      "sha256": "d7434d0d32e91da52f363457219f4810a2b1b569fcee81e788789995eeb2f4d7",
+      "bytes": 27374
+    }
+  ],
+  "self_excluded": "manifest.json"
+}

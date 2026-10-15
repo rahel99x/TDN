@@ -138,6 +138,26 @@ reproduce the original exit and verify the guarded failure, successful argument
 transport, missing contract/checkout and diagnostic paths. These use a recording
 Raven fixture and submit no jobs.
 
+### If preparation reports duplicate installed distributions
+
+Python can discover the same installed distribution twice through repeated
+search paths or Fedora's `lib`/`lib64` directory aliases. The initial launcher
+rejected every repeated package name, including this harmless case. The
+launcher now merges repeated discoveries only when the normalized package
+name, version and resolved metadata directory all match. The software snapshot
+still records one version per package.
+
+Update the checkout after its queued/running jobs are terminal and prepare a
+fresh contract using the guarded block above. No package reinstall is needed
+for a repeated discovery of one installation. A remaining duplicate error now
+prints the conflicting versions and metadata locations; preserve that output
+and inspect it before changing the environment. Distinct installations, even
+with equal versions, and unverifiable duplicate locations remain rejected.
+
+The [package-discovery verification](../results/response-preconditioner-package-identity-20261015/README.md)
+records the actual checks. Existing native contracts retain their original
+source identities and cannot be reused across this code update.
+
 ## Reading results
 
 Read execution status separately from research metrics. A completed tiny fit

@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "errors": 0,
+    "failed": 0,
+    "skipped": 0,
+    "total": 184
+  },
+  "command": "verify",
+  "decision": "IMPLEMENTATION_ONLY",
+  "device": "cpu",
+  "elapsed_seconds": 43.01964397600386,
+  "execution_mode": "local_cpu",
+  "historical_gate": "B STOP unchanged",
+  "native_gpu_readiness": false,
+  "output": "/workspace/TDN/runs/response-preconditioner-verify-package-identity-20261015",
+  "schema": "tdn.response_preconditioner.implementation.v1",
+  "scientific_promotion": false,
+  "source_fingerprint": "1b7c7ef69bd3e3948a378d64c37fd7c8d9a6fd4adf3349a3df71f49a52ca2983",
+  "status": "COMPLETED"
+}

@@ -57,6 +57,37 @@ def venv_lock():
         yield
 
 
+def installed_packages():
+    """Deduplicate discovery aliases, never distinct installed metadata.
+
+    Fedora venv lib/lib64 aliases and repeated sys.path entries can yield the
+    same distribution more than once. The supported stdlib PathDistribution
+    stores its metadata directory in _path; locate_file('') gives only the
+    shared site-packages root, and files may be absent without a RECORD.
+    Unknown/non-filesystem metadata identities cannot justify deduplication.
+    """
+    observed = {}
+    for dist in importlib.metadata.distributions():
+        name = re.sub(r"[-_.]+", "-", dist.metadata["Name"]).lower()
+        version = dist.version
+        try:
+            location = str(Path(dist._path).resolve(strict=True))
+        except (AttributeError, TypeError, OSError, RuntimeError):
+            location = None
+        current = (version, location)
+        if name in observed:
+            previous = observed[name]
+            if location is not None and current == previous:
+                continue
+            def describe(value):
+                return str(value[0]) + " at " + (value[1] or "an unverified metadata location")
+            raise ValueError("Duplicate installed distribution: " + name + "; "
+                             + describe(previous) + "; " + describe(current)
+                             + ". Distinct or unverified metadata cannot be merged; inspect these locations.")
+        observed[name] = current
+    return {name: value[0] for name, value in sorted(observed.items())}
+
+
 def software():
     if (Path(sys.prefix).resolve() != ROOT / ".venv" or sys.prefix == sys.base_prefix
             or os.environ.get("CONDA_PREFIX") or (Path(sys.base_prefix) / "conda-meta").exists()
@@ -64,14 +95,8 @@ def software():
         raise ValueError("Use this checkout's standalone .venv")
     if not (3, 11) <= sys.version_info[:2] <= (3, 13):
         raise ValueError("Use the supported standalone Python 3.11–3.13")
-    packages = {}
-    for dist in importlib.metadata.distributions():
-        name = re.sub(r"[-_.]+", "-", dist.metadata["Name"]).lower()
-        if name in packages:
-            raise ValueError("Duplicate installed distribution: " + name)
-        packages[name] = dist.version
     return dict(python=platform.python_version(), prefix=sys.prefix,
-                base_prefix=sys.base_prefix, packages=dict(sorted(packages.items())))
+                base_prefix=sys.base_prefix, packages=installed_packages())
 
 
 def source_identity():
