@@ -1,0 +1,46 @@
+{
+  "schema": "tdn.research-receipt-bundle.v1",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 8381,
+      "sha256": "dc8043252bcf024ad3272db8d04138700278d1258088dce182004007325d10ba"
+    },
+    {
+      "path": "audit_receipt.py",
+      "bytes": 20693,
+      "sha256": "de69d84eaeb4443e45ea2d616d7b1f9af5bfffd431f8da73e8ec424a10748d3b"
+    },
+    {
+      "path": "extract_evidence.py",
+      "bytes": 2064,
+      "sha256": "eee6af294f21aba6c2d54cbafbb9a6cb554bd5e3017812e36948c0aeeca6a5f2"
+    },
+    {
+      "path": "extraction-manifest.json",
+      "bytes": 39460,
+      "sha256": "db565405f99d4533c4133f98781f80bf1b284c5c9e518ca4ce792d382358e561"
+    },
+    {
+      "path": "integrity-review.json",
+      "bytes": 10553,
+      "sha256": "f31d4df8b789802e6c2f857b18a1f8ee6b4467fbb1ec20929a28d707908dfff7"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1.zip",
+      "bytes": 760399,
+      "sha256": "f1da910e7075ff7c569c931adbbf22c905e04f6a1f5be57735d75d05ecee149d"
+    },
+    {
+      "path": "review_science.py",
+      "bytes": 10735,
+      "sha256": "77c119925f74bfbbe3d1bc50ef5e1928b8b157706d0279f06dcdf6499547ab5e"
+    },
+    {
+      "path": "scientific-review.json",
+      "bytes": 22107,
+      "sha256": "d4cb218a171dc6c56c117babd489700404b7bc944a56fdfd3866bbbc7ac9396d"
+    }
+  ],
+  "self_excluded": "bundle-manifest.json"
+}

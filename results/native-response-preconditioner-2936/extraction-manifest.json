@@ -1,0 +1,943 @@
+{
+  "archive_sha256": "f1da910e7075ff7c569c931adbbf22c905e04f6a1f5be57735d75d05ecee149d",
+  "prefix": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/",
+  "retained": [
+    {
+      "path": "summary.json",
+      "bytes": 426,
+      "sha256": "e499c11342afa17bd414925549ee3dcd69b05ea021a89acaf4362028b5c56ecd"
+    },
+    {
+      "path": "logs.json",
+      "bytes": 794,
+      "sha256": "302bd7fcaa1226cbe009a1c1be17fabe43938e5ded89085ce23885f9487bb2dc"
+    },
+    {
+      "path": ".execution.json",
+      "bytes": 74,
+      "sha256": "4644350b299500d4917dca1f867728c6fc64924357da455f394eb616dc85b668"
+    },
+    {
+      "path": "metrics.jsonl",
+      "bytes": 28609,
+      "sha256": "46ddeb6f2b09a89847c58e521a9525e105ec84d33b3551bb8437bd63b080c32f"
+    },
+    {
+      "path": "run.json",
+      "bytes": 2129,
+      "sha256": "9bad8e138cf1cb46e5bd133cdb4b2632ea760938b9df729625ab3ac3d3d2eece"
+    },
+    {
+      "path": ".raven/report.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/smoke.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/verify.stdout.log",
+      "bytes": 585,
+      "sha256": "51695994aca3943e72c43e32f6cd8f309fd4b024e14c45d94bdc063f0cb91b03"
+    },
+    {
+      "path": "logs/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/smoke.stdout.log",
+      "bytes": 1004,
+      "sha256": "3179ec3f45e06d533d9da17694cd0a537793843d6259e1d7261b20cee5371706"
+    },
+    {
+      "path": "logs/verify.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "telemetry/cpu-memory.jsonl",
+      "bytes": 33449,
+      "sha256": "856c4d08edad90107c09ed4ce39d245ff532fa48158b04ebffc043540cc816fd"
+    },
+    {
+      "path": "telemetry/index.json",
+      "bytes": 876,
+      "sha256": "913b43fc11bf15277ffb6a9699b9eecd4c5a28f569306e92c51da240b46a8ef4"
+    },
+    {
+      "path": "reports/submit.json",
+      "bytes": 4488,
+      "sha256": "4f2691dc0e33527066f72a68409c13ef7b810f9d534474d4a37b4b535ac6dd58"
+    },
+    {
+      "path": ".raven/contracts/outputs.v1.json",
+      "bytes": 2830,
+      "sha256": "62643b625ff8c97db6abe88d0a7d6e3aa3fb875b29e5f841a3b84c96a44144ab"
+    },
+    {
+      "path": "outputs/smoke/metrics.json",
+      "bytes": 56042,
+      "sha256": "d6e74ee3c5e81edae79b9612baa52634a2f085508055401f8ff96bd55dcd0285"
+    },
+    {
+      "path": "outputs/smoke/summary.json",
+      "bytes": 1058,
+      "sha256": "6df12afcd178f84a085f9b4d79941813d639f7f9d0c8ed18423acae922587b10"
+    },
+    {
+      "path": "outputs/smoke/audit.json",
+      "bytes": 146840,
+      "sha256": "427c2ac3f5680112dac7eccb68f2b9f01ab62b7b4039ff0ef099d4eca81b1771"
+    },
+    {
+      "path": "outputs/smoke/references.json",
+      "bytes": 95626,
+      "sha256": "1359cb45fe912c4f7f6b014dc65118f31f02976a5cceec8c0c9679b0d20fb638"
+    },
+    {
+      "path": "outputs/smoke/timing.json",
+      "bytes": 1284,
+      "sha256": "b2d472cd29feb3b671ff15b9065c3a87e1391202a2887733c30265d833307b55"
+    },
+    {
+      "path": "outputs/smoke/source.json",
+      "bytes": 35097,
+      "sha256": "51e170247318144c78d403b296f7724b41b40ef49bf5a3a84d62f7cfcd88a93b"
+    },
+    {
+      "path": "outputs/smoke/arrays.npz",
+      "bytes": 208797,
+      "sha256": "c0d717557500f6cd6b0eda3d13b79b1bd47ea0ed2387c4e1f30bedf460187604"
+    },
+    {
+      "path": "outputs/smoke/array_index.json",
+      "bytes": 4509,
+      "sha256": "d85d4c87db65a2bce724ea4aa0b61ca0c7b13abbfac374b03c56b9a4c4bff4c8"
+    },
+    {
+      "path": "outputs/smoke/source_after.json",
+      "bytes": 35097,
+      "sha256": "51e170247318144c78d403b296f7724b41b40ef49bf5a3a84d62f7cfcd88a93b"
+    },
+    {
+      "path": "outputs/smoke/metrics.csv",
+      "bytes": 22809,
+      "sha256": "6c5e161df8b5871f4406a34f88307f30678703ae7b6e98c9a26685e79269da72"
+    },
+    {
+      "path": "outputs/smoke/work.json",
+      "bytes": 7223,
+      "sha256": "52d281460d3637ba58c7d11ffdd2d2397c2c772b592508cebd8e0d7dd9501c6f"
+    },
+    {
+      "path": "outputs/smoke/README.md",
+      "bytes": 1178,
+      "sha256": "5c1fe2131c0d4aaa8e5302d24512387d7c4133c276c60410e17b6e09799d2ab3"
+    },
+    {
+      "path": "outputs/smoke/architecture.json",
+      "bytes": 1434,
+      "sha256": "42915ed2d69aebfd0fcc859ac33d0b0ff81026c8ee7654ecd6f94bb544f8d85a"
+    },
+    {
+      "path": "outputs/smoke/journal.jsonl",
+      "bytes": 1614,
+      "sha256": "0bcd51a1ac148e5cacaff53f73472593b4108d16c7e25df128d38a89fa213d2f"
+    },
+    {
+      "path": "outputs/smoke/fitting.json",
+      "bytes": 17005,
+      "sha256": "01df2f44762d3fd7ac96daaa947539fc990c3d86651cee351917087acdf35d58"
+    },
+    {
+      "path": "outputs/smoke/selection.json",
+      "bytes": 19754,
+      "sha256": "6563e833d7cb506d513c0e527df511f1ba3d8b786566f2f42fca224d89c8ab2c"
+    },
+    {
+      "path": "outputs/smoke/protocol.json",
+      "bytes": 4337,
+      "sha256": "dd97be601ac10609849efd1dd76e2f4a553e060a8523e5956a88efdd567ef9af"
+    },
+    {
+      "path": "outputs/smoke/derivatives.json",
+      "bytes": 3294,
+      "sha256": "87f312d0b28b78524bf8b520c9fc522628761c39a6483c66d3cd149935ebe277"
+    },
+    {
+      "path": "outputs/smoke/software.json",
+      "bytes": 433,
+      "sha256": "e31c22f0f1672c750793dddb375df02d8e75a3bb38d5b8597e37e115c30df315"
+    },
+    {
+      "path": "outputs/smoke/artifacts.json",
+      "bytes": 3051,
+      "sha256": "772f12b97a172f472d6dabe92979dc8ac14c763c5a38098bef4a29d6f0ce8751"
+    },
+    {
+      "path": "outputs/native/status.json",
+      "bytes": 4462,
+      "sha256": "ff20d06ac05c46018b5960f107f2c45a27512f2a7eed383b6a968b957c7841ea"
+    },
+    {
+      "path": "outputs/native/contract.json",
+      "bytes": 2182,
+      "sha256": "91681ffc95d4e1892e6c7a2e35b88bfd5742f9db5d8c759e1cf31962e92c046c"
+    },
+    {
+      "path": "outputs/verification/summary.json",
+      "bytes": 633,
+      "sha256": "c5d452138a356fca24c463444d874b308c7de04c85a40fb23d8164927806e155"
+    },
+    {
+      "path": "outputs/verification/verification.xml",
+      "bytes": 30259,
+      "sha256": "de808f8052cf75173d8f735831823d0fa90c0efd203232bdb12d647d1cacb3c9"
+    },
+    {
+      "path": "outputs/verification/source.json",
+      "bytes": 35097,
+      "sha256": "51e170247318144c78d403b296f7724b41b40ef49bf5a3a84d62f7cfcd88a93b"
+    },
+    {
+      "path": "outputs/verification/source_after.json",
+      "bytes": 35097,
+      "sha256": "51e170247318144c78d403b296f7724b41b40ef49bf5a3a84d62f7cfcd88a93b"
+    },
+    {
+      "path": "outputs/verification/checks.json",
+      "bytes": 65,
+      "sha256": "338ed5e9dbbc93745fb4dfa4f980f247f634e0e9c6be4485180e9f852a8fdebc"
+    },
+    {
+      "path": "outputs/verification/README.md",
+      "bytes": 1178,
+      "sha256": "5c1fe2131c0d4aaa8e5302d24512387d7c4133c276c60410e17b6e09799d2ab3"
+    },
+    {
+      "path": "outputs/verification/journal.jsonl",
+      "bytes": 181,
+      "sha256": "27f9718ee547956049b37132da30365e2e178a047b1b3d23694a4d418918eaa4"
+    },
+    {
+      "path": "outputs/verification/command.json",
+      "bytes": 2302,
+      "sha256": "dea23e1f9077bd5bfe26c0580a69ea9bb9cd5ce37d74e1d42bd4047d54754ee7"
+    },
+    {
+      "path": "outputs/verification/protocol.json",
+      "bytes": 4338,
+      "sha256": "348d4faa1514bb632608f61f98a01a0838161554534d8aaf944bdad25e994e95"
+    },
+    {
+      "path": "outputs/verification/verification.log",
+      "bytes": 387,
+      "sha256": "16531595d7c7b1624e162179dd2ae019a381d6f177cb1e9ea3c603fe39665a71"
+    },
+    {
+      "path": "outputs/verification/software.json",
+      "bytes": 433,
+      "sha256": "e31c22f0f1672c750793dddb375df02d8e75a3bb38d5b8597e37e115c30df315"
+    },
+    {
+      "path": "outputs/verification/artifacts.json",
+      "bytes": 1860,
+      "sha256": "447a2d6d93bcce92ff4454dd025ccf28592af43bb7ced62c5f47ffdc4269c56e"
+    },
+    {
+      "path": "outputs/native/telemetry/observer.log",
+      "bytes": 1147,
+      "sha256": "01c1044651b18ffb1a6cf40dc5cd9445410a4fe1d363a1aed861db702d077834"
+    },
+    {
+      "path": "outputs/native/telemetry/cpu-memory.csv",
+      "bytes": 5955,
+      "sha256": "494fe4066eb99eaddbea4e829fb812ed8c9be967278d36a1b07daa1ccd5a1e67"
+    },
+    {
+      "path": "outputs/native/telemetry/cpu-memory.jsonl",
+      "bytes": 23333,
+      "sha256": "df99f96b65365a2df8ee0d11111a63b88c12f8f45b7bc0669b9a615ef33a4923"
+    },
+    {
+      "path": "outputs/native/telemetry/index.json",
+      "bytes": 1242,
+      "sha256": "cb6a2854355c0c916877fc223d29d8dd6a2394bdb25a286f1d6104d1059c8a5a"
+    }
+  ],
+  "omitted": [
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/",
+      "reason": "directory"
+    },
+    {
+      "path": "__MACOSX/._launch-ba0ccf6660874b2f826b1d7fd9e25886-a1",
+      "reason": "metadata_or_outside_run"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/.raven/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/logs/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/passports/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/telemetry/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/reports/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/.raven/contracts/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/smoke/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/native/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/native/telemetry/",
+      "reason": "directory"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_execution_keeps_stdout_st0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_execution_keeps_stdout_stcurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_response_independent_appecurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_metcurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identitcurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_inconsistent0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_shared_venv_lock_rejects_current",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_preflight_is_retaicurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_snapshot_includes_current",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_success_cannot_promcurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_freecurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_preflight_is_retai0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_output_is_fresh_project_c0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_response_independent_appe0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_ocurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_procurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_success_cannot_prom0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_metrics_preserve_split_mecurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_output_is_fresh_project_ccurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met1/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_metrics_preserve_split_me0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_changcurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_snapshot_includes_0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_shared_venv_lock_rejects_0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_vercurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_alcurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_inconsistentcurrent",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_execution_keeps_stdout_st0/logs/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_inconsistent0/pip-25.0.dist-info/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/failed-evidence/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_preflight_is_retai0/.cache/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_preflight_is_retai0/outputs/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_output_is_fresh_project_c0/checkout/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_response_independent_appe0/audit.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_response_independent_appe0/probes.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_response_independent_appe0/probe_inputs.npz",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met0/site-packages/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_success_cannot_prom0/summary.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met1/site-packages/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al0/lib/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_metrics_preserve_split_me0/smoke/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/lib64",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/lib/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/project/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_snapshot_includes_0/tdn/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_shared_venv_lock_rejects_0/.cache/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/outputs/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_execution_keeps_stdout_st0/logs/smoke.stderr.log",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_execution_keeps_stdout_st0/logs/smoke.stdout.log",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_inconsistent0/pip-25.0.dist-info/METADATA",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/metrics.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/audit.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/references.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/timing.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/arrays.npz",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/array_index.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/metrics.csv",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/work.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/architecture.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/journal.jsonl",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/fitting.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/selection.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_free0/actual-smoke/derivatives.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/failed-evidence/summary.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/failed-evidence/source.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/failed-evidence/failure.txt",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/failed-evidence/README.md",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/failed-evidence/journal.jsonl",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/failed-evidence/protocol.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/failed-evidence/software.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_pro0/failed-evidence/artifacts.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_preflight_is_retai0/.cache/carc-phase.lock",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_preflight_is_retai0/outputs/native/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_output_is_fresh_project_c0/checkout/escape",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_output_is_fresh_project_c0/checkout/runs/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met0/site-packages/pip-25.0.dist-info/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met0/site-packages/pip-second.dist-info/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met1/site-packages/pip-25.0.dist-info/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met1/site-packages/pip-second.dist-info/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al0/lib/python3.13/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_metrics_preserve_split_me0/smoke/metrics.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/lib/python3.13/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/requirements.txt",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/.raven/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/pyproject.toml",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/tests/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/tdn/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/configs/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/scripts/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/runs/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/reference/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/project/.runtime/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/project/logs/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/project/.cache/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_snapshot_includes_0/tdn/analysis/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_shared_venv_lock_rejects_0/.cache/carc-phase.lock",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/outputs/verification/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/summary.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/source.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/source_after.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/failure.txt",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/README.md",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/journal.jsonl",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/protocol.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/software.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_chang0/changed/artifacts.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_preflight_is_retai0/outputs/native/status.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_output_is_fresh_project_c0/checkout/runs/new/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met0/site-packages/pip-25.0.dist-info/METADATA",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met0/site-packages/pip-second.dist-info/METADATA",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met1/site-packages/pip-25.0.dist-info/METADATA",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_met1/site-packages/pip-second.dist-info/METADATA",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al0/lib/python3.13/site-packages/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/lib/python3.13/site-packages/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/.raven/automation.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/scripts/worker.py",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_o0/project/runs/report.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/project/.runtime/response-preconditioner-launches/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/project/logs/response-preconditioner/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/project/.cache/carc-phase.lock",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_snapshot_includes_0/tdn/analysis/response_preconditioner/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/outputs/verification/summary.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/outputs/verification/source.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/outputs/verification/arrays.npz",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/outputs/verification/checks.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/outputs/verification/protocol.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/outputs/verification/software.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_ver0/outputs/verification/artifacts.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_output_is_fresh_project_c0/checkout/runs/new/evidence.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al0/lib/python3.13/site-packages/other-package-1.0.dist-info/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al0/lib/python3.13/site-packages/pip-25.0.dist-info/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/lib/python3.13/site-packages/other-package-1.0.dist-info/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/lib/python3.13/site-packages/pip-25.0.dist-info/",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/project/.runtime/response-preconditioner-launches/589a36fa1f1c45ab9d92f2c98f207847.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identit0/project/.runtime/response-preconditioner-launches/7b6ae7a8515741aeb050fe5c8fe20f1c.json",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_snapshot_includes_0/tdn/analysis/response_preconditioner/model.py",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al0/lib/python3.13/site-packages/other-package-1.0.dist-info/METADATA",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al0/lib/python3.13/site-packages/pip-25.0.dist-info/METADATA",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/lib/python3.13/site-packages/other-package-1.0.dist-info/METADATA",
+      "reason": "test_fixture"
+    },
+    {
+      "path": "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/lib/python3.13/site-packages/pip-25.0.dist-info/METADATA",
+      "reason": "test_fixture"
+    }
+  ],
+  "executed_uploaded_code": false
+}

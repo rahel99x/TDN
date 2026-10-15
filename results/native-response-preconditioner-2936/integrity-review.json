@@ -1,0 +1,228 @@
+{
+  "review_schema": "tdn.native-evidence-audit/v1",
+  "source_revision": "261365bdaa3925ae5c29570751c0c6e9f145945f",
+  "checks": {
+    "archive": {
+      "sha256": "f1da910e7075ff7c569c931adbbf22c905e04f6a1f5be57735d75d05ecee149d",
+      "archive_bytes": 760399,
+      "entries": 220,
+      "uncompressed_bytes": 1704211,
+      "compressed_bytes": 681377,
+      "duplicate_members": false,
+      "unsafe_paths": [],
+      "original_symlinks": [
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_execution_keeps_stdout_stcurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_response_independent_appecurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_distinct_metcurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_prepare_exclusive_identitcurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_shared_venv_lock_rejects_current",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_preflight_is_retaicurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_snapshot_includes_current",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_success_cannot_promcurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_actual_bounded_smoke_freecurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_source_identity_ignores_ocurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_failed_work_preserves_procurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_metrics_preserve_split_mecurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_output_is_fresh_project_ccurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_cpu_only_and_source_changcurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_stage_registers_exact_vercurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_alcurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_inconsistentcurrent",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_distribution_discovery_al1/lib64",
+        "launch-ba0ccf6660874b2f826b1d7fd9e25886-a1/outputs/verification/pytest-temp/test_output_is_fresh_project_c0/checkout/escape"
+      ],
+      "original_symlink_count": 19,
+      "retained_nonregular_types": [],
+      "all_symlinks_omitted_as_test_fixtures": true,
+      "retained_regular_files": 54,
+      "extracted_mismatches": [],
+      "missing_retained_files": [],
+      "unexpected_extracted_files": [],
+      "retained_manifest_matches": true,
+      "omitted_manifest_matches": true,
+      "extraction_prefix_matches": true,
+      "extraction_archive_sha_matches": true,
+      "omitted_counts": {
+        "directory": 12,
+        "metadata_or_outside_run": 1,
+        "test_fixture": 153
+      },
+      "executed_uploaded_code": false
+    },
+    "source": {
+      "stage_source_files": 239,
+      "stage_hash_mismatches_against_git": [],
+      "all_stage_before_after_equal": true,
+      "stage_fingerprint_recomputed": "c5adaf6a929bd583efe0beb92de65b723b0c2492fb67836ddaa86efdbb6b1dbe",
+      "fingerprint_matches": true,
+      "native_source_files": 619,
+      "native_source_hash_recomputed": "ea84d08da791bc9abc1be60a81c16f028b7d09880858e62a23ee75ae071857c4",
+      "native_identity_matches": true,
+      "script_hash_matches_run": true
+    },
+    "stage_manifests": {
+      "verification": {
+        "files": 11,
+        "hash_or_size_failures": [],
+        "unlisted_files": [],
+        "missing_files": [],
+        "duplicate_paths": false
+      },
+      "smoke": {
+        "files": 19,
+        "hash_or_size_failures": [],
+        "unlisted_files": [],
+        "missing_files": [],
+        "duplicate_paths": false
+      }
+    },
+    "junit": {
+      "total": 202,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "duplicate_ids": false,
+      "identical_ids_to_pre_launch_202_case_receipt": true,
+      "class_counts": {
+        "tests.test_response_numerics": 32,
+        "tests.test_response_preconditioner_audit": 38,
+        "tests.test_response_preconditioner_fitting": 16,
+        "tests.test_response_preconditioner_launch": 22,
+        "tests.test_response_preconditioner_model": 39,
+        "tests.test_response_preconditioner_numerics": 21,
+        "tests.test_response_preconditioner_workflow": 7,
+        "tests.test_tangent_response_numerics": 27
+      },
+      "checks_json_matches": true,
+      "summary_checks_match": true
+    },
+    "dynamic_raven_outputs": {
+      "registered_files": 38,
+      "all_required": true,
+      "all_relative": true,
+      "duplicates": false,
+      "missing": []
+    },
+    "raven_science_metrics": {
+      "raw_rows": 82,
+      "raven_science_rows": 82,
+      "raven_stage_rows": 2,
+      "row_mismatches": [],
+      "parent_identity_in_raven_series": false,
+      "parent_identity_in_raw_artifacts": true,
+      "equal_row_counts": true,
+      "summary_row_count_matches": true,
+      "csv_rows": 82,
+      "csv_json_row_mismatches": []
+    },
+    "telemetry": {
+      "worker": {
+        "samples": 45,
+        "index_samples_match": true,
+        "byte_count_matches": true,
+        "status": "partial",
+        "reported_missed": 0,
+        "partial_samples": 23,
+        "cpu_percent_field_samples": 45,
+        "cpu_percent_available": 21,
+        "maximum_sampled_rss_bytes": 1220833280,
+        "last_cpu_seconds": 0.53,
+        "timestamp_increasing": true,
+        "csv_rows": 45,
+        "csv_json_mismatches": [],
+        "partial_reasons": {
+          "Process tree changed; interval CPU utilization unavailable": 23
+        }
+      },
+      "supervisor": {
+        "samples": 46,
+        "index_samples_match": true,
+        "byte_count_matches": true,
+        "status": "complete",
+        "reported_missed": 0,
+        "partial_samples": 0,
+        "cpu_percent_field_samples": 0,
+        "cpu_percent_available": 0,
+        "maximum_sampled_rss_bytes": 10240000,
+        "last_cpu_seconds": 0.0,
+        "timestamp_increasing": true
+      }
+    },
+    "execution": {
+      "raven_state": "COMPLETED",
+      "application_exit_code": 0,
+      "scheduler_outcome": "unknown",
+      "native_state": "COMPLETED",
+      "native_exit_code": 0,
+      "allocation_job_state_is_startup_snapshot": "RUNNING",
+      "job_id": "2936",
+      "device": "cpu",
+      "source_unchanged_reported": true
+    },
+    "contract": {
+      "copied_contract_sha256": "91681ffc95d4e1892e6c7a2e35b88bfd5742f9db5d8c759e1cf31962e92c046c",
+      "original_prepared_contract_sha256_reported": "10f8a6e526ddee54d7051bfdca526e0deb3744d12a410ab2caed5a2b68407f29",
+      "copied_contract_serialization_is_changed": true,
+      "profile_snapshot_present": true,
+      "original_profile_raw_file_present": false
+    },
+    "logs": {
+      "portable_stage_logs": [
+        "logs/verify.stdout.log",
+        "logs/verify.stderr.log",
+        "logs/smoke.stdout.log",
+        "logs/smoke.stderr.log"
+      ],
+      "external_scheduler_log_paths": [
+        "/home/rahel/TDN/logs/response-preconditioner/tdn-response-preconditioner-verify-2936.err",
+        "/home/rahel/TDN/logs/response-preconditioner/tdn-response-preconditioner-verify-2936.out"
+      ],
+      "outer_stdout_bytes": 0,
+      "outer_stderr_bytes": 0
+    },
+    "protocols": {
+      "verification": {
+        "schema": "tdn.response_preconditioner.implementation.v2",
+        "identical_to_pre_launch_frozen_protocol": true,
+        "summary_status": "COMPLETED",
+        "summary_source_fingerprint_matches": true,
+        "implementation_only": true,
+        "cpu_only": true,
+        "software_packages_match_contract": true,
+        "job_id_matches": true
+      },
+      "smoke": {
+        "schema": "tdn.response_preconditioner.implementation.v2",
+        "identical_to_pre_launch_frozen_protocol": true,
+        "summary_status": "COMPLETED",
+        "summary_source_fingerprint_matches": true,
+        "implementation_only": true,
+        "cpu_only": true,
+        "software_packages_match_contract": true,
+        "job_id_matches": true
+      }
+    }
+  },
+  "limitations": [
+    "Original ZIP has a top-level run directory, one macOS metadata entry, and 153 pytest fixture entries including 19 symlinks; audit retains only the 54 regular evidence files. Fixture contents and symlinks were not extracted or executed.",
+    "Raven reports application completion and exit 0; independent final Slurm sacct/scontrol accounting is absent, scheduler_outcome remains unknown. RUNNING allocation fields are startup snapshots.",
+    "Native copied contract is canonical JSON reserialized from the original prepared pretty JSON; its raw hash is different by construction. Original prepared file and raw profile absent, so their recorded byte hashes cannot be independently checked from this archive.",
+    "All stage artifact hashes and known source identity match; hashes establish internal integrity and source correspondence, not authenticated provenance.",
+    "Four stage logs are portable; scheduler stdout/stderr index entries point to original absolute host paths outside this archive. Empty logs/stdout.log and logs/stderr.log are not copies of those external scheduler streams.",
+    "Worker process-tree telemetry is partial: 23 churn intervals have null CPU utilization; first interval is also unavailable. Sampled summed RSS is not allocation maximum RSS; departed-process CPU cannot be accumulated from the terminal snapshot.",
+    "All results are IMPLEMENTATION_ONLY, CPU only; no GPU, scientific promotion, fresh confirmation, novelty, speedup or broad performance statement is justified."
+  ],
+  "assertions": {
+    "archive": true,
+    "source": true,
+    "stage_manifests": true,
+    "junit": true,
+    "dynamic_raven_outputs": true,
+    "raven_metrics": true,
+    "telemetry_integrity": true,
+    "execution": true,
+    "protocols": true
+  },
+  "integrity_status": "PASS",
+  "scientific_promotion": false
+}

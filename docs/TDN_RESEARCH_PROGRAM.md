@@ -28,7 +28,11 @@ and their verification status.
 - [Native job 2930](../results/native-response-preconditioner-2930/README.md)
   completed all 184 checks and the tiny smoke at `627de9f`. Its source and
   artifact hashes were independently verified. This closes native R6 for
-  that version; the bounded repairs below need their own native receipt.
+  that original version.
+- [Native job 2936](../results/native-response-preconditioner-2936/README.md)
+  completes the bounded repair at `261365b`: all 202 expected checks, the
+  frozen v2 protocol and the 24-reference/82-metric smoke are independently
+  verified. The revised implementation now has native CPU evidence.
 
 ## Three products, three cost contracts
 
@@ -98,8 +102,8 @@ Update this table from actual source and receipts, never from the intended plan.
 | R3 | Parent-balanced stable conditional ridge fitting | Implemented, CPU verified | Independent least-squares comparison and numerical optimality gap |
 | R4 | Independent cubic finite-grid residual audit | Implemented, CPU verified | Exact Bernstein enclosure and outward bound; one panel, at most 64 spatial DOF |
 | R5 | Bounded CPU verifier and tiny fit workflow | Implemented, CPU verified | Fresh output roots, retained failures, source hashes and held-out diagnostics |
-| R6 | Raven native CPU verification wrapper | Native CPU verified at `627de9f` | Job 2930: 184/184 checks and smoke completed; revised numerical code requires a new receipt |
-| R7 | Representation at fixed complete cost | Scientific study gated; bounded implementation repair CPU verified | Augmented ridge scaling, streamed inference and fresh classical endpoint; broader protocol/source coverage still required |
+| R6 | Raven native CPU verification wrapper | Native CPU verified at `261365b` | Job 2936: exact 202/202 checks, source/protocol integrity and smoke completed |
+| R7 | Representation at fixed complete cost | Scientific study gated; bounded repair native CPU verified | Prospective identification design below; executable source/coverage/cost protocol still required |
 | R8 | Learned multiscale encoder / variable projection | Proposed, scientifically gated | R7 capacity and stable fitting evidence |
 | R9 | Second nonlinear correction or inexact Newton | Proposed, scientifically gated | Measured nonlinear remainder and charged causal work |
 | R10 | Adaptive rollout/controller and derivative task | Proposed, scientifically gated | Whole-time accuracy, schedule derivative contract and independent task checks |
@@ -139,8 +143,28 @@ before a learned encoder is justified. Independent per-state oracle and
 classical-control derivations remain proposals, not implemented competitors.
 The [repair verification receipt](../results/response-preconditioner-repair-20261015/README.md)
 records 202 mandatory CPU passes, 33 overlapping Raven compatibility passes
-and the completed 24-reference/82-metric development replay. The revised
-numerical source is not yet native verified.
+and the completed 24-reference/82-metric development replay. Native job 2936
+subsequently reproduced it: condition 93.8, rank 25/40 and unchanged teacher/
+design arrays relative to native job 2930. All source files and both protocol
+identities match the committed prelaunch receipts.
+
+The new complete classical endpoint control exposes no resolved learned
+endpoint benefit. Its native single calls took 8.6–8.7 ms versus 14.7–14.8 ms
+for the learned endpoint; the learned corrections were far below reference
+uncertainty. Response actions have a different tradeoff: fitted calls were
+faster than eight panels in single observations but 1.45–1.63 times less
+accurate. This is neither a matched-tolerance speedup nor classical Pareto
+dominance. The combined validation loss is effectively all action error, so
+increasing endpoint weights would amplify unresolved labels in this fixture.
+
+The next eligible implementation is the [R7 identification design](RESPONSE_PRECONDITIONER_R7_DESIGN.md):
+test source-independent five-coefficient oracles at nonzero source times,
+withhold source directions, separate the global readout from representation
+capacity, assess reference-sized label perturbations and compare complete
+classical costs. A calibration oracle is not a deployable competitor; its
+failure alone does not establish a full-operator representation limit. This
+design is proposed, not a frozen executable scientific protocol. No further
+repeat of the unchanged implementation smoke is required by this review.
 
 ### Source interfaces
 
@@ -200,6 +224,9 @@ finishes successfully.
 | 2026-10-15 | Record native job 2930 as CPU implementation verified | Exact source/artifact/roster checks pass; final independent scheduler accounting is absent and worker resource coverage is partial |
 | 2026-10-15 | Repair augmented scaling and stream the fixed readout before expanding capacity | Preserve the original objective and full derivatives; rank and source-coverage limits remain; the existing bank stays inspected development evidence |
 | 2026-10-15 | Add a fresh classical corrected endpoint cost | Cached zero-head attribution is retained but cannot be used as a complete solver timing |
+| 2026-10-15 | Accept native job 2936 as verification of the bounded repair | 202 exact expected tests, frozen v2 protocols, 24 references and 82 metrics pass independent receipt checks; no scientific promotion |
+| 2026-10-15 | Separate endpoint utility from the response-engine question | Fresh classical endpoint has no resolved accuracy disadvantage and less observed work; action accuracy/cost remains a tradeoff requiring repeated matched-tolerance comparison |
+| 2026-10-15 | Prepare R7 identification before adding an encoder | Distinguish sampled-source projection, regularization, coefficient-map prediction and full-operator capacity; retain explicit prospective scope |
 
 ## Maintenance rule
 

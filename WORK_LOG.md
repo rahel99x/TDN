@@ -272,3 +272,26 @@ The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implem
   work, learned encoder, native rerun, GPU or promotion was performed; the
   revised source needs a new native CPU receipt. Historical A PASS/B STOP
   remains unchanged.
+
+- Independently reviewed the completed native response-preconditioner repair
+  job 2936 at source 261365b. All 202 expected JUnit identities, both frozen
+  v2 protocols, 239 stage source hashes, 619-file native aggregate, 30 stage
+  artifacts, 38 portable Raven artifacts and 82 scientific rows agree. Kept
+  the original uploaded ZIP, its scoped extraction manifest, descriptive
+  comparison and reproducible review tools in
+  results/native-response-preconditioner-2936/. Native conditioning is 93.8
+  with original rank 25/40; all 96 retained arrays equal native job 2930.
+  Recorded actual fresh classical endpoint calls at 8.6–8.7 ms versus learned
+  calls at 14.7–14.8 ms, with learned corrections far below reference
+  uncertainty. These single observations establish no performance benchmark.
+  Response actions retain a different accuracy/cost tradeoff requiring matched
+  tolerances; the combined validation loss is effectively action-only.
+  Final independent Slurm accounting remains absent and worker CPU telemetry
+  partial. Updated the standing ledger/runbook to close the repair milestone
+  and drafted R7 identification with source-independent local oracles,
+  withheld directions, nonzero source times, induced-penalty mathematics,
+  uncertainty sensitivity, complete classical costs and separate product
+  decisions. R7 is prospective, not an executable frozen protocol. No numerical
+  source, scientific threshold, teacher bank or model changed in this review;
+  no further native smoke repetition is required. Historical A PASS/B STOP
+  and later encoder/GPU/confirmation gates remain unchanged.
