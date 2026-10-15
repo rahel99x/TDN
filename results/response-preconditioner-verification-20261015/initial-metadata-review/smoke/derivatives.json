@@ -1,0 +1,104 @@
+[
+  {
+    "direction": null,
+    "finite_difference_sweep": [
+      {
+        "centered_rms": 2.813351556702054e-08,
+        "epsilon": 0.001,
+        "maximum": 1.2476855637544304e-07,
+        "mean_error": -3.5662015956949845e-09,
+        "rms": 2.83586405171497e-08
+      },
+      {
+        "centered_rms": 2.532008053209499e-09,
+        "epsilon": 0.0003,
+        "maximum": 1.1229295715509124e-08,
+        "mean_error": -3.2105265806992025e-10,
+        "rms": 2.552281252286181e-09
+      },
+      {
+        "centered_rms": 2.813566432619954e-10,
+        "epsilon": 0.0001,
+        "maximum": 1.2478351685274447e-09,
+        "mean_error": -3.549587679341215e-11,
+        "rms": 2.835868790635259e-10
+      },
+      {
+        "centered_rms": 2.5208380148032095e-11,
+        "epsilon": 3e-05,
+        "maximum": 1.1290968160437842e-10,
+        "mean_error": -4.829669719708107e-12,
+        "rms": 2.5666868513497392e-11
+      }
+    ],
+    "horizon": 0.04,
+    "internal_response_is_whole_model_jvp": false,
+    "kind": "endpoint",
+    "parent_id": "diagnostic-000-2026101504",
+    "reference": {
+      "method": "independent_numpy_DOP853_coupled_primal_variational",
+      "nfev": 29,
+      "tolerance_is_error_certificate": false,
+      "uncertainty_is_certificate": false
+    },
+    "reference_accepted": true,
+    "split": "diagnostic",
+    "whole_model_jvp_vs_flow": {
+      "centered_rms": 3.203174000556349e-15,
+      "maximum": 7.771561172376096e-15,
+      "mean_error": 2.4896751327219137e-16,
+      "rms": 3.212834963160278e-15
+    }
+  },
+  {
+    "direction": null,
+    "finite_difference_sweep": [
+      {
+        "centered_rms": 1.1150977716584144e-07,
+        "epsilon": 0.001,
+        "maximum": 4.99582370139251e-07,
+        "mean_error": -1.4746037851343096e-08,
+        "rms": 1.124805584796273e-07
+      },
+      {
+        "centered_rms": 1.0035858086630621e-08,
+        "epsilon": 0.0003,
+        "maximum": 4.4962241929624724e-08,
+        "mean_error": -1.3271420395977173e-09,
+        "rms": 1.0123228414308195e-08
+      },
+      {
+        "centered_rms": 1.1149433400584017e-09,
+        "epsilon": 0.0001,
+        "maximum": 4.995138080943207e-09,
+        "mean_error": -1.4748382348717116e-10,
+        "rms": 1.1246555604855116e-09
+      },
+      {
+        "centered_rms": 1.002569601629275e-10,
+        "epsilon": 3e-05,
+        "maximum": 4.505325001957772e-10,
+        "mean_error": -1.3881432392448545e-11,
+        "rms": 1.0121339944086925e-10
+      }
+    ],
+    "horizon": 0.08,
+    "internal_response_is_whole_model_jvp": false,
+    "kind": "endpoint",
+    "parent_id": "diagnostic-000-2026101504",
+    "reference": {
+      "method": "independent_numpy_DOP853_coupled_primal_variational",
+      "nfev": 41,
+      "tolerance_is_error_certificate": false,
+      "uncertainty_is_certificate": false
+    },
+    "reference_accepted": true,
+    "split": "diagnostic",
+    "whole_model_jvp_vs_flow": {
+      "centered_rms": 2.99379540821978e-13,
+      "maximum": 6.841194277740215e-13,
+      "mean_error": 3.421429806138576e-14,
+      "rms": 3.013282722457549e-13
+    }
+  }
+]

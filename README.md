@@ -2,6 +2,12 @@
 
 A runnable research pipeline for learning the finite-time error of a symmetric split solver. It includes exact noncommuting linear controls, periodic logistic reaction–diffusion, refined FP64 coupled teachers, local-input learned models, deterministic datasets/training, checkpoint resume, and complete-solver accuracy/cost reports.
 
+Start current development with the [standing TDN research program](docs/TDN_RESEARCH_PROGRAM.md).
+It links the mathematical proposal, implementation ledger, evidence gates and
+[response-preconditioner runbook](docs/RESPONSE_PRECONDITIONER_RUNBOOK.md).
+This first bounded implementation preserves the historical Tangent Response
+A PASS/B STOP and does not authorize broader training or confirmation.
+
 The [Tangent Response framework](docs/TANGENT_RESPONSE_RESEARCH.md) tests
 spatially varying finite-time responses through prospective mechanism,
 compression, fitting and complete-cost gates. Its separate namespace preserves

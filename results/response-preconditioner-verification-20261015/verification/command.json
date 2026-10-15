@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "/workspace/TDN/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_response_preconditioner_numerics.py",
+    "tests/test_response_preconditioner_model.py",
+    "tests/test_response_preconditioner_fitting.py",
+    "tests/test_response_preconditioner_audit.py",
+    "tests/test_response_preconditioner_workflow.py",
+    "tests/test_response_preconditioner_launch.py::test_shell_help_and_rejects_unallocated_execution",
+    "tests/test_response_preconditioner_launch.py::test_native_script_syntax",
+    "tests/test_response_preconditioner_launch.py::test_prepare_exclusive_identity_and_changed_source_detection",
+    "tests/test_response_preconditioner_launch.py::test_source_identity_ignores_outputs_but_tracks_code_and_recipe",
+    "tests/test_response_preconditioner_launch.py::test_allocation_resource_expansion_rejected",
+    "tests/test_response_preconditioner_launch.py::test_shared_venv_lock_rejects_setup_writer",
+    "tests/test_response_preconditioner_launch.py::test_metrics_preserve_split_method_and_task_without_aggregate",
+    "tests/test_response_preconditioner_launch.py::test_stage_registers_exact_verification_xml_and_binary_artifacts",
+    "tests/test_response_preconditioner_launch.py::test_stage_success_cannot_promote_science_or_hide_failed_summary",
+    "tests/test_response_preconditioner_launch.py::test_failed_preflight_is_retained_without_child_work",
+    "tests/test_response_preconditioner_launch.py::test_execution_keeps_stdout_stderr_and_child_exit",
+    "tests/test_tangent_response_numerics.py",
+    "tests/test_response_numerics.py",
+    "--basetemp=/workspace/TDN/runs/response-preconditioner-verify-20261015-reviewed/pytest-temp",
+    "--junitxml=/workspace/TDN/runs/response-preconditioner-verify-20261015-reviewed/verification.xml"
+  ],
+  "cwd": "/workspace/TDN"
+}

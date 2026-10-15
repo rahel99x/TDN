@@ -1,0 +1,120 @@
+{
+  "status": "PRIMARY_SOURCES_RETRIEVED_AND_RELEVANT_SECTIONS_READ",
+  "replication_status": "NO_REPLICATION",
+  "review_date": "2026-10-15",
+  "records": [
+    {
+      "id": "1006.1641",
+      "title": "Convergence Characteristics of the Cumulant Expansion for Fourier Path Integrals",
+      "authors": [
+        "Sharif D. Kunikeev",
+        "David L. Freeman",
+        "J. D. Doll"
+      ],
+      "version": "v1",
+      "submitted": "2010-06-08",
+      "journal": "Physical Review E 81, 066707 (2010)",
+      "doi": "10.1103/PhysRevE.81.066707",
+      "relevant_sections": [
+        "II.B, equations (35)-(40)",
+        "II.C opening convergence caveat",
+        "II.D equation (124)"
+      ],
+      "confirmed_mechanisms": [
+        "Expectation of an exponential is represented by a cumulant log series.",
+        "First cumulant is the mean, second cumulant is the variance.",
+        "Partial averaging is first-order cumulant approximation; higher terms correct it."
+      ],
+      "limits": [
+        "Paper studies imaginary-time density matrices and Fourier path variables, not our lattice jump-bridge implementation.",
+        "The stated N^(-(2p+1)) result concerns number of Fourier path variables at fixed cumulant order; it is not a guarantee of convergence as cumulant order increases."
+      ],
+      "source_url": "https://arxiv.org/abs/1006.1641",
+      "pdf_url": "https://arxiv.org/pdf/1006.1641",
+      "retrieved_files": [
+        "1006.1641.abs.html",
+        "1006.1641.abs.txt",
+        "1006.1641.pdf",
+        "1006.1641.txt"
+      ]
+    },
+    {
+      "id": "1906.06782",
+      "title": "Meta-learning Pseudo-differential Operators with Deep Neural Networks",
+      "authors": [
+        "Jordi Feliu-Fabà",
+        "Yuwei Fan",
+        "Lexing Ying"
+      ],
+      "version": "v2",
+      "submitted": "2019-06-16",
+      "revised": "2020-02-04",
+      "doi": "10.1016/j.jcp.2020.109309",
+      "relevant_sections": [
+        "Introduction Main idea",
+        "Section 3 equations (3.1)-(3.6)",
+        "Section 3.1 Algorithm 2",
+        "Section 4.1 equation (4.9)"
+      ],
+      "confirmed_mechanisms": [
+        "Nonlinear coefficient-function-to-compressed-operator map eta -> C_eta.",
+        "Predicted operator W S[C_eta] W^T remains linear in forcing f.",
+        "Training uses parameter, forcing, solution triples without full operator matrices.",
+        "Learned wavelet representation and convolutional parameter encoder, with multiscale sparse operator action.",
+        "Reports operator norm error in addition to response errors."
+      ],
+      "limits": [
+        "Primarily elliptic Green functions and radiative transfer, not our finite-time heterogeneous reaction tangent propagator.",
+        "Nonlinear state conditioning plus forcing linearity alone is a direct prior-art overlap."
+      ],
+      "source_url": "https://arxiv.org/abs/1906.06782",
+      "pdf_url": "https://arxiv.org/pdf/1906.06782",
+      "retrieved_files": [
+        "1906.06782.abs.html",
+        "1906.06782.abs.txt",
+        "1906.06782.html",
+        "1906.06782.pdf",
+        "1906.06782.txt"
+      ]
+    },
+    {
+      "id": "2610.13028",
+      "title": "Low-Rank Kolmogorov-Arnold Generator Flows for Interpretable Operator Learning",
+      "authors": [
+        "Minjong Cheon"
+      ],
+      "version": "v1",
+      "submitted": "2026-10-09",
+      "relevant_sections": [
+        "Section 2.5 Proposition 2, equation (3)",
+        "Section 2.6 Generators and propagators",
+        "Section 2.7 equations (4)-(6)",
+        "Supplement Text S1 Exactness of linear flow",
+        "Data Availability"
+      ],
+      "confirmed_mechanisms": [
+        "Generator combines translation-invariant spectral multiplier, sum of spatial coefficients times Fourier multipliers, and nonlinear component.",
+        "Low symbol separation rank of finite-order variable-coefficient generators is independent of grid resolution.",
+        "Explicitly states this rank result does not extend to finite-time propagators.",
+        "Gauge fixing centers spatial coefficients and subtracts constant and linear parts of nonlinear component.",
+        "Lawson integrating-factor RK4 with exact stiff linear exponential and 2/3 dealiasing; quantum dynamics use Strang splitting with input/output spatial factors.",
+        "Reports Adam warmup, validation selection, L-BFGS refinement, and symbolic distillation."
+      ],
+      "limits": [
+        "Exact stiff linear flow does not make the full nonlinear evolution or Strang approximation exact.",
+        "New preprint results are author-reported, not independently reproduced here.",
+        "KAFlow code, trained models, and new generators are stated to be available from corresponding author upon reasonable request; official KANO assets are linked publicly.",
+        "Two-sided spatial factors and finite-time deployment alone are not sufficient novelty distinctions."
+      ],
+      "source_url": "https://arxiv.org/abs/2610.13028",
+      "pdf_url": "https://arxiv.org/pdf/2610.13028",
+      "retrieved_files": [
+        "2610.13028.abs.html",
+        "2610.13028.abs.txt",
+        "2610.13028.html",
+        "2610.13028.pdf",
+        "2610.13028.txt"
+      ]
+    }
+  ]
+}

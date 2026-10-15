@@ -1,0 +1,77 @@
+{
+  "status": "RESEARCH_PROPOSAL_AND_EXISTING_CPU_READINESS_VERIFIED",
+  "date": "2026-10-15",
+  "source_commit": "cd62ebb8689584b933ee73d6c01ae7caa7c0a1ba",
+  "architecture_implemented": false,
+  "new_numerical_campaign": false,
+  "native_gpu_verification": false,
+  "historical_decisions": {
+    "A": "PASS",
+    "B": "STOP",
+    "changed": false
+  },
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.10.0+cpu",
+    "scipy": "1.15.3",
+    "numpy": "2.2.6",
+    "cuda_available": false
+  },
+  "readiness": {
+    "command": "TMPDIR=/workspace/TDN/.runtime/architecture-proposal-20261015/tmp OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python -m pytest -q tests/test_numerics.py tests/test_tangent_response_numerics.py --basetemp=.runtime/architecture-proposal-20261015/pytest --junitxml=.runtime/architecture-proposal-20261015/readiness-tests.xml",
+    "working_directory": "/workspace/TDN",
+    "exit_code": 0,
+    "tests": 40,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "reported_seconds": 37.68,
+    "warnings": 18,
+    "warning_type": "Existing torch.jit.script deprecation",
+    "scope": "Existing numerical tests, not proposed architecture validation"
+  },
+  "literature": {
+    "primary_retrieval_files_hash_verified": 8,
+    "papers": 3,
+    "scope": "Relevant primary sections read; no replication or exhaustive novelty proof"
+  },
+  "mathematical_review": [
+    "Conditional affine ridge optimum and numerical gap",
+    "Complete-model derivative distinct from fixed-anchor response",
+    "Exact nonlinear error identity and conditional Picard convergence",
+    "FD residual secant equation and whole-interval error recurrence",
+    "Short-time heat-bank capacity limitation and commutator feature remedy",
+    "Four heat actions plus seven shared FD Laplacian actions per source"
+  ],
+  "limitations": [
+    "No learned training or fresh scientific confirmation",
+    "Proposed certificate not implemented",
+    "No demonstrated novelty or superiority",
+    "Fixed-grid asymptotics do not establish stiff stability",
+    "Existing tracked files and scientific results unchanged"
+  ],
+  "artifacts": {
+    "docs/TDN_ARCHITECTURE_PROPOSAL_20261015.md": {
+      "bytes": 32621,
+      "sha256": "65f8bc21fc78f306ed15037e49b08010e81e6b4fcf6fa525f9f60dac219d7cf2"
+    },
+    "results/tdn-architecture-proposal-20261015/README.md": {
+      "bytes": 1547,
+      "sha256": "92234e12bda4fdfa66ec557f263e43be612941f1ae86f9b70325b74433558a59"
+    },
+    "results/tdn-architecture-proposal-20261015/literature-retrieval.json": {
+      "bytes": 2028,
+      "sha256": "2a14839b0f24919e3fcfa2df5ac5bbad0b50b0404e96e49fce0ef454cb66e92d"
+    },
+    "results/tdn-architecture-proposal-20261015/primary-source-review.json": {
+      "bytes": 5236,
+      "sha256": "9e85e327f77c874c66b0b1bf33f6ddf449e392b4aac5db1a71a10b57bf843109"
+    },
+    "results/tdn-architecture-proposal-20261015/readiness-tests.xml": {
+      "bytes": 6230,
+      "sha256": "1fee32c818949494af1aa41d65a4e3e0e32d44122c5e60e65871910c9c1fe497"
+    }
+  },
+  "local_links_verified": 12,
+  "markdown_table_columns_consistent": true
+}

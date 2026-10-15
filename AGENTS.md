@@ -1,5 +1,17 @@
 # Working in this repository
 
+## Standing research reference
+
+- For work on TDN's overall research direction or the new
+  `tdn/analysis/response_preconditioner` namespace, read
+  `docs/TDN_RESEARCH_PROGRAM.md` and its linked runbook before changing code.
+- Keep its implementation ledger and decision log current when methods,
+  assumptions, interfaces, evidence or gates change. Link exact verification
+  records; distinguish proposed, implemented, CPU-verified and native-verified.
+- Preserve dated proposals and historical results as evidence snapshots. New
+  implementation-only response-preconditioner checks do not promote the old
+  Tangent Response B STOP or authorize a larger scientific campaign.
+
 Read `WINDOWS_START_HERE.md` and `docs/WINDOWS.md` for native Windows use. Read `docs/CARC.md` before changing or running the separate cluster workflow. `docs/IMPLEMENTATION_SPEC.md` is the original uploaded research specification; distinguish its environment examples and requested scientific extensions from implemented and measured behavior in `docs/IMPLEMENTATION_MAP.md` and the source.
 
 ## Desktop execution

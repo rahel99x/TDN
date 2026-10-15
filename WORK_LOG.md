@@ -197,3 +197,25 @@ The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implem
   changes, tests, fits, teacher acquisitions, training or native jobs ran for
   this documentation-only proposal. See docs/TANGENT_RESPONSE_PROPOSALS_20261013.md
   and results/tangent-response-proposals-20261013/.
+
+- Added the standing TDN research program, dated mathematical architecture
+  proposal and term legend, staged implementation ledger, decision log and
+  maintenance instructions. Implemented the isolated first FD response-
+  preconditioner milestone: ordered classical response, three sparse
+  commutators, two two-sided heat branches, a 40-coefficient affine model,
+  parent-balanced augmented-SVD ridge fitting, full-model derivatives and an
+  independent exact-rational/outward-Decimal cubic residual auditor. The actual
+  local verifier passed 178 checks without failures or skips; the optional
+  pinned-Raven compatibility suite passed 27 overlapping checks. The actual
+  tiny CPU fit completed with 24 accepted references, 80 metrics, two derivative
+  diagnostics and two single-panel bounds. Retained the classical eight-panel
+  response's accuracy advantage, unresolved endpoint improvement, approximately
+  4.77e10 fitted-system conditioning and absence of a speedup claim. Review
+  corrected derivative-reference metadata and preserved both passing attempts
+  under fresh source-bound roots. Added a native Raven CPU launch contract,
+  logs, research metrics, portable artifacts and separate allocated-worker
+  telemetry. No native Slurm/CUDA run or scientific expansion was performed;
+  all results remain IMPLEMENTATION_ONLY and historical A PASS/B STOP is
+  unchanged. See docs/TDN_RESEARCH_PROGRAM.md,
+  docs/RESPONSE_PRECONDITIONER_RUNBOOK.md and
+  results/response-preconditioner-verification-20261015/.

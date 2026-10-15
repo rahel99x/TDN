@@ -2,6 +2,14 @@
   "schema": "raven.automation-settings/v1",
   "launch": {},
   "recipes": {
+    "response-preconditioner": {
+      "features": ["experiment", "evidence", "artifacts"],
+      "gpu": false,
+      "trace": false,
+      "cpu_memory": true,
+      "sampling_seconds": 1,
+      "auto_export": false
+    },
     "tangent-response": {
       "features": ["experiment", "evidence", "artifacts"],
       "gpu": false,

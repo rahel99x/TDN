@@ -1,0 +1,84 @@
+{
+  "schema": "tdn.response-preconditioner-verification/v1",
+  "date": "2026-10-15",
+  "status": "CPU_IMPLEMENTATION_VERIFIED_NATIVE_PENDING",
+  "base_commit": "cd62ebb8689584b933ee73d6c01ae7caa7c0a1ba",
+  "source_fingerprint": "0ab5fd82b5f9fedfa9c3d008c304ebd597a825b0e4327a7a6d78734af1482751",
+  "historical_decisions": {
+    "A": "PASS",
+    "B": "STOP",
+    "changed": false
+  },
+  "scientific_promotion": false,
+  "native_slurm_execution": false,
+  "native_cuda_execution": false,
+  "commands": [
+    {
+      "argv": "bash scripts/response_preconditioner_local.sh verify --output runs/response-preconditioner-verify-20261015-reviewed",
+      "exit_code": 0,
+      "checks": 178,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "argv": "bash scripts/response_preconditioner_local.sh smoke --output runs/response-preconditioner-smoke-20261015-reviewed",
+      "exit_code": 0
+    },
+    {
+      "argv": "TDN_RAVEN_TEST_ROOT=/workspace/Raven TMPDIR=\"$PWD/.runtime/response-preconditioner-compat-final\" PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q tests/test_response_preconditioner_launch.py --basetemp=.runtime/response-preconditioner-compat-final/pytest-temp --junitxml=.runtime/response-preconditioner-compat-final/verification.xml -o cache_dir=.runtime/response-preconditioner-compat-final/pytest-cache",
+      "exit_code": 0,
+      "checks": 27,
+      "failed": 0,
+      "skipped": 0,
+      "overlaps_mandatory_roster": true
+    }
+  ],
+  "trusted_raven_revision": "c34f0892d7bddc685c5af10489ecb114fd6adab6",
+  "smoke": {
+    "command": "smoke",
+    "decision": "IMPLEMENTATION_ONLY",
+    "device": "cpu",
+    "diagnostic_parent_count": 1,
+    "elapsed_seconds": 4.383812888991088,
+    "execution_mode": "local_cpu",
+    "general_solver_certification": false,
+    "historical_gate": "B STOP unchanged",
+    "ineligible_fit_count": 0,
+    "matched_accuracy_speedup_established": false,
+    "metrics_count": 80,
+    "native_gpu_readiness": false,
+    "numerical_certification": "TWO_TINY_SINGLE_PANEL_FD_RESIDUAL_CERTIFICATES_ONLY",
+    "output": "/workspace/TDN/runs/response-preconditioner-smoke-20261015-reviewed",
+    "reference_count": 24,
+    "schema": "tdn.response_preconditioner.implementation.v1",
+    "scientific_promotion": false,
+    "selected_candidate": "ridge_1e-10",
+    "selected_ridge": 1e-10,
+    "source_fingerprint": "0ab5fd82b5f9fedfa9c3d008c304ebd597a825b0e4327a7a6d78734af1482751",
+    "status": "COMPLETED",
+    "training_parent_count": 2,
+    "unresolved_matched_mean_references": 0,
+    "unresolved_references": 0,
+    "validation_parent_count": 1,
+    "whole_model_derivative_cases": 2
+  },
+  "fit": {
+    "selected_candidate": "ridge_1e-10",
+    "validation_loss": 9.145390855680822e-15,
+    "augmented_condition_number": 47669447778.39394,
+    "numerical_optimality_gap": 2.9232745039369405e-25,
+    "certificate": false
+  },
+  "limitations": [
+    "Four development parents on a 5x5 FD grid; no representative scientific study.",
+    "Fitted endpoint differences from initialization are below reference uncertainty; no resolved endpoint gain.",
+    "Ordered eight-panel response is more accurate than the fitted response on all four diagnostic actions.",
+    "Single-call timings and cached-attribution timings do not establish matched-tolerance speedup.",
+    "Selected augmented system remains ill-conditioned; numerical objective optimality is not coefficient identifiability.",
+    "Two tiny same-grid single-panel residual upper bounds do not certify tolerance acceptance, continuum accuracy, later panels or gradients.",
+    "No learned encoder, nonlinear second stage, adaptive rollout, native execution or confirmation.",
+    "Independent variational derivative comparison has no separately refined uncertainty estimate; endpoint-reference acceptance does not qualify derivative truth."
+  ],
+  "initial_receipt": "initial-metadata-review/verification.json",
+  "review_correction": "Derivative records now distinguish endpoint-reference acceptance from the independent variational diagnostic, whose uncertainty is unqualified. Numerical methods and frozen tiny bank unchanged."
+}
