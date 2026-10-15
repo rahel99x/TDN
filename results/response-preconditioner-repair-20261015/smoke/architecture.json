@@ -1,0 +1,40 @@
+{
+  "allocation_counter_scope": "affine_action_design_elements and effective_readout_values count logical materialized tensors, not peak memory or autograd-retained intermediates; no measured speedup implied",
+  "anchor": "df",
+  "branch_names": [
+    "LLV",
+    "VLV",
+    "LdotV",
+    "two_sided_heat_1",
+    "two_sided_heat_2"
+  ],
+  "cache": false,
+  "coefficient_count": 40,
+  "correction_stages": 1,
+  "effective_coefficients_per_parent_interval": 5,
+  "feature_names": [
+    "constant",
+    "mean_state",
+    "reaction_time_reference",
+    "diffusion_grid_time_reference",
+    "start_time",
+    "lag",
+    "state_variance",
+    "reaction_lag"
+  ],
+  "inference_readout": "scalar_features_contracted_before_spatial_actions",
+  "inference_teacher_inputs": false,
+  "internal_precision": "float64",
+  "learned_encoder": false,
+  "output_precision": "float64",
+  "potential_nodes": 2,
+  "response_panels": 2,
+  "schema": "tdn.response_preconditioner.fixed_features.v1",
+  "source_nodes": 3,
+  "spatial_design_columns_per_inference_action": 0,
+  "status": "IMPLEMENTATION_ONLY",
+  "target": "fd_same_grid",
+  "time_reference": 1.0,
+  "training_action_design_columns": 40,
+  "work_counter_scope": "heat_actions/fft_transforms/laplacian_actions count explicit response branches only; path and feature calls are separately counted; path/autograd internal transforms are not instrumented; complete-call timings must include all work"
+}

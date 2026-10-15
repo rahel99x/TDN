@@ -12,6 +12,17 @@ parent-balanced ridge fitting and a separate cubic residual auditor. The model
 uses FP64 arithmetic on actual FP32 initial fields. Learned encoders, adaptive
 rollouts and larger scientific comparisons remain later gated milestones.
 
+[Native job 2930](../results/native-response-preconditioner-2930/README.md)
+passed all 184 checks and the tiny smoke at `627de9f`. The next
+[bounded repair](RESPONSE_PRECONDITIONER_REPAIR_PROTOCOL_20261015.md) preserves
+the objective and development fixture, improves ridge scaling, streams the
+five effective inference coefficients, and adds a fresh classical endpoint
+baseline. Its protocol is `implementation.v2`, producing 82 metric rows;
+the old run remains immutable. Prepare a new contract after pulling changes.
+The [repair receipt](../results/response-preconditioner-repair-20261015/README.md)
+records 202 mandatory CPU passes, 33 overlapping Raven compatibility passes,
+and the completed implementation replay. Revised native execution is pending.
+
 ## Local CPU checks
 
 Use the checkout's existing standalone `.venv`, outside a Slurm allocation:
@@ -100,10 +111,12 @@ to the Raven run directory and survive moving that directory. Scheduler
 streams are additionally retained in `logs/response-preconditioner/` in the
 checkout. Preparation creates that parent before submission.
 
-Actual Slurm/Raven execution remains pending until run on the configured native
-machine. Cloud CPU tests and scheduler fixtures do not establish native
-readiness. Preserve source and the venv while relevant jobs are active; use
-fresh output roots after an update.
+Actual Slurm/Raven execution was verified by job 2930 for `627de9f`. The revised
+numerical implementation needs a fresh native run using the commands above.
+Cloud CPU tests and scheduler fixtures do not establish its native readiness.
+Preserve source and the venv while relevant jobs are active; use fresh output
+roots after an update. The old receipt has partial allocated-worker CPU
+coverage; outer supervisor resource graphs are not allocation usage.
 
 ### If preparation fails or the terminal closes
 
@@ -186,6 +199,11 @@ Response operation counts exclude uninstrumented internal path/autograd
 transforms; complete-call timing includes those costs. Single-call timings
 are diagnostics, not a controlled speed benchmark. The ridge gradient/gap
 is a numerical optimality diagnostic, not a rounding-certified proof.
+`ordered_response_corrected_2` is the fresh classical endpoint; `zero_readout`
+remains cached attribution. `fixed_feature_fitted` uses streamed inference.
+The augmented condition number describes the scaled regularized system;
+`original_design_numerical_rank` still describes the available data directions.
+Improving the former does not repair missing information in the latter.
 
 Derivative records separately identify endpoint-reference acceptance and the
 unqualified uncertainty of the independent variational solve. Agreement with
@@ -201,10 +219,12 @@ at 64 spatial degrees of freedom.
 
 ## Optional Raven compatibility checks
 
-The [15 October receipt](../results/response-preconditioner-verification-20261015/README.md)
+The original [15 October receipt](../results/response-preconditioner-verification-20261015/README.md)
 records 178 mandatory cases, 27 overlapping optional compatibility cases,
 and the completed tiny smoke. Compatibility was checked against Raven
-`c34f0892d7bddc685c5af10489ecb114fd6adab6`. Actual native execution is pending.
+`c34f0892d7bddc685c5af10489ecb114fd6adab6`. Job 2930 subsequently verified native
+execution at `627de9f`; the revised implementation has its own verification
+receipt and still needs a new native run.
 
 The mandatory `verify` roster includes launcher policy checks that need no
 Raven installation. To also check materialization against a trusted Raven
@@ -222,4 +242,4 @@ PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q \
 Tests requiring the trusted checkout skip if it is unavailable. Such a skip
 is not compatibility evidence. Fixtures validate plans, source bindings,
 failure retention and transport; actual native Slurm execution remains a
-separate pending check.
+separate check for each changed source contract.

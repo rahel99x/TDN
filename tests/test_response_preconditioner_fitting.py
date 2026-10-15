@@ -61,6 +61,54 @@ def test_preserves_original_ridge_under_large_column_scaling():
     assert not result["diagnostics"]["singular_value_truncation"]
 
 
+@pytest.mark.parametrize("ridge", (1e-10, .03))
+def test_tiny_and_zero_columns_use_augmented_norm_without_changing_objective(ridge):
+    A, b, parents, q, _ = sample()
+    # A source-time feature can be tiny without being exactly zero. Its data
+    # norm alone would magnify the ridge penalty by approximately 1e14.
+    tiny = 1e-14 * (A[:, 0] + A[:, 1]).square()
+    A = torch.cat((A, tiny[:, None], torch.zeros_like(tiny[:, None])), dim=1)
+    result = fit_parent_balanced_ridge(A, b, parents, ridge=ridge, row_weights=q)
+    omega = weights(parents, q)
+    weighted_A = (A * omega.sqrt()[:, None]).numpy()
+    weighted_b = (b * omega.sqrt()).numpy()
+
+    # Independently solve in the original coefficient coordinates, once by
+    # augmented SVD and once by the direct ridge filter on the data SVD.
+    augmented = np.concatenate((weighted_A, np.sqrt(ridge)*np.eye(A.shape[1])))
+    rhs = np.concatenate((weighted_b, np.zeros(A.shape[1])))
+    U, singular, Vh = np.linalg.svd(augmented, full_matrices=False)
+    unscaled = Vh.T @ ((U.T @ rhs)/singular)
+    U, singular, Vh = np.linalg.svd(weighted_A, full_matrices=False)
+    direct = Vh.T @ ((singular/(singular**2 + ridge)) * (U.T @ weighted_b))
+    actual = result["coefficients"].numpy()
+    for expected in (unscaled, direct):
+        np.testing.assert_allclose(actual, expected, rtol=3e-12, atol=3e-13)
+        np.testing.assert_allclose(A.numpy() @ actual, A.numpy() @ expected,
+                                   rtol=3e-12, atol=3e-13)
+        expected_objective = np.sum((weighted_A @ expected-weighted_b)**2) + ridge*np.sum(expected**2)
+        assert result["diagnostics"]["objective"] == pytest.approx(expected_objective, rel=3e-12)
+
+    diag = result["diagnostics"]
+    expected_scales = np.hypot(np.linalg.norm(weighted_A, axis=0), np.sqrt(ridge))
+    np.testing.assert_allclose(diag["column_scales"], expected_scales, rtol=3e-15)
+    assert diag["column_scaling_strategy"] == "original_augmented_column_l2_norm"
+    assert diag["zero_training_columns"] == 1
+    assert diag["minimum_column_scale"] == pytest.approx(np.sqrt(ridge))
+    assert 0 < diag["minimum_scaled_ridge_penalty"] <= diag["maximum_scaled_ridge_penalty"]
+    assert diag["maximum_scaled_ridge_penalty"] == pytest.approx(1., rel=3e-15)
+    assert diag["optimality_verified"] and diag["original_penalty_preserved"]
+    assert diag["original_design_numerical_rank"] < A.shape[1]
+    assert len(diag["augmented_singular_values"]) == A.shape[1]
+    assert not diag["singular_value_truncation"]
+
+    old_scales = np.linalg.norm(weighted_A, axis=0)
+    old_scales[old_scales == 0] = 1
+    old_augmented = augmented / old_scales
+    assert diag["augmented_condition_number"] < np.linalg.cond(old_augmented) / 1e6
+    json.dumps(diag, allow_nan=False)
+
+
 def test_known_affine_coefficients_recovered_as_ridge_tends_to_zero():
     A, b, parents, q, truth = sample()
     result = fit_parent_balanced_ridge(A, b, parents, ridge=1e-10, row_weights=q)

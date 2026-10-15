@@ -244,3 +244,31 @@ The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implem
   numerical methods and historical gates remain unchanged. Existing source
   contracts require fresh preparation after updating; actual Fedora native
   retry is pending. See results/response-preconditioner-package-identity-20261015/.
+
+- Reviewed the user's native response-preconditioner job 2930 ZIP at source
+  627de9f. Independently checked all 54 entries, 30 stage-manifest files,
+  239 stage source hashes, the 619-file native identity, 184 expected JUnit
+  passes, 38 relative Raven artifacts and 80 matching research rows. Recorded
+  native CPU completion with explicit missing final Slurm accounting, absent
+  original prepared-contract/profile bytes and partial worker CPU telemetry.
+  Preserved the original ZIP and reproducible integrity/scientific reviews in
+  results/native-response-preconditioner-2930/. Eight-panel classical action
+  accuracy remained better on all four inspected directions; endpoint signal
+  remained below reference uncertainty, with action-dominated combined loss.
+
+- Froze a bounded implementation-repair protocol before replaying the same
+  development fixture. Equilibrated original augmented ridge columns while
+  preserving the original penalty, row weights, full SVD and selection; native
+  retained-matrix condition improved from 4.77e10 to 93.8 with rank 25/40
+  unchanged and <=1.14e-13 RMS prediction change. Streamed five effective
+  coefficients before spatial inference and added a fresh classical corrected
+  endpoint baseline. Verified full primal/JVP/readout-gradient parity and
+  independent original-objective solutions. The actual wrapper passed all 202
+  mandatory CPU checks; all 33 overlapping pinned-Raven compatibility checks
+  passed. The revised tiny smoke completed 24 references and 82 metric rows
+  with original source/selection/scientific gates intact. Retained focused
+  test receipts including an initial test-only FP64 exact-equality failure.
+  See results/response-preconditioner-repair-20261015/. No larger scientific
+  work, learned encoder, native rerun, GPU or promotion was performed; the
+  revised source needs a new native CPU receipt. Historical A PASS/B STOP
+  remains unchanged.

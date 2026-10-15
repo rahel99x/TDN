@@ -1,0 +1,553 @@
+{
+  "archive_sha256": "242904177750e2c8fc5e6b2d6852980e6003aef94380207ebbfde76a98b3bfb5",
+  "audits": [
+    {
+      "audit": {
+        "arithmetic": "exact rational coefficients; correctly-rounded Decimal.exp enlarged by next_plus; directed bound arithmetic",
+        "certificate_proves": "upper_bound_not_tolerance_acceptance",
+        "decimal_precision": 80,
+        "degrees_of_freedom": 25,
+        "duhamel_integral_upper": "0.041451702695192788243422788199887772881284488840966358524602796210473125712511891",
+        "endpoint_error_bound_infinity": "1.1666764390317390226962102696660375558467376476067487659665385581005855237110138E-7",
+        "exponential_growth_upper": "1.0734527887783048831648447388146553471172901057308504827755944014384138032866568",
+        "initial_invariant_checked": true,
+        "multi_panel_propagation_supported": false,
+        "reconstruction_degree": 3,
+        "reconstruction_lower_bound": "0.18041832745075225830078125",
+        "reconstruction_upper_bound": "0.476099713241304789423935517334030009806156158447265625",
+        "residual_actual_degree": 6,
+        "residual_bound_infinity": "0.0000028145440673708202485899494334791343449224370274248805432850433145574659473169892",
+        "residual_degree_bound": 6,
+        "scope": "single_panel_periodic_fd_infinity_norm",
+        "spatial_shape": [
+          5,
+          5
+        ],
+        "status": "CERTIFIED_FINITE_GRID_PANEL",
+        "target": "exact-real periodic FD equation from supplied binary floating-point values; no continuum claim",
+        "tolerance_checked": false,
+        "whole_panel_error_bound_infinity": "1.1666764390317390226962102696660375558467376476067487659665385581005855237110138E-7"
+      },
+      "audit_elapsed_seconds": 0.008380125043913722,
+      "horizon": 0.04,
+      "method": "fixed_feature_fitted",
+      "parent_id": "diagnostic-000-2026101504",
+      "scope": "single_cubic_panel_same_grid_FD_only"
+    },
+    {
+      "audit": {
+        "arithmetic": "exact rational coefficients; correctly-rounded Decimal.exp enlarged by next_plus; directed bound arithmetic",
+        "certificate_proves": "upper_bound_not_tolerance_acceptance",
+        "decimal_precision": 80,
+        "degrees_of_freedom": 25,
+        "duhamel_integral_upper": "0.041451702695192788243422788199887772881284488840966358524602796210473125712511891",
+        "endpoint_error_bound_infinity": "1.3682325230716537593427312905627320075182542223631949227772711026234413767910502E-7",
+        "exponential_growth_upper": "1.0734527887783048831648447388146553471172901057308504827755944014384138032866568",
+        "initial_invariant_checked": true,
+        "multi_panel_propagation_supported": false,
+        "reconstruction_degree": 3,
+        "reconstruction_lower_bound": "0.18041832745075225830078125",
+        "reconstruction_upper_bound": "0.476099702027321658448499874793924391269683837890625",
+        "residual_actual_degree": 6,
+        "residual_bound_infinity": "0.0000033007872635116858365720843696821243442437464021760567499405515812107281381719733",
+        "residual_degree_bound": 6,
+        "scope": "single_panel_periodic_fd_infinity_norm",
+        "spatial_shape": [
+          5,
+          5
+        ],
+        "status": "CERTIFIED_FINITE_GRID_PANEL",
+        "target": "exact-real periodic FD equation from supplied binary floating-point values; no continuum claim",
+        "tolerance_checked": false,
+        "whole_panel_error_bound_infinity": "1.3682325230716537593427312905627320075182542223631949227772711026234413767910502E-7"
+      },
+      "audit_elapsed_seconds": 0.00820264604408294,
+      "horizon": 0.04,
+      "method": "strang_df_1",
+      "parent_id": "diagnostic-000-2026101504",
+      "scope": "single_cubic_panel_same_grid_FD_only"
+    }
+  ],
+  "cohort": {
+    "action_start_time": 0.0,
+    "diagnostic_parents": 1,
+    "directions_per_parent": 2,
+    "grid": [
+      5,
+      5
+    ],
+    "horizons": [
+      0.04,
+      0.08
+    ],
+    "scope": "Previously inspected development fixtures, not independent confirmation",
+    "train_parents": 2,
+    "validation_parents": 1
+  },
+  "comparisons": [
+    {
+      "best_measured_classical_method": "strang_rf_8",
+      "best_measured_classical_rms": 2.8307940172830614e-10,
+      "classical_elapsed_seconds": 0.0024937900016084313,
+      "direction": null,
+      "fit_elapsed_seconds": 0.015094863018020988,
+      "fit_over_best_measured_classical_rms": 0.0013341241804773341,
+      "fit_over_zero_rms": 1.000171676216629,
+      "fitted_maximum": 5.460631946618832e-13,
+      "fitted_rms": 3.776630748407905e-13,
+      "horizon": 0.04,
+      "kind": "endpoint",
+      "matched_accuracy_speedup_established": false,
+      "reference_uncertainty_maximum": 8.69676552994747e-12,
+      "reference_uncertainty_rms": 6.027899088758961e-12,
+      "timing_repetitions": 1,
+      "zero_readout_rms": 3.775982502017901e-13
+    },
+    {
+      "action_correction_relative_rms": 7.869740300600849e-07,
+      "best_measured_classical_method": "ordered_response_8",
+      "best_measured_classical_rms": 8.115631834446889e-09,
+      "classical_elapsed_seconds": 0.006895108032040298,
+      "correction_status": "RESOLVED_NONTRIVIAL",
+      "direction": 0,
+      "fit_elapsed_seconds": 0.00424844108056277,
+      "fit_over_best_measured_classical_rms": 1.4981360818872342,
+      "fit_over_zero_rms": 0.09363443920941346,
+      "fitted_maximum": 2.7325120166565853e-08,
+      "fitted_rms": 1.2158320878497569e-08,
+      "horizon": 0.04,
+      "kind": "action",
+      "matched_accuracy_speedup_established": false,
+      "reference_uncertainty_maximum": 1.045541431210495e-11,
+      "reference_uncertainty_rms": 3.629968868019455e-12,
+      "timing_repetitions": 1,
+      "zero_readout_rms": 1.2984881397436984e-07
+    },
+    {
+      "action_correction_relative_rms": 7.570062701194242e-07,
+      "best_measured_classical_method": "ordered_response_8",
+      "best_measured_classical_rms": 8.285346872657622e-09,
+      "classical_elapsed_seconds": 0.006810523918829858,
+      "correction_status": "RESOLVED_NONTRIVIAL",
+      "direction": 1,
+      "fit_elapsed_seconds": 0.0039970779325813055,
+      "fit_over_best_measured_classical_rms": 1.5731150333604556,
+      "fit_over_zero_rms": 0.09832064055875375,
+      "fitted_maximum": 2.6952651766692926e-08,
+      "fitted_rms": 1.303380372198374e-08,
+      "horizon": 0.04,
+      "kind": "action",
+      "matched_accuracy_speedup_established": false,
+      "reference_uncertainty_maximum": 1.8090196007847226e-11,
+      "reference_uncertainty_rms": 4.084475077336906e-12,
+      "timing_repetitions": 1,
+      "zero_readout_rms": 1.3256426776628954e-07
+    },
+    {
+      "best_measured_classical_method": "strang_df_8",
+      "best_measured_classical_rms": 2.3479608494414183e-09,
+      "classical_elapsed_seconds": 0.002990974928252399,
+      "direction": null,
+      "fit_elapsed_seconds": 0.016317307017743587,
+      "fit_over_best_measured_classical_rms": 0.00031268487804176357,
+      "fit_over_zero_rms": 1.0057501898202035,
+      "fitted_maximum": 1.0933753902264698e-12,
+      "fitted_rms": 7.341718518544255e-13,
+      "horizon": 0.08,
+      "kind": "endpoint",
+      "matched_accuracy_speedup_established": false,
+      "reference_uncertainty_maximum": 1.753278078275855e-11,
+      "reference_uncertainty_rms": 1.1864651552282351e-11,
+      "timing_repetitions": 1,
+      "zero_readout_rms": 7.299743607164244e-13
+    },
+    {
+      "action_correction_relative_rms": 2.990938325751788e-06,
+      "best_measured_classical_method": "ordered_response_8",
+      "best_measured_classical_rms": 6.243285278466868e-08,
+      "classical_elapsed_seconds": 0.006652344949543476,
+      "correction_status": "RESOLVED_NONTRIVIAL",
+      "direction": 0,
+      "fit_elapsed_seconds": 0.004153416026383638,
+      "fit_over_best_measured_classical_rms": 1.4478055355285793,
+      "fit_over_zero_rms": 0.0904937430479771,
+      "fitted_maximum": 2.1899097291111502e-07,
+      "fitted_rms": 9.03906298604842e-08,
+      "horizon": 0.08,
+      "kind": "action",
+      "matched_accuracy_speedup_established": false,
+      "reference_uncertainty_maximum": 1.7389423234703827e-11,
+      "reference_uncertainty_rms": 6.008244463994884e-12,
+      "timing_repetitions": 1,
+      "zero_readout_rms": 9.988605489836106e-07
+    },
+    {
+      "action_correction_relative_rms": 3.0806643965302134e-06,
+      "best_measured_classical_method": "ordered_response_8",
+      "best_measured_classical_rms": 6.484992111334981e-08,
+      "classical_elapsed_seconds": 0.006671387003734708,
+      "correction_status": "RESOLVED_NONTRIVIAL",
+      "direction": 1,
+      "fit_elapsed_seconds": 0.0038321290630847216,
+      "fit_over_best_measured_classical_rms": 1.626410950062564,
+      "fit_over_zero_rms": 0.1016565737574483,
+      "fitted_maximum": 2.2906188101856628e-07,
+      "fitted_rms": 1.0547262180944559e-07,
+      "horizon": 0.08,
+      "kind": "action",
+      "matched_accuracy_speedup_established": false,
+      "reference_uncertainty_maximum": 1.9946266860415562e-12,
+      "reference_uncertainty_rms": 4.4397161618877246e-13,
+      "timing_repetitions": 1,
+      "zero_readout_rms": 1.0375386255010162e-06
+    }
+  ],
+  "costs": {
+    "acquisition_teacher_seconds_sum": 1.1456971949664876,
+    "audit_seconds_sum": 0.01658277108799666,
+    "benchmark": false,
+    "derivative_elapsed_seconds_available": false,
+    "feature_construction_seconds_sum": 1.053822377929464,
+    "first_feature_construction_seconds": 0.888345277053304,
+    "fitting_and_validation_seconds": 0.003168343915604055,
+    "offline_amortization_established": false,
+    "operation_count_scope": "Explicit response branches only; internal path/autograd transforms not instrumented. Complete-call wall times include these costs.",
+    "remaining_feature_construction_seconds_range": [
+      0.022759821033105254,
+      0.027087055961601436
+    ],
+    "zero_readout_cost_scope": "Cached attribution only; not a complete-call timing for the classical corrected endpoint."
+  },
+  "decision": "NATIVE_CPU_IMPLEMENTATION_VERIFIED; R7_IMPLEMENTATION_PREPARATION_ELIGIBLE; SCIENTIFIC_EXPANSION_GATED",
+  "derivatives": [
+    {
+      "derivative_reference_status": "INDEPENDENT_DIAGNOSTIC_UNCERTAINTY_UNQUALIFIED",
+      "direction": null,
+      "endpoint_reference_accepted": true,
+      "finite_difference_sweep": [
+        {
+          "centered_rms": 2.8133530730016336e-08,
+          "epsilon": 0.001,
+          "maximum": 1.2476863942012528e-07,
+          "mean_error": -3.566187726511405e-09,
+          "rms": 2.835865381567845e-08
+        },
+        {
+          "centered_rms": 2.5320557752051643e-09,
+          "epsilon": 0.0003,
+          "maximum": 1.1229295271419915e-08,
+          "mean_error": -3.209157148353903e-10,
+          "rms": 2.5523113730064627e-09
+        },
+        {
+          "centered_rms": 2.8134019472122863e-10,
+          "epsilon": 0.0001,
+          "maximum": 1.2478347244382348e-09,
+          "mean_error": -3.566240552865807e-11,
+          "rms": 2.835914532101934e-10
+        },
+        {
+          "centered_rms": 2.5267606288020885e-11,
+          "epsilon": 3e-05,
+          "maximum": 1.1198419969105089e-10,
+          "mean_error": -3.2013597328628407e-12,
+          "rms": 2.5469602110469418e-11
+        }
+      ],
+      "horizon": 0.04,
+      "internal_response_is_whole_model_jvp": false,
+      "kind": "endpoint",
+      "parent_id": "diagnostic-000-2026101504",
+      "reference": {
+        "method": "independent_numpy_DOP853_coupled_primal_variational",
+        "nfev": 29,
+        "tolerance_is_error_certificate": false,
+        "uncertainty_is_certificate": false
+      },
+      "split": "diagnostic",
+      "whole_model_jvp_vs_flow": {
+        "centered_rms": 2.894842003612223e-15,
+        "maximum": 6.661338147750939e-15,
+        "mean_error": 2.4424906541753446e-16,
+        "rms": 2.9051278512029327e-15
+      }
+    },
+    {
+      "derivative_reference_status": "INDEPENDENT_DIAGNOSTIC_UNCERTAINTY_UNQUALIFIED",
+      "direction": null,
+      "endpoint_reference_accepted": true,
+      "finite_difference_sweep": [
+        {
+          "centered_rms": 1.1150978814969365e-07,
+          "epsilon": 0.001,
+          "maximum": 4.995823972286928e-07,
+          "mean_error": -1.474605338808166e-08,
+          "rms": 1.1248057140552633e-07
+        },
+        {
+          "centered_rms": 1.0035906391659615e-08,
+          "epsilon": 0.0003,
+          "maximum": 4.496251859720246e-08,
+          "mean_error": -1.3270994780878453e-09,
+          "rms": 1.012327072278991e-08
+        },
+        {
+          "centered_rms": 1.1149676250263006e-09,
+          "epsilon": 0.0001,
+          "maximum": 4.995969860033256e-09,
+          "mean_error": -1.4780577733963795e-10,
+          "rms": 1.1247219001476602e-09
+        },
+        {
+          "centered_rms": 1.0010581951422628e-10,
+          "epsilon": 3e-05,
+          "maximum": 4.477560544557946e-10,
+          "mean_error": -1.3067257831345103e-11,
+          "rms": 1.0095508074309928e-10
+        }
+      ],
+      "horizon": 0.08,
+      "internal_response_is_whole_model_jvp": false,
+      "kind": "endpoint",
+      "parent_id": "diagnostic-000-2026101504",
+      "reference": {
+        "method": "independent_numpy_DOP853_coupled_primal_variational",
+        "nfev": 41,
+        "tolerance_is_error_certificate": false,
+        "uncertainty_is_certificate": false
+      },
+      "split": "diagnostic",
+      "whole_model_jvp_vs_flow": {
+        "centered_rms": 2.9917673850292194e-13,
+        "maximum": 6.843414723789465e-13,
+        "mean_error": 3.4203473386895665e-14,
+        "rms": 3.0112555264037925e-13
+      }
+    }
+  ],
+  "findings": [
+    "All four held-out action errors are resolved and improve approximately tenfold over the two-panel initialization. Eight-panel ordered response remains 1.45\u20131.63 times more accurate on all four.",
+    "Learned endpoint and zero-readout endpoint differences are below teacher uncertainty. The excellent endpoint is predominantly supplied by classical defect correction, not demonstrated learned benefit.",
+    "Combined physical endpoint/action loss is numerically dominated by action rows: training endpoint MSE is ~3.46e-25 versus action MSE~1.31e-14 after fitting; validation similarly differs by ~12 orders. It is not balanced evidence of two tasks.",
+    "Two source directions on one diagnostic parent cannot establish operator accuracy, state coverage, long-time stability, mesh transfer, or superiority.",
+    "The data design has numerical rank25/40. Positive ridge makes the exact conditional minimizer unique, while weakly excited source-time columns and data-only column scaling degrade the augmented system. More optimizer iterations or a learned encoder do not address this first.",
+    "Full-map JVP agrees closely with an independent variational diagnostic and finite differences converge quadratically, but the derivative teacher has no refined uncertainty and no certificate.",
+    "The cubic FD residual auditor certifies finite-grid upper bounds at h=.04 (~1.17e-7 fitted, ~1.37e-7 Strang) without checking a requested tolerance. This is a whole-panel reconstruction bound, not the observed ~1e-12 endpoint error.",
+    "Uncached fitted inference still constructs forty spatial columns even though fixed state/time coefficients reduce to five scalar branch weights. A streamed evaluation can preserve the exact represented map while removing unnecessary design materialization.",
+    "Single-call action timings suggest a comparison worth measuring, but repeated matched-tolerance tests, proper warmup, a truly uncached P-only endpoint baseline and complete path/audit/fallback accounting are absent."
+  ],
+  "fitting": {
+    "augmented_condition_number": 47669447777.80436,
+    "coefficient_count": 40,
+    "gap_is_certificate": false,
+    "initialization_validation_mse": 8.669487622191868e-13,
+    "numerical_gap_estimate": 4.788286374866844e-25,
+    "numerical_gradient_norm": 1.383948897158684e-17,
+    "numerical_rank": 25,
+    "original_objective": 4.305581264486144e-14,
+    "reason_for_nearzero_source_time_columns": "All direct action queries start at zero; only tiny endpoint-defect-weighted rows excite source time. Scaling data-only near-null columns makes sqrt(lambda)/scale enormous. Unique regularized optimum does not establish coefficient identifiability.",
+    "selected_candidate": "ridge_1e-10",
+    "selected_ridge": 1e-10,
+    "source_time_column_indices": [
+      4,
+      12,
+      20,
+      28,
+      36
+    ],
+    "source_time_column_scales": [
+      5.7526885049828836e-15,
+      1.4054115039681608e-14,
+      1.390030153153053e-14,
+      1.0423899565888489e-13,
+      1.0278474958442167e-13
+    ],
+    "validation_mse": 9.145395051850653e-15,
+    "validation_mse_improvement_factor": 94.79620697672888
+  },
+  "historical_gate": "B STOP unchanged",
+  "loss_composition_from_retained_arrays": [
+    {
+      "design_rms": 1.718360595166354e-12,
+      "kind": "endpoint",
+      "method": "zero_readout",
+      "mse": 3.437053320066888e-25,
+      "scalar_rows": 100,
+      "split": "train"
+    },
+    {
+      "design_rms": 0.00011648940372838391,
+      "kind": "action",
+      "method": "zero_readout",
+      "mse": 1.1462132228855235e-12,
+      "scalar_rows": 200,
+      "split": "train"
+    },
+    {
+      "design_rms": 1.718360595166354e-12,
+      "kind": "endpoint",
+      "method": "fixed_feature_fitted",
+      "mse": 3.4587669659384965e-25,
+      "scalar_rows": 100,
+      "split": "train"
+    },
+    {
+      "design_rms": 0.00011648940372838391,
+      "kind": "action",
+      "method": "fixed_feature_fitted",
+      "mse": 1.3149666229345228e-14,
+      "scalar_rows": 200,
+      "split": "train"
+    },
+    {
+      "design_rms": 5.967992582406994e-13,
+      "kind": "endpoint",
+      "method": "zero_readout",
+      "mse": 3.759858096693809e-26,
+      "scalar_rows": 50,
+      "split": "validation"
+    },
+    {
+      "design_rms": 0.00011264761501995018,
+      "kind": "action",
+      "method": "zero_readout",
+      "mse": 1.3004231433287617e-12,
+      "scalar_rows": 100,
+      "split": "validation"
+    },
+    {
+      "design_rms": 5.967992582406994e-13,
+      "kind": "endpoint",
+      "method": "fixed_feature_fitted",
+      "mse": 3.799694506644575e-26,
+      "scalar_rows": 50,
+      "split": "validation"
+    },
+    {
+      "design_rms": 0.00011264761501995018,
+      "kind": "action",
+      "method": "fixed_feature_fitted",
+      "mse": 1.3718092578112556e-14,
+      "scalar_rows": 100,
+      "split": "validation"
+    },
+    {
+      "design_rms": 9.538079457308712e-13,
+      "kind": "endpoint",
+      "method": "zero_readout",
+      "mse": 3.3772150292940305e-25,
+      "scalar_rows": 50,
+      "split": "diagnostic"
+    },
+    {
+      "design_rms": 0.00011475712136151578,
+      "kind": "action",
+      "method": "zero_readout",
+      "mse": 5.271606988253353e-13,
+      "scalar_rows": 100,
+      "split": "diagnostic"
+    },
+    {
+      "design_rms": 9.538079457308712e-13,
+      "kind": "endpoint",
+      "method": "fixed_feature_fitted",
+      "mse": 3.408225643814382e-25,
+      "scalar_rows": 50,
+      "split": "diagnostic"
+    },
+    {
+      "design_rms": 0.00011475712136151578,
+      "kind": "action",
+      "method": "fixed_feature_fitted",
+      "mse": 4.903161180105341e-15,
+      "scalar_rows": 100,
+      "split": "diagnostic"
+    }
+  ],
+  "native_gpu_verified": false,
+  "recommended_v2_implementation_replay": {
+    "acceptance": [
+      "All declared bounded CPU checks pass without skip; actual native CPU verification for the updated source remains separate from cloud checks.",
+      "Original ridge objective, parent weights and penalty are unchanged. Compare against an independent original-coordinate augmented least-squares solution; numerical gradient/gap and baseline nonregression must pass the predeclared implementation tolerances.",
+      "Show equilibration reduces artificial augmented conditioning on near-null fixtures while retaining the reported original design rank and all columns; no silent truncation or new regularizer.",
+      "Streaming primal, action linearity, affine design and complete JVP agree with the unstreamed graph across nonzero readouts and varied input/physics/time cases using declared FP64 tolerances.",
+      "Replayed metrics retain parent/task/horizon/direction identities and unchanged references; threshold or ranking changes are reported, never retroactively used to recategorize job2930.",
+      "Measured speed is descriptive until randomized repeated complete-call timing meets a prospectively frozen common accuracy contract. Native CPU replay success still cannot promote B STOP or GPU readiness.",
+      "A later scientific R7 protocol must specify fresh bounded state/physics/time/source coverage, per-task tolerances and reference margins, strong classical controls, selection splits and total-cost accounting before generating evidence."
+    ],
+    "changes": [
+      "Add objective-preserving augmented-column equilibration, scales=sqrt(weighted_column_norm^2+lambda), retaining the transformed ridge penalty and independent original-coordinate diagnostics.",
+      "Keep training designs but evaluate production inference by contracting 8 state/time features into each of 5 branch coefficients before spatial assembly; validate full-map derivatives including input, physics and time.",
+      "Add an explicitly uncached classical P-only response-corrected endpoint baseline and retain cached zero-head attribution as a separate row.",
+      "Instrument complete path/autograd work where trustworthy; otherwise retain unknown counts and use complete-call timings. Record derivative and auditor costs separately.",
+      "Retain old artifact/source hashes, emit a new implementation identity and fresh replay root, preserve both versions, and use train-only scaling/fitting plus the same fixed validation selection menu.",
+      "Derive and test an analytic leading-error commutator control on independent tiny static matrix and time-varying examples before any scientific comparison; do not infer a fourth-order or stiff-stability theorem from cancellation.",
+      "Prepare, but do not yet promote, a future fixed-state five-coefficient oracle and source-holdout protocol to distinguish representation limitations from coefficient conditioning."
+    ],
+    "scope": "Implementation-only replay of the immutable retained bank; no new parent generation or teacher acquisition, no learned encoder, GPU training, larger campaign, promotion or new confirmation label."
+  },
+  "run_id": "launch-440e1ccfae26476ebf4b4dcaf4165ed0-a1",
+  "schema": "tdn.native_preconditioner.science_review.v1",
+  "scientific_promotion": false,
+  "source": "User-supplied job 2930 archive; read-only descriptive reanalysis; no new teacher solves, fitting, or source changes",
+  "source_fingerprint": "1b7c7ef69bd3e3948a378d64c37fd7c8d9a6fd4adf3349a3df71f49a52ca2983",
+  "worker_telemetry": {
+    "available_cpu_utilization_samples": 22,
+    "cpu_seconds_are_total_process_tree_cost": false,
+    "index": {
+      "created_at": 1792094401.8154263,
+      "missing_convention": "Null/empty cells are unavailable; zero is an observed zero",
+      "node": "system",
+      "observer_cpu_seconds": 0.032169687000000016,
+      "observer_wall_seconds": 0.033151725423522294,
+      "overhead_scope": "Periodic observer loop sampling/file publication; final cleanup and subprocess CPU are excluded",
+      "requested_families": [
+        "cpu",
+        "memory"
+      ],
+      "run_id": "native",
+      "schema": "raven.telemetry-index/v1",
+      "sources": [
+        {
+          "coverage": {
+            "bytes": 22733,
+            "ended_at": 1792094445.678233,
+            "errors": [],
+            "first_timestamp": 1792094401.816279,
+            "interval_seconds": 1.0,
+            "last_timestamp": 1792094444.8211722,
+            "limitation": "CPU percent is per logical core and can exceed 100%; local descendants exclude departed/remote processes; RSS can repeat shared pages",
+            "missed_samples": 0,
+            "native_gpu_verification": "NOT_INFERRED_FROM_TELEMETRY",
+            "node": "system",
+            "partial_samples": 21,
+            "pid": 569290,
+            "samples": 44,
+            "scope": "local-workload-process-tree",
+            "started_at": 1792094401.8154263
+          },
+          "devices": [],
+          "family": "cpu-memory",
+          "metrics": [
+            "cpu_seconds",
+            "cpu_utilization_percent",
+            "rss_bytes",
+            "process_count"
+          ],
+          "path": "telemetry/cpu-memory.jsonl",
+          "reason": "",
+          "schema": "raven.cpu-memory-sample/v1",
+          "status": "partial"
+        }
+      ],
+      "updated_at": 1792094445.6782544,
+      "worker_state": "COMPLETED"
+    },
+    "partial_samples": 21,
+    "peak_is_true_peak": false,
+    "peak_observed_cpu_utilization_percent": 99.99875871375606,
+    "peak_observed_rss_bytes": 1220616192,
+    "samples": 44,
+    "scope": "Sampled local worker process tree; departed processes can disappear; shared RSS may be counted repeatedly; no GPU."
+  }
+}

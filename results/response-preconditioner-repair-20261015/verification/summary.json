@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "errors": 0,
+    "failed": 0,
+    "skipped": 0,
+    "total": 202
+  },
+  "command": "verify",
+  "decision": "IMPLEMENTATION_ONLY",
+  "device": "cpu",
+  "elapsed_seconds": 41.35914289600623,
+  "execution_mode": "local_cpu",
+  "historical_gate": "B STOP unchanged",
+  "native_gpu_readiness": false,
+  "output": "/workspace/TDN/runs/response-preconditioner-repair-20261015-verify",
+  "schema": "tdn.response_preconditioner.implementation.v2",
+  "scientific_promotion": false,
+  "source_fingerprint": "c5adaf6a929bd583efe0beb92de65b723b0c2492fb67836ddaa86efdbb6b1dbe",
+  "status": "COMPLETED"
+}

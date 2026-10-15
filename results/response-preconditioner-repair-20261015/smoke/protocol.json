@@ -1,0 +1,108 @@
+{
+  "action_correction_denominator": "physical RMS of (U-G)z on the identical anchor",
+  "baseline_steps": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "cohort_reuse": "existing inspected development fixture; not fresh confirmation",
+  "command": "smoke",
+  "correction_resolution_multiple": 10.0,
+  "decision": "IMPLEMENTATION_ONLY",
+  "device": "cpu",
+  "diagnostic_scope": "held-out development parents; never confirmation",
+  "feature_count": 40,
+  "fit_precision": "float64",
+  "fit_scope": "train parents only",
+  "future_stages": {
+    "gpu_training": "NOT_IMPLEMENTED_OR_AUTHORIZED_BY_THIS_PROTOCOL",
+    "learned_encoder": "BLOCKED_PENDING_REPRESENTATION_AND_UTILITY_EVIDENCE",
+    "nonlinear_second_correction": "BLOCKED_PENDING_MEASURED_REMAINDER",
+    "promotion": "BLOCKED",
+    "scientific_confirmation": "BLOCKED"
+  },
+  "grid": [
+    5,
+    5
+  ],
+  "historical_gate": "B STOP unchanged",
+  "horizons": [
+    0.04,
+    0.08
+  ],
+  "include_zero_readout_selection": true,
+  "inference": "five effective branch coefficients; full design retained for fitting",
+  "input_dtype": "float32",
+  "lengths": [
+    1.0,
+    1.0
+  ],
+  "loss": "parent-balanced unnormalized physical squared error; equal weight per scalar row",
+  "model_internal_dtype": "float64",
+  "output_dtype": "float64",
+  "parent_counts": {
+    "diagnostic": 1,
+    "train": 2,
+    "validation": 1
+  },
+  "parent_seeds": {
+    "diagnostic": [
+      2026101504
+    ],
+    "train": [
+      2026101501,
+      2026101502
+    ],
+    "validation": [
+      2026101503
+    ]
+  },
+  "prospective_contract": "docs/RESPONSE_PRECONDITIONER_REPAIR_PROTOCOL_20261015.md",
+  "response_baseline_panels": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "revision": "augmented_ridge_streamed_inference_20261015",
+  "ridge_menu": [
+    1e-10,
+    1e-06
+  ],
+  "ridge_scaling": "augmented column norm; original positive-ridge penalty preserved",
+  "schema": "tdn.response_preconditioner.implementation.v2",
+  "scientific_promotion": false,
+  "scope": "BOUNDED_CPU_IMPLEMENTATION",
+  "selection": "minimum validation combined endpoint/action MSE among initialization and numerically eligible fits; initialization first breaks ties",
+  "source_directions_per_parent": 2,
+  "source_interval_start": 0.0,
+  "target": "fd_same_grid",
+  "teacher_dtype": "float64",
+  "teacher_tolerance": 1e-10,
+  "uncached_classical_endpoint": true,
+  "verify_tests": [
+    "tests/test_response_preconditioner_numerics.py",
+    "tests/test_response_preconditioner_model.py",
+    "tests/test_response_preconditioner_fitting.py",
+    "tests/test_response_preconditioner_audit.py",
+    "tests/test_response_preconditioner_workflow.py",
+    "tests/test_response_preconditioner_launch.py::test_shell_help_and_rejects_unallocated_execution",
+    "tests/test_response_preconditioner_launch.py::test_native_script_syntax",
+    "tests/test_response_preconditioner_launch.py::test_distribution_discovery_aliases_preserve_inventory",
+    "tests/test_response_preconditioner_launch.py::test_distribution_distinct_metadata_rejected",
+    "tests/test_response_preconditioner_launch.py::test_distribution_inconsistent_version_same_location_rejected",
+    "tests/test_response_preconditioner_launch.py::test_distribution_unverified_duplicate_location_rejected",
+    "tests/test_response_preconditioner_launch.py::test_prepare_exclusive_identity_and_changed_source_detection",
+    "tests/test_response_preconditioner_launch.py::test_source_identity_ignores_outputs_but_tracks_code_and_recipe",
+    "tests/test_response_preconditioner_launch.py::test_allocation_resource_expansion_rejected",
+    "tests/test_response_preconditioner_launch.py::test_shared_venv_lock_rejects_setup_writer",
+    "tests/test_response_preconditioner_launch.py::test_metrics_preserve_split_method_and_task_without_aggregate",
+    "tests/test_response_preconditioner_launch.py::test_stage_registers_exact_verification_xml_and_binary_artifacts",
+    "tests/test_response_preconditioner_launch.py::test_stage_success_cannot_promote_science_or_hide_failed_summary",
+    "tests/test_response_preconditioner_launch.py::test_failed_preflight_is_retained_without_child_work",
+    "tests/test_response_preconditioner_launch.py::test_execution_keeps_stdout_stderr_and_child_exit",
+    "tests/test_tangent_response_numerics.py",
+    "tests/test_response_numerics.py"
+  ]
+}

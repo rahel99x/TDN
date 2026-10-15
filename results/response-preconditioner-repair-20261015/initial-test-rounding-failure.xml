@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="16" time="2.619" timestamp="2026-10-15T23:03:15.113547+00:00" hostname="1bb3bacabd04"><testcase classname="tests.test_response_preconditioner_fitting" name="test_matches_independent_unscaled_numpy_svd_and_objective" time="0.021" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_preserves_original_ridge_under_large_column_scaling" time="0.003" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_tiny_and_zero_columns_use_augmented_norm_without_changing_objective[1e-10]" time="0.004"><failure message="assert 0.9999999999999999 == 1">ridge = 1e-10
+
+    @pytest.mark.parametrize("ridge", (1e-10, .03))
+    def test_tiny_and_zero_columns_use_augmented_norm_without_changing_objective(ridge):
+        A, b, parents, q, _ = sample()
+        # A source-time feature can be tiny without being exactly zero. Its data
+        # norm alone would magnify the ridge penalty by approximately 1e14.
+        tiny = 1e-14 * (A[:, 0] + A[:, 1]).square()
+        A = torch.cat((A, tiny[:, None], torch.zeros_like(tiny[:, None])), dim=1)
+        result = fit_parent_balanced_ridge(A, b, parents, ridge=ridge, row_weights=q)
+        omega = weights(parents, q)
+        weighted_A = (A * omega.sqrt()[:, None]).numpy()
+        weighted_b = (b * omega.sqrt()).numpy()
+    
+        # Independently solve in the original coefficient coordinates, once by
+        # augmented SVD and once by the direct ridge filter on the data SVD.
+        augmented = np.concatenate((weighted_A, np.sqrt(ridge)*np.eye(A.shape[1])))
+        rhs = np.concatenate((weighted_b, np.zeros(A.shape[1])))
+        U, singular, Vh = np.linalg.svd(augmented, full_matrices=False)
+        unscaled = Vh.T @ ((U.T @ rhs)/singular)
+        U, singular, Vh = np.linalg.svd(weighted_A, full_matrices=False)
+        direct = Vh.T @ ((singular/(singular**2 + ridge)) * (U.T @ weighted_b))
+        actual = result["coefficients"].numpy()
+        for expected in (unscaled, direct):
+            np.testing.assert_allclose(actual, expected, rtol=3e-12, atol=3e-13)
+            np.testing.assert_allclose(A.numpy() @ actual, A.numpy() @ expected,
+                                       rtol=3e-12, atol=3e-13)
+            expected_objective = np.sum((weighted_A @ expected-weighted_b)**2) + ridge*np.sum(expected**2)
+            assert result["diagnostics"]["objective"] == pytest.approx(expected_objective, rel=3e-12)
+    
+        diag = result["diagnostics"]
+        expected_scales = np.hypot(np.linalg.norm(weighted_A, axis=0), np.sqrt(ridge))
+        np.testing.assert_allclose(diag["column_scales"], expected_scales, rtol=3e-15)
+        assert diag["column_scaling_strategy"] == "original_augmented_column_l2_norm"
+        assert diag["zero_training_columns"] == 1
+        assert diag["minimum_column_scale"] == pytest.approx(np.sqrt(ridge))
+&gt;       assert 0 &lt; diag["minimum_scaled_ridge_penalty"] &lt;= diag["maximum_scaled_ridge_penalty"] == 1
+E       assert 0.9999999999999999 == 1
+
+tests/test_response_preconditioner_fitting.py:98: AssertionError</failure></testcase><testcase classname="tests.test_response_preconditioner_fitting" name="test_tiny_and_zero_columns_use_augmented_norm_without_changing_objective[0.03]" time="0.004" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_known_affine_coefficients_recovered_as_ridge_tends_to_zero" time="0.006" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_python_list_inputs_preserve_float64_precision_before_fitting" time="0.004" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_equal_parent_weight_invariant_to_complete_parent_row_duplication" time="0.003" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_rank_deficient_and_zero_columns_are_not_truncated" time="0.001" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_zero_target_has_unique_zero_solution" time="0.002" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_invalid_fit_inputs_rejected[ridge_zero]" time="0.000" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_invalid_fit_inputs_rejected[ridge_nan]" time="0.001" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_invalid_fit_inputs_rejected[weight_zero]" time="0.001" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_invalid_fit_inputs_rejected[weight_nan]" time="0.000" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_invalid_fit_inputs_rejected[nan]" time="0.001" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_invalid_fit_inputs_rejected[parents]" time="0.000" /><testcase classname="tests.test_response_preconditioner_fitting" name="test_invalid_fit_inputs_rejected[shape]" time="0.000" /></testsuite></testsuites>

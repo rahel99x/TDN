@@ -4,7 +4,8 @@ import torch
 
 from tdn.analysis.response import numerics as n
 from tdn.analysis.response.contracts import Physics
-from tdn.analysis.response_preconditioner.model import FixedFeatureResponse
+from tdn.analysis.response_preconditioner import model as model_module
+from tdn.analysis.response_preconditioner.model import FixedFeatureResponse, classical_corrected_endpoint
 from tdn.analysis.response_preconditioner.numerics import ordered_response
 from tdn.analysis.roadmap.numerics import quadrature
 from tdn.analysis.tangent_response.tangent import AnchorPath
@@ -187,8 +188,166 @@ def test_work_and_explicit_output_precision():
     assert work["path_derivative_evaluations"] > 0
     assert work["fixed_feature_encodings"] == 1
     assert work["temporal_feature_calls"] == 3
+    assert work["effective_readout_values"] == 15
+    assert work["effective_readout_assemblies"] == 3
+    assert work["streamed_branch_accumulations"] == 15
+    assert work["streamed_response_actions"] == 3
+    assert work["streamed_endpoints"] == 1
+    assert work.get("affine_action_designs", 0) == 0
+    assert work.get("affine_action_design_elements", 0) == 0
+    metadata = model.architecture_metadata()
+    assert metadata["spatial_design_columns_per_inference_action"] == 0
+    assert metadata["training_action_design_columns"] == 40
+    assert "not peak memory" in metadata["allocation_counter_scope"]
+    assert "path/autograd internal transforms are not instrumented" in metadata["work_counter_scope"]
     baseline, design = model.endpoint_design(u.float(), .07, eq, geom)
     assert baseline.dtype == design.dtype == torch.float64
+
+
+def multidimensional_case(dimensions):
+    grid = (5,) if dimensions == 1 else (3, 5)
+    coordinates = torch.meshgrid(*(torch.arange(size, dtype=torch.float64) * (2 * torch.pi / size)
+                                   for size in grid), indexing="ij")
+    field = .34 + sum(.055 * torch.sin((axis + 1) * x + .13 * axis)
+                       for axis, x in enumerate(coordinates))
+    source = sum(torch.cos(x + .2 * axis) for axis, x in enumerate(coordinates))
+    u = torch.stack((field, .8 * field + .09)).unsqueeze(1)
+    z = torch.stack((source, torch.roll(source, 1, -1) + .12)).unsqueeze(1)
+    return u, z, Geometry(grid, (1.,) if dimensions == 1 else (1.2, .8))
+
+
+@pytest.mark.parametrize("dimensions", (1, 2))
+@pytest.mark.parametrize("zero_head", (False, True))
+@pytest.mark.parametrize("endpoint", (False, True))
+def test_streamed_primal_complete_jvp_and_parameter_gradients_match_design(dimensions, zero_head, endpoint):
+    """All state/source/time/physics dependencies survive the contraction.
+
+    The first parent has a literal zero interval. The second exercises nonzero
+    time and an independent tensor-physics value, in both spatial dimensions.
+    Weight gradients are required even when all readout weights are zero.
+    """
+    u, z, geom = multidimensional_case(dimensions)
+    model = FixedFeatureResponse(time_reference=.21, panels=4, potential_nodes=3)
+    if not zero_head:
+        model.set_readout(torch.linspace(-.21, .17, 40, dtype=torch.float64))
+    kappas = torch.tensor([.013, .028], dtype=torch.float64)
+    rates = torch.tensor([.9, 1.7], dtype=torch.float64)
+    if endpoint:
+        inputs = (u, torch.tensor([0., .09], dtype=torch.float64), kappas, rates)
+
+        def evaluate(use_design, state, stop, diffusion, reaction):
+            eq = Physics(diffusion, reaction)
+            if not use_design:
+                return model(state, stop, eq, geom)
+            base, columns = model.endpoint_design(state, stop, eq, geom)
+            return base + torch.einsum("p,p...->...", model.readout, columns)
+    else:
+        inputs = (u, z, torch.tensor([.012, .021], dtype=torch.float64),
+                  torch.tensor([.012, .09], dtype=torch.float64), kappas, rates)
+
+        def evaluate(use_design, state, source, start, stop, diffusion, reaction):
+            eq = Physics(diffusion, reaction)
+            if not use_design:
+                return model.response_action(state, source, start, stop, eq, geom)
+            base, columns = model.action_design(state, source, start, stop, eq, geom)
+            return base + torch.einsum("p,p...->...", model.readout, columns)
+
+    inputs = tuple(value.requires_grad_() for value in inputs)
+    directions = tuple(torch.linspace(.03, .13, value.numel(), dtype=torch.float64).reshape_as(value)
+                       for value in inputs)
+    streamed = lambda *args: evaluate(False, *args)
+    design = lambda *args: evaluate(True, *args)
+    actual, actual_jvp = torch.autograd.functional.jvp(streamed, inputs, directions)
+    expected, expected_jvp = torch.autograd.functional.jvp(design, inputs, directions)
+    torch.testing.assert_close(actual, expected, atol=3e-15, rtol=3e-14)
+    torch.testing.assert_close(actual_jvp, expected_jvp, atol=3e-14, rtol=3e-12)
+    probe = torch.linspace(-.7, .9, actual.numel(), dtype=torch.float64).reshape_as(actual)
+    actual_grad = torch.autograd.grad((streamed(*inputs) * probe).sum(), (*inputs, model.readout))
+    expected_grad = torch.autograd.grad((design(*inputs) * probe).sum(), (*inputs, model.readout))
+    for observed, reference in zip(actual_grad, expected_grad):
+        torch.testing.assert_close(observed, reference, atol=3e-14, rtol=3e-11)
+    assert actual_grad[-1].abs().max() > 0
+
+
+def test_inference_never_materializes_action_or_endpoint_design(monkeypatch):
+    u, z, eq, geom = case()
+    model = nonzero_model()
+    expected_action = model.response_action(u, z, .01, .08, eq, geom)
+    expected_endpoint = model(u, .08, eq, geom)
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("Inference must not materialize a 40-column design")
+
+    for name in ("action_design", "_action_design", "endpoint_design"):
+        monkeypatch.setattr(model, name, forbidden)
+    action_work, endpoint_work = {}, {}
+    torch.testing.assert_close(model.response_action(u, z, .01, .08, eq, geom, work=action_work),
+                               expected_action, atol=0, rtol=0)
+    torch.testing.assert_close(model(u, .08, eq, geom, work=endpoint_work), expected_endpoint, atol=0, rtol=0)
+    assert action_work["effective_readout_values"] == 5
+    assert endpoint_work["effective_readout_values"] == 15
+    assert not any("design" in key for work in (action_work, endpoint_work) for key in work)
+
+
+@pytest.mark.parametrize("dimensions", (1, 2))
+def test_uncached_classical_endpoint_matches_zero_head_and_complete_jvp(dimensions):
+    u, _, geom = multidimensional_case(dimensions)
+    model = FixedFeatureResponse(panels=4, potential_nodes=3)
+    inputs = (u, torch.tensor([0., .073], dtype=torch.float64),
+              torch.tensor([.01, .024], dtype=torch.float64),
+              torch.tensor([1.3, .8], dtype=torch.float64))
+    directions = tuple(torch.full_like(value, .07) for value in inputs)
+    pure = lambda state, stop, kap, rate: classical_corrected_endpoint(
+        state, stop, Physics(kap, rate), geom, panels=4, potential_nodes=3)
+    zero = lambda state, stop, kap, rate: model(state, stop, Physics(kap, rate), geom)
+    actual, actual_jvp = torch.autograd.functional.jvp(pure, inputs, directions)
+    expected, expected_jvp = torch.autograd.functional.jvp(zero, inputs, directions)
+    torch.testing.assert_close(actual, expected, atol=0, rtol=0)
+    torch.testing.assert_close(actual_jvp, expected_jvp, atol=3e-14, rtol=3e-12)
+    torch.testing.assert_close(actual[0], u[0], atol=0, rtol=0)
+
+
+def test_classical_baseline_bypasses_features_and_rebuilds_all_work(monkeypatch):
+    u, _, eq, geom = case()
+    baseline = classical_corrected_endpoint(u, .07, eq, geom)
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("Classical baseline must not execute learned-model feature branches")
+
+    for name in ("_encode", "_features", "action_design", "_action_design", "endpoint_design"):
+        monkeypatch.setattr(FixedFeatureResponse, name, forbidden)
+    for name in ("commutator_actions", "two_sided_heat"):
+        monkeypatch.setattr(model_module, name, forbidden)
+    first_work, second_work = {}, {}
+    first = classical_corrected_endpoint(u, .07, eq, geom, work=first_work)
+    second = classical_corrected_endpoint(u, .07, eq, geom, work=second_work)
+    torch.testing.assert_close(first, baseline, atol=0, rtol=0)
+    torch.testing.assert_close(second, baseline, atol=0, rtol=0)
+    assert first_work == second_work
+    assert first_work["heat_actions"] == 6
+    assert first_work["fft_transforms"] == 12
+    assert first_work["source_quadrature_nodes"] == 3
+    assert first_work["path_derivative_evaluations"] == 3
+    assert first_work["path_anchor_evaluations"] > 0
+    assert first_work["path_cache_hits"] == 0
+    assert first_work["classical_corrected_endpoints"] == 1
+    for key in ("fixed_feature_encodings", "laplacian_actions", "readout_assemblies",
+                "affine_action_design_elements", "effective_readout_values"):
+        assert first_work.get(key, 0) == 0
+    changed = classical_corrected_endpoint(u + .08, .07, eq, geom)
+    assert (changed - baseline).abs().max() > .01
+    rounded = classical_corrected_endpoint(u.float(), .07, eq, geom, output_precision="input")
+    assert rounded.dtype == torch.float32
+    torch.testing.assert_close(rounded, classical_corrected_endpoint(u.float(), .07, eq, geom).float(),
+                               atol=0, rtol=0)
+
+
+@pytest.mark.parametrize("kwargs", ({"panels": 3}, {"potential_nodes": 0},
+                                   {"output_precision": "half"}, {"target": "galerkin_same_grid"}))
+def test_classical_baseline_rejects_invalid_configuration(kwargs):
+    u, _, eq, geom = case()
+    with pytest.raises(ValueError):
+        classical_corrected_endpoint(u, .07, eq, geom, **kwargs)
 
 
 @pytest.mark.parametrize("bad", ("target", "nan", "reverse", "shape", "readout", "model_precision"))

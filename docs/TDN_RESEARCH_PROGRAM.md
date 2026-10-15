@@ -25,6 +25,10 @@ and their verification status.
   and coefficient/Fourier constructions. Novelty and superiority remain open.
 - Existing CPU tests, tiny coefficient fits and native CPU implementation
   checks cannot establish scientific promotion or GPU readiness.
+- [Native job 2930](../results/native-response-preconditioner-2930/README.md)
+  completed all 184 checks and the tiny smoke at `627de9f`. Its source and
+  artifact hashes were independently verified. This closes native R6 for
+  that version; the bounded repairs below need their own native receipt.
 
 ## Three products, three cost contracts
 
@@ -69,6 +73,14 @@ This guarantee concerns the conditional regularized training objective,
 not validation generalization, identifiable coefficients or future nonlinear
 encoder training.
 
+Following native review, scaling uses the norms of the original **augmented**
+columns, `hypot(||sqrt(W) A_j||, sqrt(lambda))`, including the transformed ridge
+penalty. Inference contracts the eight scalar features into five effective
+coefficients before spatial multiplication. The 40-column design remains the
+fitting interface. A separate fresh classical corrected endpoint evaluates
+only the ordered response and GL3 residual quadrature, giving a usable complete
+baseline cost instead of a cached attribution lookup.
+
 A separate cubic reconstruction auditor checks the finite FD equation. Its
 status must identify whether arithmetic and whole-interval enclosure support
 a certificate or only an indicator. A panel certificate is neither a continuum
@@ -86,8 +98,8 @@ Update this table from actual source and receipts, never from the intended plan.
 | R3 | Parent-balanced stable conditional ridge fitting | Implemented, CPU verified | Independent least-squares comparison and numerical optimality gap |
 | R4 | Independent cubic finite-grid residual audit | Implemented, CPU verified | Exact Bernstein enclosure and outward bound; one panel, at most 64 spatial DOF |
 | R5 | Bounded CPU verifier and tiny fit workflow | Implemented, CPU verified | Fresh output roots, retained failures, source hashes and held-out diagnostics |
-| R6 | Raven native CPU verification wrapper | Implemented, compatibility fixtures verified | Captured-script/allocation contract tests; actual native run pending |
-| R7 | Representation at fixed complete cost | Proposed, scientifically gated | Fresh bounded protocol, exact-state/source coverage and classical controls |
+| R6 | Raven native CPU verification wrapper | Native CPU verified at `627de9f` | Job 2930: 184/184 checks and smoke completed; revised numerical code requires a new receipt |
+| R7 | Representation at fixed complete cost | Scientific study gated; bounded implementation repair CPU verified | Augmented ridge scaling, streamed inference and fresh classical endpoint; broader protocol/source coverage still required |
 | R8 | Learned multiscale encoder / variable projection | Proposed, scientifically gated | R7 capacity and stable fitting evidence |
 | R9 | Second nonlinear correction or inexact Newton | Proposed, scientifically gated | Measured nonlinear remainder and charged causal work |
 | R10 | Adaptive rollout/controller and derivative task | Proposed, scientifically gated | Whole-time accuracy, schedule derivative contract and independent task checks |
@@ -104,7 +116,7 @@ replay data. Its 178 mandatory checks and 27 optional Raven compatibility
 checks overlap; those counts must not be added as distinct tests. The tiny
 fit covers two training, one validation and one diagnostic parent.
 
-The observed results do not justify expanding the architecture yet. Fitting
+The original local and native results do not justify expanding the architecture yet. Fitting
 improved the four inspected response actions over the two-panel initialization,
 but the classical eight-panel response remained more accurate on all four.
 Endpoint differences from initialization were below reference uncertainty.
@@ -113,6 +125,22 @@ a small objective gradient does not establish coefficient identifiability.
 Two tiny cubic-panel upper bounds were obtained, with no requested tolerance
 acceptance or matched-accuracy speedup established. R7 needs a separately
 frozen, bounded scientific protocol and native prerequisites before expansion.
+
+The [bounded repair protocol](RESPONSE_PRECONDITIONER_REPAIR_PROTOCOL_20261015.md)
+keeps the original objective, ridge menu, selection and four development
+parents. Its [retained-matrix replay](../results/response-preconditioner-repair-20261015/retained-fit-replay.json)
+reduces augmented condition from 4.77e10 to 93.8 at the selected ridge without
+changing original rank 25/40. Predictions change by at most 1.14e-13 RMS on
+the retained queries. This is a numerical repair, not new scientific evidence.
+The combined tiny-bank loss is action-dominated; endpoint signals are below
+reference uncertainty. A future R7 design must resolve nonzero source-time
+coverage, basis-versus-coefficient identification and complete repeated costs
+before a learned encoder is justified. Independent per-state oracle and
+classical-control derivations remain proposals, not implemented competitors.
+The [repair verification receipt](../results/response-preconditioner-repair-20261015/README.md)
+records 202 mandatory CPU passes, 33 overlapping Raven compatibility passes
+and the completed 24-reference/82-metric development replay. The revised
+numerical source is not yet native verified.
 
 ### Source interfaces
 
@@ -169,6 +197,9 @@ finishes successfully.
 | 2026-10-15 | Retain the classical eight-panel advantage and poor coefficient conditioning | Passing software checks does not establish capacity, utility or novelty |
 | 2026-10-15 | Guard interactive preparation and submission instead of using a bare shell exit | A preparation failure must remain visible without closing the user's terminal or submitting an empty contract; numerical code and evidence remain unchanged |
 | 2026-10-15 | Deduplicate only identical installed-package metadata discoveries | Fedora path aliases may enumerate one package twice; distinct metadata locations or versions still fail preflight. See the [verification receipt](../results/response-preconditioner-package-identity-20261015/README.md); prepare a fresh source-bound contract after updating |
+| 2026-10-15 | Record native job 2930 as CPU implementation verified | Exact source/artifact/roster checks pass; final independent scheduler accounting is absent and worker resource coverage is partial |
+| 2026-10-15 | Repair augmented scaling and stream the fixed readout before expanding capacity | Preserve the original objective and full derivatives; rank and source-coverage limits remain; the existing bank stays inspected development evidence |
+| 2026-10-15 | Add a fresh classical corrected endpoint cost | Cached zero-head attribution is retained but cannot be used as a complete solver timing |
 
 ## Maintenance rule
 

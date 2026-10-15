@@ -1,0 +1,12 @@
+{"command": "smoke", "event": "run_started", "utc": "2026-10-15T23:07:18.051577+00:00"}
+{"event": "protocol_frozen", "protocol_sha256": "48cb24934d5009ee2ed8a32611d74d1b412a4eee37f4a9e855610c664134b433", "utc": "2026-10-15T23:07:18.054429+00:00"}
+{"event": "parent_horizon_acquired", "horizon": 0.04, "parent_id": "train-000-2026101501", "utc": "2026-10-15T23:07:18.651786+00:00"}
+{"event": "parent_horizon_acquired", "horizon": 0.08, "parent_id": "train-000-2026101501", "utc": "2026-10-15T23:07:19.046757+00:00"}
+{"event": "parent_horizon_acquired", "horizon": 0.04, "parent_id": "train-001-2026101502", "utc": "2026-10-15T23:07:19.342791+00:00"}
+{"event": "parent_horizon_acquired", "horizon": 0.08, "parent_id": "train-001-2026101502", "utc": "2026-10-15T23:07:19.914855+00:00"}
+{"event": "parent_horizon_acquired", "horizon": 0.04, "parent_id": "validation-000-2026101503", "utc": "2026-10-15T23:07:20.133708+00:00"}
+{"event": "parent_horizon_acquired", "horizon": 0.08, "parent_id": "validation-000-2026101503", "utc": "2026-10-15T23:07:20.444169+00:00"}
+{"event": "selection_frozen", "selection_sha256": "1eb313bcb6cb6935210bafbed6bd0e8210b6bca136d7d1481a69b42ce22490a3", "utc": "2026-10-15T23:07:20.454627+00:00"}
+{"event": "diagnostic_parent_horizon_complete", "horizon": 0.04, "parent_id": "diagnostic-000-2026101504", "utc": "2026-10-15T23:07:21.476607+00:00"}
+{"event": "diagnostic_parent_horizon_complete", "horizon": 0.08, "parent_id": "diagnostic-000-2026101504", "utc": "2026-10-15T23:07:22.833299+00:00"}
+{"event": "run_finished", "status": "COMPLETED", "utc": "2026-10-15T23:07:22.875462+00:00"}

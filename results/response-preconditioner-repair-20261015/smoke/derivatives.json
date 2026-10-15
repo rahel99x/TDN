@@ -1,0 +1,106 @@
+[
+  {
+    "derivative_reference_status": "INDEPENDENT_DIAGNOSTIC_UNCERTAINTY_UNQUALIFIED",
+    "direction": null,
+    "endpoint_reference_accepted": true,
+    "finite_difference_sweep": [
+      {
+        "centered_rms": 2.813350617672176e-08,
+        "epsilon": 0.001,
+        "maximum": 1.2476852884191203e-07,
+        "mean_error": -3.566200492965965e-09,
+        "rms": 2.83586310627236e-08
+      },
+      {
+        "centered_rms": 2.5319959921252723e-09,
+        "epsilon": 0.0003,
+        "maximum": 1.1229295715509124e-08,
+        "mean_error": -3.2106744346505067e-10,
+        "rms": 2.552271146918294e-09
+      },
+      {
+        "centered_rms": 2.813479271411831e-10,
+        "epsilon": 0.0001,
+        "maximum": 1.2478351685274447e-09,
+        "mean_error": -3.5440359813510015e-11,
+        "rms": 2.8357128770443514e-10
+      },
+      {
+        "centered_rms": 2.5257060092447496e-11,
+        "epsilon": 3e-05,
+        "maximum": 1.1290968160437842e-10,
+        "mean_error": -4.737146785949165e-12,
+        "rms": 2.569746376950715e-11
+      }
+    ],
+    "horizon": 0.04,
+    "internal_response_is_whole_model_jvp": false,
+    "kind": "endpoint",
+    "parent_id": "diagnostic-000-2026101504",
+    "reference": {
+      "method": "independent_numpy_DOP853_coupled_primal_variational",
+      "nfev": 29,
+      "tolerance_is_error_certificate": false,
+      "uncertainty_is_certificate": false
+    },
+    "split": "diagnostic",
+    "whole_model_jvp_vs_flow": {
+      "centered_rms": 3.182472067867212e-15,
+      "maximum": 7.771561172376096e-15,
+      "mean_error": 2.431388423929093e-16,
+      "rms": 3.1917463808133583e-15
+    }
+  },
+  {
+    "derivative_reference_status": "INDEPENDENT_DIAGNOSTIC_UNCERTAINTY_UNQUALIFIED",
+    "direction": null,
+    "endpoint_reference_accepted": true,
+    "finite_difference_sweep": [
+      {
+        "centered_rms": 1.1150977459006843e-07,
+        "epsilon": 0.001,
+        "maximum": 4.995823430498092e-07,
+        "mean_error": -1.474602459416996e-08,
+        "rms": 1.1248055418808949e-07
+      },
+      {
+        "centered_rms": 1.0035887010865899e-08,
+        "epsilon": 0.0003,
+        "maximum": 4.496242755891444e-08,
+        "mean_error": -1.3271698723338331e-09,
+        "rms": 1.012326073777108e-08
+      },
+      {
+        "centered_rms": 1.1148463049993597e-09,
+        "epsilon": 0.0001,
+        "maximum": 4.994583413520104e-09,
+        "mean_error": -1.4751164012505315e-10,
+        "rms": 1.1245630119042277e-09
+      },
+      {
+        "centered_rms": 1.0055654593155725e-10,
+        "epsilon": 3e-05,
+        "maximum": 4.5238346402243224e-10,
+        "mean_error": -1.402953614393354e-11,
+        "rms": 1.0153052158882727e-10
+      }
+    ],
+    "horizon": 0.08,
+    "internal_response_is_whole_model_jvp": false,
+    "kind": "endpoint",
+    "parent_id": "diagnostic-000-2026101504",
+    "reference": {
+      "method": "independent_numpy_DOP853_coupled_primal_variational",
+      "nfev": 41,
+      "tolerance_is_error_certificate": false,
+      "uncertainty_is_certificate": false
+    },
+    "split": "diagnostic",
+    "whole_model_jvp_vs_flow": {
+      "centered_rms": 2.9941277320189016e-13,
+      "maximum": 6.843414723789465e-13,
+      "mean_error": 3.427536032774015e-14,
+      "rms": 3.013682283885329e-13
+    }
+  }
+]

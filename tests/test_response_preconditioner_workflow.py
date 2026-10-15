@@ -29,6 +29,8 @@ def test_parent_protocol_is_disjoint_reproducible_and_explicitly_nonpromoting():
     assert len(seeds) == len(set(seeds)) == 4
     assert not protocol["scientific_promotion"]
     assert protocol["future_stages"]["promotion"] == "BLOCKED"
+    assert protocol["schema"] == "tdn.response_preconditioner.implementation.v2"
+    assert "not fresh confirmation" in protocol["cohort_reuse"]
     first = list(w.parents(protocol, "train"))
     repeated = list(w.parents(protocol, "train"))
     assert first[0]["u"].dtype == torch.float32
@@ -108,10 +110,20 @@ def test_actual_bounded_smoke_freezes_readout_before_diagnostics(tmp_path):
     events = [json.loads(line)["event"] for line in (output / "journal.jsonl").read_text().splitlines()]
     assert events.index("selection_frozen") < events.index("diagnostic_parent_horizon_complete")
     assert summary["reference_count"] == 24 and summary["unresolved_references"] == 0
+    assert summary["metrics_count"] == 82
     assert summary["whole_model_derivative_cases"] == 2
     rows = json.loads((output / "metrics.json").read_text())
     assert {row["method"] for row in rows if row["split"] == "diagnostic"} >= {
-        "strang_df_1", "strang_rf_8", "ordered_response_8", "fixed_feature_fitted"}
+        "strang_df_1", "strang_rf_8", "ordered_response_8", "fixed_feature_fitted",
+        "ordered_response_corrected_2"}
+    baseline_rows = [row for row in rows if row["method"] == "ordered_response_corrected_2"]
+    assert len(baseline_rows) == 2
+    assert all(row["timing_scope"] == "complete_uncached_call" for row in baseline_rows)
+    counts = json.loads((output / "work.json").read_text())
+    classical_counts = [row for row in counts if row["method"] == "ordered_response_corrected_2"]
+    assert len(classical_counts) == 2
+    assert all(row["work"].get("fixed_feature_encodings", 0) == 0 for row in classical_counts)
+    assert all(row["work"].get("laplacian_actions", 0) == 0 for row in classical_counts)
     assert all(not row["speedup_claim"] for row in rows)
     actions = [row for row in rows if row["kind"] == "action"]
     assert all(row["correction_status"] == "RESOLVED_NONTRIVIAL" for row in actions)

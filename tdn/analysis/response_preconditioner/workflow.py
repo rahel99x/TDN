@@ -28,12 +28,12 @@ import torch
 from tdn.analysis.response import numerics as n
 from tdn.analysis.tangent_response.oracle import NumpyEquation, independent_solve, refined_teacher
 from tdn.analysis.tangent_response.tangent import AnchorPath, refined_action
-from .model import FixedFeatureResponse
+from .model import FixedFeatureResponse, classical_corrected_endpoint
 from .numerics import ordered_response
 
 ROOT = Path(__file__).resolve().parents[3]
 TARGET = "fd_same_grid"
-SCHEMA = "tdn.response_preconditioner.implementation.v1"
+SCHEMA = "tdn.response_preconditioner.implementation.v2"
 VERIFY_TESTS = (
     "tests/test_response_preconditioner_numerics.py",
     "tests/test_response_preconditioner_model.py",
@@ -103,6 +103,9 @@ def create_output(command, output=None, *, root=ROOT):
 
 def protocol(command):
     return dict(schema=SCHEMA, command=command, device="cpu", target=TARGET,
+                revision="augmented_ridge_streamed_inference_20261015",
+                prospective_contract="docs/RESPONSE_PRECONDITIONER_REPAIR_PROTOCOL_20261015.md",
+                cohort_reuse="existing inspected development fixture; not fresh confirmation",
                 scope="BOUNDED_CPU_IMPLEMENTATION", decision="IMPLEMENTATION_ONLY",
                 scientific_promotion=False, historical_gate="B STOP unchanged",
                 parent_counts={"train": 2, "validation": 1, "diagnostic": 1},
@@ -113,6 +116,9 @@ def protocol(command):
                 input_dtype="float32", model_internal_dtype="float64", output_dtype="float64",
                 teacher_dtype="float64", teacher_tolerance=1e-10,
                 ridge_menu=[1e-10, 1e-6], include_zero_readout_selection=True,
+                ridge_scaling="augmented column norm; original positive-ridge penalty preserved",
+                inference="five effective branch coefficients; full design retained for fitting",
+                uncached_classical_endpoint=True,
                 fit_scope="train parents only",
                 loss="parent-balanced unnormalized physical squared error; equal weight per scalar row",
                 selection="minimum validation combined endpoint/action MSE among initialization and numerically eligible fits; initialization first breaks ties",
@@ -284,8 +290,12 @@ def _diagnostic_rows(parent, records, model, config):
         common["reference_accepted"] = record["reference"]["accepted"]
         candidates = [("zero_readout", lambda record=record: record["base"], "cached_attribution_only")]
         work = {}
+        classical_work = {}
         if record["kind"] == "endpoint":
             candidates.append(("fixed_feature_fitted", lambda:model(u, h, eq, geom, work=work), "complete_uncached_call"))
+            candidates.append(("ordered_response_corrected_2", lambda:classical_corrected_endpoint(
+                u, h, eq, geom, panels=model.panels, potential_nodes=model.potential_nodes,
+                work=classical_work), "complete_uncached_call"))
             for orientation in ("df", "rf"):
                 for steps in config["baseline_steps"]:
                     def split(orientation=orientation, steps=steps):
@@ -313,7 +323,10 @@ def _diagnostic_rows(parent, records, model, config):
                              output_dtype=str(value.dtype), accepted_error_certificate=False))
             if name == "fixed_feature_fitted":
                 torch.testing.assert_close(value, _prediction(record, model.readout.detach()), rtol=1e-12, atol=1e-12)
-                work_rows.append(dict(**common, work=work))
+                work_rows.append(dict(**common, method=name, work=work))
+            elif name == "ordered_response_corrected_2":
+                torch.testing.assert_close(value, record["base"], rtol=1e-12, atol=1e-12)
+                work_rows.append(dict(**common, method=name, work=classical_work))
         if record["kind"] == "endpoint":
             z = parent["directions"][0]
             value = u.double().requires_grad_(True)

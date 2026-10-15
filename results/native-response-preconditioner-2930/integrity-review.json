@@ -1,0 +1,148 @@
+{
+  "review_schema": "tdn.native-evidence-audit/v1",
+  "source_revision": "627de9f3929c2501e42a783c1ad193369b44280b",
+  "checks": {
+    "archive": {
+      "sha256": "242904177750e2c8fc5e6b2d6852980e6003aef94380207ebbfde76a98b3bfb5",
+      "archive_bytes": 353139,
+      "entries": 54,
+      "uncompressed_bytes": 876103,
+      "compressed_bytes": 346137,
+      "duplicate_members": false,
+      "unsafe_paths": [],
+      "symlinks": [],
+      "extracted_mismatches": []
+    },
+    "source": {
+      "stage_source_files": 239,
+      "stage_hash_mismatches_against_git": [],
+      "all_stage_before_after_equal": true,
+      "stage_fingerprint_recomputed": "1b7c7ef69bd3e3948a378d64c37fd7c8d9a6fd4adf3349a3df71f49a52ca2983",
+      "fingerprint_matches": true,
+      "native_source_files": 619,
+      "native_source_hash_recomputed": "20c09d6f8304939280708b26d268c664d20e559c728d06090b9a8205b55c2e05",
+      "native_identity_matches": true,
+      "script_hash_matches_run": true
+    },
+    "stage_manifests": {
+      "verification": {
+        "files": 11,
+        "hash_or_size_failures": [],
+        "unlisted_files": [],
+        "missing_files": [],
+        "duplicate_paths": false
+      },
+      "smoke": {
+        "files": 19,
+        "hash_or_size_failures": [],
+        "unlisted_files": [],
+        "missing_files": [],
+        "duplicate_paths": false
+      }
+    },
+    "junit": {
+      "total": 184,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "duplicate_ids": false,
+      "identical_ids_to_pre_launch_184_case_receipt": true,
+      "class_counts": {
+        "tests.test_response_numerics": 32,
+        "tests.test_response_preconditioner_audit": 38,
+        "tests.test_response_preconditioner_fitting": 14,
+        "tests.test_response_preconditioner_launch": 22,
+        "tests.test_response_preconditioner_model": 23,
+        "tests.test_response_preconditioner_numerics": 21,
+        "tests.test_response_preconditioner_workflow": 7,
+        "tests.test_tangent_response_numerics": 27
+      }
+    },
+    "dynamic_raven_outputs": {
+      "registered_files": 38,
+      "all_required": true,
+      "all_relative": true,
+      "duplicates": false,
+      "missing": []
+    },
+    "raven_science_metrics": {
+      "raw_rows": 80,
+      "raven_science_rows": 80,
+      "raven_stage_rows": 2,
+      "row_mismatches": [],
+      "parent_identity_in_raven_series": false,
+      "parent_identity_in_raw_artifacts": true
+    },
+    "telemetry": {
+      "worker": {
+        "samples": 44,
+        "index_samples_match": true,
+        "byte_count_matches": true,
+        "status": "partial",
+        "reported_missed": 0,
+        "partial_samples": 21,
+        "cpu_percent_available": 22,
+        "maximum_sampled_rss_bytes": 1220616192,
+        "last_cpu_seconds": 0.54,
+        "timestamp_increasing": true,
+        "csv_rows": 44,
+        "csv_json_mismatches": [],
+        "partial_reasons": {
+          "Process tree changed; interval CPU utilization unavailable": 21
+        }
+      },
+      "supervisor": {
+        "samples": 46,
+        "index_samples_match": true,
+        "byte_count_matches": true,
+        "status": "complete",
+        "reported_missed": 0,
+        "partial_samples": 0,
+        "cpu_percent_available": 0,
+        "maximum_sampled_rss_bytes": 10268672,
+        "last_cpu_seconds": 0.0,
+        "timestamp_increasing": true
+      }
+    },
+    "execution": {
+      "raven_state": "COMPLETED",
+      "application_exit_code": 0,
+      "scheduler_outcome": "unknown",
+      "native_state": "COMPLETED",
+      "native_exit_code": 0,
+      "allocation_job_state_is_startup_snapshot": "RUNNING",
+      "job_id": "2930",
+      "device": "cpu",
+      "source_unchanged_reported": true
+    },
+    "contract": {
+      "copied_contract_sha256": "893b973383960b4146c8b84aa561b4bc69b7de1f43831a810473d1270fe7dd31",
+      "original_prepared_contract_sha256_reported": "ae48520a9c6d46680b31cf8a88152b47787b26b19226dc87e8b563349d583750",
+      "copied_contract_serialization_is_changed": true,
+      "profile_snapshot_present": true,
+      "original_profile_raw_file_present": false
+    },
+    "logs": {
+      "portable_stage_logs": [
+        "logs/verify.stdout.log",
+        "logs/verify.stderr.log",
+        "logs/smoke.stdout.log",
+        "logs/smoke.stderr.log"
+      ],
+      "external_scheduler_log_paths": [
+        "/home/rahel/TDN/logs/response-preconditioner/tdn-response-preconditioner-verify-2930.err",
+        "/home/rahel/TDN/logs/response-preconditioner/tdn-response-preconditioner-verify-2930.out"
+      ],
+      "outer_stdout_bytes": 0,
+      "outer_stderr_bytes": 0
+    }
+  },
+  "limitations": [
+    "Raven reports application completion and exit 0; independent final Slurm sacct/scontrol accounting is absent, scheduler_outcome remains unknown. RUNNING allocation fields are startup snapshots.",
+    "Native copied contract is canonical JSON reserialized from the original prepared pretty JSON; its raw hash is different by construction. Original prepared file and raw profile absent, so their recorded byte hashes cannot be independently checked from this archive.",
+    "All stage artifact hashes and known source identity match; hashes establish internal integrity and source correspondence, not authenticated provenance.",
+    "Four stage logs are portable; scheduler stdout/stderr index entries point to original absolute host paths outside this archive. Empty logs/stdout.log and logs/stderr.log are not copies of those external scheduler streams.",
+    "Worker process-tree telemetry is partial: 21 churn intervals have null CPU utilization; first interval is also unavailable. Sampled summed RSS is not allocation maximum RSS; departed-process CPU cannot be accumulated from the terminal snapshot.",
+    "All results are IMPLEMENTATION_ONLY, CPU only; no GPU, scientific promotion, fresh confirmation, novelty, speedup or broad performance statement is justified."
+  ]
+}

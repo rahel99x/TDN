@@ -30,8 +30,10 @@ def fit_parent_balanced_ridge(design, target, parent_ids, *, ridge,
     within-field cell weights; heterogeneous grids need their own cell masses.
     All supplied rows must belong to training parents; no split is inferred.
 
-    Set scale_j=||sqrt(omega)*A[:,j]||, with exactly zero columns scaled by one.
-    Write x=scale*w and solve the FP64 CPU augmented system
+    Set scale_j=hypot(||sqrt(omega)*A[:,j]||, sqrt(ridge)), the norm of
+    column j in the original augmented system. Thus a tiny or zero data
+    column cannot make its scaled penalty larger than one. Write x=scale*w
+    and solve the FP64 CPU augmented system
         [sqrt(omega)*A/scale; sqrt(ridge)*diag(1/scale)] x
             ~= [sqrt(omega)*b; 0].
     SVD divides by *every* positive augmented singular value. No TSVD cutoff,
@@ -79,10 +81,14 @@ def fit_parent_balanced_ridge(design, target, parent_ids, *, ridge,
     root_weights = omega.sqrt()
     weighted_A = _finite(A * root_weights[:, None], "weighted design")
     weighted_b = _finite(b * root_weights, "weighted target")
-    scales = _finite(torch.linalg.vector_norm(weighted_A, dim=0), "column scales")
-    scales = torch.where(scales == 0, torch.ones_like(scales), scales)
+    data_column_norms = _finite(torch.linalg.vector_norm(weighted_A, dim=0),
+                                "training column norms")
+    root_ridge = math.sqrt(lam)
+    scales = _finite(torch.hypot(data_column_norms,
+                                torch.full_like(data_column_norms, root_ridge)),
+                     "augmented column scales")
     scaled_A = _finite(weighted_A / scales, "scaled design")
-    penalty = _finite(math.sqrt(lam) / scales, "scaled ridge penalty")
+    penalty = _finite(root_ridge / scales, "scaled ridge penalty")
     if bool((penalty <= 0).any()):
         raise ArithmeticError("Scaled ridge penalty underflowed; original objective is not representable")
     augmented = torch.cat((scaled_A, torch.diag(penalty)), dim=0)
@@ -121,6 +127,12 @@ def fit_parent_balanced_ridge(design, target, parent_ids, *, ridge,
         precision="float64", device="cpu", solver="augmented_svd_without_truncation",
         ridge=lam, column_scales=scales.tolist(),
         column_scaling_scope="supplied_training_rows_only",
+        column_scaling_strategy="original_augmented_column_l2_norm",
+        training_column_norms=data_column_norms.tolist(),
+        zero_training_columns=int((data_column_norms == 0).sum()),
+        minimum_column_scale=float(scales.min()), maximum_column_scale=float(scales.max()),
+        minimum_scaled_ridge_penalty=float(penalty.min()),
+        maximum_scaled_ridge_penalty=float(penalty.max()),
         original_penalty_preserved=True, singular_value_truncation=False,
         augmented_singular_values=singular.tolist(),
         augmented_condition_number=augmented_condition,

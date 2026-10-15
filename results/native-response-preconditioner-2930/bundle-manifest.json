@@ -1,0 +1,31 @@
+{
+  "schema": "tdn.research-receipt-bundle.v1",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4937,
+      "sha256": "a9c732f78915851e14569034a9c26cc16ea995480bca3754976c119f058d63e3"
+    },
+    {
+      "path": "audit_receipt.py",
+      "bytes": 12906,
+      "sha256": "7984d2bd4a2e50e1d561d60e4d5afab29b89a1f8aa320d42cf10fa23dbfebc70"
+    },
+    {
+      "path": "integrity-review.json",
+      "bytes": 5934,
+      "sha256": "6a495802f44c5ddebe26024e274b97da856d0430b71ab8dd8ff7db86203900e3"
+    },
+    {
+      "path": "response-preconditioner-2930-review-20261015T225818448985Z.zip",
+      "bytes": 353139,
+      "sha256": "242904177750e2c8fc5e6b2d6852980e6003aef94380207ebbfde76a98b3bfb5"
+    },
+    {
+      "path": "scientific-review.json",
+      "bytes": 25239,
+      "sha256": "6e7fe068f2fc403dd23b6b1719508e354974e52f7765d88b5a4e40c6cf97b35a"
+    }
+  ],
+  "self_excluded": "bundle-manifest.json"
+}
