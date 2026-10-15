@@ -1,0 +1,59 @@
+{
+  "schema": "tdn.interactive-launch-recovery/v1",
+  "scope": "documented shell control flow only; Raven command is a recording fixture",
+  "native_jobs_submitted": 0,
+  "numerical_code_changed": false,
+  "results": [
+    {
+      "name": "original_inline_exit_reproduces_shell_exit",
+      "exit_code": 2,
+      "parent_shell_survived": false,
+      "raven_fixture_calls": [],
+      "stderr": "fixture: preparation failed\n",
+      "passed": true
+    },
+    {
+      "name": "guarded_failure_keeps_shell_and_blocks_both_launches",
+      "exit_code": 0,
+      "parent_shell_survived": true,
+      "raven_fixture_calls": [],
+      "stderr": "fixture: preparation failed\nPreparation failed; no job was submitted. See the error above.\nNo prepared contract; run the preparation block above first.\n",
+      "passed": true
+    },
+    {
+      "name": "guarded_success_preserves_preview_and_submit_arguments",
+      "exit_code": 0,
+      "parent_shell_survived": true,
+      "raven_fixture_calls": [
+        "launch scripts/response_preconditioner_verify.sh --project /workspace/TDN/.runtime/response-preconditioner-terminal-exit/shell case drbyhwf6 --recipe response-preconditioner --sbatch=--partition=local --sbatch=--chdir=/workspace/TDN/.runtime/response-preconditioner-terminal-exit/shell case drbyhwf6 --check -- --contract .runtime/contract.json --mode all",
+        "launch scripts/response_preconditioner_verify.sh --project /workspace/TDN/.runtime/response-preconditioner-terminal-exit/shell case drbyhwf6 --recipe response-preconditioner --sbatch=--partition=local --sbatch=--chdir=/workspace/TDN/.runtime/response-preconditioner-terminal-exit/shell case drbyhwf6 -- --contract .runtime/contract.json --mode all"
+      ],
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "missing_contract_blocks_submission",
+      "exit_code": 0,
+      "parent_shell_survived": true,
+      "raven_fixture_calls": [],
+      "stderr": "No prepared contract; run the preparation block above first.\n",
+      "passed": true
+    },
+    {
+      "name": "missing_checkout_keeps_shell_and_blocks_launch",
+      "exit_code": 0,
+      "parent_shell_survived": true,
+      "raven_fixture_calls": [],
+      "stderr": "bash: line 2: cd: /workspace/TDN/.runtime/response-preconditioner-terminal-exit/shell case drbyhwf6/missing: No such file or directory\nPreparation failed; no job was submitted. See the error above.\n",
+      "passed": true
+    },
+    {
+      "name": "diagnostic_failure_keeps_error_visible_without_launch",
+      "exit_code": 0,
+      "parent_shell_survived": true,
+      "raven_fixture_calls": [],
+      "stderr": "fixture: preparation failed\nPreparation failed; retain the error printed above. No job was submitted.\n",
+      "passed": true
+    }
+  ]
+}

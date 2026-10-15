@@ -48,22 +48,29 @@ minutes**, with `verify` followed by `smoke`. Prepare a fresh source/software/
 profile contract on the submission host, then preview:
 
 ```bash
-cd /home/rahel/TDN
-contract="$(.venv/bin/python scripts/response_preconditioner_native.py prepare)" || exit
-
-raven launch scripts/response_preconditioner_verify.sh \
-  --project "$PWD" --recipe response-preconditioner \
-  --sbatch=--partition=local --sbatch="--chdir=$PWD" \
-  --check -- --contract "$contract" --mode all
+if cd /home/rahel/TDN &&
+   contract="$(.venv/bin/python scripts/response_preconditioner_native.py prepare)"; then
+  raven launch scripts/response_preconditioner_verify.sh \
+    --project "$PWD" --recipe response-preconditioner \
+    --sbatch=--partition=local --sbatch="--chdir=$PWD" \
+    --check -- --contract "$contract" --mode all
+else
+  unset contract
+  printf 'Preparation failed; no job was submitted. See the error above.\n' >&2
+fi
 ```
 
 Submit that prepared contract:
 
 ```bash
-raven launch scripts/response_preconditioner_verify.sh \
-  --project "$PWD" --recipe response-preconditioner \
-  --sbatch=--partition=local --sbatch="--chdir=$PWD" \
-  -- --contract "$contract" --mode all
+if [[ -n "${contract:-}" && -f "$contract" ]]; then
+  raven launch scripts/response_preconditioner_verify.sh \
+    --project "$PWD" --recipe response-preconditioner \
+    --sbatch=--partition=local --sbatch="--chdir=$PWD" \
+    -- --contract "$contract" --mode all
+else
+  printf 'No prepared contract; run the preparation block above first.\n' >&2
+fi
 ```
 
 Use the CPU partition recorded in the profile if it differs from `local`.
@@ -97,6 +104,39 @@ Actual Slurm/Raven execution remains pending until run on the configured native
 machine. Cloud CPU tests and scheduler fixtures do not establish native
 readiness. Preserve source and the venv while relevant jobs are active; use
 fresh output roots after an update.
+
+### If preparation fails or the terminal closes
+
+An earlier version of these instructions ended the preparation line with
+`|| exit`. Pasting that into an interactive terminal executes the terminal
+shell's `exit` command when preparation fails. The guarded blocks above keep
+the preparation error visible and prevent submission without a contract.
+The underlying preparation error still needs to be resolved; a terminal
+closing does not identify which prerequisite failed.
+
+To inspect preparation alone, without submitting a job:
+
+```bash
+if cd /home/rahel/TDN; then
+  if .venv/bin/python scripts/response_preconditioner_native.py prepare; then
+    printf 'Preparation succeeded; the contract path is printed above.\n'
+  else
+    printf 'Preparation failed; retain the error printed above. No job was submitted.\n' >&2
+  fi
+fi
+```
+
+Run shell launchers with `bash ...` or `raven launch ...`, as documented.
+Do not source them into the interactive shell: their `exec`, `exit` and shell
+options are intended for their own process. Preparation requires the existing
+standalone project venv and Fedora profile, an unchanged readable checkout,
+and a submission shell outside an active Slurm/Raven attempt. Diagnose the
+printed error before changing those settings.
+
+The [six shell recovery checks](../results/response-preconditioner-terminal-exit-20261015.json)
+reproduce the original exit and verify the guarded failure, successful argument
+transport, missing contract/checkout and diagnostic paths. These use a recording
+Raven fixture and submit no jobs.
 
 ## Reading results
 

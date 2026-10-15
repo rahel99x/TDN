@@ -219,3 +219,15 @@ The source baseline is commit `6ee03cd3298f6de94da546ffa3f5ee2f8da23a55`; implem
   unchanged. See docs/TDN_RESEARCH_PROGRAM.md,
   docs/RESPONSE_PRECONDITIONER_RUNBOOK.md and
   results/response-preconditioner-verification-20261015/.
+
+- Corrected the response-preconditioner runbook's interactive `|| exit`
+  preparation example after the user reported a terminal closing. A failed
+  preparation executed the parent shell's exit builtin. Guarded preparation
+  now leaves the error visible, clears a failed contract and prevents launch;
+  submission also checks that a prepared contract exists. Added an isolated
+  diagnostic command and clarified that launchers must not be sourced. Six
+  shell-control checks reproduce the original exit and verify success/failure,
+  missing-checkout/contract and diagnostic paths using a recording Raven
+  fixture. No native jobs, numerical code, model, thresholds or prior evidence
+  changed. The user's underlying preparation error remains unknown until its
+  actual stderr is available. See results/response-preconditioner-terminal-exit-20261015.json.
