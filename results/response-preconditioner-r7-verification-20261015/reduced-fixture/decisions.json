@@ -1,0 +1,19 @@
+{
+  "encoder_promotion": false,
+  "endpoint_benefit": "UNRESOLVED_FROM_NATIVE_2936; no R7 endpoint labels acquired",
+  "full_operator_capacity": "UNRESOLVED: finite calibration and withheld directions do not exhaust the operator",
+  "limitations": [
+    "full operator audit",
+    "BCH coefficients pending independent derivation",
+    "ETDRK4/Radau/BDF",
+    "learned encoder",
+    "nonlinear correction",
+    "rollout",
+    "GPU",
+    "fresh confirmation"
+  ],
+  "matched_tolerance_speedup": false,
+  "next_gate": "review projection/ridge/global source-family residuals and perturbations against reference uncertainty; freeze any subsequent study separately",
+  "status": "DESCRIPTIVE_DEVELOPMENT_ONLY",
+  "superiority": false
+}

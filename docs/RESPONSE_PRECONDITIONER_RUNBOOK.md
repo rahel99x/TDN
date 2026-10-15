@@ -2,9 +2,10 @@
 
 Read the [standing research program](TDN_RESEARCH_PROGRAM.md) and
 [mathematical proposal](TDN_ARCHITECTURE_PROPOSAL_20261015.md). This namespace
-implements the first bounded FD milestone. All current workflow outcomes are
-`IMPLEMENTATION_ONLY`, with no promotion of the historical Tangent Response
-B STOP, no native GPU claim and no automatic scientific expansion.
+implements the first bounded FD milestone and the separate R7 identification
+study. The original verifier/smoke remains `IMPLEMENTATION_ONLY`; R7 is
+`BOUNDED_DEVELOPMENT`. Neither promotes the historical Tangent Response B STOP,
+establishes native GPU readiness, or starts an automatic successor.
 
 The first milestone implements 40 affine coefficients over three commutator
 and two two-sided heat branches, a classical ordered-response backbone,
@@ -24,10 +25,141 @@ records 202 mandatory CPU passes, 33 overlapping Raven compatibility passes,
 and the completed implementation replay. [Native job 2936](../results/native-response-preconditioner-2936/README.md)
 now verifies the revised source at `261365b`: 202 checks and the complete smoke
 passed. This closes the repair milestone. No repeat of the unchanged smoke is
-needed; the next [R7 design](RESPONSE_PRECONDITIONER_R7_DESIGN.md) requires its
-own implementation and frozen protocol before a new numerical run.
+needed. The [R7 design](RESPONSE_PRECONDITIONER_R7_DESIGN.md) now has its own
+implemented protocol and launcher below. The [R7 verification receipt](../results/response-preconditioner-r7-verification-20261015/README.md) records
+298/298 required CPU checks and 53/53 overlapping Raven compatibility checks.
+Actual native R7 scientific execution remains pending.
 
-## Local CPU checks
+## R7: bounded identification through native Raven
+
+The source-bound contract is
+[`tdn.response_preconditioner.r7.v1`](../tdn/analysis/response_preconditioner/r7_protocol.py).
+It reuses the four inspected parents on the 5-by-5 same-grid FD problem,
+preserving the two-training/one-validation/one-diagnostic split. Six intervals
+per parent and four calibration/four withheld sources per interval produce
+24 contexts and at most 192 reference queries. All intervals use the original
+anchor at absolute time, including nonzero source times. These observations
+are development evidence, not fresh confirmation.
+
+R7 compares one source-shared five-coefficient projection and two local ridge
+oracles with the deployable global 40-weight readout. Global fitting sees only
+training calibration labels; withheld validation directions select among the
+two frozen ridges and initialization. That choice seals before diagnostic
+truth. Diagnostic local oracles then fit calibration sources only and seal
+before withheld diagnostic sources are acquired. Both local ridges remain
+reported; diagnostic outcomes do not select between them. Their induced
+penalties account for context mass and feature norm, and their objectives
+relax the shared global coefficient map.
+
+The native entrypoint runs **verification, then the study**, in one real
+Raven/Slurm allocation: **4 CPUs, 8 GiB, 20 minutes**, with a 900-second study
+budget. The study cannot run alone or consume a verification release from
+another attempt. Preparation freezes source, installed software, Fedora profile
+and both protocols; it creates no scientific labels. Keep this checkout and
+its venv unchanged while its jobs are queued or running.
+
+After earlier jobs using the checkout have finished, prepare and submit:
+
+```bash
+if cd /home/rahel/TDN &&
+   git pull --ff-only origin main &&
+   contract="$(.venv/bin/python scripts/response_preconditioner_r7_native.py prepare)"; then
+  raven launch scripts/response_preconditioner_r7.sh \
+    --project "$PWD" --recipe response-preconditioner-r7 \
+    --sbatch=--partition=local --sbatch="--chdir=$PWD" \
+    -- --contract "$contract"
+else
+  unset contract
+  printf 'Preparation failed; no job submitted. See the error above.\n' >&2
+fi
+```
+
+This guarded block leaves the interactive terminal open on a preparation
+failure. Use the CPU partition in `.tdn/fedora-slurm.json` if it differs from
+`local`; add its required account before `--` when applicable. To preview the
+prepared command, insert Raven's `--check` before `--`. The default mode runs
+both stages; `--mode verify` after the contract selects verification only.
+There is no `study`-only mode. Omit Raven `--local`: genuine allocation,
+ownership, captured-script and private-runtime checks gate scientific work.
+
+Local implementation verification is available without acquiring the bank:
+
+```bash
+if cd /home/rahel/TDN; then
+  mkdir -p .runtime/response-preconditioner-r7-local &&
+  TMPDIR="$PWD/.runtime/response-preconditioner-r7-local" \
+    PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+    .venv/bin/python scripts/response_preconditioner_r7.py verify --device cpu
+fi
+```
+
+Verification records the exact collected test roster and rejects failures,
+errors, skips, duplicates or missing cases. Cloud checks and scheduler fixtures
+establish implementation behavior only; the new native contract needs its own
+actual native receipt.
+
+### R7 measurements and outputs
+
+The measured classical controls are ordered 1/2/4/8-panel responses and fixed
+2/4/8-step Lawson responses. Five paired randomized timing rounds cover each
+diagnostic context's four withheld sources, retaining separate first-call and
+warmup observations. Every source pays fresh path/setup/feature work; this is
+a sequential bundle without cross-source caching or vectorized amortization.
+The first-call label is benchmark-local: accuracy acquisition has already run,
+so it is not a cold-process timing. Reported variation is empirical
+min/median/max, not an independent-sample confidence interval. Local oracles
+are offline fits and never enter a deployable speedup comparison.
+
+Physical RMS, maximum, signed mean and centered errors retain source-family,
+context, split and method identity. Full actions `U z`, fitted remainders
+`(U-P) z`, and matched-mean feedback `(U-G) z` have separate interpretation.
+The resolution floor is ten times the estimated reference uncertainty;
+near-null corrections remain unresolved. Sensitivity reports coefficient
+changes separately from normalized withheld prediction amplification. Its
+reference-sized aggregate label ball is an empirical scenario, not a certified
+or per-source teacher error bound. See the [R7 term guide](RESPONSE_PRECONDITIONER_R7_DESIGN.md#term-guide)
+and the [original mathematical legend](TDN_ARCHITECTURE_PROPOSAL_20261015.md).
+
+Raven owns the outer run; registered artifact paths are relative and portable.
+The `response-preconditioner-r7` recipe enables experiment, evidence, artifacts
+and CPU/memory observation, with no array, GPU collection or tracing. Research
+metrics live under `r7/` phases. Actual worker process-tree telemetry remains
+separate from Raven's supervisor graphs and from science metrics. Its sampled
+RSS is not per-method or allocation-wide peak memory.
+
+| Path within the Raven run | Evidence |
+| --- | --- |
+| `outputs/native/status.json`, `contract.json`, `profile.json`, `verification-release.json` | Native execution, original prepared contract/profile bytes and exact verification release |
+| `outputs/native/telemetry/` | Actual worker CPU/RSS samples and coverage limits |
+| `outputs/verification/` | Collected case roster, JUnit, check summary and source-bound verifier artifacts |
+| `outputs/study/protocol.json`, `source.json`, `source_after.json`, `software.json` | Frozen workload and actual code/software identity |
+| `outputs/study/query_index.json`, `denominators.json`, `references.json` | Every planned, attempted, accepted, unresolved, failed or missing query and reference refinements |
+| `outputs/study/evaluation_denominators.json` | Expected, attempted, failed, unresolved and missing method evaluations and timing bundles |
+| `outputs/study/parents.json`, `parents.npz`, `queries/` | Parent identities and numeric source/reference/design/prediction arrays; load NPZ with `allow_pickle=False` |
+| `outputs/study/selection.json`, `fits/` | All global candidates, sealed selection, local projections/ridges, spectra and objectives |
+| `outputs/study/sensitivity/` | Label perturbations, coefficient/prediction gains, actual independent-reference differences and replay arrays |
+| `outputs/study/metrics.json`, `metrics.csv`, `work.json` | Portable science errors and explicit operation-counter scope |
+| `outputs/study/timing.json`, `timing_records.json` | Completed context timing summaries and individually retained raw observations, including partial rounds |
+| `outputs/study/work_precision.json`, `work_precision.csv` | Identical-context withheld accuracy joined with complete bundle timing; no fitted acceptance threshold or speedup claim |
+| `outputs/study/summary.json`, `decisions.json`, `journal.jsonl`, `artifacts.json` | Execution separately from descriptive research decisions, access order and artifact hashes |
+| `logs/` | Registered stage stdout/stderr; scheduler streams also reside in the checkout's `logs/response-preconditioner-r7/` |
+
+Unresolved training or selection references block fitting; failed acquisition
+and unattempted queries stay in the denominator. Reference uncertainty combines
+refined Lawson disagreement and independent DOP853 disagreement, with both RMS
+and maximum acceptance. A source query includes `U` and `G` and shares a
+three-second allowance, at most 1,016 Lawson steps and 8,192 independent RHS
+calls. Exhausted budgets retain the attempt; they do not expand the workload.
+
+A completed study provides descriptive work-precision evidence, with no
+predefined practical-utility pass threshold. Review the source-family residuals,
+calibration/withheld behavior, perturbations and complete costs before choosing
+another protocol. Full-operator audits, independently derived BCH controls,
+new endpoint/trajectory evidence, nonlinear corrections, learned encoders,
+GPU work and fresh confirmation remain deferred. Historical A PASS / B STOP
+and the unresolved native 2936 endpoint benefit stay unchanged.
+
+## Original implementation-only local CPU checks
 
 Use the checkout's existing standalone `.venv`, outside a Slurm allocation:
 

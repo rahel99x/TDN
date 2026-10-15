@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "duplicates": 0,
+    "errors": 0,
+    "exact_roster": true,
+    "expected": 298,
+    "failed": 0,
+    "skipped": 0,
+    "total": 298
+  },
+  "command": "verify",
+  "decision": "BOUNDED_DEVELOPMENT",
+  "device": "cpu",
+  "elapsed_seconds": 50.44203883400769,
+  "historical_gate": "B STOP unchanged",
+  "native_gpu_readiness": false,
+  "output": "/workspace/TDN/runs/response-preconditioner-r7-verification-20261015",
+  "protocol_sha256": "08292cd8d2ef8d1a12a431605fdf56f37d25cee05c2e3614f07dcaab466dc263",
+  "schema": "tdn.response_preconditioner.r7.v1",
+  "scientific_promotion": false,
+  "source_fingerprint": "abe17b47d43b50d0ca8fb797a4faf76dce8307898ff60835d00c0f985061df9c",
+  "status": "COMPLETED"
+}

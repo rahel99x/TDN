@@ -154,7 +154,7 @@ def load_contract(path):
     return value, checksum
 
 
-def context(snapshot):
+def context(snapshot, *, script=SCRIPT):
     """Bind the original checkout, captured shell and exact actual Raven job."""
     plan_path = confined(os.environ.get("RAVEN_LAUNCH_PLAN", ""), ROOT)
     plan, plan_hash = read_json(plan_path, root=ROOT)
@@ -162,10 +162,10 @@ def context(snapshot):
     if not re.fullmatch(r"[0-9a-f]{32}", token):
         raise ValueError("Invalid Raven launch token")
     folder = ROOT / ".raven/wrappers" / token
-    source, payload = ROOT / SCRIPT, folder / "payload.sh"
+    source, payload = ROOT / script, folder / "payload.sh"
     if (plan.get("schema") != "raven.launch-plan/v1" or plan.get("execution") != "slurm"
             or plan.get("project_root") != str(ROOT) or plan.get("script") != str(source)
-            or plan.get("script_relative") != SCRIPT or plan_path != folder / "plan.json"
+            or plan.get("script_relative") != script or plan_path != folder / "plan.json"
             or plan.get("source_snapshot") != payload.relative_to(ROOT).as_posix()
             or confined(snapshot, ROOT) != payload
             or os.environ.get("RAVEN_PROJECT_ROOT") != str(ROOT)

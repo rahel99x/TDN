@@ -1,0 +1,5 @@
+# R7 bounded development evidence
+
+Execution: **COMPLETED**. No scientific promotion.
+
+Read protocol.json before interpreting metrics. query_index.json and denominators.json retain every planned query, including missing and unresolved cases. The source bank reuses four inspected parents. Selection uses validation withheld sources; diagnostic local oracles use calibration labels only. Projection is a sampled-source numerical least-squares result, not a full-operator capacity certificate. Ridge sensitivity uses empirical uncertainty scenarios. NPZ files contain numeric arrays only; load with allow_pickle=False. Relative artifact paths support export. Timing includes fresh setup per source; raw paired rounds are retained. Native sampled RSS is worker-level, not method-specific peak memory. No new endpoint, GPU, rollout, novelty or matched-tolerance superiority claim is supported by completion. See docs/RESPONSE_PRECONDITIONER_R7_DESIGN.md and docs/RESPONSE_PRECONDITIONER_RUNBOOK.md for definitions and gates.

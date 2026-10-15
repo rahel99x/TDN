@@ -1,19 +1,62 @@
 # R7 design memo: distinguish representation, conditioning and cost
 
-Status: **prospective design, no new numerical evidence collected**. The
+Status: **implemented and CPU verified; native scientific execution pending**.
+The [R7 verification receipt](../results/response-preconditioner-r7-verification-20261015/README.md) retains 298 required passes and 53 overlapping Raven
+compatibility passes; its 12-query unit fixture is not the 192-query study. The
 [independent review](../results/native-response-preconditioner-2936/README.md)
 accepts native job 2936 at `261365b`; that acceptance establishes the revised
-implementation, not scientific promotion. This is not yet a fully frozen or
-executable R7 protocol: the source roster, exact source seed/family list, work
-caps, timing design and decision requirements still require implementation and
-prospective sealing.
+implementation, not scientific promotion. The R7 workload is now specified in
+[`r7_protocol.py`](../tdn/analysis/response_preconditioner/r7_protocol.py), schema
+`tdn.response_preconditioner.r7.v1`. Native preparation seals this protocol
+together with source, software and profile before any reference acquisition.
 The historical Tangent Response A PASS / B STOP and the inspected four-parent
-implementation bank remain unchanged. The complete bounded R7 protocol must be
-frozen, implemented and verified before native numerical expansion. This memo
-is a recommendation for that protocol, not an executable launch contract.
+implementation bank remain unchanged. The native worker requires its complete
+implementation verifier to pass in the same attempt before opening the bounded
+study. This document records the implemented choices and remaining evidence
+gates; completion alone does not satisfy a scientific gate.
 Use the [standing research program](TDN_RESEARCH_PROGRAM.md) as the maintained
-entry point; the current [runbook](RESPONSE_PRECONDITIONER_RUNBOOK.md) runs only
-implementation verification and the old tiny smoke, not this proposed study.
+entry point and the [R7 runbook](RESPONSE_PRECONDITIONER_RUNBOOK.md#r7-bounded-identification-through-native-raven)
+for the terminal-safe native launch command and portable artifact inventory.
+
+## Frozen implementation choices
+
+| Contract | Implemented R7 v1 choice |
+| --- | --- |
+| Parents and target | Original four inspected parents, seeds 2026101501–2026101504 in the same 2/1/1 split; periodic 5-by-5 same-grid FD on unit lengths |
+| Contexts and queries | Six intervals below for each parent; four calibration plus four withheld sources per context; 24 contexts and at most 192 source queries |
+| Calibration source stream | `SeedSequence([parent_seed, context_index, 701])`; four independent dense normal sources |
+| Withheld source stream | `SeedSequence([parent_seed, context_index, 702])`; dense normal, low-frequency cosine, high-frequency cosine, constant |
+| Source normalization | Unit physical RMS; cosine probes are `cos(2*pi*(x+y)+phase)` and `cos(4*pi*(x+y)+phase)` on the nodal grid |
+| Global candidates | Initialization and ridge values `1e-10`, `1e-6`; equal parent mass and equal context/source/cell mass; action-only validation selection |
+| Local candidates | One numerical-subspace SVD projection and both induced positive ridges; no diagnostic local-ridge selection; hypothetical training-equivalent context mass `pi_q=1/12` |
+| Reference labels | Independently implemented DOP853 `U` and `G`, checked against refined Lawson on the original anchor and absolute interval; separate RMS and maximum acceptance at `1e-10` |
+| Reference caps | Lawson refinement levels 4/8/16/32/64/128/256; independent tolerance `1e-12`, at most 4,096 RHS calls per mode; a shared three-second source-query allowance |
+| Total query work scope | One query includes both `U` and `G`: at most 1,016 Lawson steps and 8,192 independent RHS calls; rejected/missing cases retain denominator weight |
+| Correction resolution | Signal RMS must exceed ten times its estimated reference uncertainty; near-null signals stay unresolved |
+| Perturbations | Leading normalized-prediction gain direction, three fixed random directions from seed 2026101507, and actual independent-minus-refined calibration differences |
+| Classical actions | Ordered products with 1/2/4/8 panels and fixed-work Lawson with 2/4/8 steps |
+| Complete timing | Six diagnostic contexts; four withheld sources per bundle; one first call, one warmup and five randomized paired rounds, seed 2026101508 plus context index; one numerical thread |
+| Reuse and timing cap | Fresh path/setup per source, sequential stacking included, no cross-source cache; at most 1,344 timed complete source calls |
+| Resources | Actual native Raven/Slurm, 4 CPUs, 8 GiB, 20-minute allocation; 900-second study budget; no automatic expansion |
+| Decision scope | Descriptive development evidence; no matched-tolerance superiority gate, architecture promotion, GPU claim or fresh confirmation |
+
+The original parent generator still consumes its original two direction draws
+before generating physics, preserving the actual inspected fields and equation
+parameters. R7 sources use the independent streams above. All four parents
+remain previously inspected development fields. The named numerical tolerances,
+seeds and budgets are protocol choices, not post-hoc thresholds. Subsequent
+changes require a new prepared contract and a fresh retained run.
+
+The implemented cost experiment deliberately has no cross-source reuse. It
+answers the complete fresh-action question; a cached or block repeated-source
+engine would require its own implementation, cache contract and measured
+comparison. Explicit counters do not exhaust internal anchor/autograd Fourier
+transforms; complete timing includes their execution. Sampled native RSS is
+worker-level process-tree evidence, not a per-method memory peak. Full-operator
+auditing, BCH coefficient controls, new endpoint or
+trajectory labels, encoder training, nonlinear correction, GPU execution and
+fresh confirmation are deferred. The detailed rationale below distinguishes
+what the current outputs can establish from those later gates.
 
 ## The smallest useful question
 
@@ -77,16 +120,16 @@ penalty and cross-context feasibility; otherwise compare physical action errors
 and report that objectives differ. This extra algebra is optional in the first
 study. The independent local projection already answers the narrower question.
 
-## Bounded cohort and withholding proposal
+## Bounded cohort and withholding
 
-A conservative first R7 development bank can reuse the four inspected parents
-and 5-by-5 FD grid. This prevents a smoke replay from being mislabeled fresh
-confirmation. Reuse the exact two-train/one-validation/one-diagnostic split.
+The first R7 development bank reuses the four inspected parents and 5-by-5 FD
+grid. This prevents a smoke replay from being mislabeled fresh confirmation.
+It retains the exact two-train/one-validation/one-diagnostic split.
 Here "held out" means excluded from the stated fit, not a previously unseen
 parent: all four fields have already been inspected. Results cannot establish
 fresh-population generalization. A future confirmation requires new parents.
 Add source-time coverage without changing physics or extending beyond the
-existing maximum physical time 0.08. Candidate (s,t) contexts are
+existing maximum physical time 0.08. The frozen (s,t) contexts are
 
     (0,.04), (0,.08), (.02,.04), (.02,.06), (.04,.06), (.04,.08).
 
@@ -97,16 +140,15 @@ same original anchor a(q;u0). Reference integrators need an actual nonzero
 initial integration time and z at s; subtracting s while also restarting the
 anchor changes the target.
 
-For each context, predeclare four normalized calibration sources and four
-normalized withheld sources, giving at most 192 full-action source queries.
-Use deterministic, separately hashed streams; normalization and seeds must be
-fixed before teachers. For example, use random dense calibration sources and
-withheld random/low-frequency/high-frequency/constant probes, with categories
-reported separately; no source family may be selected after seeing errors.
-The exact family/seed list, reference caps and resource ceiling belong in the
-frozen machine-readable protocol. A chosen source count is development coverage,
-not a reliability guarantee or universal operator-norm test. Descendants of
-one field remain paired observations, not new independent parents.
+Each context has four normalized calibration sources and four normalized
+withheld sources, giving at most 192 full-action source queries. Deterministic,
+separately seeded streams and normalization are fixed before teachers, as
+specified above. Calibration uses dense random directions; withheld families
+are random/low-frequency/high-frequency/constant, with categories reported
+separately. No source family is selected after seeing errors. A chosen source
+count is development coverage, not a reliability guarantee or universal
+operator-norm test. Descendants of one field remain paired observations, not
+new independent parents.
 
 Access order:
 
@@ -206,9 +248,9 @@ this bounded capacity falsification. The old eight-panel accuracy advantage
 must remain visible whether the new local oracle succeeds or fails.
 Accuracy advantage is not Pareto dominance: in
 the reviewed run the learned actions were faster in single-call observations
-while less accurate. Include predeclared intermediate panel counts where needed
-to resolve the classical work-precision frontier, without claiming matched-cost
-superiority from those unrepeated observations.
+while less accurate. R7 v1 fixes 1/2/4/8 panels; adding intermediate panel counts
+to refine that frontier requires a later frozen comparison. Do not claim
+matched-cost superiority from the earlier unrepeated observations.
 
 Charge complete path/derivative construction, all potential quadrature calls,
 feature construction, stencils, heat actions, output assembly, and all precision
@@ -284,7 +326,42 @@ CSV and allow_pickle=False NPZ, plus readable terms and decision reasons. Raven
 resource telemetry must be separate from science metrics. Any automated pass
 should mean the stated contract completed, not that novelty or utility passed.
 
+The executable inventory is in the [runbook](RESPONSE_PRECONDITIONER_RUNBOOK.md#r7-measurements-and-outputs).
+`query_index.json` and `denominators.json` retain all reference-query outcomes;
+`evaluation_denominators.json` separately retains failed or missing method and
+timing observations. `timing_records.json` persists individual observations
+even if a later round stops. `work_precision.json`/`.csv` joins each completed
+context's withheld accuracy with the identical method's complete bundle cost,
+without selecting a new threshold or asserting superiority.
+
 ## Term guide
+
+The [dated architecture proposal](TDN_ARCHITECTURE_PROPOSAL_20261015.md) retains
+the broader mathematical legend. In the R7 protocol and exported records:
+
+| Term or symbol | Meaning here |
+| --- | --- |
+| `q`, context | Original parent state, equation, grid, anchor and absolute interval `(s,t)` defining one fixed response operator |
+| `z`, source | Input direction acted on by the response; it is not the parent state or a fitting coefficient |
+| `U z` | Full spatially varying linearized response along the fixed anchor, estimated by independent/refined numerical references |
+| `G z` | Matched spatial-mean-potential response on that same anchor and interval |
+| `P z` | Two-panel ordered classical response used as the learned model's base |
+| `U-P`, `U-G` | Fitted remainder and spatial-feedback response, respectively; their signal sizes and uncertainty differ |
+| `B_j`, `c_j` | One of the five fixed operator branches and its source-shared scalar coefficient; five coefficients do not imply a rank-five spatial operator |
+| `eta`, `W` | Eight source-independent context features and the deployable 5-by-8 weight matrix, with local coefficients `c=W eta` |
+| `lambda`, `lambda_c`, `pi_q` | Global ridge penalty, induced local penalty and context data mass; `lambda_c=lambda/(pi_q*||eta||²)` |
+| Calibration | Source labels permitted to fit the stated global or context-local coefficients |
+| Withheld | Sources excluded from that coefficient fit; validation withheld labels still select the global candidate and therefore are not confirmation |
+| Reference/teacher | Numerically refined target with an independent cross-check; agreement estimates uncertainty rather than proving exactness |
+| FD / FP64 | Finite-difference spatial target / 64-bit floating-point arithmetic; neither implies a continuum or rounding certificate |
+| RMS / maximum | Root mean square under normalized physical cell mass / largest absolute nodal error |
+| Signed mean / centered RMS | Mean error including its sign / RMS after subtracting that mean; these separate uniform bias from spatial error |
+| SVD / QR / TSVD | Singular-value decomposition / orthogonal-triangular factorization / truncated SVD; the local projection declares its numerical cutoff |
+| Lawson / DOP853 | An exponential integrating-factor method using RK4 stages / an independently implemented adaptive explicit Runge–Kutta reference solver |
+| RHS | Right-hand-side evaluation performed by a reference integrator; the cap counts attempted evaluations |
+| `S`, gain | Linear map from weighted calibration-label changes to coefficients, and its norm or the norm after mapping to normalized withheld predictions |
+| RSS | Resident set size sampled from worker processes; summed values can double-count shared pages and do not establish method-specific peak memory |
+| `BOUNDED_DEVELOPMENT` | Execution/evidence scope on reused development fields, with no automatic scientific promotion |
 
 **Context** is the initial state, physics, geometry, anchor and time interval
 that define one operator. **Source/forcing direction** is the vector z acted

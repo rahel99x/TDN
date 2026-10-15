@@ -1,0 +1,2750 @@
+[
+  {
+    "method": "training_design",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "train-000-2026101501-context-00-calibration-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "train-000-2026101501-context-00-calibration-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "train-000-2026101501-context-00-withheld-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "train-000-2026101501-context-00-withheld-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "validation-000-2026101503-context-00-calibration-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "validation-000-2026101503-context-00-calibration-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "validation-000-2026101503-context-00-withheld-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "validation-000-2026101503-context-00-withheld-01",
+    "work": {}
+  },
+  {
+    "method": "training_design",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "method": "training_design",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {
+      "affine_action_design_elements": 1000,
+      "affine_action_designs": 1,
+      "derivative_path_queries": 1,
+      "feature_neighbor_rolls": 8,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 2,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "offline_design_extractions": 1,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 16,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "temporal_feature_calls": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "diagnostic-000-2026101504-context-00-calibration-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-00",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "ordered_1",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 2,
+      "fresh_path_constructions": 1,
+      "heat_actions": 1,
+      "path_anchor_evaluations": 2,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 2,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_2",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 4,
+      "fresh_path_constructions": 1,
+      "heat_actions": 2,
+      "path_anchor_evaluations": 4,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 4,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_4",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 8,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "path_anchor_evaluations": 8,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 8,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "ordered_8",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {
+      "fft_transforms": 16,
+      "fresh_path_constructions": 1,
+      "heat_actions": 8,
+      "path_anchor_evaluations": 16,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 0,
+      "path_mean_queries": 0,
+      "path_path_queries": 16,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 0,
+      "potential_path_queries": 16
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_2",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 28,
+      "integration_heat_actions": 14,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 8,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 8,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 8,
+      "steps": 2
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_4",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 56,
+      "integration_heat_actions": 28,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 16,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 16,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 16,
+      "steps": 4
+    }
+  },
+  {
+    "error": null,
+    "method": "lawson_8",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {
+      "fresh_original_anchor": true,
+      "gradient_contract": "Complete fresh path; no detached cache",
+      "incomplete_counters": "Anchor/autograd FFT internals; end-to-end timing required",
+      "integration_fft_transforms": 112,
+      "integration_heat_actions": 56,
+      "method": "fixed_Lawson_RK4",
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 32,
+        "cache_hits": 0,
+        "cached_nodes": 0,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 32,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "rhs_evaluations": 32,
+      "steps": 8
+    }
+  },
+  {
+    "error": null,
+    "method": "fixed_feature_fitted",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {
+      "derivative_path_queries": 1,
+      "effective_readout_assemblies": 1,
+      "effective_readout_values": 5,
+      "feature_neighbor_rolls": 4,
+      "fft_transforms": 8,
+      "fixed_feature_encodings": 1,
+      "fresh_path_constructions": 1,
+      "heat_actions": 4,
+      "laplacian_actions": 7,
+      "path_anchor_evaluations": 5,
+      "path_cache_hits": 0,
+      "path_cached_nodes": 0,
+      "path_derivative_evaluations": 1,
+      "path_mean_queries": 0,
+      "path_path_queries": 5,
+      "path_reaction_substeps": 8,
+      "path_residual_evaluations": 1,
+      "potential_path_queries": 5,
+      "readout_assemblies": 1,
+      "streamed_branch_accumulations": 5,
+      "streamed_response_actions": 1,
+      "temporal_feature_calls": 1
+    }
+  },
+  {
+    "error": null,
+    "method": "projection",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-10",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {}
+  },
+  {
+    "error": null,
+    "method": "local_ridge_1e-06",
+    "query_id": "diagnostic-000-2026101504-context-00-withheld-01",
+    "work": {}
+  }
+]

@@ -103,7 +103,7 @@ Update this table from actual source and receipts, never from the intended plan.
 | R4 | Independent cubic finite-grid residual audit | Implemented, CPU verified | Exact Bernstein enclosure and outward bound; one panel, at most 64 spatial DOF |
 | R5 | Bounded CPU verifier and tiny fit workflow | Implemented, CPU verified | Fresh output roots, retained failures, source hashes and held-out diagnostics |
 | R6 | Raven native CPU verification wrapper | Native CPU verified at `261365b` | Job 2936: exact 202/202 checks, source/protocol integrity and smoke completed |
-| R7 | Representation at fixed complete cost | Scientific study gated; bounded repair native CPU verified | Prospective identification design below; executable source/coverage/cost protocol still required |
+| R7 | Representation at fixed complete cost | Implemented, CPU verified; native study pending | [R7 verification receipt](../results/response-preconditioner-r7-verification-20261015/README.md): 298 exact required checks and 53 overlapping Raven compatibility checks; 192-query native study remains pending |
 | R8 | Learned multiscale encoder / variable projection | Proposed, scientifically gated | R7 capacity and stable fitting evidence |
 | R9 | Second nonlinear correction or inexact Newton | Proposed, scientifically gated | Measured nonlinear remainder and charged causal work |
 | R10 | Adaptive rollout/controller and derivative task | Proposed, scientifically gated | Whole-time accuracy, schedule derivative contract and independent task checks |
@@ -127,8 +127,9 @@ Endpoint differences from initialization were below reference uncertainty.
 The selected augmented system's condition number was approximately 4.77e10;
 a small objective gradient does not establish coefficient identifiability.
 Two tiny cubic-panel upper bounds were obtained, with no requested tolerance
-acceptance or matched-accuracy speedup established. R7 needs a separately
-frozen, bounded scientific protocol and native prerequisites before expansion.
+acceptance or matched-accuracy speedup established. The separate bounded R7
+protocol below addresses identification; its native prerequisites and results
+remain necessary before any further expansion.
 
 The [bounded repair protocol](RESPONSE_PRECONDITIONER_REPAIR_PROTOCOL_20261015.md)
 keeps the original objective, ridge menu, selection and four development
@@ -137,10 +138,12 @@ reduces augmented condition from 4.77e10 to 93.8 at the selected ridge without
 changing original rank 25/40. Predictions change by at most 1.14e-13 RMS on
 the retained queries. This is a numerical repair, not new scientific evidence.
 The combined tiny-bank loss is action-dominated; endpoint signals are below
-reference uncertainty. A future R7 design must resolve nonzero source-time
-coverage, basis-versus-coefficient identification and complete repeated costs
-before a learned encoder is justified. Independent per-state oracle and
-classical-control derivations remain proposals, not implemented competitors.
+reference uncertainty. R7 must assess nonzero source-time coverage,
+basis-versus-coefficient identification and complete repeated costs
+before a learned encoder is justified. Independent per-context projection/ridge
+oracles and fixed-step Lawson action controls are implemented by the separate
+R7 protocol below. Their scientific comparison remains pending; BCH coefficient
+derivations remain deferred.
 The [repair verification receipt](../results/response-preconditioner-repair-20261015/README.md)
 records 202 mandatory CPU passes, 33 overlapping Raven compatibility passes
 and the completed 24-reference/82-metric development replay. Native job 2936
@@ -157,14 +160,42 @@ accurate. This is neither a matched-tolerance speedup nor classical Pareto
 dominance. The combined validation loss is effectively all action error, so
 increasing endpoint weights would amplify unresolved labels in this fixture.
 
-The next eligible implementation is the [R7 identification design](RESPONSE_PRECONDITIONER_R7_DESIGN.md):
-test source-independent five-coefficient oracles at nonzero source times,
-withhold source directions, separate the global readout from representation
-capacity, assess reference-sized label perturbations and compare complete
-classical costs. A calibration oracle is not a deployable competitor; its
-failure alone does not establish a full-operator representation limit. This
-design is proposed, not a frozen executable scientific protocol. No further
-repeat of the unchanged implementation smoke is required by this review.
+The [R7 identification design](RESPONSE_PRECONDITIONER_R7_DESIGN.md) now has a
+separate executable [protocol](../tdn/analysis/response_preconditioner/r7_protocol.py)
+(`tdn.response_preconditioner.r7.v1`) and native Raven launcher. The [R7 verification receipt](../results/response-preconditioner-r7-verification-20261015/README.md) records 298 required CPU passes and 53 overlapping Raven
+compatibility passes. Native scientific execution remains pending.
+The workflow preserves the inspected two-training/one-validation/one-diagnostic
+parent split on the 5-by-5 FD grid. Six absolute-time intervals per parent and
+four calibration/four withheld sources per interval give 24 contexts and at
+most 192 reference queries. Nonzero source times use the original anchor,
+without restarting the path from its intermediate state.
+
+R7 fits the deployable global readout on training calibration sources, selects
+on withheld validation directions, then seals it before diagnostic truth.
+Each context separately receives a source-shared unregularized five-branch
+projection and both predeclared positive-ridge oracles. The induced local
+penalty accounts for feature norm and the training-equivalent context mass;
+independent oracles relax the global coefficient-map constraints. They remain
+offline label-informed diagnostics. Calibration fit quality alone establishes
+neither withheld-source accuracy nor a full-operator representation limit.
+
+Sensitivity uses weighted reference-sized label perturbations, a leading
+prediction-gain direction, fixed seeded directions, and actual independent
+reference differences. The estimated uncertainty ball is not a certificate.
+Complete diagnostic action costs compare the sealed model against ordered
+1/2/4/8-panel and fixed 2/4/8-step Lawson controls in five randomized paired
+rounds. Every source rebuilds its path and features; this measures a no-reuse
+bundle cost, not amortized or vectorized throughput. Raw failures and planned
+denominators remain portable evidence.
+
+The native study is bounded to 4 CPUs, 8 GiB and 20 minutes, with a 900-second
+study budget and no automatic successor. It follows mandatory verification
+within the same source-bound Raven attempt. The first R7 output is descriptive
+work-precision evidence: no superiority threshold or matched-tolerance speedup
+gate has been defined. Full-operator auditing, independently derived BCH
+controls, new endpoints/rollouts, encoders, nonlinear corrections, GPU work and
+fresh confirmation remain deferred. No repeat of the unchanged implementation
+smoke is required by the native repair review.
 
 ### Source interfaces
 
@@ -175,6 +206,11 @@ repeat of the unchanged implementation smoke is required by this review.
 | [fitting.py](../tdn/analysis/response_preconditioner/fitting.py) | `fit_parent_balanced_ridge`: stable affine coefficient solve |
 | [audit.py](../tdn/analysis/response_preconditioner/audit.py) | `audit_cubic_fd_panel`: independent whole-panel residual upper bound |
 | [workflow.py](../tdn/analysis/response_preconditioner/workflow.py) | Frozen implementation-only protocol, verifier, fit and artifacts |
+| [r7_protocol.py](../tdn/analysis/response_preconditioner/r7_protocol.py) | Bounded development cohort, access order, source families, reference/work caps and timing contract |
+| [r7_workflow.py](../tdn/analysis/response_preconditioner/r7_workflow.py) | Mandatory R7 verifier and separately authorized native identification study |
+| [r7_fitting.py](../tdn/analysis/response_preconditioner/r7_fitting.py) | Sampled projection, correctly induced local ridge and label-to-prediction sensitivity |
+| [r7_references.py](../tdn/analysis/response_preconditioner/r7_references.py) | Original-anchor absolute-time references and fixed-work Lawson actions |
+| [r7_actions.py](../tdn/analysis/response_preconditioner/r7_actions.py) | Exact five-branch extraction and complete paired action timing |
 
 Use the runbook's wrappers for reproducible execution. The full derivation,
 baseline ladder, term legend and prior-art boundaries remain in the dated
@@ -189,9 +225,12 @@ residual enclosure and exact scope, initialization versus selected model,
 operation counts, measured timing scope, and all failures/missing results.
 
 Training parent weights and normalization are fixed before fitting. Validation
-selects among declared choices; diagnostic data never fit features, weights or
-hyperparameters. Paired descendants are not independent parents. Reference
-refinement agreement is an estimate, not a certificate.
+selects among declared choices; diagnostic data never fit deployed features,
+weights or hyperparameters. R7's separately labelled offline local oracles may
+fit diagnostic calibration directions under their frozen contract, without
+altering the sealed global model or seeing diagnostic withheld targets.
+Paired descendants are not independent parents. Reference refinement agreement
+is an estimate, not a certificate.
 
 Compare against bare Strang, the ordered-response-corrected initialization,
 and appropriately accurate classical controls. Eventually compare the fastest
@@ -227,6 +266,7 @@ finishes successfully.
 | 2026-10-15 | Accept native job 2936 as verification of the bounded repair | 202 exact expected tests, frozen v2 protocols, 24 references and 82 metrics pass independent receipt checks; no scientific promotion |
 | 2026-10-15 | Separate endpoint utility from the response-engine question | Fresh classical endpoint has no resolved accuracy disadvantage and less observed work; action accuracy/cost remains a tradeoff requiring repeated matched-tolerance comparison |
 | 2026-10-15 | Prepare R7 identification before adding an encoder | Distinguish sampled-source projection, regularization, coefficient-map prediction and full-operator capacity; retain explicit prospective scope |
+| 2026-10-15 | Implement the bounded R7 identification contract and native verifier → study launcher | Reuse four inspected parents with frozen source withholding and nonzero start times; retain local/global objective distinctions, uncertainty scenarios and complete no-reuse costs. 298 required CPU checks and 53 overlapping Raven compatibility checks pass in the retained receipt; native science remains pending and no architecture or utility gate is promoted |
 
 ## Maintenance rule
 

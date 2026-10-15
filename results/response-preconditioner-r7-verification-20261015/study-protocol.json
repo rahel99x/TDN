@@ -1,0 +1,192 @@
+{
+  "anchor": "original smooth df AnchorPath(u0), evaluated at absolute time; never restarted at s",
+  "budget": {
+    "automatic_expansion": false,
+    "native_cpus": 4,
+    "native_memory_gib": 8,
+    "native_only": true,
+    "native_wall_minutes": 20,
+    "study_seconds": 900.0
+  },
+  "calibration_families": [
+    "dense_random",
+    "dense_random",
+    "dense_random",
+    "dense_random"
+  ],
+  "calibration_sources": 4,
+  "cohort": "four previously inspected development parents; not fresh confirmation",
+  "command": "study",
+  "decision": "BOUNDED_DEVELOPMENT",
+  "deferred": [
+    "full operator audit",
+    "BCH coefficients pending independent derivation",
+    "ETDRK4/Radau/BDF",
+    "learned encoder",
+    "nonlinear correction",
+    "rollout",
+    "GPU",
+    "fresh confirmation"
+  ],
+  "device": "cpu",
+  "endpoint_scope": "no new endpoint/trajectory labels or claims; native 2936 endpoint benefit remains unresolved",
+  "grid": [
+    5,
+    5
+  ],
+  "historical_gate": "B STOP unchanged",
+  "intervals": [
+    [
+      0.0,
+      0.04
+    ],
+    [
+      0.0,
+      0.08
+    ],
+    [
+      0.02,
+      0.04
+    ],
+    [
+      0.02,
+      0.06
+    ],
+    [
+      0.04,
+      0.06
+    ],
+    [
+      0.04,
+      0.08
+    ]
+  ],
+  "lawson_steps": [
+    2,
+    4,
+    8
+  ],
+  "lengths": [
+    1.0,
+    1.0
+  ],
+  "local_context_weight": 0.08333333333333333,
+  "local_oracles": "five coefficients shared across calibration sources per context; SVD projection and both positive ridges; no local ridge selection",
+  "local_penalty": "lambda_c=lambda/(pi_q*||eta||^2); pi_q=1/12 training-equivalent context weight, independent fits relax W coupling",
+  "mass": "uniform cell mass / domain volume; RMS^2 = mean squares",
+  "max_reference_queries": 192,
+  "model_precision": "FP64 from actual FP32 initial states",
+  "ordered_panels": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "parent_generator": "implementation.v2 parents with source_directions_per_parent=2; preserve physics RNG draws",
+  "parent_seeds": {
+    "diagnostic": [
+      2026101504
+    ],
+    "train": [
+      2026101501,
+      2026101502
+    ],
+    "validation": [
+      2026101503
+    ]
+  },
+  "projection_rank": "eps64 * max(rows, columns) * largest singular value; discarded singular values reported, sampled projection only",
+  "reference": {
+    "independent_max_rhs_calls": 4096,
+    "independent_tolerance": 1e-12,
+    "initial_steps": 4,
+    "max_seconds_per_query": 3.0,
+    "max_steps": 256,
+    "tolerance": 1e-10
+  },
+  "reference_caps": "per query: at most 2*(4+8+16+32+64+128+256)=1016 Lawson steps and 8192 DOP853 RHS calls, shared 3s deadline",
+  "reference_count": 192,
+  "reference_query_definition": "one source/context query contains refined U and G plus independent DOP853 U and G",
+  "reference_resolution_multiple": 10.0,
+  "ridge_menu": [
+    1e-10,
+    1e-06
+  ],
+  "schema": "tdn.response_preconditioner.r7.v1",
+  "scientific_promotion": false,
+  "selection": "minimum physical action MSE on validation withheld directions; initialization first breaks exact ties",
+  "sensitivity": {
+    "fit_scope": "calibration or training labels only; withheld truth never used in sensitivity maps",
+    "perturbations": [
+      "leading_gain_direction",
+      "three_fixed_seed_random",
+      "independent_minus_refined"
+    ],
+    "random_trials": 3,
+    "seed": 2026101507,
+    "uncertainty": "aggregate weighted L2 ball from per-source estimated maximum uncertainty repeated over cells; empirical scenario, not a certificate"
+  },
+  "source_definition": "independent normal dense; cos(2pi*(x+y)+phase), cos(4pi*(x+y)+phase), ones; each unit physical RMS",
+  "source_directions_per_parent": 2,
+  "source_family_selection": "fixed before all labels; directions are paired descendants, not independent parents",
+  "source_seed_rule": "SeedSequence([parent_seed, context_index, 701]) for calibration; 702 for withheld",
+  "target": "fd_same_grid",
+  "timing": {
+    "cold": "first measured bundle after accuracy acquisition; process already warm, not process startup",
+    "max_complete_source_calls": 1344,
+    "memory": "actual native worker process-tree sampled RSS; not method-specific peak memory",
+    "order": "seeded randomized paired order each round; raw observations and min/median/max, no confidence claim",
+    "rounds": 5,
+    "scope": "diagnostic contexts only; four withheld sources per complete bundle; fresh path/setup for every source; no cross-source cache",
+    "seed": 2026101508,
+    "threads": 1,
+    "warmup": 1
+  },
+  "training": "action-only equal parent mass, equal context/source/cell mass within parent; train calibration only",
+  "utility_gate": "NOT_DEFINED: report work-precision curves, no superiority or matched-tolerance speedup claim",
+  "verify_tests": [
+    "tests/test_response_preconditioner_numerics.py",
+    "tests/test_response_preconditioner_model.py",
+    "tests/test_response_preconditioner_fitting.py",
+    "tests/test_response_preconditioner_audit.py",
+    "tests/test_response_preconditioner_workflow.py",
+    "tests/test_response_preconditioner_launch.py::test_shell_help_and_rejects_unallocated_execution",
+    "tests/test_response_preconditioner_launch.py::test_native_script_syntax",
+    "tests/test_response_preconditioner_launch.py::test_distribution_discovery_aliases_preserve_inventory",
+    "tests/test_response_preconditioner_launch.py::test_distribution_distinct_metadata_rejected",
+    "tests/test_response_preconditioner_launch.py::test_distribution_inconsistent_version_same_location_rejected",
+    "tests/test_response_preconditioner_launch.py::test_distribution_unverified_duplicate_location_rejected",
+    "tests/test_response_preconditioner_launch.py::test_prepare_exclusive_identity_and_changed_source_detection",
+    "tests/test_response_preconditioner_launch.py::test_source_identity_ignores_outputs_but_tracks_code_and_recipe",
+    "tests/test_response_preconditioner_launch.py::test_allocation_resource_expansion_rejected",
+    "tests/test_response_preconditioner_launch.py::test_shared_venv_lock_rejects_setup_writer",
+    "tests/test_response_preconditioner_launch.py::test_metrics_preserve_split_method_and_task_without_aggregate",
+    "tests/test_response_preconditioner_launch.py::test_stage_registers_exact_verification_xml_and_binary_artifacts",
+    "tests/test_response_preconditioner_launch.py::test_stage_success_cannot_promote_science_or_hide_failed_summary",
+    "tests/test_response_preconditioner_launch.py::test_failed_preflight_is_retained_without_child_work",
+    "tests/test_response_preconditioner_launch.py::test_execution_keeps_stdout_stderr_and_child_exit",
+    "tests/test_tangent_response_numerics.py",
+    "tests/test_response_numerics.py",
+    "tests/test_response_preconditioner_r7_actions.py",
+    "tests/test_response_preconditioner_r7_references.py",
+    "tests/test_response_preconditioner_r7_fitting.py",
+    "tests/test_response_preconditioner_r7_workflow.py",
+    "tests/test_response_preconditioner_r7_launch.py::test_shell_contract_and_non_native_rejection",
+    "tests/test_response_preconditioner_r7_launch.py::test_cli_study_rejects_standalone_and_gpu_before_science",
+    "tests/test_response_preconditioner_r7_launch.py::test_recipe_has_only_r7_science_and_cpu_memory",
+    "tests/test_response_preconditioner_r7_launch.py::test_r7_rejects_resource_expansion",
+    "tests/test_response_preconditioner_r7_launch.py::test_prepare_separate_frozen_protocol_and_modes",
+    "tests/test_response_preconditioner_r7_launch.py::test_recursive_artifacts_preserve_binary_and_reject_symlinks",
+    "tests/test_response_preconditioner_r7_launch.py::test_stage_preserves_failed_outputs_and_rejects_promotion",
+    "tests/test_response_preconditioner_r7_launch.py::test_metrics_keep_task_families_and_unresolved_rows",
+    "tests/test_response_preconditioner_r7_launch.py::test_preflight_failure_never_starts_study_and_is_preserved"
+  ],
+  "withheld_families": [
+    "dense_random",
+    "low_frequency",
+    "high_frequency",
+    "constant"
+  ],
+  "withheld_sources": 4,
+  "zero_candidate": true
+}

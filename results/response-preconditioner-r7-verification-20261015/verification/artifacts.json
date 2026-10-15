@@ -1,0 +1,73 @@
+{
+  "files": [
+    {
+      "bytes": 1021,
+      "path": "README.md",
+      "sha256": "589fea7855c0e0ffecd5760d86cb2a065224d3c0c585514af30d31c6d61603c1"
+    },
+    {
+      "bytes": 127,
+      "path": "checks.json",
+      "sha256": "d27aa8f419d314c7e2863e5f3685d6f6427571bc4cd6b0792d2f8bda9c0711e3"
+    },
+    {
+      "bytes": 32515,
+      "path": "collection.log",
+      "sha256": "376fca4da364258b8c0cc88674161625ab07cffce350c2fc58ef2c061fcd7614"
+    },
+    {
+      "bytes": 3462,
+      "path": "command.json",
+      "sha256": "56d399ac5aef369ecb413d9290c1e4ee76b0146b116e97fb64d0d73416cbe92c"
+    },
+    {
+      "bytes": 33978,
+      "path": "expected_cases.json",
+      "sha256": "48b12a2da3b48c6ee2e475d51e1251bd8f92149b07dc28dad5eb500d80088bc2"
+    },
+    {
+      "bytes": 92,
+      "path": "journal.jsonl",
+      "sha256": "4ef675d9b76712f23de60a03108496cd811d6a1d63849b069bef194465156c9f"
+    },
+    {
+      "bytes": 8077,
+      "path": "protocol.json",
+      "sha256": "3f6592ee296a323ed035f92e7ba4a48274413b99aa16896d3ca470e3cdf993a5"
+    },
+    {
+      "bytes": 383,
+      "path": "software.json",
+      "sha256": "0c5e0cc97828f00afa96b9d4b5c44f920cf7204b8a4d4eb063f5d6a2642f95c4"
+    },
+    {
+      "bytes": 37195,
+      "path": "source.json",
+      "sha256": "c87e7bcea30c9246cdb3edecf4a9277561953a854e43c408a482f44135399a94"
+    },
+    {
+      "bytes": 37195,
+      "path": "source_after.json",
+      "sha256": "c87e7bcea30c9246cdb3edecf4a9277561953a854e43c408a482f44135399a94"
+    },
+    {
+      "bytes": 724,
+      "path": "summary.json",
+      "sha256": "73ee4078143d94ba9fc83ba6ed5978103163c9fa8a33b6676eb834c2f2a91177"
+    },
+    {
+      "bytes": 531,
+      "path": "verification.log",
+      "sha256": "f298a5ca31850fa9fb2b8c07bc331ecc9df9cc2a2fb1ee1c855455d646a5dde7"
+    },
+    {
+      "bytes": 44656,
+      "path": "verification.xml",
+      "sha256": "5b959eba86b473a213f55ae31181477d3a836e5fdb1ebb82005c0eaafad48bc0"
+    }
+  ],
+  "schema": "tdn.response_preconditioner.r7.v1",
+  "self_excluded": "artifacts.json",
+  "source_fingerprint": "abe17b47d43b50d0ca8fb797a4faf76dce8307898ff60835d00c0f985061df9c",
+  "status": "COMPLETED"
+}

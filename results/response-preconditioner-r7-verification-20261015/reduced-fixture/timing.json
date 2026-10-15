@@ -1,0 +1,245 @@
+[
+  {
+    "cold_scope": "first benchmark invocation, not a new process or guaranteed cold cache",
+    "context_id": "diagnostic-000-2026101504-context-00",
+    "cost_scope": "complete sequential source bundle; setup charged independently for every source; no cross-source reuse",
+    "device": "cpu",
+    "expected_calls": 16,
+    "failed_calls": 0,
+    "gradient_contract": "grad enabled; fresh original AnchorPath create_graph=True per source",
+    "methods": [
+      "ordered_1",
+      "ordered_2",
+      "ordered_4",
+      "ordered_8",
+      "fixed_feature_fitted",
+      "lawson_2",
+      "lawson_4",
+      "lawson_8"
+    ],
+    "oracle_timing": "excluded; teacher acquisition and fitting are offline costs",
+    "peak_memory": "not measured by this helper; inspect worker telemetry separately",
+    "records": [
+      {
+        "method": "lawson_8",
+        "output_sha256": "afaac47cae5c0be69dc498cf9f7e423134c38a5c85eb4c9b1f6f41886e48ad7e",
+        "phase": "cold",
+        "position": 0,
+        "round": 0,
+        "seconds": 0.05075266500352882,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_1",
+        "output_sha256": "c83b7b4a5e283fef0d0be6d49092ae74fff041b302a2863505756288fb710b65",
+        "phase": "cold",
+        "position": 1,
+        "round": 0,
+        "seconds": 0.0042237779998686165,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_2",
+        "output_sha256": "78a148a63cedf17e96ea65faaa6a27c4063177b4f73fbffe7750551290113c4b",
+        "phase": "cold",
+        "position": 2,
+        "round": 0,
+        "seconds": 0.009853670009761117,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_4",
+        "output_sha256": "4cb0c91bdecc726cac47507a7ab5fb4b458749bf989db252277fb0e54874d81f",
+        "phase": "cold",
+        "position": 3,
+        "round": 0,
+        "seconds": 0.012188901993795298,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_2",
+        "output_sha256": "5a12763c0939bd42afcfd6232749d90bff437d7d7e5ccba0c76f5f428a17479a",
+        "phase": "cold",
+        "position": 4,
+        "round": 0,
+        "seconds": 0.012872420003986917,
+        "status": "PASS"
+      },
+      {
+        "method": "fixed_feature_fitted",
+        "output_sha256": "beedc1f69e61b2d8c9b3c2234f187077fbdd78435fcd9f264a39107291584964",
+        "phase": "cold",
+        "position": 5,
+        "round": 0,
+        "seconds": 0.013438872992992401,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_4",
+        "output_sha256": "a8d83944f391a5b16f3b1b01bd8eaec606a70b8d86f991c7cc1fe340636b4964",
+        "phase": "cold",
+        "position": 6,
+        "round": 0,
+        "seconds": 0.027335845996276475,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_8",
+        "output_sha256": "4971729136e11692089bdf733dcfc8461e45720e2a0c10938da534b095162813",
+        "phase": "cold",
+        "position": 7,
+        "round": 0,
+        "seconds": 0.022724117996403947,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_1",
+        "output_sha256": "c83b7b4a5e283fef0d0be6d49092ae74fff041b302a2863505756288fb710b65",
+        "phase": "paired",
+        "position": 0,
+        "round": 0,
+        "seconds": 0.0030096279951976612,
+        "status": "PASS"
+      },
+      {
+        "method": "fixed_feature_fitted",
+        "output_sha256": "beedc1f69e61b2d8c9b3c2234f187077fbdd78435fcd9f264a39107291584964",
+        "phase": "paired",
+        "position": 1,
+        "round": 0,
+        "seconds": 0.01684139299322851,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_8",
+        "output_sha256": "4971729136e11692089bdf733dcfc8461e45720e2a0c10938da534b095162813",
+        "phase": "paired",
+        "position": 2,
+        "round": 0,
+        "seconds": 0.028707126999506727,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_4",
+        "output_sha256": "a8d83944f391a5b16f3b1b01bd8eaec606a70b8d86f991c7cc1fe340636b4964",
+        "phase": "paired",
+        "position": 3,
+        "round": 0,
+        "seconds": 0.030218956992030144,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_8",
+        "output_sha256": "afaac47cae5c0be69dc498cf9f7e423134c38a5c85eb4c9b1f6f41886e48ad7e",
+        "phase": "paired",
+        "position": 4,
+        "round": 0,
+        "seconds": 0.05968508101068437,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_4",
+        "output_sha256": "4cb0c91bdecc726cac47507a7ab5fb4b458749bf989db252277fb0e54874d81f",
+        "phase": "paired",
+        "position": 5,
+        "round": 0,
+        "seconds": 0.012494908005464822,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_2",
+        "output_sha256": "78a148a63cedf17e96ea65faaa6a27c4063177b4f73fbffe7750551290113c4b",
+        "phase": "paired",
+        "position": 6,
+        "round": 0,
+        "seconds": 0.00819035699532833,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_2",
+        "output_sha256": "5a12763c0939bd42afcfd6232749d90bff437d7d7e5ccba0c76f5f428a17479a",
+        "phase": "paired",
+        "position": 7,
+        "round": 0,
+        "seconds": 0.016714739002054557,
+        "status": "PASS"
+      }
+    ],
+    "rounds": 1,
+    "schema": "tdn.response_preconditioner.r7.paired_timing.v1",
+    "scientific_promotion": false,
+    "seed": 2026101508,
+    "status": "PASS",
+    "summary": {
+      "fixed_feature_fitted": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.01684139299322851,
+        "median_seconds": 0.01684139299322851,
+        "minimum_seconds": 0.01684139299322851,
+        "passed_rounds": 1
+      },
+      "lawson_2": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.016714739002054557,
+        "median_seconds": 0.016714739002054557,
+        "minimum_seconds": 0.016714739002054557,
+        "passed_rounds": 1
+      },
+      "lawson_4": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.030218956992030144,
+        "median_seconds": 0.030218956992030144,
+        "minimum_seconds": 0.030218956992030144,
+        "passed_rounds": 1
+      },
+      "lawson_8": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.05968508101068437,
+        "median_seconds": 0.05968508101068437,
+        "minimum_seconds": 0.05968508101068437,
+        "passed_rounds": 1
+      },
+      "ordered_1": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.0030096279951976612,
+        "median_seconds": 0.0030096279951976612,
+        "minimum_seconds": 0.0030096279951976612,
+        "passed_rounds": 1
+      },
+      "ordered_2": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.00819035699532833,
+        "median_seconds": 0.00819035699532833,
+        "minimum_seconds": 0.00819035699532833,
+        "passed_rounds": 1
+      },
+      "ordered_4": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.012494908005464822,
+        "median_seconds": 0.012494908005464822,
+        "minimum_seconds": 0.012494908005464822,
+        "passed_rounds": 1
+      },
+      "ordered_8": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.028707126999506727,
+        "median_seconds": 0.028707126999506727,
+        "minimum_seconds": 0.028707126999506727,
+        "passed_rounds": 1
+      }
+    },
+    "timer_exclusions": "output validation/digest and record serialization; one-time resident model loading",
+    "torch_threads": 1,
+    "uncertainty_scope": "raw paired rounds and empirical range; no confidence interval or superiority test",
+    "warmup": 0,
+    "work_counter_scope": "Explicit response heat/FFT/stencil operations and path/feature calls; internal anchor/autograd transforms and actual peak memory are not instrumented. End-to-end CPU timing includes their execution."
+  }
+]

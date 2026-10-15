@@ -1,0 +1,28 @@
+{
+  "schema": "tdn.response_preconditioner.r7.implementation_receipt.v1",
+  "status": "CPU_IMPLEMENTATION_VERIFIED",
+  "source_fingerprint": "abe17b47d43b50d0ca8fb797a4faf76dce8307898ff60835d00c0f985061df9c",
+  "mandatory_checks": 298,
+  "mandatory_failures": 0,
+  "mandatory_errors": 0,
+  "mandatory_skips": 0,
+  "mandatory_duplicates": 0,
+  "compatibility_checks": 53,
+  "counts_overlap": true,
+  "raven_commit": "c34f0892d7bddc685c5af10489ecb114fd6adab6",
+  "native_study_executed": false,
+  "full_192_query_bank_executed": false,
+  "scientific_promotion": false,
+  "reduced_fixture": {
+    "reference_queries": 12,
+    "contexts": 3,
+    "parents": 3,
+    "metrics": 132,
+    "timing_bundles": 16,
+    "scope": "unit fixture only; not R7 scientific results"
+  },
+  "commands": [
+    "PYTHONDONTWRITEBYTECODE=1 TMPDIR=\"$PWD/.runtime/tmp\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python scripts/response_preconditioner_r7.py verify --device cpu --output runs/response-preconditioner-r7-verification-20261015",
+    "PYTHONDONTWRITEBYTECODE=1 TMPDIR=\"$PWD/.runtime/tmp\" OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 TDN_RAVEN_TEST_ROOT=/workspace/Raven .venv/bin/python -m pytest -q tests/test_response_preconditioner_launch.py tests/test_response_preconditioner_r7_launch.py --basetemp=.runtime/r7-raven-compatibility --junitxml=.runtime/r7-raven-compatibility.xml"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "augmented_column_scales": [
+    6.561389038753112e-06,
+    6.442307104795495e-06,
+    6.441017650421359e-06,
+    1.005855107087279e-05,
+    1.0066991737192915e-05
+  ],
+  "augmented_condition_number": 1.9791243031626524,
+  "augmented_singular_values": [
+    1.2642676189913933,
+    1.001259699341237,
+    0.9998247854960264,
+    0.9956853994180065,
+    0.6388015229619919
+  ],
+  "calibration_rows": 50,
+  "certificate": false,
+  "coefficient_count": 5,
+  "coefficient_gain_bound_numerically_consistent": true,
+  "coefficient_gain_exact_arithmetic_upper_bound": 77799.44345862244,
+  "condition_number": 118.19416336505383,
+  "full_column_rank": true,
+  "input_norm": "Euclidean norm after multiplying labels by sqrt(normalized calibration mass)",
+  "numerical_rank": 5,
+  "original_penalty_preserved": true,
+  "output_norm": "sqrt(sum normalized positive physical test-row mass * error^2)",
+  "perturbation_scope": "calibration labels only; withheld targets neither read nor fitted",
+  "random_trials": 3,
+  "rank_convention": "retain singular values strictly greater than rank_rtol*s_max",
+  "rank_rtol": 1.1102230246251565e-14,
+  "rank_rtol_default": "float64_epsilon * max(rows,columns)",
+  "rank_threshold": 1.2163710685226722e-19,
+  "retained_condition_number": 118.19416336505383,
+  "ridge": 4.1303516495141354e-11,
+  "scenarios": [
+    {
+      "coefficient_l2": 1.2911638732362898e-08,
+      "name": "leading_withheld_rms_direction",
+      "prediction_gain_observed": 0.7507751107737425,
+      "rescaled_to_radius": true,
+      "weighted_label_l2": 1.901423455831477e-13,
+      "withheld_prediction_maximum": 3.4911360234095756e-13,
+      "withheld_prediction_rms": 1.4275414056796694e-13,
+      "within_scenario_ball": true
+    },
+    {
+      "coefficient_l2": 1.0764606547116247e-09,
+      "name": "fixed_seed_random_00",
+      "prediction_gain_observed": 0.04593158205488499,
+      "rescaled_to_radius": true,
+      "weighted_label_l2": 1.9014234558314773e-13,
+      "withheld_prediction_maximum": 2.1435045316502554e-14,
+      "withheld_prediction_rms": 8.733538748260648e-15,
+      "within_scenario_ball": true
+    },
+    {
+      "coefficient_l2": 2.6010581573177914e-09,
+      "name": "fixed_seed_random_01",
+      "prediction_gain_observed": 0.08529962211749881,
+      "rescaled_to_radius": true,
+      "weighted_label_l2": 1.901423455831477e-13,
+      "withheld_prediction_maximum": 4.0312594782551647e-14,
+      "withheld_prediction_rms": 1.621907022677737e-14,
+      "within_scenario_ball": true
+    },
+    {
+      "coefficient_l2": 3.614009277006272e-09,
+      "name": "fixed_seed_random_02",
+      "prediction_gain_observed": 0.20916479524509038,
+      "rescaled_to_radius": true,
+      "weighted_label_l2": 1.9014234558314773e-13,
+      "withheld_prediction_maximum": 9.727938817687782e-14,
+      "withheld_prediction_rms": 3.977108478132031e-14,
+      "within_scenario_ball": true
+    },
+    {
+      "coefficient_l2": 1.159095053578185e-10,
+      "name": "independent_reference_difference_unscaled",
+      "prediction_gain_observed": 0.36406140416987265,
+      "rescaled_to_radius": false,
+      "weighted_label_l2": 3.2182824444381538e-15,
+      "withheld_prediction_maximum": 2.886153113629956e-15,
+      "withheld_prediction_rms": 1.1716524257374045e-15,
+      "within_scenario_ball": true
+    }
+  ],
+  "schema": "tdn.response_preconditioner.r7.ridge_sensitivity.v1",
+  "seed": 2026101507,
+  "singular_values": [
+    1.0956096581885918e-05,
+    1.2818112850689984e-06,
+    4.313130456617134e-07,
+    4.1149629677127475e-07,
+    9.269574968813798e-08
+  ],
+  "uncertainty_is_certified": false,
+  "uncertainty_radius": 1.9014234558314773e-13,
+  "uncertainty_radius_source": "l2 norm of sqrt(normalized physical mass)*reference_uncertainty rows",
+  "uncertainty_set": "aggregate weighted calibration-label L2 ball; not per-source error bounds",
+  "unidentified_coefficient_dimensions": 0,
+  "weighted_label_to_coefficient_gain": 67907.06497430097,
+  "weighted_label_to_withheld_rms_gain": 0.7507751107737424,
+  "withheld_rows": 50,
+  "worst_ball_coefficient_l2": 1.2912008615880802e-08,
+  "worst_ball_withheld_rms": 1.4275414056796694e-13
+}

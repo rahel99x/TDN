@@ -1,0 +1,47 @@
+[
+  {
+    "grid": [
+      5,
+      5
+    ],
+    "kappa": 0.00963041674508793,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "parent_id": "train-000-2026101501",
+    "reaction_rate": 2.211138017987378,
+    "seed": 2026101501,
+    "split": "train"
+  },
+  {
+    "grid": [
+      5,
+      5
+    ],
+    "kappa": 0.016358811725199256,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "parent_id": "validation-000-2026101503",
+    "reaction_rate": 1.7209869711089674,
+    "seed": 2026101503,
+    "split": "validation"
+  },
+  {
+    "grid": [
+      5,
+      5
+    ],
+    "kappa": 0.009225876996136109,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "parent_id": "diagnostic-000-2026101504",
+    "reaction_rate": 2.162089544043365,
+    "seed": 2026101504,
+    "split": "diagnostic"
+  }
+]
