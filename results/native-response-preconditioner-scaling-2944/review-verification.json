@@ -1,0 +1,71 @@
+{
+  "limits": [
+    "Independent final Slurm accounting is unavailable.",
+    "Packing prevented the final native aggregate source guard; numerical stage snapshots match.",
+    "Original science metrics were not published to Raven.",
+    "One inspected development cohort; no confirmation, matched-tolerance speedup, GPU readiness or novelty claim."
+  ],
+  "native_exit_code": 2,
+  "native_failure_scope": "Post-study packing inventory write",
+  "native_status": "FAILED",
+  "original_job_id": "2944",
+  "original_source_commit": "7d0c6201ad3ec399568492077066bd359c59829e",
+  "reproduce": "README.md section 10; uses trusted review scripts and retained arrays only",
+  "review_checkout_base_commit": "9aa2050768d7718e01b11fadb24b70c77936e082",
+  "review_date": "2026-10-15",
+  "review_timezone": "America/Los_Angeles",
+  "runtime": {
+    "matplotlib": "3.10.7",
+    "mode": "cloud CPU read-only evidence replay",
+    "numpy": "2.2.6",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.12.14"
+  },
+  "schema": "tdn.native-p1-review-verification.v1",
+  "scientific_work": {
+    "fresh_teacher_solves": 0,
+    "new_fits": 0,
+    "new_native_jobs": 0,
+    "new_timings": 0,
+    "scientific_promotion": false,
+    "uploaded_code_executed": false
+  },
+  "study_status": "COMPLETED",
+  "transport": {
+    "archive_sha256": "caaacb862df0e272763340b69f523e66884c40e32013cd1ec6f0ff46eb89b6fb",
+    "bytes_verified": 320826795,
+    "files_verified": 7757,
+    "index_sha256": "43e44377ffb99f0ac4c056132b551e17736b61f35af26352b1650ec1692480b3",
+    "parts_verified": 3,
+    "status": "PASS",
+    "uploaded_code_executed": false
+  },
+  "verification": {
+    "affine_prediction_replays": 10368,
+    "all_three_replays_on_fresh_extraction_equal_retained_json": true,
+    "extract_rejects_changed_index": true,
+    "extract_rejects_existing_destination": true,
+    "figure_outputs": 6,
+    "figures_visually_inspected": true,
+    "fit_cost_checks": 8201,
+    "git_diff_check": "PASS",
+    "independent_fit_cost_replay": "PASS",
+    "independent_integrity_audit": "PASS",
+    "independent_scientific_replay": "PASS",
+    "native_expected_junit_cases": 388,
+    "native_junit_failures_errors_skips_duplicates": 0,
+    "native_junit_passed": 388,
+    "physical_metric_values_exact": 338688,
+    "readme_bash_syntax": "PASS",
+    "regenerated_figures_unchanged_except_svg_whitespace": true,
+    "relative_markdown_links": "PASS",
+    "science_comparisons": 394857,
+    "trusted_cli_exit_codes": {
+      "cost_fit": 0,
+      "extract": 0,
+      "figures": 0,
+      "integrity": 0,
+      "science": 0
+    }
+  }
+}

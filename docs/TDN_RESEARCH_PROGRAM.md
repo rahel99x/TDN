@@ -43,6 +43,13 @@ and their verification status.
   vary physical-parent count and source-direction count while retaining the
   current architecture and objective. This is new bounded development, not
   an R8 encoder promotion or evidence that a larger bank will succeed.
+- [Native P1 job 2944](../results/native-response-preconditioner-scaling-2944/README.md)
+  completed the numerical study at `7d0c620`: 388 exact checks, 2,688 accepted
+  reference pairs, nine sealed fits, 16,128 exactly replayed metric rows and
+  1,008 complete timing bundles. The wrapper failed afterward during packing;
+  preserve its FAILED status. More physical parents help, but Lawson 2 retains
+  a large accuracy advantage at similar cost. Review now prioritizes the
+  regularization/physical-prior question before further data or architecture.
 
 ## Three products, three cost contracts
 
@@ -114,7 +121,7 @@ Update this table from actual source and receipts, never from the intended plan.
 | R5 | Bounded CPU verifier and tiny fit workflow | Implemented, CPU verified | Fresh output roots, retained failures, source hashes and held-out diagnostics |
 | R6 | Raven native CPU verification wrapper | Native CPU verified at `261365b` | Job 2936: exact 202/202 checks, source/protocol integrity and smoke completed |
 | R7 | Representation at fixed complete cost | Native bounded study reviewed; utility unestablished | [Job 2939 review](../results/native-response-preconditioner-r7-2939/README.md): 298 checks, 192 queries, 2,112 replayed metric rows and 336 timing bundles; sampled-span and identification limits require further bounded audits |
-| P1 | Independent-parent/source-direction scaling | Implemented, CPU verified; native evidence review pending | [Initial receipt](../results/response-preconditioner-scaling-verification-20261016/README.md); [export repair](../results/response-preconditioner-scaling-export-fix-20261016/README.md) passes 404 required checks and 51 overlapping Raven compatibility checks. [Phase 1 design](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md) freezes nine 8/16/32-parent by 2/4/8-direction cells |
+| P1 | Independent-parent/source-direction scaling | Native numerical study reviewed; wrapper packaging FAILED | [Job 2944 review](../results/native-response-preconditioner-scaling-2944/README.md): exact 388 native checks, all references/metrics/timing complete; more parents help, stronger classical control wins near-cost accuracy. [Export repair](../results/response-preconditioner-scaling-export-fix-20261016/README.md) has 404 local required passes, distinct from this native roster. No unchanged rerun needed |
 | R8 | Learned multiscale encoder / variable projection | Proposed, scientifically gated | R7 capacity and stable fitting evidence |
 | R9 | Second nonlinear correction or inexact Newton | Proposed, scientifically gated | Measured nonlinear remainder and charged causal work |
 | R10 | Adaptive rollout/controller and derivative task | Proposed, scientifically gated | Whole-time accuracy, schedule derivative contract and independent task checks |
@@ -299,10 +306,56 @@ attempt. It creates no automatic successor and defines no utility pass.
 Later phases separately propose optimal experimental design, defect-source
 supervision, generalized physical priors, learned stage elimination and
 bounded comparisons that separate these interventions. P1 does not implement
-those changes or preauthorize 64/128-parent expansion. Review its frozen
-provenance, references, nine seals, family coverage, learning curves and costs
-before selecting the next protocol. The dated R7 review and all older
+those changes or preauthorize 64/128-parent expansion. The completed native
+review below informs the next protocol. The dated R7 review and all older
 negative outcomes remain unchanged.
+
+### Native P1 findings and proposed next gate
+
+The [complete review, figures and term legend](../results/native-response-preconditioner-scaling-2944/README.md)
+retain the exact upload and independent provenance, numeric and cost replay.
+The numerical study completed in 448.786 seconds. A 1,232,048-byte compact
+packing inventory exceeded the original 1 MiB writer budget afterward; export
+recovery preserved all evidence and the native FAILED status. Scientific Raven
+series were not published because packing failed first. Numerical before/after
+source snapshots match; the final native aggregate source check was not reached,
+and independent final Slurm accounting remains absent.
+
+At eight directions, 8 → 32 parents improves diagnostic RMS by 17.31%.
+At 32 parents, 2 → 8 directions improves it by only 0.981% for four times the
+training labels. At equal 384-query demand, 32 × 2 beats 8 × 8 by 16.49%.
+These are within-bank descriptive comparisons, with only eight diagnostic
+parents and one nested ordering. All nine designs now have rank 40, but ridge
+shrinkage leaves linear-smoother effective degrees of freedom only 6.60–6.80.
+Every selection chooses the lowest offered ridge, `1e-10`; its penalty is
+59.2–67.6% of the objective. Numerical optimality gaps are negligible compared
+with data loss. This separates solving the objective from choosing its bias.
+
+Largest-fit pooled diagnostic RMS is `1.69111e-7`, versus `1.30447e-6` for
+ordered two, `8.15400e-8` for ordered eight and `2.51812e-10` for Lawson two.
+Lawson two's median paired complete-bundle time is about 1.027 times the
+learned time on the fixed timing subset, while its accuracy is substantially
+better. No matched-tolerance advantage is established. About 94.6% of learned
+diagnostic MSE occurs on the longest interval. Learned errors are well above
+estimated reference uncertainty; exact Lawson 4/8 gains near that uncertainty
+remain unresolved.
+
+The review additionally clarifies aggregate metric semantics: historical
+`centered_rms` centers the pooled error and includes variation between action
+means. New read-only review fields separately report RMS mean-component error
+and within-action spatial error; these contribute 5.41% and 94.59% of largest-fit
+diagnostic MSE. Historical files and primary RMS comparisons are unchanged.
+Future reporting should explicitly name both decompositions.
+
+The proposed next gate is a frozen retained-bank regularization/physical-prior
+audit, moving the P4 question ahead of broad P2 acquisition. Compare a bounded
+positive-ridge path and explicitly defined physical penalties under unchanged
+data, architecture and validation-only selection. Do not infer that smaller
+ridge must generalize. Preserve sampled/full-operator and nonautonomous
+BCH/Magnus controls as separate bounded questions before adding an encoder.
+This review executed no new fitting or reference solves. Subsequent inspected-bank
+work is development; a fresh frozen evaluation is required for broader claims.
+No P2–P6 launch, 64/128-parent expansion, R8–R11 promotion or novelty claim follows.
 
 ### Source interfaces
 
@@ -382,6 +435,8 @@ finishes successfully.
 | 2026-10-16 | Begin user-authorized P1 data-scaling phase with the existing architecture and objective | Separate the value of independent physical parents from source directions using one frozen 32/8/8 development bank and nine nested cells; retain the prior full-operator/analytic controls as proposals, not the sole next step. Native verification and evidence review remain required; no R8–R11 promotion or automatic larger cohort |
 | 2026-10-16 | Verify P1 implementation and portable Raven execution contract | [Receipt](../results/response-preconditioner-scaling-verification-20261016/README.md): 388 exact mandatory passes, eight additional compatibility passes and the 48-query/288-metric private fixture. Retain inspected-prefix disclosure, fresh prediction replay and shared acquisition costs; full native study remains pending |
 | 2026-10-16 | Repair full-scale P1 evidence packing and export | [Receipt](../results/response-preconditioner-scaling-export-fix-20261016/README.md): 404 required and 51 overlapping compatibility checks pass. Stream large files, give inventories explicit bounded writes and retain orphan bundles. Retry export of the reported completed attempt; its native scientific outcome awaits uploaded evidence, with no resubmission required for packaging recovery |
+| 2026-10-15 PDT (2026-10-16 UTC) | Accept native P1 job 2944 as completed numerical development evidence while preserving FAILED wrapper status | [Review](../results/native-response-preconditioner-scaling-2944/README.md): immutable provenance, all 388 tests, 2,688 references, 16,128 metrics and 1,008 bundles verified. Packaging alone failed; no unchanged rerun. More parents help modestly; strong ridge shrinkage and near-cost Lawson accuracy motivate a bounded prior/regularization audit before broader acquisition or architecture |
+| 2026-10-15 PDT (2026-10-16 UTC) | Distinguish pooled centering from per-action mean/spatial decomposition | Historical aggregate `centered_rms` includes between-action mean variation. Preserve it and add explicitly named review fields; full RMS comparisons are unaffected. Any production metric change needs a versioned contract |
 
 ## Maintenance rule
 

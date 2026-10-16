@@ -1,6 +1,6 @@
 # Phase 1: independent-parent and source-direction scaling
 
-**CPU implementation verified, 16 October 2026. Native results pending.** This is the
+**Native numerical study reviewed: job 2944, 15 October 2026 PDT. Wrapper packing failed.** This is the
 first phase of the process changes requested after the
 [native R7 review](../results/native-response-preconditioner-r7-2939/README.md).
 It is a new bounded development protocol, **P1**, separate from the proposed
@@ -12,6 +12,17 @@ additional independent physical parents or additional forcing directions on
 each parent. The architecture, ridge objective and candidate menu remain
 fixed so these two data axes have an interpretable comparison. This phase
 does not implement the other proposed interventions simultaneously.
+
+The [native review and term legend](../results/native-response-preconditioner-scaling-2944/README.md)
+verify all 388 original checks, 2,688 accepted reference pairs, nine fits,
+16,128 metric rows and 1,008 timing bundles. Numerical work completed before
+the packing inventory exceeded its metadata limit. Preserve the original
+FAILED attempt; no unchanged study rerun is needed. All numerical results,
+source snapshots and raw arrays are retained with independent replay scripts.
+More physical parents helped, while additional directions had small returns;
+Lawson 2 remained much more accurate near the learned execution cost. The
+proposed next gate audits regularization/physical priors, without automatically
+launching P2 or expanding the architecture.
 
 ## Why this experiment
 
@@ -215,8 +226,10 @@ Implementation checks exercise generation, nesting, split isolation, fitting,
 aggregate metrics, failure retention and native launch boundaries. Local CPU
 verification acquires no phase-wide scientific bank and is not a native
 execution receipt. Consult the maintained ledger for the actual verification
-record; native P1 results remain pending until an uploaded native receipt is
-reviewed.
+record. Native job 2944 subsequently completed the original 388-case verifier
+and entire numerical study at `7d0c620`; the linked review distinguishes its
+successful science from the later wrapper packing failure. The export repair's
+404-case local roster is separate from that actual native evidence.
 
 The private 48-query verification fixture uses prefixes of the production
 parent seeds. Consequently some P1 development fields and their small fixture
@@ -236,8 +249,9 @@ if cd /home/rahel/TDN; then
 fi
 ```
 
-After all older jobs using this checkout have finished, prepare and submit
-the new phase:
+The following is the retained P1 launch interface for a separately authorized
+fresh attempt, after all older jobs using the checkout have finished. The
+reviewed study requires no unchanged rerun:
 
 ```bash
 if cd /home/rahel/TDN &&
@@ -329,10 +343,10 @@ to native elapsed time, not inserted into measured method timing.
 
 | Phase | Question and intervention | Current authorization/status |
 | --- | --- | --- |
-| P1 | Independent-parent versus source-direction scaling with the fixed response family | This bounded implementation; native evidence pending |
+| P1 | Independent-parent versus source-direction scaling with the fixed response family | Native numerical study reviewed; wrapper packing FAILED, evidence recovered |
 | P2 | D-optimal/E-optimal acquisition versus stratified/random physical coverage | Proposed; freeze a separate selection rule, acquisition budget and untouched evaluation bank |
 | P3 | Actual-defect and full-quadrature correction supervision versus generic source supervision | Proposed; implement task-specific labels and preserve generic stress tests |
-| P4 | Generalized Tikhonov/physical priors versus the unchanged coefficient ridge | Proposed; declare the new objective, penalty nullspace and candidate-selection rule |
+| P4 | Generalized Tikhonov/physical priors versus the unchanged coefficient ridge | Proposed next bounded audit after P1, ahead of broad acquisition; declare objective, nullspace and selection before fitting |
 | P5 | Replace costly classical stages with learned approximations | Proposed; profile representative grids, enforce appropriate consistency and charge complete work |
 | P6 | Bounded comparisons separating data, representation, supervision and penalty | Proposed; reuse eligible references, freeze comparisons and independent-parent analysis |
 
@@ -346,6 +360,16 @@ Before the next phase, independently review source/artifact integrity,
 reference acceptance, all nine access-order seals, fit diagnostics, family
 coverage, learning curves and complete work. An exhausted budget or failed
 reference is a retained outcome, not permission to enlarge the run silently.
+
+That review is now complete for job 2944. At eight sources, 8 → 32 parents
+reduced diagnostic RMS by 17.31%; at 32 parents, 2 → 8 sources reduced it by
+0.981% for four times the training labels. All designs have rank 40, but selected
+ridge leaves effective degrees of freedom 6.60–6.80 and all selections choose
+the menu's lowest strength. This motivates the proposed bounded prior audit;
+it does not prove that a weaker penalty will improve generalization. No new
+candidate was fitted during the review. The review also supplies an explicit
+mean-component/spatial-error decomposition while retaining the original pooled
+`centered_rms` semantics and all historical files.
 
 ## Term guide
 

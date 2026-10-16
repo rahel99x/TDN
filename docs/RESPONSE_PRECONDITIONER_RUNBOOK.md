@@ -46,7 +46,11 @@ The new [Phase 1 design](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md) is the
 current implementation phase; it is separate from the old R7 protocol and
 the proposed R8 encoder. The [verification receipt](../results/response-preconditioner-scaling-verification-20261016/README.md)
 records 388 mandatory CPU passes, eight additional Raven compatibility passes,
-and a completed 48-query implementation fixture. Native P1 remains pending. Its frozen
+and a completed 48-query implementation fixture. [Native job 2944](../results/native-response-preconditioner-scaling-2944/README.md)
+subsequently completed those 388 checks and the entire numerical study at
+`7d0c620`. Its wrapper failed afterward during packing; the original FAILED
+status remains intact. The review verifies all scientific artifacts and supplies
+read-only replay commands, figures and a term legend. Its frozen
 [`tdn.response_preconditioner.scaling.v1`](../tdn/analysis/response_preconditioner/scaling_protocol.py)
 uses 32 training, eight validation and eight diagnostic parents across four
 balanced discrete morphology families. Nine nested fits cross 8/16/32 training
@@ -61,11 +65,14 @@ P1 isolate parent/source count, not pooled differences against the old bank.
 The complete planned work is 2,688 U/G query pairs, 16,128 withheld metric
 rows and 1,008 timing bundles. Only the largest data cell is timed, against
 ordered 2/8 and Lawson 2/4/8 on the fixed family-balanced diagnostic subset.
-No full bank is acquired during preparation or local verification. P1's
-native receipt remains pending; local checks cannot establish native execution
-or a scientific benefit.
+No full bank is acquired during preparation or local verification. Native
+P1 numerical work is now reviewed; no unchanged rerun is needed. More parents
+helped, but the learned response remains less accurate than near-cost Lawson 2.
+The next proposed bounded question concerns regularization/physical priors;
+no next-phase launch or architecture expansion is automatic.
 
-After older jobs using this checkout have finished, prepare and launch:
+The following retains the launch interface for a separately authorized fresh
+attempt after older jobs finish; it is not a request to rerun completed P1:
 
 ```bash
 if cd /home/rahel/TDN &&
@@ -139,6 +146,14 @@ under `logs/`; scheduler streams also remain in checkout
 `logs/response-preconditioner-scaling/`. Raw study arrays are registered in
 `outputs/native/portable-study-evidence.zip` with a packing manifest; the
 exporter verifies and avoids duplicate payloads.
+
+For reviewed job 2944, packing failed before science-series publication, so
+Raven received only the verification metric row. Full science is available in
+the recovered arrays/CSV/JSON and [review figures](../results/native-response-preconditioner-scaling-2944/figures/).
+The orphan ZIP is retained without a packing record. The review does not rewrite
+the historical dashboard or claim successful final Slurm accounting. Its separate
+mean-component and spatial-centered metrics clarify the original pooled-centering
+field without changing primary physical RMS results.
 
 Read `outputs/native/status.json`, `outputs/verification/summary.json` and
 `outputs/study/summary.json` first. Then review the parent manifest, all nine

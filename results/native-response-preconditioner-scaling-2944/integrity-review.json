@@ -1,0 +1,488 @@
+{
+  "audit_failures": [],
+  "audit_status": "PASS",
+  "checks": {
+    "access_order": {
+      "all_fits_before_global_freeze": true,
+      "all_queries_paired": true,
+      "event_counts": {
+        "all_selections_frozen": 1,
+        "context_complete": 288,
+        "fit_cell_finished": 9,
+        "protocol_frozen": 1,
+        "query_evaluated": 1152,
+        "query_finished": 2688,
+        "query_started": 2688,
+        "run_finished": 1,
+        "timing_observation": 1008
+      },
+      "limitation": "Recorded order and file seals are not authenticated proof of all external information access; validation withheld is selection data.",
+      "protected_truth_after_freeze": true,
+      "protocol_first": true,
+      "selection_hash_matches": true,
+      "timestamps_increase": true,
+      "train_validation_before_freeze": true
+    },
+    "contract": {
+      "contract_hash_matches": true,
+      "installed_package_count": 48,
+      "profile_content_matches": true,
+      "profile_hash_matches": true,
+      "raw_contract_sha256": "b39cc58dd77674e4a7fcd32307ee01aa416fc8d5780832d3e42baa44e5cda4b7",
+      "raw_profile_sha256": "bae989d07e1df032bc509ca60398eea909fc993ec318a6a987760e5577cdf3a2"
+    },
+    "denominators": {
+      "complete_metrics": true,
+      "complete_timings": true,
+      "evaluation": {
+        "attempted_metrics": 16128,
+        "attempted_timing_bundles": 1008,
+        "expected_fit_cells": 9,
+        "expected_metrics": 16128,
+        "expected_timing_bundles": 1008,
+        "failed_metrics": 0,
+        "failed_timing_bundles": 0,
+        "measured_metrics": 16128,
+        "missing_metrics": 0,
+        "missing_timing_bundles": 0,
+        "selected_fit_cells": 9,
+        "unresolved_metrics": 0
+      },
+      "reference": {
+        "accepted": 2688,
+        "attempted": 2688,
+        "descendants_are_independent": false,
+        "failed": 0,
+        "independent_parent_count": 48,
+        "missing": 0,
+        "parents_by_split": {
+          "diagnostic": 8,
+          "train": 32,
+          "validation": 8
+        },
+        "planned": 2688,
+        "unresolved": 0
+      },
+      "source_calls": 4032
+    },
+    "execution": {
+      "affinity": [
+        0,
+        1,
+        8,
+        9
+      ],
+      "commands": [
+        {
+          "argv": [
+            "/home/rahel/TDN/.venv/bin/python",
+            "/home/rahel/TDN/scripts/response_preconditioner_scaling.py",
+            "verify",
+            "--device",
+            "cpu",
+            "--output",
+            "/home/rahel/TDN/runs/launch-0e144975eb4b433492fe55d75d209ef2-a1/outputs/verification"
+          ],
+          "command": "verify",
+          "elapsed_seconds": 31.22471655497793,
+          "exit_code": 0,
+          "output": "outputs/verification"
+        },
+        {
+          "argv": [
+            "/home/rahel/TDN/.venv/bin/python",
+            "/home/rahel/TDN/scripts/response_preconditioner_scaling.py",
+            "study",
+            "--device",
+            "cpu",
+            "--output",
+            "/home/rahel/TDN/runs/launch-0e144975eb4b433492fe55d75d209ef2-a1/outputs/study",
+            "--contract",
+            ".runtime/response-preconditioner-scaling-launches/d5276b7569024ce6ac9254297b8a4544.json"
+          ],
+          "command": "study",
+          "elapsed_seconds": 451.1542580330279,
+          "exit_code": 0,
+          "output": "outputs/study"
+        }
+      ],
+      "created_at_America_Los_Angeles": "2026-10-15T17:36:16.222915-07:00",
+      "created_at_utc": "2026-10-16T00:36:16.222915+00:00",
+      "finished_at_America_Los_Angeles": "2026-10-15T17:44:22.119583-07:00",
+      "finished_at_utc": "2026-10-16T00:44:22.119583+00:00",
+      "independent_final_scheduler_accounting_present": false,
+      "job_id": "2944",
+      "native_elapsed_seconds": 485.8966724079801,
+      "native_exit_code": 2,
+      "native_state": "FAILED",
+      "raven_state": "FAILED",
+      "requested_cpus": 4,
+      "requested_memory": "8G",
+      "requested_wall": "00:20:00",
+      "scheduler_outcome": "unknown",
+      "startup_scheduler_state": "RUNNING",
+      "study_elapsed_seconds": 448.7864090569783
+    },
+    "junit": {
+      "all_required_passed": true,
+      "checks_json_matches": true,
+      "class_counts": {
+        "tests.test_response_numerics": 32,
+        "tests.test_response_preconditioner_audit": 38,
+        "tests.test_response_preconditioner_fitting": 16,
+        "tests.test_response_preconditioner_launch": 22,
+        "tests.test_response_preconditioner_model": 39,
+        "tests.test_response_preconditioner_numerics": 21,
+        "tests.test_response_preconditioner_r7_actions": 18,
+        "tests.test_response_preconditioner_r7_fitting": 37,
+        "tests.test_response_preconditioner_r7_launch": 12,
+        "tests.test_response_preconditioner_r7_references": 18,
+        "tests.test_response_preconditioner_r7_workflow": 11,
+        "tests.test_response_preconditioner_scaling_analysis": 41,
+        "tests.test_response_preconditioner_scaling_data": 23,
+        "tests.test_response_preconditioner_scaling_launch": 13,
+        "tests.test_response_preconditioner_scaling_workflow": 13,
+        "tests.test_response_preconditioner_workflow": 7,
+        "tests.test_tangent_response_numerics": 27
+      },
+      "duplicates": 0,
+      "errors": 0,
+      "exact_roster": true,
+      "expected": 388,
+      "expected_nodeids_match": true,
+      "failed": 0,
+      "prelaunch_roster_matches": true,
+      "skipped": 0,
+      "total": 388
+    },
+    "packing_failure": {
+      "archive_bytes": 96233919,
+      "attempted_final_manifest_lower_bound_bytes": 1232048,
+      "coordinator_write_limit_bytes": 1048576,
+      "diagnosis": "Numerical study completed; the closed portable ZIP survived. Writing its enlarged coordinator metadata failed before study artifact registration/metric publication and the final native source check. Do not rewrite the failed status or resubmit science to recover this export.",
+      "embedded_manifest_bytes": 1493188,
+      "embedded_manifest_compact_bytes": 1232047,
+      "embedded_manifest_compact_with_newline_bytes": 1232048,
+      "embedded_matches_raw": true,
+      "error_retained": true,
+      "lower_bound_exceeds_limit": true,
+      "original_write_has_default_limit": true,
+      "packed_files": 7680,
+      "packed_mismatches": [],
+      "packing_json_absent": true,
+      "raven_metric_phases": [
+        "scaling/verify"
+      ],
+      "raven_metric_rows": 1,
+      "scientific_children_success": true,
+      "study_series_unpublished": true
+    },
+    "parents": {
+      "arrays_match": true,
+      "balanced": true,
+      "by_split": {
+        "diagnostic": 8,
+        "train": 32,
+        "validation": 8
+      },
+      "count": 48,
+      "disjoint_identities": true,
+      "families_by_split": {
+        "diagnostic": {
+          "localized_periodic": 2,
+          "multiscale_discrete": 2,
+          "periodic_transition": 2,
+          "smooth_spectral": 2
+        },
+        "train": {
+          "localized_periodic": 8,
+          "multiscale_discrete": 8,
+          "periodic_transition": 8,
+          "smooth_spectral": 8
+        },
+        "validation": {
+          "localized_periodic": 2,
+          "multiscale_discrete": 2,
+          "periodic_transition": 2,
+          "smooth_spectral": 2
+        }
+      },
+      "mismatches": []
+    },
+    "protocols": {
+      "study": {
+        "completed_development": true,
+        "contract_matches": true,
+        "cpu_only": true,
+        "elapsed_seconds": 448.7864090569783,
+        "frozen_prelaunch_matches": true,
+        "job_matches": true,
+        "package_versions_match": true,
+        "python_matches": true,
+        "sha256": "bda3d88005a242cb7c97a4ab8e75c71ff76aad99f7e302dd4988003219e47e64",
+        "summary_matches": true
+      },
+      "verification": {
+        "completed_development": true,
+        "contract_matches": true,
+        "cpu_only": true,
+        "elapsed_seconds": 29.524647388025187,
+        "frozen_prelaunch_matches": true,
+        "job_matches": true,
+        "package_versions_match": true,
+        "python_matches": true,
+        "sha256": "9ad5863aa514014de499a0552e08ba61ca14d17c177dc79ff4a91d99e54db61a",
+        "summary_matches": true
+      }
+    },
+    "raven_outputs": {
+      "all_present": true,
+      "note": "Bulk and raw study evidence is retained in the export even though packing failure prevented study registration.",
+      "registered_files": 23,
+      "study_registration_count": 0
+    },
+    "references": {
+      "G_final_steps": {
+        "8": 2409,
+        "16": 279
+      },
+      "U_final_steps": {
+        "8": 2196,
+        "16": 437,
+        "32": 55
+      },
+      "array_mismatches": [],
+      "arrays_and_records_match": true,
+      "caps_and_acceptance_match": true,
+      "complete_expected_queries": true,
+      "context_count": 288,
+      "hash_record_mismatches": [],
+      "maximum_reference_elapsed_seconds": 0.11530959908850491,
+      "maximum_source_rms_deviation": 3.3306690738754696e-16,
+      "maximum_uncertainty_maximum": 2.659383824266115e-11,
+      "maximum_uncertainty_rms": 2.6171642680670172e-11,
+      "queries_by_split_role": {
+        "diagnostic/withheld": 192,
+        "train/calibration": 1536,
+        "train/withheld": 768,
+        "validation/withheld": 192
+      },
+      "query_count": 2688,
+      "reference_acceptance_mismatches": [],
+      "reference_index_matches": true,
+      "uncertainty_is_certificate": false
+    },
+    "selections": {
+      "all_sealed": true,
+      "cells": [
+        {
+          "exact_training_prefix": true,
+          "exact_validation_bank": true,
+          "model_id": "fit-p008-s02",
+          "protected_truth_unused": true,
+          "saved_fit_matches": true,
+          "seal_matches": true,
+          "selected_name": "ridge_1e-10",
+          "train_queries": 96,
+          "validation_queries": 192
+        },
+        {
+          "exact_training_prefix": true,
+          "exact_validation_bank": true,
+          "model_id": "fit-p008-s04",
+          "protected_truth_unused": true,
+          "saved_fit_matches": true,
+          "seal_matches": true,
+          "selected_name": "ridge_1e-10",
+          "train_queries": 192,
+          "validation_queries": 192
+        },
+        {
+          "exact_training_prefix": true,
+          "exact_validation_bank": true,
+          "model_id": "fit-p008-s08",
+          "protected_truth_unused": true,
+          "saved_fit_matches": true,
+          "seal_matches": true,
+          "selected_name": "ridge_1e-10",
+          "train_queries": 384,
+          "validation_queries": 192
+        },
+        {
+          "exact_training_prefix": true,
+          "exact_validation_bank": true,
+          "model_id": "fit-p016-s02",
+          "protected_truth_unused": true,
+          "saved_fit_matches": true,
+          "seal_matches": true,
+          "selected_name": "ridge_1e-10",
+          "train_queries": 192,
+          "validation_queries": 192
+        },
+        {
+          "exact_training_prefix": true,
+          "exact_validation_bank": true,
+          "model_id": "fit-p016-s04",
+          "protected_truth_unused": true,
+          "saved_fit_matches": true,
+          "seal_matches": true,
+          "selected_name": "ridge_1e-10",
+          "train_queries": 384,
+          "validation_queries": 192
+        },
+        {
+          "exact_training_prefix": true,
+          "exact_validation_bank": true,
+          "model_id": "fit-p016-s08",
+          "protected_truth_unused": true,
+          "saved_fit_matches": true,
+          "seal_matches": true,
+          "selected_name": "ridge_1e-10",
+          "train_queries": 768,
+          "validation_queries": 192
+        },
+        {
+          "exact_training_prefix": true,
+          "exact_validation_bank": true,
+          "model_id": "fit-p032-s02",
+          "protected_truth_unused": true,
+          "saved_fit_matches": true,
+          "seal_matches": true,
+          "selected_name": "ridge_1e-10",
+          "train_queries": 384,
+          "validation_queries": 192
+        },
+        {
+          "exact_training_prefix": true,
+          "exact_validation_bank": true,
+          "model_id": "fit-p032-s04",
+          "protected_truth_unused": true,
+          "saved_fit_matches": true,
+          "seal_matches": true,
+          "selected_name": "ridge_1e-10",
+          "train_queries": 768,
+          "validation_queries": 192
+        },
+        {
+          "exact_training_prefix": true,
+          "exact_validation_bank": true,
+          "model_id": "fit-p032-s08",
+          "protected_truth_unused": true,
+          "saved_fit_matches": true,
+          "seal_matches": true,
+          "selected_name": "ridge_1e-10",
+          "train_queries": 1536,
+          "validation_queries": 192
+        }
+      ],
+      "nine_cells": true
+    },
+    "source": {
+      "captured_script_matches": true,
+      "final_native_aggregate_guard_reached": false,
+      "fingerprint": "53758e02afc69d1e665caed9f971ae8735ba8830f5c7487ec904f6395101e1bc",
+      "fingerprints_match": true,
+      "limitation": "source_unchanged=true was last set after verification. The pre-study aggregate check passed; packing failure prevented the final post-study aggregate check. Study source.json/source_after.json cover the numerical source independently.",
+      "mismatches_against_git": [],
+      "native_aggregate_matches": true,
+      "native_aggregate_sha256": "eb2556baea51e1218bf847ee0190dcda505a53c76d6e447ce9855d98abde6e29",
+      "native_files": 643,
+      "stage_before_after_equal": true,
+      "stage_files": 263,
+      "stage_files_match_git": true
+    },
+    "stage_manifests": {
+      "study": {
+        "files": 7717,
+        "hash_size_mismatches": [],
+        "missing": [],
+        "unlisted": [],
+        "valid": true
+      },
+      "verification": {
+        "files": 13,
+        "hash_size_mismatches": [],
+        "missing": [],
+        "unlisted": [],
+        "valid": true
+      }
+    },
+    "telemetry": {
+      "supervisor": {
+        "coverage_matches": true,
+        "errors": [],
+        "first_timestamp": 1792110976.1568801,
+        "last_timestamp": 1792111462.3724792,
+        "maximum_sampled_cpu_percent": null,
+        "maximum_sampled_summed_rss_bytes": 10280960,
+        "missed_samples": 0,
+        "partial_reasons": {},
+        "partial_samples": 0,
+        "samples": 487,
+        "status": "complete",
+        "timestamps_increase": true,
+        "valid_cpu_percent_samples": 0
+      },
+      "worker": {
+        "coverage_matches": true,
+        "csv_matches": true,
+        "errors": [],
+        "first_timestamp": 1792110977.1752245,
+        "last_timestamp": 1792111461.2141576,
+        "maximum_sampled_cpu_percent": 100.9951871723294,
+        "maximum_sampled_summed_rss_bytes": 1751724032,
+        "missed_samples": 0,
+        "partial_reasons": {
+          "Process tree changed; interval CPU utilization unavailable": 8
+        },
+        "partial_samples": 8,
+        "samples": 485,
+        "status": "partial",
+        "timestamps_increase": true,
+        "valid_cpu_percent_samples": 476
+      }
+    },
+    "timing_scope": {
+      "bundles": 1008,
+      "cold_bundles": 144,
+      "context_coverage_matches": true,
+      "contexts": 24,
+      "methods": [
+        "fit-p032-s08",
+        "lawson_2",
+        "lawson_4",
+        "lawson_8",
+        "ordered_2",
+        "ordered_8"
+      ],
+      "paired_bundles": 720,
+      "parents": 4,
+      "randomized_paired_rounds": 5,
+      "retained_and_journal_match": true,
+      "round_method_coverage_matches": true,
+      "scope": "Every bundle sequentially evaluates four withheld sources with independent fresh setup for each. First benchmark invocation is not process cold start; fitting/reference acquisition is offline and excluded from these action timings.",
+      "selected_cell": "fit-p032-s08",
+      "source_calls": 4032,
+      "warmup_bundles": 144
+    },
+    "verification_release": {
+      "files": 4,
+      "matches": true
+    }
+  },
+  "limitations": [
+    "This audit verifies retained evidence, not a new scientific run or independent teacher recomputation.",
+    "No final independent Slurm accounting is present; scheduler_outcome remains unknown.",
+    "The native aggregate source guard after study was not reached; numerical before/after stage snapshots match immutable git.",
+    "Raven published only verification metrics because study evidence packing failed; raw scientific evidence remains available.",
+    "Worker process-tree RSS is sampled, includes potentially repeated shared pages, and has eight partial samples. It is not per-method peak memory.",
+    "These are inspected development parents, including prefixes exercised by implementation verification, on a 5x5 grid. No confirmation, rollout, GPU, population learning-law or speedup claim follows.",
+    "Reference refinement/independent agreement is an uncertainty estimate, not a rigorous certificate.",
+    "Numerical accuracy, fitting objectives and cost comparisons are audited in separate retained analyses."
+  ],
+  "native_status_preserved": "FAILED",
+  "numerical_study_status": "COMPLETED",
+  "schema": "tdn.native-scaling-p1-evidence-audit/v1",
+  "scientific_promotion": false,
+  "source_revision": "7d0c6201ad3ec399568492077066bd359c59829e"
+}
