@@ -28,7 +28,14 @@ passed. This closes the repair milestone. No repeat of the unchanged smoke is
 needed. The [R7 design](RESPONSE_PRECONDITIONER_R7_DESIGN.md) now has its own
 implemented protocol and launcher below. The [R7 verification receipt](../results/response-preconditioner-r7-verification-20261015/README.md) records
 298/298 required CPU checks and 53/53 overlapping Raven compatibility checks.
-Actual native R7 scientific execution remains pending.
+[Native R7 job 2939](../results/native-response-preconditioner-r7-2939/README.md)
+completed at `43837c5`: all 298 checks, 192 accepted queries, 2,112 metric rows
+and 336 timing bundles pass independent review. The retained review includes
+figures, a term legend and read-only reproduction commands. The current model
+has no established practical advantage over Lawson two; structural feature
+coverage, regularization and a resolved sampled-span residual remain relevant.
+Do not repeat the unchanged study. The launch commands below remain the R7 v1
+interface, not an instruction to expand the bank or proceed to an encoder.
 
 ## R7: bounded identification through native Raven
 
@@ -95,8 +102,9 @@ fi
 
 Verification records the exact collected test roster and rejects failures,
 errors, skips, duplicates or missing cases. Cloud checks and scheduler fixtures
-establish implementation behavior only; the new native contract needs its own
-actual native receipt.
+establish implementation behavior only. Job 2939 supplies the actual native
+receipt for `43837c5`; any changed source/protocol needs a fresh prepared
+contract and its own execution evidence.
 
 ### R7 measurements and outputs
 
@@ -157,7 +165,10 @@ calibration/withheld behavior, perturbations and complete costs before choosing
 another protocol. Full-operator audits, independently derived BCH controls,
 new endpoint/trajectory evidence, nonlinear corrections, learned encoders,
 GPU work and fresh confirmation remain deferred. Historical A PASS / B STOP
-and the unresolved native 2936 endpoint benefit stay unchanged.
+and the unresolved native 2936 endpoint benefit stay unchanged. The completed
+2939 review identifies a bounded full-operator audit and an independently
+derived nonautonomous BCH/Magnus control as the next implementation questions;
+their protocol and verification must precede new numerical acquisition.
 
 ## Original implementation-only local CPU checks
 

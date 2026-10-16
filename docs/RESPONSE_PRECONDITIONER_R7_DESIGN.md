@@ -1,6 +1,13 @@
 # R7 design memo: distinguish representation, conditioning and cost
 
-Status: **implemented and CPU verified; native scientific execution pending**.
+Status: **native bounded study completed and reviewed; utility unestablished**.
+The [job 2939 review](../results/native-response-preconditioner-r7-2939/README.md)
+verifies source `43837c5`, all 298 checks, 192 accepted queries, 2,112 metric
+rows and 336 timing bundles. Lawson two has much smaller measured error at
+nearly the fitted response's complete cost. Structural rank 25/40, ridge
+shrinkage and a resolved sampled-span residual require further bounded audits;
+the review does not promote architecture, solver utility, GPU or confirmation
+gates. The v1 choices below remain the prelaunch contract, not post-hoc changes.
 The [R7 verification receipt](../results/response-preconditioner-r7-verification-20261015/README.md) retains 298 required passes and 53 overlapping Raven
 compatibility passes; its 12-query unit fixture is not the 192-query study. The
 [independent review](../results/native-response-preconditioner-2936/README.md)
@@ -312,8 +319,10 @@ threshold after inspecting these results.
 No R7 result alone establishes R8, R9, R10 or R11. Native implementation
 verification, scientific capacity, coefficient predictability, practical utility
 and fresh confirmation require distinct statuses and evidence. The current
-native success permits preparation and independent verification of this next
-bounded study; it does not itself authorize a larger learned/GPU campaign.
+native R7 success establishes the completed bounded identification study, with
+the limitations in the job 2939 review. The next eligible work is the design
+and independent verification of full-operator and analytic-coefficient audits;
+it does not itself authorize a larger learned/GPU campaign.
 
 ## Useful outputs for external review
 

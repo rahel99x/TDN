@@ -1,0 +1,301 @@
+{
+  "checks": {
+    "access_order": {
+      "all_query_start_finish_paired": true,
+      "diagnostic_after_global_seal": true,
+      "diagnostic_withheld_after_local_seal": true,
+      "event_counts": {
+        "context_complete": 24,
+        "local_coefficients_sealed": 24,
+        "protocol_frozen": 1,
+        "query_finished": 192,
+        "query_started": 192,
+        "run_finished": 1,
+        "selection_frozen": 1,
+        "timing_observation": 336
+      },
+      "fit_labels_exact": true,
+      "fitting_labels_before_seal": true,
+      "journal_events": 771,
+      "limitation": "Recorded ordering and file seals, not authenticated proof of external information access; validation withheld is selection data.",
+      "local_calibration_before_seal": true,
+      "local_fit_hashes_match": true,
+      "protocol_first": true,
+      "selection_hash_matches": true,
+      "selection_labels_exact": true,
+      "timestamps_increasing": true,
+      "training_withheld_after_global_seal": true
+    },
+    "contract": {
+      "contract_hash_matches": true,
+      "installed_package_count": 48,
+      "original_bytes_preserved": true,
+      "profile_hash_matches": true,
+      "profile_matches": true,
+      "raw_contract_sha256": "8faf405baaef2e33d8101227584c61513b55de693b8338a21763d19b3f8c98b9",
+      "raw_profile_sha256": "bae989d07e1df032bc509ca60398eea909fc993ec318a6a987760e5577cdf3a2"
+    },
+    "denominators": {
+      "complete_metric_bank": true,
+      "complete_query_bank": true,
+      "complete_timing_bank": true,
+      "contexts": 24,
+      "evaluation_denominators": {
+        "attempted_metrics": 2112,
+        "attempted_timing_bundles": 336,
+        "expected_metrics": 2112,
+        "expected_timing_bundles": 336,
+        "failed_metrics": 0,
+        "failed_timing_bundles": 0,
+        "measured_metrics": 2112,
+        "missing_metrics": 0,
+        "missing_timing_bundles": 0,
+        "unresolved_metrics": 0
+      },
+      "methods": [
+        "fixed_feature_fitted",
+        "lawson_2",
+        "lawson_4",
+        "lawson_8",
+        "local_ridge_1e-06",
+        "local_ridge_1e-10",
+        "ordered_1",
+        "ordered_2",
+        "ordered_4",
+        "ordered_8",
+        "projection"
+      ],
+      "metric_rows": 2112,
+      "parents": 4,
+      "queries": 192,
+      "query_array_hash_mismatches": [],
+      "query_array_hashes_valid": true,
+      "reference_denominators": {
+        "accepted": 192,
+        "attempted": 192,
+        "descendants_are_independent": false,
+        "failed": 0,
+        "independent_parent_count": 4,
+        "missing": 0,
+        "planned": 192,
+        "unresolved": 0
+      },
+      "reference_index_matches": true,
+      "timed_source_calls": 1344,
+      "timing_bundles": 336,
+      "timing_pattern_matches": true
+    },
+    "execution": {
+      "application_exit_code": 0,
+      "commands": [
+        {
+          "argv": [
+            "/home/rahel/TDN/.venv/bin/python",
+            "/home/rahel/TDN/scripts/response_preconditioner_r7.py",
+            "verify",
+            "--device",
+            "cpu",
+            "--output",
+            "/home/rahel/TDN/runs/launch-65e5bfaf1fd945f08fbfeb2726b2c29e-a1/outputs/verification"
+          ],
+          "command": "verify",
+          "elapsed_seconds": 25.671698172111064,
+          "exit_code": 0,
+          "output": "outputs/verification"
+        },
+        {
+          "argv": [
+            "/home/rahel/TDN/.venv/bin/python",
+            "/home/rahel/TDN/scripts/response_preconditioner_r7.py",
+            "study",
+            "--device",
+            "cpu",
+            "--output",
+            "/home/rahel/TDN/runs/launch-65e5bfaf1fd945f08fbfeb2726b2c29e-a1/outputs/study",
+            "--contract",
+            ".runtime/response-preconditioner-r7-launches/738a18919ea94599b14ab7b4c3f75776.json"
+          ],
+          "command": "study",
+          "elapsed_seconds": 46.32795081101358,
+          "exit_code": 0,
+          "output": "outputs/study"
+        }
+      ],
+      "created_at": "2026-10-15T23:45:22.225295+00:00",
+      "elapsed_seconds": 81.27226057101507,
+      "finished_at": "2026-10-15T23:46:43.497552+00:00",
+      "job_id": "2939",
+      "native_exit_code": 0,
+      "native_state": "COMPLETED",
+      "raven_state": "COMPLETED",
+      "requested_cpus": 4,
+      "requested_memory_gib": 8,
+      "requested_wall_minutes": 20,
+      "scheduler_outcome": "unknown",
+      "source_unchanged": true,
+      "startup_job_state": "RUNNING",
+      "successful_application": true
+    },
+    "junit": {
+      "all_required_passed": true,
+      "checks_json_matches": true,
+      "class_counts": {
+        "tests.test_response_numerics": 32,
+        "tests.test_response_preconditioner_audit": 38,
+        "tests.test_response_preconditioner_fitting": 16,
+        "tests.test_response_preconditioner_launch": 22,
+        "tests.test_response_preconditioner_model": 39,
+        "tests.test_response_preconditioner_numerics": 21,
+        "tests.test_response_preconditioner_r7_actions": 18,
+        "tests.test_response_preconditioner_r7_fitting": 37,
+        "tests.test_response_preconditioner_r7_launch": 12,
+        "tests.test_response_preconditioner_r7_references": 18,
+        "tests.test_response_preconditioner_r7_workflow": 11,
+        "tests.test_response_preconditioner_workflow": 7,
+        "tests.test_tangent_response_numerics": 27
+      },
+      "duplicates": 0,
+      "errors": 0,
+      "exact_roster": true,
+      "expected": 298,
+      "expected_nodeids_match": true,
+      "failed": 0,
+      "prelaunch_roster_matches": true,
+      "skipped": 0,
+      "total": 298
+    },
+    "logs": {
+      "external_scheduler": [
+        "/home/rahel/TDN/logs/response-preconditioner-r7/tdn-response-preconditioner-r7-2939.err",
+        "/home/rahel/TDN/logs/response-preconditioner-r7/tdn-response-preconditioner-r7-2939.out"
+      ],
+      "outer_stderr_bytes": 0,
+      "outer_stdout_bytes": 0,
+      "portable": [
+        "logs/verify.stdout.log",
+        "logs/verify.stderr.log",
+        "logs/study.stdout.log",
+        "logs/study.stderr.log"
+      ]
+    },
+    "protocols": {
+      "study": {
+        "bounded_development": true,
+        "completed": true,
+        "cpu_only": true,
+        "job_matches": true,
+        "matches_contract": true,
+        "matches_prelaunch": true,
+        "package_versions_match": true,
+        "python_version_matches": true,
+        "sha256": "457acac69b6bc651e1de0724c6e69afaad62b6f7ab81698c65de7ad19645195d",
+        "source_matches": true,
+        "summary_hash_matches": true
+      },
+      "verification": {
+        "bounded_development": true,
+        "completed": true,
+        "cpu_only": true,
+        "job_matches": true,
+        "matches_contract": true,
+        "matches_prelaunch": true,
+        "package_versions_match": true,
+        "python_version_matches": true,
+        "sha256": "08292cd8d2ef8d1a12a431605fdf56f37d25cee05c2e3614f07dcaab466dc263",
+        "source_matches": true,
+        "summary_hash_matches": true
+      }
+    },
+    "raven_metrics": {
+      "context_identity": "Science series include split/role/family/method, but parent/context identity remains in raw artifacts. Timing has context_index.",
+      "csv_mismatches": [],
+      "raven_science_rows": 2112,
+      "raven_timing_rows": 336,
+      "raw_science_rows": 2112,
+      "science_mismatches": [],
+      "science_parity": true,
+      "timing_mismatches": [],
+      "timing_parity": true,
+      "total_raven_rows": 2450
+    },
+    "raven_outputs": {
+      "all_present_relative_required": true,
+      "required_files": 551
+    },
+    "source": {
+      "all_stage_before_after_equal": true,
+      "all_stage_files_match_git": true,
+      "fingerprint": "abe17b47d43b50d0ca8fb797a4faf76dce8307898ff60835d00c0f985061df9c",
+      "fingerprint_matches": true,
+      "mismatches_against_git": [],
+      "native_aggregate_matches": true,
+      "native_files": 632,
+      "native_sha256": "9f4939ad97b3dfc57bce09a18a802975454466835d534aa369ebc0f304f428c8",
+      "script_hash_matches": true,
+      "stage_files": 252
+    },
+    "stage_manifests": {
+      "study": {
+        "files": 528,
+        "hash_size_mismatches": [],
+        "missing": [],
+        "unlisted": [],
+        "valid": true
+      },
+      "verification": {
+        "files": 13,
+        "hash_size_mismatches": [],
+        "missing": [],
+        "unlisted": [],
+        "valid": true
+      }
+    },
+    "telemetry": {
+      "supervisor": {
+        "counts_match": true,
+        "errors": [],
+        "maximum_sampled_summed_rss_bytes": 10289152,
+        "missed_samples": 0,
+        "partial_reasons": {},
+        "partial_samples": 0,
+        "samples": 82,
+        "status": "complete",
+        "timestamp_increasing": true,
+        "valid_cpu_percent_samples": 0
+      },
+      "worker": {
+        "counts_match": true,
+        "csv_matches": true,
+        "errors": [],
+        "maximum_sampled_summed_rss_bytes": 1766002688,
+        "missed_samples": 0,
+        "partial_reasons": {
+          "Process tree changed; interval CPU utilization unavailable": 9
+        },
+        "partial_samples": 9,
+        "samples": 81,
+        "status": "partial",
+        "timestamp_increasing": true,
+        "valid_cpu_percent_samples": 71
+      }
+    },
+    "verification_release": {
+      "files": 4,
+      "matches": true
+    }
+  },
+  "failed_integrity_checks": [],
+  "limitations": [
+    "This audits retained bytes and committed source correspondence; file hashes and journals are not authenticated provenance or proof of outside information access.",
+    "Independent final Slurm sacct/scontrol accounting is absent. Raven application/native completion and exit 0 are present; scheduler_outcome is unknown and RUNNING allocation fields are startup snapshots.",
+    "Original raw prepared contract and profile bytes are preserved and their hashes verified. The full installed package inventory is recorded, but installed binary/package bytes were not supplied.",
+    "Four stage logs are portable. Scheduler stdout/stderr remain absolute host paths; empty outer stdout/stderr are not copies of those streams.",
+    "Worker telemetry measures sampled local-process-tree summed RSS, which can repeat shared pages and omit departed processes; it is not allocation peak or per-method peak. CPU intervals affected by process churn are unavailable, not zero. Supervisor telemetry is separate. No GPU execution is inferred.",
+    "The 192 accepted references use an empirical refinement/independent-agreement policy, not a certified error bound. Four reused development parents and their source/time descendants are not fresh independent confirmation.",
+    "Scientific numerical replay is separate from this integrity audit. Successful execution and complete denominators do not establish architecture utility, matched-tolerance speedup, novelty, or historical gate promotion."
+  ],
+  "schema": "tdn.native-r7-evidence-audit/v1",
+  "scientific_promotion": false,
+  "source_revision": "43837c5ee264f7deed33c64a6e7c0cd553b82938",
+  "status": "PASS_WITH_LIMITATIONS"
+}

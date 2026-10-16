@@ -1,0 +1,67 @@
+{
+  "schema": "tdn.r7.review_verification.v1",
+  "scope": "Read-only uploaded-evidence replay; no new teachers, models, fitting or native runs",
+  "review_date_utc": "2026-10-16",
+  "python": "3.12.14",
+  "checks": [
+    {
+      "check": "integrity-review.json fresh-extraction byte parity",
+      "passed": true
+    },
+    {
+      "check": "scientific-review.json fresh-extraction byte parity",
+      "passed": true
+    },
+    {
+      "check": "cost-sensitivity-review.json fresh-extraction byte parity",
+      "passed": true
+    },
+    {
+      "check": "work-precision.png fresh-extraction raster parity",
+      "passed": true
+    },
+    {
+      "check": "source-family-and-loss.png fresh-extraction raster parity",
+      "passed": true
+    },
+    {
+      "check": "audit_receipt.py syntax",
+      "passed": true
+    },
+    {
+      "check": "extract_evidence.py syntax",
+      "passed": true
+    },
+    {
+      "check": "plot_review.py syntax",
+      "passed": true
+    },
+    {
+      "check": "review_cost_sensitivity.py syntax",
+      "passed": true
+    },
+    {
+      "check": "review_science.py syntax",
+      "passed": true
+    },
+    {
+      "check": "results/native-response-preconditioner-r7-2939/README.md local links and bash examples",
+      "passed": true
+    },
+    {
+      "check": "docs/TDN_RESEARCH_PROGRAM.md local links and bash examples",
+      "passed": true
+    },
+    {
+      "check": "docs/RESPONSE_PRECONDITIONER_RUNBOOK.md local links and bash examples",
+      "passed": true
+    },
+    {
+      "check": "docs/RESPONSE_PRECONDITIONER_R7_DESIGN.md local links and bash examples",
+      "passed": true
+    }
+  ],
+  "extraction_manifest_reproduced_exactly": true,
+  "native_verifier_roster": "298 uploaded native cases verified from JUnit; not rerun during this review",
+  "figure_svg_note": "SVG renderings regenerated successfully; timestamps/element IDs are not byte parity targets"
+}

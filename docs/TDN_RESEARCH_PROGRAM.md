@@ -33,6 +33,11 @@ and their verification status.
   completes the bounded repair at `261365b`: all 202 expected checks, the
   frozen v2 protocol and the 24-reference/82-metric smoke are independently
   verified. The revised implementation now has native CPU evidence.
+- [Native R7 job 2939](../results/native-response-preconditioner-r7-2939/README.md)
+  completed at `43837c5`: 298 expected checks, 192 accepted queries, 2,112
+  metric rows and 336 complete timing bundles pass independent review. The
+  learned response improves its base but has no established utility advantage;
+  Lawson 2 is substantially more accurate at nearly the same observed cost.
 
 ## Three products, three cost contracts
 
@@ -103,7 +108,7 @@ Update this table from actual source and receipts, never from the intended plan.
 | R4 | Independent cubic finite-grid residual audit | Implemented, CPU verified | Exact Bernstein enclosure and outward bound; one panel, at most 64 spatial DOF |
 | R5 | Bounded CPU verifier and tiny fit workflow | Implemented, CPU verified | Fresh output roots, retained failures, source hashes and held-out diagnostics |
 | R6 | Raven native CPU verification wrapper | Native CPU verified at `261365b` | Job 2936: exact 202/202 checks, source/protocol integrity and smoke completed |
-| R7 | Representation at fixed complete cost | Implemented, CPU verified; native study pending | [R7 verification receipt](../results/response-preconditioner-r7-verification-20261015/README.md): 298 exact required checks and 53 overlapping Raven compatibility checks; 192-query native study remains pending |
+| R7 | Representation at fixed complete cost | Native bounded study reviewed; utility unestablished | [Job 2939 review](../results/native-response-preconditioner-r7-2939/README.md): 298 checks, 192 queries, 2,112 replayed metric rows and 336 timing bundles; sampled-span and identification limits require further bounded audits |
 | R8 | Learned multiscale encoder / variable projection | Proposed, scientifically gated | R7 capacity and stable fitting evidence |
 | R9 | Second nonlinear correction or inexact Newton | Proposed, scientifically gated | Measured nonlinear remainder and charged causal work |
 | R10 | Adaptive rollout/controller and derivative task | Proposed, scientifically gated | Whole-time accuracy, schedule derivative contract and independent task checks |
@@ -128,8 +133,8 @@ The selected augmented system's condition number was approximately 4.77e10;
 a small objective gradient does not establish coefficient identifiability.
 Two tiny cubic-panel upper bounds were obtained, with no requested tolerance
 acceptance or matched-accuracy speedup established. The separate bounded R7
-protocol below addresses identification; its native prerequisites and results
-remain necessary before any further expansion.
+protocol below addresses identification; its completed native review still
+does not justify architecture expansion.
 
 The [bounded repair protocol](RESPONSE_PRECONDITIONER_REPAIR_PROTOCOL_20261015.md)
 keeps the original objective, ridge menu, selection and four development
@@ -138,11 +143,11 @@ reduces augmented condition from 4.77e10 to 93.8 at the selected ridge without
 changing original rank 25/40. Predictions change by at most 1.14e-13 RMS on
 the retained queries. This is a numerical repair, not new scientific evidence.
 The combined tiny-bank loss is action-dominated; endpoint signals are below
-reference uncertainty. R7 must assess nonzero source-time coverage,
-basis-versus-coefficient identification and complete repeated costs
-before a learned encoder is justified. Independent per-context projection/ridge
-oracles and fixed-step Lawson action controls are implemented by the separate
-R7 protocol below. Their scientific comparison remains pending; BCH coefficient
+reference uncertainty. R7 assesses nonzero source-time coverage,
+basis-versus-coefficient identification and complete repeated costs;
+the reviewed evidence does not yet justify a learned encoder. Independent
+per-context projection/ridge oracles and fixed-step Lawson action controls are implemented by the separate
+R7 protocol below. Their native comparison is reviewed below; BCH coefficient
 derivations remain deferred.
 The [repair verification receipt](../results/response-preconditioner-repair-20261015/README.md)
 records 202 mandatory CPU passes, 33 overlapping Raven compatibility passes
@@ -163,7 +168,9 @@ increasing endpoint weights would amplify unresolved labels in this fixture.
 The [R7 identification design](RESPONSE_PRECONDITIONER_R7_DESIGN.md) now has a
 separate executable [protocol](../tdn/analysis/response_preconditioner/r7_protocol.py)
 (`tdn.response_preconditioner.r7.v1`) and native Raven launcher. The [R7 verification receipt](../results/response-preconditioner-r7-verification-20261015/README.md) records 298 required CPU passes and 53 overlapping Raven
-compatibility passes. Native scientific execution remains pending.
+compatibility passes. Native job 2939 completed all 298 required checks and
+the bounded study at `43837c5`; independent review verified its exact roster,
+provenance and numerical artifacts.
 The workflow preserves the inspected two-training/one-validation/one-diagnostic
 parent split on the 5-by-5 FD grid. Six absolute-time intervals per parent and
 four calibration/four withheld sources per interval give 24 contexts and at
@@ -195,7 +202,49 @@ work-precision evidence: no superiority threshold or matched-tolerance speedup
 gate has been defined. Full-operator auditing, independently derived BCH
 controls, new endpoints/rollouts, encoders, nonlinear corrections, GPU work and
 fresh confirmation remain deferred. No repeat of the unchanged implementation
-smoke is required by the native repair review.
+smoke or unchanged R7 study is needed.
+
+### Native R7 findings and next gates
+
+The [complete review and term legend](../results/native-response-preconditioner-r7-2939/README.md)
+retains the original archive, independent audit/replay scripts, JSON aggregates
+and work–precision figures. All 2,112 physical metrics replay exactly from
+arrays; 49 sensitivity maps and 245 scenarios also reproduce. Final separate
+Slurm accounting was not uploaded, so successful native/Raven application
+completion is distinct from independently confirmed scheduler termination.
+
+On the 24 diagnostic withheld queries, pooled physical RMS is `6.466e-8`
+for the fitted response, `4.433e-7` for its ordered-two base, `2.771e-8` for
+ordered eight and `8.637e-10` for Lawson two. Fitted four-source bundle medians
+range from 15.52–15.97 ms versus Lawson two's 15.93–16.41 ms. That small time
+difference has overlapping paired observations and no predeclared utility
+margin; Lawson two's much smaller errors make it the essential near-cost
+control. No matched-tolerance superiority follows.
+
+The selected positive-ridge objective is minimized with augmented condition
+65.60, but original rank remains 25/40. Five static features on only two
+training parents have rank at most two; three varying time features raise
+context-feature rank to five, bounding the five-block action design at 25.
+More source directions on those same parents cannot fix this bound. Ridge is
+83.5% of the selected objective and strongly shrinks short-lag local fits;
+regularization remains confounded with coefficient-map prediction.
+
+The local unregularized projection improves pooled error to `3.937e-8`, but
+has a resolved calibration residual on the longest interval and loses there
+to ordered eight. This is sampled-span evidence, not a full-operator lower
+bound. Approximately 94.9% of global diagnostic squared error occurs on that
+longest interval. Reference-sized positive-ridge perturbations are too small
+to explain the current errors; no projection prediction-sensitivity conclusion
+is available. The fitted error is 0.000425% of full spatial feedback `U-G`,
+yet 14.585% of the fitted remainder `U-P`; retain both denominators.
+
+The next eligible work is a predeclared tiny full-operator audit and an
+independently derived BCH/Magnus coefficient control for the exact backbone,
+including its time-dependent terms. Verify their implementation before new
+numerical acquisition. If the span qualifies, revise parent/feature coverage,
+penalty and physical weighting under a new protocol. Only a measured capacity
+deficit supports changing the operator family; none of these results promotes
+R8–R11, endpoint/trajectory utility, GPU readiness or novelty.
 
 ### Source interfaces
 
@@ -267,6 +316,7 @@ finishes successfully.
 | 2026-10-15 | Separate endpoint utility from the response-engine question | Fresh classical endpoint has no resolved accuracy disadvantage and less observed work; action accuracy/cost remains a tradeoff requiring repeated matched-tolerance comparison |
 | 2026-10-15 | Prepare R7 identification before adding an encoder | Distinguish sampled-source projection, regularization, coefficient-map prediction and full-operator capacity; retain explicit prospective scope |
 | 2026-10-15 | Implement the bounded R7 identification contract and native verifier → study launcher | Reuse four inspected parents with frozen source withholding and nonzero start times; retain local/global objective distinctions, uncertainty scenarios and complete no-reuse costs. 298 required CPU checks and 53 overlapping Raven compatibility checks pass in the retained receipt; native science remains pending and no architecture or utility gate is promoted |
+| 2026-10-16 | Accept native R7 job 2939 as completed bounded identification evidence | Independent provenance and exact numerical replay pass; Lawson two is much more accurate at nearly the same complete cost. Retain structural rank, sampled-span, ridge-bias and denominator findings; require full-operator and analytic-control audits before architecture expansion |
 
 ## Maintenance rule
 
