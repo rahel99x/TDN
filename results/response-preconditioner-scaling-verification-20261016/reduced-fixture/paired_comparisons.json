@@ -1,0 +1,315 @@
+{
+  "aggregation": "equal mean squared error weight per independent parent; equal query weight within parent",
+  "automatic_expansion": false,
+  "metric_accounting": {
+    "invalid_measured": 0,
+    "measured": 288,
+    "planned": 288,
+    "status_counts": {
+      "MEASURED": 288
+    }
+  },
+  "paired_parent_count": [
+    {
+      "after_count": 4,
+      "after_method": "fit-p004-s02",
+      "before_count": 2,
+      "before_method": "fit-p002-s02",
+      "complete": true,
+      "descriptive_only": true,
+      "expected_parent_count": 2,
+      "fixed_axis": "calibration_source_count",
+      "fixed_count": 2,
+      "improved_parent_fraction": 1.0,
+      "median_rms_difference": -2.051566272082621e-09,
+      "paired_parent_count": 2,
+      "parents": [
+        {
+          "after_rms": 1.2561745461258468e-08,
+          "before_rms": 1.3987753467472886e-08,
+          "improved": true,
+          "improvement_ratio": 1.1135198934425437,
+          "mse_difference": -3.7859798033352013e-17,
+          "parent_id": "diagnostic-000-2026101801",
+          "rms_difference": -1.4260080062144176e-09
+        },
+        {
+          "after_rms": 2.1811179579692544e-08,
+          "before_rms": 2.448830411764337e-08,
+          "improved": true,
+          "improvement_ratio": 1.1227409332984164,
+          "mse_difference": -1.2394948390059213e-16,
+          "parent_id": "diagnostic-001-2026101802",
+          "rms_difference": -2.6771245379508246e-09
+        }
+      ],
+      "role": "withheld",
+      "split": "diagnostic",
+      "worst_rms_difference": -1.4260080062144176e-09
+    },
+    {
+      "after_count": 4,
+      "after_method": "fit-p004-s04",
+      "before_count": 2,
+      "before_method": "fit-p002-s04",
+      "complete": true,
+      "descriptive_only": true,
+      "expected_parent_count": 2,
+      "fixed_axis": "calibration_source_count",
+      "fixed_count": 4,
+      "improved_parent_fraction": 1.0,
+      "median_rms_difference": -2.189344172430431e-09,
+      "paired_parent_count": 2,
+      "parents": [
+        {
+          "after_rms": 1.2464862947405773e-08,
+          "before_rms": 1.3994555535050964e-08,
+          "improved": true,
+          "improvement_ratio": 1.122720369578035,
+          "mse_difference": -4.0474776326016286e-17,
+          "parent_id": "diagnostic-000-2026101801",
+          "rms_difference": -1.5296925876451914e-09
+        },
+        {
+          "after_rms": 2.1651770101838123e-08,
+          "before_rms": 2.4500765859053794e-08,
+          "improved": true,
+          "improvement_ratio": 1.131582579337188,
+          "mse_difference": -1.3148837913732478e-16,
+          "parent_id": "diagnostic-001-2026101802",
+          "rms_difference": -2.848995757215671e-09
+        }
+      ],
+      "role": "withheld",
+      "split": "diagnostic",
+      "worst_rms_difference": -1.5296925876451914e-09
+    },
+    {
+      "after_count": 4,
+      "after_method": "fit-p004-s02",
+      "before_count": 2,
+      "before_method": "fit-p002-s02",
+      "complete": true,
+      "descriptive_only": true,
+      "expected_parent_count": 2,
+      "fixed_axis": "calibration_source_count",
+      "fixed_count": 2,
+      "improved_parent_fraction": 1.0,
+      "median_rms_difference": -1.3171902039526293e-09,
+      "paired_parent_count": 2,
+      "parents": [
+        {
+          "after_rms": 1.6999066762043475e-08,
+          "before_rms": 1.8386076651610814e-08,
+          "improved": true,
+          "improvement_ratio": 1.0815932962075505,
+          "mse_difference": -4.90795438584971e-17,
+          "parent_id": "validation-000-2026101701",
+          "rms_difference": -1.3870098895673393e-09
+        },
+        {
+          "after_rms": 1.0725216086129004e-08,
+          "before_rms": 1.1972586604466924e-08,
+          "improved": true,
+          "improvement_ratio": 1.116302600182681,
+          "mse_difference": -2.831256990730048e-17,
+          "parent_id": "validation-001-2026101702",
+          "rms_difference": -1.2473705183379194e-09
+        }
+      ],
+      "role": "withheld",
+      "split": "validation",
+      "worst_rms_difference": -1.2473705183379194e-09
+    },
+    {
+      "after_count": 4,
+      "after_method": "fit-p004-s04",
+      "before_count": 2,
+      "before_method": "fit-p002-s04",
+      "complete": true,
+      "descriptive_only": true,
+      "expected_parent_count": 2,
+      "fixed_axis": "calibration_source_count",
+      "fixed_count": 4,
+      "improved_parent_fraction": 1.0,
+      "median_rms_difference": -1.4112064916082848e-09,
+      "paired_parent_count": 2,
+      "parents": [
+        {
+          "after_rms": 1.692451559552427e-08,
+          "before_rms": 1.840230359179086e-08,
+          "improved": true,
+          "improvement_ratio": 1.0873164131597004,
+          "mse_difference": -5.2205549341294613e-17,
+          "parent_id": "validation-000-2026101701",
+          "rms_difference": -1.4777879962665901e-09
+        },
+        {
+          "after_rms": 1.0633130597803576e-08,
+          "before_rms": 1.1977755584753555e-08,
+          "improved": true,
+          "improvement_ratio": 1.1264561715462924,
+          "mse_difference": -3.0403162538148336e-17,
+          "parent_id": "validation-001-2026101702",
+          "rms_difference": -1.3446249869499795e-09
+        }
+      ],
+      "role": "withheld",
+      "split": "validation",
+      "worst_rms_difference": -1.3446249869499795e-09
+    }
+  ],
+  "paired_source_count": [
+    {
+      "after_count": 4,
+      "after_method": "fit-p002-s04",
+      "before_count": 2,
+      "before_method": "fit-p002-s02",
+      "complete": true,
+      "descriptive_only": true,
+      "expected_parent_count": 2,
+      "fixed_axis": "training_parent_count",
+      "fixed_count": 2,
+      "improved_parent_fraction": 0.0,
+      "median_rms_difference": 9.631904494251645e-12,
+      "paired_parent_count": 2,
+      "parents": [
+        {
+          "after_rms": 1.3994555535050964e-08,
+          "before_rms": 1.3987753467472886e-08,
+          "improved": false,
+          "improvement_ratio": 0.9995139490095958,
+          "mse_difference": 1.9033755682583937e-19,
+          "parent_id": "diagnostic-000-2026101801",
+          "rms_difference": 6.8020675780779654e-12
+        },
+        {
+          "after_rms": 2.4500765859053794e-08,
+          "before_rms": 2.448830411764337e-08,
+          "improved": false,
+          "improvement_ratio": 0.9994913733928925,
+          "mse_difference": 6.104891219868025e-19,
+          "parent_id": "diagnostic-001-2026101802",
+          "rms_difference": 1.2461741410425324e-11
+        }
+      ],
+      "role": "withheld",
+      "split": "diagnostic",
+      "worst_rms_difference": 1.2461741410425324e-11
+    },
+    {
+      "after_count": 4,
+      "after_method": "fit-p004-s04",
+      "before_count": 2,
+      "before_method": "fit-p004-s02",
+      "complete": true,
+      "descriptive_only": true,
+      "expected_parent_count": 2,
+      "fixed_axis": "training_parent_count",
+      "fixed_count": 4,
+      "improved_parent_fraction": 1.0,
+      "median_rms_difference": -1.2814599585355843e-10,
+      "paired_parent_count": 2,
+      "parents": [
+        {
+          "after_rms": 1.2464862947405773e-08,
+          "before_rms": 1.2561745461258468e-08,
+          "improved": true,
+          "improvement_ratio": 1.0077724491846787,
+          "mse_difference": -2.4246407358384337e-18,
+          "parent_id": "diagnostic-000-2026101801",
+          "rms_difference": -9.688251385269585e-11
+        },
+        {
+          "after_rms": 2.1651770101838123e-08,
+          "before_rms": 2.1811179579692544e-08,
+          "improved": true,
+          "improvement_ratio": 1.007362422430344,
+          "mse_difference": -6.928406114745841e-18,
+          "parent_id": "diagnostic-001-2026101802",
+          "rms_difference": -1.59409477854421e-10
+        }
+      ],
+      "role": "withheld",
+      "split": "diagnostic",
+      "worst_rms_difference": -9.688251385269585e-11
+    },
+    {
+      "after_count": 4,
+      "after_method": "fit-p002-s04",
+      "before_count": 2,
+      "before_method": "fit-p002-s02",
+      "complete": true,
+      "descriptive_only": true,
+      "expected_parent_count": 2,
+      "fixed_axis": "training_parent_count",
+      "fixed_count": 2,
+      "improved_parent_fraction": 0.0,
+      "median_rms_difference": 1.069796023333895e-11,
+      "paired_parent_count": 2,
+      "parents": [
+        {
+          "after_rms": 1.840230359179086e-08,
+          "before_rms": 1.8386076651610814e-08,
+          "improved": false,
+          "improvement_ratio": 0.9991182114728677,
+          "mse_difference": 5.969628455304486e-19,
+          "parent_id": "validation-000-2026101701",
+          "rms_difference": 1.6226940180046274e-11
+        },
+        {
+          "after_rms": 1.1977755584753555e-08,
+          "before_rms": 1.1972586604466924e-08,
+          "improved": false,
+          "improvement_ratio": 0.9995684516811136,
+          "mse_difference": 1.2379884663415078e-19,
+          "parent_id": "validation-001-2026101702",
+          "rms_difference": 5.1689802866316266e-12
+        }
+      ],
+      "role": "withheld",
+      "split": "validation",
+      "worst_rms_difference": 1.6226940180046274e-11
+    },
+    {
+      "after_count": 4,
+      "after_method": "fit-p004-s04",
+      "before_count": 2,
+      "before_method": "fit-p004-s02",
+      "complete": true,
+      "descriptive_only": true,
+      "expected_parent_count": 2,
+      "fixed_axis": "training_parent_count",
+      "fixed_count": 4,
+      "improved_parent_fraction": 1.0,
+      "median_rms_difference": -8.331832742231649e-11,
+      "paired_parent_count": 2,
+      "parents": [
+        {
+          "after_rms": 1.692451559552427e-08,
+          "before_rms": 1.6999066762043475e-08,
+          "improved": true,
+          "improvement_ratio": 1.004404921730163,
+          "mse_difference": -2.5290426372670617e-18,
+          "parent_id": "validation-000-2026101701",
+          "rms_difference": -7.45511665192045e-11
+        },
+        {
+          "after_rms": 1.0633130597803576e-08,
+          "before_rms": 1.0725216086129004e-08,
+          "improved": true,
+          "improvement_ratio": 1.008660242388488,
+          "mse_difference": -1.966793784213707e-18,
+          "parent_id": "validation-001-2026101702",
+          "rms_difference": -9.208548832542849e-11
+        }
+      ],
+      "role": "withheld",
+      "split": "validation",
+      "worst_rms_difference": -7.45511665192045e-11
+    }
+  ],
+  "schema": "tdn.response_preconditioner.scaling.learning_curves.v1",
+  "scientific_promotion": false,
+  "uncertainty_scope": "descriptive parent values only; teacher uncertainty is not a certificate"
+}

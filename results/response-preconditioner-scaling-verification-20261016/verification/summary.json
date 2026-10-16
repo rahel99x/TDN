@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "duplicates": 0,
+    "errors": 0,
+    "exact_roster": true,
+    "expected": 388,
+    "failed": 0,
+    "skipped": 0,
+    "total": 388
+  },
+  "command": "verify",
+  "decision": "BOUNDED_DEVELOPMENT",
+  "device": "cpu",
+  "elapsed_seconds": 59.54819624200172,
+  "historical_gate": "B STOP unchanged",
+  "native_gpu_readiness": false,
+  "output": "/workspace/TDN/.runtime/scaling-verification-20261016/verification",
+  "protocol_sha256": "9ad5863aa514014de499a0552e08ba61ca14d17c177dc79ff4a91d99e54db61a",
+  "schema": "tdn.response_preconditioner.scaling.v1",
+  "scientific_promotion": false,
+  "source_fingerprint": "53758e02afc69d1e665caed9f971ae8735ba8830f5c7487ec904f6395101e1bc",
+  "status": "COMPLETED"
+}

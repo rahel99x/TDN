@@ -1,0 +1,229 @@
+{
+  "array_path": "queries/train-001-2026101602-context-00-calibration-03.npz",
+  "array_sha256": "aef8c2ba78ece7c1c31fb5866235052c6b8e6e4fd12da821c322174d41d53b6a",
+  "context_id": "train-001-2026101602-context-00",
+  "design_seconds": 0.0077013560076011345,
+  "family": "dense_random",
+  "parent_family": "localized_periodic",
+  "parent_id": "train-001-2026101602",
+  "query_id": "train-001-2026101602-context-00-calibration-03",
+  "record_path": "queries/train-001-2026101602-context-00-calibration-03.json",
+  "reference": {
+    "accepted": true,
+    "action_modes_attempted": 2,
+    "caps": {
+      "independent_max_rhs_calls": 4096,
+      "independent_tolerance": 1e-12,
+      "initial_steps": 4,
+      "max_seconds_per_query": 3.0,
+      "max_steps": 256,
+      "tolerance": 1e-10
+    },
+    "cross_difference": {
+      "centered_mse": 2.203824332807694e-29,
+      "centered_rms": 4.69449074214413e-15,
+      "maximum": 1.1102230246251565e-14,
+      "mean": 4.306277556764826e-16,
+      "mean_error": -4.306277556764826e-16,
+      "mean_mse": 1.854402639589644e-31,
+      "mean_squared_error_fraction": 0.008344263145710865,
+      "rms": 4.714200207037871e-15
+    },
+    "elapsed_seconds": 0.09645624599943403,
+    "independent": {
+      "accepted": true,
+      "component_tolerance": 1e-12,
+      "dense": false,
+      "method": "independent_numpy_DOP853",
+      "nfev": 29,
+      "uncertainty_is_certificate": false,
+      "work": {
+        "anchor_calls": 29,
+        "heat_calls": 87,
+        "path_derivative_calls": 29,
+        "product_calls": 58,
+        "rhs_calls": 29
+      }
+    },
+    "input_contract": "Caller input promoted to FP64 without rerounding",
+    "matched_mean": {
+      "accepted": true,
+      "cross_difference": {
+        "centered_mse": 1.9263259155838018e-29,
+        "centered_rms": 4.388992954635268e-15,
+        "maximum": 9.769962616701378e-15,
+        "mean": 6.106226635438361e-16,
+        "mean_error": -6.106226635438361e-16,
+        "mean_mse": 3.7286003723336886e-31,
+        "mean_squared_error_fraction": 0.018988479014984423,
+        "rms": 4.4312660936882796e-15
+      },
+      "independent": {
+        "accepted": true,
+        "component_tolerance": 1e-12,
+        "dense": false,
+        "method": "independent_numpy_DOP853",
+        "nfev": 29,
+        "uncertainty_is_certificate": false,
+        "work": {
+          "anchor_calls": 29,
+          "heat_calls": 87,
+          "path_derivative_calls": 29,
+          "product_calls": 29,
+          "rhs_calls": 29
+        }
+      },
+      "mode": "mean",
+      "reason": "TIME_AND_INDEPENDENT_ACTION_BUDGET_ACCEPTED",
+      "refinement": {
+        "accepted": true,
+        "elapsed_seconds": 0.045075043992255814,
+        "reason": "INDEPENDENT_TIME_REFINEMENT",
+        "refinements": [
+          {
+            "difference": {
+              "maximum": null,
+              "rms": null
+            },
+            "steps": 4
+          },
+          {
+            "difference": {
+              "centered_mse": 3.431191277192747e-27,
+              "centered_rms": 5.857637132148719e-14,
+              "maximum": 1.318944953254686e-13,
+              "mean": 7.646938637861922e-15,
+              "mean_error": 7.646938637861922e-15,
+              "mean_mse": 5.847567053122555e-29,
+              "mean_squared_error_fraction": 0.016756805565460768,
+              "rms": 5.90734030484445e-14
+            },
+            "steps": 8
+          }
+        ],
+        "status": "ACCEPTED",
+        "uncertainty_is_certificate": false,
+        "uncertainty_maximum": 1.318944953254686e-13,
+        "uncertainty_rms": 5.90734030484445e-14
+      },
+      "status": "ACCEPTED",
+      "tolerance": 1e-10,
+      "uncertainty_is_certificate": false,
+      "uncertainty_maximum": 1.4166445794216997e-13,
+      "uncertainty_rms": 6.350466914213277e-14,
+      "work": {
+        "incomplete_counters": "Anchor/autograd FFT internals; failed independent inner operations",
+        "independent_rhs_calls_started": 29,
+        "independent_rhs_cap": 4096,
+        "path": {
+          "anchor": "df",
+          "anchor_evaluations": 21,
+          "cache_hits": 27,
+          "cached_nodes": 21,
+          "derivative_evaluations": 0,
+          "mean_queries": 0,
+          "path": "smooth_fixed_work_anchor",
+          "path_queries": 48,
+          "reaction_substeps": 8,
+          "residual_evaluations": 0
+        },
+        "refined_rhs_calls_started": 48,
+        "refinement_completed_step_counts": [
+          4,
+          8
+        ]
+      }
+    },
+    "maximum_work_per_source_query": {
+      "action_modes": 2,
+      "independent_rhs_calls_both_modes": 8192,
+      "lawson_rhs_calls_both_modes": 4064,
+      "lawson_steps_both_modes": 1016,
+      "refinement_step_levels_per_mode": [
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "wall_seconds_both_modes": 3.0
+    },
+    "mode": "tangent",
+    "path_contract": "Original DF anchor a(t; u0); source initialized at absolute s",
+    "reason": "TIME_AND_INDEPENDENT_ACTION_BUDGET_ACCEPTED",
+    "refinement": {
+      "accepted": true,
+      "elapsed_seconds": 0.027772607005317695,
+      "reason": "INDEPENDENT_TIME_REFINEMENT",
+      "refinements": [
+        {
+          "difference": {
+            "maximum": null,
+            "rms": null
+          },
+          "steps": 4
+        },
+        {
+          "difference": {
+            "centered_mse": 4.292912558295031e-27,
+            "centered_rms": 6.552032172002081e-14,
+            "maximum": 1.545430450278218e-13,
+            "mean": 7.370631882608336e-15,
+            "mean_error": 7.370631882608336e-15,
+            "mean_mse": 5.43262143489225e-29,
+            "mean_squared_error_fraction": 0.012496717385477717,
+            "rms": 6.593359365789152e-14
+          },
+          "steps": 8
+        }
+      ],
+      "status": "ACCEPTED",
+      "uncertainty_is_certificate": false,
+      "uncertainty_maximum": 1.545430450278218e-13,
+      "uncertainty_rms": 6.593359365789152e-14
+    },
+    "source_query_count": 1,
+    "start": 0.02,
+    "status": "ACCEPTED",
+    "stop": 0.04,
+    "target": "fd_same_grid",
+    "tolerance": 1e-10,
+    "uncertainty_aggregation": "Lawson refinement estimate plus independent discrepancy",
+    "uncertainty_is_certificate": false,
+    "uncertainty_maximum": 1.6564527527407336e-13,
+    "uncertainty_rms": 7.064779386492939e-14,
+    "wall_cap_scope": "One source query: U and G together",
+    "work": {
+      "incomplete_counters": "Anchor/autograd FFT internals; failed independent inner operations",
+      "independent_rhs_calls_started": 29,
+      "independent_rhs_cap": 4096,
+      "path": {
+        "anchor": "df",
+        "anchor_evaluations": 21,
+        "cache_hits": 27,
+        "cached_nodes": 21,
+        "derivative_evaluations": 0,
+        "mean_queries": 0,
+        "path": "smooth_fixed_work_anchor",
+        "path_queries": 48,
+        "reaction_substeps": 8,
+        "residual_evaluations": 0
+      },
+      "refined_rhs_calls_started": 48,
+      "refinement_completed_step_counts": [
+        4,
+        8
+      ]
+    }
+  },
+  "reference_seconds": 0.0969451150012901,
+  "role": "calibration",
+  "source_id": "calibration-03",
+  "source_index": 3,
+  "split": "train",
+  "start": 0.02,
+  "status": "ACCEPTED",
+  "stop": 0.04
+}

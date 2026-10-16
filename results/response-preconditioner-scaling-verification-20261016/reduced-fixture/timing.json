@@ -1,0 +1,193 @@
+[
+  {
+    "cold_scope": "first benchmark invocation, not a new process or guaranteed cold cache",
+    "context_id": "diagnostic-000-2026101801-context-00",
+    "cost_scope": "complete sequential source bundle; setup charged independently for every source; no cross-source reuse",
+    "device": "cpu",
+    "expected_calls": 12,
+    "failed_calls": 0,
+    "gradient_contract": "grad enabled; fresh original AnchorPath create_graph=True per source",
+    "methods": [
+      "ordered_2",
+      "ordered_8",
+      "lawson_2",
+      "lawson_4",
+      "lawson_8",
+      "fit-p004-s04"
+    ],
+    "oracle_timing": "excluded; teacher acquisition and fitting are offline costs",
+    "parent_family": "smooth_spectral",
+    "parent_id": "diagnostic-000-2026101801",
+    "peak_memory": "not measured by this helper; inspect worker telemetry separately",
+    "records": [
+      {
+        "method": "fit-p004-s04",
+        "output_sha256": "4e28ef2ee69366948aadc576d56d1a9401b7625fada8a9a5dc6afb0b4493348c",
+        "phase": "cold",
+        "position": 0,
+        "round": 0,
+        "seconds": 0.03064883999468293,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_8",
+        "output_sha256": "fbd43eaf21ccc52ab4410120ea6f455aafecc6cbdc8f7469766a699261ccd0b0",
+        "phase": "cold",
+        "position": 1,
+        "round": 0,
+        "seconds": 0.048342838999815285,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_4",
+        "output_sha256": "feff3c85cb6fb3fd70efb4ecfdb77b8c28e3bbb62f352fb671ad05c4ce834413",
+        "phase": "cold",
+        "position": 2,
+        "round": 0,
+        "seconds": 0.0565322059992468,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_8",
+        "output_sha256": "e8bb341aab3748bfc7a3252fdc123848d40e3ddd7ee4f7b541502f0dcfb33db8",
+        "phase": "cold",
+        "position": 3,
+        "round": 0,
+        "seconds": 0.11311358500097413,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_2",
+        "output_sha256": "93b514016c2c5018e87cb95752a63124d909ca33ed57b6fac1fd41039cc32211",
+        "phase": "cold",
+        "position": 4,
+        "round": 0,
+        "seconds": 0.030225373993744142,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_2",
+        "output_sha256": "094db63db9d7022130dd3e916989c7ea9a528ee3640738aa01da3157d1ddcaa5",
+        "phase": "cold",
+        "position": 5,
+        "round": 0,
+        "seconds": 0.014780520999920554,
+        "status": "PASS"
+      },
+      {
+        "method": "fit-p004-s04",
+        "output_sha256": "4e28ef2ee69366948aadc576d56d1a9401b7625fada8a9a5dc6afb0b4493348c",
+        "phase": "paired",
+        "position": 0,
+        "round": 0,
+        "seconds": 0.033037171990145,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_2",
+        "output_sha256": "93b514016c2c5018e87cb95752a63124d909ca33ed57b6fac1fd41039cc32211",
+        "phase": "paired",
+        "position": 1,
+        "round": 0,
+        "seconds": 0.03223648799757939,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_8",
+        "output_sha256": "fbd43eaf21ccc52ab4410120ea6f455aafecc6cbdc8f7469766a699261ccd0b0",
+        "phase": "paired",
+        "position": 2,
+        "round": 0,
+        "seconds": 0.04442754900082946,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_8",
+        "output_sha256": "e8bb341aab3748bfc7a3252fdc123848d40e3ddd7ee4f7b541502f0dcfb33db8",
+        "phase": "paired",
+        "position": 3,
+        "round": 0,
+        "seconds": 0.1972340170032112,
+        "status": "PASS"
+      },
+      {
+        "method": "ordered_2",
+        "output_sha256": "094db63db9d7022130dd3e916989c7ea9a528ee3640738aa01da3157d1ddcaa5",
+        "phase": "paired",
+        "position": 4,
+        "round": 0,
+        "seconds": 0.028915019007399678,
+        "status": "PASS"
+      },
+      {
+        "method": "lawson_4",
+        "output_sha256": "feff3c85cb6fb3fd70efb4ecfdb77b8c28e3bbb62f352fb671ad05c4ce834413",
+        "phase": "paired",
+        "position": 5,
+        "round": 0,
+        "seconds": 0.07322389900218695,
+        "status": "PASS"
+      }
+    ],
+    "rounds": 1,
+    "schema": "tdn.response_preconditioner.r7.paired_timing.v1",
+    "scientific_promotion": false,
+    "seed": 2026101608,
+    "status": "PASS",
+    "summary": {
+      "fit-p004-s04": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.033037171990145,
+        "median_seconds": 0.033037171990145,
+        "minimum_seconds": 0.033037171990145,
+        "passed_rounds": 1
+      },
+      "lawson_2": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.03223648799757939,
+        "median_seconds": 0.03223648799757939,
+        "minimum_seconds": 0.03223648799757939,
+        "passed_rounds": 1
+      },
+      "lawson_4": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.07322389900218695,
+        "median_seconds": 0.07322389900218695,
+        "minimum_seconds": 0.07322389900218695,
+        "passed_rounds": 1
+      },
+      "lawson_8": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.1972340170032112,
+        "median_seconds": 0.1972340170032112,
+        "minimum_seconds": 0.1972340170032112,
+        "passed_rounds": 1
+      },
+      "ordered_2": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.028915019007399678,
+        "median_seconds": 0.028915019007399678,
+        "minimum_seconds": 0.028915019007399678,
+        "passed_rounds": 1
+      },
+      "ordered_8": {
+        "expected_rounds": 1,
+        "failed_rounds": 0,
+        "maximum_seconds": 0.04442754900082946,
+        "median_seconds": 0.04442754900082946,
+        "minimum_seconds": 0.04442754900082946,
+        "passed_rounds": 1
+      }
+    },
+    "timer_exclusions": "output validation/digest and record serialization; one-time resident model loading",
+    "torch_threads": 1,
+    "uncertainty_scope": "raw paired rounds and empirical range; no confidence interval or superiority test",
+    "warmup": 0,
+    "work_counter_scope": "Explicit response heat/FFT/stencil operations and path/feature calls; internal anchor/autograd transforms and actual peak memory are not instrumented. End-to-end CPU timing includes their execution."
+  }
+]

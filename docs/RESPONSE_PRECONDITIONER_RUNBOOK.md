@@ -2,16 +2,19 @@
 
 Read the [standing research program](TDN_RESEARCH_PROGRAM.md) and
 [mathematical proposal](TDN_ARCHITECTURE_PROPOSAL_20261015.md). This namespace
-implements the first bounded FD milestone and the separate R7 identification
-study. The original verifier/smoke remains `IMPLEMENTATION_ONLY`; R7 is
-`BOUNDED_DEVELOPMENT`. Neither promotes the historical Tangent Response B STOP,
+implements the first bounded FD milestone, the separate R7 identification
+study and the new [P1 data-scaling phase](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md).
+The original verifier/smoke remains `IMPLEMENTATION_ONLY`; R7 and P1 are
+`BOUNDED_DEVELOPMENT`. None promotes the historical Tangent Response B STOP,
 establishes native GPU readiness, or starts an automatic successor.
 
 The first milestone implements 40 affine coefficients over three commutator
 and two two-sided heat branches, a classical ordered-response backbone,
 parent-balanced ridge fitting and a separate cubic residual auditor. The model
-uses FP64 arithmetic on actual FP32 initial fields. Learned encoders, adaptive
-rollouts and larger scientific comparisons remain later gated milestones.
+uses FP64 arithmetic on actual FP32 initial fields. P1 holds that model and
+its objective fixed while comparing independent parents and source directions.
+Learned encoders, adaptive rollouts and expansion beyond its frozen bank
+remain later gated milestones.
 
 [Native job 2930](../results/native-response-preconditioner-2930/README.md)
 passed all 184 checks and the tiny smoke at `627de9f`. The next
@@ -36,6 +39,108 @@ has no established practical advantage over Lawson two; structural feature
 coverage, regularization and a resolved sampled-span residual remain relevant.
 Do not repeat the unchanged study. The launch commands below remain the R7 v1
 interface, not an instruction to expand the bank or proceed to an encoder.
+
+## P1: independent-parent and source-direction scaling
+
+The new [Phase 1 design](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md) is the
+current implementation phase; it is separate from the old R7 protocol and
+the proposed R8 encoder. The [verification receipt](../results/response-preconditioner-scaling-verification-20261016/README.md)
+records 388 mandatory CPU passes, eight additional Raven compatibility passes,
+and a completed 48-query implementation fixture. Native P1 remains pending. Its frozen
+[`tdn.response_preconditioner.scaling.v1`](../tdn/analysis/response_preconditioner/scaling_protocol.py)
+uses 32 training, eight validation and eight diagnostic parents across four
+balanced discrete morphology families. Nine nested fits cross 8/16/32 training
+parents with 2/4/8 calibration directions. All nine validation selections seal
+before training-withheld or diagnostic truth. The model, physical loss and
+ridge menu remain unchanged. These are new development data, not confirmation.
+The private 48-query verification fixture uses production-seed prefixes, so
+some development fields are inspected during checks. P1 also changes the
+morphology and mean/amplitude distribution from R7: only comparisons within
+P1 isolate parent/source count, not pooled differences against the old bank.
+
+The complete planned work is 2,688 U/G query pairs, 16,128 withheld metric
+rows and 1,008 timing bundles. Only the largest data cell is timed, against
+ordered 2/8 and Lawson 2/4/8 on the fixed family-balanced diagnostic subset.
+No full bank is acquired during preparation or local verification. P1's
+native receipt remains pending; local checks cannot establish native execution
+or a scientific benefit.
+
+After older jobs using this checkout have finished, prepare and launch:
+
+```bash
+if cd /home/rahel/TDN &&
+   git pull --ff-only origin main &&
+   contract="$(.venv/bin/python scripts/response_preconditioner_scaling_native.py prepare)"; then
+  raven launch scripts/response_preconditioner_scaling.sh \
+    --project "$PWD" --recipe response-preconditioner-scaling \
+    --sbatch=--partition=local --sbatch="--chdir=$PWD" \
+    -- --contract "$contract"
+else
+  unset contract
+  printf 'Preparation failed; no job submitted. See the error above.\n' >&2
+fi
+```
+
+Use the configured CPU partition/account from `.tdn/fedora-slurm.json` when
+it differs. Insert `--check` before `--` to preview. Leave `--local` out: the
+study requires a genuine Raven/Slurm allocation. The guarded preparation
+block leaves the terminal open on errors and never submits an empty contract.
+Do not source the launcher or update the source/venv while its job is active.
+
+The allocation is **4 CPUs, 8 GiB, 20 minutes**, with a **900-second study
+budget**. It runs the exact mandatory verifier and then the study in the same
+attempt. A release from another attempt is invalid. `--mode verify` after the
+contract selects verification only; no study-only mode or automatic successor
+exists. A changed source/software/profile needs a fresh prepared contract.
+
+To verify implementation locally without acquiring this scientific bank:
+
+```bash
+if cd /home/rahel/TDN; then
+  mkdir -p .runtime/response-preconditioner-scaling-local &&
+  TMPDIR="$PWD/.runtime/response-preconditioner-scaling-local" \
+    PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+    .venv/bin/python scripts/response_preconditioner_scaling.py verify --device cpu
+fi
+```
+
+Once the native attempt is terminal, use its exact Raven run directory:
+
+```bash
+if cd /home/rahel/TDN; then
+  .venv/bin/python scripts/response_preconditioner_scaling_native.py export \
+    --run runs/launch-EXACT-a1
+fi
+```
+
+The exporter prints a fresh folder beneath
+`.runtime/response-preconditioner-scaling-exports/`. Upload its `README.txt`,
+`index.json` and ZIP or every numbered ZIP part; each part is at most 30 MiB.
+Export retains raw scientific arrays and requires terminal status. It does
+not run science or require the checkout still to match the historical run.
+
+Raven's `response-preconditioner-scaling` recipe enables experiment, evidence,
+artifacts and CPU/memory observation. One job carries the entire bounded
+study; arrays, GPU collection and tracing are disabled. Compact research
+series expose learning-curve cells and parent aggregates, with complete
+query-level CSV/JSON evidence under `outputs/study/`. Stage streams remain
+under `logs/`; scheduler streams also remain in checkout
+`logs/response-preconditioner-scaling/`. Raw study arrays are registered in
+`outputs/native/portable-study-evidence.zip` with a packing manifest; the
+exporter verifies and avoids duplicate payloads.
+
+Read `outputs/native/status.json`, `outputs/verification/summary.json` and
+`outputs/study/summary.json` first. Then review the parent manifest, all nine
+sealed selections, reference/evaluation denominators, family and parent
+learning curves, fit spectra and complete timing.
+`outputs/study/costs.json` records unique acquisition once globally, per-cell
+label demand, and reference/design/fitting/accuracy/timing durations. These
+are nested elapsed components, not costs to add again to wall time. Resource
+telemetry under
+`outputs/native/telemetry/` observes actual worker CPU/RSS with stated coverage
+limits; it is separate from supervisor graphs and per-method timing.
+Passing execution does not promote a utility gate. There is no automatic
+64/128-parent extension, new objective, new architecture or GPU successor.
 
 ## R7: bounded identification through native Raven
 
@@ -166,9 +271,12 @@ another protocol. Full-operator audits, independently derived BCH controls,
 new endpoint/trajectory evidence, nonlinear corrections, learned encoders,
 GPU work and fresh confirmation remain deferred. Historical A PASS / B STOP
 and the unresolved native 2936 endpoint benefit stay unchanged. The completed
-2939 review identifies a bounded full-operator audit and an independently
-derived nonautonomous BCH/Magnus control as the next implementation questions;
-their protocol and verification must precede new numerical acquisition.
+2939 review identified a bounded full-operator audit and an independently
+derived nonautonomous BCH/Magnus control as useful next questions. The user
+subsequently chose the P1 process phase above to test data coverage first.
+Those audits remain proposed controls; P1 preserves the architecture and
+objective and requires its own frozen protocol and verification before new
+numerical acquisition.
 
 ## Original implementation-only local CPU checks
 

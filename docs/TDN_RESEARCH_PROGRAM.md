@@ -38,6 +38,11 @@ and their verification status.
   metric rows and 336 complete timing bundles pass independent review. The
   learned response improves its base but has no established utility advantage;
   Lawson 2 is substantially more accurate at nearly the same observed cost.
+- The [Phase 1 scaling protocol](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md)
+  starts the user-authorized process change after that review: independently
+  vary physical-parent count and source-direction count while retaining the
+  current architecture and objective. This is new bounded development, not
+  an R8 encoder promotion or evidence that a larger bank will succeed.
 
 ## Three products, three cost contracts
 
@@ -109,6 +114,7 @@ Update this table from actual source and receipts, never from the intended plan.
 | R5 | Bounded CPU verifier and tiny fit workflow | Implemented, CPU verified | Fresh output roots, retained failures, source hashes and held-out diagnostics |
 | R6 | Raven native CPU verification wrapper | Native CPU verified at `261365b` | Job 2936: exact 202/202 checks, source/protocol integrity and smoke completed |
 | R7 | Representation at fixed complete cost | Native bounded study reviewed; utility unestablished | [Job 2939 review](../results/native-response-preconditioner-r7-2939/README.md): 298 checks, 192 queries, 2,112 replayed metric rows and 336 timing bundles; sampled-span and identification limits require further bounded audits |
+| P1 | Independent-parent/source-direction scaling | Implemented, CPU verified; native study pending | [Verification receipt](../results/response-preconditioner-scaling-verification-20261016/README.md): 388 required checks and eight additional Raven compatibility checks; [Phase 1 design](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md) freezes nine 8/16/32-parent by 2/4/8-direction cells |
 | R8 | Learned multiscale encoder / variable projection | Proposed, scientifically gated | R7 capacity and stable fitting evidence |
 | R9 | Second nonlinear correction or inexact Newton | Proposed, scientifically gated | Measured nonlinear remainder and charged causal work |
 | R10 | Adaptive rollout/controller and derivative task | Proposed, scientifically gated | Whole-time accuracy, schedule derivative contract and independent task checks |
@@ -238,13 +244,65 @@ to explain the current errors; no projection prediction-sensitivity conclusion
 is available. The fitted error is 0.000425% of full spatial feedback `U-G`,
 yet 14.585% of the fitted remainder `U-P`; retain both denominators.
 
-The next eligible work is a predeclared tiny full-operator audit and an
-independently derived BCH/Magnus coefficient control for the exact backbone,
-including its time-dependent terms. Verify their implementation before new
-numerical acquisition. If the span qualifies, revise parent/feature coverage,
-penalty and physical weighting under a new protocol. Only a measured capacity
-deficit supports changing the operator family; none of these results promotes
-R8–R11, endpoint/trajectory utility, GPU readiness or novelty.
+The review recommended a tiny full-operator audit and an independently
+derived BCH/Magnus coefficient control for the exact backbone, including its
+time-dependent terms. Those remain useful proposed controls. The subsequent
+user-authorized process change begins with the independent-parent/source
+scaling phase below; it does not require those controls to be the sole next
+experiment. The fixed family and objective are retained so physical coverage
+can be tested separately. None of these results promotes R8–R11,
+endpoint/trajectory utility, GPU readiness or novelty.
+
+### P1: data scaling before joint architectural changes
+
+The [Phase 1 design, launch commands and legend](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md)
+freeze `tdn.response_preconditioner.scaling.v1`, a parallel research phase
+distinct from R8. It acquires 32 training, eight validation and eight
+diagnostic parents from four balanced periodic discrete morphology families.
+The 5-by-5 same-grid FD target, six R7 intervals, five response branches,
+40-weight FP64 readout, positive-ridge menu and original physical action
+objective remain unchanged. These are new development parents, not fresh
+confirmation or a continuum sharp-interface benchmark.
+
+P1 changes morphology and mean/amplitude sampling from R7, so cross-R7 pooled
+differences do not isolate training-bank size. The parent/source-count
+comparison is within P1's fixed population. Its private 48-query verification
+fixture uses production-seed prefixes; some development fields are therefore
+inspected during implementation checks and have no untouched-confirmation
+status.
+
+Nested 8/16/32-parent cohorts crossed with 2/4/8 calibration directions give
+nine fits. All cells share the frozen parent order and exact source prefixes;
+their common labels are acquired once. Each cell fits its training calibration
+prefixes and selects only on the validation-withheld bank. All nine readouts
+seal before acquiring training-withheld or diagnostic truth. The complete
+planned bank has 2,688 U/G query pairs and 16,128 withheld metric rows. Parents
+are the independent units; phases, sources and cells remain paired descendants.
+Learning curves and descriptive paired-parent comparisons describe one finite
+nested cohort; there are no confidence intervals or universal learning-law
+claims. Training-withheld parents inside/outside each fitted cohort are
+reported separately and are not treated as a fixed paired evaluation bank.
+
+The largest 32-parent/eight-direction cell alone receives complete repeated
+timing against ordered 2/8 and Lawson 2/4/8. The predeclared first diagnostic
+parent of each family supplies six contexts: 1,008 bundles and 4,032 source
+calls, including distinct first and warmup observations. Accuracy is retained
+for all nine fits on all withheld parents. Report reference acquisition,
+per-cell label requirements, fitting and complete action work separately.
+`outputs/study/costs.json` charges each uniquely acquired label once globally,
+retains per-cell label demand, and records reference, design, fitting, accuracy
+and timing durations as nested components rather than additions to wall time.
+The native contract remains one 4-CPU, 8-GiB, 20-minute Raven allocation with
+mandatory verification followed by the 900-second-budget study in the same
+attempt. It creates no automatic successor and defines no utility pass.
+
+Later phases separately propose optimal experimental design, defect-source
+supervision, generalized physical priors, learned stage elimination and
+bounded comparisons that separate these interventions. P1 does not implement
+those changes or preauthorize 64/128-parent expansion. Review its frozen
+provenance, references, nine seals, family coverage, learning curves and costs
+before selecting the next protocol. The dated R7 review and all older
+negative outcomes remain unchanged.
 
 ### Source interfaces
 
@@ -260,6 +318,10 @@ R8–R11, endpoint/trajectory utility, GPU readiness or novelty.
 | [r7_fitting.py](../tdn/analysis/response_preconditioner/r7_fitting.py) | Sampled projection, correctly induced local ridge and label-to-prediction sensitivity |
 | [r7_references.py](../tdn/analysis/response_preconditioner/r7_references.py) | Original-anchor absolute-time references and fixed-work Lawson actions |
 | [r7_actions.py](../tdn/analysis/response_preconditioner/r7_actions.py) | Exact five-branch extraction and complete paired action timing |
+| [scaling_protocol.py](../tdn/analysis/response_preconditioner/scaling_protocol.py) | P1 frozen cohort, two data axes, reference/work caps, access ordering and exact verifier roster |
+| [scaling_data.py](../tdn/analysis/response_preconditioner/scaling_data.py) | Independent periodic discrete parent families, physical identities and nested source prefixes |
+| [scaling_analysis.py](../tdn/analysis/response_preconditioner/scaling_analysis.py) | Per-parent/family learning curves, paired comparisons and complete accuracy/cost aggregation |
+| [scaling_workflow.py](../tdn/analysis/response_preconditioner/scaling_workflow.py) | Mandatory P1 verifier, nine validation-only selections, retained denominators and native study |
 
 Use the runbook's wrappers for reproducible execution. The full derivation,
 baseline ladder, term legend and prior-art boundaries remain in the dated
@@ -317,6 +379,8 @@ finishes successfully.
 | 2026-10-15 | Prepare R7 identification before adding an encoder | Distinguish sampled-source projection, regularization, coefficient-map prediction and full-operator capacity; retain explicit prospective scope |
 | 2026-10-15 | Implement the bounded R7 identification contract and native verifier → study launcher | Reuse four inspected parents with frozen source withholding and nonzero start times; retain local/global objective distinctions, uncertainty scenarios and complete no-reuse costs. 298 required CPU checks and 53 overlapping Raven compatibility checks pass in the retained receipt; native science remains pending and no architecture or utility gate is promoted |
 | 2026-10-16 | Accept native R7 job 2939 as completed bounded identification evidence | Independent provenance and exact numerical replay pass; Lawson two is much more accurate at nearly the same complete cost. Retain structural rank, sampled-span, ridge-bias and denominator findings; require full-operator and analytic-control audits before architecture expansion |
+| 2026-10-16 | Begin user-authorized P1 data-scaling phase with the existing architecture and objective | Separate the value of independent physical parents from source directions using one frozen 32/8/8 development bank and nine nested cells; retain the prior full-operator/analytic controls as proposals, not the sole next step. Native verification and evidence review remain required; no R8–R11 promotion or automatic larger cohort |
+| 2026-10-16 | Verify P1 implementation and portable Raven execution contract | [Receipt](../results/response-preconditioner-scaling-verification-20261016/README.md): 388 exact mandatory passes, eight additional compatibility passes and the 48-query/288-metric private fixture. Retain inspected-prefix disclosure, fresh prediction replay and shared acquisition costs; full native study remains pending |
 
 ## Maintenance rule
 

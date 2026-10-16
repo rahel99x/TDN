@@ -1,0 +1,103 @@
+{
+  "accuracy_evaluation_seconds": 3.597158869932173,
+  "cells": [
+    {
+      "calibration_source_count": 2,
+      "fitting_seconds": 0.005444071997771971,
+      "model_id": "fit-p002-s02",
+      "training": {
+        "accepted": 4,
+        "attempted": 4,
+        "design_seconds": 0.03338995898957364,
+        "planned": 4,
+        "reference_seconds": 0.30317895198822953
+      },
+      "training_parent_count": 2,
+      "training_reference_seconds": 0.30317895198822953,
+      "validation": {
+        "accepted": 8,
+        "attempted": 8,
+        "design_seconds": 0.07653161701455247,
+        "planned": 8,
+        "reference_seconds": 0.6060172070428962
+      },
+      "validation_reference_seconds": 0.6060172070428962
+    },
+    {
+      "calibration_source_count": 4,
+      "fitting_seconds": 0.005946822013356723,
+      "model_id": "fit-p002-s04",
+      "training": {
+        "accepted": 8,
+        "attempted": 8,
+        "design_seconds": 0.06573474100150634,
+        "planned": 8,
+        "reference_seconds": 0.6232838819705648
+      },
+      "training_parent_count": 2,
+      "training_reference_seconds": 0.6232838819705648,
+      "validation": {
+        "accepted": 8,
+        "attempted": 8,
+        "design_seconds": 0.07653161701455247,
+        "planned": 8,
+        "reference_seconds": 0.6060172070428962
+      },
+      "validation_reference_seconds": 0.6060172070428962
+    },
+    {
+      "calibration_source_count": 2,
+      "fitting_seconds": 0.005186652997508645,
+      "model_id": "fit-p004-s02",
+      "training": {
+        "accepted": 8,
+        "attempted": 8,
+        "design_seconds": 0.07046409799659159,
+        "planned": 8,
+        "reference_seconds": 0.5928647159889806
+      },
+      "training_parent_count": 4,
+      "training_reference_seconds": 0.5928647159889806,
+      "validation": {
+        "accepted": 8,
+        "attempted": 8,
+        "design_seconds": 0.07653161701455247,
+        "planned": 8,
+        "reference_seconds": 0.6060172070428962
+      },
+      "validation_reference_seconds": 0.6060172070428962
+    },
+    {
+      "calibration_source_count": 4,
+      "fitting_seconds": 0.00788357800047379,
+      "model_id": "fit-p004-s04",
+      "training": {
+        "accepted": 16,
+        "attempted": 16,
+        "design_seconds": 0.14786675201321486,
+        "planned": 16,
+        "reference_seconds": 1.214443788965582
+      },
+      "training_parent_count": 4,
+      "training_reference_seconds": 1.214443788965582,
+      "validation": {
+        "accepted": 8,
+        "attempted": 8,
+        "design_seconds": 0.07653161701455247,
+        "planned": 8,
+        "reference_seconds": 0.6060172070428962
+      },
+      "validation_reference_seconds": 0.6060172070428962
+    }
+  ],
+  "fitting_seconds": 0.03020086800097488,
+  "global_acquisition": {
+    "accepted": 48,
+    "attempted": 48,
+    "design_seconds": 0.4431776700366754,
+    "planned": 48,
+    "reference_seconds": 3.664529829969979
+  },
+  "scope": "Observed component durations, not additive to wall time; reference/design acquisition is shared once globally. Per-cell demands overlap and must not be summed. Missing costs are not zero-cost successes.",
+  "timing_seconds": 0.7027175089897355
+}

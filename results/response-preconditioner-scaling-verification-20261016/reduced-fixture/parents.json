@@ -1,0 +1,366 @@
+[
+  {
+    "actual_mean": 0.2564756441116333,
+    "actual_variance": 0.0011893116953338868,
+    "cohort_order": 0,
+    "field_sha256": "9a18d1826b2eb56f663cb2a35dfe7c685c73dc93ba2489269a922af8635a61e8",
+    "grid": [
+      5,
+      5
+    ],
+    "identity_sha256": "2685005c133d74a52183ff3e7c830ee2fddd50b9b918acd62ab521a71dff6727",
+    "index": 0,
+    "kappa": 0.016082129874425304,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "morphology_parameters": {
+      "phases": [
+        5.426294170283436,
+        0.22913935441460012,
+        4.783283326581514,
+        4.438431022242335
+      ]
+    },
+    "morphology_seed": [
+      2026101601,
+      101
+    ],
+    "parent_family": "smooth_spectral",
+    "parent_id": "train-000-2026101601",
+    "parent_index": 0,
+    "physics_seed": [
+      2026101601,
+      103
+    ],
+    "reaction_rate": 2.0566520726055817,
+    "requested_amplitude": 0.06896089963366973,
+    "requested_mean": 0.2564756449852413,
+    "seed": 2026101601,
+    "split": "train",
+    "state_seed": [
+      2026101601,
+      102
+    ]
+  },
+  {
+    "actual_mean": 0.6466134452819824,
+    "actual_variance": 0.00017485027470942217,
+    "cohort_order": 1,
+    "field_sha256": "81b18ff6e33934e7dadb26e095592259e16201dc65de7b8835e2e4b9ec698422",
+    "grid": [
+      5,
+      5
+    ],
+    "identity_sha256": "86063a26fcbb61865ef3ecbb4cfcfb4f0cd6d3db3d1f4e64d156b68d1a42094f",
+    "index": 1,
+    "kappa": 0.013464770420588523,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "morphology_parameters": {
+      "concentration": 1.1128560587298222,
+      "phases": [
+        5.2193347733828075,
+        4.657233037456369,
+        3.5909344411563198,
+        2.5467876713875306
+      ]
+    },
+    "morphology_seed": [
+      2026101602,
+      101
+    ],
+    "parent_family": "localized_periodic",
+    "parent_id": "train-001-2026101602",
+    "parent_index": 1,
+    "physics_seed": [
+      2026101602,
+      103
+    ],
+    "reaction_rate": 2.479535902886118,
+    "requested_amplitude": 0.043687369811804794,
+    "requested_mean": 0.6466134460195383,
+    "seed": 2026101602,
+    "split": "train",
+    "state_seed": [
+      2026101602,
+      102
+    ]
+  },
+  {
+    "actual_mean": 0.5811768627166748,
+    "actual_variance": 0.020628446472361908,
+    "cohort_order": 2,
+    "field_sha256": "b8168f3e715157f9bf06cc44d5360ff3e1f3a02d0111724bb51712ab6452e08e",
+    "grid": [
+      5,
+      5
+    ],
+    "identity_sha256": "3b3eecaf7b434c8a8a4a62598ae50c175fbfb450685d0a603f8fba7ca469b2aa",
+    "index": 2,
+    "kappa": 0.016470571032904925,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "morphology_parameters": {
+      "phases": [
+        2.77042751234377,
+        0.4407648847346799,
+        4.493927424323115,
+        4.369998838230744
+      ],
+      "sharpness": 2.245344915260766
+    },
+    "morphology_seed": [
+      2026101603,
+      101
+    ],
+    "parent_family": "periodic_transition",
+    "parent_id": "train-002-2026101603",
+    "parent_index": 2,
+    "physics_seed": [
+      2026101603,
+      103
+    ],
+    "reaction_rate": 2.317340337072579,
+    "requested_amplitude": 0.17430866847194346,
+    "requested_mean": 0.5811768632404459,
+    "seed": 2026101603,
+    "split": "train",
+    "state_seed": [
+      2026101603,
+      102
+    ]
+  },
+  {
+    "actual_mean": 0.6306867170333862,
+    "actual_variance": 0.003956243462136945,
+    "cohort_order": 3,
+    "field_sha256": "b808c1d7dc63fa3cd9c938437b5b09fbd807a5d3c431dd788cb6de8b73d998e1",
+    "grid": [
+      5,
+      5
+    ],
+    "identity_sha256": "bc500700978167759450a049d8891052426f4831065a7a394a8a10877a01cce8",
+    "index": 3,
+    "kappa": 0.01065298862090078,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "morphology_parameters": {
+      "phases": [
+        5.745584051057616,
+        0.872390410982694,
+        2.408509386523904,
+        3.6140917012488525
+      ]
+    },
+    "morphology_seed": [
+      2026101604,
+      101
+    ],
+    "parent_family": "multiscale_discrete",
+    "parent_id": "train-003-2026101604",
+    "parent_index": 3,
+    "physics_seed": [
+      2026101604,
+      103
+    ],
+    "reaction_rate": 1.8398918932963957,
+    "requested_amplitude": 0.09961494498751003,
+    "requested_mean": 0.6306867200023667,
+    "seed": 2026101604,
+    "split": "train",
+    "state_seed": [
+      2026101604,
+      102
+    ]
+  },
+  {
+    "actual_mean": 0.4051085186004639,
+    "actual_variance": 0.005487818095793691,
+    "cohort_order": 0,
+    "field_sha256": "25e10002d61e592fa636d89dfe6aa21cb15e10f4f20fe8866d1d2909c213c374",
+    "grid": [
+      5,
+      5
+    ],
+    "identity_sha256": "1ab3938d26d5d0f339598edb7b657dd244731c7de78cf20c1912077f717986fd",
+    "index": 0,
+    "kappa": 0.011829664927639892,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "morphology_parameters": {
+      "phases": [
+        1.298506127628722,
+        4.716690319319249,
+        0.9320484799344826,
+        5.646896049282595
+      ]
+    },
+    "morphology_seed": [
+      2026101701,
+      101
+    ],
+    "parent_family": "smooth_spectral",
+    "parent_id": "validation-000-2026101701",
+    "parent_index": 0,
+    "physics_seed": [
+      2026101701,
+      103
+    ],
+    "reaction_rate": 1.860838642372662,
+    "requested_amplitude": 0.1475201829615485,
+    "requested_mean": 0.405108518555533,
+    "seed": 2026101701,
+    "split": "validation",
+    "state_seed": [
+      2026101701,
+      102
+    ]
+  },
+  {
+    "actual_mean": 0.548839180469513,
+    "actual_variance": 0.0005366147833302989,
+    "cohort_order": 1,
+    "field_sha256": "304dc8106e2757593c36616ca6e6d707c509730dae0b7800bfdd7b27a12ee3d9",
+    "grid": [
+      5,
+      5
+    ],
+    "identity_sha256": "553f240aad58ca5d2a72acf6d2148a7904f7b61c0854936b6a8ebfaf91f9d514",
+    "index": 1,
+    "kappa": 0.01134126007608523,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "morphology_parameters": {
+      "concentration": 1.1994848805295306,
+      "phases": [
+        3.1733777917850277,
+        3.333706284738681,
+        3.010094629972941,
+        4.47209836745469
+      ]
+    },
+    "morphology_seed": [
+      2026101702,
+      101
+    ],
+    "parent_family": "localized_periodic",
+    "parent_id": "validation-001-2026101702",
+    "parent_index": 1,
+    "physics_seed": [
+      2026101702,
+      103
+    ],
+    "reaction_rate": 1.996018829433332,
+    "requested_amplitude": 0.061120911922919643,
+    "requested_mean": 0.5488391812003756,
+    "seed": 2026101702,
+    "split": "validation",
+    "state_seed": [
+      2026101702,
+      102
+    ]
+  },
+  {
+    "actual_mean": 0.5637545537948608,
+    "actual_variance": 0.001464871222114445,
+    "cohort_order": 0,
+    "field_sha256": "14e1aa5e1316ac61bf4834bdd8e1e7cff9a1daebf7c1f6bf09c0e4afcc93c69a",
+    "grid": [
+      5,
+      5
+    ],
+    "identity_sha256": "9b71262b1201282c2c1f658c325d9a3c0dedafb460e801bd350ce4df16b8fedc",
+    "index": 0,
+    "kappa": 0.013045047757857198,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "morphology_parameters": {
+      "phases": [
+        3.0544609130866074,
+        2.5801639331024364,
+        0.7151234087077188,
+        3.025616778199496
+      ]
+    },
+    "morphology_seed": [
+      2026101801,
+      101
+    ],
+    "parent_family": "smooth_spectral",
+    "parent_id": "diagnostic-000-2026101801",
+    "parent_index": 0,
+    "physics_seed": [
+      2026101801,
+      103
+    ],
+    "reaction_rate": 1.801346849659435,
+    "requested_amplitude": 0.08374842719791328,
+    "requested_mean": 0.5637545550803329,
+    "seed": 2026101801,
+    "split": "diagnostic",
+    "state_seed": [
+      2026101801,
+      102
+    ]
+  },
+  {
+    "actual_mean": 0.5553935742378235,
+    "actual_variance": 0.0008996426328424377,
+    "cohort_order": 1,
+    "field_sha256": "c9a147660904ea711015a7c864ed07c4d54950e351c45905a58ae7729ba27e0e",
+    "grid": [
+      5,
+      5
+    ],
+    "identity_sha256": "4f5bb23ff68c5fe870610237c6eca5492415da7f43226002b7ff284409f1c9b8",
+    "index": 1,
+    "kappa": 0.014296111292514152,
+    "lengths": [
+      1.0,
+      1.0
+    ],
+    "morphology_parameters": {
+      "concentration": 1.3609021006850688,
+      "phases": [
+        5.685659913126129,
+        2.0668549331946933,
+        3.4080434867850338,
+        0.8861730192616406
+      ]
+    },
+    "morphology_seed": [
+      2026101802,
+      101
+    ],
+    "parent_family": "localized_periodic",
+    "parent_id": "diagnostic-001-2026101802",
+    "parent_index": 1,
+    "physics_seed": [
+      2026101802,
+      103
+    ],
+    "reaction_rate": 1.9484211588192846,
+    "requested_amplitude": 0.08067101916318142,
+    "requested_mean": 0.5553935728460127,
+    "seed": 2026101802,
+    "split": "diagnostic",
+    "state_seed": [
+      2026101802,
+      102
+    ]
+  }
+]

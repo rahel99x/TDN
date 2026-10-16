@@ -1,0 +1,5 @@
+# Phase 1 independent-parent scaling evidence
+
+Execution: **COMPLETED**. Descriptive development; no automatic promotion.
+
+Read protocol.json and selection.json before interpreting learning_curves.csv and parent_metrics.csv. Independent physical parents are the sampling units; source vectors and times are paired descendants. All selected models seal before diagnostic or training-withheld references. Training membership is explicit. One nested parent cohort/order does not establish population-level scaling or fresh confirmation. The 5-by-5 morphologies are finite-grid development fields, not continuum-resolved fronts. query_index.json, denominators.json and evaluation_denominators.json retain missing and failed attempts. Per-query NPZ/JSON and prediction files preserve partial work; NPZ loads require allow_pickle=False. Complete fresh-source timings cover only the largest fit on the predeclared diagnostic subset. CPU/RSS worker telemetry is separate from science; no GPU or endpoint/rollout claim is made. See docs/RESPONSE_PRECONDITIONER_SCALING_PHASE1.md for definitions, limits and the runbook.

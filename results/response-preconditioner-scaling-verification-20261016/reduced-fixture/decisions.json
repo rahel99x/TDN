@@ -1,0 +1,22 @@
+{
+  "architecture_promotion": false,
+  "automatic_expansion": false,
+  "fresh_confirmation": false,
+  "limitations": [
+    "additional parent cohorts",
+    "active optimal design",
+    "defect-source learning",
+    "new regularizer",
+    "architecture changes",
+    "dense prediction sensitivity maps",
+    "local oracles",
+    "full operator audit",
+    "analytic coefficient control",
+    "rollout",
+    "GPU",
+    "fresh confirmation"
+  ],
+  "matched_tolerance_speedup": false,
+  "next_gate": "Review independent-parent and source-count curves, failures, uncertainty and costs before separately freezing Phase 2 or a larger cohort",
+  "status": "DESCRIPTIVE_DEVELOPMENT_ONLY"
+}
