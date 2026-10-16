@@ -1,0 +1,802 @@
+[
+  {
+    "context_id": "train-000-0",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-0-calibration-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.01
+  },
+  {
+    "context_id": "train-000-0",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-0-calibration-1",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-1",
+    "source_index": 1,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.01
+  },
+  {
+    "context_id": "train-000-0",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-0-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.01
+  },
+  {
+    "context_id": "train-000-1",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-1-calibration-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.02
+  },
+  {
+    "context_id": "train-000-1",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-1-calibration-1",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-1",
+    "source_index": 1,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.02
+  },
+  {
+    "context_id": "train-000-1",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-1-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.02
+  },
+  {
+    "context_id": "train-000-2",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-2-calibration-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.03
+  },
+  {
+    "context_id": "train-000-2",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-2-calibration-1",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-1",
+    "source_index": 1,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.03
+  },
+  {
+    "context_id": "train-000-2",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-2-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.03
+  },
+  {
+    "context_id": "train-000-3",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-3-calibration-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.04
+  },
+  {
+    "context_id": "train-000-3",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-3-calibration-1",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-1",
+    "source_index": 1,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.04
+  },
+  {
+    "context_id": "train-000-3",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "query_id": "train-000-3-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.04
+  },
+  {
+    "context_id": "train-001-0",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-0-calibration-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.01
+  },
+  {
+    "context_id": "train-001-0",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-0-calibration-1",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-1",
+    "source_index": 1,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.01
+  },
+  {
+    "context_id": "train-001-0",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-0-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.01
+  },
+  {
+    "context_id": "train-001-1",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-1-calibration-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.02
+  },
+  {
+    "context_id": "train-001-1",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-1-calibration-1",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-1",
+    "source_index": 1,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.02
+  },
+  {
+    "context_id": "train-001-1",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-1-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.02
+  },
+  {
+    "context_id": "train-001-2",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-2-calibration-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.03
+  },
+  {
+    "context_id": "train-001-2",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-2-calibration-1",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-1",
+    "source_index": 1,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.03
+  },
+  {
+    "context_id": "train-001-2",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-2-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.03
+  },
+  {
+    "context_id": "train-001-3",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-3-calibration-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.04
+  },
+  {
+    "context_id": "train-001-3",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-3-calibration-1",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "calibration",
+    "source_id": "calibration-1",
+    "source_index": 1,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.04
+  },
+  {
+    "context_id": "train-001-3",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "query_id": "train-001-3-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "train",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.04
+  },
+  {
+    "context_id": "validation-000-0",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "validation-000",
+    "query_id": "validation-000-0-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "validation",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.01
+  },
+  {
+    "context_id": "validation-000-1",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "validation-000",
+    "query_id": "validation-000-1-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "validation",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.02
+  },
+  {
+    "context_id": "validation-000-2",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "validation-000",
+    "query_id": "validation-000-2-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "validation",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.03
+  },
+  {
+    "context_id": "validation-000-3",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "validation-000",
+    "query_id": "validation-000-3-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "validation",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.04
+  },
+  {
+    "context_id": "diagnostic-000-0",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "diagnostic-000",
+    "query_id": "diagnostic-000-0-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "diagnostic",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.01
+  },
+  {
+    "context_id": "diagnostic-000-1",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "diagnostic-000",
+    "query_id": "diagnostic-000-1-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "diagnostic",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.02
+  },
+  {
+    "context_id": "diagnostic-000-2",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "diagnostic-000",
+    "query_id": "diagnostic-000-2-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "diagnostic",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.03
+  },
+  {
+    "context_id": "diagnostic-000-3",
+    "design_seconds": 0.001,
+    "family": "dense_random",
+    "parent_family": "synthetic",
+    "parent_id": "diagnostic-000",
+    "query_id": "diagnostic-000-3-withheld-0",
+    "reference": {
+      "accepted": true,
+      "matched_mean": {
+        "uncertainty_maximum": 2e-11,
+        "uncertainty_rms": 1e-11
+      },
+      "uncertainty_maximum": 2e-11,
+      "uncertainty_rms": 1e-11
+    },
+    "reference_seconds": 0.01,
+    "role": "withheld",
+    "source_id": "withheld-0",
+    "source_index": 0,
+    "split": "diagnostic",
+    "start": 0.0,
+    "status": "ACCEPTED",
+    "stop": 0.04
+  }
+]

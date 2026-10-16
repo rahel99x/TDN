@@ -3,9 +3,11 @@
 Read the [standing research program](TDN_RESEARCH_PROGRAM.md) and
 [mathematical proposal](TDN_ARCHITECTURE_PROPOSAL_20261015.md). This namespace
 implements the first bounded FD milestone, the separate R7 identification
-study and the new [P1 data-scaling phase](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md).
+study, the reviewed [P1 data-scaling phase](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md)
+and the current [P1R retained-data audit](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md).
 The original verifier/smoke remains `IMPLEMENTATION_ONLY`; R7 and P1 are
-`BOUNDED_DEVELOPMENT`. None promotes the historical Tangent Response B STOP,
+`BOUNDED_DEVELOPMENT`, and P1R is `BOUNDED_RETAINED_DATA_DEVELOPMENT`.
+None promotes the historical Tangent Response B STOP,
 establishes native GPU readiness, or starts an automatic successor.
 
 The first milestone implements 40 affine coefficients over three commutator
@@ -40,10 +42,108 @@ coverage, regularization and a resolved sampled-span residual remain relevant.
 Do not repeat the unchanged study. The launch commands below remain the R7 v1
 interface, not an instruction to expand the bank or proceed to an encoder.
 
+## P1R: current bounded retained-data regularization audit
+
+The [frozen P1R design and term guide](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md)
+implement the user-authorized follow-up to native P1 job 2944. Exact local
+verification passed all **585 mandatory CPU cases**, plus eight additional Raven
+compatibility cases; the [receipt](../results/response-preconditioner-regularization-verification-20261015/README.md)
+also retains the complete 144-metric synthetic integration;
+native execution is pending. Preparation uses the committed, hash-pinned P1
+review archive, so no manual old-run directory is needed. It verifies input
+identity and provenance without fitting models or loading numeric arrays.
+
+The unchanged five branches and 40 weights are fitted on three original cells:
+8 parents × 8 directions, 32 × 2 and 32 × 8. Each has 13 candidates: zero,
+six coefficient ridges, five action-energy penalties and an ineligible
+unregularized projection. Validation selects independently in each positive
+family. All six choices seal before this audit reads diagnostic or
+training-withheld numeric arrays. The archive remains previously inspected
+development data, not fresh confirmation.
+
+The action-energy arm is a uniform-shrinkage control toward the existing
+backbone, not a derived physical prior. It uses only training action designs
+to define its penalty. Sensitivity remains a reported diagnostic without an
+arbitrary pass threshold. Seventeen methods on all 1,152 withheld queries
+produce 19,584 planned metric slots, including original and classical controls.
+The audit introduces no physical labels, model architecture changes or new
+inference timings. It replays retained designs and equivalent five-branch
+contractions; all missing and failed slots remain visible.
+
+After relevant jobs using this checkout are terminal, prepare and launch:
+
+```bash
+if cd /home/rahel/TDN &&
+   git pull --ff-only origin main &&
+   contract="$(.venv/bin/python scripts/response_preconditioner_regularization_native.py prepare)"; then
+  raven launch scripts/response_preconditioner_regularization.sh \
+    --project "$PWD" --recipe response-preconditioner-regularization \
+    --sbatch=--partition=local --sbatch="--chdir=$PWD" \
+    -- --contract "$contract"
+else
+  unset contract
+  printf 'Preparation failed; no job submitted. See the error above.\n' >&2
+fi
+```
+
+Use the configured CPU partition/account from `.tdn/fedora-slurm.json` when
+different. Insert `--check` before `--` for a launch preview. Do not use
+`--local`, source the launcher or update source/venv during active jobs.
+Preparation failure keeps the interactive terminal open and submits no job.
+The allocation is **4 CPUs, 8 GiB and 20 minutes**, with one numerical thread
+and a **600-second study budget**. The exact verifier precedes fitting in the
+same source/input-bound attempt. `--mode verify` is supported; a study-only
+mode or another attempt's verification release is not.
+
+Local implementation verification uses synthetic arrays without fitting the
+retained P1 bank:
+
+```bash
+if cd /home/rahel/TDN; then
+  mkdir -p .runtime/response-preconditioner-regularization-local &&
+  TMPDIR="$PWD/.runtime/response-preconditioner-regularization-local" \
+    PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+    .venv/bin/python scripts/response_preconditioner_regularization.py verify --device cpu
+fi
+```
+
+The `response-preconditioner-regularization` recipe enables experiment,
+evidence, artifacts and CPU/memory observation. It is one job, without arrays,
+GPU collection or tracing. Research series under `regularization/` show
+validation paths, physical errors, mean/spatial components, fit diagnostics,
+counts and offline costs. Worker CPU/RSS telemetry is separate from supervisor
+graphs and does not measure per-method memory. Source/input checks and research
+publication precede optional evidence packing; packing status remains distinct
+from the numerical stage's outcome.
+
+Inspect `outputs/native/status.json`, `outputs/verification/summary.json` and
+`outputs/study/summary.json` first, then the study's `input_identity.json`,
+`selection.json`, `denominators.json`, `sensitivity.json`, `costs.json` and
+`learning_curves.csv`. Consumed source arrays and access receipts are under
+`outputs/study/inputs/`; numeric predictions, all metrics and figures remain
+portable. `fitting_seconds` includes candidate validation and sensitivity;
+`sensitivity_seconds` is its subset. Reused original label costs are not new
+acquisition, and these components must not be added again to wall time.
+
+After the attempt is terminal, export its exact run directory:
+
+```bash
+if cd /home/rahel/TDN; then
+  .venv/bin/python scripts/response_preconditioner_regularization_native.py export \
+    --run runs/launch-EXACT-a1
+fi
+```
+
+Upload the printed directory's `README.txt`, `index.json` and ZIP or all
+numbered parts, each at most 30 MiB. Export preserves the original status and
+does not rerun research. Review the resulting accuracy, numerical eligibility
+and sensitivity before any next phase; P1R supplies no automatic model,
+data-acquisition, GPU or confirmation expansion.
+
 ## P1: independent-parent and source-direction scaling
 
-The new [Phase 1 design](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md) is the
-current implementation phase; it is separate from the old R7 protocol and
+The reviewed [Phase 1 design](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md) is
+preserved separately from the current P1R audit, the old R7 protocol and
 the proposed R8 encoder. The [verification receipt](../results/response-preconditioner-scaling-verification-20261016/README.md)
 records 388 mandatory CPU passes, eight additional Raven compatibility passes,
 and a completed 48-query implementation fixture. [Native job 2944](../results/native-response-preconditioner-scaling-2944/README.md)
@@ -68,8 +168,9 @@ ordered 2/8 and Lawson 2/4/8 on the fixed family-balanced diagnostic subset.
 No full bank is acquired during preparation or local verification. Native
 P1 numerical work is now reviewed; no unchanged rerun is needed. More parents
 helped, but the learned response remains less accurate than near-cost Lawson 2.
-The next proposed bounded question concerns regularization/physical priors;
-no next-phase launch or architecture expansion is automatic.
+The user-authorized P1R audit above now implements the next bounded
+regularization question. Derived physical priors and architecture expansion
+remain separate future work; P1's experiment is not repeated by P1R.
 
 The following retains the launch interface for a separately authorized fresh
 attempt after older jobs finish; it is not a request to rerun completed P1:

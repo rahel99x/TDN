@@ -1,0 +1,26 @@
+[
+  {
+    "parent_family": "synthetic",
+    "parent_id": "train-000",
+    "parent_index": 0,
+    "split": "train"
+  },
+  {
+    "parent_family": "synthetic",
+    "parent_id": "train-001",
+    "parent_index": 1,
+    "split": "train"
+  },
+  {
+    "parent_family": "synthetic",
+    "parent_id": "validation-000",
+    "parent_index": 0,
+    "split": "validation"
+  },
+  {
+    "parent_family": "synthetic",
+    "parent_id": "diagnostic-000",
+    "parent_index": 0,
+    "split": "diagnostic"
+  }
+]

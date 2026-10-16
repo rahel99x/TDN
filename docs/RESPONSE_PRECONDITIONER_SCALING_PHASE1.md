@@ -21,8 +21,11 @@ FAILED attempt; no unchanged study rerun is needed. All numerical results,
 source snapshots and raw arrays are retained with independent replay scripts.
 More physical parents helped, while additional directions had small returns;
 Lawson 2 remained much more accurate near the learned execution cost. The
-proposed next gate audits regularization/physical priors, without automatically
-launching P2 or expanding the architecture.
+user-authorized follow-up is now implemented as the separate
+[P1R retained-data regularization audit](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md).
+Its [585-case CPU verification](../results/response-preconditioner-regularization-verification-20261015/README.md)
+passed; native execution remains pending; it does not repeat
+P1, launch P2 or expand the architecture.
 
 ## Why this experiment
 
@@ -344,9 +347,10 @@ to native elapsed time, not inserted into measured method timing.
 | Phase | Question and intervention | Current authorization/status |
 | --- | --- | --- |
 | P1 | Independent-parent versus source-direction scaling with the fixed response family | Native numerical study reviewed; wrapper packing FAILED, evidence recovered |
+| P1R | Retained-bank coefficient-penalty path versus action-energy uniform shrinkage | CPU-verified user-authorized follow-up (585 mandatory passes); native execution pending; [frozen audit and launch commands](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md) |
 | P2 | D-optimal/E-optimal acquisition versus stratified/random physical coverage | Proposed; freeze a separate selection rule, acquisition budget and untouched evaluation bank |
 | P3 | Actual-defect and full-quadrature correction supervision versus generic source supervision | Proposed; implement task-specific labels and preserve generic stress tests |
-| P4 | Generalized Tikhonov/physical priors versus the unchanged coefficient ridge | Proposed next bounded audit after P1, ahead of broad acquisition; declare objective, nullspace and selection before fitting |
+| P4 | Generalized Tikhonov/physical priors versus the unchanged coefficient ridge | P1R implements the bounded regularization question first; independently derived physical priors remain proposed and need a declared objective, nullspace and selection |
 | P5 | Replace costly classical stages with learned approximations | Proposed; profile representative grids, enforce appropriate consistency and charge complete work |
 | P6 | Bounded comparisons separating data, representation, supervision and penalty | Proposed; reuse eligible references, freeze comparisons and independent-parent analysis |
 
@@ -365,11 +369,23 @@ That review is now complete for job 2944. At eight sources, 8 → 32 parents
 reduced diagnostic RMS by 17.31%; at 32 parents, 2 → 8 sources reduced it by
 0.981% for four times the training labels. All designs have rank 40, but selected
 ridge leaves effective degrees of freedom 6.60–6.80 and all selections choose
-the menu's lowest strength. This motivates the proposed bounded prior audit;
+the menu's lowest strength. This motivated the bounded P1R regularization audit;
 it does not prove that a weaker penalty will improve generalization. No new
 candidate was fitted during the review. The review also supplies an explicit
 mean-component/spatial-error decomposition while retaining the original pooled
 `centered_rms` semantics and all historical files.
+
+P1R reuses only the exact reviewed arrays for cells 8 × 8, 32 × 2 and 32 × 8.
+There are 13 candidates per cell, six validation-only selections and 17 methods
+on the original 1,152 withheld queries: 19,584 metric slots. Its action-energy
+penalty is an explicitly known uniform shrinkage of the unregularized fitted
+action, not a derived PDE or BCH/Magnus prior. No new physical labels, model
+branches or inference timing bundles are introduced. The diagnostic bank remains
+inspected development. The [new audit document](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md)
+and [current runbook](RESPONSE_PRECONDITIONER_RUNBOOK.md#p1r-current-bounded-retained-data-regularization-audit)
+contain its separate recipe, guarded launch/export commands and pending native
+verification status. The P1 launch interface above is historical and is not the
+command for that follow-up.
 
 ## Term guide
 

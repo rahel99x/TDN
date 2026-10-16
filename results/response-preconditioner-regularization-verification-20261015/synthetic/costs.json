@@ -1,0 +1,22 @@
+{
+  "cells": [
+    {
+      "audit_candidate_seconds": 0.0678098219941603,
+      "cell_id": "p002-s02",
+      "original_training_reference_seconds": 0.16,
+      "reused_training_query_count": 16
+    }
+  ],
+  "component_scope": "fitting_seconds is inclusive candidate computation (solve, validation and sensitivity); sensitivity_seconds is its subset. Penalty setup, input reads and evaluation are separate. Components are not additive to wall time.",
+  "evaluation_seconds": 0.018191794952144846,
+  "fitting_seconds": 0.0678098219941603,
+  "fresh_reference_solves": 0,
+  "input_read_seconds": 0.0035544030397431925,
+  "new_timing_bundles": 0,
+  "original_design_seconds": 0.032,
+  "original_reference_seconds": 0.32,
+  "penalty_setup_seconds": 0.0012023989984299988,
+  "reused_reference_pairs": 32,
+  "scope": "New audit computation only; original label/setup costs are reused, not reacquired",
+  "sensitivity_seconds": 0.013363673017011024
+}

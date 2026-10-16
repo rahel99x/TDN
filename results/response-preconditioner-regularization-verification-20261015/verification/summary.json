@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "duplicates": 0,
+    "errors": 0,
+    "exact_roster": true,
+    "expected": 585,
+    "failed": 0,
+    "skipped": 0,
+    "total": 585
+  },
+  "command": "verify",
+  "decision": "BOUNDED_RETAINED_DATA_DEVELOPMENT",
+  "device": "cpu",
+  "elapsed_seconds": 90.70075420600187,
+  "fresh_reference_solves": 0,
+  "native_gpu_readiness": false,
+  "new_timing_bundles": 0,
+  "output": "/workspace/TDN/.runtime/regularization-verification/final",
+  "protocol_sha256": "a1ea8d521c5fb9ff0ac4f05082347f7a4307a1bb212d6daf376e7c9bb437f39c",
+  "schema": "tdn.response_preconditioner.regularization.v1",
+  "scientific_promotion": false,
+  "source_fingerprint": "ff37f88c9dcbdf394a562c0da1ef1765e4f1c1dd8b191940179786de67c66358",
+  "status": "COMPLETED"
+}

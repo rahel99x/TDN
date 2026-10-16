@@ -1,0 +1,63 @@
+{"event": "protocol_frozen", "protocol_sha256": "c459e458ef3299f82305e1d8d17fb4f3eefab9b9c8a490b2cdcd36b9437f5bfd", "utc": "2026-10-16T03:15:10.526618+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-0-calibration-0", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.529646+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-0-calibration-1", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.529781+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-1-calibration-0", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.529865+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-1-calibration-1", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.529968+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-2-calibration-0", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530035+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-2-calibration-1", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530092+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-3-calibration-0", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530146+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-3-calibration-1", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530196+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-0-calibration-0", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530247+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-0-calibration-1", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530294+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-1-calibration-0", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530345+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-1-calibration-1", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530392+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-2-calibration-0", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530440+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-2-calibration-1", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530489+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-3-calibration-0", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530538+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-3-calibration-1", "role": "calibration", "split": "train", "utc": "2026-10-16T03:15:10.530586+00:00"}
+{"event": "retained_query_read", "query_id": "validation-000-0-withheld-0", "role": "withheld", "split": "validation", "utc": "2026-10-16T03:15:10.530632+00:00"}
+{"event": "retained_query_read", "query_id": "validation-000-1-withheld-0", "role": "withheld", "split": "validation", "utc": "2026-10-16T03:15:10.530682+00:00"}
+{"event": "retained_query_read", "query_id": "validation-000-2-withheld-0", "role": "withheld", "split": "validation", "utc": "2026-10-16T03:15:10.530727+00:00"}
+{"event": "retained_query_read", "query_id": "validation-000-3-withheld-0", "role": "withheld", "split": "validation", "utc": "2026-10-16T03:15:10.530776+00:00"}
+{"candidate": "zero_readout", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.534687+00:00"}
+{"candidate": "coefficient_ridge_1e-06", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.546622+00:00"}
+{"candidate": "coefficient_ridge_1e-10", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.554726+00:00"}
+{"candidate": "coefficient_ridge_1e-12", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.563880+00:00"}
+{"candidate": "coefficient_ridge_1e-14", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.574123+00:00"}
+{"candidate": "coefficient_ridge_1e-16", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.585295+00:00"}
+{"candidate": "coefficient_ridge_1e-18", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.599386+00:00"}
+{"candidate": "action_energy_1e-06", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.613562+00:00"}
+{"candidate": "action_energy_0.0001", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.632112+00:00"}
+{"candidate": "action_energy_0.01", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.653673+00:00"}
+{"candidate": "action_energy_1", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.676212+00:00"}
+{"candidate": "action_energy_100", "cell_id": "p002-s02", "eligible": true, "event": "candidate_finished", "status": "SOLVED", "utc": "2026-10-16T03:15:10.701867+00:00"}
+{"candidate": "projection", "cell_id": "p002-s02", "eligible": false, "event": "candidate_finished", "status": "OFFLINE_DIAGNOSTIC", "utc": "2026-10-16T03:15:10.724552+00:00"}
+{"event": "all_selections_frozen", "selected_models": 2, "selection_file_sha256": "a8155f4faa15b84914bc4c175eea886dc934fed339789c784e69771118ea2466", "utc": "2026-10-16T03:15:10.806616+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-0-withheld-0", "role": "withheld", "split": "train", "utc": "2026-10-16T03:15:10.822783+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/train-000-0-withheld-0.npz", "prediction_sha256": "9293b67ea44cedde99c66b89f7f5a0997e1d32ebe9d26a4e02e0c3f0d1e7ca68", "query_id": "train-000-0-withheld-0", "utc": "2026-10-16T03:15:10.826883+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-1-withheld-0", "role": "withheld", "split": "train", "utc": "2026-10-16T03:15:10.827256+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/train-000-1-withheld-0.npz", "prediction_sha256": "e6bfbb54b452efabd6fc361c0e4c404e0e67b7634229ad9f27253eb3a074d4c5", "query_id": "train-000-1-withheld-0", "utc": "2026-10-16T03:15:10.830245+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-2-withheld-0", "role": "withheld", "split": "train", "utc": "2026-10-16T03:15:10.830344+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/train-000-2-withheld-0.npz", "prediction_sha256": "5253343ff9417264d423b986c618e5509876f7ee80b79dd48deb3e7577fc0bac", "query_id": "train-000-2-withheld-0", "utc": "2026-10-16T03:15:10.832881+00:00"}
+{"event": "retained_query_read", "query_id": "train-000-3-withheld-0", "role": "withheld", "split": "train", "utc": "2026-10-16T03:15:10.833018+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/train-000-3-withheld-0.npz", "prediction_sha256": "42c6412772a9f52d11bd003fa2c13877dd9476f99fe7aea05f0924d6e69274f7", "query_id": "train-000-3-withheld-0", "utc": "2026-10-16T03:15:10.836165+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-0-withheld-0", "role": "withheld", "split": "train", "utc": "2026-10-16T03:15:10.836272+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/train-001-0-withheld-0.npz", "prediction_sha256": "74e8a6d13da47a703c92cba84ab9ec8a495d6db84cd09b31f7d80ac7a9f0fc42", "query_id": "train-001-0-withheld-0", "utc": "2026-10-16T03:15:10.839607+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-1-withheld-0", "role": "withheld", "split": "train", "utc": "2026-10-16T03:15:10.839826+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/train-001-1-withheld-0.npz", "prediction_sha256": "191ffc2f81d36d1d5ae90ab2106026fcbb0a4fcfc92b13f052250e72d65bfe23", "query_id": "train-001-1-withheld-0", "utc": "2026-10-16T03:15:10.843371+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-2-withheld-0", "role": "withheld", "split": "train", "utc": "2026-10-16T03:15:10.843480+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/train-001-2-withheld-0.npz", "prediction_sha256": "b40b411c92b3cb11161334138e77c50f9f52a7825f0838795d1ad5f9c90f026d", "query_id": "train-001-2-withheld-0", "utc": "2026-10-16T03:15:10.846360+00:00"}
+{"event": "retained_query_read", "query_id": "train-001-3-withheld-0", "role": "withheld", "split": "train", "utc": "2026-10-16T03:15:10.846465+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/train-001-3-withheld-0.npz", "prediction_sha256": "c3469b81168bd76d6cd12ec04cf3b20248cf2942e4972a4e1f89716efa940722", "query_id": "train-001-3-withheld-0", "utc": "2026-10-16T03:15:10.849206+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/validation-000-0-withheld-0.npz", "prediction_sha256": "7c8db0147777779a3615612c351a402d28e5d99245a07496e0d2d2c653b832c7", "query_id": "validation-000-0-withheld-0", "utc": "2026-10-16T03:15:10.852176+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/validation-000-1-withheld-0.npz", "prediction_sha256": "717e3ee25ad6e8f1f48a18b1fbf38ac37a4c191a7c1ef24445c6f0d7257fd08a", "query_id": "validation-000-1-withheld-0", "utc": "2026-10-16T03:15:10.855705+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/validation-000-2-withheld-0.npz", "prediction_sha256": "72036e5b46345e4c32395b22f70a10dc8957f8586ff484cfe501e5aef2b5df1d", "query_id": "validation-000-2-withheld-0", "utc": "2026-10-16T03:15:10.858505+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/validation-000-3-withheld-0.npz", "prediction_sha256": "5b0e5e8f36b1e8ba2aa40c812b621e6cd2084cd7b4ce85337aef72f3676b4391", "query_id": "validation-000-3-withheld-0", "utc": "2026-10-16T03:15:10.861116+00:00"}
+{"event": "retained_query_read", "query_id": "diagnostic-000-0-withheld-0", "role": "withheld", "split": "diagnostic", "utc": "2026-10-16T03:15:10.861218+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/diagnostic-000-0-withheld-0.npz", "prediction_sha256": "c5b822a1ba6ef449dd26c0b9a48be6392760ee498122fe8388f040d33daf39cf", "query_id": "diagnostic-000-0-withheld-0", "utc": "2026-10-16T03:15:10.863667+00:00"}
+{"event": "retained_query_read", "query_id": "diagnostic-000-1-withheld-0", "role": "withheld", "split": "diagnostic", "utc": "2026-10-16T03:15:10.863763+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/diagnostic-000-1-withheld-0.npz", "prediction_sha256": "bc6b5f772b8686174218fef74e5ded02866b2520523d4bcf890240519802cb79", "query_id": "diagnostic-000-1-withheld-0", "utc": "2026-10-16T03:15:10.866604+00:00"}
+{"event": "retained_query_read", "query_id": "diagnostic-000-2-withheld-0", "role": "withheld", "split": "diagnostic", "utc": "2026-10-16T03:15:10.866707+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/diagnostic-000-2-withheld-0.npz", "prediction_sha256": "e13ac29abf1c795de03dca10baa83c3a34aceee5ae508607bbc2642b9d7b72c3", "query_id": "diagnostic-000-2-withheld-0", "utc": "2026-10-16T03:15:10.869310+00:00"}
+{"event": "retained_query_read", "query_id": "diagnostic-000-3-withheld-0", "role": "withheld", "split": "diagnostic", "utc": "2026-10-16T03:15:10.869409+00:00"}
+{"event": "query_evaluated", "prediction_path": "predictions/diagnostic-000-3-withheld-0.npz", "prediction_sha256": "b13dc1a1bc33f9eb7ddd0c78f6790f4071e7b24f689eb424da1e7c008912dcd2", "query_id": "diagnostic-000-3-withheld-0", "utc": "2026-10-16T03:15:10.872638+00:00"}
