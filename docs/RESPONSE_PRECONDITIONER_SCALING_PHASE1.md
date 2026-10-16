@@ -283,6 +283,25 @@ The exporter prints a fresh directory under
 30 MiB and preserves raw scientific files. Export requires terminal records;
 it does not rerun science or require the current source to equal the old run.
 
+The initial P1 exporter used a 1 MiB writer limit for file inventories and a
+64 MiB reader limit for individual evidence files. A full 7,680-file bulk
+inventory can exceed the first limit after its ZIP has already been written;
+export can then encounter the second limit on that retained ZIP. The repaired
+exporter streams files in 1 MiB chunks and uses explicit 16 MiB inventory
+limits, retaining the 512 MiB packing and 1 GiB total export budgets. Errors
+identify the offending path and byte budget. Symlink, regular-file, terminal
+state, hash and mutation checks remain enforced.
+The [repair receipt](../results/response-preconditioner-scaling-export-fix-20261016/README.md)
+records 404 required CPU passes and 51 overlapping Raven compatibility passes,
+including a real 65 MiB file and 7,680-file inventory regression.
+
+For this packaging error, pull the repair after active jobs using the checkout
+finish, then repeat **only the export command** for the original attempt.
+Preserve its native failure status, completed scientific files and any partial
+packaging files. An archive without `packing.json` is retained in the review
+bundle. Export does not repair historical status or rerun the experiment;
+the uploaded study evidence determines whether scientific work completed.
+
 ### Portable evidence and Raven analytics
 
 Raven owns the outer run. The `response-preconditioner-scaling` recipe enables

@@ -1,0 +1,296 @@
+{
+  "acquisition": "train calibration eight plus withheld four per context; validation and diagnostic withheld four only",
+  "anchor": "original smooth df AnchorPath(u0) at absolute time, never restarted at s",
+  "budget": {
+    "automatic_expansion": false,
+    "native_cpus": 4,
+    "native_memory_gib": 8,
+    "native_only": true,
+    "native_wall_minutes": 20,
+    "study_seconds": 900.0
+  },
+  "calibration_counts": [
+    2,
+    4,
+    8
+  ],
+  "calibration_families": [
+    "dense_random",
+    "dense_random",
+    "dense_random",
+    "dense_random",
+    "dense_random",
+    "dense_random",
+    "dense_random",
+    "dense_random"
+  ],
+  "calibration_sources": 8,
+  "cohort": "new development parents; one nested balanced cohort/order; not fresh confirmation",
+  "command": "verify",
+  "decision": "BOUNDED_DEVELOPMENT",
+  "deferred": [
+    "additional parent cohorts",
+    "active optimal design",
+    "defect-source learning",
+    "new regularizer",
+    "architecture changes",
+    "dense prediction sensitivity maps",
+    "local oracles",
+    "full operator audit",
+    "analytic coefficient control",
+    "rollout",
+    "GPU",
+    "fresh confirmation"
+  ],
+  "device": "cpu",
+  "expected_fit_cells": 9,
+  "expected_metric_rows": 16128,
+  "expected_withheld_queries": 1152,
+  "freeze": "seal all nine selected readouts before any train-withheld or diagnostic truth acquisition",
+  "grid": [
+    5,
+    5
+  ],
+  "historical_gate": "B STOP unchanged",
+  "intervals": [
+    [
+      0.0,
+      0.04
+    ],
+    [
+      0.0,
+      0.08
+    ],
+    [
+      0.02,
+      0.04
+    ],
+    [
+      0.02,
+      0.06
+    ],
+    [
+      0.04,
+      0.06
+    ],
+    [
+      0.04,
+      0.08
+    ]
+  ],
+  "lawson_steps": [
+    2,
+    4,
+    8
+  ],
+  "learning_curve_scope": "nine paired cells, one nested parent order; finite-cohort trend, not a population learning-law estimate",
+  "lengths": [
+    1.0,
+    1.0
+  ],
+  "mass": "uniform physical cell mass / domain volume; RMS squared is mean squares",
+  "max_reference_queries": 2688,
+  "model": "unchanged R7 five branches and 40-weight fixed feature readout",
+  "model_precision": "FP64 from actual FP32 initial states",
+  "morphology_scope": "periodic 5x5 discrete morphology coverage only; no continuum-resolved sharp-interface claim",
+  "ordered_panels": [
+    2,
+    8
+  ],
+  "parent_counts": [
+    8,
+    16,
+    32
+  ],
+  "parent_families": [
+    "smooth_spectral",
+    "localized_periodic",
+    "periodic_transition",
+    "multiscale_discrete"
+  ],
+  "parent_family_rule": "interleave four families by zero-based parent_index modulo four in each split",
+  "parent_field_rule": "center discrete morphology and normalize its maximum absolute value; u=mean+amplitude*shape; round once to FP32",
+  "parent_generator": "scaling.data.v1: disjoint per-parent morphology, amplitude/mean, and physics streams",
+  "parent_identity": "SHA256 of actual contiguous little-endian FP32 field plus canonical grid/length/FP64 physics metadata; seed and family stored separately",
+  "parent_ranges": {
+    "amplitude": [
+      0.04,
+      0.18
+    ],
+    "kappa": [
+      0.009,
+      0.017
+    ],
+    "mean": [
+      0.25,
+      0.65
+    ],
+    "reaction_rate": [
+      1.7,
+      2.9
+    ]
+  },
+  "parent_seed_rule": "SeedSequence([parent_seed,101/102/103]) for morphology/state scale/physics",
+  "parent_seeds": {
+    "diagnostic": [
+      2026101801,
+      2026101802,
+      2026101803,
+      2026101804,
+      2026101805,
+      2026101806,
+      2026101807,
+      2026101808
+    ],
+    "train": [
+      2026101601,
+      2026101602,
+      2026101603,
+      2026101604,
+      2026101605,
+      2026101606,
+      2026101607,
+      2026101608,
+      2026101609,
+      2026101610,
+      2026101611,
+      2026101612,
+      2026101613,
+      2026101614,
+      2026101615,
+      2026101616,
+      2026101617,
+      2026101618,
+      2026101619,
+      2026101620,
+      2026101621,
+      2026101622,
+      2026101623,
+      2026101624,
+      2026101625,
+      2026101626,
+      2026101627,
+      2026101628,
+      2026101629,
+      2026101630,
+      2026101631,
+      2026101632
+    ],
+    "validation": [
+      2026101701,
+      2026101702,
+      2026101703,
+      2026101704,
+      2026101705,
+      2026101706,
+      2026101707,
+      2026101708
+    ]
+  },
+  "parent_summary": "per-parent paired errors, median/worst and improved-parent fractions; eight diagnostic parents with two per family, no bootstrap confidence interval or confirmation claim",
+  "phase": "P1",
+  "reference": {
+    "independent_max_rhs_calls": 4096,
+    "independent_tolerance": 1e-12,
+    "initial_steps": 4,
+    "max_seconds_per_query": 3.0,
+    "max_steps": 256,
+    "tolerance": 1e-10
+  },
+  "reference_caps": "at most 1016 Lawson steps and 8192 independent RHS calls per query with a shared three-second limit; total 900-second deadline can stop earlier",
+  "reference_count": 2688,
+  "reference_query_definition": "one U/G source/context pair with refined Lawson and independent DOP853 on the identical anchor",
+  "reference_resolution_multiple": 10.0,
+  "ridge_menu": [
+    1e-10,
+    1e-06
+  ],
+  "schema": "tdn.response_preconditioner.scaling.v1",
+  "scientific_promotion": false,
+  "selection": "per scaling cell minimum validation-withheld physical action MSE; initialization first wins exact ties",
+  "source_definition": "unit physical RMS; dense normal, cos(2pi*(x+y)+phase), cos(4pi*(x+y)+phase), ones",
+  "source_prefix_rule": "first 2/4/8 entries of one fixed eight-source calibration stream; never regenerate per cell",
+  "source_seed_rule": "SeedSequence([parent_seed,context_index,701/702]) calibration/withheld streams, independent of parent construction",
+  "target": "fd_same_grid",
+  "timing": {
+    "cold": "first measured call after accuracy acquisition; not cold process startup",
+    "expected_bundles": 1008,
+    "max_complete_source_calls": 4032,
+    "memory": "actual worker process-tree sampled RSS, not method-specific peak",
+    "order": "five randomized paired rounds after first and warmup, raw min/median/max; no confidence claim",
+    "parent_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "rounds": 5,
+    "scope": "largest 32-parent/eight-source cell only; first diagnostic parent of each family, all six contexts, four withheld sources; every source rebuilds setup, no cross-source caching",
+    "seed": 2026101608,
+    "selected_parent_count": 32,
+    "selected_source_count": 8,
+    "threads": 1,
+    "warmup": 1
+  },
+  "training": "original action-only positive ridge; equal parent/context/source/cell mass; train calibration prefixes only",
+  "utility_gate": "NOT_DEFINED: descriptive accuracy/cost and data scaling, no speedup or automatic promotion",
+  "verify_tests": [
+    "tests/test_response_preconditioner_numerics.py",
+    "tests/test_response_preconditioner_model.py",
+    "tests/test_response_preconditioner_fitting.py",
+    "tests/test_response_preconditioner_audit.py",
+    "tests/test_response_preconditioner_workflow.py",
+    "tests/test_response_preconditioner_launch.py::test_shell_help_and_rejects_unallocated_execution",
+    "tests/test_response_preconditioner_launch.py::test_native_script_syntax",
+    "tests/test_response_preconditioner_launch.py::test_distribution_discovery_aliases_preserve_inventory",
+    "tests/test_response_preconditioner_launch.py::test_distribution_distinct_metadata_rejected",
+    "tests/test_response_preconditioner_launch.py::test_distribution_inconsistent_version_same_location_rejected",
+    "tests/test_response_preconditioner_launch.py::test_distribution_unverified_duplicate_location_rejected",
+    "tests/test_response_preconditioner_launch.py::test_prepare_exclusive_identity_and_changed_source_detection",
+    "tests/test_response_preconditioner_launch.py::test_source_identity_ignores_outputs_but_tracks_code_and_recipe",
+    "tests/test_response_preconditioner_launch.py::test_allocation_resource_expansion_rejected",
+    "tests/test_response_preconditioner_launch.py::test_shared_venv_lock_rejects_setup_writer",
+    "tests/test_response_preconditioner_launch.py::test_metrics_preserve_split_method_and_task_without_aggregate",
+    "tests/test_response_preconditioner_launch.py::test_stage_registers_exact_verification_xml_and_binary_artifacts",
+    "tests/test_response_preconditioner_launch.py::test_stage_success_cannot_promote_science_or_hide_failed_summary",
+    "tests/test_response_preconditioner_launch.py::test_failed_preflight_is_retained_without_child_work",
+    "tests/test_response_preconditioner_launch.py::test_execution_keeps_stdout_stderr_and_child_exit",
+    "tests/test_tangent_response_numerics.py",
+    "tests/test_response_numerics.py",
+    "tests/test_response_preconditioner_r7_actions.py",
+    "tests/test_response_preconditioner_r7_references.py",
+    "tests/test_response_preconditioner_r7_fitting.py",
+    "tests/test_response_preconditioner_r7_workflow.py",
+    "tests/test_response_preconditioner_r7_launch.py::test_shell_contract_and_non_native_rejection",
+    "tests/test_response_preconditioner_r7_launch.py::test_cli_study_rejects_standalone_and_gpu_before_science",
+    "tests/test_response_preconditioner_r7_launch.py::test_recipe_has_only_r7_science_and_cpu_memory",
+    "tests/test_response_preconditioner_r7_launch.py::test_r7_rejects_resource_expansion",
+    "tests/test_response_preconditioner_r7_launch.py::test_prepare_separate_frozen_protocol_and_modes",
+    "tests/test_response_preconditioner_r7_launch.py::test_recursive_artifacts_preserve_binary_and_reject_symlinks",
+    "tests/test_response_preconditioner_r7_launch.py::test_stage_preserves_failed_outputs_and_rejects_promotion",
+    "tests/test_response_preconditioner_r7_launch.py::test_metrics_keep_task_families_and_unresolved_rows",
+    "tests/test_response_preconditioner_r7_launch.py::test_preflight_failure_never_starts_study_and_is_preserved",
+    "tests/test_response_preconditioner_scaling_data.py",
+    "tests/test_response_preconditioner_scaling_analysis.py",
+    "tests/test_response_preconditioner_scaling_workflow.py",
+    "tests/test_response_preconditioner_scaling_export.py",
+    "tests/test_response_preconditioner_scaling_launch.py::test_shell_contract_and_non_native_rejection",
+    "tests/test_response_preconditioner_scaling_launch.py::test_cli_study_rejects_standalone_and_gpu_before_science",
+    "tests/test_response_preconditioner_scaling_launch.py::test_recipe_has_only_scaling_science_and_cpu_memory",
+    "tests/test_response_preconditioner_scaling_launch.py::test_scaling_rejects_resource_expansion",
+    "tests/test_response_preconditioner_scaling_launch.py::test_prepare_separate_frozen_protocol_and_modes",
+    "tests/test_response_preconditioner_scaling_launch.py::test_recursive_artifacts_preserve_binary_and_reject_symlinks",
+    "tests/test_response_preconditioner_scaling_launch.py::test_stage_preserves_failed_outputs_and_rejects_promotion",
+    "tests/test_response_preconditioner_scaling_launch.py::test_metrics_keep_cohorts_families_and_unresolved_rows",
+    "tests/test_response_preconditioner_scaling_launch.py::test_preflight_failure_never_starts_study_and_is_preserved",
+    "tests/test_response_preconditioner_scaling_launch.py::test_export_terminal_snapshot_and_refusals"
+  ],
+  "withheld_families": [
+    "dense_random",
+    "low_frequency",
+    "high_frequency",
+    "constant"
+  ],
+  "withheld_sources": 4,
+  "zero_candidate": true
+}

@@ -14,6 +14,7 @@ import math
 import os
 from pathlib import Path
 import re
+import stat
 import subprocess
 import sys
 import time
@@ -31,11 +32,44 @@ SCHEMA = "tdn.response-preconditioner-scaling-native/v1"
 DECISION = "BOUNDED_DEVELOPMENT"
 CONTRACT_FOLDER = ".runtime/response-preconditioner-scaling-launches"
 UPLOAD_PART_BYTES = 30 << 20
+IO_CHUNK_BYTES = 1 << 20
+INVENTORY_BYTES = 16 << 20
+PACK_TOTAL_BYTES = 512 << 20
+REVIEW_TOTAL_BYTES = 1024 << 20
 identity = common.identity
 venv_lock = common.venv_lock
 now = common.now
 report = common.report
 execute = common.execute
+
+
+def _stream_evidence(path, *, root, limit, sink=None):
+    """Hash/copy a stable regular file without loading a full artifact into RAM."""
+    path = confined(path, root)
+    descriptor = os.open(path, os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
+    signature = lambda value: (value.st_dev, value.st_ino, value.st_size,
+                                value.st_mtime_ns, value.st_ctime_ns)
+    digest = hashlib.sha256(); size = 0
+    with os.fdopen(descriptor, "rb") as stream:
+        before = os.fstat(stream.fileno())
+        if not stat.S_ISREG(before.st_mode):
+            raise ValueError(f"Evidence must be a regular file: {path}")
+        if before.st_size > limit:
+            raise ValueError(f"Evidence exceeds remaining byte budget: {path} "
+                             f"({before.st_size} bytes; remaining limit {limit})")
+        while raw := stream.read(min(IO_CHUNK_BYTES, limit-size+1)):
+            size += len(raw)
+            if size > limit:
+                raise ValueError(f"Evidence grew beyond remaining byte budget: {path} (limit {limit})")
+            digest.update(raw)
+            if sink is not None:
+                sink.write(raw)
+        after = os.fstat(stream.fileno())
+    confined(path, root)
+    named = path.stat(follow_symlinks=False)
+    if size != before.st_size or signature(before) != signature(after) or signature(after) != signature(named):
+        raise ValueError(f"Evidence changed during inspection: {path}")
+    return dict(bytes=size, sha256=digest.hexdigest())
 
 
 def context(snapshot):
@@ -149,7 +183,7 @@ def pack_study_evidence(ctx, output):
     sealed = None
     seal = output / "artifacts.json"
     if seal.exists():
-        record, _ = read_json(seal, root=ROOT, limit=16 << 20)
+        record, _ = read_json(seal, root=ROOT, limit=INVENTORY_BYTES)
         rows = record.get("files", [])
         sealed = {}
         for row in rows:
@@ -166,20 +200,18 @@ def pack_study_evidence(ctx, output):
     with zipfile.ZipFile(archive, "x", compression=zipfile.ZIP_STORED) as bundle:
         for path in sources:
             name = path.relative_to(output).as_posix()
-            raw = read_bytes(path, root=ROOT, limit=64 << 20)
-            total += len(raw)
-            if total > 512 << 20:
-                raise ValueError("Scaling packed evidence exceeds 512 MiB")
-            row = dict(path=name, bytes=len(raw), sha256=hashlib.sha256(raw).hexdigest())
+            with bundle.open(name, "w") as destination:
+                row = dict(path=name, **_stream_evidence(path, root=ROOT,
+                           limit=PACK_TOTAL_BYTES-total, sink=destination))
+            total += row["bytes"]
             if sealed is not None and sealed.get(name) != row:
                 raise ValueError("Numerical evidence differs from its sealed stage artifact inventory: " + name)
-            bundle.writestr(name, raw)
             manifest["files"].append(row)
         bundle.writestr("packing-manifest.json", json.dumps(manifest, indent=2, allow_nan=False) + "\n")
     manifest.update(archive=archive.relative_to(ctx["run"]).as_posix(),
                     archive_bytes=archive.stat().st_size, elapsed_seconds=time.monotonic() - began,
                     packing_cost_scope="native application wall time; excluded from scientific action timing")
-    write_json(native / "packing.json", manifest, root=ROOT)
+    write_json(native / "packing.json", manifest, root=ROOT, limit=INVENTORY_BYTES)
     return manifest
 
 
@@ -467,13 +499,13 @@ def export_review(run_path):
     omitted = []
     packing = run / "outputs/native/packing.json"
     if (run / duplicate).is_file() and packing.is_file():
-        packed, _ = read_json(packing, root=ROOT, limit=16 << 20)
+        packed, _ = read_json(packing, root=ROOT, limit=INVENTORY_BYTES)
         if packed.get("archive") != duplicate or not isinstance(packed.get("files"), list):
             raise ValueError("Invalid packed evidence manifest")
         for row in packed["files"]:
             path = confined(run / "outputs/study" / row["path"], run / "outputs/study")
-            raw = read_bytes(path, root=ROOT, limit=64 << 20)
-            if len(raw) != row["bytes"] or hashlib.sha256(raw).hexdigest() != row["sha256"]:
+            observed = _stream_evidence(path, root=ROOT, limit=PACK_TOTAL_BYTES)
+            if observed != {key: row[key] for key in ("bytes", "sha256")}:
                 raise ValueError("Cannot omit duplicate bundle: raw numerical evidence changed")
         omitted.append(dict(path=duplicate, reason="Duplicate of hash-verified original study files included in this export"))
     sources = []
@@ -497,18 +529,16 @@ def export_review(run_path):
     with zipfile.ZipFile(archive, "x", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as bundle:
         for path in sources:
             relative = path.relative_to(run).as_posix()
-            raw = read_bytes(path, root=ROOT, limit=64 << 20)
-            total += len(raw)
-            if total > 1024 << 20:
-                raise ValueError("Review export exceeds 1 GiB of uncompressed evidence")
-            bundle.writestr(run.name + "/" + relative, raw)
-            files.append(dict(path=relative, bytes=len(raw), sha256=hashlib.sha256(raw).hexdigest()))
+            with bundle.open(run.name + "/" + relative, "w") as destination:
+                record = _stream_evidence(path, root=ROOT, limit=REVIEW_TOTAL_BYTES-total, sink=destination)
+            total += record["bytes"]
+            files.append(dict(path=relative, **record))
     # A terminal record is necessary but not proof of global filesystem quiescence.
     # Check every snapshotted file again; changed inputs leave a failed export.
     for path, record in zip(sources, files):
-        raw = read_bytes(path, root=ROOT, limit=64 << 20)
-        if len(raw) != record["bytes"] or hashlib.sha256(raw).hexdigest() != record["sha256"]:
-            raise ValueError("Evidence changed during export; wait for the attempt to settle")
+        observed = _stream_evidence(path, root=ROOT, limit=REVIEW_TOTAL_BYTES)
+        if observed != {key: record[key] for key in ("bytes", "sha256")}:
+            raise ValueError(f"Evidence changed during export: {path}; wait for the attempt to settle")
     after_paths = []
     for path in sorted(run.rglob("*")):
         relative = path.relative_to(run).as_posix()
@@ -537,7 +567,7 @@ def export_review(run_path):
                  file_count=len(files), uncompressed_bytes=total, files=files, omitted_duplicates=omitted,
                  scope="Terminal application snapshot; not an independent scheduler-outcome certificate",
                  upload="Upload index.json, README.txt, and every listed archive part")
-    write_json(export / "index.json", index, root=ROOT)
+    write_json(export / "index.json", index, root=ROOT, limit=INVENTORY_BYTES)
     instructions = ("TDN Phase 1 independent-parent scaling review\n\n"
                     "Upload index.json, README.txt, and every file listed in index.json parts.\n"
                     "The ZIP contains the exact Raven run directory, raw research arrays, logs, and telemetry.\n"

@@ -12,7 +12,7 @@ FAMILIES = ("smooth_spectral", "localized_periodic", "periodic_transition", "mul
 SPLITS = ("train", "validation", "diagnostic")
 VERIFY_TESTS = (*R7_VERIFY_TESTS, *(
     f"tests/test_response_preconditioner_scaling_{name}.py"
-    for name in ("data", "analysis", "workflow")), *(
+    for name in ("data", "analysis", "workflow", "export")), *(
     "tests/test_response_preconditioner_scaling_launch.py::" + name for name in (
         "test_shell_contract_and_non_native_rejection",
         "test_cli_study_rejects_standalone_and_gpu_before_science",

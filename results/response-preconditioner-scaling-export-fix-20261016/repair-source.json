@@ -1,0 +1,25 @@
+{
+  "native_source": {
+    "sha256": "3a18e997ffc317d52863f300c9549bccd77ed7a21817697437a14bd704b5ca47",
+    "files": 644,
+    "scope": "tdn/reference/scripts/configs/tests/dependencies/Raven settings"
+  },
+  "changed_files": [
+    {
+      "path": "scripts/response_diagnostic_raven.py",
+      "sha256": "7a718ec03613e56beb836a581c95b5a3b8bc3b0701e761e5edb7245a1ee0ec60"
+    },
+    {
+      "path": "scripts/response_preconditioner_scaling_native.py",
+      "sha256": "4331a6a837ddf9050b0bca2e9ce3a203d734d70c088e290b6d0e07f1569f78c2"
+    },
+    {
+      "path": "tdn/analysis/response_preconditioner/scaling_protocol.py",
+      "sha256": "c39ed874b8ef349fea0373953b66410e1d0c4928555bb9611192b96da843a95b"
+    },
+    {
+      "path": "tests/test_response_preconditioner_scaling_export.py",
+      "sha256": "af5cc9952a506414557bb876a4854e0e805310932a94a00499881bac4063ff62"
+    }
+  ]
+}

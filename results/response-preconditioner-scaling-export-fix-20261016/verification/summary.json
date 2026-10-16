@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "duplicates": 0,
+    "errors": 0,
+    "exact_roster": true,
+    "expected": 404,
+    "failed": 0,
+    "skipped": 0,
+    "total": 404
+  },
+  "command": "verify",
+  "decision": "BOUNDED_DEVELOPMENT",
+  "device": "cpu",
+  "elapsed_seconds": 93.06185113701213,
+  "historical_gate": "B STOP unchanged",
+  "native_gpu_readiness": false,
+  "output": "/workspace/TDN/.runtime/scaling-export-fix-20261016/verification",
+  "protocol_sha256": "02a33641a0d698dabc48e3db4f20b3f9492bc82ac0790ac406b7c30210c25c98",
+  "schema": "tdn.response_preconditioner.scaling.v1",
+  "scientific_promotion": false,
+  "source_fingerprint": "22d18f2148a8a3ed526faeaa573094319ee031b0c880af1e970d20eeb08b22d3",
+  "status": "COMPLETED"
+}

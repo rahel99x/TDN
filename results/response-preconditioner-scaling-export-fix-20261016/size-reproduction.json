@@ -1,0 +1,33 @@
+{
+  "scope": "Synthetic regression fixtures; actual user attempt has not been uploaded",
+  "bounds": {
+    "old_individual_file_bytes": 67108864,
+    "default_metadata_bytes": 1048576,
+    "inventory_bytes": 16777216,
+    "packing_total_bytes": 536870912,
+    "export_total_bytes": 1073741824
+  },
+  "cases": [
+    {
+      "case": "orphan_bundle",
+      "bytes": 68157440,
+      "source": ".runtime/scaling-export-regressions-v2/pytest-temp/test_export_recovers_orphan_bucurrent/runs/launch-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-a1/outputs/native/portable-study-evidence.zip",
+      "old_limit_rejected": true,
+      "error": "Campaign reporting paths cannot traverse symlinks"
+    },
+    {
+      "case": "packing_inventory",
+      "bytes": 1329024,
+      "source": ".runtime/scaling-export-regressions-v2/pytest-temp/test_full_scale_inventory_exce0/runs/launch-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-a1/outputs/native/packing.json",
+      "old_limit_rejected": true,
+      "error": "Retained coordinator metadata exceeds its small-file budget: /workspace/TDN/.runtime/scaling-export-fix-20261016/default-limit-must-not-write.json (1329024 bytes; limit 1048576)"
+    },
+    {
+      "case": "export_inventory",
+      "bytes": 1437421,
+      "source": ".runtime/scaling-export-regressions-v2/pytest-temp/test_full_scale_inventory_exce0/.runtime/response-preconditioner-scaling-exports/launch-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-a1-15f240baf587/index.json",
+      "old_limit_rejected": true,
+      "error": "Retained coordinator metadata exceeds its small-file budget: /workspace/TDN/.runtime/scaling-export-fix-20261016/default-limit-must-not-write.json (1437421 bytes; limit 1048576)"
+    }
+  ]
+}

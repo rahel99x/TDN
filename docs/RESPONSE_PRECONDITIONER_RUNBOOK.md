@@ -119,6 +119,17 @@ The exporter prints a fresh folder beneath
 Export retains raw scientific arrays and requires terminal status. It does
 not run science or require the checkout still to match the historical run.
 
+If an older P1 attempt reports `Campaign reporting requires a bounded regular
+file` during export, update to the [packaging repair](RESPONSE_PRECONDITIONER_SCALING_PHASE1.md)
+and rerun this export command against the same attempt. Full inventories can
+exceed the original 1 MiB metadata bound; an interrupted packing step can leave
+a ZIP beyond the original 64 MiB file-read bound. The repair streams evidence
+and provides separate bounded inventories. Preserve the attempt and its status;
+export recovery does not require scientific resubmission.
+The [repair receipt](../results/response-preconditioner-scaling-export-fix-20261016/README.md)
+records 404 required CPU checks and 51 overlapping compatibility checks, all
+passing. Its expanded verification roster applies to future prepared attempts.
+
 Raven's `response-preconditioner-scaling` recipe enables experiment, evidence,
 artifacts and CPU/memory observation. One job carries the entire bounded
 study; arrays, GPU collection and tracing are disabled. Compact research

@@ -57,7 +57,8 @@ def read_bytes(value, *, root=ROOT, limit=SMALL_BYTES):
     with os.fdopen(descriptor, "rb") as stream:
         before = os.fstat(stream.fileno())
         if not stat.S_ISREG(before.st_mode) or before.st_size > limit:
-            raise ValueError("Campaign reporting requires a bounded regular file")
+            raise ValueError(f"Campaign reporting requires a bounded regular file: {path} "
+                             f"({before.st_size} bytes; limit {limit}; regular={stat.S_ISREG(before.st_mode)})")
         raw = stream.read(limit + 1)
         after = os.fstat(stream.fileno())
     signature = lambda value:(value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns, value.st_ctime_ns)
@@ -85,12 +86,14 @@ def read_json(path, *, root=ROOT, limit=SMALL_BYTES):
     return value, hashlib.sha256(raw).hexdigest()
 
 
-def write_json(path, value, *, root):
+def write_json(path, value, *, root, limit=SMALL_BYTES):
+    """Atomically write bounded metadata; larger inventories need an explicit cap."""
     path = confined(path, root)
     raw = (json.dumps(value, sort_keys=True, ensure_ascii=False,
                       separators=(",", ":"), allow_nan=False)+"\n").encode()
-    if len(raw) > SMALL_BYTES:
-        raise ValueError("Retained coordinator metadata exceeds its small-file budget")
+    if len(raw) > limit:
+        raise ValueError(f"Retained coordinator metadata exceeds its small-file budget: {path} "
+                         f"({len(raw)} bytes; limit {limit})")
     path.parent.mkdir(parents=True, exist_ok=True)
     confined(path, root)
     temporary = path.with_name(path.name+".tmp-"+uuid.uuid4().hex)
