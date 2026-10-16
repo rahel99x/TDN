@@ -56,8 +56,12 @@ and their verification status.
   with unchanged architecture and validation-only selection. All 585 mandatory
   CPU checks and eight additional Raven compatibility cases passed in the
   [receipt](../results/response-preconditioner-regularization-verification-20261015/README.md).
-  Native execution remains pending; implementation alone establishes no new
-  scientific fit or teacher result.
+  [Native job 2951](../results/native-response-preconditioner-regularization-2951/README.md)
+  now completes P1R: 585 native checks, all 39 candidates and 19,584 exactly
+  replayed metric rows, with source/input guards, reporting and packing complete.
+  Largest-cell diagnostic RMS improves 15.44%, but remains 568 times Lawson two's.
+  The next proposed gate separates local coefficient identification from the
+  sampled five-branch span; it introduces no automatic architecture/data expansion.
 
 ## Three products, three cost contracts
 
@@ -130,7 +134,7 @@ Update this table from actual source and receipts, never from the intended plan.
 | R6 | Raven native CPU verification wrapper | Native CPU verified at `261365b` | Job 2936: exact 202/202 checks, source/protocol integrity and smoke completed |
 | R7 | Representation at fixed complete cost | Native bounded study reviewed; utility unestablished | [Job 2939 review](../results/native-response-preconditioner-r7-2939/README.md): 298 checks, 192 queries, 2,112 replayed metric rows and 336 timing bundles; sampled-span and identification limits require further bounded audits |
 | P1 | Independent-parent/source-direction scaling | Native numerical study reviewed; wrapper packaging FAILED | [Job 2944 review](../results/native-response-preconditioner-scaling-2944/README.md): exact 388 native checks, all references/metrics/timing complete; more parents help, stronger classical control wins near-cost accuracy. [Export repair](../results/response-preconditioner-scaling-export-fix-20261016/README.md) has 404 local required passes, distinct from this native roster. No unchanged rerun needed |
-| P1R | Retained-bank coefficient-penalty and action-energy audit | CPU verified; native execution pending | [Frozen audit and runbook](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md); [585 exact CPU passes + eight additional Raven compatibility passes](../results/response-preconditioner-regularization-verification-20261015/README.md). Three cells, 39 candidates, six validation selections and 19,584 retained-data metric slots; no new labels, architecture or inference timing |
+| P1R | Retained-bank coefficient-penalty and action-energy audit | Native completed and independently reviewed at `4d0e049`; utility unestablished | [Job 2951 review](../results/native-response-preconditioner-regularization-2951/README.md): 585 native checks, all 39 candidates and 19,584 exactly replayed metric rows; reporting/packing complete. Largest-cell RMS improves 15.44%, still 568× Lawson two; no unchanged rerun needed |
 | R8 | Learned multiscale encoder / variable projection | Proposed, scientifically gated | R7 capacity and stable fitting evidence |
 | R9 | Second nonlinear correction or inexact Newton | Proposed, scientifically gated | Measured nonlinear remainder and charged causal work |
 | R10 | Adaptive rollout/controller and derivative task | Proposed, scientifically gated | Whole-time accuracy, schedule derivative contract and independent task checks |
@@ -366,7 +370,7 @@ This review executed no new fitting or reference solves. Subsequent inspected-ba
 work is development; a fresh frozen evaluation is required for broader claims.
 No P2–P6 launch, 64/128-parent expansion, R8–R11 promotion or novelty claim follows.
 
-### P1R: implemented retained-bank regularization audit
+### P1R: reviewed retained-bank regularization audit
 
 After the P1 review, the user authorized implementation of the bounded
 [P1R protocol](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md),
@@ -413,10 +417,44 @@ verifier and audit in one 4-CPU, 8-GiB, 20-minute native allocation, with a
 600-second study budget. Local checks use synthetic retained-array fixtures,
 not new fits on the P1 bank. The [verification receipt](../results/response-preconditioner-regularization-verification-20261015/README.md)
 records 585 exact mandatory CPU passes, eight additional Raven compatibility
-passes and a 32-query/144-metric synthetic integration. Native execution is
-pending. Review the resulting selections, missing
-slots, accuracy and sensitivity before considering further phases; no utility,
-GPU, novelty or confirmation claim follows from successful execution.
+passes and a 32-query/144-metric synthetic integration.
+
+[Native job 2951](../results/native-response-preconditioner-regularization-2951/README.md)
+completed at `4d0e049`: all 585 required checks, 39 candidates, six selections
+and 19,584 metrics. All five native source/input guards passed, including the
+post-study guard before publication; research reporting and packing completed.
+Independent review reproduces all physical metrics exactly and checks saved
+objectives, spectra and sensitivity without refitting. No unchanged rerun is
+needed. Final independent scheduler accounting is absent; recorded native and
+Raven terminal outcomes agree at COMPLETED/exit zero.
+
+Coefficient selections are `1e-18`, `1e-14`, `1e-12` for 8 × 8, 32 × 2 and
+32 × 8. Diagnostic RMS improves 0.32%, 13.91% and 15.44%, respectively.
+The eight-parent fit's maximum error worsens 55.07%; the largest fit improves
+all eight diagnostic parents but still has 1.754 times ordered-eight and
+567.87 times Lawson-two RMS. All action-energy selections are `1e-6`, nearly
+the unregularized projection. Larger-cell interior ridge choices outperform
+their projections; removing regularization wholesale is unsupported.
+
+Saved objective gaps and fixed-design empirical label-perturbation effects are
+too small to explain the remaining error. Neither is a stability certificate.
+The largest fit's remaining MSE is 97.60% on `[0,.08]`, 81.09% on periodic
+transitions, 51.32% on constant sources and 97.32% spatial rather than mean
+error; these overlapping partitions cannot be added. Source linearity does
+not imply that a constant forcing has a spatially constant response.
+
+The [proposed structural-attribution gate](../results/native-response-preconditioner-regularization-2951/proposal-review.md)
+uses the existing 32 training parents and 192 contexts only: 192 local
+five-coefficient fits on eight calibration sources, 768 withheld predictions,
+and 192 separately labeled evaluation-only projections jointly over each
+context's four withheld sources. It distinguishes coefficient recovery from
+sampled branch expressiveness, with rank/sensitivity checks and signed terms
+when a truncated subspace cannot justify orthogonal decomposition. Diagnostic
+parents lack calibration sources and must not be fitted on their withheld
+truth. This gate is proposed, not implemented or run. Its label-informed local
+coefficients cannot establish deployable conditioning, fresh generalization,
+novelty, full-operator capacity or speedup. Encoder, new branches, full-operator
+references and independently derived analytic priors remain separate decisions.
 
 ### Source interfaces
 
@@ -507,6 +545,7 @@ finishes successfully.
 | 2026-10-15 PDT (2026-10-16 UTC) | Accept native P1 job 2944 as completed numerical development evidence while preserving FAILED wrapper status | [Review](../results/native-response-preconditioner-scaling-2944/README.md): immutable provenance, all 388 tests, 2,688 references, 16,128 metrics and 1,008 bundles verified. Packaging alone failed; no unchanged rerun. More parents help modestly; strong ridge shrinkage and near-cost Lawson accuracy motivate a bounded prior/regularization audit before broader acquisition or architecture |
 | 2026-10-15 PDT (2026-10-16 UTC) | Distinguish pooled centering from per-action mean/spatial decomposition | Historical aggregate `centered_rms` includes between-action mean variation. Preserve it and add explicitly named review fields; full RMS comparisons are unaffected. Any production metric change needs a versioned contract |
 | 2026-10-15 PDT (2026-10-16 UTC) | Implement user-authorized P1R before broader acquisition or architecture changes | [Frozen audit](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md): three retained P1 cells, 39 candidates and six validation-only choices; compare coefficient penalties with a training-action-energy uniform-shrinkage control. No new labels or inference timing; derived physical priors remain deferred. [Receipt](../results/response-preconditioner-regularization-verification-20261015/README.md): 585 exact CPU passes, eight additional Raven compatibility passes and all 144 synthetic metric slots. Native execution remains pending |
+| 2026-10-15 PDT (2026-10-16 UTC) | Accept native P1R job 2951 and propose structural attribution before another model change | [Review](../results/native-response-preconditioner-regularization-2951/README.md): 585 native checks, all 39 candidates and 19,584 exactly replayed metrics; final source/input guards, publication and packing succeed. Largest-cell diagnostic RMS improves 15.44%, still 568× Lawson two; small-cell worst error worsens 55.07%. Proposed retained-training-context local fits and separately labeled joint withheld projections distinguish coefficient recovery from sampled branch span. No new fits during review, no unchanged rerun, no automatic acquisition/encoder/confirmation |
 
 ## Maintenance rule
 

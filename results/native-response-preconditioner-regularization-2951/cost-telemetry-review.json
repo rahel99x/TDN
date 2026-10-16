@@ -1,0 +1,261 @@
+{
+  "analysis_scope": "Retained JSON/JSONL only; no fits, solves or new action timings",
+  "cost_accounting": {
+    "candidate_elapsed_sum": 3.588993301964365,
+    "cell_candidate_elapsed_sum": 3.588993301964365,
+    "components_are_additive_to_wall_time": false,
+    "fitting_less_sensitivity_scope": "Remainder of measured candidate time after its measured sensitivity subset; not a separate solver benchmark.",
+    "fitting_less_sensitivity_seconds": 2.935511135496199,
+    "per_cell_original_reference_demands_are_disjoint": false,
+    "retained_costs": {
+      "cells": [
+        {
+          "audit_candidate_seconds": 0.44212553719989955,
+          "cell_id": "p008-s08",
+          "original_training_reference_seconds": 18.108438986586407,
+          "reused_training_query_count": 384
+        },
+        {
+          "audit_candidate_seconds": 0.6115100689930841,
+          "cell_id": "p032-s02",
+          "original_training_reference_seconds": 18.10196359164547,
+          "reused_training_query_count": 384
+        },
+        {
+          "audit_candidate_seconds": 2.5353576957713813,
+          "cell_id": "p032-s08",
+          "original_training_reference_seconds": 71.72801184561104,
+          "reused_training_query_count": 1536
+        }
+      ],
+      "component_scope": "fitting_seconds is inclusive candidate computation (solve, validation and sensitivity); sensitivity_seconds is its subset. Penalty setup, input reads and evaluation are separate. Components are not additive to wall time.",
+      "evaluation_seconds": 1.6757112111663446,
+      "fitting_seconds": 3.588993301964365,
+      "fresh_reference_solves": 0,
+      "input_read_seconds": 6.500449513783678,
+      "new_timing_bundles": 0,
+      "original_design_seconds": 12.185641926014796,
+      "original_reference_seconds": 124.08040594309568,
+      "penalty_setup_seconds": 0.21382601209916174,
+      "reused_reference_pairs": 2688,
+      "scope": "New audit computation only; original label/setup costs are reused, not reacquired",
+      "sensitivity_seconds": 0.6534821664681658
+    },
+    "reused_reference_seconds_charged_to_new_audit": false,
+    "scope": "Fitting includes validation and sensitivity. Historical reference/design durations are reused costs, not new work. Overlapping original training prefixes must not be summed.",
+    "separate_solver_and_validation_durations_available": false
+  },
+  "input_sha256": {
+    "metrics.jsonl": "5036d5cf17c7444dcddeb0ca9fa0818052c34f6b7cb9d08ed95d4f607261fd10",
+    "outputs/native/status.json": "c70177e94ca4ca6d198230dfe40d9d26e527e2e784e854ab2a5ccb40648afe72",
+    "outputs/native/telemetry/cpu-memory.jsonl": "a8450ede2c63ecb2ee7e1603d960109c9575ddb80574845292d13af7cfca3ddc",
+    "outputs/native/telemetry/index.json": "2126db55fb2ade89e2dc64951f4261382205e0aac9af7552d1e956dbf976dc97",
+    "outputs/study/costs.json": "b730fe0fb0e49e705f370698d677e2e5b337fba51d54a03539fd6d51c1cfd0fa",
+    "outputs/study/regularization_metrics.json": "1ad4688d3326c7c3b34c97f247ab5e4b2969a79438d9d8f21f9eac2f33a65963",
+    "outputs/study/selection.json": "53364b4d9d8604ada5b95f985132247948e8e8e5d8309df59ac912ae5c3f2147",
+    "outputs/study/summary.json": "578c69a6a69d068fd43acb219868024cfe485d4dd5f7e10c416bb2638aef485f",
+    "run.json": "53b62231fb3707c32c76e44de8390fe0e6363e9b56f5743f22a785095995afab",
+    "summary.json": "64463b6746ae3be73bf4026fe834ccedd62f0757e5bcd6dbfc8a5c3681fbb965",
+    "telemetry/cpu-memory.jsonl": "72406003dd8586ab576df6bd348054d6d61e6cfbc99f34071f699c2d6d605ca0",
+    "telemetry/index.json": "00a6cee13c7347ee83d0f4b9dc7b391d0955a5996187bd9af03a077e3ed3f002"
+  },
+  "job_id": "2951",
+  "lifecycle": {
+    "exit_code": 0,
+    "final_scheduler_accounting_available": false,
+    "native_status": "COMPLETED",
+    "raven_state": "COMPLETED",
+    "scheduler_outcome": "unknown",
+    "startup_job_state": "RUNNING"
+  },
+  "native_worker": {
+    "coverage": {
+      "bytes": 39653,
+      "ended_at": 1792122186.1305587,
+      "errors": [],
+      "first_timestamp": 1792122107.6625316,
+      "interval_seconds": 1.0,
+      "last_timestamp": 1792122185.68048,
+      "limitation": "CPU percent is per logical core and can exceed 100%; local descendants exclude departed/remote processes; RSS can repeat shared pages",
+      "missed_samples": 0,
+      "native_gpu_verification": "NOT_INFERRED_FROM_TELEMETRY",
+      "node": "system",
+      "partial_samples": 10,
+      "pid": 665218,
+      "samples": 79,
+      "scope": "local-workload-process-tree",
+      "started_at": 1792122107.6615803
+    },
+    "cpu_seconds_are_total_job_cpu": false,
+    "cpu_utilization_percent": {
+      "count": 68,
+      "maximum": 101.00373461506803,
+      "median": 98.99248736499476,
+      "minimum": 62.65021684240017
+    },
+    "current_process_tree_cpu_seconds": {
+      "count": 79,
+      "maximum": 49.089999999999996,
+      "median": 17.17,
+      "minimum": 1.43
+    },
+    "index_status": "partial",
+    "interpretation": "Snapshots exclude departed/remote processes; RSS may count shared pages repeatedly. CPU percent, when present, uses one logical CPU as 100%.",
+    "observations_are_gpu_evidence": false,
+    "process_count": {
+      "count": 79,
+      "maximum": 4.0,
+      "median": 3.0,
+      "minimum": 1.0
+    },
+    "reasons": {
+      "Process tree changed; interval CPU utilization unavailable": 10
+    },
+    "rss_bytes": {
+      "count": 79,
+      "maximum": 1842450432.0,
+      "median": 1752301568.0,
+      "minimum": 558759936.0
+    },
+    "rss_is_method_peak_or_allocation_peak": false,
+    "sample_status_counts": {
+      "partial": 10,
+      "recorded": 69
+    },
+    "sampled_peak_rss_gib": 1.7159156799316406,
+    "sampled_peak_rss_mib": 1757.09765625,
+    "stage_guard_windows": {
+      "study": {
+        "cpu_utilization_percent": {
+          "count": 19,
+          "maximum": 100.00007349304668,
+          "median": 98.99304069015142,
+          "minimum": 97.98484126461197
+        },
+        "sampled_peak_rss_gib": 1.313507080078125,
+        "samples": 21
+      },
+      "verify": {
+        "cpu_utilization_percent": {
+          "count": 47,
+          "maximum": 101.00373461506803,
+          "median": 98.99213596565656,
+          "minimum": 67.99348676802997
+        },
+        "sampled_peak_rss_gib": 1.7159156799316406,
+        "samples": 52
+      }
+    },
+    "unavailable_cpu_utilization_samples": 11
+  },
+  "publication": {
+    "all_research_values_match": true,
+    "expected_compact_research_rows": 95,
+    "reproduced_compact_research_rows": 95,
+    "research_metrics_published": true,
+    "stage_rows": 2,
+    "total_raven_metric_rows": 97
+  },
+  "raven_outer_supervisor": {
+    "coverage": {
+      "bytes": 58886,
+      "ended_at": 1792122186.6034281,
+      "errors": [],
+      "expected_nodes": 1,
+      "first_timestamp": 1792122106.1749313,
+      "interval_seconds": 1.0,
+      "last_timestamp": 1792122186.21292,
+      "limitation": "Local descendant process snapshots exclude departed processes and remote ranks; RSS can count shared pages repeatedly.",
+      "missed_samples": 0,
+      "node": "system",
+      "observed_nodes": [
+        "system"
+      ],
+      "samples": 81,
+      "scope": "local-workload-process-tree",
+      "started_at": 1792122106.174388,
+      "storage_limit_bytes": 33554432
+    },
+    "cpu_seconds_are_total_job_cpu": false,
+    "cpu_utilization_percent": {
+      "count": 0,
+      "maximum": null,
+      "median": null,
+      "minimum": null
+    },
+    "current_process_tree_cpu_seconds": {
+      "count": 81,
+      "maximum": 0.0,
+      "median": 0.0,
+      "minimum": 0.0
+    },
+    "index_status": "complete",
+    "interpretation": "Snapshots exclude departed/remote processes; RSS may count shared pages repeatedly. CPU percent, when present, uses one logical CPU as 100%.",
+    "observations_are_gpu_evidence": false,
+    "process_count": {
+      "count": 81,
+      "maximum": 2.0,
+      "median": 2.0,
+      "minimum": 2.0
+    },
+    "reasons": {},
+    "rss_bytes": {
+      "count": 81,
+      "maximum": 10043392.0,
+      "median": 10043392.0,
+      "minimum": 10043392.0
+    },
+    "rss_is_method_peak_or_allocation_peak": false,
+    "sample_status_counts": {
+      "recorded": 81
+    },
+    "sampled_peak_rss_gib": 0.0093536376953125,
+    "sampled_peak_rss_mib": 9.578125,
+    "stage_guard_windows": {
+      "study": {
+        "cpu_utilization_percent": {
+          "count": 0,
+          "maximum": null,
+          "median": null,
+          "minimum": null
+        },
+        "sampled_peak_rss_gib": 0.0093536376953125,
+        "samples": 21
+      },
+      "verify": {
+        "cpu_utilization_percent": {
+          "count": 0,
+          "maximum": null,
+          "median": null,
+          "minimum": null
+        },
+        "sampled_peak_rss_gib": 0.0093536376953125,
+        "samples": 53
+      }
+    },
+    "unavailable_cpu_utilization_samples": 81
+  },
+  "run_id": "launch-630d054468ab4bb7915d33cc9482ebf2-a1",
+  "schema": "tdn.native_regularization.cost_telemetry_review.v1",
+  "scope_warning": "Raven's outer process tree did not observe the Slurm worker: its zero CPU and small constant RSS are supervisor measurements. Use native worker observations for workload graphs, with partial CPU intervals retained.",
+  "stage_guard_windows": {
+    "study": {
+      "start": 1792122161.685255,
+      "stop": 1792122183.01522
+    },
+    "verify": {
+      "start": 1792122107.992245,
+      "stop": 1792122160.635808
+    }
+  },
+  "wall_scopes": {
+    "commands": {
+      "study": 20.956739235902205,
+      "verify": 52.33202384703327
+    },
+    "native_coordinator_seconds": 79.86489138694014,
+    "raven_runtime_seconds": 80.44319808401633,
+    "scope": "Nested wall-clock scopes; not quantities to add. Command duration includes process startup/teardown beyond internal stage work.",
+    "study_internal_seconds": 17.65797519206535
+  }
+}

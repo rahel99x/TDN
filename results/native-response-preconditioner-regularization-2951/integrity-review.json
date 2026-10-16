@@ -1,0 +1,483 @@
+{
+  "audit_failures": [],
+  "audit_status": "PASS",
+  "checks": {
+    "access_order": {
+      "adapter_access_records": 3840,
+      "adapter_gate_matches": true,
+      "after_release_count": 2112,
+      "all_candidates_before_freeze": true,
+      "all_unique_inputs_read": true,
+      "before_release_count": 1728,
+      "evaluated_prediction_hashes_match": true,
+      "event_counts": {
+        "all_selections_frozen": 1,
+        "candidate_finished": 39,
+        "protocol_frozen": 1,
+        "query_evaluated": 1152,
+        "retained_query_read": 2688,
+        "run_finished": 1
+      },
+      "freeze_seal_matches": true,
+      "journal_events": 3882,
+      "limitation": "Recorded internal read ordering is auditable, not authenticated external-access proof. Every parent remains previously inspected development evidence.",
+      "original_predictions_after_freeze": true,
+      "protected_truth_after_freeze": true,
+      "protocol_first": true,
+      "timestamps_increase": true,
+      "training_validation_before_freeze": true
+    },
+    "contract": {
+      "installed_package_count": 48,
+      "original_contract_matches": true,
+      "original_profile_matches": true,
+      "profile_content_matches": true,
+      "raw_contract_sha256": "60e3822326b0e473af7046b6d410bd94199dea68375f082e04d673a7f0f075ae",
+      "raw_profile_sha256": "bae989d07e1df032bc509ca60398eea909fc993ec318a6a987760e5577cdf3a2"
+    },
+    "denominators": {
+      "attempted_candidates": 39,
+      "attempted_fit_cells": 3,
+      "attempted_metrics": 19584,
+      "complete_metric_slots": true,
+      "exact_counts": true,
+      "expected_candidates": 39,
+      "expected_fit_cells": 3,
+      "expected_input_queries": 2688,
+      "expected_metrics": 19584,
+      "expected_selected_models": 6,
+      "failed_candidates": 0,
+      "failed_metrics": 0,
+      "fresh_reference_solves": 0,
+      "ineligible_candidates": 3,
+      "measured_metrics": 19584,
+      "methods": [
+        "action_energy-p008-s08",
+        "action_energy-p032-s02",
+        "action_energy-p032-s08",
+        "coefficient_ridge-p008-s08",
+        "coefficient_ridge-p032-s02",
+        "coefficient_ridge-p032-s08",
+        "lawson_2",
+        "lawson_4",
+        "lawson_8",
+        "ordered_2",
+        "ordered_8",
+        "original-p008-s08",
+        "original-p032-s02",
+        "original-p032-s08",
+        "projection-p008-s08",
+        "projection-p032-s02",
+        "projection-p032-s08"
+      ],
+      "missing_metrics": 0,
+      "new_timing_bundles": 0,
+      "read_input_queries": 2688,
+      "selected_models": 6,
+      "three_projection_exclusions": true,
+      "unresolved_metrics": 0
+    },
+    "execution": {
+      "application_completed": true,
+      "commands": [
+        {
+          "argv": [
+            "/home/rahel/TDN/.venv/bin/python",
+            "/home/rahel/TDN/scripts/response_preconditioner_regularization.py",
+            "verify",
+            "--device",
+            "cpu",
+            "--output",
+            "/home/rahel/TDN/runs/launch-630d054468ab4bb7915d33cc9482ebf2-a1/outputs/verification"
+          ],
+          "command": "verify",
+          "elapsed_seconds": 52.33202384703327,
+          "exit_code": 0,
+          "output": "outputs/verification"
+        },
+        {
+          "argv": [
+            "/home/rahel/TDN/.venv/bin/python",
+            "/home/rahel/TDN/scripts/response_preconditioner_regularization.py",
+            "study",
+            "--device",
+            "cpu",
+            "--output",
+            "/home/rahel/TDN/runs/launch-630d054468ab4bb7915d33cc9482ebf2-a1/outputs/study",
+            "--contract",
+            ".runtime/response-preconditioner-regularization-launches/f35276a70a0b49828a85d301e0579ab7.json"
+          ],
+          "command": "study",
+          "elapsed_seconds": 20.956739235902205,
+          "exit_code": 0,
+          "output": "outputs/study"
+        }
+      ],
+      "cpu_affinity": [
+        2,
+        3,
+        10,
+        11
+      ],
+      "created_at_America_Los_Angeles": "2026-10-15T20:41:46.266279-07:00",
+      "created_at_utc": "2026-10-16T03:41:46.266279+00:00",
+      "finished_at_America_Los_Angeles": "2026-10-15T20:43:06.131168-07:00",
+      "finished_at_utc": "2026-10-16T03:43:06.131168+00:00",
+      "independent_final_scheduler_accounting_present": false,
+      "job_id": "2951",
+      "native_elapsed_seconds": 79.86489138694014,
+      "native_exit_code": 0,
+      "native_state": "COMPLETED",
+      "raven_state": "COMPLETED",
+      "requested_cpus": 4,
+      "requested_memory": "8G",
+      "requested_wall": "00:20:00",
+      "scheduler_outcome": "unknown",
+      "startup_scheduler_state": "RUNNING",
+      "study_elapsed_seconds": 17.65797519206535,
+      "study_execution_status": "COMPLETED"
+    },
+    "junit": {
+      "all_required_passed": true,
+      "class_counts": {
+        "tests.test_response_numerics": 32,
+        "tests.test_response_preconditioner_audit": 38,
+        "tests.test_response_preconditioner_fitting": 16,
+        "tests.test_response_preconditioner_launch": 22,
+        "tests.test_response_preconditioner_model": 39,
+        "tests.test_response_preconditioner_numerics": 21,
+        "tests.test_response_preconditioner_r7_actions": 18,
+        "tests.test_response_preconditioner_r7_fitting": 37,
+        "tests.test_response_preconditioner_r7_launch": 12,
+        "tests.test_response_preconditioner_r7_references": 18,
+        "tests.test_response_preconditioner_r7_workflow": 11,
+        "tests.test_response_preconditioner_regularization_analysis": 33,
+        "tests.test_response_preconditioner_regularization_evidence": 19,
+        "tests.test_response_preconditioner_regularization_fitting": 45,
+        "tests.test_response_preconditioner_regularization_launch": 18,
+        "tests.test_response_preconditioner_regularization_sensitivity": 41,
+        "tests.test_response_preconditioner_regularization_workflow": 25,
+        "tests.test_response_preconditioner_scaling_analysis": 41,
+        "tests.test_response_preconditioner_scaling_data": 23,
+        "tests.test_response_preconditioner_scaling_export": 16,
+        "tests.test_response_preconditioner_scaling_launch": 13,
+        "tests.test_response_preconditioner_scaling_workflow": 13,
+        "tests.test_response_preconditioner_workflow": 7,
+        "tests.test_tangent_response_numerics": 27
+      },
+      "counts_match": true,
+      "duplicates": 0,
+      "errors": 0,
+      "exact_roster": true,
+      "expected": 585,
+      "failed": 0,
+      "immutable_roster_matches": true,
+      "skipped": 0,
+      "total": 585
+    },
+    "logs": {
+      "external_scheduler": [
+        "/home/rahel/TDN/logs/response-preconditioner-regularization/tdn-response-preconditioner-regularization-2951.err",
+        "/home/rahel/TDN/logs/response-preconditioner-regularization/tdn-response-preconditioner-regularization-2951.out"
+      ],
+      "portable": [
+        "logs/verify.stdout.log",
+        "logs/verify.stderr.log",
+        "logs/study.stdout.log",
+        "logs/study.stderr.log"
+      ]
+    },
+    "native_guards": {
+      "chronological": true,
+      "complete_pre_post_guards": true,
+      "final_flags": true,
+      "limitation": "Guard receipts record application observations; they are not external attestation of every file access.",
+      "post_stage_receipts_match": true,
+      "records": [
+        {
+          "checked_at": "2026-10-16T03:41:47.642807+00:00",
+          "command": "preflight",
+          "errors": {},
+          "input_equal": true,
+          "point": "before",
+          "source_equal": true
+        },
+        {
+          "checked_at": "2026-10-16T03:41:47.992245+00:00",
+          "command": "verify",
+          "errors": {},
+          "input_equal": true,
+          "point": "before",
+          "source_equal": true
+        },
+        {
+          "checked_at": "2026-10-16T03:42:40.635808+00:00",
+          "command": "verify",
+          "errors": {},
+          "input_equal": true,
+          "point": "after",
+          "source_equal": true
+        },
+        {
+          "checked_at": "2026-10-16T03:42:41.685255+00:00",
+          "command": "study",
+          "errors": {},
+          "input_equal": true,
+          "point": "before",
+          "source_equal": true
+        },
+        {
+          "checked_at": "2026-10-16T03:43:03.015220+00:00",
+          "command": "study",
+          "errors": {},
+          "input_equal": true,
+          "point": "after",
+          "source_equal": true
+        }
+      ]
+    },
+    "packing": {
+      "archive_present": false,
+      "elapsed_seconds": 1.1662819660268724,
+      "exact_inventory": true,
+      "export_omissions": [
+        {
+          "path": "outputs/native/portable-study-evidence.zip",
+          "reason": "Duplicate of hash-verified original study files included in this export"
+        }
+      ],
+      "intentional_export_deduplication": true,
+      "limitation": "Export deliberately omits the redundant original ZIP after verifying every raw file. This audit validates its packing inventory, not the unavailable ZIP's byte-level identity.",
+      "original_archive_bytes": 121133097,
+      "packed_files": 6155,
+      "packed_mismatches": [],
+      "packed_raw_bytes": 118653305,
+      "upload_index_sha256": "243fe99762ebdc8f838116c367df9437bac803901367706a28d2cd690268d8ae"
+    },
+    "protocols": {
+      "study": {
+        "completed_bounded": true,
+        "contract_matches": true,
+        "cpu_only": true,
+        "elapsed_seconds": 17.65797519206535,
+        "job_matches": true,
+        "prelaunch_matches": true,
+        "protocol_sha256": "2471471ae88c94c9b0f66a88c32fb426820a4df17635a6874f8134130715909a",
+        "summary_matches": true,
+        "versions_match": true
+      },
+      "verification": {
+        "completed_bounded": true,
+        "contract_matches": true,
+        "cpu_only": true,
+        "elapsed_seconds": 50.33056957705412,
+        "job_matches": true,
+        "prelaunch_matches": true,
+        "protocol_sha256": "a1ea8d521c5fb9ff0ac4f05082347f7a4307a1bb212d6daf376e7c9bb437f39c",
+        "summary_matches": true,
+        "versions_match": true
+      }
+    },
+    "raven_metrics": {
+      "after_guard": true,
+      "exact_research_parity": true,
+      "finite_values": true,
+      "published_flag": true,
+      "published_research_rows": 95,
+      "research_by_phase": {
+        "accuracy": 55,
+        "fit": 39,
+        "offline_cost": 1
+      },
+      "research_rows": 95,
+      "stage_metrics_match": true,
+      "total_rows": 97
+    },
+    "raven_outputs": {
+      "exactly_declared_omission": true,
+      "missing_in_deduplicated_export": [
+        "outputs/native/portable-study-evidence.zip"
+      ],
+      "present": 57,
+      "registered": 58
+    },
+    "retained_input_bank": {
+      "all_original_bytes_match": true,
+      "bytes": 61235622,
+      "files": 3849,
+      "historical_status_preserved": true,
+      "identity_receipts_agree": true,
+      "mismatches": [],
+      "no_duplicate_archive": true,
+      "original_source_protocol_matches": true,
+      "pinned_archive_matches": true,
+      "scope": "Exact bytes of the previously inspected P1 bank. Input identity's numeric_arrays_loaded=false describes preparation-only verification, not this study's reads."
+    },
+    "selection": {
+      "cells": [
+        {
+          "candidate_menu_matches": true,
+          "cell_id": "p008-s08",
+          "fit_file_matches": true,
+          "fixed_validation_matches": true,
+          "no_protected_selection_truth": true,
+          "original_model_matches": true,
+          "seal_matches": true,
+          "selected": {
+            "action_energy": {
+              "candidate": "action_energy_1e-06",
+              "ridge": 1e-06,
+              "validation_minimum_matches": true,
+              "validation_mse": 1.4771915333116263e-14
+            },
+            "coefficient_ridge": {
+              "candidate": "coefficient_ridge_1e-18",
+              "ridge": 1e-18,
+              "validation_minimum_matches": true,
+              "validation_mse": 1.4761158040581035e-14
+            }
+          },
+          "training_prefix_matches": true,
+          "training_queries": 384,
+          "validation_queries": 192
+        },
+        {
+          "candidate_menu_matches": true,
+          "cell_id": "p032-s02",
+          "fit_file_matches": true,
+          "fixed_validation_matches": true,
+          "no_protected_selection_truth": true,
+          "original_model_matches": true,
+          "seal_matches": true,
+          "selected": {
+            "action_energy": {
+              "candidate": "action_energy_1e-06",
+              "ridge": 1e-06,
+              "validation_minimum_matches": true,
+              "validation_mse": 1.2645871475549037e-14
+            },
+            "coefficient_ridge": {
+              "candidate": "coefficient_ridge_1e-14",
+              "ridge": 1e-14,
+              "validation_minimum_matches": true,
+              "validation_mse": 1.2539890147102872e-14
+            }
+          },
+          "training_prefix_matches": true,
+          "training_queries": 384,
+          "validation_queries": 192
+        },
+        {
+          "candidate_menu_matches": true,
+          "cell_id": "p032-s08",
+          "fit_file_matches": true,
+          "fixed_validation_matches": true,
+          "no_protected_selection_truth": true,
+          "original_model_matches": true,
+          "seal_matches": true,
+          "selected": {
+            "action_energy": {
+              "candidate": "action_energy_1e-06",
+              "ridge": 1e-06,
+              "validation_minimum_matches": true,
+              "validation_mse": 1.322745283436396e-14
+            },
+            "coefficient_ridge": {
+              "candidate": "coefficient_ridge_1e-12",
+              "ridge": 1e-12,
+              "validation_minimum_matches": true,
+              "validation_mse": 1.2812305605427247e-14
+            }
+          },
+          "training_prefix_matches": true,
+          "training_queries": 1536,
+          "validation_queries": 192
+        }
+      ],
+      "exactly_three_cells": true,
+      "explicitly_inspected": true,
+      "selection_file_sha256": "53364b4d9d8604ada5b95f985132247948e8e8e5d8309df59ac912ae5c3f2147",
+      "six_sealed_choices": true
+    },
+    "source": {
+      "aggregate_matches": true,
+      "all_snapshots_equal": true,
+      "captured_script_matches": true,
+      "fingerprints_match": true,
+      "hash_mismatches": [],
+      "immutable_files_match": true,
+      "native_aggregate_sha256": "73e0039cc959b512ee324b348a6045c932b47c4c15a59a781f538c56247af6b6",
+      "native_files": 659,
+      "source_revision": "4d0e0498ebb4f218b58934227aebc7619be2d165",
+      "stage_files": 279,
+      "stage_fingerprint": "ff37f88c9dcbdf394a562c0da1ef1765e4f1c1dd8b191940179786de67c66358"
+    },
+    "stage_manifests": {
+      "study": {
+        "bytes": 198766749,
+        "files": 6185,
+        "hash_size_mismatches": [],
+        "matches": true,
+        "missing": [],
+        "unlisted": []
+      },
+      "verification": {
+        "bytes": 334852,
+        "files": 13,
+        "hash_size_mismatches": [],
+        "matches": true,
+        "missing": [],
+        "unlisted": []
+      }
+    },
+    "telemetry": {
+      "supervisor": {
+        "counts_match": true,
+        "errors": [],
+        "maximum_sampled_cpu_percent": null,
+        "maximum_sampled_summed_rss_bytes": 10043392,
+        "missed_samples": 0,
+        "partial_reasons": {},
+        "partial_samples": 0,
+        "samples": 81,
+        "status": "complete",
+        "timestamps_increase": true,
+        "valid_cpu_percent_samples": 0
+      },
+      "worker": {
+        "counts_match": true,
+        "csv_matches": true,
+        "errors": [],
+        "maximum_sampled_cpu_percent": 101.00373461506803,
+        "maximum_sampled_summed_rss_bytes": 1842450432,
+        "missed_samples": 0,
+        "partial_reasons": {
+          "Process tree changed; interval CPU utilization unavailable": 10
+        },
+        "partial_samples": 10,
+        "samples": 79,
+        "status": "partial",
+        "timestamps_increase": true,
+        "valid_cpu_percent_samples": 68
+      }
+    },
+    "verification_release": {
+      "files": 4,
+      "matches": true
+    }
+  },
+  "limitations": [
+    "Read-only retained-evidence audit; no uploaded code, new model fit, reference or timing experiment was executed.",
+    "Final independent Slurm accounting is absent; scheduler_outcome remains unknown despite successful application/Raven lifecycle records.",
+    "The archive is inspected development data. Verified internal selection ordering does not create fresh confirmation.",
+    "The redundant portable ZIP was intentionally omitted by export. Its raw files and packing inventory are verified; its unavailable byte identity is not.",
+    "Worker process-tree RSS is sampled, can repeat shared pages and has ten partial observations; supervisor telemetry is separate and neither is per-method peak memory.",
+    "Reference uncertainty is inherited empirical evidence, not a certificate. There are no new reference or inference-timing measurements, and no GPU, speedup, novelty or scientific promotion follows.",
+    "Numerical objective and prediction replay is reported separately from this provenance/access audit."
+  ],
+  "native_status_preserved": "COMPLETED",
+  "numerical_study_status": "COMPLETED",
+  "schema": "tdn.native-regularization-p1r-evidence-audit/v1",
+  "scientific_promotion": false,
+  "source_revision": "4d0e0498ebb4f218b58934227aebc7619be2d165"
+}

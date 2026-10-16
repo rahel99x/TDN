@@ -1,0 +1,140 @@
+{
+  "archive_sha256": "c1b847269855135459e865d655aba316a3e0e21d77afcdf0763d29af2c47d262",
+  "checks": {
+    "archive_members": 6228,
+    "bash_blocks": 20,
+    "document_links": 120,
+    "fit_sensitivity_checks": 14086,
+    "group_fields_exact": 1705,
+    "metric_rows": 19584,
+    "native_required_tests": 585,
+    "parent_fields_exact": 23664,
+    "parity_fields_exact": 27648,
+    "query_fields_exact": 607104,
+    "research_rows_exact": 95,
+    "upload_parts": 2
+  },
+  "commands": [
+    {
+      "argv": [
+        ".venv/bin/python",
+        "results/native-response-preconditioner-regularization-2951/replay_upload.py",
+        "--output",
+        ".runtime/native-regularization-review-630d0544/replay-extracted"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "results/native-response-preconditioner-regularization-2951/audit_receipt.py",
+        "--repository",
+        "/workspace/TDN",
+        "--evidence",
+        ".runtime/native-regularization-review-630d0544/replay-extracted/launch-630d054468ab4bb7915d33cc9482ebf2-a1",
+        "--upload-index",
+        "results/native-response-preconditioner-regularization-2951/upload-index.json",
+        "--output",
+        ".runtime/native-regularization-review-630d0544/checks-replay/integrity-review.json"
+      ],
+      "environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "results/native-response-preconditioner-regularization-2951/review_metrics.py",
+        "--study",
+        ".runtime/native-regularization-review-630d0544/replay-extracted/launch-630d054468ab4bb7915d33cc9482ebf2-a1/outputs/study",
+        "--output",
+        ".runtime/native-regularization-review-630d0544/checks-replay/metrics-review.json"
+      ],
+      "environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "results/native-response-preconditioner-regularization-2951/review_science.py",
+        "--study",
+        ".runtime/native-regularization-review-630d0544/replay-extracted/launch-630d054468ab4bb7915d33cc9482ebf2-a1/outputs/study",
+        "--output",
+        ".runtime/native-regularization-review-630d0544/checks-replay/science-review.json"
+      ],
+      "environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "results/native-response-preconditioner-regularization-2951/review_resources.py",
+        "--run",
+        ".runtime/native-regularization-review-630d0544/replay-extracted/launch-630d054468ab4bb7915d33cc9482ebf2-a1",
+        "--output",
+        ".runtime/native-regularization-review-630d0544/checks-replay/cost-telemetry-review.json"
+      ],
+      "environment": {
+        "MKL_NUM_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    },
+    {
+      "argv": [
+        ".venv/bin/python",
+        "results/native-response-preconditioner-regularization-2951/make_figures.py",
+        "--run",
+        ".runtime/native-regularization-review-630d0544/extracted/launch-630d054468ab4bb7915d33cc9482ebf2-a1",
+        "--output",
+        "results/native-response-preconditioner-regularization-2951/figures"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    }
+  ],
+  "cwd": "/workspace/TDN",
+  "job_id": 2951,
+  "new_fits": 0,
+  "new_inference_timings": 0,
+  "new_reference_solves": 0,
+  "proposal_status": "NOT_IMPLEMENTED_OR_EXECUTED",
+  "reproduction": "Four review JSON records reproduce exactly from independently verified fresh archive extraction",
+  "review_date": "2026-10-15",
+  "run_id": "launch-630d054468ab4bb7915d33cc9482ebf2-a1",
+  "schema": "tdn.native_p1r.review_receipt.v1",
+  "scientific_promotion": false,
+  "software": {
+    "numpy": "2.2.6",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+  },
+  "source_commit": "4d0e0498ebb4f218b58934227aebc7619be2d165",
+  "source_scripts": {
+    "audit_receipt.py": "3b3b42fa4faa7e6c3ebace2d2ac2875a78b3b2dbfd331563bd745a7c44872227",
+    "make_figures.py": "0a240c6bf17935f23555c1cb97c882b23140fd90d173082767a9be285f359f31",
+    "replay_upload.py": "f725deaa29a6562d045ba2f2c7a0a217e88f339685da5d834d3b11848e256643",
+    "review_metrics.py": "e771caa93fcf6793b4fe9de752cbe714ebf08b6d35d271d68c9e539ae546070d",
+    "review_resources.py": "347a6cd22d3a533d69a29c15a458caafd2849869e0260cbabe62355dbdff3a6d",
+    "review_science.py": "e4553416f7305c2ab6aac49a5ff437f2f7b04c22fb56cc06aeb083d7055d0965"
+  },
+  "status": "PASS",
+  "timezone": "America/Los_Angeles",
+  "uploaded_code_executed": false,
+  "utc_date": "2026-10-16"
+}

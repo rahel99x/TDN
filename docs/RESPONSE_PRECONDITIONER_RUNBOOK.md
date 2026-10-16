@@ -48,8 +48,12 @@ The [frozen P1R design and term guide](RESPONSE_PRECONDITIONER_REGULARIZATION_AU
 implement the user-authorized follow-up to native P1 job 2944. Exact local
 verification passed all **585 mandatory CPU cases**, plus eight additional Raven
 compatibility cases; the [receipt](../results/response-preconditioner-regularization-verification-20261015/README.md)
-also retains the complete 144-metric synthetic integration;
-native execution is pending. Preparation uses the committed, hash-pinned P1
+also retains the complete 144-metric synthetic integration.
+[Native job 2951](../results/native-response-preconditioner-regularization-2951/README.md)
+now completes the audit at `4d0e049`: 585 native checks, 39 candidates, six
+selections and all 19,584 metric rows independently verified. Source/input
+guards, research publication and packing passed. No unchanged rerun is needed.
+Preparation uses the committed, hash-pinned P1
 review archive, so no manual old-run directory is needed. It verifies input
 identity and provenance without fitting models or loading numeric arrays.
 
@@ -70,7 +74,14 @@ The audit introduces no physical labels, model architecture changes or new
 inference timings. It replays retained designs and equivalent five-branch
 contractions; all missing and failed slots remain visible.
 
-After relevant jobs using this checkout are terminal, prepare and launch:
+The largest fit's diagnostic RMS improves 15.44%, but remains 568 times Lawson
+two's; the eight-parent fit's worst error increases 55.07%. The
+[next proposed gate](../results/native-response-preconditioner-regularization-2951/proposal-review.md)
+separates local coefficient identification from sampled branch expressiveness
+using retained training contexts. It has not been implemented or executed.
+
+The following preserves the P1R interface for a separately authorized new
+attempt, after relevant jobs using this checkout are terminal:
 
 ```bash
 if cd /home/rahel/TDN &&

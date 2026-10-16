@@ -1,0 +1,49 @@
+{
+  "schema": "tdn.regularization.next_gate.proposal_review.v1",
+  "status": "PROPOSED_ONLY_NOT_EXECUTED",
+  "scope": "Previously inspected training-parent development data; no diagnostic-parent numeric access",
+  "historical_gate": "B STOP unchanged",
+  "source_metadata": ".runtime/native-regularization-review-630d0544/extracted/launch-630d054468ab4bb7915d33cc9482ebf2-a1/outputs/study",
+  "metadata_checked": {
+    "training_parents": 32,
+    "contexts_per_parent": 6,
+    "training_contexts": 192,
+    "calibration_sources_per_context": 8,
+    "withheld_sources_per_context": 4,
+    "new_numeric_array_evaluations": 0,
+    "new_fits": 0
+  },
+  "proposed_work": {
+    "coefficient_dimension": 5,
+    "calibration_prefixes": [8],
+    "calibration_fits": 192,
+    "local_prediction_rows": 768,
+    "separate_evaluation_only_projections": 192,
+    "maximum_five_column_decompositions_for_one_solver_treatment": 384,
+    "new_reference_solves": 0,
+    "new_architecture": false,
+    "new_timing_bundles": 0,
+    "numerical_execution_authorized_by_this_review": false
+  },
+  "required_contracts": [
+    "One coefficient vector per exact parent/physics/interval context, shared across sources",
+    "Fit calibration targets only; freeze solver settings before any withheld scoring",
+    "Seal every calibration fit before accessing training-withheld numeric targets",
+    "Stack all four withheld sources for the evaluation-only projection; never select or deploy its coefficients",
+    "Use explicit physical cell/source weights and training-only column scaling",
+    "Record conditioning, numerical rank, discarded singular values, coefficient norms and prediction parity",
+    "Retain signed cross terms when a truncated projector excludes part of the actual prediction",
+    "Keep every requested metric slot, including failures and unresolved reference cases",
+    "Pair frozen global and classical comparisons on identical cohorts and sources",
+    "Preregister native runtime, extraction, retention and memory bounds before execution"
+  ],
+  "interpretation_limits": [
+    "Local calibration-fit error combines branch expressiveness and coefficient identification",
+    "A complete sampled-span projection separates sampled representation and recovery error, not full-operator capacity",
+    "A truncated-span residual is not an unavoidable full-span lower bound",
+    "Reference uncertainty is estimated and can dominate apparently small oracle residuals",
+    "Local label-informed coefficients do not establish deployable conditioning or out-of-parent generalization",
+    "Contexts and sources remain paired descendants of independent parents",
+    "No novelty, superiority, native speedup or scientific promotion follows from this diagnostic"
+  ]
+}

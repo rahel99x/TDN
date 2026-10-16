@@ -1,6 +1,6 @@
 # P1R: bounded retained-data regularization audit
 
-**Implementation phase after the reviewed native P1 study.** This is a separate
+**Native audit completed and reviewed at `4d0e049`.** This is a separate
 source-bound development protocol, `tdn.response_preconditioner.regularization.v1`.
 It implements the next bounded question selected in the
 [P1 review](../results/native-response-preconditioner-scaling-2944/README.md),
@@ -9,8 +9,16 @@ without changing P1, R7 or the model architecture. Read the
 [runbook](RESPONSE_PRECONDITIONER_RUNBOOK.md) for current verification status.
 The [implementation receipt](../results/response-preconditioner-regularization-verification-20261015/README.md)
 records **585 exact mandatory CPU passes**, eight additional Raven compatibility
-passes and the 32-query/144-metric algebraic fixture. Native fitting on the
-retained physical bank remains pending.
+passes and the 32-query/144-metric algebraic fixture.
+[Native job 2951](../results/native-response-preconditioner-regularization-2951/README.md)
+passed its exact 585-case suite and completed all 39 candidates and 19,584
+metric slots. Independent replay verifies source/input guards, selection,
+numerical objectives, sensitivity, metrics and successful publication/packing.
+Largest-cell diagnostic RMS improves 15.44%, but stays 568 times Lawson two's.
+Read the review's figures, term guide and
+[proposed structural-attribution gate](../results/native-response-preconditioner-regularization-2951/proposal-review.md)
+before further work. No unchanged rerun is needed; the protocol below remains
+the immutable implemented experiment, not a launch instruction for a successor.
 
 ## Question and scope
 
@@ -208,6 +216,7 @@ are not per-method peak memory or GPU measurements.
 
 ## Native operation and portable outputs
 
+The following retains the launch interface for a separately authorized repeat.
 Run only after earlier jobs using this checkout are terminal. The project venv,
 Fedora Slurm profile and installed Raven are required. Preparation uses the
 committed reviewed P1 archive, so no manual old-run path is needed.

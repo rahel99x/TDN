@@ -23,8 +23,11 @@ More physical parents helped, while additional directions had small returns;
 Lawson 2 remained much more accurate near the learned execution cost. The
 user-authorized follow-up is now implemented as the separate
 [P1R retained-data regularization audit](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md).
-Its [585-case CPU verification](../results/response-preconditioner-regularization-verification-20261015/README.md)
-passed; native execution remains pending; it does not repeat
+Its [native job 2951 review](../results/native-response-preconditioner-regularization-2951/README.md)
+now verifies 585 native checks, 39 candidates and all 19,584 metrics, with
+reporting and packing complete. Largest-cell diagnostic RMS improves 15.44%,
+but remains 568 times Lawson two's. The next proposed question separates local
+coefficient identification from the sampled branch span; P1R does not repeat
 P1, launch P2 or expand the architecture.
 
 ## Why this experiment
@@ -347,7 +350,7 @@ to native elapsed time, not inserted into measured method timing.
 | Phase | Question and intervention | Current authorization/status |
 | --- | --- | --- |
 | P1 | Independent-parent versus source-direction scaling with the fixed response family | Native numerical study reviewed; wrapper packing FAILED, evidence recovered |
-| P1R | Retained-bank coefficient-penalty path versus action-energy uniform shrinkage | CPU-verified user-authorized follow-up (585 mandatory passes); native execution pending; [frozen audit and launch commands](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md) |
+| P1R | Retained-bank coefficient-penalty path versus action-energy uniform shrinkage | [Native job 2951 reviewed](../results/native-response-preconditioner-regularization-2951/README.md): 585 checks and all 19,584 metrics; bounded improvement, no utility advantage; no unchanged rerun |
 | P2 | D-optimal/E-optimal acquisition versus stratified/random physical coverage | Proposed; freeze a separate selection rule, acquisition budget and untouched evaluation bank |
 | P3 | Actual-defect and full-quadrature correction supervision versus generic source supervision | Proposed; implement task-specific labels and preserve generic stress tests |
 | P4 | Generalized Tikhonov/physical priors versus the unchanged coefficient ridge | P1R implements the bounded regularization question first; independently derived physical priors remain proposed and need a declared objective, nullspace and selection |
@@ -383,7 +386,7 @@ action, not a derived PDE or BCH/Magnus prior. No new physical labels, model
 branches or inference timing bundles are introduced. The diagnostic bank remains
 inspected development. The [new audit document](RESPONSE_PRECONDITIONER_REGULARIZATION_AUDIT.md)
 and [current runbook](RESPONSE_PRECONDITIONER_RUNBOOK.md#p1r-current-bounded-retained-data-regularization-audit)
-contain its separate recipe, guarded launch/export commands and pending native
+contain its separate recipe, guarded launch/export commands and reviewed native
 verification status. The P1 launch interface above is historical and is not the
 command for that follow-up.
 
